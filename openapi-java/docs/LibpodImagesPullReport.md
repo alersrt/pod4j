@@ -13,4 +13,8 @@
 |**stream** | **String** | Stream used to provide output from c/image |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

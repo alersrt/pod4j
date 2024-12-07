@@ -12,4 +12,8 @@ NetworkPruneReport containers the name of network and an error associated in its
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

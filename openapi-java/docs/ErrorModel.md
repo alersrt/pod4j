@@ -13,4 +13,8 @@ ErrorModel is used in remote connections with podman
 |**response** | **Long** | HTTP response code |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

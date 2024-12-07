@@ -18,4 +18,8 @@
 |**volumes** | [**List&lt;PlayKubeVolume&gt;**](PlayKubeVolume.md) | Volumes - volumes created by play kube. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

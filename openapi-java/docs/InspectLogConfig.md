@@ -15,4 +15,8 @@ InspectLogConfig holds information about a container's configured log driver
 |**type** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -18,4 +18,8 @@ SystemDfImageReport describes an image for use with df
 |**uniqueSize** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

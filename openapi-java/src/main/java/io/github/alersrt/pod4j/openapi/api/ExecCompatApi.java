@@ -13,17 +13,26 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 import io.github.alersrt.pod4j.openapi.model.ContainerExecRequest;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ExecStartRequest;
 import io.github.alersrt.pod4j.openapi.model.InspectExecSession;
-import jakarta.validation.constraints.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -68,31 +77,15 @@ public class ExecCompatApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for containerExec
-     *
-     * @param name      name of container (required)
-     * @param control   Attributes for create (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerExecCall(String name, ContainerExecRequest control, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerExecCall(String name, ContainerExecRequest control, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -102,7 +95,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/exec"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -111,7 +104,7 @@ public class ExecCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -119,15 +112,15 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -142,93 +135,133 @@ public class ExecCompatApi {
 
     }
 
-    /**
-     * Create an exec instance
-     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
-     *
-     * @param name    name of container (required)
-     * @param control Attributes for create (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerExec(String name, ContainerExecRequest control) throws ApiException {
-        containerExecWithHttpInfo(name, control);
-    }
 
-    /**
-     * Create an exec instance
-     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
-     *
-     * @param name    name of container (required)
-     * @param control Attributes for create (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerExecWithHttpInfo(@NotNull String name, ContainerExecRequest control) throws ApiException {
+    private ApiResponse<Void> containerExecWithHttpInfo( @NotNull String name, ContainerExecRequest control) throws ApiException {
         okhttp3.Call localVarCall = containerExecValidateBeforeCall(name, control, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Create an exec instance (asynchronously)
-     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
-     *
-     * @param name      name of container (required)
-     * @param control   Attributes for create (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerExecAsync(String name, ContainerExecRequest control, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerExecAsync(String name, ContainerExecRequest control, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerExecValidateBeforeCall(name, control, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerExecRequest {
+        private final String name;
+        private ContainerExecRequest control;
+
+        private APIcontainerExecRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set control
+         * @param control Attributes for create (optional)
+         * @return APIcontainerExecRequest
+         */
+        public APIcontainerExecRequest control(ContainerExecRequest control) {
+            this.control = control;
+            return this;
+        }
+
+        /**
+         * Build call for containerExec
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerExecCall(name, control, _callback);
+        }
+
+        /**
+         * Execute containerExec request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerExecWithHttpInfo(name, control);
+        }
+
+        /**
+         * Execute containerExec request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerExecWithHttpInfo(name, control);
+        }
+
+        /**
+         * Execute containerExec request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerExecAsync(name, control, _callback);
+        }
+    }
+
     /**
-     * Build call for execInspect
-     *
-     * @param id        Exec instance ID (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create an exec instance
+     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
+     * @param name name of container (required)
+     * @return APIcontainerExecRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call execInspectCall(String id, final ApiCallback _callback) throws ApiException {
+    public APIcontainerExecRequest containerExec(String name) {
+        return new APIcontainerExecRequest(name);
+    }
+    private okhttp3.Call execInspectCall(String id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -238,7 +271,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/json"
-                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -247,7 +280,7 @@ public class ExecCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -261,7 +294,7 @@ public class ExecCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -276,96 +309,121 @@ public class ExecCompatApi {
 
     }
 
-    /**
-     * Inspect an exec instance
-     * Return low-level information about an exec instance.
-     *
-     * @param id Exec instance ID (required)
-     * @return InspectExecSession
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public InspectExecSession execInspect(String id) throws ApiException {
-        ApiResponse<InspectExecSession> localVarResp = execInspectWithHttpInfo(id);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect an exec instance
-     * Return low-level information about an exec instance.
-     *
-     * @param id Exec instance ID (required)
-     * @return ApiResponse&lt;InspectExecSession&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<InspectExecSession> execInspectWithHttpInfo(@NotNull String id) throws ApiException {
+    private ApiResponse<InspectExecSession> execInspectWithHttpInfo( @NotNull String id) throws ApiException {
         okhttp3.Call localVarCall = execInspectValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<InspectExecSession>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<InspectExecSession>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect an exec instance (asynchronously)
-     * Return low-level information about an exec instance.
-     *
-     * @param id        Exec instance ID (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call execInspectAsync(String id, final ApiCallback<InspectExecSession> _callback) throws ApiException {
+    private okhttp3.Call execInspectAsync(String id, final ApiCallback<InspectExecSession> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = execInspectValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<InspectExecSession>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<InspectExecSession>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIexecInspectRequest {
+        private final String id;
+
+        private APIexecInspectRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Build call for execInspect
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return execInspectCall(id, _callback);
+        }
+
+        /**
+         * Execute execInspect request
+         * @return InspectExecSession
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public InspectExecSession execute() throws ApiException {
+            ApiResponse<InspectExecSession> localVarResp = execInspectWithHttpInfo(id);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute execInspect request with HTTP info returned
+         * @return ApiResponse&lt;InspectExecSession&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<InspectExecSession> executeWithHttpInfo() throws ApiException {
+            return execInspectWithHttpInfo(id);
+        }
+
+        /**
+         * Execute execInspect request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<InspectExecSession> _callback) throws ApiException {
+            return execInspectAsync(id, _callback);
+        }
+    }
+
     /**
-     * Build call for execResize
-     *
-     * @param id        Exec instance ID (required)
-     * @param h         Height of the TTY session in characters (optional)
-     * @param w         Width of the TTY session in characters (optional)
-     * @param running   Ignore containers not running errors (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect an exec instance
+     * Return low-level information about an exec instance.
+     * @param id Exec instance ID (required)
+     * @return APIexecInspectRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Exec Session Inspect </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call execResizeCall(String id, Integer h, Integer w, Boolean running, final ApiCallback _callback) throws ApiException {
+    public APIexecInspectRequest execInspect(String id) {
+        return new APIexecInspectRequest(id);
+    }
+    private okhttp3.Call execResizeCall(String id, Integer h, Integer w, Boolean running, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -375,7 +433,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/resize"
-                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -396,7 +454,7 @@ public class ExecCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -410,7 +468,7 @@ public class ExecCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -425,98 +483,150 @@ public class ExecCompatApi {
 
     }
 
-    /**
-     * Resize an exec instance
-     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
-     *
-     * @param id      Exec instance ID (required)
-     * @param h       Height of the TTY session in characters (optional)
-     * @param w       Width of the TTY session in characters (optional)
-     * @param running Ignore containers not running errors (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void execResize(String id, Integer h, Integer w, Boolean running) throws ApiException {
-        execResizeWithHttpInfo(id, h, w, running);
-    }
 
-    /**
-     * Resize an exec instance
-     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
-     *
-     * @param id      Exec instance ID (required)
-     * @param h       Height of the TTY session in characters (optional)
-     * @param w       Width of the TTY session in characters (optional)
-     * @param running Ignore containers not running errors (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> execResizeWithHttpInfo(@NotNull String id, Integer h, Integer w, Boolean running) throws ApiException {
+    private ApiResponse<Void> execResizeWithHttpInfo( @NotNull String id, Integer h, Integer w, Boolean running) throws ApiException {
         okhttp3.Call localVarCall = execResizeValidateBeforeCall(id, h, w, running, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Resize an exec instance (asynchronously)
-     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
-     *
-     * @param id        Exec instance ID (required)
-     * @param h         Height of the TTY session in characters (optional)
-     * @param w         Width of the TTY session in characters (optional)
-     * @param running   Ignore containers not running errors (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call execResizeAsync(String id, Integer h, Integer w, Boolean running, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call execResizeAsync(String id, Integer h, Integer w, Boolean running, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = execResizeValidateBeforeCall(id, h, w, running, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIexecResizeRequest {
+        private final String id;
+        private Integer h;
+        private Integer w;
+        private Boolean running;
+
+        private APIexecResizeRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set h
+         * @param h Height of the TTY session in characters (optional)
+         * @return APIexecResizeRequest
+         */
+        public APIexecResizeRequest h(Integer h) {
+            this.h = h;
+            return this;
+        }
+
+        /**
+         * Set w
+         * @param w Width of the TTY session in characters (optional)
+         * @return APIexecResizeRequest
+         */
+        public APIexecResizeRequest w(Integer w) {
+            this.w = w;
+            return this;
+        }
+
+        /**
+         * Set running
+         * @param running Ignore containers not running errors (optional)
+         * @return APIexecResizeRequest
+         */
+        public APIexecResizeRequest running(Boolean running) {
+            this.running = running;
+            return this;
+        }
+
+        /**
+         * Build call for execResize
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return execResizeCall(id, h, w, running, _callback);
+        }
+
+        /**
+         * Execute execResize request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            execResizeWithHttpInfo(id, h, w, running);
+        }
+
+        /**
+         * Execute execResize request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return execResizeWithHttpInfo(id, h, w, running);
+        }
+
+        /**
+         * Execute execResize request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return execResizeAsync(id, h, w, running, _callback);
+        }
+    }
+
     /**
-     * Build call for execStart
-     *
-     * @param id        Exec instance ID (required)
-     * @param control   Attributes for start (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Resize an exec instance
+     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance. 
+     * @param id Exec instance ID (required)
+     * @return APIexecResizeRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call execStartCall(String id, ExecStartRequest control, final ApiCallback _callback) throws ApiException {
+    public APIexecResizeRequest execResize(String id) {
+        return new APIexecResizeRequest(id);
+    }
+    private okhttp3.Call execStartCall(String id, ExecStartRequest control, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -526,7 +636,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/start"
-                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -535,7 +645,7 @@ public class ExecCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/octet-stream"
+            "application/octet-stream"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -543,15 +653,15 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -566,67 +676,122 @@ public class ExecCompatApi {
 
     }
 
-    /**
-     * Start an exec instance
-     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command.
-     *
-     * @param id      Exec instance ID (required)
-     * @param control Attributes for start (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void execStart(String id, ExecStartRequest control) throws ApiException {
-        execStartWithHttpInfo(id, control);
-    }
 
-    /**
-     * Start an exec instance
-     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command.
-     *
-     * @param id      Exec instance ID (required)
-     * @param control Attributes for start (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> execStartWithHttpInfo(@NotNull String id, ExecStartRequest control) throws ApiException {
+    private ApiResponse<Void> execStartWithHttpInfo( @NotNull String id, ExecStartRequest control) throws ApiException {
         okhttp3.Call localVarCall = execStartValidateBeforeCall(id, control, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Start an exec instance (asynchronously)
-     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command.
-     *
-     * @param id        Exec instance ID (required)
-     * @param control   Attributes for start (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call execStartAsync(String id, ExecStartRequest control, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call execStartAsync(String id, ExecStartRequest control, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = execStartValidateBeforeCall(id, control, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
+    }
+
+    public class APIexecStartRequest {
+        private final String id;
+        private ExecStartRequest control;
+
+        private APIexecStartRequest(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Set control
+         * @param control Attributes for start (optional)
+         * @return APIexecStartRequest
+         */
+        public APIexecStartRequest control(ExecStartRequest control) {
+            this.control = control;
+            return this;
+        }
+
+        /**
+         * Build call for execStart
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return execStartCall(id, control, _callback);
+        }
+
+        /**
+         * Execute execStart request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            execStartWithHttpInfo(id, control);
+        }
+
+        /**
+         * Execute execStart request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return execStartWithHttpInfo(id, control);
+        }
+
+        /**
+         * Execute execStart request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return execStartAsync(id, control, _callback);
+        }
+    }
+
+    /**
+     * Start an exec instance
+     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command.
+     * @param id Exec instance ID (required)
+     * @return APIexecStartRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container is not running </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIexecStartRequest execStart(String id) {
+        return new APIexecStartRequest(id);
     }
 }

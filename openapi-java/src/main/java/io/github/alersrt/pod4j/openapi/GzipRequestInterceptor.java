@@ -13,11 +13,7 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import okio.Buffer;
 import okio.BufferedSink;
 import okio.GzipSink;
@@ -27,7 +23,7 @@ import java.io.IOException;
 
 /**
  * Encodes request bodies using gzip.
- * <p>
+ *
  * Taken from https://github.com/square/okhttp/issues/350
  */
 class GzipRequestInterceptor implements Interceptor {
@@ -39,9 +35,9 @@ class GzipRequestInterceptor implements Interceptor {
         }
 
         Request compressedRequest = originalRequest.newBuilder()
-                .header("Content-Encoding", "gzip")
-                .method(originalRequest.method(), forceContentLength(gzip(originalRequest.body())))
-                .build();
+                                                   .header("Content-Encoding", "gzip")
+                                                   .method(originalRequest.method(), forceContentLength(gzip(originalRequest.body())))
+                                                   .build();
         return chain.proceed(compressedRequest);
     }
 

@@ -15,4 +15,8 @@ NetworkConnectOptions describes options for connecting a container to a network
 |**staticMac** | **String** | StaticMac for this container. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -21,4 +21,8 @@ ManifestAnnotateOptions provides model for annotating manifest list
 |**variant** | **String** | Variant for the item in the manifest list |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

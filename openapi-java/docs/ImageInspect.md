@@ -29,4 +29,8 @@
 |**virtualSize** | **Long** | VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

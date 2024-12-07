@@ -15,13 +15,14 @@ package io.github.alersrt.pod4j.openapi;
 
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
+
+import java.io.IOException;
+
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
-
-import java.io.IOException;
 
 public class ProgressResponseBody extends ResponseBody {
 

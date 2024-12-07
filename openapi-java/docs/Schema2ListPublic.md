@@ -13,4 +13,8 @@ This is publicly visible as c/image/manifest.Schema2List. Internal users should 
 |**schemaVersion** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

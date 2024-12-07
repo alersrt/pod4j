@@ -14,4 +14,8 @@
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

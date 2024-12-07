@@ -16,4 +16,8 @@ IDMappingOptions are used for specifying how ID mapping should be set up for a l
 |**uiDMap** | [**List&lt;IDMap&gt;**](IDMap.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

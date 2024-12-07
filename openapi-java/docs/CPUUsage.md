@@ -12,4 +12,8 @@
 |**userPercent** | **Double** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

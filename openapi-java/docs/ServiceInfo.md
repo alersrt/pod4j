@@ -14,4 +14,8 @@ ServiceInfo represents service parameters with the list of service's tasks
 |**VIP** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

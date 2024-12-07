@@ -12,4 +12,8 @@
 |**stream** | **String** | Stream used to provide push progress |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

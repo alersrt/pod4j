@@ -13,4 +13,8 @@
 |**staticMac** | **String** | StaticMac for this container. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

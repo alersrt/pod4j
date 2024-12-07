@@ -14,4 +14,8 @@ LibpodImagesRemoveReport is the return type for image removal via the rest api.
 |**untagged** | **List&lt;String&gt;** | Untagged images. Can be longer than Deleted. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

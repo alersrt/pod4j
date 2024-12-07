@@ -10,4 +10,8 @@
 |**name** | **String** | Name - Name of the volume created by play kube. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

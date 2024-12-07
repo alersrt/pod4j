@@ -18,4 +18,8 @@
 |**volumeOptions** | [**VolumeOptions**](VolumeOptions.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

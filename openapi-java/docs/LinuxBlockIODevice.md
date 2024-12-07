@@ -12,4 +12,8 @@ LinuxBlockIODevice holds major:minor format supported in blkio cgroup
 |**minor** | **Long** | Minor is the device&#39;s minor number. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -9,7 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**args** | [**PluginConfigArgs**](PluginConfigArgs.md) |  |  |
 |**description** | **String** | description |  |
-|**dockerVersion** | **String** | Docker Version used to create the plugin |  [optional] |
 |**documentation** | **String** | documentation |  |
 |**entrypoint** | **List&lt;String&gt;** | entrypoint |  |
 |**env** | [**List&lt;PluginEnv&gt;**](PluginEnv.md) | env |  |
@@ -20,9 +19,14 @@
 |**network** | [**PluginConfigNetwork**](PluginConfigNetwork.md) |  |  |
 |**pidHost** | **Boolean** | pid host |  |
 |**propagatedMount** | **String** | propagated mount |  |
-|**user** | [**PluginConfigUser**](PluginConfigUser.md) |  |  [optional] |
 |**workDir** | **String** | work dir |  |
+|**dockerVersion** | **String** | Docker Version used to create the plugin |  [optional] |
+|**user** | [**PluginConfigUser**](PluginConfigUser.md) |  |  [optional] |
 |**rootfs** | [**PluginConfigRootfs**](PluginConfigRootfs.md) |  |  [optional] |
 
+
+## Implemented Interfaces
+
+* Serializable
 
 

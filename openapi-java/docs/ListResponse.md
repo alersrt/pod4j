@@ -12,4 +12,8 @@ Volume list response
 |**warnings** | **List&lt;String&gt;** | Warnings that occurred when fetching the list of volumes. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

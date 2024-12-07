@@ -12,4 +12,8 @@ NetworkUpdateOptions describes options to update a network
 |**removednsservers** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

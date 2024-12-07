@@ -12,4 +12,8 @@
 |**version** | [**Version**](Version.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

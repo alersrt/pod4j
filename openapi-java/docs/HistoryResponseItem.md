@@ -16,4 +16,8 @@ HistoryResponseItem individual image layer information in response to ImageHisto
 |**tags** | **List&lt;String&gt;** | tags |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,17 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreate;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
+import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReportCompat;
-import jakarta.validation.constraints.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -68,29 +78,15 @@ public class SecretsCompatApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for secretCreate
-     *
-     * @param create    attributes for creating a secret  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretCreateCall(SecretCreate create, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call secretCreateCall(SecretCreate create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -108,7 +104,7 @@ public class SecretsCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -116,15 +112,15 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -134,90 +130,129 @@ public class SecretsCompatApi {
 
     }
 
-    /**
-     * Create a secret
-     *
-     * @param create attributes for creating a secret  (optional)
-     * @return SecretCreateLibpod201Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public SecretCreateLibpod201Response secretCreate(SecretCreate create) throws ApiException {
-        ApiResponse<SecretCreateLibpod201Response> localVarResp = secretCreateWithHttpInfo(create);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create a secret
-     *
-     * @param create attributes for creating a secret  (optional)
-     * @return ApiResponse&lt;SecretCreateLibpod201Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<SecretCreateLibpod201Response> secretCreateWithHttpInfo(SecretCreate create) throws ApiException {
+    private ApiResponse<SecretCreateLibpod201Response> secretCreateWithHttpInfo(SecretCreate create) throws ApiException {
         okhttp3.Call localVarCall = secretCreateValidateBeforeCall(create, null);
-        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create a secret (asynchronously)
-     *
-     * @param create    attributes for creating a secret  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretCreateAsync(SecretCreate create, final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
+    private okhttp3.Call secretCreateAsync(SecretCreate create, final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretCreateValidateBeforeCall(create, _callback);
-        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIsecretCreateRequest {
+        private SecretCreate create;
+
+        private APIsecretCreateRequest() {
+        }
+
+        /**
+         * Set create
+         * @param create attributes for creating a secret  (optional)
+         * @return APIsecretCreateRequest
+         */
+        public APIsecretCreateRequest create(SecretCreate create) {
+            this.create = create;
+            return this;
+        }
+
+        /**
+         * Build call for secretCreate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretCreateCall(create, _callback);
+        }
+
+        /**
+         * Execute secretCreate request
+         * @return SecretCreateLibpod201Response
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public SecretCreateLibpod201Response execute() throws ApiException {
+            ApiResponse<SecretCreateLibpod201Response> localVarResp = secretCreateWithHttpInfo(create);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretCreate request with HTTP info returned
+         * @return ApiResponse&lt;SecretCreateLibpod201Response&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<SecretCreateLibpod201Response> executeWithHttpInfo() throws ApiException {
+            return secretCreateWithHttpInfo(create);
+        }
+
+        /**
+         * Execute secretCreate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
+            return secretCreateAsync(create, _callback);
+        }
+    }
+
     /**
-     * Build call for secretDelete
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create a secret
+     * 
+     * @return APIsecretCreateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Secret in use </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretDeleteCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIsecretCreateRequest secretCreate() {
+        return new APIsecretCreateRequest();
+    }
+    private okhttp3.Call secretDeleteCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -227,7 +262,7 @@ public class SecretsCompatApi {
 
         // create path and map variables
         String localVarPath = "/secrets/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -236,7 +271,7 @@ public class SecretsCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -250,7 +285,7 @@ public class SecretsCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -265,84 +300,117 @@ public class SecretsCompatApi {
 
     }
 
-    /**
-     * Remove secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void secretDelete(String name) throws ApiException {
-        secretDeleteWithHttpInfo(name);
-    }
 
-    /**
-     * Remove secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> secretDeleteWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> secretDeleteWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = secretDeleteValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Remove secret (asynchronously)
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretDeleteAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call secretDeleteAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretDeleteValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIsecretDeleteRequest {
+        private final String name;
+
+        private APIsecretDeleteRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for secretDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretDeleteCall(name, _callback);
+        }
+
+        /**
+         * Execute secretDelete request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            secretDeleteWithHttpInfo(name);
+        }
+
+        /**
+         * Execute secretDelete request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return secretDeleteWithHttpInfo(name);
+        }
+
+        /**
+         * Execute secretDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return secretDeleteAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for secretInspect
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove secret
+     * 
+     * @param name the name or ID of the secret (required)
+     * @return APIsecretDeleteRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretInspectCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIsecretDeleteRequest secretDelete(String name) {
+        return new APIsecretDeleteRequest(name);
+    }
+    private okhttp3.Call secretInspectCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -352,7 +420,7 @@ public class SecretsCompatApi {
 
         // create path and map variables
         String localVarPath = "/secrets/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -361,7 +429,7 @@ public class SecretsCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -375,7 +443,7 @@ public class SecretsCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -390,89 +458,121 @@ public class SecretsCompatApi {
 
     }
 
-    /**
-     * Inspect secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @return SecretInfoReportCompat
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public SecretInfoReportCompat secretInspect(String name) throws ApiException {
-        ApiResponse<SecretInfoReportCompat> localVarResp = secretInspectWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @return ApiResponse&lt;SecretInfoReportCompat&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<SecretInfoReportCompat> secretInspectWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<SecretInfoReportCompat> secretInspectWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = secretInspectValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<SecretInfoReportCompat>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretInfoReportCompat>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect secret (asynchronously)
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretInspectAsync(String name, final ApiCallback<SecretInfoReportCompat> _callback) throws ApiException {
+    private okhttp3.Call secretInspectAsync(String name, final ApiCallback<SecretInfoReportCompat> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretInspectValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<SecretInfoReportCompat>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretInfoReportCompat>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIsecretInspectRequest {
+        private final String name;
+
+        private APIsecretInspectRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for secretInspect
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretInspectCall(name, _callback);
+        }
+
+        /**
+         * Execute secretInspect request
+         * @return SecretInfoReportCompat
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public SecretInfoReportCompat execute() throws ApiException {
+            ApiResponse<SecretInfoReportCompat> localVarResp = secretInspectWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretInspect request with HTTP info returned
+         * @return ApiResponse&lt;SecretInfoReportCompat&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<SecretInfoReportCompat> executeWithHttpInfo() throws ApiException {
+            return secretInspectWithHttpInfo(name);
+        }
+
+        /**
+         * Execute secretInspect request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<SecretInfoReportCompat> _callback) throws ApiException {
+            return secretInspectAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for secretList
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect secret
+     * 
+     * @param name the name or ID of the secret (required)
+     * @return APIsecretInspectRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Secret inspect compat </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretListCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIsecretInspectRequest secretInspect(String name) {
+        return new APIsecretInspectRequest(name);
+    }
+    private okhttp3.Call secretListCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -494,7 +594,7 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -508,7 +608,7 @@ public class SecretsCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -518,64 +618,113 @@ public class SecretsCompatApi {
 
     }
 
-    /**
-     * List secrets
-     * Returns a list of secrets
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @return List&lt;SecretInfoReportCompat&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<SecretInfoReportCompat> secretList(String filters) throws ApiException {
-        ApiResponse<List<SecretInfoReportCompat>> localVarResp = secretListWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List secrets
-     * Returns a list of secrets
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @return ApiResponse&lt;List&lt;SecretInfoReportCompat&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<SecretInfoReportCompat>> secretListWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<SecretInfoReportCompat>> secretListWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = secretListValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<SecretInfoReportCompat>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<SecretInfoReportCompat>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List secrets (asynchronously)
-     * Returns a list of secrets
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretListAsync(String filters, final ApiCallback<List<SecretInfoReportCompat>> _callback) throws ApiException {
+    private okhttp3.Call secretListAsync(String filters, final ApiCallback<List<SecretInfoReportCompat>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretListValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<SecretInfoReportCompat>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<SecretInfoReportCompat>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+    public class APIsecretListRequest {
+        private String filters;
+
+        private APIsecretListRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
+         * @return APIsecretListRequest
+         */
+        public APIsecretListRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for secretList
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretListCall(filters, _callback);
+        }
+
+        /**
+         * Execute secretList request
+         * @return List&lt;SecretInfoReportCompat&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<SecretInfoReportCompat> execute() throws ApiException {
+            ApiResponse<List<SecretInfoReportCompat>> localVarResp = secretListWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretList request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;SecretInfoReportCompat&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<SecretInfoReportCompat>> executeWithHttpInfo() throws ApiException {
+            return secretListWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute secretList request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<SecretInfoReportCompat>> _callback) throws ApiException {
+            return secretListAsync(filters, _callback);
+        }
+    }
+
+    /**
+     * List secrets
+     * Returns a list of secrets
+     * @return APIsecretListRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIsecretListRequest secretList() {
+        return new APIsecretListRequest();
     }
 }

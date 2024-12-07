@@ -13,4 +13,8 @@ PluginInterfaceType plugin interface type
 |**version** | **String** | version |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

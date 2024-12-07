@@ -17,4 +17,8 @@ ListContainerNamespaces contains the identifiers of the container's Linux namesp
 |**uts** | **String** | UTS namespace |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

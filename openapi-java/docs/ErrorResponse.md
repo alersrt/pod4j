@@ -10,4 +10,8 @@
 |**message** | **String** | The error message. |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

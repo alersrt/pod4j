@@ -13,4 +13,8 @@
 |**sharing** | **String** | SharingMode defines the Sharing of a Cluster Volume. This is how Tasks using a Volume at the same time can use it. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

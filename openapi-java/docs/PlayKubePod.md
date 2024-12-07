@@ -14,4 +14,8 @@
 |**logs** | **List&lt;String&gt;** | Logs - non-fatal errors and log messages while processing. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

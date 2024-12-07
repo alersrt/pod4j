@@ -19,4 +19,8 @@
 |**pod** | **String** | Pod ID |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

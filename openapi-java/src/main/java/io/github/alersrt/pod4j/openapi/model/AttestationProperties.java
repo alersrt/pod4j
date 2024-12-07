@@ -13,176 +13,200 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * AttestationProperties
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class AttestationProperties {
-    public static final String SERIALIZED_NAME_FOR = "For";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class AttestationProperties implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("For");
+  public static final String SERIALIZED_NAME_FOR = "For";
+  @SerializedName(SERIALIZED_NAME_FOR)
+  private String _for;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public AttestationProperties() {
+  }
+
+  public AttestationProperties _for(String _for) {
+    this._for = _for;
+    return this;
+  }
+
+  /**
+   * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
+   * @return _for
+   */
+  @jakarta.annotation.Nullable
+
+  public String getFor() {
+    return _for;
+  }
+
+  public void setFor(String _for) {
+    this._for = _for;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_FOR)
-    private String _for;
-
-    public AttestationProperties() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    AttestationProperties attestationProperties = (AttestationProperties) o;
+    return Objects.equals(this._for, attestationProperties._for);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to AttestationProperties
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!AttestationProperties.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in AttestationProperties is not found in the empty JSON string", AttestationProperties.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(_for);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AttestationProperties.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AttestationProperties` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class AttestationProperties {\n");
+    sb.append("    _for: ").append(toIndentedString(_for)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("For");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AttestationProperties
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AttestationProperties.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AttestationProperties is not found in the empty JSON string", AttestationProperties.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AttestationProperties.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AttestationProperties` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("For") != null && !jsonObj.get("For").isJsonNull()) && !jsonObj.get("For").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `For` to be a primitive type in the JSON string but got `%s`", jsonObj.get("For").toString()));
-        }
-    }
+      if ((jsonObj.get("For") != null && !jsonObj.get("For").isJsonNull()) && !jsonObj.get("For").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `For` to be a primitive type in the JSON string but got `%s`", jsonObj.get("For").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of AttestationProperties given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of AttestationProperties
-     * @throws IOException if the JSON string is invalid with respect to AttestationProperties
-     */
-    public static AttestationProperties fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, AttestationProperties.class);
-    }
-
-    public AttestationProperties _for(String _for) {
-        this._for = _for;
-        return this;
-    }
-
-    /**
-     * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
-     *
-     * @return _for
-     */
-    @jakarta.annotation.Nullable
-
-    public String getFor() {
-        return _for;
-    }
-
-    public void setFor(String _for) {
-        this._for = _for;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AttestationProperties attestationProperties = (AttestationProperties) o;
-        return Objects.equals(this._for, attestationProperties._for);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AttestationProperties.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AttestationProperties' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AttestationProperties> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AttestationProperties.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AttestationProperties>() {
+           @Override
+           public void write(JsonWriter out, AttestationProperties value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AttestationProperties read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(_for);
-    }
+  /**
+   * Create an instance of AttestationProperties given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AttestationProperties
+   * @throws IOException if the JSON string is invalid with respect to AttestationProperties
+   */
+  public static AttestationProperties fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AttestationProperties.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class AttestationProperties {\n" +
-                "    _for: " + toIndentedString(_for) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of AttestationProperties to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!AttestationProperties.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'AttestationProperties' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<AttestationProperties> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(AttestationProperties.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<AttestationProperties>() {
-                @Override
-                public void write(JsonWriter out, AttestationProperties value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public AttestationProperties read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of AttestationProperties to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

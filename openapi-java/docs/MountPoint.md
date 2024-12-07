@@ -18,4 +18,8 @@ This is used for reporting the mountpoints in use by a container.
 |**type** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -19,4 +19,8 @@
 |**weightDevice** | [**Map&lt;String, LinuxWeightDevice&gt;**](LinuxWeightDevice.md) | Weight per cgroup per device, can override BlkioWeight |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

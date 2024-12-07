@@ -15,4 +15,8 @@ This is publicly visible as c/image/manifest.Schema2ManifestDescriptor.
 |**urls** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

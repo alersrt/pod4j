@@ -17,4 +17,8 @@ LinuxBlockIO for Linux cgroup 'blkio' resource management
 |**weightDevice** | [**List&lt;LinuxWeightDevice&gt;**](LinuxWeightDevice.md) | Weight per cgroup per device, can override BlkioWeight |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

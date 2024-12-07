@@ -11,4 +11,8 @@ NetworkingConfig represents the container's networking configuration for each of
 |**endpointsConfig** | [**Map&lt;String, EndpointSettings&gt;**](EndpointSettings.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

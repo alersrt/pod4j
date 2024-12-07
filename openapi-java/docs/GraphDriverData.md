@@ -12,4 +12,8 @@ GraphDriverData Information about the storage driver used to store the container
 |**name** | **String** | Name of the storage driver. |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -22,4 +22,8 @@ SystemComponentVersion is the type used by pkg/domain/entities
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

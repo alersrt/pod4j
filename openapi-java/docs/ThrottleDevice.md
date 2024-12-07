@@ -12,4 +12,8 @@ ThrottleDevice is a structure that holds device:rate_per_second pair
 |**rate** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

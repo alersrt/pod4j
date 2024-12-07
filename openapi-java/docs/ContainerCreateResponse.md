@@ -12,4 +12,8 @@ ContainerCreateResponse is the response struct for creating a container
 |**warnings** | **List&lt;String&gt;** | Warnings during container creation |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

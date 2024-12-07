@@ -10,4 +10,8 @@
 |**stream** | **String** | output from build process |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

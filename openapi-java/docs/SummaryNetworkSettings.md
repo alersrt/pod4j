@@ -11,4 +11,8 @@ SummaryNetworkSettings provides a summary of container's networks in /containers
 |**networks** | [**Map&lt;String, EndpointSettings&gt;**](EndpointSettings.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -10,4 +10,8 @@
 |**tree** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

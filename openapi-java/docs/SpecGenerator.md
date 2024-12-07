@@ -132,4 +132,8 @@ SpecGenerator creates an OCI spec and Libpod configuration options to create a c
 |**workDir** | **String** | WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

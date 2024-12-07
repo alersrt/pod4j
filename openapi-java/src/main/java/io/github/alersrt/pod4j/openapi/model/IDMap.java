@@ -13,225 +13,251 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * IDMap contains a single entry for user namespace range remapping. An array of IDMap entries represents the structure that will be provided to the Linux kernel for creating a user namespace.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class IDMap {
-    public static final String SERIALIZED_NAME_CONTAINER_ID = "container_id";
-    public static final String SERIALIZED_NAME_HOST_ID = "host_id";
-    public static final String SERIALIZED_NAME_SIZE = "size";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class IDMap implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("container_id");
-        openapiFields.add("host_id");
-        openapiFields.add("size");
+  public static final String SERIALIZED_NAME_CONTAINER_ID = "container_id";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_ID)
+  private Long containerId;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_HOST_ID = "host_id";
+  @SerializedName(SERIALIZED_NAME_HOST_ID)
+  private Long hostId;
+
+  public static final String SERIALIZED_NAME_SIZE = "size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
+  private Long size;
+
+  public IDMap() {
+  }
+
+  public IDMap containerId(Long containerId) {
+    this.containerId = containerId;
+    return this;
+  }
+
+  /**
+   * Get containerId
+   * @return containerId
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getContainerId() {
+    return containerId;
+  }
+
+  public void setContainerId(Long containerId) {
+    this.containerId = containerId;
+  }
+
+
+  public IDMap hostId(Long hostId) {
+    this.hostId = hostId;
+    return this;
+  }
+
+  /**
+   * Get hostId
+   * @return hostId
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getHostId() {
+    return hostId;
+  }
+
+  public void setHostId(Long hostId) {
+    this.hostId = hostId;
+  }
+
+
+  public IDMap size(Long size) {
+    this.size = size;
+    return this;
+  }
+
+  /**
+   * Get size
+   * @return size
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getSize() {
+    return size;
+  }
+
+  public void setSize(Long size) {
+    this.size = size;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_CONTAINER_ID)
-    private Long containerId;
-    @SerializedName(SERIALIZED_NAME_HOST_ID)
-    private Long hostId;
-    @SerializedName(SERIALIZED_NAME_SIZE)
-    private Long size;
-
-    public IDMap() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    IDMap idMap = (IDMap) o;
+    return Objects.equals(this.containerId, idMap.containerId) &&
+        Objects.equals(this.hostId, idMap.hostId) &&
+        Objects.equals(this.size, idMap.size);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to IDMap
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!IDMap.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in IDMap is not found in the empty JSON string", IDMap.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(containerId, hostId, size);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!IDMap.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMap` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class IDMap {\n");
+    sb.append("    containerId: ").append(toIndentedString(containerId)).append("\n");
+    sb.append("    hostId: ").append(toIndentedString(hostId)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("container_id");
+    openapiFields.add("host_id");
+    openapiFields.add("size");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IDMap
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!IDMap.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in IDMap is not found in the empty JSON string", IDMap.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!IDMap.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMap` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-    }
+  }
 
-    /**
-     * Create an instance of IDMap given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of IDMap
-     * @throws IOException if the JSON string is invalid with respect to IDMap
-     */
-    public static IDMap fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, IDMap.class);
-    }
-
-    public IDMap containerId(Long containerId) {
-        this.containerId = containerId;
-        return this;
-    }
-
-    /**
-     * Get containerId
-     *
-     * @return containerId
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getContainerId() {
-        return containerId;
-    }
-
-    public void setContainerId(Long containerId) {
-        this.containerId = containerId;
-    }
-
-    public IDMap hostId(Long hostId) {
-        this.hostId = hostId;
-        return this;
-    }
-
-    /**
-     * Get hostId
-     *
-     * @return hostId
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getHostId() {
-        return hostId;
-    }
-
-    public void setHostId(Long hostId) {
-        this.hostId = hostId;
-    }
-
-    public IDMap size(Long size) {
-        this.size = size;
-        return this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return size
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        IDMap idMap = (IDMap) o;
-        return Objects.equals(this.containerId, idMap.containerId) &&
-                Objects.equals(this.hostId, idMap.hostId) &&
-                Objects.equals(this.size, idMap.size);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!IDMap.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'IDMap' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<IDMap> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(IDMap.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<IDMap>() {
+           @Override
+           public void write(JsonWriter out, IDMap value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public IDMap read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(containerId, hostId, size);
-    }
+  /**
+   * Create an instance of IDMap given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IDMap
+   * @throws IOException if the JSON string is invalid with respect to IDMap
+   */
+  public static IDMap fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, IDMap.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class IDMap {\n" +
-                "    containerId: " + toIndentedString(containerId) + "\n" +
-                "    hostId: " + toIndentedString(hostId) + "\n" +
-                "    size: " + toIndentedString(size) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of IDMap to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!IDMap.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'IDMap' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<IDMap> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(IDMap.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<IDMap>() {
-                @Override
-                public void write(JsonWriter out, IDMap value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public IDMap read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of IDMap to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

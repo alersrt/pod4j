@@ -15,4 +15,8 @@ InspectSecret contains information on secrets mounted inside the container
 |**UID** | **Integer** | ID is the UID of the mounted secret file |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

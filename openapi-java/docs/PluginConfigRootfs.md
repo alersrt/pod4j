@@ -12,4 +12,8 @@ PluginConfigRootfs plugin config rootfs
 |**type** | **String** | type |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

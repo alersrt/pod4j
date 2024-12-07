@@ -14,4 +14,8 @@ Details for creating a volume
 |**name** | **String** | The new volume&#39;s name. If not specified, Docker generates a name. |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

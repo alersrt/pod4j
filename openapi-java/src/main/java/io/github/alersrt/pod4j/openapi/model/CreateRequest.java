@@ -13,522 +13,560 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.ConfigReference;
+import io.github.alersrt.pod4j.openapi.model.IPAM;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * CreateRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class CreateRequest {
-    public static final String SERIALIZED_NAME_ATTACHABLE = "Attachable";
-    public static final String SERIALIZED_NAME_CHECK_DUPLICATE = "CheckDuplicate";
-    public static final String SERIALIZED_NAME_CONFIG_FROM = "ConfigFrom";
-    public static final String SERIALIZED_NAME_CONFIG_ONLY = "ConfigOnly";
-    public static final String SERIALIZED_NAME_DRIVER = "Driver";
-    public static final String SERIALIZED_NAME_ENABLE_I_PV6 = "EnableIPv6";
-    public static final String SERIALIZED_NAME_I_P_A_M = "IPAM";
-    public static final String SERIALIZED_NAME_INGRESS = "Ingress";
-    public static final String SERIALIZED_NAME_INTERNAL = "Internal";
-    public static final String SERIALIZED_NAME_LABELS = "Labels";
-    public static final String SERIALIZED_NAME_NAME = "Name";
-    public static final String SERIALIZED_NAME_OPTIONS = "Options";
-    public static final String SERIALIZED_NAME_SCOPE = "Scope";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class CreateRequest implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Attachable");
-        openapiFields.add("CheckDuplicate");
-        openapiFields.add("ConfigFrom");
-        openapiFields.add("ConfigOnly");
-        openapiFields.add("Driver");
-        openapiFields.add("EnableIPv6");
-        openapiFields.add("IPAM");
-        openapiFields.add("Ingress");
-        openapiFields.add("Internal");
-        openapiFields.add("Labels");
-        openapiFields.add("Name");
-        openapiFields.add("Options");
-        openapiFields.add("Scope");
+  public static final String SERIALIZED_NAME_ATTACHABLE = "Attachable";
+  @SerializedName(SERIALIZED_NAME_ATTACHABLE)
+  private Boolean attachable;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_CHECK_DUPLICATE = "CheckDuplicate";
+  @SerializedName(SERIALIZED_NAME_CHECK_DUPLICATE)
+  private Boolean checkDuplicate;
+
+  public static final String SERIALIZED_NAME_CONFIG_FROM = "ConfigFrom";
+  @SerializedName(SERIALIZED_NAME_CONFIG_FROM)
+  private ConfigReference configFrom;
+
+  public static final String SERIALIZED_NAME_CONFIG_ONLY = "ConfigOnly";
+  @SerializedName(SERIALIZED_NAME_CONFIG_ONLY)
+  private Boolean configOnly;
+
+  public static final String SERIALIZED_NAME_DRIVER = "Driver";
+  @SerializedName(SERIALIZED_NAME_DRIVER)
+  private String driver;
+
+  public static final String SERIALIZED_NAME_ENABLE_I_PV6 = "EnableIPv6";
+  @SerializedName(SERIALIZED_NAME_ENABLE_I_PV6)
+  private Boolean enableIPv6;
+
+  public static final String SERIALIZED_NAME_I_P_A_M = "IPAM";
+  @SerializedName(SERIALIZED_NAME_I_P_A_M)
+  private IPAM ipam;
+
+  public static final String SERIALIZED_NAME_INGRESS = "Ingress";
+  @SerializedName(SERIALIZED_NAME_INGRESS)
+  private Boolean ingress;
+
+  public static final String SERIALIZED_NAME_INTERNAL = "Internal";
+  @SerializedName(SERIALIZED_NAME_INTERNAL)
+  private Boolean internal;
+
+  public static final String SERIALIZED_NAME_LABELS = "Labels";
+  @SerializedName(SERIALIZED_NAME_LABELS)
+  private Map<String, String> labels = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_NAME = "Name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_OPTIONS = "Options";
+  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  private Map<String, String> options = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_SCOPE = "Scope";
+  @SerializedName(SERIALIZED_NAME_SCOPE)
+  private String scope;
+
+  public CreateRequest() {
+  }
+
+  public CreateRequest attachable(Boolean attachable) {
+    this.attachable = attachable;
+    return this;
+  }
+
+  /**
+   * Get attachable
+   * @return attachable
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getAttachable() {
+    return attachable;
+  }
+
+  public void setAttachable(Boolean attachable) {
+    this.attachable = attachable;
+  }
+
+
+  public CreateRequest checkDuplicate(Boolean checkDuplicate) {
+    this.checkDuplicate = checkDuplicate;
+    return this;
+  }
+
+  /**
+   * Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client package to older daemons.
+   * @return checkDuplicate
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getCheckDuplicate() {
+    return checkDuplicate;
+  }
+
+  public void setCheckDuplicate(Boolean checkDuplicate) {
+    this.checkDuplicate = checkDuplicate;
+  }
+
+
+  public CreateRequest configFrom(ConfigReference configFrom) {
+    this.configFrom = configFrom;
+    return this;
+  }
+
+  /**
+   * Get configFrom
+   * @return configFrom
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public ConfigReference getConfigFrom() {
+    return configFrom;
+  }
+
+  public void setConfigFrom(ConfigReference configFrom) {
+    this.configFrom = configFrom;
+  }
+
+
+  public CreateRequest configOnly(Boolean configOnly) {
+    this.configOnly = configOnly;
+    return this;
+  }
+
+  /**
+   * Get configOnly
+   * @return configOnly
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getConfigOnly() {
+    return configOnly;
+  }
+
+  public void setConfigOnly(Boolean configOnly) {
+    this.configOnly = configOnly;
+  }
+
+
+  public CreateRequest driver(String driver) {
+    this.driver = driver;
+    return this;
+  }
+
+  /**
+   * Get driver
+   * @return driver
+   */
+  @jakarta.annotation.Nullable
+
+  public String getDriver() {
+    return driver;
+  }
+
+  public void setDriver(String driver) {
+    this.driver = driver;
+  }
+
+
+  public CreateRequest enableIPv6(Boolean enableIPv6) {
+    this.enableIPv6 = enableIPv6;
+    return this;
+  }
+
+  /**
+   * Get enableIPv6
+   * @return enableIPv6
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getEnableIPv6() {
+    return enableIPv6;
+  }
+
+  public void setEnableIPv6(Boolean enableIPv6) {
+    this.enableIPv6 = enableIPv6;
+  }
+
+
+  public CreateRequest ipam(IPAM ipam) {
+    this.ipam = ipam;
+    return this;
+  }
+
+  /**
+   * Get ipam
+   * @return ipam
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public IPAM getIPAM() {
+    return ipam;
+  }
+
+  public void setIPAM(IPAM ipam) {
+    this.ipam = ipam;
+  }
+
+
+  public CreateRequest ingress(Boolean ingress) {
+    this.ingress = ingress;
+    return this;
+  }
+
+  /**
+   * Get ingress
+   * @return ingress
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getIngress() {
+    return ingress;
+  }
+
+  public void setIngress(Boolean ingress) {
+    this.ingress = ingress;
+  }
+
+
+  public CreateRequest internal(Boolean internal) {
+    this.internal = internal;
+    return this;
+  }
+
+  /**
+   * Get internal
+   * @return internal
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getInternal() {
+    return internal;
+  }
+
+  public void setInternal(Boolean internal) {
+    this.internal = internal;
+  }
+
+
+  public CreateRequest labels(Map<String, String> labels) {
+    this.labels = labels;
+    return this;
+  }
+
+  public CreateRequest putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<>();
     }
+    this.labels.put(key, labelsItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_ATTACHABLE)
-    private Boolean attachable;
-    @SerializedName(SERIALIZED_NAME_CHECK_DUPLICATE)
-    private Boolean checkDuplicate;
-    @SerializedName(SERIALIZED_NAME_CONFIG_FROM)
-    private ConfigReference configFrom;
-    @SerializedName(SERIALIZED_NAME_CONFIG_ONLY)
-    private Boolean configOnly;
-    @SerializedName(SERIALIZED_NAME_DRIVER)
-    private String driver;
-    @SerializedName(SERIALIZED_NAME_ENABLE_I_PV6)
-    private Boolean enableIPv6;
-    @SerializedName(SERIALIZED_NAME_I_P_A_M)
-    private IPAM ipam;
-    @SerializedName(SERIALIZED_NAME_INGRESS)
-    private Boolean ingress;
-    @SerializedName(SERIALIZED_NAME_INTERNAL)
-    private Boolean internal;
-    @SerializedName(SERIALIZED_NAME_LABELS)
-    private Map<String, String> labels = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
-    @SerializedName(SERIALIZED_NAME_OPTIONS)
-    private Map<String, String> options = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_SCOPE)
-    private String scope;
+  /**
+   * Get labels
+   * @return labels
+   */
+  @jakarta.annotation.Nullable
 
-    public CreateRequest() {
+  public Map<String, String> getLabels() {
+    return labels;
+  }
+
+  public void setLabels(Map<String, String> labels) {
+    this.labels = labels;
+  }
+
+
+  public CreateRequest name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Get name
+   * @return name
+   */
+  @jakarta.annotation.Nullable
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public CreateRequest options(Map<String, String> options) {
+    this.options = options;
+    return this;
+  }
+
+  public CreateRequest putOptionsItem(String key, String optionsItem) {
+    if (this.options == null) {
+      this.options = new HashMap<>();
     }
+    this.options.put(key, optionsItem);
+    return this;
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to CreateRequest
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!CreateRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in CreateRequest is not found in the empty JSON string", CreateRequest.openapiRequiredFields));
-            }
-        }
+  /**
+   * Get options
+   * @return options
+   */
+  @jakarta.annotation.Nullable
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!CreateRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateRequest` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  public Map<String, String> getOptions() {
+    return options;
+  }
+
+  public void setOptions(Map<String, String> options) {
+    this.options = options;
+  }
+
+
+  public CreateRequest scope(String scope) {
+    this.scope = scope;
+    return this;
+  }
+
+  /**
+   * Get scope
+   * @return scope
+   */
+  @jakarta.annotation.Nullable
+
+  public String getScope() {
+    return scope;
+  }
+
+  public void setScope(String scope) {
+    this.scope = scope;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CreateRequest createRequest = (CreateRequest) o;
+    return Objects.equals(this.attachable, createRequest.attachable) &&
+        Objects.equals(this.checkDuplicate, createRequest.checkDuplicate) &&
+        Objects.equals(this.configFrom, createRequest.configFrom) &&
+        Objects.equals(this.configOnly, createRequest.configOnly) &&
+        Objects.equals(this.driver, createRequest.driver) &&
+        Objects.equals(this.enableIPv6, createRequest.enableIPv6) &&
+        Objects.equals(this.ipam, createRequest.ipam) &&
+        Objects.equals(this.ingress, createRequest.ingress) &&
+        Objects.equals(this.internal, createRequest.internal) &&
+        Objects.equals(this.labels, createRequest.labels) &&
+        Objects.equals(this.name, createRequest.name) &&
+        Objects.equals(this.options, createRequest.options) &&
+        Objects.equals(this.scope, createRequest.scope);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(attachable, checkDuplicate, configFrom, configOnly, driver, enableIPv6, ipam, ingress, internal, labels, name, options, scope);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class CreateRequest {\n");
+    sb.append("    attachable: ").append(toIndentedString(attachable)).append("\n");
+    sb.append("    checkDuplicate: ").append(toIndentedString(checkDuplicate)).append("\n");
+    sb.append("    configFrom: ").append(toIndentedString(configFrom)).append("\n");
+    sb.append("    configOnly: ").append(toIndentedString(configOnly)).append("\n");
+    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
+    sb.append("    enableIPv6: ").append(toIndentedString(enableIPv6)).append("\n");
+    sb.append("    ipam: ").append(toIndentedString(ipam)).append("\n");
+    sb.append("    ingress: ").append(toIndentedString(ingress)).append("\n");
+    sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Attachable");
+    openapiFields.add("CheckDuplicate");
+    openapiFields.add("ConfigFrom");
+    openapiFields.add("ConfigOnly");
+    openapiFields.add("Driver");
+    openapiFields.add("EnableIPv6");
+    openapiFields.add("IPAM");
+    openapiFields.add("Ingress");
+    openapiFields.add("Internal");
+    openapiFields.add("Labels");
+    openapiFields.add("Name");
+    openapiFields.add("Options");
+    openapiFields.add("Scope");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateRequest
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateRequest is not found in the empty JSON string", CreateRequest.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the optional field `ConfigFrom`
-        if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
-            ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
-        }
-        if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-        }
-        // validate the optional field `IPAM`
-        if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
-            IPAM.validateJsonElement(jsonObj.get("IPAM"));
-        }
-        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-        }
-        if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull()) && !jsonObj.get("Scope").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
-        }
-    }
+      // validate the optional field `ConfigFrom`
+      if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
+        ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
+      }
+      if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
+      }
+      // validate the optional field `IPAM`
+      if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
+        IPAM.validateJsonElement(jsonObj.get("IPAM"));
+      }
+      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+      }
+      if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull()) && !jsonObj.get("Scope").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of CreateRequest given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of CreateRequest
-     * @throws IOException if the JSON string is invalid with respect to CreateRequest
-     */
-    public static CreateRequest fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, CreateRequest.class);
-    }
-
-    public CreateRequest attachable(Boolean attachable) {
-        this.attachable = attachable;
-        return this;
-    }
-
-    /**
-     * Get attachable
-     *
-     * @return attachable
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getAttachable() {
-        return attachable;
-    }
-
-    public void setAttachable(Boolean attachable) {
-        this.attachable = attachable;
-    }
-
-    public CreateRequest checkDuplicate(Boolean checkDuplicate) {
-        this.checkDuplicate = checkDuplicate;
-        return this;
-    }
-
-    /**
-     * Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client package to older daemons.
-     *
-     * @return checkDuplicate
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getCheckDuplicate() {
-        return checkDuplicate;
-    }
-
-    public void setCheckDuplicate(Boolean checkDuplicate) {
-        this.checkDuplicate = checkDuplicate;
-    }
-
-    public CreateRequest configFrom(ConfigReference configFrom) {
-        this.configFrom = configFrom;
-        return this;
-    }
-
-    /**
-     * Get configFrom
-     *
-     * @return configFrom
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public ConfigReference getConfigFrom() {
-        return configFrom;
-    }
-
-    public void setConfigFrom(ConfigReference configFrom) {
-        this.configFrom = configFrom;
-    }
-
-    public CreateRequest configOnly(Boolean configOnly) {
-        this.configOnly = configOnly;
-        return this;
-    }
-
-    /**
-     * Get configOnly
-     *
-     * @return configOnly
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getConfigOnly() {
-        return configOnly;
-    }
-
-    public void setConfigOnly(Boolean configOnly) {
-        this.configOnly = configOnly;
-    }
-
-    public CreateRequest driver(String driver) {
-        this.driver = driver;
-        return this;
-    }
-
-    /**
-     * Get driver
-     *
-     * @return driver
-     */
-    @jakarta.annotation.Nullable
-
-    public String getDriver() {
-        return driver;
-    }
-
-    public void setDriver(String driver) {
-        this.driver = driver;
-    }
-
-    public CreateRequest enableIPv6(Boolean enableIPv6) {
-        this.enableIPv6 = enableIPv6;
-        return this;
-    }
-
-    /**
-     * Get enableIPv6
-     *
-     * @return enableIPv6
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getEnableIPv6() {
-        return enableIPv6;
-    }
-
-    public void setEnableIPv6(Boolean enableIPv6) {
-        this.enableIPv6 = enableIPv6;
-    }
-
-    public CreateRequest ipam(IPAM ipam) {
-        this.ipam = ipam;
-        return this;
-    }
-
-    /**
-     * Get ipam
-     *
-     * @return ipam
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public IPAM getIPAM() {
-        return ipam;
-    }
-
-    public void setIPAM(IPAM ipam) {
-        this.ipam = ipam;
-    }
-
-    public CreateRequest ingress(Boolean ingress) {
-        this.ingress = ingress;
-        return this;
-    }
-
-    /**
-     * Get ingress
-     *
-     * @return ingress
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getIngress() {
-        return ingress;
-    }
-
-    public void setIngress(Boolean ingress) {
-        this.ingress = ingress;
-    }
-
-    public CreateRequest internal(Boolean internal) {
-        this.internal = internal;
-        return this;
-    }
-
-    /**
-     * Get internal
-     *
-     * @return internal
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getInternal() {
-        return internal;
-    }
-
-    public void setInternal(Boolean internal) {
-        this.internal = internal;
-    }
-
-    public CreateRequest labels(Map<String, String> labels) {
-        this.labels = labels;
-        return this;
-    }
-
-    public CreateRequest putLabelsItem(String key, String labelsItem) {
-        if (this.labels == null) {
-            this.labels = new HashMap<>();
-        }
-        this.labels.put(key, labelsItem);
-        return this;
-    }
-
-    /**
-     * Get labels
-     *
-     * @return labels
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(Map<String, String> labels) {
-        this.labels = labels;
-    }
-
-    public CreateRequest name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    @jakarta.annotation.Nullable
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public CreateRequest options(Map<String, String> options) {
-        this.options = options;
-        return this;
-    }
-
-    public CreateRequest putOptionsItem(String key, String optionsItem) {
-        if (this.options == null) {
-            this.options = new HashMap<>();
-        }
-        this.options.put(key, optionsItem);
-        return this;
-    }
-
-    /**
-     * Get options
-     *
-     * @return options
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Map<String, String> options) {
-        this.options = options;
-    }
-
-    public CreateRequest scope(String scope) {
-        this.scope = scope;
-        return this;
-    }
-
-    /**
-     * Get scope
-     *
-     * @return scope
-     */
-    @jakarta.annotation.Nullable
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CreateRequest createRequest = (CreateRequest) o;
-        return Objects.equals(this.attachable, createRequest.attachable) &&
-                Objects.equals(this.checkDuplicate, createRequest.checkDuplicate) &&
-                Objects.equals(this.configFrom, createRequest.configFrom) &&
-                Objects.equals(this.configOnly, createRequest.configOnly) &&
-                Objects.equals(this.driver, createRequest.driver) &&
-                Objects.equals(this.enableIPv6, createRequest.enableIPv6) &&
-                Objects.equals(this.ipam, createRequest.ipam) &&
-                Objects.equals(this.ingress, createRequest.ingress) &&
-                Objects.equals(this.internal, createRequest.internal) &&
-                Objects.equals(this.labels, createRequest.labels) &&
-                Objects.equals(this.name, createRequest.name) &&
-                Objects.equals(this.options, createRequest.options) &&
-                Objects.equals(this.scope, createRequest.scope);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateRequest' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateRequest.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateRequest>() {
+           @Override
+           public void write(JsonWriter out, CreateRequest value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateRequest read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(attachable, checkDuplicate, configFrom, configOnly, driver, enableIPv6, ipam, ingress, internal, labels, name, options, scope);
-    }
+  /**
+   * Create an instance of CreateRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateRequest
+   * @throws IOException if the JSON string is invalid with respect to CreateRequest
+   */
+  public static CreateRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateRequest.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class CreateRequest {\n" +
-                "    attachable: " + toIndentedString(attachable) + "\n" +
-                "    checkDuplicate: " + toIndentedString(checkDuplicate) + "\n" +
-                "    configFrom: " + toIndentedString(configFrom) + "\n" +
-                "    configOnly: " + toIndentedString(configOnly) + "\n" +
-                "    driver: " + toIndentedString(driver) + "\n" +
-                "    enableIPv6: " + toIndentedString(enableIPv6) + "\n" +
-                "    ipam: " + toIndentedString(ipam) + "\n" +
-                "    ingress: " + toIndentedString(ingress) + "\n" +
-                "    internal: " + toIndentedString(internal) + "\n" +
-                "    labels: " + toIndentedString(labels) + "\n" +
-                "    name: " + toIndentedString(name) + "\n" +
-                "    options: " + toIndentedString(options) + "\n" +
-                "    scope: " + toIndentedString(scope) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of CreateRequest to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!CreateRequest.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'CreateRequest' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<CreateRequest> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(CreateRequest.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<CreateRequest>() {
-                @Override
-                public void write(JsonWriter out, CreateRequest value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public CreateRequest read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of CreateRequest to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

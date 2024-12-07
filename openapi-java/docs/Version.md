@@ -10,4 +10,8 @@
 |**index** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

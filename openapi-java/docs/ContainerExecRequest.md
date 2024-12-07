@@ -19,4 +19,8 @@
 |**workingDir** | **String** | The working directory for the exec process inside the container. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

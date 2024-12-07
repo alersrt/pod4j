@@ -13,255 +13,280 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-
+import io.github.alersrt.pod4j.openapi.model.HealthCheckLog;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * HealthCheckResults describes the results/logs from a healthcheck
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class HealthCheckResults {
-    public static final String SERIALIZED_NAME_FAILING_STREAK = "FailingStreak";
-    public static final String SERIALIZED_NAME_LOG = "Log";
-    public static final String SERIALIZED_NAME_STATUS = "Status";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class HealthCheckResults implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("FailingStreak");
-        openapiFields.add("Log");
-        openapiFields.add("Status");
+  public static final String SERIALIZED_NAME_FAILING_STREAK = "FailingStreak";
+  @SerializedName(SERIALIZED_NAME_FAILING_STREAK)
+  private Long failingStreak;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_LOG = "Log";
+  @SerializedName(SERIALIZED_NAME_LOG)
+  private List<@Valid HealthCheckLog> log = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_STATUS = "Status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private String status;
+
+  public HealthCheckResults() {
+  }
+
+  public HealthCheckResults failingStreak(Long failingStreak) {
+    this.failingStreak = failingStreak;
+    return this;
+  }
+
+  /**
+   * FailingStreak is the number of consecutive failed healthchecks
+   * @return failingStreak
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getFailingStreak() {
+    return failingStreak;
+  }
+
+  public void setFailingStreak(Long failingStreak) {
+    this.failingStreak = failingStreak;
+  }
+
+
+  public HealthCheckResults log(List<@Valid HealthCheckLog> log) {
+    this.log = log;
+    return this;
+  }
+
+  public HealthCheckResults addLogItem(HealthCheckLog logItem) {
+    if (this.log == null) {
+      this.log = new ArrayList<>();
     }
+    this.log.add(logItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_FAILING_STREAK)
-    private Long failingStreak;
-    @SerializedName(SERIALIZED_NAME_LOG)
-    private List<@Valid HealthCheckLog> log = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_STATUS)
-    private String status;
+  /**
+   * Log describes healthcheck attempts and results
+   * @return log
+   */
+  @jakarta.annotation.Nullable
+  @Valid
 
-    public HealthCheckResults() {
+  public List<@Valid HealthCheckLog> getLog() {
+    return log;
+  }
+
+  public void setLog(List<@Valid HealthCheckLog> log) {
+    this.log = log;
+  }
+
+
+  public HealthCheckResults status(String status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Status starting, healthy or unhealthy
+   * @return status
+   */
+  @jakarta.annotation.Nullable
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    HealthCheckResults healthCheckResults = (HealthCheckResults) o;
+    return Objects.equals(this.failingStreak, healthCheckResults.failingStreak) &&
+        Objects.equals(this.log, healthCheckResults.log) &&
+        Objects.equals(this.status, healthCheckResults.status);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to HealthCheckResults
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!HealthCheckResults.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in HealthCheckResults is not found in the empty JSON string", HealthCheckResults.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(failingStreak, log, status);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!HealthCheckResults.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthCheckResults` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class HealthCheckResults {\n");
+    sb.append("    failingStreak: ").append(toIndentedString(failingStreak)).append("\n");
+    sb.append("    log: ").append(toIndentedString(log)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("FailingStreak");
+    openapiFields.add("Log");
+    openapiFields.add("Status");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to HealthCheckResults
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!HealthCheckResults.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in HealthCheckResults is not found in the empty JSON string", HealthCheckResults.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!HealthCheckResults.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthCheckResults` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (jsonObj.get("Log") != null && !jsonObj.get("Log").isJsonNull()) {
-            JsonArray jsonArraylog = jsonObj.getAsJsonArray("Log");
-            if (jsonArraylog != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("Log").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `Log` to be an array in the JSON string but got `%s`", jsonObj.get("Log").toString()));
-                }
+      if (jsonObj.get("Log") != null && !jsonObj.get("Log").isJsonNull()) {
+        JsonArray jsonArraylog = jsonObj.getAsJsonArray("Log");
+        if (jsonArraylog != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("Log").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Log` to be an array in the JSON string but got `%s`", jsonObj.get("Log").toString()));
+          }
 
-                // validate the optional field `Log` (array)
-                for (int i = 0; i < jsonArraylog.size(); i++) {
-                    HealthCheckLog.validateJsonElement(jsonArraylog.get(i));
-                }
-            }
+          // validate the optional field `Log` (array)
+          for (int i = 0; i < jsonArraylog.size(); i++) {
+            HealthCheckLog.validateJsonElement(jsonArraylog.get(i));
+          };
         }
-        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-        }
-    }
+      }
+      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of HealthCheckResults given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of HealthCheckResults
-     * @throws IOException if the JSON string is invalid with respect to HealthCheckResults
-     */
-    public static HealthCheckResults fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, HealthCheckResults.class);
-    }
-
-    public HealthCheckResults failingStreak(Long failingStreak) {
-        this.failingStreak = failingStreak;
-        return this;
-    }
-
-    /**
-     * FailingStreak is the number of consecutive failed healthchecks
-     *
-     * @return failingStreak
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getFailingStreak() {
-        return failingStreak;
-    }
-
-    public void setFailingStreak(Long failingStreak) {
-        this.failingStreak = failingStreak;
-    }
-
-    public HealthCheckResults log(List<@Valid HealthCheckLog> log) {
-        this.log = log;
-        return this;
-    }
-
-    public HealthCheckResults addLogItem(HealthCheckLog logItem) {
-        if (this.log == null) {
-            this.log = new ArrayList<>();
-        }
-        this.log.add(logItem);
-        return this;
-    }
-
-    /**
-     * Log describes healthcheck attempts and results
-     *
-     * @return log
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid HealthCheckLog> getLog() {
-        return log;
-    }
-
-    public void setLog(List<@Valid HealthCheckLog> log) {
-        this.log = log;
-    }
-
-    public HealthCheckResults status(String status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Status starting, healthy or unhealthy
-     *
-     * @return status
-     */
-    @jakarta.annotation.Nullable
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        HealthCheckResults healthCheckResults = (HealthCheckResults) o;
-        return Objects.equals(this.failingStreak, healthCheckResults.failingStreak) &&
-                Objects.equals(this.log, healthCheckResults.log) &&
-                Objects.equals(this.status, healthCheckResults.status);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!HealthCheckResults.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'HealthCheckResults' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<HealthCheckResults> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(HealthCheckResults.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<HealthCheckResults>() {
+           @Override
+           public void write(JsonWriter out, HealthCheckResults value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public HealthCheckResults read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(failingStreak, log, status);
-    }
+  /**
+   * Create an instance of HealthCheckResults given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HealthCheckResults
+   * @throws IOException if the JSON string is invalid with respect to HealthCheckResults
+   */
+  public static HealthCheckResults fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, HealthCheckResults.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class HealthCheckResults {\n" +
-                "    failingStreak: " + toIndentedString(failingStreak) + "\n" +
-                "    log: " + toIndentedString(log) + "\n" +
-                "    status: " + toIndentedString(status) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of HealthCheckResults to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!HealthCheckResults.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'HealthCheckResults' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<HealthCheckResults> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(HealthCheckResults.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<HealthCheckResults>() {
-                @Override
-                public void write(JsonWriter out, HealthCheckResults value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public HealthCheckResults read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of HealthCheckResults to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

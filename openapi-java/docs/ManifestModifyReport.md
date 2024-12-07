@@ -13,4 +13,8 @@
 |**images** | **List&lt;String&gt;** | Images added to or removed from manifest list, otherwise not provided. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

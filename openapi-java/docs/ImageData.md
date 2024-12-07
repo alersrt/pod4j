@@ -32,4 +32,8 @@
 |**virtualSize** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

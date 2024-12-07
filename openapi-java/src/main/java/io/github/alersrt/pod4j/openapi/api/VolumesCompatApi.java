@@ -13,18 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ListResponse;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.Volume;
 import io.github.alersrt.pod4j.openapi.model.VolumeCreate;
-import jakarta.validation.constraints.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -69,28 +78,15 @@ public class VolumesCompatApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for volumeCreate
-     *
-     * @param create    attributes for creating a volume. Note: If a volume by the same name exists, a 201 response with that volume&#39;s information will be generated.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumeCreateCall(VolumeCreate create, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call volumeCreateCall(VolumeCreate create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -108,7 +104,7 @@ public class VolumesCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -116,15 +112,15 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -134,89 +130,124 @@ public class VolumesCompatApi {
 
     }
 
-    /**
-     * Create a volume
-     *
-     * @param create attributes for creating a volume. Note: If a volume by the same name exists, a 201 response with that volume&#39;s information will be generated.  (optional)
-     * @return Volume
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public Volume volumeCreate(VolumeCreate create) throws ApiException {
-        ApiResponse<Volume> localVarResp = volumeCreateWithHttpInfo(create);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create a volume
-     *
-     * @param create attributes for creating a volume. Note: If a volume by the same name exists, a 201 response with that volume&#39;s information will be generated.  (optional)
-     * @return ApiResponse&lt;Volume&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Volume> volumeCreateWithHttpInfo(VolumeCreate create) throws ApiException {
+    private ApiResponse<Volume> volumeCreateWithHttpInfo(VolumeCreate create) throws ApiException {
         okhttp3.Call localVarCall = volumeCreateValidateBeforeCall(create, null);
-        Type localVarReturnType = new TypeToken<Volume>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Volume>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create a volume (asynchronously)
-     *
-     * @param create    attributes for creating a volume. Note: If a volume by the same name exists, a 201 response with that volume&#39;s information will be generated.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumeCreateAsync(VolumeCreate create, final ApiCallback<Volume> _callback) throws ApiException {
+    private okhttp3.Call volumeCreateAsync(VolumeCreate create, final ApiCallback<Volume> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = volumeCreateValidateBeforeCall(create, _callback);
-        Type localVarReturnType = new TypeToken<Volume>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Volume>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIvolumeCreateRequest {
+        private VolumeCreate create;
+
+        private APIvolumeCreateRequest() {
+        }
+
+        /**
+         * Set create
+         * @param create attributes for creating a volume. Note: If a volume by the same name exists, a 201 response with that volume&#39;s information will be generated.  (optional)
+         * @return APIvolumeCreateRequest
+         */
+        public APIvolumeCreateRequest create(VolumeCreate create) {
+            this.create = create;
+            return this;
+        }
+
+        /**
+         * Build call for volumeCreate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return volumeCreateCall(create, _callback);
+        }
+
+        /**
+         * Execute volumeCreate request
+         * @return Volume
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public Volume execute() throws ApiException {
+            ApiResponse<Volume> localVarResp = volumeCreateWithHttpInfo(create);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute volumeCreate request with HTTP info returned
+         * @return ApiResponse&lt;Volume&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Volume> executeWithHttpInfo() throws ApiException {
+            return volumeCreateWithHttpInfo(create);
+        }
+
+        /**
+         * Execute volumeCreate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Volume> _callback) throws ApiException {
+            return volumeCreateAsync(create, _callback);
+        }
+    }
+
     /**
-     * Build call for volumeDelete
-     *
-     * @param name      the name or ID of the volume (required)
-     * @param force     Force removal of the volume. This actually only causes errors due to the names volume not being found to be suppressed, which is the behaviour Docker implements.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create a volume
+     * 
+     * @return APIvolumeCreateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call volumeDeleteCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+    public APIvolumeCreateRequest volumeCreate() {
+        return new APIvolumeCreateRequest();
+    }
+    private okhttp3.Call volumeDeleteCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -226,7 +257,7 @@ public class VolumesCompatApi {
 
         // create path and map variables
         String localVarPath = "/volumes/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -239,7 +270,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -253,7 +284,7 @@ public class VolumesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -268,89 +299,133 @@ public class VolumesCompatApi {
 
     }
 
-    /**
-     * Remove volume
-     *
-     * @param name  the name or ID of the volume (required)
-     * @param force Force removal of the volume. This actually only causes errors due to the names volume not being found to be suppressed, which is the behaviour Docker implements.  (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void volumeDelete(String name, Boolean force) throws ApiException {
-        volumeDeleteWithHttpInfo(name, force);
-    }
 
-    /**
-     * Remove volume
-     *
-     * @param name  the name or ID of the volume (required)
-     * @param force Force removal of the volume. This actually only causes errors due to the names volume not being found to be suppressed, which is the behaviour Docker implements.  (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> volumeDeleteWithHttpInfo(@NotNull String name, Boolean force) throws ApiException {
+    private ApiResponse<Void> volumeDeleteWithHttpInfo( @NotNull String name, Boolean force) throws ApiException {
         okhttp3.Call localVarCall = volumeDeleteValidateBeforeCall(name, force, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Remove volume (asynchronously)
-     *
-     * @param name      the name or ID of the volume (required)
-     * @param force     Force removal of the volume. This actually only causes errors due to the names volume not being found to be suppressed, which is the behaviour Docker implements.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumeDeleteAsync(String name, Boolean force, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call volumeDeleteAsync(String name, Boolean force, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = volumeDeleteValidateBeforeCall(name, force, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIvolumeDeleteRequest {
+        private final String name;
+        private Boolean force;
+
+        private APIvolumeDeleteRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set force
+         * @param force Force removal of the volume. This actually only causes errors due to the names volume not being found to be suppressed, which is the behaviour Docker implements.  (optional)
+         * @return APIvolumeDeleteRequest
+         */
+        public APIvolumeDeleteRequest force(Boolean force) {
+            this.force = force;
+            return this;
+        }
+
+        /**
+         * Build call for volumeDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return volumeDeleteCall(name, force, _callback);
+        }
+
+        /**
+         * Execute volumeDelete request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            volumeDeleteWithHttpInfo(name, force);
+        }
+
+        /**
+         * Execute volumeDelete request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return volumeDeleteWithHttpInfo(name, force);
+        }
+
+        /**
+         * Execute volumeDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return volumeDeleteAsync(name, force, _callback);
+        }
+    }
+
     /**
-     * Build call for volumeInspect
-     *
-     * @param name      the name or ID of the volume (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove volume
+     * 
+     * @param name the name or ID of the volume (required)
+     * @return APIvolumeDeleteRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call volumeInspectCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIvolumeDeleteRequest volumeDelete(String name) {
+        return new APIvolumeDeleteRequest(name);
+    }
+    private okhttp3.Call volumeInspectCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -360,7 +435,7 @@ public class VolumesCompatApi {
 
         // create path and map variables
         String localVarPath = "/volumes/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -369,7 +444,7 @@ public class VolumesCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -383,7 +458,7 @@ public class VolumesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -398,86 +473,116 @@ public class VolumesCompatApi {
 
     }
 
-    /**
-     * Inspect volume
-     *
-     * @param name the name or ID of the volume (required)
-     * @return Volume
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public Volume volumeInspect(String name) throws ApiException {
-        ApiResponse<Volume> localVarResp = volumeInspectWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect volume
-     *
-     * @param name the name or ID of the volume (required)
-     * @return ApiResponse&lt;Volume&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Volume> volumeInspectWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Volume> volumeInspectWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = volumeInspectValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<Volume>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Volume>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect volume (asynchronously)
-     *
-     * @param name      the name or ID of the volume (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumeInspectAsync(String name, final ApiCallback<Volume> _callback) throws ApiException {
+    private okhttp3.Call volumeInspectAsync(String name, final ApiCallback<Volume> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = volumeInspectValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<Volume>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Volume>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIvolumeInspectRequest {
+        private final String name;
+
+        private APIvolumeInspectRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for volumeInspect
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return volumeInspectCall(name, _callback);
+        }
+
+        /**
+         * Execute volumeInspect request
+         * @return Volume
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public Volume execute() throws ApiException {
+            ApiResponse<Volume> localVarResp = volumeInspectWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute volumeInspect request with HTTP info returned
+         * @return ApiResponse&lt;Volume&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Volume> executeWithHttpInfo() throws ApiException {
+            return volumeInspectWithHttpInfo(name);
+        }
+
+        /**
+         * Execute volumeInspect request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Volume> _callback) throws ApiException {
+            return volumeInspectAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for volumeList
-     *
-     * @param filters   JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  Note:   The boolean &#x60;dangling&#x60; filter is not yet implemented for this endpoint.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect volume
+     * 
+     * @param name the name or ID of the volume (required)
+     * @return APIvolumeInspectRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> This response definition is used for both the create and inspect endpoints </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call volumeListCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIvolumeInspectRequest volumeInspect(String name) {
+        return new APIvolumeInspectRequest(name);
+    }
+    private okhttp3.Call volumeListCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -499,7 +604,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -513,7 +618,7 @@ public class VolumesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -523,89 +628,124 @@ public class VolumesCompatApi {
 
     }
 
-    /**
-     * List volumes
-     * Returns a list of volume
-     *
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  Note:   The boolean &#x60;dangling&#x60; filter is not yet implemented for this endpoint.  (optional)
-     * @return ListResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ListResponse volumeList(String filters) throws ApiException {
-        ApiResponse<ListResponse> localVarResp = volumeListWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List volumes
-     * Returns a list of volume
-     *
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  Note:   The boolean &#x60;dangling&#x60; filter is not yet implemented for this endpoint.  (optional)
-     * @return ApiResponse&lt;ListResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ListResponse> volumeListWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<ListResponse> volumeListWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = volumeListValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<ListResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ListResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List volumes (asynchronously)
-     * Returns a list of volume
-     *
-     * @param filters   JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  Note:   The boolean &#x60;dangling&#x60; filter is not yet implemented for this endpoint.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumeListAsync(String filters, final ApiCallback<ListResponse> _callback) throws ApiException {
+    private okhttp3.Call volumeListAsync(String filters, final ApiCallback<ListResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = volumeListValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<ListResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ListResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIvolumeListRequest {
+        private String filters;
+
+        private APIvolumeListRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  Note:   The boolean &#x60;dangling&#x60; filter is not yet implemented for this endpoint.  (optional)
+         * @return APIvolumeListRequest
+         */
+        public APIvolumeListRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for volumeList
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return volumeListCall(filters, _callback);
+        }
+
+        /**
+         * Execute volumeList request
+         * @return ListResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ListResponse execute() throws ApiException {
+            ApiResponse<ListResponse> localVarResp = volumeListWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute volumeList request with HTTP info returned
+         * @return ApiResponse&lt;ListResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ListResponse> executeWithHttpInfo() throws ApiException {
+            return volumeListWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute volumeList request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ListResponse> _callback) throws ApiException {
+            return volumeListAsync(filters, _callback);
+        }
+    }
+
     /**
-     * Build call for volumePrune
-     *
-     * @param filters   JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * List volumes
+     * Returns a list of volume
+     * @return APIvolumeListRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Volume List </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call volumePruneCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIvolumeListRequest volumeList() {
+        return new APIvolumeListRequest();
+    }
+    private okhttp3.Call volumePruneCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -627,7 +767,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -641,7 +781,7 @@ public class VolumesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -651,61 +791,113 @@ public class VolumesCompatApi {
 
     }
 
-    /**
-     * Prune volumes
-     *
-     * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return PruneReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public PruneReport volumePrune(String filters) throws ApiException {
-        ApiResponse<PruneReport> localVarResp = volumePruneWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Prune volumes
-     *
-     * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return ApiResponse&lt;PruneReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<PruneReport> volumePruneWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<PruneReport> volumePruneWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = volumePruneValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<PruneReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<PruneReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Prune volumes (asynchronously)
-     *
-     * @param filters   JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call volumePruneAsync(String filters, final ApiCallback<PruneReport> _callback) throws ApiException {
+    private okhttp3.Call volumePruneAsync(String filters, final ApiCallback<PruneReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = volumePruneValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<PruneReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<PruneReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+    public class APIvolumePruneRequest {
+        private String filters;
+
+        private APIvolumePruneRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+         * @return APIvolumePruneRequest
+         */
+        public APIvolumePruneRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for volumePrune
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return volumePruneCall(filters, _callback);
+        }
+
+        /**
+         * Execute volumePrune request
+         * @return PruneReport
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public PruneReport execute() throws ApiException {
+            ApiResponse<PruneReport> localVarResp = volumePruneWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute volumePrune request with HTTP info returned
+         * @return ApiResponse&lt;PruneReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PruneReport> executeWithHttpInfo() throws ApiException {
+            return volumePruneWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute volumePrune request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PruneReport> _callback) throws ApiException {
+            return volumePruneAsync(filters, _callback);
+        }
+    }
+
+    /**
+     * Prune volumes
+     * 
+     * @return APIvolumePruneRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Volume prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIvolumePruneRequest volumePrune() {
+        return new APIvolumePruneRequest();
     }
 }

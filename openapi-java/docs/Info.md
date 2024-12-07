@@ -14,4 +14,8 @@ Info contains information about the Volume as a whole as provided by the CSI sto
 |**volumeID** | **String** | VolumeID is the ID of the Volume as seen by the CSI storage plugin. This is distinct from the Volume&#39;s Swarm ID, which is the ID used by all of the Docker Engine to refer to the Volume. If this field is blank, then the Volume has not been successfully created yet. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

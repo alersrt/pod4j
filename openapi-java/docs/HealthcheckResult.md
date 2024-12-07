@@ -14,4 +14,8 @@ HealthcheckResult stores information about a single run of a healthcheck probe
 |**start** | **OffsetDateTime** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

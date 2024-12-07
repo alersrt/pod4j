@@ -12,4 +12,8 @@ PluginConfigUser plugin config user
 |**UID** | **Integer** | UID |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

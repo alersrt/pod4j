@@ -11,4 +11,8 @@ This description is taken verbatim from the CSI Spec:  A topological domain is a
 |**segments** | **Map&lt;String, String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

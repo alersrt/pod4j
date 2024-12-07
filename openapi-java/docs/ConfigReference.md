@@ -11,4 +11,8 @@ ConfigReference specifies the source which provides a network's configuration
 |**network** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

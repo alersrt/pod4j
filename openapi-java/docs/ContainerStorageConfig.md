@@ -40,4 +40,8 @@ ContainerStorageConfig contains information on the storage configuration of a co
 |**workDir** | **String** | WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

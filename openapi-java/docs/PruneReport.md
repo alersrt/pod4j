@@ -13,4 +13,8 @@ POST \"/volumes/prune\"
 |**size** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

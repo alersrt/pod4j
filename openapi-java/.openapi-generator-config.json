@@ -1,7 +1,7 @@
 {
   "groupId": "io.github.alersrt",
   "artifactId": "pod4j.openapi-java",
-  "artifactVersion": "5.3.0",
+  "artifactVersion": "5.3.0-1",
   "developerName": "Aleksandr",
   "licenseName": "MIT",
   "licenseUrl": "https://opensource.org/license/mit",
@@ -11,11 +11,16 @@
   "invokerPackage": "io.github.alersrt.pod4j.openapi",
   "modelPackage": "io.github.alersrt.pod4j.openapi.model",
   "apiPackage": "io.github.alersrt.pod4j.openapi.api",
-  "cleanupOutput": "true",
+  "cleanupOutput": true,
   "library": "okhttp-gson",
+  "serializableModel": true,
   "annotationLibrary": "none",
   "serializationLibrary": "gson",
-  "useBeanValidation": "true",
+  "useBeanValidation": true,
   "dateLibrary": "java8",
-  "useJakartaEe": "true"
+  "useJakartaEe": true,
+  "sortModelPropertiesByRequiredFlag": true,
+  "sortParamsByRequiredFlag":true,
+  "useSingleRequestParameter": true,
+  "generateBuilders": true
 }

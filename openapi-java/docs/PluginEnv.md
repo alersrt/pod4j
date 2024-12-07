@@ -14,4 +14,8 @@ PluginEnv plugin env
 |**value** | **String** | value |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

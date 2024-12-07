@@ -81,4 +81,8 @@ Here, \"non-portable\" means \"dependent of the host we are running on\". Portab
 |**volumesFrom** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -19,4 +19,8 @@ LinuxResources has container runtime resource constraints
 |**unified** | **Map&lt;String, String&gt;** | Unified resources. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

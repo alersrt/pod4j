@@ -13,179 +13,203 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.LinuxResources;
+import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * UpdateEntities used to wrap the oci resource spec in a swagger model
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class UpdateEntities {
-    public static final String SERIALIZED_NAME_RESOURCES = "Resources";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class UpdateEntities implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Resources");
+  public static final String SERIALIZED_NAME_RESOURCES = "Resources";
+  @SerializedName(SERIALIZED_NAME_RESOURCES)
+  private LinuxResources resources;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public UpdateEntities() {
+  }
+
+  public UpdateEntities resources(LinuxResources resources) {
+    this.resources = resources;
+    return this;
+  }
+
+  /**
+   * Get resources
+   * @return resources
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public LinuxResources getResources() {
+    return resources;
+  }
+
+  public void setResources(LinuxResources resources) {
+    this.resources = resources;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_RESOURCES)
-    private LinuxResources resources;
-
-    public UpdateEntities() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    UpdateEntities updateEntities = (UpdateEntities) o;
+    return Objects.equals(this.resources, updateEntities.resources);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to UpdateEntities
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!UpdateEntities.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(resources);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UpdateEntities.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class UpdateEntities {\n");
+    sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Resources");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateEntities
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateEntities.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateEntities.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the optional field `Resources`
-        if (jsonObj.get("Resources") != null && !jsonObj.get("Resources").isJsonNull()) {
-            LinuxResources.validateJsonElement(jsonObj.get("Resources"));
-        }
-    }
+      // validate the optional field `Resources`
+      if (jsonObj.get("Resources") != null && !jsonObj.get("Resources").isJsonNull()) {
+        LinuxResources.validateJsonElement(jsonObj.get("Resources"));
+      }
+  }
 
-    /**
-     * Create an instance of UpdateEntities given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of UpdateEntities
-     * @throws IOException if the JSON string is invalid with respect to UpdateEntities
-     */
-    public static UpdateEntities fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, UpdateEntities.class);
-    }
-
-    public UpdateEntities resources(LinuxResources resources) {
-        this.resources = resources;
-        return this;
-    }
-
-    /**
-     * Get resources
-     *
-     * @return resources
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public LinuxResources getResources() {
-        return resources;
-    }
-
-    public void setResources(LinuxResources resources) {
-        this.resources = resources;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        UpdateEntities updateEntities = (UpdateEntities) o;
-        return Objects.equals(this.resources, updateEntities.resources);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateEntities.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateEntities' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateEntities> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateEntities.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateEntities>() {
+           @Override
+           public void write(JsonWriter out, UpdateEntities value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateEntities read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(resources);
-    }
+  /**
+   * Create an instance of UpdateEntities given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateEntities
+   * @throws IOException if the JSON string is invalid with respect to UpdateEntities
+   */
+  public static UpdateEntities fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateEntities.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class UpdateEntities {\n" +
-                "    resources: " + toIndentedString(resources) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of UpdateEntities to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!UpdateEntities.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'UpdateEntities' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<UpdateEntities> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(UpdateEntities.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<UpdateEntities>() {
-                @Override
-                public void write(JsonWriter out, UpdateEntities value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public UpdateEntities read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of UpdateEntities to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

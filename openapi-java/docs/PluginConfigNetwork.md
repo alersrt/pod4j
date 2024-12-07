@@ -11,4 +11,8 @@ PluginConfigNetwork plugin config network
 |**type** | **String** | type |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

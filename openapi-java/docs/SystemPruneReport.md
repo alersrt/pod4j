@@ -15,4 +15,8 @@
 |**volumePruneReports** | [**List&lt;PruneReport&gt;**](PruneReport.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

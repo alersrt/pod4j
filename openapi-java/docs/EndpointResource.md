@@ -15,4 +15,8 @@ EndpointResource contains network resources allocated and used for a container i
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

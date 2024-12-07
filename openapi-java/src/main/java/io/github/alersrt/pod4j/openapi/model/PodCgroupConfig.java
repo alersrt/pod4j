@@ -13,176 +13,200 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * This will be expanded in future updates to pods.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class PodCgroupConfig {
-    public static final String SERIALIZED_NAME_CGROUP_PARENT = "cgroup_parent";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class PodCgroupConfig implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("cgroup_parent");
+  public static final String SERIALIZED_NAME_CGROUP_PARENT = "cgroup_parent";
+  @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+  private String cgroupParent;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public PodCgroupConfig() {
+  }
+
+  public PodCgroupConfig cgroupParent(String cgroupParent) {
+    this.cgroupParent = cgroupParent;
+    return this;
+  }
+
+  /**
+   * CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.
+   * @return cgroupParent
+   */
+  @jakarta.annotation.Nullable
+
+  public String getCgroupParent() {
+    return cgroupParent;
+  }
+
+  public void setCgroupParent(String cgroupParent) {
+    this.cgroupParent = cgroupParent;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
-    private String cgroupParent;
-
-    public PodCgroupConfig() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    PodCgroupConfig podCgroupConfig = (PodCgroupConfig) o;
+    return Objects.equals(this.cgroupParent, podCgroupConfig.cgroupParent);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PodCgroupConfig
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PodCgroupConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PodCgroupConfig is not found in the empty JSON string", PodCgroupConfig.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(cgroupParent);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PodCgroupConfig.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodCgroupConfig` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PodCgroupConfig {\n");
+    sb.append("    cgroupParent: ").append(toIndentedString(cgroupParent)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("cgroup_parent");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PodCgroupConfig
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PodCgroupConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PodCgroupConfig is not found in the empty JSON string", PodCgroupConfig.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PodCgroupConfig.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodCgroupConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `cgroup_parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroup_parent").toString()));
-        }
-    }
+      if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cgroup_parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroup_parent").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of PodCgroupConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodCgroupConfig
-     * @throws IOException if the JSON string is invalid with respect to PodCgroupConfig
-     */
-    public static PodCgroupConfig fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PodCgroupConfig.class);
-    }
-
-    public PodCgroupConfig cgroupParent(String cgroupParent) {
-        this.cgroupParent = cgroupParent;
-        return this;
-    }
-
-    /**
-     * CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.
-     *
-     * @return cgroupParent
-     */
-    @jakarta.annotation.Nullable
-
-    public String getCgroupParent() {
-        return cgroupParent;
-    }
-
-    public void setCgroupParent(String cgroupParent) {
-        this.cgroupParent = cgroupParent;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PodCgroupConfig podCgroupConfig = (PodCgroupConfig) o;
-        return Objects.equals(this.cgroupParent, podCgroupConfig.cgroupParent);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PodCgroupConfig.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PodCgroupConfig' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PodCgroupConfig> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PodCgroupConfig.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PodCgroupConfig>() {
+           @Override
+           public void write(JsonWriter out, PodCgroupConfig value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PodCgroupConfig read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cgroupParent);
-    }
+  /**
+   * Create an instance of PodCgroupConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodCgroupConfig
+   * @throws IOException if the JSON string is invalid with respect to PodCgroupConfig
+   */
+  public static PodCgroupConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PodCgroupConfig.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class PodCgroupConfig {\n" +
-                "    cgroupParent: " + toIndentedString(cgroupParent) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of PodCgroupConfig to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PodCgroupConfig.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PodCgroupConfig' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PodCgroupConfig> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(PodCgroupConfig.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<PodCgroupConfig>() {
-                @Override
-                public void write(JsonWriter out, PodCgroupConfig value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public PodCgroupConfig read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of PodCgroupConfig to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

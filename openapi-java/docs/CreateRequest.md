@@ -22,4 +22,8 @@
 |**scope** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

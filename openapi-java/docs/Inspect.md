@@ -26,4 +26,8 @@
 |**services** | [**Map&lt;String, ServiceInfo&gt;**](ServiceInfo.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

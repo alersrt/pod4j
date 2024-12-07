@@ -41,4 +41,8 @@ Resources contains container's resources (cgroups config, ulimits...)
 |**ulimits** | [**List&lt;Ulimit&gt;**](Ulimit.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

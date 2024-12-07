@@ -12,4 +12,8 @@ LinuxInterfacePriority for network interfaces
 |**priority** | **Integer** | Priority for the interface |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

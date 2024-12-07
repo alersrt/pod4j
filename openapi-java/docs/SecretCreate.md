@@ -13,4 +13,8 @@
 |**name** | **String** | User-defined name of the secret. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

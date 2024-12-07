@@ -13,612 +13,650 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-
+import io.github.alersrt.pod4j.openapi.model.Route;
+import io.github.alersrt.pod4j.openapi.model.Subnet;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * Network create
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class NetworkCreateLibpod {
-    public static final String SERIALIZED_NAME_CREATED = "created";
-    public static final String SERIALIZED_NAME_DNS_ENABLED = "dns_enabled";
-    public static final String SERIALIZED_NAME_DRIVER = "driver";
-    public static final String SERIALIZED_NAME_ID = "id";
-    public static final String SERIALIZED_NAME_INTERNAL = "internal";
-    public static final String SERIALIZED_NAME_IPAM_OPTIONS = "ipam_options";
-    public static final String SERIALIZED_NAME_IPV6_ENABLED = "ipv6_enabled";
-    public static final String SERIALIZED_NAME_LABELS = "labels";
-    public static final String SERIALIZED_NAME_NAME = "name";
-    public static final String SERIALIZED_NAME_NETWORK_DNS_SERVERS = "network_dns_servers";
-    public static final String SERIALIZED_NAME_NETWORK_INTERFACE = "network_interface";
-    public static final String SERIALIZED_NAME_OPTIONS = "options";
-    public static final String SERIALIZED_NAME_ROUTES = "routes";
-    public static final String SERIALIZED_NAME_SUBNETS = "subnets";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class NetworkCreateLibpod implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("created");
-        openapiFields.add("dns_enabled");
-        openapiFields.add("driver");
-        openapiFields.add("id");
-        openapiFields.add("internal");
-        openapiFields.add("ipam_options");
-        openapiFields.add("ipv6_enabled");
-        openapiFields.add("labels");
-        openapiFields.add("name");
-        openapiFields.add("network_dns_servers");
-        openapiFields.add("network_interface");
-        openapiFields.add("options");
-        openapiFields.add("routes");
-        openapiFields.add("subnets");
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
+  private OffsetDateTime created;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_DNS_ENABLED = "dns_enabled";
+  @SerializedName(SERIALIZED_NAME_DNS_ENABLED)
+  private Boolean dnsEnabled;
+
+  public static final String SERIALIZED_NAME_DRIVER = "driver";
+  @SerializedName(SERIALIZED_NAME_DRIVER)
+  private String driver;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
+  public static final String SERIALIZED_NAME_INTERNAL = "internal";
+  @SerializedName(SERIALIZED_NAME_INTERNAL)
+  private Boolean internal;
+
+  public static final String SERIALIZED_NAME_IPAM_OPTIONS = "ipam_options";
+  @SerializedName(SERIALIZED_NAME_IPAM_OPTIONS)
+  private Map<String, String> ipamOptions = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_IPV6_ENABLED = "ipv6_enabled";
+  @SerializedName(SERIALIZED_NAME_IPV6_ENABLED)
+  private Boolean ipv6Enabled;
+
+  public static final String SERIALIZED_NAME_LABELS = "labels";
+  @SerializedName(SERIALIZED_NAME_LABELS)
+  private Map<String, String> labels = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_NETWORK_DNS_SERVERS = "network_dns_servers";
+  @SerializedName(SERIALIZED_NAME_NETWORK_DNS_SERVERS)
+  private List<String> networkDnsServers = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_NETWORK_INTERFACE = "network_interface";
+  @SerializedName(SERIALIZED_NAME_NETWORK_INTERFACE)
+  private String networkInterface;
+
+  public static final String SERIALIZED_NAME_OPTIONS = "options";
+  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  private Map<String, String> options = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_ROUTES = "routes";
+  @SerializedName(SERIALIZED_NAME_ROUTES)
+  private List<@Valid Route> routes = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SUBNETS = "subnets";
+  @SerializedName(SERIALIZED_NAME_SUBNETS)
+  private List<@Valid Subnet> subnets = new ArrayList<>();
+
+  public NetworkCreateLibpod() {
+  }
+
+  public NetworkCreateLibpod created(OffsetDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+  /**
+   * Created contains the timestamp when this network was created.
+   * @return created
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
+  }
+
+
+  public NetworkCreateLibpod dnsEnabled(Boolean dnsEnabled) {
+    this.dnsEnabled = dnsEnabled;
+    return this;
+  }
+
+  /**
+   * DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.
+   * @return dnsEnabled
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getDnsEnabled() {
+    return dnsEnabled;
+  }
+
+  public void setDnsEnabled(Boolean dnsEnabled) {
+    this.dnsEnabled = dnsEnabled;
+  }
+
+
+  public NetworkCreateLibpod driver(String driver) {
+    this.driver = driver;
+    return this;
+  }
+
+  /**
+   * Driver for this Network, e.g. bridge, macvlan...
+   * @return driver
+   */
+  @jakarta.annotation.Nullable
+
+  public String getDriver() {
+    return driver;
+  }
+
+  public void setDriver(String driver) {
+    this.driver = driver;
+  }
+
+
+  public NetworkCreateLibpod id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * ID of the Network.
+   * @return id
+   */
+  @jakarta.annotation.Nullable
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public NetworkCreateLibpod internal(Boolean internal) {
+    this.internal = internal;
+    return this;
+  }
+
+  /**
+   * Internal is whether the Network should not have external routes to public or other Networks.
+   * @return internal
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getInternal() {
+    return internal;
+  }
+
+  public void setInternal(Boolean internal) {
+    this.internal = internal;
+  }
+
+
+  public NetworkCreateLibpod ipamOptions(Map<String, String> ipamOptions) {
+    this.ipamOptions = ipamOptions;
+    return this;
+  }
+
+  public NetworkCreateLibpod putIpamOptionsItem(String key, String ipamOptionsItem) {
+    if (this.ipamOptions == null) {
+      this.ipamOptions = new HashMap<>();
     }
+    this.ipamOptions.put(key, ipamOptionsItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_CREATED)
-    private OffsetDateTime created;
-    @SerializedName(SERIALIZED_NAME_DNS_ENABLED)
-    private Boolean dnsEnabled;
-    @SerializedName(SERIALIZED_NAME_DRIVER)
-    private String driver;
-    @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
-    @SerializedName(SERIALIZED_NAME_INTERNAL)
-    private Boolean internal;
-    @SerializedName(SERIALIZED_NAME_IPAM_OPTIONS)
-    private Map<String, String> ipamOptions = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_IPV6_ENABLED)
-    private Boolean ipv6Enabled;
-    @SerializedName(SERIALIZED_NAME_LABELS)
-    private Map<String, String> labels = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
-    @SerializedName(SERIALIZED_NAME_NETWORK_DNS_SERVERS)
-    private List<String> networkDnsServers = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_NETWORK_INTERFACE)
-    private String networkInterface;
-    @SerializedName(SERIALIZED_NAME_OPTIONS)
-    private Map<String, String> options = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_ROUTES)
-    private List<@Valid Route> routes = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_SUBNETS)
-    private List<@Valid Subnet> subnets = new ArrayList<>();
+  /**
+   * IPAMOptions contains options used for the ip assignment.
+   * @return ipamOptions
+   */
+  @jakarta.annotation.Nullable
 
-    public NetworkCreateLibpod() {
+  public Map<String, String> getIpamOptions() {
+    return ipamOptions;
+  }
+
+  public void setIpamOptions(Map<String, String> ipamOptions) {
+    this.ipamOptions = ipamOptions;
+  }
+
+
+  public NetworkCreateLibpod ipv6Enabled(Boolean ipv6Enabled) {
+    this.ipv6Enabled = ipv6Enabled;
+    return this;
+  }
+
+  /**
+   * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
+   * @return ipv6Enabled
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getIpv6Enabled() {
+    return ipv6Enabled;
+  }
+
+  public void setIpv6Enabled(Boolean ipv6Enabled) {
+    this.ipv6Enabled = ipv6Enabled;
+  }
+
+
+  public NetworkCreateLibpod labels(Map<String, String> labels) {
+    this.labels = labels;
+    return this;
+  }
+
+  public NetworkCreateLibpod putLabelsItem(String key, String labelsItem) {
+    if (this.labels == null) {
+      this.labels = new HashMap<>();
     }
+    this.labels.put(key, labelsItem);
+    return this;
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to NetworkCreateLibpod
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!NetworkCreateLibpod.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkCreateLibpod is not found in the empty JSON string", NetworkCreateLibpod.openapiRequiredFields));
-            }
-        }
+  /**
+   * Labels is a set of key-value labels that have been applied to the Network.
+   * @return labels
+   */
+  @jakarta.annotation.Nullable
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!NetworkCreateLibpod.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkCreateLibpod` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  public Map<String, String> getLabels() {
+    return labels;
+  }
+
+  public void setLabels(Map<String, String> labels) {
+    this.labels = labels;
+  }
+
+
+  public NetworkCreateLibpod name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of the Network.
+   * @return name
+   */
+  @jakarta.annotation.Nullable
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public NetworkCreateLibpod networkDnsServers(List<String> networkDnsServers) {
+    this.networkDnsServers = networkDnsServers;
+    return this;
+  }
+
+  public NetworkCreateLibpod addNetworkDnsServersItem(String networkDnsServersItem) {
+    if (this.networkDnsServers == null) {
+      this.networkDnsServers = new ArrayList<>();
+    }
+    this.networkDnsServers.add(networkDnsServersItem);
+    return this;
+  }
+
+  /**
+   * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.
+   * @return networkDnsServers
+   */
+  @jakarta.annotation.Nullable
+
+  public List<String> getNetworkDnsServers() {
+    return networkDnsServers;
+  }
+
+  public void setNetworkDnsServers(List<String> networkDnsServers) {
+    this.networkDnsServers = networkDnsServers;
+  }
+
+
+  public NetworkCreateLibpod networkInterface(String networkInterface) {
+    this.networkInterface = networkInterface;
+    return this;
+  }
+
+  /**
+   * NetworkInterface is the network interface name on the host.
+   * @return networkInterface
+   */
+  @jakarta.annotation.Nullable
+
+  public String getNetworkInterface() {
+    return networkInterface;
+  }
+
+  public void setNetworkInterface(String networkInterface) {
+    this.networkInterface = networkInterface;
+  }
+
+
+  public NetworkCreateLibpod options(Map<String, String> options) {
+    this.options = options;
+    return this;
+  }
+
+  public NetworkCreateLibpod putOptionsItem(String key, String optionsItem) {
+    if (this.options == null) {
+      this.options = new HashMap<>();
+    }
+    this.options.put(key, optionsItem);
+    return this;
+  }
+
+  /**
+   * Options is a set of key-value options that have been applied to the Network.
+   * @return options
+   */
+  @jakarta.annotation.Nullable
+
+  public Map<String, String> getOptions() {
+    return options;
+  }
+
+  public void setOptions(Map<String, String> options) {
+    this.options = options;
+  }
+
+
+  public NetworkCreateLibpod routes(List<@Valid Route> routes) {
+    this.routes = routes;
+    return this;
+  }
+
+  public NetworkCreateLibpod addRoutesItem(Route routesItem) {
+    if (this.routes == null) {
+      this.routes = new ArrayList<>();
+    }
+    this.routes.add(routesItem);
+    return this;
+  }
+
+  /**
+   * Routes to use for this network.
+   * @return routes
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public List<@Valid Route> getRoutes() {
+    return routes;
+  }
+
+  public void setRoutes(List<@Valid Route> routes) {
+    this.routes = routes;
+  }
+
+
+  public NetworkCreateLibpod subnets(List<@Valid Subnet> subnets) {
+    this.subnets = subnets;
+    return this;
+  }
+
+  public NetworkCreateLibpod addSubnetsItem(Subnet subnetsItem) {
+    if (this.subnets == null) {
+      this.subnets = new ArrayList<>();
+    }
+    this.subnets.add(subnetsItem);
+    return this;
+  }
+
+  /**
+   * Subnets to use for this network.
+   * @return subnets
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public List<@Valid Subnet> getSubnets() {
+    return subnets;
+  }
+
+  public void setSubnets(List<@Valid Subnet> subnets) {
+    this.subnets = subnets;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    NetworkCreateLibpod networkCreateLibpod = (NetworkCreateLibpod) o;
+    return Objects.equals(this.created, networkCreateLibpod.created) &&
+        Objects.equals(this.dnsEnabled, networkCreateLibpod.dnsEnabled) &&
+        Objects.equals(this.driver, networkCreateLibpod.driver) &&
+        Objects.equals(this.id, networkCreateLibpod.id) &&
+        Objects.equals(this.internal, networkCreateLibpod.internal) &&
+        Objects.equals(this.ipamOptions, networkCreateLibpod.ipamOptions) &&
+        Objects.equals(this.ipv6Enabled, networkCreateLibpod.ipv6Enabled) &&
+        Objects.equals(this.labels, networkCreateLibpod.labels) &&
+        Objects.equals(this.name, networkCreateLibpod.name) &&
+        Objects.equals(this.networkDnsServers, networkCreateLibpod.networkDnsServers) &&
+        Objects.equals(this.networkInterface, networkCreateLibpod.networkInterface) &&
+        Objects.equals(this.options, networkCreateLibpod.options) &&
+        Objects.equals(this.routes, networkCreateLibpod.routes) &&
+        Objects.equals(this.subnets, networkCreateLibpod.subnets);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(created, dnsEnabled, driver, id, internal, ipamOptions, ipv6Enabled, labels, name, networkDnsServers, networkInterface, options, routes, subnets);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class NetworkCreateLibpod {\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    dnsEnabled: ").append(toIndentedString(dnsEnabled)).append("\n");
+    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
+    sb.append("    ipamOptions: ").append(toIndentedString(ipamOptions)).append("\n");
+    sb.append("    ipv6Enabled: ").append(toIndentedString(ipv6Enabled)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    networkDnsServers: ").append(toIndentedString(networkDnsServers)).append("\n");
+    sb.append("    networkInterface: ").append(toIndentedString(networkInterface)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
+    sb.append("    routes: ").append(toIndentedString(routes)).append("\n");
+    sb.append("    subnets: ").append(toIndentedString(subnets)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("created");
+    openapiFields.add("dns_enabled");
+    openapiFields.add("driver");
+    openapiFields.add("id");
+    openapiFields.add("internal");
+    openapiFields.add("ipam_options");
+    openapiFields.add("ipv6_enabled");
+    openapiFields.add("labels");
+    openapiFields.add("name");
+    openapiFields.add("network_dns_servers");
+    openapiFields.add("network_interface");
+    openapiFields.add("options");
+    openapiFields.add("routes");
+    openapiFields.add("subnets");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to NetworkCreateLibpod
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!NetworkCreateLibpod.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkCreateLibpod is not found in the empty JSON string", NetworkCreateLibpod.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!NetworkCreateLibpod.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkCreateLibpod` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull()) && !jsonObj.get("driver").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("driver").toString()));
+      if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull()) && !jsonObj.get("driver").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("driver").toString()));
+      }
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("network_dns_servers") != null && !jsonObj.get("network_dns_servers").isJsonNull() && !jsonObj.get("network_dns_servers").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `network_dns_servers` to be an array in the JSON string but got `%s`", jsonObj.get("network_dns_servers").toString()));
+      }
+      if ((jsonObj.get("network_interface") != null && !jsonObj.get("network_interface").isJsonNull()) && !jsonObj.get("network_interface").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `network_interface` to be a primitive type in the JSON string but got `%s`", jsonObj.get("network_interface").toString()));
+      }
+      if (jsonObj.get("routes") != null && !jsonObj.get("routes").isJsonNull()) {
+        JsonArray jsonArrayroutes = jsonObj.getAsJsonArray("routes");
+        if (jsonArrayroutes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("routes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `routes` to be an array in the JSON string but got `%s`", jsonObj.get("routes").toString()));
+          }
+
+          // validate the optional field `routes` (array)
+          for (int i = 0; i < jsonArrayroutes.size(); i++) {
+            Route.validateJsonElement(jsonArrayroutes.get(i));
+          };
         }
-        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if (jsonObj.get("subnets") != null && !jsonObj.get("subnets").isJsonNull()) {
+        JsonArray jsonArraysubnets = jsonObj.getAsJsonArray("subnets");
+        if (jsonArraysubnets != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("subnets").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `subnets` to be an array in the JSON string but got `%s`", jsonObj.get("subnets").toString()));
+          }
+
+          // validate the optional field `subnets` (array)
+          for (int i = 0; i < jsonArraysubnets.size(); i++) {
+            Subnet.validateJsonElement(jsonArraysubnets.get(i));
+          };
         }
-        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("network_dns_servers") != null && !jsonObj.get("network_dns_servers").isJsonNull() && !jsonObj.get("network_dns_servers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `network_dns_servers` to be an array in the JSON string but got `%s`", jsonObj.get("network_dns_servers").toString()));
-        }
-        if ((jsonObj.get("network_interface") != null && !jsonObj.get("network_interface").isJsonNull()) && !jsonObj.get("network_interface").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `network_interface` to be a primitive type in the JSON string but got `%s`", jsonObj.get("network_interface").toString()));
-        }
-        if (jsonObj.get("routes") != null && !jsonObj.get("routes").isJsonNull()) {
-            JsonArray jsonArrayroutes = jsonObj.getAsJsonArray("routes");
-            if (jsonArrayroutes != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("routes").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `routes` to be an array in the JSON string but got `%s`", jsonObj.get("routes").toString()));
-                }
-
-                // validate the optional field `routes` (array)
-                for (int i = 0; i < jsonArrayroutes.size(); i++) {
-                    Route.validateJsonElement(jsonArrayroutes.get(i));
-                }
-            }
-        }
-        if (jsonObj.get("subnets") != null && !jsonObj.get("subnets").isJsonNull()) {
-            JsonArray jsonArraysubnets = jsonObj.getAsJsonArray("subnets");
-            if (jsonArraysubnets != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("subnets").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `subnets` to be an array in the JSON string but got `%s`", jsonObj.get("subnets").toString()));
-                }
-
-                // validate the optional field `subnets` (array)
-                for (int i = 0; i < jsonArraysubnets.size(); i++) {
-                    Subnet.validateJsonElement(jsonArraysubnets.get(i));
-                }
-            }
-        }
-    }
-
-    /**
-     * Create an instance of NetworkCreateLibpod given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of NetworkCreateLibpod
-     * @throws IOException if the JSON string is invalid with respect to NetworkCreateLibpod
-     */
-    public static NetworkCreateLibpod fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, NetworkCreateLibpod.class);
-    }
-
-    public NetworkCreateLibpod created(OffsetDateTime created) {
-        this.created = created;
-        return this;
-    }
-
-    /**
-     * Created contains the timestamp when this network was created.
-     *
-     * @return created
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public OffsetDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(OffsetDateTime created) {
-        this.created = created;
-    }
-
-    public NetworkCreateLibpod dnsEnabled(Boolean dnsEnabled) {
-        this.dnsEnabled = dnsEnabled;
-        return this;
-    }
-
-    /**
-     * DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.
-     *
-     * @return dnsEnabled
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getDnsEnabled() {
-        return dnsEnabled;
-    }
-
-    public void setDnsEnabled(Boolean dnsEnabled) {
-        this.dnsEnabled = dnsEnabled;
-    }
-
-    public NetworkCreateLibpod driver(String driver) {
-        this.driver = driver;
-        return this;
-    }
-
-    /**
-     * Driver for this Network, e.g. bridge, macvlan...
-     *
-     * @return driver
-     */
-    @jakarta.annotation.Nullable
-
-    public String getDriver() {
-        return driver;
-    }
-
-    public void setDriver(String driver) {
-        this.driver = driver;
-    }
-
-    public NetworkCreateLibpod id(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the Network.
-     *
-     * @return id
-     */
-    @jakarta.annotation.Nullable
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public NetworkCreateLibpod internal(Boolean internal) {
-        this.internal = internal;
-        return this;
-    }
-
-    /**
-     * Internal is whether the Network should not have external routes to public or other Networks.
-     *
-     * @return internal
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getInternal() {
-        return internal;
-    }
-
-    public void setInternal(Boolean internal) {
-        this.internal = internal;
-    }
-
-    public NetworkCreateLibpod ipamOptions(Map<String, String> ipamOptions) {
-        this.ipamOptions = ipamOptions;
-        return this;
-    }
-
-    public NetworkCreateLibpod putIpamOptionsItem(String key, String ipamOptionsItem) {
-        if (this.ipamOptions == null) {
-            this.ipamOptions = new HashMap<>();
-        }
-        this.ipamOptions.put(key, ipamOptionsItem);
-        return this;
-    }
-
-    /**
-     * IPAMOptions contains options used for the ip assignment.
-     *
-     * @return ipamOptions
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getIpamOptions() {
-        return ipamOptions;
-    }
-
-    public void setIpamOptions(Map<String, String> ipamOptions) {
-        this.ipamOptions = ipamOptions;
-    }
-
-    public NetworkCreateLibpod ipv6Enabled(Boolean ipv6Enabled) {
-        this.ipv6Enabled = ipv6Enabled;
-        return this;
-    }
-
-    /**
-     * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
-     *
-     * @return ipv6Enabled
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getIpv6Enabled() {
-        return ipv6Enabled;
-    }
-
-    public void setIpv6Enabled(Boolean ipv6Enabled) {
-        this.ipv6Enabled = ipv6Enabled;
-    }
-
-    public NetworkCreateLibpod labels(Map<String, String> labels) {
-        this.labels = labels;
-        return this;
-    }
-
-    public NetworkCreateLibpod putLabelsItem(String key, String labelsItem) {
-        if (this.labels == null) {
-            this.labels = new HashMap<>();
-        }
-        this.labels.put(key, labelsItem);
-        return this;
-    }
-
-    /**
-     * Labels is a set of key-value labels that have been applied to the Network.
-     *
-     * @return labels
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(Map<String, String> labels) {
-        this.labels = labels;
-    }
-
-    public NetworkCreateLibpod name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Name of the Network.
-     *
-     * @return name
-     */
-    @jakarta.annotation.Nullable
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public NetworkCreateLibpod networkDnsServers(List<String> networkDnsServers) {
-        this.networkDnsServers = networkDnsServers;
-        return this;
-    }
-
-    public NetworkCreateLibpod addNetworkDnsServersItem(String networkDnsServersItem) {
-        if (this.networkDnsServers == null) {
-            this.networkDnsServers = new ArrayList<>();
-        }
-        this.networkDnsServers.add(networkDnsServersItem);
-        return this;
-    }
-
-    /**
-     * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.
-     *
-     * @return networkDnsServers
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getNetworkDnsServers() {
-        return networkDnsServers;
-    }
-
-    public void setNetworkDnsServers(List<String> networkDnsServers) {
-        this.networkDnsServers = networkDnsServers;
-    }
-
-    public NetworkCreateLibpod networkInterface(String networkInterface) {
-        this.networkInterface = networkInterface;
-        return this;
-    }
-
-    /**
-     * NetworkInterface is the network interface name on the host.
-     *
-     * @return networkInterface
-     */
-    @jakarta.annotation.Nullable
-
-    public String getNetworkInterface() {
-        return networkInterface;
-    }
-
-    public void setNetworkInterface(String networkInterface) {
-        this.networkInterface = networkInterface;
-    }
-
-    public NetworkCreateLibpod options(Map<String, String> options) {
-        this.options = options;
-        return this;
-    }
-
-    public NetworkCreateLibpod putOptionsItem(String key, String optionsItem) {
-        if (this.options == null) {
-            this.options = new HashMap<>();
-        }
-        this.options.put(key, optionsItem);
-        return this;
-    }
-
-    /**
-     * Options is a set of key-value options that have been applied to the Network.
-     *
-     * @return options
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Map<String, String> options) {
-        this.options = options;
-    }
-
-    public NetworkCreateLibpod routes(List<@Valid Route> routes) {
-        this.routes = routes;
-        return this;
-    }
-
-    public NetworkCreateLibpod addRoutesItem(Route routesItem) {
-        if (this.routes == null) {
-            this.routes = new ArrayList<>();
-        }
-        this.routes.add(routesItem);
-        return this;
-    }
-
-    /**
-     * Routes to use for this network.
-     *
-     * @return routes
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid Route> getRoutes() {
-        return routes;
-    }
-
-    public void setRoutes(List<@Valid Route> routes) {
-        this.routes = routes;
-    }
-
-    public NetworkCreateLibpod subnets(List<@Valid Subnet> subnets) {
-        this.subnets = subnets;
-        return this;
-    }
-
-    public NetworkCreateLibpod addSubnetsItem(Subnet subnetsItem) {
-        if (this.subnets == null) {
-            this.subnets = new ArrayList<>();
-        }
-        this.subnets.add(subnetsItem);
-        return this;
-    }
-
-    /**
-     * Subnets to use for this network.
-     *
-     * @return subnets
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid Subnet> getSubnets() {
-        return subnets;
-    }
-
-    public void setSubnets(List<@Valid Subnet> subnets) {
-        this.subnets = subnets;
-    }
-
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        NetworkCreateLibpod networkCreateLibpod = (NetworkCreateLibpod) o;
-        return Objects.equals(this.created, networkCreateLibpod.created) &&
-                Objects.equals(this.dnsEnabled, networkCreateLibpod.dnsEnabled) &&
-                Objects.equals(this.driver, networkCreateLibpod.driver) &&
-                Objects.equals(this.id, networkCreateLibpod.id) &&
-                Objects.equals(this.internal, networkCreateLibpod.internal) &&
-                Objects.equals(this.ipamOptions, networkCreateLibpod.ipamOptions) &&
-                Objects.equals(this.ipv6Enabled, networkCreateLibpod.ipv6Enabled) &&
-                Objects.equals(this.labels, networkCreateLibpod.labels) &&
-                Objects.equals(this.name, networkCreateLibpod.name) &&
-                Objects.equals(this.networkDnsServers, networkCreateLibpod.networkDnsServers) &&
-                Objects.equals(this.networkInterface, networkCreateLibpod.networkInterface) &&
-                Objects.equals(this.options, networkCreateLibpod.options) &&
-                Objects.equals(this.routes, networkCreateLibpod.routes) &&
-                Objects.equals(this.subnets, networkCreateLibpod.subnets);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!NetworkCreateLibpod.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'NetworkCreateLibpod' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<NetworkCreateLibpod> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(NetworkCreateLibpod.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<NetworkCreateLibpod>() {
+           @Override
+           public void write(JsonWriter out, NetworkCreateLibpod value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public NetworkCreateLibpod read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(created, dnsEnabled, driver, id, internal, ipamOptions, ipv6Enabled, labels, name, networkDnsServers, networkInterface, options, routes, subnets);
-    }
+  /**
+   * Create an instance of NetworkCreateLibpod given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of NetworkCreateLibpod
+   * @throws IOException if the JSON string is invalid with respect to NetworkCreateLibpod
+   */
+  public static NetworkCreateLibpod fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, NetworkCreateLibpod.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class NetworkCreateLibpod {\n" +
-                "    created: " + toIndentedString(created) + "\n" +
-                "    dnsEnabled: " + toIndentedString(dnsEnabled) + "\n" +
-                "    driver: " + toIndentedString(driver) + "\n" +
-                "    id: " + toIndentedString(id) + "\n" +
-                "    internal: " + toIndentedString(internal) + "\n" +
-                "    ipamOptions: " + toIndentedString(ipamOptions) + "\n" +
-                "    ipv6Enabled: " + toIndentedString(ipv6Enabled) + "\n" +
-                "    labels: " + toIndentedString(labels) + "\n" +
-                "    name: " + toIndentedString(name) + "\n" +
-                "    networkDnsServers: " + toIndentedString(networkDnsServers) + "\n" +
-                "    networkInterface: " + toIndentedString(networkInterface) + "\n" +
-                "    options: " + toIndentedString(options) + "\n" +
-                "    routes: " + toIndentedString(routes) + "\n" +
-                "    subnets: " + toIndentedString(subnets) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of NetworkCreateLibpod to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!NetworkCreateLibpod.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'NetworkCreateLibpod' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<NetworkCreateLibpod> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(NetworkCreateLibpod.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<NetworkCreateLibpod>() {
-                @Override
-                public void write(JsonWriter out, NetworkCreateLibpod value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public NetworkCreateLibpod read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of NetworkCreateLibpod to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

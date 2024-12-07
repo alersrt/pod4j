@@ -14,4 +14,8 @@ OCIRuntimeInfo describes the runtime (crun or runc) being used with podman
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

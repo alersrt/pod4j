@@ -12,4 +12,8 @@ LinuxNetwork identification and priority configuration
 |**priorities** | [**List&lt;LinuxInterfacePriority&gt;**](LinuxInterfacePriority.md) | Set priority of network traffic for container |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

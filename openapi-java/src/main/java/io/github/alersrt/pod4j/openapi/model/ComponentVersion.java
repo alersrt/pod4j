@@ -13,240 +13,267 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * ComponentVersion
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class ComponentVersion {
-    public static final String SERIALIZED_NAME_DETAILS = "Details";
-    public static final String SERIALIZED_NAME_NAME = "Name";
-    public static final String SERIALIZED_NAME_VERSION = "Version";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class ComponentVersion implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Details");
-        openapiFields.add("Name");
-        openapiFields.add("Version");
+  public static final String SERIALIZED_NAME_DETAILS = "Details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private Map<String, String> details = new HashMap<>();
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_NAME = "Name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_VERSION = "Version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
+
+  public ComponentVersion() {
+  }
+
+  public ComponentVersion details(Map<String, String> details) {
+    this.details = details;
+    return this;
+  }
+
+  public ComponentVersion putDetailsItem(String key, String detailsItem) {
+    if (this.details == null) {
+      this.details = new HashMap<>();
     }
+    this.details.put(key, detailsItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_DETAILS)
-    private Map<String, String> details = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
-    @SerializedName(SERIALIZED_NAME_VERSION)
-    private String version;
+  /**
+   * Get details
+   * @return details
+   */
+  @jakarta.annotation.Nullable
 
-    public ComponentVersion() {
+  public Map<String, String> getDetails() {
+    return details;
+  }
+
+  public void setDetails(Map<String, String> details) {
+    this.details = details;
+  }
+
+
+  public ComponentVersion name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Get name
+   * @return name
+   */
+  @jakarta.annotation.Nullable
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public ComponentVersion version(String version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * Get version
+   * @return version
+   */
+  @jakarta.annotation.Nullable
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ComponentVersion componentVersion = (ComponentVersion) o;
+    return Objects.equals(this.details, componentVersion.details) &&
+        Objects.equals(this.name, componentVersion.name) &&
+        Objects.equals(this.version, componentVersion.version);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ComponentVersion
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ComponentVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ComponentVersion is not found in the empty JSON string", ComponentVersion.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(details, name, version);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ComponentVersion.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ComponentVersion` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ComponentVersion {\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Details");
+    openapiFields.add("Name");
+    openapiFields.add("Version");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ComponentVersion
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ComponentVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ComponentVersion is not found in the empty JSON string", ComponentVersion.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ComponentVersion.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ComponentVersion` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-        }
-        if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
-        }
-    }
+      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+      }
+      if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of ComponentVersion given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ComponentVersion
-     * @throws IOException if the JSON string is invalid with respect to ComponentVersion
-     */
-    public static ComponentVersion fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ComponentVersion.class);
-    }
-
-    public ComponentVersion details(Map<String, String> details) {
-        this.details = details;
-        return this;
-    }
-
-    public ComponentVersion putDetailsItem(String key, String detailsItem) {
-        if (this.details == null) {
-            this.details = new HashMap<>();
-        }
-        this.details.put(key, detailsItem);
-        return this;
-    }
-
-    /**
-     * Get details
-     *
-     * @return details
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getDetails() {
-        return details;
-    }
-
-    public void setDetails(Map<String, String> details) {
-        this.details = details;
-    }
-
-    public ComponentVersion name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    @jakarta.annotation.Nullable
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ComponentVersion version(String version) {
-        this.version = version;
-        return this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return version
-     */
-    @jakarta.annotation.Nullable
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ComponentVersion componentVersion = (ComponentVersion) o;
-        return Objects.equals(this.details, componentVersion.details) &&
-                Objects.equals(this.name, componentVersion.name) &&
-                Objects.equals(this.version, componentVersion.version);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ComponentVersion.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ComponentVersion' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ComponentVersion> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ComponentVersion.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ComponentVersion>() {
+           @Override
+           public void write(JsonWriter out, ComponentVersion value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ComponentVersion read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(details, name, version);
-    }
+  /**
+   * Create an instance of ComponentVersion given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ComponentVersion
+   * @throws IOException if the JSON string is invalid with respect to ComponentVersion
+   */
+  public static ComponentVersion fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ComponentVersion.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class ComponentVersion {\n" +
-                "    details: " + toIndentedString(details) + "\n" +
-                "    name: " + toIndentedString(name) + "\n" +
-                "    version: " + toIndentedString(version) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of ComponentVersion to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ComponentVersion.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ComponentVersion' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ComponentVersion> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(ComponentVersion.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<ComponentVersion>() {
-                @Override
-                public void write(JsonWriter out, ComponentVersion value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public ComponentVersion read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of ComponentVersion to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

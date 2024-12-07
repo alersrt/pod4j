@@ -15,13 +15,15 @@ package io.github.alersrt.pod4j.openapi;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.google.gson.JsonElement;
 import io.gsonfire.GsonFireBuilder;
+import io.gsonfire.TypeSelector;
+
 import okio.ByteString;
 
 import java.io.IOException;
@@ -34,7 +36,9 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
+import java.util.HashMap;
 
 /*
  * A JSON utility class
@@ -45,11 +49,42 @@ import java.util.Map;
 public class JSON {
     private static Gson gson;
     private static boolean isLenientOnJson = false;
-    private static final DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
-    private static final SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
-    private static final OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
-    private static final LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
-    private static final ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+    private static DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
+    private static SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
+    private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
+    private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+
+    @SuppressWarnings("unchecked")
+    public static GsonBuilder createGson() {
+        GsonFireBuilder fireBuilder = new GsonFireBuilder()
+        ;
+        GsonBuilder builder = fireBuilder.createGsonBuilder();
+        return builder;
+    }
+
+    private static String getDiscriminatorValue(JsonElement readElement, String discriminatorField) {
+        JsonElement element = readElement.getAsJsonObject().get(discriminatorField);
+        if (null == element) {
+            throw new IllegalArgumentException("missing discriminator field: <" + discriminatorField + ">");
+        }
+        return element.getAsString();
+    }
+
+    /**
+     * Returns the Java class that implements the OpenAPI schema for the specified discriminator value.
+     *
+     * @param classByDiscriminatorValue The map of discriminator values to Java classes.
+     * @param discriminatorValue The value of the OpenAPI discriminator in the input data.
+     * @return The Java class that implements the OpenAPI schema
+     */
+    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
+        Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue);
+        if (null == clazz) {
+            throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
+        }
+        return clazz;
+    }
 
     static {
         GsonBuilder gsonBuilder = createGson();
@@ -346,36 +381,6 @@ public class JSON {
         gson = gsonBuilder.create();
     }
 
-    @SuppressWarnings("unchecked")
-    public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
-        GsonBuilder builder = fireBuilder.createGsonBuilder();
-        return builder;
-    }
-
-    private static String getDiscriminatorValue(JsonElement readElement, String discriminatorField) {
-        JsonElement element = readElement.getAsJsonObject().get(discriminatorField);
-        if (null == element) {
-            throw new IllegalArgumentException("missing discriminator field: <" + discriminatorField + ">");
-        }
-        return element.getAsString();
-    }
-
-    /**
-     * Returns the Java class that implements the OpenAPI schema for the specified discriminator value.
-     *
-     * @param classByDiscriminatorValue The map of discriminator values to Java classes.
-     * @param discriminatorValue        The value of the OpenAPI discriminator in the input data.
-     * @return The Java class that implements the OpenAPI schema
-     */
-    private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
-        Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue);
-        if (null == clazz) {
-            throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
-        }
-        return clazz;
-    }
-
     /**
      * Get Gson.
      *
@@ -436,22 +441,6 @@ public class JSON {
                 throw (e);
             }
         }
-    }
-
-    public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
-        offsetDateTimeTypeAdapter.setFormat(dateFormat);
-    }
-
-    public static void setLocalDateFormat(DateTimeFormatter dateFormat) {
-        localDateTypeAdapter.setFormat(dateFormat);
-    }
-
-    public static void setDateFormat(DateFormat dateFormat) {
-        dateTypeAdapter.setFormat(dateFormat);
-    }
-
-    public static void setSqlDateFormat(DateFormat dateFormat) {
-        sqlDateTypeAdapter.setFormat(dateFormat);
     }
 
     /**
@@ -519,7 +508,7 @@ public class JSON {
                 default:
                     String date = in.nextString();
                     if (date.endsWith("+0000")) {
-                        date = date.substring(0, date.length() - 5) + "Z";
+                        date = date.substring(0, date.length()-5) + "Z";
                     }
                     return OffsetDateTime.parse(date, formatter);
             }
@@ -567,6 +556,14 @@ public class JSON {
         }
     }
 
+    public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+        offsetDateTimeTypeAdapter.setFormat(dateFormat);
+    }
+
+    public static void setLocalDateFormat(DateTimeFormatter dateFormat) {
+        localDateTypeAdapter.setFormat(dateFormat);
+    }
+
     /**
      * Gson TypeAdapter for java.sql.Date type
      * If the dateFormat is null, a simple "yyyy-MM-dd" format will be used
@@ -576,8 +573,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public SqlDateTypeAdapter() {
-        }
+        public SqlDateTypeAdapter() {}
 
         public SqlDateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -630,8 +626,7 @@ public class JSON {
 
         private DateFormat dateFormat;
 
-        public DateTypeAdapter() {
-        }
+        public DateTypeAdapter() {}
 
         public DateTypeAdapter(DateFormat dateFormat) {
             this.dateFormat = dateFormat;
@@ -678,5 +673,13 @@ public class JSON {
                 throw new JsonParseException(e);
             }
         }
+    }
+
+    public static void setDateFormat(DateFormat dateFormat) {
+        dateTypeAdapter.setFormat(dateFormat);
+    }
+
+    public static void setSqlDateFormat(DateFormat dateFormat) {
+        sqlDateTypeAdapter.setFormat(dateFormat);
     }
 }

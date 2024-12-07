@@ -12,4 +12,8 @@
 |**metric** | **Integer** | Metric for this route. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

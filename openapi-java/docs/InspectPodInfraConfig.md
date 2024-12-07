@@ -28,4 +28,8 @@ InspectPodInfraConfig contains the configuration of the pod's infra container.
 |**utsNs** | **String** | UtsNS is the uts namespace that all containers in the pod will join |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

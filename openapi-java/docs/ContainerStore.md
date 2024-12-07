@@ -14,4 +14,8 @@ ContainerStore describes the quantity of containers in the store by status
 |**stopped** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

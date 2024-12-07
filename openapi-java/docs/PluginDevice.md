@@ -14,4 +14,8 @@ PluginDevice plugin device
 |**settable** | **List&lt;String&gt;** | settable |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

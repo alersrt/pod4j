@@ -12,4 +12,8 @@
 |**rawInput** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

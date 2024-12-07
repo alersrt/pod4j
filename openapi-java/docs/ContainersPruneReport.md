@@ -11,4 +11,8 @@
 |**spaceReclaimed** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

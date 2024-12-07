@@ -41,4 +41,8 @@ CreateContainerConfig used when compatible endpoint creates a container
 |**workingDir** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

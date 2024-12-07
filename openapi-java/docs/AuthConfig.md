@@ -17,4 +17,8 @@ AuthConfig contains authorization information for connecting to a Registry
 |**username** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

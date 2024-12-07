@@ -16,4 +16,8 @@ SecurityInfo describes the libpod host
 |**selinuxEnabled** | **Boolean** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

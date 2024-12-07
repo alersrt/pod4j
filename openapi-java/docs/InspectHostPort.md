@@ -12,4 +12,8 @@ InspectHostPort provides information on a port on the host that a container's po
 |**hostPort** | **String** | Port on the host we are bound to. No special formatting - just an integer stuffed into a string. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

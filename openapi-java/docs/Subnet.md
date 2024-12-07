@@ -12,4 +12,8 @@
 |**subnet** | **String** | Subnet for this Network in CIDR form. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

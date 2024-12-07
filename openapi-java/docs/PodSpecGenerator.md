@@ -56,4 +56,8 @@ PodSpecGenerator describes options to create a pod
 |**volumesFrom** | **List&lt;String&gt;** | VolumesFrom is a set of containers whose volumes will be added to this pod. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

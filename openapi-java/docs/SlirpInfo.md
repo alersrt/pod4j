@@ -13,4 +13,8 @@ SlirpInfo describes the slirp executable that is being used
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

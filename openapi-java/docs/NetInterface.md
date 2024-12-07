@@ -11,4 +11,8 @@
 |**subnets** | [**List&lt;NetAddress&gt;**](NetAddress.md) | Subnets list of assigned subnets with their gateway. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

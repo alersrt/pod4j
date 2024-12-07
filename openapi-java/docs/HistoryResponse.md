@@ -16,4 +16,8 @@ HistoryResponse provides details on image layers
 |**tags** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -14,4 +14,8 @@
 |**variant** | **String** | Variant is an optional field specifying a variant of the CPU, for example &#x60;v7&#x60; to specify ARMv7 when architecture is &#x60;arm&#x60;. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

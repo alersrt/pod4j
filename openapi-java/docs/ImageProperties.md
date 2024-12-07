@@ -12,4 +12,8 @@
 |**size** | [**ImagePropertiesSize**](ImagePropertiesSize.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

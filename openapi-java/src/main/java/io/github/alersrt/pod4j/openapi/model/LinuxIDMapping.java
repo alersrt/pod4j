@@ -13,225 +13,251 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * LinuxIDMapping specifies UID/GID mappings
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class LinuxIDMapping {
-    public static final String SERIALIZED_NAME_CONTAINER_I_D = "containerID";
-    public static final String SERIALIZED_NAME_HOST_I_D = "hostID";
-    public static final String SERIALIZED_NAME_SIZE = "size";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class LinuxIDMapping implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("containerID");
-        openapiFields.add("hostID");
-        openapiFields.add("size");
+  public static final String SERIALIZED_NAME_CONTAINER_I_D = "containerID";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+  private Integer containerID;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_HOST_I_D = "hostID";
+  @SerializedName(SERIALIZED_NAME_HOST_I_D)
+  private Integer hostID;
+
+  public static final String SERIALIZED_NAME_SIZE = "size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
+  private Integer size;
+
+  public LinuxIDMapping() {
+  }
+
+  public LinuxIDMapping containerID(Integer containerID) {
+    this.containerID = containerID;
+    return this;
+  }
+
+  /**
+   * ContainerID is the starting UID/GID in the container
+   * @return containerID
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getContainerID() {
+    return containerID;
+  }
+
+  public void setContainerID(Integer containerID) {
+    this.containerID = containerID;
+  }
+
+
+  public LinuxIDMapping hostID(Integer hostID) {
+    this.hostID = hostID;
+    return this;
+  }
+
+  /**
+   * HostID is the starting UID/GID on the host to be mapped to &#39;ContainerID&#39;
+   * @return hostID
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getHostID() {
+    return hostID;
+  }
+
+  public void setHostID(Integer hostID) {
+    this.hostID = hostID;
+  }
+
+
+  public LinuxIDMapping size(Integer size) {
+    this.size = size;
+    return this;
+  }
+
+  /**
+   * Size is the number of IDs to be mapped
+   * @return size
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getSize() {
+    return size;
+  }
+
+  public void setSize(Integer size) {
+    this.size = size;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
-    private Integer containerID;
-    @SerializedName(SERIALIZED_NAME_HOST_I_D)
-    private Integer hostID;
-    @SerializedName(SERIALIZED_NAME_SIZE)
-    private Integer size;
-
-    public LinuxIDMapping() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    LinuxIDMapping linuxIDMapping = (LinuxIDMapping) o;
+    return Objects.equals(this.containerID, linuxIDMapping.containerID) &&
+        Objects.equals(this.hostID, linuxIDMapping.hostID) &&
+        Objects.equals(this.size, linuxIDMapping.size);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to LinuxIDMapping
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!LinuxIDMapping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxIDMapping is not found in the empty JSON string", LinuxIDMapping.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(containerID, hostID, size);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!LinuxIDMapping.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxIDMapping` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class LinuxIDMapping {\n");
+    sb.append("    containerID: ").append(toIndentedString(containerID)).append("\n");
+    sb.append("    hostID: ").append(toIndentedString(hostID)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("containerID");
+    openapiFields.add("hostID");
+    openapiFields.add("size");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to LinuxIDMapping
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!LinuxIDMapping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxIDMapping is not found in the empty JSON string", LinuxIDMapping.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!LinuxIDMapping.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxIDMapping` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-    }
+  }
 
-    /**
-     * Create an instance of LinuxIDMapping given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of LinuxIDMapping
-     * @throws IOException if the JSON string is invalid with respect to LinuxIDMapping
-     */
-    public static LinuxIDMapping fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, LinuxIDMapping.class);
-    }
-
-    public LinuxIDMapping containerID(Integer containerID) {
-        this.containerID = containerID;
-        return this;
-    }
-
-    /**
-     * ContainerID is the starting UID/GID in the container
-     *
-     * @return containerID
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getContainerID() {
-        return containerID;
-    }
-
-    public void setContainerID(Integer containerID) {
-        this.containerID = containerID;
-    }
-
-    public LinuxIDMapping hostID(Integer hostID) {
-        this.hostID = hostID;
-        return this;
-    }
-
-    /**
-     * HostID is the starting UID/GID on the host to be mapped to &#39;ContainerID&#39;
-     *
-     * @return hostID
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getHostID() {
-        return hostID;
-    }
-
-    public void setHostID(Integer hostID) {
-        this.hostID = hostID;
-    }
-
-    public LinuxIDMapping size(Integer size) {
-        this.size = size;
-        return this;
-    }
-
-    /**
-     * Size is the number of IDs to be mapped
-     *
-     * @return size
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LinuxIDMapping linuxIDMapping = (LinuxIDMapping) o;
-        return Objects.equals(this.containerID, linuxIDMapping.containerID) &&
-                Objects.equals(this.hostID, linuxIDMapping.hostID) &&
-                Objects.equals(this.size, linuxIDMapping.size);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!LinuxIDMapping.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'LinuxIDMapping' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<LinuxIDMapping> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxIDMapping.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<LinuxIDMapping>() {
+           @Override
+           public void write(JsonWriter out, LinuxIDMapping value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public LinuxIDMapping read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(containerID, hostID, size);
-    }
+  /**
+   * Create an instance of LinuxIDMapping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LinuxIDMapping
+   * @throws IOException if the JSON string is invalid with respect to LinuxIDMapping
+   */
+  public static LinuxIDMapping fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, LinuxIDMapping.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class LinuxIDMapping {\n" +
-                "    containerID: " + toIndentedString(containerID) + "\n" +
-                "    hostID: " + toIndentedString(hostID) + "\n" +
-                "    size: " + toIndentedString(size) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of LinuxIDMapping to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!LinuxIDMapping.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'LinuxIDMapping' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<LinuxIDMapping> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxIDMapping.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<LinuxIDMapping>() {
-                @Override
-                public void write(JsonWriter out, LinuxIDMapping value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public LinuxIDMapping read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of LinuxIDMapping to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

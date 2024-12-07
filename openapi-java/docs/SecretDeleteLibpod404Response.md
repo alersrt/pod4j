@@ -12,4 +12,8 @@
 |**response** | **Long** | HTTP response code |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

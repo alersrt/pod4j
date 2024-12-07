@@ -13,4 +13,8 @@ LinuxThrottleDevice struct holds a `major:minor rate_per_second` pair
 |**rate** | **Integer** | Rate is the IO rate limit per cgroup per device |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -2,26 +2,24 @@
 
 All URIs are relative to *http://podman.io*
 
-| Method                                                          | HTTP request                  | Description                                                                         |
-|-----------------------------------------------------------------|-------------------------------|-------------------------------------------------------------------------------------|
-| [**systemCheckLibpod**](SystemApi.md#systemCheckLibpod)         | **POST** /libpod/system/check | Performs consistency checks on storage, optionally removing items which fail checks |
-| [**systemDataUsageLibpod**](SystemApi.md#systemDataUsageLibpod) | **GET** /libpod/system/df     | Show disk usage                                                                     |
-| [**systemEventsLibpod**](SystemApi.md#systemEventsLibpod)       | **GET** /libpod/events        | Get events                                                                          |
-| [**systemInfoLibpod**](SystemApi.md#systemInfoLibpod)           | **GET** /libpod/info          | Get info                                                                            |
-| [**systemPing**](SystemApi.md#systemPing)                       | **GET** /libpod/_ping         | Ping service                                                                        |
-| [**systemPruneLibpod**](SystemApi.md#systemPruneLibpod)         | **POST** /libpod/system/prune | Prune unused data                                                                   |
-| [**systemVersionLibpod**](SystemApi.md#systemVersionLibpod)     | **GET** /libpod/version       | Component Version information                                                       |
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**systemCheckLibpod**](SystemApi.md#systemCheckLibpod) | **POST** /libpod/system/check | Performs consistency checks on storage, optionally removing items which fail checks |
+| [**systemDataUsageLibpod**](SystemApi.md#systemDataUsageLibpod) | **GET** /libpod/system/df | Show disk usage |
+| [**systemEventsLibpod**](SystemApi.md#systemEventsLibpod) | **GET** /libpod/events | Get events |
+| [**systemInfoLibpod**](SystemApi.md#systemInfoLibpod) | **GET** /libpod/info | Get info |
+| [**systemPing**](SystemApi.md#systemPing) | **GET** /libpod/_ping | Ping service |
+| [**systemPruneLibpod**](SystemApi.md#systemPruneLibpod) | **POST** /libpod/system/prune | Prune unused data |
+| [**systemVersionLibpod**](SystemApi.md#systemVersionLibpod) | **GET** /libpod/version | Component Version information |
+
 
 <a id="systemCheckLibpod"></a>
-
 # **systemCheckLibpod**
-
-> SystemCheckReport systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge)
+> SystemCheckReport systemCheckLibpod().quick(quick).repair(repair).repairLossy(repairLossy).unreferencedLayerMaxAge(unreferencedLayerMaxAge).execute();
 
 Performs consistency checks on storage, optionally removing items which fail checks
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -41,7 +39,12 @@ public class Example {
     Boolean repairLossy = true; // Boolean | Remove inconsistent containers and images
     String unreferencedLayerMaxAge = "24h0m0s"; // String | Maximum allowed age of unreferenced layers
     try {
-      SystemCheckReport result = apiInstance.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
+      SystemCheckReport result = apiInstance.systemCheckLibpod()
+            .quick(quick)
+            .repair(repair)
+            .repairLossy(repairLossy)
+            .unreferencedLayerMaxAge(unreferencedLayerMaxAge)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemCheckLibpod");
@@ -56,12 +59,12 @@ public class Example {
 
 ### Parameters
 
-| Name                        | Type        | Description                                | Notes                           |
-|-----------------------------|-------------|--------------------------------------------|---------------------------------|
-| **quick**                   | **Boolean** | Skip time-consuming checks                 | [optional]                      |
-| **repair**                  | **Boolean** | Remove inconsistent images                 | [optional]                      |
-| **repairLossy**             | **Boolean** | Remove inconsistent containers and images  | [optional]                      |
-| **unreferencedLayerMaxAge** | **String**  | Maximum allowed age of unreferenced layers | [optional] [default to 24h0m0s] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **quick** | **Boolean**| Skip time-consuming checks | [optional] |
+| **repair** | **Boolean**| Remove inconsistent images | [optional] |
+| **repairLossy** | **Boolean**| Remove inconsistent containers and images | [optional] |
+| **unreferencedLayerMaxAge** | **String**| Maximum allowed age of unreferenced layers | [optional] [default to 24h0m0s] |
 
 ### Return type
 
@@ -73,29 +76,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | Check                    | -                |
-| **400**     | Bad parameter in request | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Check |  -  |
+| **400** | Bad parameter in request |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemDataUsageLibpod"></a>
-
 # **systemDataUsageLibpod**
-
-> SystemDfReport systemDataUsageLibpod()
+> SystemDfReport systemDataUsageLibpod().execute();
 
 Show disk usage
 
 Return information about disk usage for containers, images, and volumes
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -111,7 +110,8 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      SystemDfReport result = apiInstance.systemDataUsageLibpod();
+      SystemDfReport result = apiInstance.systemDataUsageLibpod()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemDataUsageLibpod");
@@ -125,7 +125,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -138,28 +137,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Disk usage            | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Disk usage |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemEventsLibpod"></a>
-
 # **systemEventsLibpod**
-
-> systemEventsLibpod(since, until, filters, stream)
+> systemEventsLibpod().since(since).until(until).filters(filters).stream(stream).execute();
 
 Get events
 
 Returns events filtered on query parameters
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -179,7 +174,12 @@ public class Example {
     String filters = "filters_example"; // String | JSON encoded map[string][]string of constraints
     Boolean stream = true; // Boolean | when false, do not follow events
     try {
-      apiInstance.systemEventsLibpod(since, until, filters, stream);
+      apiInstance.systemEventsLibpod()
+            .since(since)
+            .until(until)
+            .filters(filters)
+            .stream(stream)
+            .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemEventsLibpod");
       System.err.println("Status code: " + e.getCode());
@@ -193,12 +193,12 @@ public class Example {
 
 ### Parameters
 
-| Name        | Type        | Description                                     | Notes                        |
-|-------------|-------------|-------------------------------------------------|------------------------------|
-| **since**   | **String**  | start streaming events from this time           | [optional]                   |
-| **until**   | **String**  | stop streaming events later than this           | [optional]                   |
-| **filters** | **String**  | JSON encoded map[string][]string of constraints | [optional]                   |
-| **stream**  | **Boolean** | when false, do not follow events                | [optional] [default to true] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **since** | **String**| start streaming events from this time | [optional] |
+| **until** | **String**| stop streaming events later than this | [optional] |
+| **filters** | **String**| JSON encoded map[string][]string of constraints | [optional] |
+| **stream** | **Boolean**| when false, do not follow events | [optional] [default to true] |
 
 ### Return type
 
@@ -210,28 +210,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description                                       | Response headers |
-|-------------|---------------------------------------------------|------------------|
-| **200**     | returns a string of json data describing an event | -                |
-| **500**     | Internal server error                             | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | returns a string of json data describing an event |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemInfoLibpod"></a>
-
 # **systemInfoLibpod**
-
-> LibpodInfo systemInfoLibpod()
+> LibpodInfo systemInfoLibpod().execute();
 
 Get info
 
 Returns information on the system and libpod configuration
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -247,7 +243,8 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      LibpodInfo result = apiInstance.systemInfoLibpod();
+      LibpodInfo result = apiInstance.systemInfoLibpod()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemInfoLibpod");
@@ -261,7 +258,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -274,29 +270,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Info                  | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Info |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemPing"></a>
-
 # **systemPing**
-
-> String systemPing()
+> String systemPing().execute();
 
 Ping service
 
-Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is
-available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned.
+Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -312,7 +303,8 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      String result = apiInstance.systemPing();
+      String result = apiInstance.systemPing()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemPing");
@@ -326,7 +318,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -339,26 +330,22 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
 
 ### HTTP response details
-
-| Status code | Description           | Response headers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|-------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **200**     | Success               | * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br> |
-| **500**     | Internal server error | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br>  |
+| **500** | Internal server error |  -  |
 
 <a id="systemPruneLibpod"></a>
-
 # **systemPruneLibpod**
-
-> SystemPruneReport systemPruneLibpod()
+> SystemPruneReport systemPruneLibpod().execute();
 
 Prune unused data
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -374,7 +361,8 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      SystemPruneReport result = apiInstance.systemPruneLibpod();
+      SystemPruneReport result = apiInstance.systemPruneLibpod()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemPruneLibpod");
@@ -388,7 +376,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -401,27 +388,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | System Prune results     | -                |
-| **400**     | Bad parameter in request | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | System Prune results |  -  |
+| **400** | Bad parameter in request |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemVersionLibpod"></a>
-
 # **systemVersionLibpod**
-
-> SystemComponentVersion systemVersionLibpod()
+> SystemComponentVersion systemVersionLibpod().execute();
 
 Component Version information
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -437,7 +420,8 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      SystemComponentVersion result = apiInstance.systemVersionLibpod();
+      SystemComponentVersion result = apiInstance.systemVersionLibpod()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SystemApi#systemVersionLibpod");
@@ -451,7 +435,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -464,12 +447,11 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200**     | Version     | -                |
+| **200** | Version |  -  |
 

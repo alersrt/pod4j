@@ -13,4 +13,8 @@ PluginConfigLinux plugin config linux
 |**devices** | [**List&lt;PluginDevice&gt;**](PluginDevice.md) | devices |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

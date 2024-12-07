@@ -12,4 +12,8 @@ Default to reservation limits if supported. Otherwise fallback to page fault lim
 |**pageSize** | **String** | Pagesize is the hugepage size. Format: \&quot;&lt;size&gt;&lt;unit-prefix&gt;B&#39; (e.g. 64KB, 2MB, 1GB, etc.). |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

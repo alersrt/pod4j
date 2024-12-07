@@ -13,16 +13,26 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
+import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReport;
-import jakarta.validation.constraints.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -67,32 +77,15 @@ public class SecretsApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for secretCreateLibpod
-     *
-     * @param name       User-defined name of the secret. (required)
-     * @param driver     Secret driver (optional, default to file)
-     * @param driveropts Secret driver options (optional)
-     * @param labels     Labels on the secret (optional)
-     * @param request    Secret (optional)
-     * @param _callback  Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretCreateLibpodCall(String name, String driver, String driveropts, String labels, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call secretCreateLibpodCall(String name, String driver, String driveropts, String labels, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -126,7 +119,7 @@ public class SecretsApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -134,15 +127,15 @@ public class SecretsApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -157,100 +150,160 @@ public class SecretsApi {
 
     }
 
-    /**
-     * Create a secret
-     *
-     * @param name       User-defined name of the secret. (required)
-     * @param driver     Secret driver (optional, default to file)
-     * @param driveropts Secret driver options (optional)
-     * @param labels     Labels on the secret (optional)
-     * @param request    Secret (optional)
-     * @return SecretCreateLibpod201Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public SecretCreateLibpod201Response secretCreateLibpod(String name, String driver, String driveropts, String labels, String request) throws ApiException {
-        ApiResponse<SecretCreateLibpod201Response> localVarResp = secretCreateLibpodWithHttpInfo(name, driver, driveropts, labels, request);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create a secret
-     *
-     * @param name       User-defined name of the secret. (required)
-     * @param driver     Secret driver (optional, default to file)
-     * @param driveropts Secret driver options (optional)
-     * @param labels     Labels on the secret (optional)
-     * @param request    Secret (optional)
-     * @return ApiResponse&lt;SecretCreateLibpod201Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<SecretCreateLibpod201Response> secretCreateLibpodWithHttpInfo(@NotNull String name, String driver, String driveropts, String labels, String request) throws ApiException {
+    private ApiResponse<SecretCreateLibpod201Response> secretCreateLibpodWithHttpInfo( @NotNull String name, String driver, String driveropts, String labels, String request) throws ApiException {
         okhttp3.Call localVarCall = secretCreateLibpodValidateBeforeCall(name, driver, driveropts, labels, request, null);
-        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create a secret (asynchronously)
-     *
-     * @param name       User-defined name of the secret. (required)
-     * @param driver     Secret driver (optional, default to file)
-     * @param driveropts Secret driver options (optional)
-     * @param labels     Labels on the secret (optional)
-     * @param request    Secret (optional)
-     * @param _callback  The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretCreateLibpodAsync(String name, String driver, String driveropts, String labels, String request, final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
+    private okhttp3.Call secretCreateLibpodAsync(String name, String driver, String driveropts, String labels, String request, final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretCreateLibpodValidateBeforeCall(name, driver, driveropts, labels, request, _callback);
-        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretCreateLibpod201Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIsecretCreateLibpodRequest {
+        private final String name;
+        private String driver;
+        private String driveropts;
+        private String labels;
+        private String request;
+
+        private APIsecretCreateLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set driver
+         * @param driver Secret driver (optional, default to file)
+         * @return APIsecretCreateLibpodRequest
+         */
+        public APIsecretCreateLibpodRequest driver(String driver) {
+            this.driver = driver;
+            return this;
+        }
+
+        /**
+         * Set driveropts
+         * @param driveropts Secret driver options (optional)
+         * @return APIsecretCreateLibpodRequest
+         */
+        public APIsecretCreateLibpodRequest driveropts(String driveropts) {
+            this.driveropts = driveropts;
+            return this;
+        }
+
+        /**
+         * Set labels
+         * @param labels Labels on the secret (optional)
+         * @return APIsecretCreateLibpodRequest
+         */
+        public APIsecretCreateLibpodRequest labels(String labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set request
+         * @param request Secret (optional)
+         * @return APIsecretCreateLibpodRequest
+         */
+        public APIsecretCreateLibpodRequest request(String request) {
+            this.request = request;
+            return this;
+        }
+
+        /**
+         * Build call for secretCreateLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretCreateLibpodCall(name, driver, driveropts, labels, request, _callback);
+        }
+
+        /**
+         * Execute secretCreateLibpod request
+         * @return SecretCreateLibpod201Response
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public SecretCreateLibpod201Response execute() throws ApiException {
+            ApiResponse<SecretCreateLibpod201Response> localVarResp = secretCreateLibpodWithHttpInfo(name, driver, driveropts, labels, request);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretCreateLibpod request with HTTP info returned
+         * @return ApiResponse&lt;SecretCreateLibpod201Response&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<SecretCreateLibpod201Response> executeWithHttpInfo() throws ApiException {
+            return secretCreateLibpodWithHttpInfo(name, driver, driveropts, labels, request);
+        }
+
+        /**
+         * Execute secretCreateLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<SecretCreateLibpod201Response> _callback) throws ApiException {
+            return secretCreateLibpodAsync(name, driver, driveropts, labels, request, _callback);
+        }
+    }
+
     /**
-     * Build call for secretDeleteLibpod
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param all       Remove all secrets (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create a secret
+     * 
+     * @param name User-defined name of the secret. (required)
+     * @return APIsecretCreateLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Secret create response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretDeleteLibpodCall(String name, Boolean all, final ApiCallback _callback) throws ApiException {
+    public APIsecretCreateLibpodRequest secretCreateLibpod(String name) {
+        return new APIsecretCreateLibpodRequest(name);
+    }
+    private okhttp3.Call secretDeleteLibpodCall(String name, Boolean all, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -260,7 +313,7 @@ public class SecretsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/secrets/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -273,7 +326,7 @@ public class SecretsApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -287,7 +340,7 @@ public class SecretsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -302,87 +355,128 @@ public class SecretsApi {
 
     }
 
-    /**
-     * Remove secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @param all  Remove all secrets (optional, default to false)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void secretDeleteLibpod(String name, Boolean all) throws ApiException {
-        secretDeleteLibpodWithHttpInfo(name, all);
-    }
 
-    /**
-     * Remove secret
-     *
-     * @param name the name or ID of the secret (required)
-     * @param all  Remove all secrets (optional, default to false)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> secretDeleteLibpodWithHttpInfo(@NotNull String name, Boolean all) throws ApiException {
+    private ApiResponse<Void> secretDeleteLibpodWithHttpInfo( @NotNull String name, Boolean all) throws ApiException {
         okhttp3.Call localVarCall = secretDeleteLibpodValidateBeforeCall(name, all, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Remove secret (asynchronously)
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param all       Remove all secrets (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretDeleteLibpodAsync(String name, Boolean all, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call secretDeleteLibpodAsync(String name, Boolean all, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretDeleteLibpodValidateBeforeCall(name, all, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIsecretDeleteLibpodRequest {
+        private final String name;
+        private Boolean all;
+
+        private APIsecretDeleteLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set all
+         * @param all Remove all secrets (optional, default to false)
+         * @return APIsecretDeleteLibpodRequest
+         */
+        public APIsecretDeleteLibpodRequest all(Boolean all) {
+            this.all = all;
+            return this;
+        }
+
+        /**
+         * Build call for secretDeleteLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretDeleteLibpodCall(name, all, _callback);
+        }
+
+        /**
+         * Execute secretDeleteLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            secretDeleteLibpodWithHttpInfo(name, all);
+        }
+
+        /**
+         * Execute secretDeleteLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return secretDeleteLibpodWithHttpInfo(name, all);
+        }
+
+        /**
+         * Execute secretDeleteLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return secretDeleteLibpodAsync(name, all, _callback);
+        }
+    }
+
     /**
-     * Build call for secretExistsLibpod
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove secret
+     * 
+     * @param name the name or ID of the secret (required)
+     * @return APIsecretDeleteLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIsecretDeleteLibpodRequest secretDeleteLibpod(String name) {
+        return new APIsecretDeleteLibpodRequest(name);
+    }
+    private okhttp3.Call secretExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -392,7 +486,7 @@ public class SecretsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/secrets/{name}/exists"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -401,7 +495,7 @@ public class SecretsApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -415,7 +509,7 @@ public class SecretsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -430,85 +524,117 @@ public class SecretsApi {
 
     }
 
-    /**
-     * Secret exists
-     *
-     * @param name the name or ID of the secret (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void secretExistsLibpod(String name) throws ApiException {
-        secretExistsLibpodWithHttpInfo(name);
-    }
 
-    /**
-     * Secret exists
-     *
-     * @param name the name or ID of the secret (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> secretExistsLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> secretExistsLibpodWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = secretExistsLibpodValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Secret exists (asynchronously)
-     *
-     * @param name      the name or ID of the secret (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call secretExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretExistsLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIsecretExistsLibpodRequest {
+        private final String name;
+
+        private APIsecretExistsLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for secretExistsLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretExistsLibpodCall(name, _callback);
+        }
+
+        /**
+         * Execute secretExistsLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            secretExistsLibpodWithHttpInfo(name);
+        }
+
+        /**
+         * Execute secretExistsLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return secretExistsLibpodWithHttpInfo(name);
+        }
+
+        /**
+         * Execute secretExistsLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return secretExistsLibpodAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for secretInspectLibpod
-     *
-     * @param name       the name or ID of the secret (required)
-     * @param showsecret Display Secret (optional, default to false)
-     * @param _callback  Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Secret exists
+     * 
+     * @param name the name or ID of the secret (required)
+     * @return APIsecretExistsLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> secret exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretInspectLibpodCall(String name, Boolean showsecret, final ApiCallback _callback) throws ApiException {
+    public APIsecretExistsLibpodRequest secretExistsLibpod(String name) {
+        return new APIsecretExistsLibpodRequest(name);
+    }
+    private okhttp3.Call secretInspectLibpodCall(String name, Boolean showsecret, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -518,7 +644,7 @@ public class SecretsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/secrets/{name}/json"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -531,7 +657,7 @@ public class SecretsApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -545,7 +671,7 @@ public class SecretsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -560,92 +686,132 @@ public class SecretsApi {
 
     }
 
-    /**
-     * Inspect secret
-     *
-     * @param name       the name or ID of the secret (required)
-     * @param showsecret Display Secret (optional, default to false)
-     * @return SecretInfoReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public SecretInfoReport secretInspectLibpod(String name, Boolean showsecret) throws ApiException {
-        ApiResponse<SecretInfoReport> localVarResp = secretInspectLibpodWithHttpInfo(name, showsecret);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect secret
-     *
-     * @param name       the name or ID of the secret (required)
-     * @param showsecret Display Secret (optional, default to false)
-     * @return ApiResponse&lt;SecretInfoReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<SecretInfoReport> secretInspectLibpodWithHttpInfo(@NotNull String name, Boolean showsecret) throws ApiException {
+    private ApiResponse<SecretInfoReport> secretInspectLibpodWithHttpInfo( @NotNull String name, Boolean showsecret) throws ApiException {
         okhttp3.Call localVarCall = secretInspectLibpodValidateBeforeCall(name, showsecret, null);
-        Type localVarReturnType = new TypeToken<SecretInfoReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretInfoReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect secret (asynchronously)
-     *
-     * @param name       the name or ID of the secret (required)
-     * @param showsecret Display Secret (optional, default to false)
-     * @param _callback  The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretInspectLibpodAsync(String name, Boolean showsecret, final ApiCallback<SecretInfoReport> _callback) throws ApiException {
+    private okhttp3.Call secretInspectLibpodAsync(String name, Boolean showsecret, final ApiCallback<SecretInfoReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretInspectLibpodValidateBeforeCall(name, showsecret, _callback);
-        Type localVarReturnType = new TypeToken<SecretInfoReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<SecretInfoReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIsecretInspectLibpodRequest {
+        private final String name;
+        private Boolean showsecret;
+
+        private APIsecretInspectLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set showsecret
+         * @param showsecret Display Secret (optional, default to false)
+         * @return APIsecretInspectLibpodRequest
+         */
+        public APIsecretInspectLibpodRequest showsecret(Boolean showsecret) {
+            this.showsecret = showsecret;
+            return this;
+        }
+
+        /**
+         * Build call for secretInspectLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretInspectLibpodCall(name, showsecret, _callback);
+        }
+
+        /**
+         * Execute secretInspectLibpod request
+         * @return SecretInfoReport
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public SecretInfoReport execute() throws ApiException {
+            ApiResponse<SecretInfoReport> localVarResp = secretInspectLibpodWithHttpInfo(name, showsecret);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretInspectLibpod request with HTTP info returned
+         * @return ApiResponse&lt;SecretInfoReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<SecretInfoReport> executeWithHttpInfo() throws ApiException {
+            return secretInspectLibpodWithHttpInfo(name, showsecret);
+        }
+
+        /**
+         * Execute secretInspectLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<SecretInfoReport> _callback) throws ApiException {
+            return secretInspectLibpodAsync(name, showsecret, _callback);
+        }
+    }
+
     /**
-     * Build call for secretListLibpod
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect secret
+     * 
+     * @param name the name or ID of the secret (required)
+     * @return APIsecretInspectLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Secret inspect response </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such secret </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call secretListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIsecretInspectLibpodRequest secretInspectLibpod(String name) {
+        return new APIsecretInspectLibpodRequest(name);
+    }
+    private okhttp3.Call secretListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -667,7 +833,7 @@ public class SecretsApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -681,7 +847,7 @@ public class SecretsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -691,64 +857,113 @@ public class SecretsApi {
 
     }
 
-    /**
-     * List secrets
-     * Returns a list of secrets
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @return List&lt;SecretInfoReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<SecretInfoReport> secretListLibpod(String filters) throws ApiException {
-        ApiResponse<List<SecretInfoReport>> localVarResp = secretListLibpodWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List secrets
-     * Returns a list of secrets
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @return ApiResponse&lt;List&lt;SecretInfoReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<SecretInfoReport>> secretListLibpodWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<SecretInfoReport>> secretListLibpodWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = secretListLibpodValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<SecretInfoReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<SecretInfoReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List secrets (asynchronously)
-     * Returns a list of secrets
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call secretListLibpodAsync(String filters, final ApiCallback<List<SecretInfoReport>> _callback) throws ApiException {
+    private okhttp3.Call secretListLibpodAsync(String filters, final ApiCallback<List<SecretInfoReport>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = secretListLibpodValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<SecretInfoReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<SecretInfoReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+    public class APIsecretListLibpodRequest {
+        private String filters;
+
+        private APIsecretListLibpodRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list. Currently available filters:   - &#x60;name&#x3D;[name]&#x60; Matches secrets name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.  (optional)
+         * @return APIsecretListLibpodRequest
+         */
+        public APIsecretListLibpodRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for secretListLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return secretListLibpodCall(filters, _callback);
+        }
+
+        /**
+         * Execute secretListLibpod request
+         * @return List&lt;SecretInfoReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<SecretInfoReport> execute() throws ApiException {
+            ApiResponse<List<SecretInfoReport>> localVarResp = secretListLibpodWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute secretListLibpod request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;SecretInfoReport&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<SecretInfoReport>> executeWithHttpInfo() throws ApiException {
+            return secretListLibpodWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute secretListLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<SecretInfoReport>> _callback) throws ApiException {
+            return secretListLibpodAsync(filters, _callback);
+        }
+    }
+
+    /**
+     * List secrets
+     * Returns a list of secrets
+     * @return APIsecretListLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Secret list response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIsecretListLibpodRequest secretListLibpod() {
+        return new APIsecretListLibpodRequest();
     }
 }

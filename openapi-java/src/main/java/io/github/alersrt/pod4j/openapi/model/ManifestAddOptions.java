@@ -13,579 +13,616 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * ManifestAddOptions provides model for adding digests to manifest list
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class ManifestAddOptions {
-    public static final String SERIALIZED_NAME_ALL = "all";
-    public static final String SERIALIZED_NAME_ANNOTATION = "annotation";
-    public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
-    public static final String SERIALIZED_NAME_ARCH = "arch";
-    public static final String SERIALIZED_NAME_FEATURES = "features";
-    public static final String SERIALIZED_NAME_IMAGES = "images";
-    public static final String SERIALIZED_NAME_INDEX_ANNOTATION = "index_annotation";
-    public static final String SERIALIZED_NAME_INDEX_ANNOTATIONS = "index_annotations";
-    public static final String SERIALIZED_NAME_OS = "os";
-    public static final String SERIALIZED_NAME_OS_FEATURES = "os_features";
-    public static final String SERIALIZED_NAME_OS_VERSION = "os_version";
-    public static final String SERIALIZED_NAME_SUBJECT = "subject";
-    public static final String SERIALIZED_NAME_VARIANT = "variant";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class ManifestAddOptions implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("all");
-        openapiFields.add("annotation");
-        openapiFields.add("annotations");
-        openapiFields.add("arch");
-        openapiFields.add("features");
-        openapiFields.add("images");
-        openapiFields.add("index_annotation");
-        openapiFields.add("index_annotations");
-        openapiFields.add("os");
-        openapiFields.add("os_features");
-        openapiFields.add("os_version");
-        openapiFields.add("subject");
-        openapiFields.add("variant");
+  public static final String SERIALIZED_NAME_ALL = "all";
+  @SerializedName(SERIALIZED_NAME_ALL)
+  private Boolean all;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_ANNOTATION = "annotation";
+  @SerializedName(SERIALIZED_NAME_ANNOTATION)
+  private List<String> annotation = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
+  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  private Map<String, String> annotations = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_ARCH = "arch";
+  @SerializedName(SERIALIZED_NAME_ARCH)
+  private String arch;
+
+  public static final String SERIALIZED_NAME_FEATURES = "features";
+  @SerializedName(SERIALIZED_NAME_FEATURES)
+  private List<String> features = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_IMAGES = "images";
+  @SerializedName(SERIALIZED_NAME_IMAGES)
+  private List<String> images = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_INDEX_ANNOTATION = "index_annotation";
+  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATION)
+  private List<String> indexAnnotation = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_INDEX_ANNOTATIONS = "index_annotations";
+  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATIONS)
+  private Map<String, String> indexAnnotations = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_OS = "os";
+  @SerializedName(SERIALIZED_NAME_OS)
+  private String os;
+
+  public static final String SERIALIZED_NAME_OS_FEATURES = "os_features";
+  @SerializedName(SERIALIZED_NAME_OS_FEATURES)
+  private List<String> osFeatures = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_OS_VERSION = "os_version";
+  @SerializedName(SERIALIZED_NAME_OS_VERSION)
+  private String osVersion;
+
+  public static final String SERIALIZED_NAME_SUBJECT = "subject";
+  @SerializedName(SERIALIZED_NAME_SUBJECT)
+  private String subject;
+
+  public static final String SERIALIZED_NAME_VARIANT = "variant";
+  @SerializedName(SERIALIZED_NAME_VARIANT)
+  private String variant;
+
+  public ManifestAddOptions() {
+  }
+
+  public ManifestAddOptions all(Boolean all) {
+    this.all = all;
+    return this;
+  }
+
+  /**
+   * True when operating on a list to include all images
+   * @return all
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getAll() {
+    return all;
+  }
+
+  public void setAll(Boolean all) {
+    this.all = all;
+  }
+
+
+  public ManifestAddOptions annotation(List<String> annotation) {
+    this.annotation = annotation;
+    return this;
+  }
+
+  public ManifestAddOptions addAnnotationItem(String annotationItem) {
+    if (this.annotation == null) {
+      this.annotation = new ArrayList<>();
     }
+    this.annotation.add(annotationItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_ALL)
-    private Boolean all;
-    @SerializedName(SERIALIZED_NAME_ANNOTATION)
-    private List<String> annotation = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
-    private Map<String, String> annotations = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_ARCH)
-    private String arch;
-    @SerializedName(SERIALIZED_NAME_FEATURES)
-    private List<String> features = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_IMAGES)
-    private List<String> images = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATION)
-    private List<String> indexAnnotation = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATIONS)
-    private Map<String, String> indexAnnotations = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_OS)
-    private String os;
-    @SerializedName(SERIALIZED_NAME_OS_FEATURES)
-    private List<String> osFeatures = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_OS_VERSION)
-    private String osVersion;
-    @SerializedName(SERIALIZED_NAME_SUBJECT)
-    private String subject;
-    @SerializedName(SERIALIZED_NAME_VARIANT)
-    private String variant;
+  /**
+   * Annotation to add to the item in the manifest list
+   * @return annotation
+   */
+  @jakarta.annotation.Nullable
 
-    public ManifestAddOptions() {
+  public List<String> getAnnotation() {
+    return annotation;
+  }
+
+  public void setAnnotation(List<String> annotation) {
+    this.annotation = annotation;
+  }
+
+
+  public ManifestAddOptions annotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ManifestAddOptions putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
     }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ManifestAddOptions
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ManifestAddOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestAddOptions is not found in the empty JSON string", ManifestAddOptions.openapiRequiredFields));
-            }
-        }
+  /**
+   * Annotations to add to the item in the manifest list by a map which is preferred over Annotation
+   * @return annotations
+   */
+  @jakarta.annotation.Nullable
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ManifestAddOptions.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestAddOptions` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
+  public ManifestAddOptions arch(String arch) {
+    this.arch = arch;
+    return this;
+  }
+
+  /**
+   * Arch overrides the architecture for the item in the manifest list
+   * @return arch
+   */
+  @jakarta.annotation.Nullable
+
+  public String getArch() {
+    return arch;
+  }
+
+  public void setArch(String arch) {
+    this.arch = arch;
+  }
+
+
+  public ManifestAddOptions features(List<String> features) {
+    this.features = features;
+    return this;
+  }
+
+  public ManifestAddOptions addFeaturesItem(String featuresItem) {
+    if (this.features == null) {
+      this.features = new ArrayList<>();
+    }
+    this.features.add(featuresItem);
+    return this;
+  }
+
+  /**
+   * Feature list for the item in the manifest list
+   * @return features
+   */
+  @jakarta.annotation.Nullable
+
+  public List<String> getFeatures() {
+    return features;
+  }
+
+  public void setFeatures(List<String> features) {
+    this.features = features;
+  }
+
+
+  public ManifestAddOptions images(List<String> images) {
+    this.images = images;
+    return this;
+  }
+
+  public ManifestAddOptions addImagesItem(String imagesItem) {
+    if (this.images == null) {
+      this.images = new ArrayList<>();
+    }
+    this.images.add(imagesItem);
+    return this;
+  }
+
+  /**
+   * Images is an optional list of image references to add to manifest list
+   * @return images
+   */
+  @jakarta.annotation.Nullable
+
+  public List<String> getImages() {
+    return images;
+  }
+
+  public void setImages(List<String> images) {
+    this.images = images;
+  }
+
+
+  public ManifestAddOptions indexAnnotation(List<String> indexAnnotation) {
+    this.indexAnnotation = indexAnnotation;
+    return this;
+  }
+
+  public ManifestAddOptions addIndexAnnotationItem(String indexAnnotationItem) {
+    if (this.indexAnnotation == null) {
+      this.indexAnnotation = new ArrayList<>();
+    }
+    this.indexAnnotation.add(indexAnnotationItem);
+    return this;
+  }
+
+  /**
+   * IndexAnnotation is a slice of key&#x3D;value annotations to add to the manifest list itself
+   * @return indexAnnotation
+   */
+  @jakarta.annotation.Nullable
+
+  public List<String> getIndexAnnotation() {
+    return indexAnnotation;
+  }
+
+  public void setIndexAnnotation(List<String> indexAnnotation) {
+    this.indexAnnotation = indexAnnotation;
+  }
+
+
+  public ManifestAddOptions indexAnnotations(Map<String, String> indexAnnotations) {
+    this.indexAnnotations = indexAnnotations;
+    return this;
+  }
+
+  public ManifestAddOptions putIndexAnnotationsItem(String key, String indexAnnotationsItem) {
+    if (this.indexAnnotations == null) {
+      this.indexAnnotations = new HashMap<>();
+    }
+    this.indexAnnotations.put(key, indexAnnotationsItem);
+    return this;
+  }
+
+  /**
+   * IndexAnnotations is a map of key:value annotations to add to the manifest list itself, by a map which is preferred over IndexAnnotation
+   * @return indexAnnotations
+   */
+  @jakarta.annotation.Nullable
+
+  public Map<String, String> getIndexAnnotations() {
+    return indexAnnotations;
+  }
+
+  public void setIndexAnnotations(Map<String, String> indexAnnotations) {
+    this.indexAnnotations = indexAnnotations;
+  }
+
+
+  public ManifestAddOptions os(String os) {
+    this.os = os;
+    return this;
+  }
+
+  /**
+   * OS overrides the operating system for the item in the manifest list
+   * @return os
+   */
+  @jakarta.annotation.Nullable
+
+  public String getOs() {
+    return os;
+  }
+
+  public void setOs(String os) {
+    this.os = os;
+  }
+
+
+  public ManifestAddOptions osFeatures(List<String> osFeatures) {
+    this.osFeatures = osFeatures;
+    return this;
+  }
+
+  public ManifestAddOptions addOsFeaturesItem(String osFeaturesItem) {
+    if (this.osFeatures == null) {
+      this.osFeatures = new ArrayList<>();
+    }
+    this.osFeatures.add(osFeaturesItem);
+    return this;
+  }
+
+  /**
+   * OS features for the item in the manifest list
+   * @return osFeatures
+   */
+  @jakarta.annotation.Nullable
+
+  public List<String> getOsFeatures() {
+    return osFeatures;
+  }
+
+  public void setOsFeatures(List<String> osFeatures) {
+    this.osFeatures = osFeatures;
+  }
+
+
+  public ManifestAddOptions osVersion(String osVersion) {
+    this.osVersion = osVersion;
+    return this;
+  }
+
+  /**
+   * OSVersion overrides the operating system for the item in the manifest list
+   * @return osVersion
+   */
+  @jakarta.annotation.Nullable
+
+  public String getOsVersion() {
+    return osVersion;
+  }
+
+  public void setOsVersion(String osVersion) {
+    this.osVersion = osVersion;
+  }
+
+
+  public ManifestAddOptions subject(String subject) {
+    this.subject = subject;
+    return this;
+  }
+
+  /**
+   * IndexSubject is a subject value to set in the manifest list itself
+   * @return subject
+   */
+  @jakarta.annotation.Nullable
+
+  public String getSubject() {
+    return subject;
+  }
+
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+
+  public ManifestAddOptions variant(String variant) {
+    this.variant = variant;
+    return this;
+  }
+
+  /**
+   * Variant for the item in the manifest list
+   * @return variant
+   */
+  @jakarta.annotation.Nullable
+
+  public String getVariant() {
+    return variant;
+  }
+
+  public void setVariant(String variant) {
+    this.variant = variant;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ManifestAddOptions manifestAddOptions = (ManifestAddOptions) o;
+    return Objects.equals(this.all, manifestAddOptions.all) &&
+        Objects.equals(this.annotation, manifestAddOptions.annotation) &&
+        Objects.equals(this.annotations, manifestAddOptions.annotations) &&
+        Objects.equals(this.arch, manifestAddOptions.arch) &&
+        Objects.equals(this.features, manifestAddOptions.features) &&
+        Objects.equals(this.images, manifestAddOptions.images) &&
+        Objects.equals(this.indexAnnotation, manifestAddOptions.indexAnnotation) &&
+        Objects.equals(this.indexAnnotations, manifestAddOptions.indexAnnotations) &&
+        Objects.equals(this.os, manifestAddOptions.os) &&
+        Objects.equals(this.osFeatures, manifestAddOptions.osFeatures) &&
+        Objects.equals(this.osVersion, manifestAddOptions.osVersion) &&
+        Objects.equals(this.subject, manifestAddOptions.subject) &&
+        Objects.equals(this.variant, manifestAddOptions.variant);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(all, annotation, annotations, arch, features, images, indexAnnotation, indexAnnotations, os, osFeatures, osVersion, subject, variant);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ManifestAddOptions {\n");
+    sb.append("    all: ").append(toIndentedString(all)).append("\n");
+    sb.append("    annotation: ").append(toIndentedString(annotation)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
+    sb.append("    arch: ").append(toIndentedString(arch)).append("\n");
+    sb.append("    features: ").append(toIndentedString(features)).append("\n");
+    sb.append("    images: ").append(toIndentedString(images)).append("\n");
+    sb.append("    indexAnnotation: ").append(toIndentedString(indexAnnotation)).append("\n");
+    sb.append("    indexAnnotations: ").append(toIndentedString(indexAnnotations)).append("\n");
+    sb.append("    os: ").append(toIndentedString(os)).append("\n");
+    sb.append("    osFeatures: ").append(toIndentedString(osFeatures)).append("\n");
+    sb.append("    osVersion: ").append(toIndentedString(osVersion)).append("\n");
+    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
+    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("all");
+    openapiFields.add("annotation");
+    openapiFields.add("annotations");
+    openapiFields.add("arch");
+    openapiFields.add("features");
+    openapiFields.add("images");
+    openapiFields.add("index_annotation");
+    openapiFields.add("index_annotations");
+    openapiFields.add("os");
+    openapiFields.add("os_features");
+    openapiFields.add("os_version");
+    openapiFields.add("subject");
+    openapiFields.add("variant");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ManifestAddOptions
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ManifestAddOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestAddOptions is not found in the empty JSON string", ManifestAddOptions.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ManifestAddOptions.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestAddOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("annotation") != null && !jsonObj.get("annotation").isJsonNull() && !jsonObj.get("annotation").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `annotation` to be an array in the JSON string but got `%s`", jsonObj.get("annotation").toString()));
-        }
-        if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("features") != null && !jsonObj.get("features").isJsonNull() && !jsonObj.get("features").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `features` to be an array in the JSON string but got `%s`", jsonObj.get("features").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("images") != null && !jsonObj.get("images").isJsonNull() && !jsonObj.get("images").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("index_annotation") != null && !jsonObj.get("index_annotation").isJsonNull() && !jsonObj.get("index_annotation").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `index_annotation` to be an array in the JSON string but got `%s`", jsonObj.get("index_annotation").toString()));
-        }
-        if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("os_features") != null && !jsonObj.get("os_features").isJsonNull() && !jsonObj.get("os_features").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `os_features` to be an array in the JSON string but got `%s`", jsonObj.get("os_features").toString()));
-        }
-        if ((jsonObj.get("os_version") != null && !jsonObj.get("os_version").isJsonNull()) && !jsonObj.get("os_version").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `os_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os_version").toString()));
-        }
-        if ((jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonNull()) && !jsonObj.get("subject").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
-        }
-        if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-        }
-    }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("annotation") != null && !jsonObj.get("annotation").isJsonNull() && !jsonObj.get("annotation").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `annotation` to be an array in the JSON string but got `%s`", jsonObj.get("annotation").toString()));
+      }
+      if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("features") != null && !jsonObj.get("features").isJsonNull() && !jsonObj.get("features").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `features` to be an array in the JSON string but got `%s`", jsonObj.get("features").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("images") != null && !jsonObj.get("images").isJsonNull() && !jsonObj.get("images").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("index_annotation") != null && !jsonObj.get("index_annotation").isJsonNull() && !jsonObj.get("index_annotation").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `index_annotation` to be an array in the JSON string but got `%s`", jsonObj.get("index_annotation").toString()));
+      }
+      if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("os_features") != null && !jsonObj.get("os_features").isJsonNull() && !jsonObj.get("os_features").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `os_features` to be an array in the JSON string but got `%s`", jsonObj.get("os_features").toString()));
+      }
+      if ((jsonObj.get("os_version") != null && !jsonObj.get("os_version").isJsonNull()) && !jsonObj.get("os_version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `os_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os_version").toString()));
+      }
+      if ((jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonNull()) && !jsonObj.get("subject").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
+      }
+      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of ManifestAddOptions given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ManifestAddOptions
-     * @throws IOException if the JSON string is invalid with respect to ManifestAddOptions
-     */
-    public static ManifestAddOptions fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ManifestAddOptions.class);
-    }
-
-    public ManifestAddOptions all(Boolean all) {
-        this.all = all;
-        return this;
-    }
-
-    /**
-     * True when operating on a list to include all images
-     *
-     * @return all
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getAll() {
-        return all;
-    }
-
-    public void setAll(Boolean all) {
-        this.all = all;
-    }
-
-    public ManifestAddOptions annotation(List<String> annotation) {
-        this.annotation = annotation;
-        return this;
-    }
-
-    public ManifestAddOptions addAnnotationItem(String annotationItem) {
-        if (this.annotation == null) {
-            this.annotation = new ArrayList<>();
-        }
-        this.annotation.add(annotationItem);
-        return this;
-    }
-
-    /**
-     * Annotation to add to the item in the manifest list
-     *
-     * @return annotation
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getAnnotation() {
-        return annotation;
-    }
-
-    public void setAnnotation(List<String> annotation) {
-        this.annotation = annotation;
-    }
-
-    public ManifestAddOptions annotations(Map<String, String> annotations) {
-        this.annotations = annotations;
-        return this;
-    }
-
-    public ManifestAddOptions putAnnotationsItem(String key, String annotationsItem) {
-        if (this.annotations == null) {
-            this.annotations = new HashMap<>();
-        }
-        this.annotations.put(key, annotationsItem);
-        return this;
-    }
-
-    /**
-     * Annotations to add to the item in the manifest list by a map which is preferred over Annotation
-     *
-     * @return annotations
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getAnnotations() {
-        return annotations;
-    }
-
-    public void setAnnotations(Map<String, String> annotations) {
-        this.annotations = annotations;
-    }
-
-    public ManifestAddOptions arch(String arch) {
-        this.arch = arch;
-        return this;
-    }
-
-    /**
-     * Arch overrides the architecture for the item in the manifest list
-     *
-     * @return arch
-     */
-    @jakarta.annotation.Nullable
-
-    public String getArch() {
-        return arch;
-    }
-
-    public void setArch(String arch) {
-        this.arch = arch;
-    }
-
-    public ManifestAddOptions features(List<String> features) {
-        this.features = features;
-        return this;
-    }
-
-    public ManifestAddOptions addFeaturesItem(String featuresItem) {
-        if (this.features == null) {
-            this.features = new ArrayList<>();
-        }
-        this.features.add(featuresItem);
-        return this;
-    }
-
-    /**
-     * Feature list for the item in the manifest list
-     *
-     * @return features
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<String> features) {
-        this.features = features;
-    }
-
-    public ManifestAddOptions images(List<String> images) {
-        this.images = images;
-        return this;
-    }
-
-    public ManifestAddOptions addImagesItem(String imagesItem) {
-        if (this.images == null) {
-            this.images = new ArrayList<>();
-        }
-        this.images.add(imagesItem);
-        return this;
-    }
-
-    /**
-     * Images is an optional list of image references to add to manifest list
-     *
-     * @return images
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
-
-    public ManifestAddOptions indexAnnotation(List<String> indexAnnotation) {
-        this.indexAnnotation = indexAnnotation;
-        return this;
-    }
-
-    public ManifestAddOptions addIndexAnnotationItem(String indexAnnotationItem) {
-        if (this.indexAnnotation == null) {
-            this.indexAnnotation = new ArrayList<>();
-        }
-        this.indexAnnotation.add(indexAnnotationItem);
-        return this;
-    }
-
-    /**
-     * IndexAnnotation is a slice of key&#x3D;value annotations to add to the manifest list itself
-     *
-     * @return indexAnnotation
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getIndexAnnotation() {
-        return indexAnnotation;
-    }
-
-    public void setIndexAnnotation(List<String> indexAnnotation) {
-        this.indexAnnotation = indexAnnotation;
-    }
-
-    public ManifestAddOptions indexAnnotations(Map<String, String> indexAnnotations) {
-        this.indexAnnotations = indexAnnotations;
-        return this;
-    }
-
-    public ManifestAddOptions putIndexAnnotationsItem(String key, String indexAnnotationsItem) {
-        if (this.indexAnnotations == null) {
-            this.indexAnnotations = new HashMap<>();
-        }
-        this.indexAnnotations.put(key, indexAnnotationsItem);
-        return this;
-    }
-
-    /**
-     * IndexAnnotations is a map of key:value annotations to add to the manifest list itself, by a map which is preferred over IndexAnnotation
-     *
-     * @return indexAnnotations
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, String> getIndexAnnotations() {
-        return indexAnnotations;
-    }
-
-    public void setIndexAnnotations(Map<String, String> indexAnnotations) {
-        this.indexAnnotations = indexAnnotations;
-    }
-
-    public ManifestAddOptions os(String os) {
-        this.os = os;
-        return this;
-    }
-
-    /**
-     * OS overrides the operating system for the item in the manifest list
-     *
-     * @return os
-     */
-    @jakarta.annotation.Nullable
-
-    public String getOs() {
-        return os;
-    }
-
-    public void setOs(String os) {
-        this.os = os;
-    }
-
-    public ManifestAddOptions osFeatures(List<String> osFeatures) {
-        this.osFeatures = osFeatures;
-        return this;
-    }
-
-    public ManifestAddOptions addOsFeaturesItem(String osFeaturesItem) {
-        if (this.osFeatures == null) {
-            this.osFeatures = new ArrayList<>();
-        }
-        this.osFeatures.add(osFeaturesItem);
-        return this;
-    }
-
-    /**
-     * OS features for the item in the manifest list
-     *
-     * @return osFeatures
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getOsFeatures() {
-        return osFeatures;
-    }
-
-    public void setOsFeatures(List<String> osFeatures) {
-        this.osFeatures = osFeatures;
-    }
-
-    public ManifestAddOptions osVersion(String osVersion) {
-        this.osVersion = osVersion;
-        return this;
-    }
-
-    /**
-     * OSVersion overrides the operating system for the item in the manifest list
-     *
-     * @return osVersion
-     */
-    @jakarta.annotation.Nullable
-
-    public String getOsVersion() {
-        return osVersion;
-    }
-
-    public void setOsVersion(String osVersion) {
-        this.osVersion = osVersion;
-    }
-
-    public ManifestAddOptions subject(String subject) {
-        this.subject = subject;
-        return this;
-    }
-
-    /**
-     * IndexSubject is a subject value to set in the manifest list itself
-     *
-     * @return subject
-     */
-    @jakarta.annotation.Nullable
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public ManifestAddOptions variant(String variant) {
-        this.variant = variant;
-        return this;
-    }
-
-    /**
-     * Variant for the item in the manifest list
-     *
-     * @return variant
-     */
-    @jakarta.annotation.Nullable
-
-    public String getVariant() {
-        return variant;
-    }
-
-    public void setVariant(String variant) {
-        this.variant = variant;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ManifestAddOptions manifestAddOptions = (ManifestAddOptions) o;
-        return Objects.equals(this.all, manifestAddOptions.all) &&
-                Objects.equals(this.annotation, manifestAddOptions.annotation) &&
-                Objects.equals(this.annotations, manifestAddOptions.annotations) &&
-                Objects.equals(this.arch, manifestAddOptions.arch) &&
-                Objects.equals(this.features, manifestAddOptions.features) &&
-                Objects.equals(this.images, manifestAddOptions.images) &&
-                Objects.equals(this.indexAnnotation, manifestAddOptions.indexAnnotation) &&
-                Objects.equals(this.indexAnnotations, manifestAddOptions.indexAnnotations) &&
-                Objects.equals(this.os, manifestAddOptions.os) &&
-                Objects.equals(this.osFeatures, manifestAddOptions.osFeatures) &&
-                Objects.equals(this.osVersion, manifestAddOptions.osVersion) &&
-                Objects.equals(this.subject, manifestAddOptions.subject) &&
-                Objects.equals(this.variant, manifestAddOptions.variant);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ManifestAddOptions.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ManifestAddOptions' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ManifestAddOptions> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ManifestAddOptions.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ManifestAddOptions>() {
+           @Override
+           public void write(JsonWriter out, ManifestAddOptions value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ManifestAddOptions read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(all, annotation, annotations, arch, features, images, indexAnnotation, indexAnnotations, os, osFeatures, osVersion, subject, variant);
-    }
+  /**
+   * Create an instance of ManifestAddOptions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ManifestAddOptions
+   * @throws IOException if the JSON string is invalid with respect to ManifestAddOptions
+   */
+  public static ManifestAddOptions fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ManifestAddOptions.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class ManifestAddOptions {\n" +
-                "    all: " + toIndentedString(all) + "\n" +
-                "    annotation: " + toIndentedString(annotation) + "\n" +
-                "    annotations: " + toIndentedString(annotations) + "\n" +
-                "    arch: " + toIndentedString(arch) + "\n" +
-                "    features: " + toIndentedString(features) + "\n" +
-                "    images: " + toIndentedString(images) + "\n" +
-                "    indexAnnotation: " + toIndentedString(indexAnnotation) + "\n" +
-                "    indexAnnotations: " + toIndentedString(indexAnnotations) + "\n" +
-                "    os: " + toIndentedString(os) + "\n" +
-                "    osFeatures: " + toIndentedString(osFeatures) + "\n" +
-                "    osVersion: " + toIndentedString(osVersion) + "\n" +
-                "    subject: " + toIndentedString(subject) + "\n" +
-                "    variant: " + toIndentedString(variant) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of ManifestAddOptions to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ManifestAddOptions.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ManifestAddOptions' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ManifestAddOptions> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(ManifestAddOptions.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<ManifestAddOptions>() {
-                @Override
-                public void write(JsonWriter out, ManifestAddOptions value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public ManifestAddOptions read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of ManifestAddOptions to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

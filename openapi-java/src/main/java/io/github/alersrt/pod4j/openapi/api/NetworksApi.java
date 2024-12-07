@@ -13,14 +13,24 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.Network;
 import io.github.alersrt.pod4j.openapi.model.NetworkConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreateLibpod;
@@ -28,7 +38,6 @@ import io.github.alersrt.pod4j.openapi.model.NetworkInspectReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkPruneReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkRmReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkUpdateOptions;
-import jakarta.validation.constraints.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -73,30 +82,15 @@ public class NetworksApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for networkConnectLibpod
-     *
-     * @param name      the name of the network (required)
-     * @param create    attributes for connecting a container to a network (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkConnectLibpodCall(String name, NetworkConnectOptions create, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call networkConnectLibpodCall(String name, NetworkConnectOptions create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -106,7 +100,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}/connect"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -115,7 +109,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -123,15 +117,15 @@ public class NetworksApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -146,91 +140,128 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Connect container to network
-     * Connect a container to a network.
-     *
-     * @param name   the name of the network (required)
-     * @param create attributes for connecting a container to a network (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void networkConnectLibpod(String name, NetworkConnectOptions create) throws ApiException {
-        networkConnectLibpodWithHttpInfo(name, create);
-    }
 
-    /**
-     * Connect container to network
-     * Connect a container to a network.
-     *
-     * @param name   the name of the network (required)
-     * @param create attributes for connecting a container to a network (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> networkConnectLibpodWithHttpInfo(@NotNull String name, NetworkConnectOptions create) throws ApiException {
+    private ApiResponse<Void> networkConnectLibpodWithHttpInfo( @NotNull String name, NetworkConnectOptions create) throws ApiException {
         okhttp3.Call localVarCall = networkConnectLibpodValidateBeforeCall(name, create, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Connect container to network (asynchronously)
-     * Connect a container to a network.
-     *
-     * @param name      the name of the network (required)
-     * @param create    attributes for connecting a container to a network (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkConnectLibpodAsync(String name, NetworkConnectOptions create, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call networkConnectLibpodAsync(String name, NetworkConnectOptions create, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkConnectLibpodValidateBeforeCall(name, create, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APInetworkConnectLibpodRequest {
+        private final String name;
+        private NetworkConnectOptions create;
+
+        private APInetworkConnectLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set create
+         * @param create attributes for connecting a container to a network (optional)
+         * @return APInetworkConnectLibpodRequest
+         */
+        public APInetworkConnectLibpodRequest create(NetworkConnectOptions create) {
+            this.create = create;
+            return this;
+        }
+
+        /**
+         * Build call for networkConnectLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkConnectLibpodCall(name, create, _callback);
+        }
+
+        /**
+         * Execute networkConnectLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            networkConnectLibpodWithHttpInfo(name, create);
+        }
+
+        /**
+         * Execute networkConnectLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return networkConnectLibpodWithHttpInfo(name, create);
+        }
+
+        /**
+         * Execute networkConnectLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return networkConnectLibpodAsync(name, create, _callback);
+        }
+    }
+
     /**
-     * Build call for networkCreateLibpod
-     *
-     * @param create    attributes for creating a network (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Connect container to network
+     * Connect a container to a network.
+     * @param name the name of the network (required)
+     * @return APInetworkConnectLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkCreateLibpodCall(NetworkCreateLibpod create, final ApiCallback _callback) throws ApiException {
+    public APInetworkConnectLibpodRequest networkConnectLibpod(String name) {
+        return new APInetworkConnectLibpodRequest(name);
+    }
+    private okhttp3.Call networkCreateLibpodCall(NetworkCreateLibpod create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -248,7 +279,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -256,15 +287,15 @@ public class NetworksApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -274,97 +305,134 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Create network
-     * Create a new network configuration
-     *
-     * @param create attributes for creating a network (optional)
-     * @return Network
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public Network networkCreateLibpod(NetworkCreateLibpod create) throws ApiException {
-        ApiResponse<Network> localVarResp = networkCreateLibpodWithHttpInfo(create);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create network
-     * Create a new network configuration
-     *
-     * @param create attributes for creating a network (optional)
-     * @return ApiResponse&lt;Network&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Network> networkCreateLibpodWithHttpInfo(NetworkCreateLibpod create) throws ApiException {
+    private ApiResponse<Network> networkCreateLibpodWithHttpInfo(NetworkCreateLibpod create) throws ApiException {
         okhttp3.Call localVarCall = networkCreateLibpodValidateBeforeCall(create, null);
-        Type localVarReturnType = new TypeToken<Network>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Network>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create network (asynchronously)
-     * Create a new network configuration
-     *
-     * @param create    attributes for creating a network (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkCreateLibpodAsync(NetworkCreateLibpod create, final ApiCallback<Network> _callback) throws ApiException {
+    private okhttp3.Call networkCreateLibpodAsync(NetworkCreateLibpod create, final ApiCallback<Network> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkCreateLibpodValidateBeforeCall(create, _callback);
-        Type localVarReturnType = new TypeToken<Network>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Network>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APInetworkCreateLibpodRequest {
+        private NetworkCreateLibpod create;
+
+        private APInetworkCreateLibpodRequest() {
+        }
+
+        /**
+         * Set create
+         * @param create attributes for creating a network (optional)
+         * @return APInetworkCreateLibpodRequest
+         */
+        public APInetworkCreateLibpodRequest create(NetworkCreateLibpod create) {
+            this.create = create;
+            return this;
+        }
+
+        /**
+         * Build call for networkCreateLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkCreateLibpodCall(create, _callback);
+        }
+
+        /**
+         * Execute networkCreateLibpod request
+         * @return Network
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public Network execute() throws ApiException {
+            ApiResponse<Network> localVarResp = networkCreateLibpodWithHttpInfo(create);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute networkCreateLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Network&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Network> executeWithHttpInfo() throws ApiException {
+            return networkCreateLibpodWithHttpInfo(create);
+        }
+
+        /**
+         * Execute networkCreateLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Network> _callback) throws ApiException {
+            return networkCreateLibpodAsync(create, _callback);
+        }
+    }
+
     /**
-     * Build call for networkDeleteLibpod
-     *
-     * @param name      the name of the network (required)
-     * @param force     remove containers associated with network (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create network
+     * Create a new network configuration
+     * @return APInetworkCreateLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Network create </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkDeleteLibpodCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+    public APInetworkCreateLibpodRequest networkCreateLibpod() {
+        return new APInetworkCreateLibpodRequest();
+    }
+    private okhttp3.Call networkDeleteLibpodCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -374,7 +442,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -387,7 +455,7 @@ public class NetworksApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -401,7 +469,7 @@ public class NetworksApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -416,97 +484,132 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Remove a network
-     * Remove a configured network
-     *
-     * @param name  the name of the network (required)
-     * @param force remove containers associated with network (optional)
-     * @return List&lt;NetworkRmReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<NetworkRmReport> networkDeleteLibpod(String name, Boolean force) throws ApiException {
-        ApiResponse<List<NetworkRmReport>> localVarResp = networkDeleteLibpodWithHttpInfo(name, force);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Remove a network
-     * Remove a configured network
-     *
-     * @param name  the name of the network (required)
-     * @param force remove containers associated with network (optional)
-     * @return ApiResponse&lt;List&lt;NetworkRmReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<NetworkRmReport>> networkDeleteLibpodWithHttpInfo(@NotNull String name, Boolean force) throws ApiException {
+    private ApiResponse<List<NetworkRmReport>> networkDeleteLibpodWithHttpInfo( @NotNull String name, Boolean force) throws ApiException {
         okhttp3.Call localVarCall = networkDeleteLibpodValidateBeforeCall(name, force, null);
-        Type localVarReturnType = new TypeToken<List<NetworkRmReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkRmReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Remove a network (asynchronously)
-     * Remove a configured network
-     *
-     * @param name      the name of the network (required)
-     * @param force     remove containers associated with network (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkDeleteLibpodAsync(String name, Boolean force, final ApiCallback<List<NetworkRmReport>> _callback) throws ApiException {
+    private okhttp3.Call networkDeleteLibpodAsync(String name, Boolean force, final ApiCallback<List<NetworkRmReport>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkDeleteLibpodValidateBeforeCall(name, force, _callback);
-        Type localVarReturnType = new TypeToken<List<NetworkRmReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkRmReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APInetworkDeleteLibpodRequest {
+        private final String name;
+        private Boolean force;
+
+        private APInetworkDeleteLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set force
+         * @param force remove containers associated with network (optional)
+         * @return APInetworkDeleteLibpodRequest
+         */
+        public APInetworkDeleteLibpodRequest force(Boolean force) {
+            this.force = force;
+            return this;
+        }
+
+        /**
+         * Build call for networkDeleteLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkDeleteLibpodCall(name, force, _callback);
+        }
+
+        /**
+         * Execute networkDeleteLibpod request
+         * @return List&lt;NetworkRmReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<NetworkRmReport> execute() throws ApiException {
+            ApiResponse<List<NetworkRmReport>> localVarResp = networkDeleteLibpodWithHttpInfo(name, force);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute networkDeleteLibpod request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;NetworkRmReport&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<NetworkRmReport>> executeWithHttpInfo() throws ApiException {
+            return networkDeleteLibpodWithHttpInfo(name, force);
+        }
+
+        /**
+         * Execute networkDeleteLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<NetworkRmReport>> _callback) throws ApiException {
+            return networkDeleteLibpodAsync(name, force, _callback);
+        }
+    }
+
     /**
-     * Build call for networkDisconnectLibpod
-     *
-     * @param name      the name of the network (required)
-     * @param create    attributes for disconnecting a container from a network (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove a network
+     * Remove a configured network
+     * @param name the name of the network (required)
+     * @return APInetworkDeleteLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Network Delete </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkDisconnectLibpodCall(String name, DisconnectOptions create, final ApiCallback _callback) throws ApiException {
+    public APInetworkDeleteLibpodRequest networkDeleteLibpod(String name) {
+        return new APInetworkDeleteLibpodRequest(name);
+    }
+    private okhttp3.Call networkDisconnectLibpodCall(String name, DisconnectOptions create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -516,7 +619,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}/disconnect"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -525,7 +628,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -533,15 +636,15 @@ public class NetworksApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -556,90 +659,128 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Disconnect container from network
-     * Disconnect a container from a network.
-     *
-     * @param name   the name of the network (required)
-     * @param create attributes for disconnecting a container from a network (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void networkDisconnectLibpod(String name, DisconnectOptions create) throws ApiException {
-        networkDisconnectLibpodWithHttpInfo(name, create);
-    }
 
-    /**
-     * Disconnect container from network
-     * Disconnect a container from a network.
-     *
-     * @param name   the name of the network (required)
-     * @param create attributes for disconnecting a container from a network (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> networkDisconnectLibpodWithHttpInfo(@NotNull String name, DisconnectOptions create) throws ApiException {
+    private ApiResponse<Void> networkDisconnectLibpodWithHttpInfo( @NotNull String name, DisconnectOptions create) throws ApiException {
         okhttp3.Call localVarCall = networkDisconnectLibpodValidateBeforeCall(name, create, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Disconnect container from network (asynchronously)
-     * Disconnect a container from a network.
-     *
-     * @param name      the name of the network (required)
-     * @param create    attributes for disconnecting a container from a network (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkDisconnectLibpodAsync(String name, DisconnectOptions create, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call networkDisconnectLibpodAsync(String name, DisconnectOptions create, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkDisconnectLibpodValidateBeforeCall(name, create, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APInetworkDisconnectLibpodRequest {
+        private final String name;
+        private DisconnectOptions create;
+
+        private APInetworkDisconnectLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set create
+         * @param create attributes for disconnecting a container from a network (optional)
+         * @return APInetworkDisconnectLibpodRequest
+         */
+        public APInetworkDisconnectLibpodRequest create(DisconnectOptions create) {
+            this.create = create;
+            return this;
+        }
+
+        /**
+         * Build call for networkDisconnectLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkDisconnectLibpodCall(name, create, _callback);
+        }
+
+        /**
+         * Execute networkDisconnectLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            networkDisconnectLibpodWithHttpInfo(name, create);
+        }
+
+        /**
+         * Execute networkDisconnectLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return networkDisconnectLibpodWithHttpInfo(name, create);
+        }
+
+        /**
+         * Execute networkDisconnectLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return networkDisconnectLibpodAsync(name, create, _callback);
+        }
+    }
+
     /**
-     * Build call for networkExistsLibpod
-     *
-     * @param name      the name or ID of the network (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Disconnect container from network
+     * Disconnect a container from a network.
+     * @param name the name of the network (required)
+     * @return APInetworkDisconnectLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+    public APInetworkDisconnectLibpodRequest networkDisconnectLibpod(String name) {
+        return new APInetworkDisconnectLibpodRequest(name);
+    }
+    private okhttp3.Call networkExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -649,7 +790,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}/exists"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -658,7 +799,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -672,7 +813,7 @@ public class NetworksApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -687,87 +828,117 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Network exists
-     * Check if network exists
-     *
-     * @param name the name or ID of the network (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void networkExistsLibpod(String name) throws ApiException {
-        networkExistsLibpodWithHttpInfo(name);
-    }
 
-    /**
-     * Network exists
-     * Check if network exists
-     *
-     * @param name the name or ID of the network (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> networkExistsLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> networkExistsLibpodWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = networkExistsLibpodValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Network exists (asynchronously)
-     * Check if network exists
-     *
-     * @param name      the name or ID of the network (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call networkExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkExistsLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APInetworkExistsLibpodRequest {
+        private final String name;
+
+        private APInetworkExistsLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for networkExistsLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkExistsLibpodCall(name, _callback);
+        }
+
+        /**
+         * Execute networkExistsLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            networkExistsLibpodWithHttpInfo(name);
+        }
+
+        /**
+         * Execute networkExistsLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return networkExistsLibpodWithHttpInfo(name);
+        }
+
+        /**
+         * Execute networkExistsLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return networkExistsLibpodAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for networkInspectLibpod
-     *
-     * @param name      the name of the network (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Network exists
+     * Check if network exists
+     * @param name the name or ID of the network (required)
+     * @return APInetworkExistsLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> network exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkInspectLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+    public APInetworkExistsLibpodRequest networkExistsLibpod(String name) {
+        return new APInetworkExistsLibpodRequest(name);
+    }
+    private okhttp3.Call networkInspectLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -777,7 +948,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}/json"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -786,7 +957,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -800,7 +971,7 @@ public class NetworksApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -815,92 +986,121 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Inspect a network
-     * Display configuration for a network.
-     *
-     * @param name the name of the network (required)
-     * @return NetworkInspectReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public NetworkInspectReport networkInspectLibpod(String name) throws ApiException {
-        ApiResponse<NetworkInspectReport> localVarResp = networkInspectLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect a network
-     * Display configuration for a network.
-     *
-     * @param name the name of the network (required)
-     * @return ApiResponse&lt;NetworkInspectReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<NetworkInspectReport> networkInspectLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<NetworkInspectReport> networkInspectLibpodWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = networkInspectLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<NetworkInspectReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<NetworkInspectReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect a network (asynchronously)
-     * Display configuration for a network.
-     *
-     * @param name      the name of the network (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkInspectLibpodAsync(String name, final ApiCallback<NetworkInspectReport> _callback) throws ApiException {
+    private okhttp3.Call networkInspectLibpodAsync(String name, final ApiCallback<NetworkInspectReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkInspectLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<NetworkInspectReport>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<NetworkInspectReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APInetworkInspectLibpodRequest {
+        private final String name;
+
+        private APInetworkInspectLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for networkInspectLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkInspectLibpodCall(name, _callback);
+        }
+
+        /**
+         * Execute networkInspectLibpod request
+         * @return NetworkInspectReport
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public NetworkInspectReport execute() throws ApiException {
+            ApiResponse<NetworkInspectReport> localVarResp = networkInspectLibpodWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute networkInspectLibpod request with HTTP info returned
+         * @return ApiResponse&lt;NetworkInspectReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<NetworkInspectReport> executeWithHttpInfo() throws ApiException {
+            return networkInspectLibpodWithHttpInfo(name);
+        }
+
+        /**
+         * Execute networkInspectLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<NetworkInspectReport> _callback) throws ApiException {
+            return networkInspectLibpodAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for networkListLibpod
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the network list. Available filters:   - &#x60;name&#x3D;[name]&#x60; Matches network name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.   - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported.   - &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks based on the presence of a label alone or a label and a value.   - &#x60;until&#x3D;[timestamp]&#x60; Matches all networks that were created before the given timestamp.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect a network
+     * Display configuration for a network. 
+     * @param name the name of the network (required)
+     * @return APInetworkInspectLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Network inspect </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such network </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APInetworkInspectLibpodRequest networkInspectLibpod(String name) {
+        return new APInetworkInspectLibpodRequest(name);
+    }
+    private okhttp3.Call networkListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -922,7 +1122,7 @@ public class NetworksApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -936,7 +1136,7 @@ public class NetworksApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -946,89 +1146,124 @@ public class NetworksApi {
 
     }
 
-    /**
-     * List networks
-     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string.
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the network list. Available filters:   - &#x60;name&#x3D;[name]&#x60; Matches network name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.   - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported.   - &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks based on the presence of a label alone or a label and a value.   - &#x60;until&#x3D;[timestamp]&#x60; Matches all networks that were created before the given timestamp.  (optional)
-     * @return List&lt;Network&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<Network> networkListLibpod(String filters) throws ApiException {
-        ApiResponse<List<Network>> localVarResp = networkListLibpodWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List networks
-     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string.
-     *
-     * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the network list. Available filters:   - &#x60;name&#x3D;[name]&#x60; Matches network name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.   - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported.   - &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks based on the presence of a label alone or a label and a value.   - &#x60;until&#x3D;[timestamp]&#x60; Matches all networks that were created before the given timestamp.  (optional)
-     * @return ApiResponse&lt;List&lt;Network&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<Network>> networkListLibpodWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<Network>> networkListLibpodWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = networkListLibpodValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<Network>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Network>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List networks (asynchronously)
-     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string.
-     *
-     * @param filters   JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the network list. Available filters:   - &#x60;name&#x3D;[name]&#x60; Matches network name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.   - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported.   - &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks based on the presence of a label alone or a label and a value.   - &#x60;until&#x3D;[timestamp]&#x60; Matches all networks that were created before the given timestamp.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkListLibpodAsync(String filters, final ApiCallback<List<Network>> _callback) throws ApiException {
+    private okhttp3.Call networkListLibpodAsync(String filters, final ApiCallback<List<Network>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkListLibpodValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<Network>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Network>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APInetworkListLibpodRequest {
+        private String filters;
+
+        private APInetworkListLibpodRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the network list. Available filters:   - &#x60;name&#x3D;[name]&#x60; Matches network name (accepts regex).   - &#x60;id&#x3D;[id]&#x60; Matches for full or partial ID.   - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported.   - &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks based on the presence of a label alone or a label and a value.   - &#x60;until&#x3D;[timestamp]&#x60; Matches all networks that were created before the given timestamp.  (optional)
+         * @return APInetworkListLibpodRequest
+         */
+        public APInetworkListLibpodRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for networkListLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkListLibpodCall(filters, _callback);
+        }
+
+        /**
+         * Execute networkListLibpod request
+         * @return List&lt;Network&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<Network> execute() throws ApiException {
+            ApiResponse<List<Network>> localVarResp = networkListLibpodWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute networkListLibpod request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;Network&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<Network>> executeWithHttpInfo() throws ApiException {
+            return networkListLibpodWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute networkListLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<Network>> _callback) throws ApiException {
+            return networkListLibpodAsync(filters, _callback);
+        }
+    }
+
     /**
-     * Build call for networkPruneLibpod
-     *
-     * @param filters   Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * List networks
+     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string. 
+     * @return APInetworkListLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Network list </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkPruneLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APInetworkListLibpodRequest networkListLibpod() {
+        return new APInetworkListLibpodRequest();
+    }
+    private okhttp3.Call networkPruneLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1050,7 +1285,7 @@ public class NetworksApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1064,7 +1299,7 @@ public class NetworksApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1074,91 +1309,124 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Delete unused networks
-     * Remove networks that do not have containers
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return List&lt;NetworkPruneReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<NetworkPruneReport> networkPruneLibpod(String filters) throws ApiException {
-        ApiResponse<List<NetworkPruneReport>> localVarResp = networkPruneLibpodWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Delete unused networks
-     * Remove networks that do not have containers
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return ApiResponse&lt;List&lt;NetworkPruneReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<NetworkPruneReport>> networkPruneLibpodWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<NetworkPruneReport>> networkPruneLibpodWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = networkPruneLibpodValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<NetworkPruneReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkPruneReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Delete unused networks (asynchronously)
-     * Remove networks that do not have containers
-     *
-     * @param filters   Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkPruneLibpodAsync(String filters, final ApiCallback<List<NetworkPruneReport>> _callback) throws ApiException {
+    private okhttp3.Call networkPruneLibpodAsync(String filters, final ApiCallback<List<NetworkPruneReport>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkPruneLibpodValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<NetworkPruneReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkPruneReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APInetworkPruneLibpodRequest {
+        private String filters;
+
+        private APInetworkPruneLibpodRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+         * @return APInetworkPruneLibpodRequest
+         */
+        public APInetworkPruneLibpodRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for networkPruneLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkPruneLibpodCall(filters, _callback);
+        }
+
+        /**
+         * Execute networkPruneLibpod request
+         * @return List&lt;NetworkPruneReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<NetworkPruneReport> execute() throws ApiException {
+            ApiResponse<List<NetworkPruneReport>> localVarResp = networkPruneLibpodWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute networkPruneLibpod request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;NetworkPruneReport&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<NetworkPruneReport>> executeWithHttpInfo() throws ApiException {
+            return networkPruneLibpodWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute networkPruneLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<NetworkPruneReport>> _callback) throws ApiException {
+            return networkPruneLibpodAsync(filters, _callback);
+        }
+    }
+
     /**
-     * Build call for networkUpdateLibpod
-     *
-     * @param name      the name or ID of the network (required)
-     * @param update    attributes for updating a netavark network (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Delete unused networks
+     * Remove networks that do not have containers
+     * @return APInetworkPruneLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Network prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call networkUpdateLibpodCall(String name, NetworkUpdateOptions update, final ApiCallback _callback) throws ApiException {
+    public APInetworkPruneLibpodRequest networkPruneLibpod() {
+        return new APInetworkPruneLibpodRequest();
+    }
+    private okhttp3.Call networkUpdateLibpodCall(String name, NetworkUpdateOptions update, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1168,7 +1436,7 @@ public class NetworksApi {
 
         // create path and map variables
         String localVarPath = "/libpod/networks/{name}/update"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1177,7 +1445,7 @@ public class NetworksApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1185,15 +1453,15 @@ public class NetworksApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1208,64 +1476,117 @@ public class NetworksApi {
 
     }
 
-    /**
-     * Update existing podman network
-     * Update existing podman network
-     *
-     * @param name   the name or ID of the network (required)
-     * @param update attributes for updating a netavark network (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void networkUpdateLibpod(String name, NetworkUpdateOptions update) throws ApiException {
-        networkUpdateLibpodWithHttpInfo(name, update);
-    }
 
-    /**
-     * Update existing podman network
-     * Update existing podman network
-     *
-     * @param name   the name or ID of the network (required)
-     * @param update attributes for updating a netavark network (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> networkUpdateLibpodWithHttpInfo(@NotNull String name, NetworkUpdateOptions update) throws ApiException {
+    private ApiResponse<Void> networkUpdateLibpodWithHttpInfo( @NotNull String name, NetworkUpdateOptions update) throws ApiException {
         okhttp3.Call localVarCall = networkUpdateLibpodValidateBeforeCall(name, update, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Update existing podman network (asynchronously)
-     * Update existing podman network
-     *
-     * @param name      the name or ID of the network (required)
-     * @param update    attributes for updating a netavark network (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call networkUpdateLibpodAsync(String name, NetworkUpdateOptions update, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call networkUpdateLibpodAsync(String name, NetworkUpdateOptions update, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = networkUpdateLibpodValidateBeforeCall(name, update, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
+    }
+
+    public class APInetworkUpdateLibpodRequest {
+        private final String name;
+        private NetworkUpdateOptions update;
+
+        private APInetworkUpdateLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set update
+         * @param update attributes for updating a netavark network (optional)
+         * @return APInetworkUpdateLibpodRequest
+         */
+        public APInetworkUpdateLibpodRequest update(NetworkUpdateOptions update) {
+            this.update = update;
+            return this;
+        }
+
+        /**
+         * Build call for networkUpdateLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return networkUpdateLibpodCall(name, update, _callback);
+        }
+
+        /**
+         * Execute networkUpdateLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            networkUpdateLibpodWithHttpInfo(name, update);
+        }
+
+        /**
+         * Execute networkUpdateLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return networkUpdateLibpodWithHttpInfo(name, update);
+        }
+
+        /**
+         * Execute networkUpdateLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return networkUpdateLibpodAsync(name, update, _callback);
+        }
+    }
+
+    /**
+     * Update existing podman network
+     * Update existing podman network
+     * @param name the name or ID of the network (required)
+     * @return APInetworkUpdateLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APInetworkUpdateLibpodRequest networkUpdateLibpod(String name) {
+        return new APInetworkUpdateLibpodRequest(name);
     }
 }

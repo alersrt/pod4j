@@ -14,4 +14,8 @@ SystemDfReport describes the response for df information
 |**volumes** | [**List&lt;SystemDfVolumeReport&gt;**](SystemDfVolumeReport.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

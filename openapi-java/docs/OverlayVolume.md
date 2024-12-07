@@ -13,4 +13,8 @@ OverlayVolume holds information about an overlay volume that will be mounted int
 |**source** | **String** | Source specifies the source path of the mount. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

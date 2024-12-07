@@ -11,4 +11,8 @@
 |**prefixLength** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

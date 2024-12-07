@@ -23,4 +23,8 @@ StoreInfo describes the container storage and its attributes
 |**volumePath** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

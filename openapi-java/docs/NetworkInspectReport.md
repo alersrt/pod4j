@@ -24,4 +24,8 @@
 |**subnets** | [**List&lt;Subnet&gt;**](Subnet.md) | Subnets to use for this network. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

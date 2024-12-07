@@ -13,4 +13,8 @@ LinuxIDMapping specifies UID/GID mappings
 |**size** | **Integer** | Size is the number of IDs to be mapped |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

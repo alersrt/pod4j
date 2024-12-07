@@ -12,4 +12,8 @@
 |**soft** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

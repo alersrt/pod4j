@@ -10,4 +10,8 @@
 |**index** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

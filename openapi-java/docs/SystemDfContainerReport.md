@@ -19,4 +19,8 @@ SystemDfContainerReport describes a container for use with df
 |**status** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

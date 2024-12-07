@@ -12,4 +12,8 @@ CapacityRange describes the minimum and maximum capacity a volume should be crea
 |**requiredBytes** | **Long** | RequiredBytes specifies that a volume must be at least this big. The value of 0 indicates an unspecified minimum. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

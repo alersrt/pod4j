@@ -13,4 +13,8 @@ IDMap contains a single entry for user namespace range remapping. An array of ID
 |**size** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

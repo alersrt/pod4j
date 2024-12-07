@@ -13,216 +13,241 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * TypeMount contains options for using a volume as a Mount-type volume.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class TypeMount {
-    public static final String SERIALIZED_NAME_FS_TYPE = "FsType";
-    public static final String SERIALIZED_NAME_MOUNT_FLAGS = "MountFlags";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class TypeMount implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("FsType");
-        openapiFields.add("MountFlags");
+  public static final String SERIALIZED_NAME_FS_TYPE = "FsType";
+  @SerializedName(SERIALIZED_NAME_FS_TYPE)
+  private String fsType;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_MOUNT_FLAGS = "MountFlags";
+  @SerializedName(SERIALIZED_NAME_MOUNT_FLAGS)
+  private List<String> mountFlags = new ArrayList<>();
+
+  public TypeMount() {
+  }
+
+  public TypeMount fsType(String fsType) {
+    this.fsType = fsType;
+    return this;
+  }
+
+  /**
+   * FsType specifies the filesystem type for the mount volume. Optional.
+   * @return fsType
+   */
+  @jakarta.annotation.Nullable
+
+  public String getFsType() {
+    return fsType;
+  }
+
+  public void setFsType(String fsType) {
+    this.fsType = fsType;
+  }
+
+
+  public TypeMount mountFlags(List<String> mountFlags) {
+    this.mountFlags = mountFlags;
+    return this;
+  }
+
+  public TypeMount addMountFlagsItem(String mountFlagsItem) {
+    if (this.mountFlags == null) {
+      this.mountFlags = new ArrayList<>();
     }
+    this.mountFlags.add(mountFlagsItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_FS_TYPE)
-    private String fsType;
-    @SerializedName(SERIALIZED_NAME_MOUNT_FLAGS)
-    private List<String> mountFlags = new ArrayList<>();
+  /**
+   * MountFlags defines flags to pass when mounting the volume. Optional.
+   * @return mountFlags
+   */
+  @jakarta.annotation.Nullable
 
-    public TypeMount() {
+  public List<String> getMountFlags() {
+    return mountFlags;
+  }
+
+  public void setMountFlags(List<String> mountFlags) {
+    this.mountFlags = mountFlags;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TypeMount typeMount = (TypeMount) o;
+    return Objects.equals(this.fsType, typeMount.fsType) &&
+        Objects.equals(this.mountFlags, typeMount.mountFlags);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to TypeMount
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!TypeMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in TypeMount is not found in the empty JSON string", TypeMount.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(fsType, mountFlags);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!TypeMount.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TypeMount` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class TypeMount {\n");
+    sb.append("    fsType: ").append(toIndentedString(fsType)).append("\n");
+    sb.append("    mountFlags: ").append(toIndentedString(mountFlags)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("FsType");
+    openapiFields.add("MountFlags");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to TypeMount
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TypeMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TypeMount is not found in the empty JSON string", TypeMount.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TypeMount.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TypeMount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("FsType") != null && !jsonObj.get("FsType").isJsonNull()) && !jsonObj.get("FsType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `FsType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("FsType").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("MountFlags") != null && !jsonObj.get("MountFlags").isJsonNull() && !jsonObj.get("MountFlags").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `MountFlags` to be an array in the JSON string but got `%s`", jsonObj.get("MountFlags").toString()));
-        }
-    }
+      if ((jsonObj.get("FsType") != null && !jsonObj.get("FsType").isJsonNull()) && !jsonObj.get("FsType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `FsType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("FsType").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("MountFlags") != null && !jsonObj.get("MountFlags").isJsonNull() && !jsonObj.get("MountFlags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `MountFlags` to be an array in the JSON string but got `%s`", jsonObj.get("MountFlags").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of TypeMount given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of TypeMount
-     * @throws IOException if the JSON string is invalid with respect to TypeMount
-     */
-    public static TypeMount fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, TypeMount.class);
-    }
-
-    public TypeMount fsType(String fsType) {
-        this.fsType = fsType;
-        return this;
-    }
-
-    /**
-     * FsType specifies the filesystem type for the mount volume. Optional.
-     *
-     * @return fsType
-     */
-    @jakarta.annotation.Nullable
-
-    public String getFsType() {
-        return fsType;
-    }
-
-    public void setFsType(String fsType) {
-        this.fsType = fsType;
-    }
-
-    public TypeMount mountFlags(List<String> mountFlags) {
-        this.mountFlags = mountFlags;
-        return this;
-    }
-
-    public TypeMount addMountFlagsItem(String mountFlagsItem) {
-        if (this.mountFlags == null) {
-            this.mountFlags = new ArrayList<>();
-        }
-        this.mountFlags.add(mountFlagsItem);
-        return this;
-    }
-
-    /**
-     * MountFlags defines flags to pass when mounting the volume. Optional.
-     *
-     * @return mountFlags
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getMountFlags() {
-        return mountFlags;
-    }
-
-    public void setMountFlags(List<String> mountFlags) {
-        this.mountFlags = mountFlags;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TypeMount typeMount = (TypeMount) o;
-        return Objects.equals(this.fsType, typeMount.fsType) &&
-                Objects.equals(this.mountFlags, typeMount.mountFlags);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TypeMount.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TypeMount' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TypeMount> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TypeMount.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TypeMount>() {
+           @Override
+           public void write(JsonWriter out, TypeMount value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TypeMount read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(fsType, mountFlags);
-    }
+  /**
+   * Create an instance of TypeMount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of TypeMount
+   * @throws IOException if the JSON string is invalid with respect to TypeMount
+   */
+  public static TypeMount fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TypeMount.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class TypeMount {\n" +
-                "    fsType: " + toIndentedString(fsType) + "\n" +
-                "    mountFlags: " + toIndentedString(mountFlags) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of TypeMount to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!TypeMount.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'TypeMount' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<TypeMount> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(TypeMount.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<TypeMount>() {
-                @Override
-                public void write(JsonWriter out, TypeMount value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public TypeMount read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of TypeMount to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

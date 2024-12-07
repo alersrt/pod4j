@@ -12,4 +12,8 @@ InspectBlkioThrottleDevice holds information about a speed cap for a device node
 |**rate** | **Integer** | Rate is the maximum rate. It is in either bytes per second or iops per second, determined by where it is used - documentation will indicate which is appropriate. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

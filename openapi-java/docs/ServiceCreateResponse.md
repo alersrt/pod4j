@@ -12,4 +12,8 @@ ServiceCreateResponse contains the information returned to a client on the creat
 |**warnings** | **List&lt;String&gt;** | Optional warning message.  FIXME(thaJeztah): this should have \&quot;omitempty\&quot; in the generated type. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

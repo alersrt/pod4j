@@ -11,4 +11,8 @@
 |**name** | **String** | Name of the container |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

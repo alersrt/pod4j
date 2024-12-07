@@ -11,4 +11,8 @@ UpdateEntities used to wrap the oci resource spec in a swagger model
 |**resources** | [**LinuxResources**](LinuxResources.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

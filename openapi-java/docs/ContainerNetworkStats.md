@@ -18,4 +18,8 @@ Statistics for an individual container network interface
 |**txPackets** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

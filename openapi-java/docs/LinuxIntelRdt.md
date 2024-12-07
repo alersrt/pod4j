@@ -15,4 +15,8 @@ LinuxIntelRdt has container runtime resource constraints for Intel RDT CAT and M
 |**memBwSchema** | **String** | The schema of memory bandwidth per L3 cache id Format: \&quot;MB:&lt;cache_id0&gt;&#x3D;bandwidth0;&lt;cache_id1&gt;&#x3D;bandwidth1;...\&quot; The unit of memory bandwidth is specified in \&quot;percentages\&quot; by default, and in \&quot;MBps\&quot; if MBA Software Controller is enabled. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -18,4 +18,8 @@ This structure provides `application/vnd.oci.descriptor.v1+json` mediatype when 
 |**urls** | **List&lt;String&gt;** | URLs specifies a list of URLs from which this object MAY be downloaded |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 
