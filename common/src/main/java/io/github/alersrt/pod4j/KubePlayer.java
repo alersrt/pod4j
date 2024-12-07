@@ -3,9 +3,7 @@ package io.github.alersrt.pod4j;
 import io.github.alersrt.pod4j.exceptions.PodmanException;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.api.ContainersApi;
 import io.github.alersrt.pod4j.openapi.api.PodsApi;
-import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
@@ -14,8 +12,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Work with /kube/play API.
@@ -25,8 +28,7 @@ public class KubePlayer {
     private final ApiClient api;
     private final String yamlPath;
 
-    private final Map<String, ServiceBinding> portsBindings = new HashMap<>();
-    private PlayKubeReport report = null;
+    private final List<ServiceBinding> servicesBindings = new ArrayList<>();
 
     /**
      * Creates player with specified path for k8s YAML specification.
@@ -71,12 +73,17 @@ public class KubePlayer {
      * @return player with exposed services.
      */
     public KubePlayer withExposedService(String serviceName, int exposedPort) {
-        portsBindings.put(serviceName, new ServiceBinding(
-                serviceName,
-                "", //TODO
-                exposedPort,
-                12 //TODO
-        ));
+        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+                && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
+
+        if (!servicesBindings.isEmpty() && servicesBindings.stream().anyMatch(isBindingExist)) {
+            throw new PodmanException("Binging[serviceName=%s, exposedPort=%d] already exists".formatted(serviceName, exposedPort));
+        }
+
+        final String mappedHost = "localhost"; // TODO: need to think how to get the proper hostname.
+        final int mappedPort = findFreePort();
+
+        servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));
         return this;
     }
 
@@ -89,30 +96,18 @@ public class KubePlayer {
      */
     public void start() throws ApiException, IOException {
         final var podsApi = new PodsApi(this.api);
-        final var containersApi = new ContainersApi(this.api);
 
         String yaml = readFile(this.yamlPath);
-        this.report = podsApi.playKubeLibpod()
+        var report = podsApi.playKubeLibpod()
+                .publishPorts(servicesBindings.stream().map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(), serviceBinding.getExposedPort())).collect(Collectors.toList()))
                 .wait(true)
                 .start(true)
                 .request(yaml)
                 .execute();
 
-        if (this.report == null || this.report.getPods() == null || this.report.getPods().isEmpty()) {
+        if (report == null || report.getPods() == null || report.getPods().isEmpty()) {
             throw new PodmanException("There is no related pods");
         }
-        if (this.report.getPods().size() > 1) {
-            throw new PodmanException("There should be only one pod");
-        }
-
-        //TODO
-//        for (PlayKubePod playKubePod : this.report.getPods()) {
-//            var podInfo = podsApi.podInspectLibpod(playKubePod.getID()).execute();
-//            podInfo.getInfraConfig().getPortBindings()
-//            for (String playKubeContainer : playKubePod.getContainers()) {
-//                containersApi.ins
-//            }
-//        }
     }
 
     /**
@@ -128,6 +123,61 @@ public class KubePlayer {
                 .force(true)
                 .request(yaml)
                 .execute();
+    }
+
+    /**
+     * Getting mapped host for the given service's name and exposed port.
+     *
+     * @param serviceName the service name.
+     * @param exposedPort the exposed port.
+     * @return mapped host.
+     */
+    public String getMappedHost(String serviceName, int exposedPort) {
+        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+                && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
+        return this.servicesBindings
+                .stream()
+                .filter(isBindingExist)
+                .map(ServiceBinding::getMappedHost)
+                .findAny()
+                .orElse(null);
+    }
+
+    /**
+     * Getting mapped port for the given service's name and exposed port.
+     *
+     * @param serviceName the service name.
+     * @param exposedPort the exposed port.
+     * @return mapped host.
+     */
+    public Integer getMappedPort(String serviceName, int exposedPort) {
+        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+                && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
+        return this.servicesBindings
+                .stream()
+                .filter(isBindingExist)
+                .map(ServiceBinding::getMappedPort)
+                .findAny()
+                .orElse(null);
+    }
+
+    private int findFreePort() {
+        Integer result = null;
+        for (int port : IntStream.range(34400, 34500).toArray()) {
+            try (ServerSocket serverSocket = new ServerSocket(port)) {
+                if (serverSocket != null && serverSocket.getLocalPort() == port) {
+                    result = port;
+                    break;
+                }
+            } catch (IOException ignored) {
+            }
+        }
+
+        if (result == null) {
+            throw new PodmanException("There is no free port");
+        }
+
+        return result;
     }
 
     private String readFile(String filename) throws IOException {
