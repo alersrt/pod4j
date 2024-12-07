@@ -1,6 +1,6 @@
 package io.github.alersrt.pod4j;
 
-import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.exceptions.PodmanException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 class KubePlayerTest {
 
     @Test
-    void startStop() throws IOException, ApiException, InterruptedException {
+    void startStop() throws IOException, PodmanException {
         /*------ Arranges ------*/
         final String socketPath = "/var/run/user/1000/podman/podman.sock";
         final String yamlPath = Paths.get("src/test/resources/nginx.yaml").toAbsolutePath().toString();

@@ -4,6 +4,7 @@ import io.github.alersrt.pod4j.exceptions.PodmanException;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.api.PodsApi;
+import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
@@ -23,7 +24,7 @@ import java.util.stream.IntStream;
 /**
  * Work with /kube/play API.
  */
-public class KubePlayer {
+public class KubePlayer implements GenericContainer {
 
     private final ApiClient api;
     private final String yamlPath;
@@ -65,14 +66,8 @@ public class KubePlayer {
         this.yamlPath = yamlPath;
     }
 
-    /**
-     * Specify service for expose.
-     *
-     * @param serviceName name of service to expose.
-     * @param exposedPort port to expose.
-     * @return player with exposed services.
-     */
-    public KubePlayer withExposedService(String serviceName, int exposedPort) {
+    @Override
+    public KubePlayer withExposedService(String serviceName, int exposedPort) throws PodmanException {
         final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
 
@@ -87,51 +82,54 @@ public class KubePlayer {
         return this;
     }
 
-    /**
-     * Creates the pod and immediately starts it. All created resources will be
-     * cleared out when a SIGTERM is received or pods exit.
-     *
-     * @throws ApiException
-     * @throws IOException
-     */
-    public void start() throws ApiException, IOException {
+    @Override
+    public void start() throws PodmanException {
         final var podsApi = new PodsApi(this.api);
 
-        String yaml = readFile(this.yamlPath);
-        var report = podsApi.playKubeLibpod()
-                .publishPorts(servicesBindings.stream().map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(), serviceBinding.getExposedPort())).collect(Collectors.toList()))
-                .wait(true)
-                .start(true)
-                .request(yaml)
-                .execute();
+        String yaml = null;
+        try {
+            yaml = readFile(this.yamlPath);
+        } catch (IOException e) {
+            throw new PodmanException(e);
+        }
+
+        PlayKubeReport report = null;
+        try {
+            report = podsApi.playKubeLibpod()
+                    .publishPorts(servicesBindings.stream().map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(), serviceBinding.getExposedPort())).collect(Collectors.toList()))
+                    .wait(true)
+                    .start(true)
+                    .request(yaml)
+                    .execute();
+        } catch (ApiException e) {
+            throw new PodmanException(e);
+        }
 
         if (report == null || report.getPods() == null || report.getPods().isEmpty()) {
             throw new PodmanException("There is no related pods");
         }
     }
 
-    /**
-     * Stops the pod with clearing created volumes.
-     *
-     * @throws ApiException
-     * @throws IOException
-     */
-    public void stop() throws ApiException, IOException {
+    @Override
+    public void stop() throws PodmanException {
         final var pods = new PodsApi(this.api);
-        String yaml = readFile(this.yamlPath);
-        pods.playKubeDownLibpod()
-                .force(true)
-                .request(yaml)
-                .execute();
+        String yaml = null;
+        try {
+            yaml = readFile(this.yamlPath);
+        } catch (IOException e) {
+            throw new PodmanException(e);
+        }
+        try {
+            pods.playKubeDownLibpod()
+                    .force(true)
+                    .request(yaml)
+                    .execute();
+        } catch (ApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    /**
-     * Getting mapped host for the given service's name and exposed port.
-     *
-     * @param serviceName the service name.
-     * @param exposedPort the exposed port.
-     * @return mapped host.
-     */
+    @Override
     public String getMappedHost(String serviceName, int exposedPort) {
         final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
@@ -143,14 +141,8 @@ public class KubePlayer {
                 .orElse(null);
     }
 
-    /**
-     * Getting mapped port for the given service's name and exposed port.
-     *
-     * @param serviceName the service name.
-     * @param exposedPort the exposed port.
-     * @return mapped host.
-     */
-    public Integer getMappedPort(String serviceName, int exposedPort) {
+    @Override
+    public int getMappedPort(String serviceName, int exposedPort) throws PodmanException {
         final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
         return this.servicesBindings
@@ -158,10 +150,10 @@ public class KubePlayer {
                 .filter(isBindingExist)
                 .map(ServiceBinding::getMappedPort)
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new PodmanException("Here is no mapped port"));
     }
 
-    private int findFreePort() {
+    private int findFreePort() throws PodmanException {
         Integer result = null;
         for (int port : IntStream.range(34400, 34500).toArray()) {
             try (ServerSocket serverSocket = new ServerSocket(port)) {
