@@ -8,18 +8,13 @@ import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Work with /kube/play API.
@@ -76,7 +71,7 @@ public class KubePlayer implements GenericContainer {
         }
 
         final String mappedHost = "localhost"; // TODO: need to think how to get the proper hostname.
-        final int mappedPort = findFreePort();
+        final int mappedPort = Utils.findFreePort();
 
         servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));
         return this;
@@ -88,7 +83,7 @@ public class KubePlayer implements GenericContainer {
 
         String yaml = null;
         try {
-            yaml = readFile(this.yamlPath);
+            yaml = Utils.readYaml(this.yamlPath);
         } catch (IOException e) {
             throw new PodmanException(e);
         }
@@ -115,7 +110,7 @@ public class KubePlayer implements GenericContainer {
         final var pods = new PodsApi(this.api);
         String yaml = null;
         try {
-            yaml = readFile(this.yamlPath);
+            yaml = Utils.readYaml(this.yamlPath);
         } catch (IOException e) {
             throw new PodmanException(e);
         }
@@ -151,35 +146,5 @@ public class KubePlayer implements GenericContainer {
                 .map(ServiceBinding::getMappedPort)
                 .findAny()
                 .orElseThrow(() -> new PodmanException("Here is no mapped port"));
-    }
-
-    private int findFreePort() throws PodmanException {
-        Integer result = null;
-        for (int port : IntStream.range(34400, 34500).toArray()) {
-            try (ServerSocket serverSocket = new ServerSocket(port)) {
-                if (serverSocket != null && serverSocket.getLocalPort() == port) {
-                    result = port;
-                    break;
-                }
-            } catch (IOException ignored) {
-            }
-        }
-
-        if (result == null) {
-            throw new PodmanException("There is no free port");
-        }
-
-        return result;
-    }
-
-    private String readFile(String filename) throws IOException {
-        StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename)))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
-            }
-        }
-        return resultStringBuilder.toString();
     }
 }

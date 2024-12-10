@@ -2,7 +2,7 @@ package io.github.alersrt.pod4j;
 
 import io.github.alersrt.pod4j.exceptions.PodmanException;
 
-public interface GenericContainer {
+public interface GenericContainer extends AutoCloseable {
 
     /**
      * Creates the pod or container and immediately starts it. All created resources will be
@@ -42,4 +42,8 @@ public interface GenericContainer {
      */
     int getMappedPort(final String serviceName, final int exposedPort) throws PodmanException;
 
+    @Override
+    default void close() throws Exception {
+        this.stop();
+    }
 }
