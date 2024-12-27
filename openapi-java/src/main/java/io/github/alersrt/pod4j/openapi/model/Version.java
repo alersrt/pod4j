@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.io.Serializable;
 import jakarta.validation.constraints.*;
@@ -53,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Version
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T02:16:23.826374396+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T02:27:12.403969908+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Version implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -61,9 +60,9 @@ public class Version implements Serializable {
   @SerializedName(SERIALIZED_NAME_AP_I_VERSION)
   private String apIVersion;
 
-  public static final String SERIALIZED_NAME_VERSION_DOUBLE_QUOTE = "Version&quot;";
-  @SerializedName(SERIALIZED_NAME_VERSION_DOUBLE_QUOTE)
-  private String versionDoubleQuote;
+  public static final String SERIALIZED_NAME_VERSION = "Version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
 
   public static final String SERIALIZED_NAME_GO_VERSION = "GoVersion";
   @SerializedName(SERIALIZED_NAME_GO_VERSION)
@@ -75,7 +74,7 @@ public class Version implements Serializable {
 
   public static final String SERIALIZED_NAME_BUILT_TIME = "BuiltTime";
   @SerializedName(SERIALIZED_NAME_BUILT_TIME)
-  private OffsetDateTime builtTime;
+  private String builtTime;
 
   public static final String SERIALIZED_NAME_BUILT = "Built";
   @SerializedName(SERIALIZED_NAME_BUILT)
@@ -112,23 +111,23 @@ public class Version implements Serializable {
   }
 
 
-  public Version versionDoubleQuote(String versionDoubleQuote) {
-    this.versionDoubleQuote = versionDoubleQuote;
+  public Version version(String version) {
+    this.version = version;
     return this;
   }
 
   /**
-   * Get versionDoubleQuote
-   * @return versionDoubleQuote
+   * Get version
+   * @return version
    */
   @jakarta.annotation.Nullable
 
-  public String getVersionDoubleQuote() {
-    return versionDoubleQuote;
+  public String getVersion() {
+    return version;
   }
 
-  public void setVersionDoubleQuote(String versionDoubleQuote) {
-    this.versionDoubleQuote = versionDoubleQuote;
+  public void setVersion(String version) {
+    this.version = version;
   }
 
 
@@ -172,7 +171,7 @@ public class Version implements Serializable {
   }
 
 
-  public Version builtTime(OffsetDateTime builtTime) {
+  public Version builtTime(String builtTime) {
     this.builtTime = builtTime;
     return this;
   }
@@ -182,13 +181,12 @@ public class Version implements Serializable {
    * @return builtTime
    */
   @jakarta.annotation.Nullable
-  @Valid
 
-  public OffsetDateTime getBuiltTime() {
+  public String getBuiltTime() {
     return builtTime;
   }
 
-  public void setBuiltTime(OffsetDateTime builtTime) {
+  public void setBuiltTime(String builtTime) {
     this.builtTime = builtTime;
   }
 
@@ -264,7 +262,7 @@ public class Version implements Serializable {
     }
     Version version = (Version) o;
     return Objects.equals(this.apIVersion, version.apIVersion) &&
-        Objects.equals(this.versionDoubleQuote, version.versionDoubleQuote) &&
+        Objects.equals(this.version, version.version) &&
         Objects.equals(this.goVersion, version.goVersion) &&
         Objects.equals(this.gitCommit, version.gitCommit) &&
         Objects.equals(this.builtTime, version.builtTime) &&
@@ -275,7 +273,7 @@ public class Version implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(apIVersion, versionDoubleQuote, goVersion, gitCommit, builtTime, built, osArch, os);
+    return Objects.hash(apIVersion, version, goVersion, gitCommit, builtTime, built, osArch, os);
   }
 
   @Override
@@ -283,7 +281,7 @@ public class Version implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class Version {\n");
     sb.append("    apIVersion: ").append(toIndentedString(apIVersion)).append("\n");
-    sb.append("    versionDoubleQuote: ").append(toIndentedString(versionDoubleQuote)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    goVersion: ").append(toIndentedString(goVersion)).append("\n");
     sb.append("    gitCommit: ").append(toIndentedString(gitCommit)).append("\n");
     sb.append("    builtTime: ").append(toIndentedString(builtTime)).append("\n");
@@ -313,7 +311,7 @@ public class Version implements Serializable {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("APIVersion");
-    openapiFields.add("Version&quot;");
+    openapiFields.add("Version");
     openapiFields.add("GoVersion");
     openapiFields.add("GitCommit");
     openapiFields.add("BuiltTime");
@@ -349,14 +347,17 @@ public class Version implements Serializable {
       if ((jsonObj.get("APIVersion") != null && !jsonObj.get("APIVersion").isJsonNull()) && !jsonObj.get("APIVersion").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `APIVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("APIVersion").toString()));
       }
-      if ((jsonObj.get("Version"") != null && !jsonObj.get("Version"").isJsonNull()) && !jsonObj.get("Version"").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Version"` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version"").toString()));
+      if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
       }
       if ((jsonObj.get("GoVersion") != null && !jsonObj.get("GoVersion").isJsonNull()) && !jsonObj.get("GoVersion").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `GoVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GoVersion").toString()));
       }
       if ((jsonObj.get("GitCommit") != null && !jsonObj.get("GitCommit").isJsonNull()) && !jsonObj.get("GitCommit").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `GitCommit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GitCommit").toString()));
+      }
+      if ((jsonObj.get("BuiltTime") != null && !jsonObj.get("BuiltTime").isJsonNull()) && !jsonObj.get("BuiltTime").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `BuiltTime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("BuiltTime").toString()));
       }
       if ((jsonObj.get("OsArch") != null && !jsonObj.get("OsArch").isJsonNull()) && !jsonObj.get("OsArch").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `OsArch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OsArch").toString()));
