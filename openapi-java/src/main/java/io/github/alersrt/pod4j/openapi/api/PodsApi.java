@@ -1092,7 +1092,7 @@ public class PodsApi {
     public APIplayKubeDownLibpodRequest playKubeDownLibpod() {
         return new APIplayKubeDownLibpodRequest();
     }
-    private okhttp3.Call playKubeLibpodCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeLibpodCall(String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1185,10 +1185,6 @@ public class PodsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
         }
 
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1198,8 +1194,7 @@ public class PodsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+            "plain/text"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1211,28 +1206,27 @@ public class PodsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeLibpodValidateBeforeCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
-        return playKubeLibpodCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+    private okhttp3.Call playKubeLibpodValidateBeforeCall(String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
+        return playKubeLibpodCall(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
 
     }
 
 
-    private ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
-        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, null);
+    private ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call playKubeLibpodAsync(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    private okhttp3.Call playKubeLibpodAsync(String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     public class APIplayKubeLibpodRequest {
-        private String contentType;
         private String annotations;
         private String logDriver;
         private List<String> logOptions;
@@ -1253,16 +1247,6 @@ public class PodsApi {
         private String request;
 
         private APIplayKubeLibpodRequest() {
-        }
-
-        /**
-         * Set contentType
-         * @param contentType  (optional, default to plain/text)
-         * @return APIplayKubeLibpodRequest
-         */
-        public APIplayKubeLibpodRequest contentType(String contentType) {
-            this.contentType = contentType;
-            return this;
         }
 
         /**
@@ -1458,7 +1442,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return playKubeLibpodCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+            return playKubeLibpodCall(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
         }
 
         /**
@@ -1473,7 +1457,7 @@ public class PodsApi {
          </table>
          */
         public PlayKubeReport execute() throws ApiException {
-            ApiResponse<PlayKubeReport> localVarResp = playKubeLibpodWithHttpInfo(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+            ApiResponse<PlayKubeReport> localVarResp = playKubeLibpodWithHttpInfo(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
             return localVarResp.getData();
         }
 
@@ -1489,7 +1473,7 @@ public class PodsApi {
          </table>
          */
         public ApiResponse<PlayKubeReport> executeWithHttpInfo() throws ApiException {
-            return playKubeLibpodWithHttpInfo(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+            return playKubeLibpodWithHttpInfo(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
         }
 
         /**
@@ -1505,7 +1489,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-            return playKubeLibpodAsync(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+            return playKubeLibpodAsync(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
         }
     }
 

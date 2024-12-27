@@ -61,7 +61,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectContainerData provides a detailed record of a container&#39;s configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with &#x60;docker inspect&#x60; JSON, but additional fields have been added as required to share information not in the original output.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T02:27:12.403969908+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T03:11:38.353612246+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerData implements Serializable {
   private static final long serialVersionUID = 1L;
 

@@ -2599,7 +2599,7 @@ No authorization required
 
 <a id="playKubeLibpod"></a>
 # **playKubeLibpod**
-> PlayKubeReport playKubeLibpod().contentType(contentType).annotations(annotations).logDriver(logDriver).logOptions(logOptions).network(network).noHosts(noHosts).noTrunc(noTrunc).publishPorts(publishPorts).publishAllPorts(publishAllPorts).replace(replace).serviceContainer(serviceContainer).start(start).staticIPs(staticIPs).staticMACs(staticMACs).tlsVerify(tlsVerify).userns(userns).wait(wait).build(build).request(request).execute();
+> PlayKubeReport playKubeLibpod().annotations(annotations).logDriver(logDriver).logOptions(logOptions).network(network).noHosts(noHosts).noTrunc(noTrunc).publishPorts(publishPorts).publishAllPorts(publishAllPorts).replace(replace).serviceContainer(serviceContainer).start(start).staticIPs(staticIPs).staticMACs(staticMACs).tlsVerify(tlsVerify).userns(userns).wait(wait).build(build).request(request).execute();
 
 Play a Kubernetes YAML file.
 
@@ -2620,7 +2620,6 @@ public class Example {
     defaultClient.setBasePath("http://podman.io");
 
     ContainersApi apiInstance = new ContainersApi(defaultClient);
-    String contentType = "plain/text"; // String | 
     String annotations = "annotations_example"; // String | JSON encoded value of annotations (a map[string]string).
     String logDriver = "logDriver_example"; // String | Logging driver for the containers in the pod.
     List<String> logOptions = Arrays.asList(); // List<String> | logging driver options
@@ -2641,7 +2640,6 @@ public class Example {
     String request = "request_example"; // String | Kubernetes YAML file.
     try {
       PlayKubeReport result = apiInstance.playKubeLibpod()
-            .contentType(contentType)
             .annotations(annotations)
             .logDriver(logDriver)
             .logOptions(logOptions)
@@ -2677,7 +2675,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
 | **annotations** | **String**| JSON encoded value of annotations (a map[string]string). | [optional] |
 | **logDriver** | **String**| Logging driver for the containers in the pod. | [optional] |
 | **logOptions** | [**List&lt;String&gt;**](String.md)| logging driver options | [optional] |
@@ -2707,7 +2704,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-tar
+ - **Content-Type**: plain/text
  - **Accept**: application/json
 
 ### HTTP response details

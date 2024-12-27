@@ -56,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * LinuxBlockIO for Linux cgroup &#39;blkio&#39; resource management
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T02:27:12.403969908+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T03:11:38.353612246+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxBlockIO implements Serializable {
   private static final long serialVersionUID = 1L;
 

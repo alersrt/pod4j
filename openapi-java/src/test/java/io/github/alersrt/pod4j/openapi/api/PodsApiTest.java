@@ -169,7 +169,6 @@ public class PodsApiTest {
      */
     @Test
     public void playKubeLibpodTest() throws ApiException {
-        String contentType = null;
         String annotations = null;
         String logDriver = null;
         List<String> logOptions = null;
@@ -189,7 +188,6 @@ public class PodsApiTest {
         Boolean build = null;
         String request = null;
         PlayKubeReport response = api.playKubeLibpod()
-                .contentType(contentType)
                 .annotations(annotations)
                 .logDriver(logDriver)
                 .logOptions(logOptions)

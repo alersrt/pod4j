@@ -16665,14 +16665,9 @@ paths:
                    image: foobar
                 ```
             operationId: PlayKubeLibpod
+            consumes:
+                - plain/text
             parameters:
-                - default: plain/text
-                  enum:
-                    - plain/text
-                    - application/x-tar
-                  in: header
-                  name: Content-Type
-                  type: string
                 - description: JSON encoded value of annotations (a map[string]string).
                   in: query
                   name: annotations
