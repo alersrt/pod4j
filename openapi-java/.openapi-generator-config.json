@@ -22,6 +22,5 @@
   "sortModelPropertiesByRequiredFlag": true,
   "sortParamsByRequiredFlag":true,
   "useSingleRequestParameter": true,
-  "generateBuilders": true,
-  "failOnUnknownProperties": false
+  "generateBuilders": true
 }
