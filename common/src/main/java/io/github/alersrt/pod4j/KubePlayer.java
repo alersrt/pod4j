@@ -4,14 +4,14 @@ import io.github.alersrt.pod4j.exceptions.PodmanException;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.api.PodsApi;
+import io.github.alersrt.pod4j.openapi.api.SystemApi;
+import io.github.alersrt.pod4j.openapi.model.LibpodInfo;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.ref.Cleaner;
-import java.lang.ref.Cleaner.Cleanable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,8 +27,6 @@ public class KubePlayer implements GenericContainer {
     private final String yamlPath;
 
     private final List<ServiceBinding> servicesBindings = new ArrayList<>();
-
-    private Cleanable cleanable;
 
     /**
      * Creates player with specified path for k8s YAML specification. The socket path is
@@ -84,8 +82,15 @@ public class KubePlayer implements GenericContainer {
                 .formatted(serviceName, exposedPort));
         }
 
-        final String mappedHost = "localhost"; // TODO: need to think how to get the proper
-                                               // hostname.
+        final SystemApi systemApi = new SystemApi(this.api);
+
+        LibpodInfo libpodInfo = null;
+        try {
+            libpodInfo = systemApi.systemInfoLibpod().execute();
+        } catch (ApiException ex) {
+            throw new PodmanException(ex);
+        }
+        final String mappedHost = libpodInfo.getHost().getHostname();
         final int mappedPort = Utils.findFreePort();
 
         servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));

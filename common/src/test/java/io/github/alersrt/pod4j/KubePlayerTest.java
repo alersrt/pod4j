@@ -2,7 +2,6 @@ package io.github.alersrt.pod4j;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
