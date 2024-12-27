@@ -11207,9 +11207,25 @@ definitions:
         x-go-package: github.com/docker/docker/api/types/container
     Version:
         properties:
-            Index:
+            APIVersion:
+                type: string
+            Version":
+                type: string
+            GoVersion:
+                type: string
+            GitCommit:
+                type: string
+            BuiltTime:
+                format: date-time
+                type: string
+                example: Fri Nov 22 04:51:46 2024
+            Built:
                 format: uint64
                 type: integer
+            OsArch:
+                type: string
+            Os:
+                type: string
         title: Version represents the internal object version.
         type: object
         x-go-package: github.com/docker/docker/api/types/swarm
