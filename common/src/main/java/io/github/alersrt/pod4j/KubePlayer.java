@@ -25,6 +25,7 @@ public class KubePlayer implements GenericContainer {
 
     private final ApiClient api;
     private final String yamlPath;
+    private final String hostname;
 
     private final List<ServiceBinding> servicesBindings = new ArrayList<>();
 
@@ -67,6 +68,16 @@ public class KubePlayer implements GenericContainer {
 
         this.yamlPath = yamlPath;
 
+        final SystemApi systemApi = new SystemApi(this.api);
+
+        LibpodInfo libpodInfo = null;
+        try {
+            libpodInfo = systemApi.systemInfoLibpod().execute();
+        } catch (ApiException ex) {
+            throw new PodmanException(ex);
+        }
+        this.hostname = libpodInfo.getHost().getHostname();
+
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }
 
@@ -82,18 +93,10 @@ public class KubePlayer implements GenericContainer {
                 .formatted(serviceName, exposedPort));
         }
 
-        final SystemApi systemApi = new SystemApi(this.api);
-
-        LibpodInfo libpodInfo = null;
-        try {
-            libpodInfo = systemApi.systemInfoLibpod().execute();
-        } catch (ApiException ex) {
-            throw new PodmanException(ex);
-        }
-        final String mappedHost = libpodInfo.getHost().getHostname();
         final int mappedPort = Utils.findFreePort();
 
-        servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));
+        servicesBindings
+            .add(new ServiceBinding(serviceName, this.hostname, exposedPort, mappedPort));
         return this;
     }
 
