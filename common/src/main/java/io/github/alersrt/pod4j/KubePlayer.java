@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 /**
  * Work with /kube/play API.
  */
@@ -27,50 +28,61 @@ public class KubePlayer implements GenericContainer {
     private final List<ServiceBinding> servicesBindings = new ArrayList<>();
 
     /**
-     * Creates player with specified path for k8s YAML specification.
-     * The socket path is autodetected via {@code PODMAN_SOCKET} environment variable.
+     * Creates player with specified path for k8s YAML specification. The socket path is
+     * autodetected via {@code PODMAN_SOCKET} environment variable.
      *
      * @param yamlPath path to k8s YAML specification.
-     * @throws PodmanException if {@link #yamlPath} is empty or error during initialization is happened.
+     * 
+     * @throws PodmanException if {@link #yamlPath} is empty or error during initialization is
+     *         happened.
      */
     public KubePlayer(String yamlPath) throws PodmanException {
         this(System.getenv(Constants.ENV_PODMAN_SOCKET), yamlPath);
     }
 
     /**
-     * Creates player with specified paths for socket file and k8s YAML specification.
-     * The socket path is autodetected via {@code PODMAN_SOCKET} environment variable.
+     * Creates player with specified paths for socket file and k8s YAML specification. The socket
+     * path is autodetected via {@code PODMAN_SOCKET} environment variable.
      *
      * @param socketPath path to socket file.
-     * @param yamlPath   path to k8s YAML specification.
-     * @throws PodmanException if {@link #yamlPath} is empty or error during initialization is happened.
+     * @param yamlPath path to k8s YAML specification.
+     * 
+     * @throws PodmanException if {@link #yamlPath} is empty or error during initialization is
+     *         happened.
      */
     public KubePlayer(String socketPath, String yamlPath) throws PodmanException {
         if (socketPath == null || socketPath.isEmpty()) {
-            throw new PodmanException("Environment variable " + Constants.ENV_PODMAN_SOCKET + " is not set");
+            throw new PodmanException(
+                "Environment variable " + Constants.ENV_PODMAN_SOCKET + " is not set");
         }
 
         var socketFile = new File(socketPath);
         var httpClient = new OkHttpClient.Builder()
-                .socketFactory(new UnixDomainSocketFactory(socketFile))
-                .build();
+            .socketFactory(new UnixDomainSocketFactory(socketFile))
+            .build();
         this.api = new ApiClient()
-                .setHttpClient(httpClient)
-                .setBasePath("http://localhost/v5.0.0");
+            .setHttpClient(httpClient)
+            .setBasePath("http://localhost/v5.0.0");
 
         this.yamlPath = yamlPath;
+
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }
 
     @Override
-    public KubePlayer withExposedService(String serviceName, int exposedPort) throws PodmanException {
-        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+    public KubePlayer withExposedService(String serviceName,
+                                         int exposedPort) throws PodmanException {
+        final Predicate<ServiceBinding> isBindingExist =
+            serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
 
         if (!servicesBindings.isEmpty() && servicesBindings.stream().anyMatch(isBindingExist)) {
-            throw new PodmanException("Binging[serviceName=%s, exposedPort=%d] already exists".formatted(serviceName, exposedPort));
+            throw new PodmanException("Binging[serviceName=%s, exposedPort=%d] already exists"
+                .formatted(serviceName, exposedPort));
         }
 
-        final String mappedHost = "localhost"; // TODO: need to think how to get the proper hostname.
+        final String mappedHost = "localhost"; // TODO: need to think how to get the proper
+                                               // hostname.
         final int mappedPort = Utils.findFreePort();
 
         servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));
@@ -91,11 +103,14 @@ public class KubePlayer implements GenericContainer {
         PlayKubeReport report = null;
         try {
             report = podsApi.playKubeLibpod()
-                    .publishPorts(servicesBindings.stream().map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(), serviceBinding.getExposedPort())).collect(Collectors.toList()))
-                    .wait(true)
-                    .start(true)
-                    .request(yaml)
-                    .execute();
+                .publishPorts(servicesBindings.stream()
+                    .map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(),
+                        serviceBinding.getExposedPort()))
+                    .collect(Collectors.toList()))
+                .wait(true)
+                .start(true)
+                .request(yaml)
+                .execute();
         } catch (ApiException e) {
             throw new PodmanException(e);
         }
@@ -116,9 +131,9 @@ public class KubePlayer implements GenericContainer {
         }
         try {
             pods.playKubeDownLibpod()
-                    .force(true)
-                    .request(yaml)
-                    .execute();
+                .force(true)
+                .request(yaml)
+                .execute();
         } catch (ApiException e) {
             throw new RuntimeException(e);
         }
@@ -126,25 +141,27 @@ public class KubePlayer implements GenericContainer {
 
     @Override
     public String getMappedHost(String serviceName, int exposedPort) {
-        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+        final Predicate<ServiceBinding> isBindingExist =
+            serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
         return this.servicesBindings
-                .stream()
-                .filter(isBindingExist)
-                .map(ServiceBinding::getMappedHost)
-                .findAny()
-                .orElse(null);
+            .stream()
+            .filter(isBindingExist)
+            .map(ServiceBinding::getMappedHost)
+            .findAny()
+            .orElse(null);
     }
 
     @Override
     public int getMappedPort(String serviceName, int exposedPort) throws PodmanException {
-        final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
+        final Predicate<ServiceBinding> isBindingExist =
+            serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
         return this.servicesBindings
-                .stream()
-                .filter(isBindingExist)
-                .map(ServiceBinding::getMappedPort)
-                .findAny()
-                .orElseThrow(() -> new PodmanException("Here is no mapped port"));
+            .stream()
+            .filter(isBindingExist)
+            .map(ServiceBinding::getMappedPort)
+            .findAny()
+            .orElseThrow(() -> new PodmanException("Here is no mapped port"));
     }
 }

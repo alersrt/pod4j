@@ -15,13 +15,11 @@ class KubePlayerTest {
             Paths.get("src/test/resources/").toAbsolutePath().toString()
     );
 
-    protected static String SERVICE = "nginx";
-    protected static int PORT = 80;
+    protected static final String SERVICE = "nginx";
+    protected static final int PORT = 80;
 
     static {
-        ENVIRONMENT.withExposedService(SERVICE, PORT);
-
-        ENVIRONMENT.start();
+        ENVIRONMENT.withExposedService(SERVICE, PORT).start();
     }
 
     @Test
