@@ -66,7 +66,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * PodSpecGenerator describes options to create a pod
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodSpecGenerator implements Serializable {
   private static final long serialVersionUID = 1L;
 

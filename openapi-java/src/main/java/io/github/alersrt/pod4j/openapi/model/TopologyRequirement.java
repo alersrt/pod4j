@@ -55,7 +55,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * TopologyRequirement expresses the user&#39;s requirements for a volume&#39;s accessible topology.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TopologyRequirement implements Serializable {
   private static final long serialVersionUID = 1L;
 
