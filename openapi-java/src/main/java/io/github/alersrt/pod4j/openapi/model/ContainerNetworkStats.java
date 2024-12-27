@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Statistics for an individual container network interface
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:15:58.977038016+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNetworkStats implements Serializable {
   private static final long serialVersionUID = 1L;
 

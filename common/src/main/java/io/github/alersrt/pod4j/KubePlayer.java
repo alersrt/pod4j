@@ -74,7 +74,7 @@ public class KubePlayer implements GenericContainer {
         try {
             libpodInfo = systemApi.systemInfoLibpod().execute();
         } catch (ApiException ex) {
-            throw new PodmanException(ex);
+            throw new PodmanException("Doesn't initialized", ex);
         }
         this.hostname = libpodInfo.getHost().getHostname();
 

@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * IDResponse Response to an API call that returns just an Id
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:15:58.977038016+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IdResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 

@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * EndpointResource contains network resources allocated and used for a container in a network.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:15:58.977038016+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointResource implements Serializable {
   private static final long serialVersionUID = 1L;
 

@@ -56,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * swagger 2.0 does not support oneOf for schema validation.  Operation \&quot;update\&quot; uses all fields. Operation \&quot;remove\&quot; uses fields: Operation and Images Operation \&quot;annotate\&quot; uses fields: Operation and Annotations
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:04:06.361421791+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T23:15:58.977038016+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestModifyOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
