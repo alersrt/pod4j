@@ -57,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectPodInfraConfig contains the configuration of the pod&#39;s infra container.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectPodInfraConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -80,6 +80,10 @@ public class InspectPodInfraConfig implements Serializable {
   public static final String SERIALIZED_NAME_HOST_NETWORK = "HostNetwork";
   @SerializedName(SERIALIZED_NAME_HOST_NETWORK)
   private Boolean hostNetwork;
+
+  public static final String SERIALIZED_NAME_HOSTS_FILE = "HostsFile";
+  @SerializedName(SERIALIZED_NAME_HOSTS_FILE)
+  private String hostsFile;
 
   public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "NetworkOptions";
   @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
@@ -265,6 +269,26 @@ public class InspectPodInfraConfig implements Serializable {
 
   public void setHostNetwork(Boolean hostNetwork) {
     this.hostNetwork = hostNetwork;
+  }
+
+
+  public InspectPodInfraConfig hostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
+    return this;
+  }
+
+  /**
+   * HostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the infra container which will be shared with the rest of the pod.
+   * @return hostsFile
+   */
+  @jakarta.annotation.Nullable
+
+  public String getHostsFile() {
+    return hostsFile;
+  }
+
+  public void setHostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
   }
 
 
@@ -569,6 +593,7 @@ public class InspectPodInfraConfig implements Serializable {
         Objects.equals(this.dnSServer, inspectPodInfraConfig.dnSServer) &&
         Objects.equals(this.hostAdd, inspectPodInfraConfig.hostAdd) &&
         Objects.equals(this.hostNetwork, inspectPodInfraConfig.hostNetwork) &&
+        Objects.equals(this.hostsFile, inspectPodInfraConfig.hostsFile) &&
         Objects.equals(this.networkOptions, inspectPodInfraConfig.networkOptions) &&
         Objects.equals(this.networks, inspectPodInfraConfig.networks) &&
         Objects.equals(this.noManageHosts, inspectPodInfraConfig.noManageHosts) &&
@@ -586,7 +611,7 @@ public class InspectPodInfraConfig implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dnSOption, dnSSearch, dnSServer, hostAdd, hostNetwork, networkOptions, networks, noManageHosts, noManageResolvConf, portBindings, staticIP, staticMAC, cpuPeriod, cpuQuota, cpusetCpus, pidNs, userns, utsNs);
+    return Objects.hash(dnSOption, dnSSearch, dnSServer, hostAdd, hostNetwork, hostsFile, networkOptions, networks, noManageHosts, noManageResolvConf, portBindings, staticIP, staticMAC, cpuPeriod, cpuQuota, cpusetCpus, pidNs, userns, utsNs);
   }
 
   @Override
@@ -598,6 +623,7 @@ public class InspectPodInfraConfig implements Serializable {
     sb.append("    dnSServer: ").append(toIndentedString(dnSServer)).append("\n");
     sb.append("    hostAdd: ").append(toIndentedString(hostAdd)).append("\n");
     sb.append("    hostNetwork: ").append(toIndentedString(hostNetwork)).append("\n");
+    sb.append("    hostsFile: ").append(toIndentedString(hostsFile)).append("\n");
     sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
     sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
     sb.append("    noManageHosts: ").append(toIndentedString(noManageHosts)).append("\n");
@@ -638,6 +664,7 @@ public class InspectPodInfraConfig implements Serializable {
     openapiFields.add("DNSServer");
     openapiFields.add("HostAdd");
     openapiFields.add("HostNetwork");
+    openapiFields.add("HostsFile");
     openapiFields.add("NetworkOptions");
     openapiFields.add("Networks");
     openapiFields.add("NoManageHosts");
@@ -692,6 +719,9 @@ public class InspectPodInfraConfig implements Serializable {
       // ensure the optional json data is an array if present
       if (jsonObj.get("HostAdd") != null && !jsonObj.get("HostAdd").isJsonNull() && !jsonObj.get("HostAdd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `HostAdd` to be an array in the JSON string but got `%s`", jsonObj.get("HostAdd").toString()));
+      }
+      if ((jsonObj.get("HostsFile") != null && !jsonObj.get("HostsFile").isJsonNull()) && !jsonObj.get("HostsFile").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `HostsFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostsFile").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull() && !jsonObj.get("Networks").isJsonArray()) {

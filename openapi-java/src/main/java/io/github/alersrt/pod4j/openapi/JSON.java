@@ -128,7 +128,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerStorageConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerStore.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerUpdateLibpod201Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerUpdateOKBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerUpdateRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerWait200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainerWait200ResponseError.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ContainersPruneReport.CustomTypeAdapterFactory());
@@ -330,7 +332,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.ScpReport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.Secret.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.SecretCreate.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.SecretCreateReport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.SecretDriverSpec.CustomTypeAdapterFactory());
@@ -366,7 +367,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.TypeMount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.Ulimit.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.UpdateConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.UpdateContainerDevicesLimits.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.UpdateEntities.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.UpdateHealthCheckConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.UsageData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.Version.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new io.github.alersrt.pod4j.openapi.model.Volume.CustomTypeAdapterFactory());

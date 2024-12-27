@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * OCIRuntimeInfo describes the runtime (crun or runc) being used with podman
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class OCIRuntimeInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 

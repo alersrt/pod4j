@@ -13,9 +13,9 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Configuration {
-    public static final String VERSION = "5.3.0-1";
+    public static final String VERSION = "5.3.1";
 
     private static ApiClient defaultApiClient = new ApiClient();
 

@@ -76,7 +76,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SpecGenerator creates an OCI spec and Libpod configuration options to create a container based on the given configuration.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SpecGenerator implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -654,7 +654,7 @@ public class SpecGenerator implements Serializable {
   }
 
   /**
-   * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
+   * BaseHostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
    */
   @jakarta.annotation.Nullable

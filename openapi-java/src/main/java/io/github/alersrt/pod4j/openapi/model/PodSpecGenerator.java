@@ -66,7 +66,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * PodSpecGenerator describes options to create a pod
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodSpecGenerator implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -113,6 +113,10 @@ public class PodSpecGenerator implements Serializable {
   public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
   @SerializedName(SERIALIZED_NAME_HOSTNAME)
   private String hostname;
+
+  public static final String SERIALIZED_NAME_HOSTS_FILE = "hostsFile";
+  @SerializedName(SERIALIZED_NAME_HOSTS_FILE)
+  private String hostsFile;
 
   public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
   @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
@@ -523,6 +527,26 @@ public class PodSpecGenerator implements Serializable {
 
   public void setHostname(String hostname) {
     this.hostname = hostname;
+  }
+
+
+  public PodSpecGenerator hostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
+    return this;
+  }
+
+  /**
+   * HostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the infra container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Conflicts with NoInfra&#x3D;true and NoManageHosts. Optional.
+   * @return hostsFile
+   */
+  @jakarta.annotation.Nullable
+
+  public String getHostsFile() {
+    return hostsFile;
+  }
+
+  public void setHostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
   }
 
 
@@ -1381,6 +1405,7 @@ public class PodSpecGenerator implements Serializable {
         Objects.equals(this.exitPolicy, podSpecGenerator.exitPolicy) &&
         Objects.equals(this.hostadd, podSpecGenerator.hostadd) &&
         Objects.equals(this.hostname, podSpecGenerator.hostname) &&
+        Objects.equals(this.hostsFile, podSpecGenerator.hostsFile) &&
         Objects.equals(this.idmappings, podSpecGenerator.idmappings) &&
         Objects.equals(this.imageVolumes, podSpecGenerator.imageVolumes) &&
         Objects.equals(this.infraCommand, podSpecGenerator.infraCommand) &&
@@ -1420,7 +1445,7 @@ public class PodSpecGenerator implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(networks, cgroupParent, cniNetworks, cpuPeriod, cpuQuota, dnsOption, dnsSearch, dnsServer, exitPolicy, hostadd, hostname, idmappings, imageVolumes, infraCommand, infraConmonPidFile, infraImage, infraName, ipcns, labels, mounts, name, netns, networkOptions, noInfra, noManageHosts, noManageResolvConf, overlayVolumes, pidns, podCreateCommand, podDevices, portmappings, resourceLimits, restartPolicy, restartTries, securityOpt, serviceContainerID, shareParent, sharedNamespaces, shmSize, shmSizeSystemd, sysctl, throttleReadBpsDevice, userns, utsns, volumes, volumesFrom);
+    return Objects.hash(networks, cgroupParent, cniNetworks, cpuPeriod, cpuQuota, dnsOption, dnsSearch, dnsServer, exitPolicy, hostadd, hostname, hostsFile, idmappings, imageVolumes, infraCommand, infraConmonPidFile, infraImage, infraName, ipcns, labels, mounts, name, netns, networkOptions, noInfra, noManageHosts, noManageResolvConf, overlayVolumes, pidns, podCreateCommand, podDevices, portmappings, resourceLimits, restartPolicy, restartTries, securityOpt, serviceContainerID, shareParent, sharedNamespaces, shmSize, shmSizeSystemd, sysctl, throttleReadBpsDevice, userns, utsns, volumes, volumesFrom);
   }
 
   @Override
@@ -1438,6 +1463,7 @@ public class PodSpecGenerator implements Serializable {
     sb.append("    exitPolicy: ").append(toIndentedString(exitPolicy)).append("\n");
     sb.append("    hostadd: ").append(toIndentedString(hostadd)).append("\n");
     sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
+    sb.append("    hostsFile: ").append(toIndentedString(hostsFile)).append("\n");
     sb.append("    idmappings: ").append(toIndentedString(idmappings)).append("\n");
     sb.append("    imageVolumes: ").append(toIndentedString(imageVolumes)).append("\n");
     sb.append("    infraCommand: ").append(toIndentedString(infraCommand)).append("\n");
@@ -1506,6 +1532,7 @@ public class PodSpecGenerator implements Serializable {
     openapiFields.add("exit_policy");
     openapiFields.add("hostadd");
     openapiFields.add("hostname");
+    openapiFields.add("hostsFile");
     openapiFields.add("idmappings");
     openapiFields.add("image_volumes");
     openapiFields.add("infra_command");
@@ -1595,6 +1622,9 @@ public class PodSpecGenerator implements Serializable {
       }
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
+      }
+      if ((jsonObj.get("hostsFile") != null && !jsonObj.get("hostsFile").isJsonNull()) && !jsonObj.get("hostsFile").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `hostsFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostsFile").toString()));
       }
       // validate the optional field `idmappings`
       if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {

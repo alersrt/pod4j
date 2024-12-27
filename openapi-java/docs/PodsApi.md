@@ -292,7 +292,7 @@ No authorization required
 
 <a id="playKubeDownLibpod"></a>
 # **playKubeDownLibpod**
-> PlayKubeReport playKubeDownLibpod().contentType(contentType).force(force).request(request).execute();
+> PlayKubeReport playKubeDownLibpod().force(force).execute();
 
 Remove resources created from kube play
 
@@ -313,14 +313,10 @@ public class Example {
     defaultClient.setBasePath("http://podman.io");
 
     PodsApi apiInstance = new PodsApi(defaultClient);
-    String contentType = "plain/text"; // String | 
     Boolean force = false; // Boolean | Remove volumes.
-    String request = "request_example"; // String | Kubernetes YAML file.
     try {
       PlayKubeReport result = apiInstance.playKubeDownLibpod()
-            .contentType(contentType)
             .force(force)
-            .request(request)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -338,9 +334,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
 | **force** | **Boolean**| Remove volumes. | [optional] [default to false] |
-| **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type
 
@@ -352,7 +346,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-tar
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

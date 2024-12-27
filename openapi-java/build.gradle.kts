@@ -12,7 +12,7 @@ repositories {
 }
 
 group = "io.github.alersrt"
-version = "5.3.0-1"
+version = "5.3.1"
 
 dependencies {
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")

@@ -131,16 +131,9 @@ public class KubePlayer implements GenericContainer {
     @Override
     public void stop() throws PodmanException {
         final var pods = new PodsApi(this.api);
-        String yaml = null;
-        try {
-            yaml = Utils.readYaml(this.yamlPath);
-        } catch (IOException e) {
-            throw new PodmanException(e);
-        }
         try {
             pods.playKubeDownLibpod()
                 .force(true)
-                .request(yaml)
                 .execute();
         } catch (ApiException e) {
             throw new PodmanException(e);

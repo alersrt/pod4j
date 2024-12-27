@@ -31,7 +31,7 @@ All URIs are relative to *http://podman.io*
 | [**containerTopLibpod**](ContainersApi.md#containerTopLibpod) | **GET** /libpod/containers/{name}/top | List processes |
 | [**containerUnmountLibpod**](ContainersApi.md#containerUnmountLibpod) | **POST** /libpod/containers/{name}/unmount | Unmount a container |
 | [**containerUnpauseLibpod**](ContainersApi.md#containerUnpauseLibpod) | **POST** /libpod/containers/{name}/unpause | Unpause Container |
-| [**containerUpdateLibpod**](ContainersApi.md#containerUpdateLibpod) | **POST** /libpod/containers/{name}/update | Update an existing containers cgroup configuration |
+| [**containerUpdateLibpod**](ContainersApi.md#containerUpdateLibpod) | **POST** /libpod/containers/{name}/update | Updates the configuration of an existing container, allowing changes to resource limits and healthchecks |
 | [**containerWaitLibpod**](ContainersApi.md#containerWaitLibpod) | **POST** /libpod/containers/{name}/wait | Wait on a container |
 | [**containersStatsAllLibpod**](ContainersApi.md#containersStatsAllLibpod) | **GET** /libpod/containers/stats | Get stats for one or more containers |
 | [**generateKubeLibpod**](ContainersApi.md#generateKubeLibpod) | **GET** /libpod/generate/kube | Generate a Kubernetes YAML file. |
@@ -1960,11 +1960,11 @@ No authorization required
 
 <a id="containerUpdateLibpod"></a>
 # **containerUpdateLibpod**
-> containerUpdateLibpod(name).restartPolicy(restartPolicy).restartRetries(restartRetries).config(config).execute();
+> ContainerUpdateLibpod201Response containerUpdateLibpod(name).restartPolicy(restartPolicy).restartRetries(restartRetries).config(config).execute();
 
-Update an existing containers cgroup configuration
+Updates the configuration of an existing container, allowing changes to resource limits and healthchecks
 
-Update an existing containers cgroup configuration.
+Updates the configuration of an existing container, allowing changes to resource limits and healthchecks.
 
 ### Example
 ```java
@@ -1986,11 +1986,12 @@ public class Example {
     Integer restartRetries = 56; // Integer | New amount of retries for the container's restart policy. Only allowed if restartPolicy is set to on-failure
     UpdateEntities config = new UpdateEntities(); // UpdateEntities | attributes for updating the container
     try {
-      apiInstance.containerUpdateLibpod(name)
+      ContainerUpdateLibpod201Response result = apiInstance.containerUpdateLibpod(name)
             .restartPolicy(restartPolicy)
             .restartRetries(restartRetries)
             .config(config)
             .execute();
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ContainersApi#containerUpdateLibpod");
       System.err.println("Status code: " + e.getCode());
@@ -2013,7 +2014,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**ContainerUpdateLibpod201Response**](ContainerUpdateLibpod201Response.md)
 
 ### Authorization
 
@@ -2027,6 +2028,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **201** | Update container |  -  |
 | **400** | Bad parameter in request |  -  |
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
@@ -2532,7 +2534,7 @@ No authorization required
 
 <a id="playKubeDownLibpod"></a>
 # **playKubeDownLibpod**
-> PlayKubeReport playKubeDownLibpod().contentType(contentType).force(force).request(request).execute();
+> PlayKubeReport playKubeDownLibpod().force(force).execute();
 
 Remove resources created from kube play
 
@@ -2553,14 +2555,10 @@ public class Example {
     defaultClient.setBasePath("http://podman.io");
 
     ContainersApi apiInstance = new ContainersApi(defaultClient);
-    String contentType = "plain/text"; // String | 
     Boolean force = false; // Boolean | Remove volumes.
-    String request = "request_example"; // String | Kubernetes YAML file.
     try {
       PlayKubeReport result = apiInstance.playKubeDownLibpod()
-            .contentType(contentType)
             .force(force)
-            .request(request)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -2578,9 +2576,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
 | **force** | **Boolean**| Remove volumes. | [optional] [default to false] |
-| **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type
 
@@ -2592,7 +2588,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-tar
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

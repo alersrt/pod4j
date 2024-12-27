@@ -32,6 +32,7 @@ import jakarta.validation.Valid;
 import io.github.alersrt.pod4j.openapi.model.ContainerCreateResponse;
 import io.github.alersrt.pod4j.openapi.model.ContainerStats;
 import io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody;
+import io.github.alersrt.pod4j.openapi.model.ContainerUpdateLibpod201Response;
 import io.github.alersrt.pod4j.openapi.model.ContainersPruneReportLibpod;
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import java.io.File;
@@ -5422,15 +5423,17 @@ public class ContainersApi {
     }
 
 
-    private ApiResponse<Void> containerUpdateLibpodWithHttpInfo( @NotNull String name, String restartPolicy, Integer restartRetries, UpdateEntities config) throws ApiException {
+    private ApiResponse<ContainerUpdateLibpod201Response> containerUpdateLibpodWithHttpInfo( @NotNull String name, String restartPolicy, Integer restartRetries, UpdateEntities config) throws ApiException {
         okhttp3.Call localVarCall = containerUpdateLibpodValidateBeforeCall(name, restartPolicy, restartRetries, config, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<ContainerUpdateLibpod201Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call containerUpdateLibpodAsync(String name, String restartPolicy, Integer restartRetries, UpdateEntities config, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerUpdateLibpodAsync(String name, String restartPolicy, Integer restartRetries, UpdateEntities config, final ApiCallback<ContainerUpdateLibpod201Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerUpdateLibpodValidateBeforeCall(name, restartPolicy, restartRetries, config, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<ContainerUpdateLibpod201Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
@@ -5482,6 +5485,7 @@ public class ContainersApi {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Update container </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
             <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
             <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
@@ -5493,32 +5497,36 @@ public class ContainersApi {
 
         /**
          * Execute containerUpdateLibpod request
+         * @return ContainerUpdateLibpod201Response
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Update container </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
             <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
             <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
          </table>
          */
-        public void execute() throws ApiException {
-            containerUpdateLibpodWithHttpInfo(name, restartPolicy, restartRetries, config);
+        public ContainerUpdateLibpod201Response execute() throws ApiException {
+            ApiResponse<ContainerUpdateLibpod201Response> localVarResp = containerUpdateLibpodWithHttpInfo(name, restartPolicy, restartRetries, config);
+            return localVarResp.getData();
         }
 
         /**
          * Execute containerUpdateLibpod request with HTTP info returned
-         * @return ApiResponse&lt;Void&gt;
+         * @return ApiResponse&lt;ContainerUpdateLibpod201Response&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Update container </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
             <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
             <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<ContainerUpdateLibpod201Response> executeWithHttpInfo() throws ApiException {
             return containerUpdateLibpodWithHttpInfo(name, restartPolicy, restartRetries, config);
         }
 
@@ -5530,24 +5538,26 @@ public class ContainersApi {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Update container </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
             <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
             <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<ContainerUpdateLibpod201Response> _callback) throws ApiException {
             return containerUpdateLibpodAsync(name, restartPolicy, restartRetries, config, _callback);
         }
     }
 
     /**
-     * Update an existing containers cgroup configuration
-     * Update an existing containers cgroup configuration.
+     * Updates the configuration of an existing container, allowing changes to resource limits and healthchecks
+     * Updates the configuration of an existing container, allowing changes to resource limits and healthchecks.
      * @param name Full or partial ID or full name of the container to update (required)
      * @return APIcontainerUpdateLibpodRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Update container </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
@@ -7082,7 +7092,7 @@ public class ContainersApi {
     public APIkubeApplyLibpodRequest kubeApplyLibpod() {
         return new APIkubeApplyLibpodRequest();
     }
-    private okhttp3.Call playKubeDownLibpodCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -7096,7 +7106,7 @@ public class ContainersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = request;
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/libpod/play/kube";
@@ -7111,10 +7121,6 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
 
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -7124,8 +7130,6 @@ public class ContainersApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -7137,42 +7141,30 @@ public class ContainersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
-        return playKubeDownLibpodCall(contentType, force, request, _callback);
+    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, final ApiCallback _callback) throws ApiException {
+        return playKubeDownLibpodCall(force, _callback);
 
     }
 
 
-    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(String contentType, Boolean force, String request) throws ApiException {
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, null);
+    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call playKubeDownLibpodAsync(String contentType, Boolean force, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodAsync(Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     public class APIplayKubeDownLibpodRequest {
-        private String contentType;
         private Boolean force;
-        private String request;
 
         private APIplayKubeDownLibpodRequest() {
-        }
-
-        /**
-         * Set contentType
-         * @param contentType  (optional, default to plain/text)
-         * @return APIplayKubeDownLibpodRequest
-         */
-        public APIplayKubeDownLibpodRequest contentType(String contentType) {
-            this.contentType = contentType;
-            return this;
         }
 
         /**
@@ -7182,16 +7174,6 @@ public class ContainersApi {
          */
         public APIplayKubeDownLibpodRequest force(Boolean force) {
             this.force = force;
-            return this;
-        }
-
-        /**
-         * Set request
-         * @param request Kubernetes YAML file. (optional)
-         * @return APIplayKubeDownLibpodRequest
-         */
-        public APIplayKubeDownLibpodRequest request(String request) {
-            this.request = request;
             return this;
         }
 
@@ -7208,7 +7190,7 @@ public class ContainersApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return playKubeDownLibpodCall(contentType, force, request, _callback);
+            return playKubeDownLibpodCall(force, _callback);
         }
 
         /**
@@ -7223,7 +7205,7 @@ public class ContainersApi {
          </table>
          */
         public PlayKubeReport execute() throws ApiException {
-            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(contentType, force, request);
+            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force);
             return localVarResp.getData();
         }
 
@@ -7239,7 +7221,7 @@ public class ContainersApi {
          </table>
          */
         public ApiResponse<PlayKubeReport> executeWithHttpInfo() throws ApiException {
-            return playKubeDownLibpodWithHttpInfo(contentType, force, request);
+            return playKubeDownLibpodWithHttpInfo(force);
         }
 
         /**
@@ -7255,7 +7237,7 @@ public class ContainersApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-            return playKubeDownLibpodAsync(contentType, force, request, _callback);
+            return playKubeDownLibpodAsync(force, _callback);
         }
     }
 

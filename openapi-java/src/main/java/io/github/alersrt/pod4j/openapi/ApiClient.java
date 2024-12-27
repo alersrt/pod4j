@@ -13,19 +13,7 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
-import io.github.alersrt.pod4j.openapi.auth.Authentication;
-import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.tls.OkHostnameVerifier;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,14 +22,15 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
@@ -50,30 +39,22 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+
+import io.github.alersrt.pod4j.openapi.auth.Authentication;
+import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
+import io.github.alersrt.pod4j.openapi.auth.HttpBearerAuth;
+import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
 
 /**
  * <p>ApiClient class.</p>
@@ -96,8 +77,8 @@ public class ApiClient {
     protected Integer serverIndex = 0;
     protected Map<String, String> serverVariables = null;
     private boolean debugging = false;
-    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
+    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -144,7 +125,7 @@ public class ApiClient {
     }
 
     private void initHttpClient() {
-        initHttpClient(Collections.emptyList());
+        initHttpClient(Collections.<Interceptor>emptyList());
     }
 
     private void initHttpClient(List<Interceptor> interceptors) {
@@ -163,7 +144,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/5.3.0-1/java");
+        setUserAgent("OpenAPI-Generator/5.3.1/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -873,7 +854,11 @@ public class ApiClient {
      * @return Escaped string
      */
     public String escapeString(String str) {
-        return URLEncoder.encode(str, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+        try {
+            return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            return str;
+        }
     }
 
     /**
@@ -965,7 +950,7 @@ public class ApiClient {
             }
             return RequestBody.create(content, MediaType.parse(contentType));
         } else if (obj instanceof String) {
-            return RequestBody.create((String) obj, contentType == null ? null : MediaType.parse(contentType));
+            return RequestBody.create((String) obj, MediaType.parse(contentType));
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }
@@ -1098,7 +1083,7 @@ public class ApiClient {
             public void onResponse(Call call, Response response) throws IOException {
                 T result;
                 try {
-                    result = handleResponse(response, returnType);
+                    result = (T) handleResponse(response, returnType);
                 } catch (ApiException e) {
                     callback.onFailure(e, response.code(), response.headers().toMultimap());
                     return;
@@ -1391,9 +1376,11 @@ public class ApiClient {
     public RequestBody buildRequestBodyMultipart(Map<String, Object> formParams) {
         MultipartBody.Builder mpBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (Entry<String, Object> param : formParams.entrySet()) {
-            if (param.getValue() instanceof File file) {
+            if (param.getValue() instanceof File) {
+                File file = (File) param.getValue();
                 addPartToMultiPartBuilder(mpBuilder, param.getKey(), file);
-            } else if (param.getValue() instanceof List list) {
+            } else if (param.getValue() instanceof List) {
+                List list = (List) param.getValue();
                 for (Object item: list) {
                     if (item instanceof File) {
                         addPartToMultiPartBuilder(mpBuilder, param.getKey(), (File) item);
@@ -1471,7 +1458,8 @@ public class ApiClient {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 final Request request = chain.request();
                 final Response originalResponse = chain.proceed(request);
-                if (request.tag() instanceof ApiCallback callback) {
+                if (request.tag() instanceof ApiCallback) {
+                    final ApiCallback callback = (ApiCallback) request.tag();
                     return originalResponse.newBuilder()
                         .body(new ProgressResponseBody(originalResponse.body(), callback))
                         .build();

@@ -59,7 +59,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetOptions reflect the shared network options between pods and containers
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-27T22:50:27.482487554+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -78,6 +78,10 @@ public class NetOptions implements Serializable {
   public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
   @SerializedName(SERIALIZED_NAME_HOSTADD)
   private List<String> hostadd = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_HOSTS_FILE = "hosts_file";
+  @SerializedName(SERIALIZED_NAME_HOSTS_FILE)
+  private String hostsFile;
 
   public static final String SERIALIZED_NAME_NETNS = "netns";
   @SerializedName(SERIALIZED_NAME_NETNS)
@@ -219,6 +223,26 @@ public class NetOptions implements Serializable {
 
   public void setHostadd(List<String> hostadd) {
     this.hostadd = hostadd;
+  }
+
+
+  public NetOptions hostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
+    return this;
+  }
+
+  /**
+   * Get hostsFile
+   * @return hostsFile
+   */
+  @jakarta.annotation.Nullable
+
+  public String getHostsFile() {
+    return hostsFile;
+  }
+
+  public void setHostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
   }
 
 
@@ -412,6 +436,7 @@ public class NetOptions implements Serializable {
         Objects.equals(this.dnsSearch, netOptions.dnsSearch) &&
         Objects.equals(this.dnsServer, netOptions.dnsServer) &&
         Objects.equals(this.hostadd, netOptions.hostadd) &&
+        Objects.equals(this.hostsFile, netOptions.hostsFile) &&
         Objects.equals(this.netns, netOptions.netns) &&
         Objects.equals(this.networkAlias, netOptions.networkAlias) &&
         Objects.equals(this.networkOptions, netOptions.networkOptions) &&
@@ -423,7 +448,7 @@ public class NetOptions implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dnsOption, dnsSearch, dnsServer, hostadd, netns, networkAlias, networkOptions, networks, noManageHosts, noManageResolvConf, portmappings);
+    return Objects.hash(dnsOption, dnsSearch, dnsServer, hostadd, hostsFile, netns, networkAlias, networkOptions, networks, noManageHosts, noManageResolvConf, portmappings);
   }
 
   @Override
@@ -434,6 +459,7 @@ public class NetOptions implements Serializable {
     sb.append("    dnsSearch: ").append(toIndentedString(dnsSearch)).append("\n");
     sb.append("    dnsServer: ").append(toIndentedString(dnsServer)).append("\n");
     sb.append("    hostadd: ").append(toIndentedString(hostadd)).append("\n");
+    sb.append("    hostsFile: ").append(toIndentedString(hostsFile)).append("\n");
     sb.append("    netns: ").append(toIndentedString(netns)).append("\n");
     sb.append("    networkAlias: ").append(toIndentedString(networkAlias)).append("\n");
     sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
@@ -467,6 +493,7 @@ public class NetOptions implements Serializable {
     openapiFields.add("dns_search");
     openapiFields.add("dns_server");
     openapiFields.add("hostadd");
+    openapiFields.add("hosts_file");
     openapiFields.add("netns");
     openapiFields.add("network_alias");
     openapiFields.add("network_options");
@@ -515,6 +542,9 @@ public class NetOptions implements Serializable {
       // ensure the optional json data is an array if present
       if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
+      }
+      if ((jsonObj.get("hosts_file") != null && !jsonObj.get("hosts_file").isJsonNull()) && !jsonObj.get("hosts_file").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hosts_file").toString()));
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {

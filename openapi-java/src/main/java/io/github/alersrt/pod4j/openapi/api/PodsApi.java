@@ -13,13 +13,24 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
+import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.InspectPodData;
 import io.github.alersrt.pod4j.openapi.model.ListPodsReport;
@@ -35,9 +46,7 @@ import io.github.alersrt.pod4j.openapi.model.PodStatsReport;
 import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.PodTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.PodUnpauseReport;
-import jakarta.validation.constraints.NotNull;
 
-import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -335,7 +344,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/generate/{name}/systemd"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -920,7 +929,7 @@ public class PodsApi {
     public APIkubeApplyLibpodRequest kubeApplyLibpod() {
         return new APIkubeApplyLibpodRequest();
     }
-    private okhttp3.Call playKubeDownLibpodCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -934,7 +943,7 @@ public class PodsApi {
             basePath = null;
         }
 
-        Object localVarPostBody = request;
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/libpod/play/kube";
@@ -949,10 +958,6 @@ public class PodsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
 
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -961,47 +966,42 @@ public class PodsApi {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
-        return playKubeDownLibpodCall(contentType, force, request, _callback);
+    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, final ApiCallback _callback) throws ApiException {
+        return playKubeDownLibpodCall(force, _callback);
 
     }
 
 
-    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(String contentType, Boolean force, String request) throws ApiException {
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, null);
+    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call playKubeDownLibpodAsync(String contentType, Boolean force, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodAsync(Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     public class APIplayKubeDownLibpodRequest {
-        private String contentType;
         private Boolean force;
-        private String request;
 
         private APIplayKubeDownLibpodRequest() {
-        }
-
-        /**
-         * Set contentType
-         * @param contentType  (optional, default to plain/text)
-         * @return APIplayKubeDownLibpodRequest
-         */
-        public APIplayKubeDownLibpodRequest contentType(String contentType) {
-            this.contentType = contentType;
-            return this;
         }
 
         /**
@@ -1011,16 +1011,6 @@ public class PodsApi {
          */
         public APIplayKubeDownLibpodRequest force(Boolean force) {
             this.force = force;
-            return this;
-        }
-
-        /**
-         * Set request
-         * @param request Kubernetes YAML file. (optional)
-         * @return APIplayKubeDownLibpodRequest
-         */
-        public APIplayKubeDownLibpodRequest request(String request) {
-            this.request = request;
             return this;
         }
 
@@ -1037,7 +1027,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return playKubeDownLibpodCall(contentType, force, request, _callback);
+            return playKubeDownLibpodCall(force, _callback);
         }
 
         /**
@@ -1052,7 +1042,7 @@ public class PodsApi {
          </table>
          */
         public PlayKubeReport execute() throws ApiException {
-            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(contentType, force, request);
+            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force);
             return localVarResp.getData();
         }
 
@@ -1068,7 +1058,7 @@ public class PodsApi {
          </table>
          */
         public ApiResponse<PlayKubeReport> executeWithHttpInfo() throws ApiException {
-            return playKubeDownLibpodWithHttpInfo(contentType, force, request);
+            return playKubeDownLibpodWithHttpInfo(force);
         }
 
         /**
@@ -1084,7 +1074,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-            return playKubeDownLibpodAsync(contentType, force, request, _callback);
+            return playKubeDownLibpodAsync(force, _callback);
         }
     }
 
@@ -1205,6 +1195,15 @@ public class PodsApi {
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
@@ -1512,7 +1511,7 @@ public class PodsApi {
 
     /**
      * Play a Kubernetes YAML file.
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60;
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
      * @return APIplayKubeLibpodRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1681,7 +1680,7 @@ public class PodsApi {
 
     /**
      * Create a pod
-     *
+     * 
      * @return APIpodCreateLibpodRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1713,7 +1712,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1862,7 +1861,7 @@ public class PodsApi {
 
     /**
      * Remove pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodDeleteLibpodRequest
      * @http.response.details
@@ -1895,7 +1894,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/exists"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2053,7 +2052,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/json"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2183,7 +2182,7 @@ public class PodsApi {
 
     /**
      * Inspect pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodInspectLibpodRequest
      * @http.response.details
@@ -2215,7 +2214,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/kill"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2368,7 +2367,7 @@ public class PodsApi {
 
     /**
      * Kill a pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodKillLibpodRequest
      * @http.response.details
@@ -2539,7 +2538,7 @@ public class PodsApi {
 
     /**
      * List pods
-     *
+     * 
      * @return APIpodListLibpodRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -2570,7 +2569,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/pause"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2863,7 +2862,7 @@ public class PodsApi {
 
     /**
      * Prune unused pods
-     *
+     * 
      * @return APIpodPruneLibpodRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -2895,7 +2894,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/restart"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3029,7 +3028,7 @@ public class PodsApi {
 
     /**
      * Restart a pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodRestartLibpodRequest
      * @http.response.details
@@ -3062,7 +3061,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/start"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3200,7 +3199,7 @@ public class PodsApi {
 
     /**
      * Start a pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodStartLibpodRequest
      * @http.response.details
@@ -3417,7 +3416,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/stop"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3574,7 +3573,7 @@ public class PodsApi {
 
     /**
      * Stop a pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodStopLibpodRequest
      * @http.response.details
@@ -3609,7 +3608,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/top"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3816,7 +3815,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/unpause"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3950,7 +3949,7 @@ public class PodsApi {
 
     /**
      * Unpause a pod
-     *
+     * 
      * @param name the name or ID of the pod (required)
      * @return APIpodUnpauseLibpodRequest
      * @http.response.details
