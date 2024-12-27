@@ -10,11 +10,12 @@ import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.Cleaner;
+import java.lang.ref.Cleaner.Cleanable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 
 /**
@@ -26,6 +27,8 @@ public class KubePlayer implements GenericContainer {
     private final String yamlPath;
 
     private final List<ServiceBinding> servicesBindings = new ArrayList<>();
+
+    private Cleanable cleanable;
 
     /**
      * Creates player with specified path for k8s YAML specification. The socket path is
@@ -106,7 +109,7 @@ public class KubePlayer implements GenericContainer {
                 .publishPorts(servicesBindings.stream()
                     .map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(),
                         serviceBinding.getExposedPort()))
-                    .collect(Collectors.toList()))
+                    .toList())
                 .wait(true)
                 .start(true)
                 .request(yaml)
@@ -135,7 +138,7 @@ public class KubePlayer implements GenericContainer {
                 .request(yaml)
                 .execute();
         } catch (ApiException e) {
-            throw new RuntimeException(e);
+            throw new PodmanException(e);
         }
     }
 

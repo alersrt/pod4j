@@ -2,17 +2,19 @@ package io.github.alersrt.pod4j;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 
+
 class KubePlayerTest {
 
     protected static final KubePlayer ENVIRONMENT = new KubePlayer(
-            "/var/run/user/1000/podman/podman.sock",
-            Paths.get("src/test/resources/").toAbsolutePath().toString()
+        "/var/run/user/1000/podman/podman.sock",
+        Paths.get("src/test/resources/").toAbsolutePath().toString()
     );
 
     protected static final String SERVICE = "nginx";
@@ -31,8 +33,8 @@ class KubePlayerTest {
 
         var mappedPort = ENVIRONMENT.getMappedPort(SERVICE, PORT);
         var result = client
-                .newCall(new Request.Builder().url("http://localhost:%d".formatted(mappedPort)).build())
-                .execute();
+            .newCall(new Request.Builder().url("http://localhost:%d".formatted(mappedPort)).build())
+            .execute();
 
         /*------ Asserts ------*/
         Assertions.assertNotEquals(PORT, mappedPort);
