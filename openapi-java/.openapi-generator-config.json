@@ -23,5 +23,6 @@
     "sortParamsByRequiredFlag": true,
     "useSingleRequestParameter": true,
     "generateBuilders": true,
-    "singleContentTypes": false
+    "singleContentTypes": false,
+    "hideGenerationTimestamp": true
 }
