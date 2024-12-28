@@ -90,8 +90,7 @@ public class KubePlayer implements GenericContainer {
 
         final int mappedPort = Utils.findFreePort();
 
-        servicesBindings
-            .add(new ServiceBinding(serviceName, this.hostname, exposedPort, mappedPort));
+        servicesBindings.add(new ServiceBinding(serviceName, this.hostname, exposedPort, mappedPort));
         return this;
     }
 
