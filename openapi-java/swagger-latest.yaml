@@ -11207,14 +11207,6 @@ definitions:
         x-go-package: github.com/docker/docker/api/types/container
     Version:
         properties:
-    #             "": "5.3.1",
-    # "": "5.3.1",
-    # "": "go1.23.3",
-    # "": "4cbdfde5d862dcdbe450c0f1d76ad75360f67a3c",
-    # "": "Fri Nov 22 04:51:46 2024",
-    # "Built": 1732225906,
-    # "": "linux/amd64",
-    # "Os": "linux"
             APIVersion:
                 type: string
             Version:
@@ -16673,8 +16665,15 @@ paths:
                    image: foobar
                 ```
             operationId: PlayKubeLibpod
-            x-content-type: plain/text
+            x-content-type: ""
             parameters:
+                - default: plain/text
+                  enum:
+                    - plain/text
+                    - application/x-tar
+                  in: header
+                  name: Content-Type
+                  type: string
                 - description: JSON encoded value of annotations (a map[string]string).
                   in: query
                   name: annotations
