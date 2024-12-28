@@ -7420,7 +7420,7 @@ public class ContainersApi {
 
         /**
          * Set contentType
-         * @param contentType  (optional, default to plain/text)
+         * @param contentType  (optional)
          * @return APIplayKubeLibpodRequest
          */
         public APIplayKubeLibpodRequest contentType(String contentType) {

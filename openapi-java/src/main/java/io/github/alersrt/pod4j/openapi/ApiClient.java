@@ -950,7 +950,7 @@ public class ApiClient {
             }
             return RequestBody.create(content, MediaType.parse(contentType));
         } else if (obj instanceof String) {
-            return RequestBody.create((String) obj, MediaType.parse(contentType));
+            return RequestBody.create((String) obj, contentType == null ? null : MediaType.parse(contentType));
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }

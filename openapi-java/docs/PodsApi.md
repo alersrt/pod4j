@@ -435,7 +435,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
+| **contentType** | **String**|  | [optional] [enum: plain/text, application/x-tar] |
 | **annotations** | **String**| JSON encoded value of annotations (a map[string]string). | [optional] |
 | **logDriver** | **String**| Logging driver for the containers in the pod. | [optional] |
 | **logOptions** | [**List&lt;String&gt;**](String.md)| logging driver options | [optional] |

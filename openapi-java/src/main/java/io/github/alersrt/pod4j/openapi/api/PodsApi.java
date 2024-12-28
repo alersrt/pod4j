@@ -1185,25 +1185,12 @@ public class PodsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
         }
 
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
@@ -1257,7 +1244,7 @@ public class PodsApi {
 
         /**
          * Set contentType
-         * @param contentType  (optional, default to plain/text)
+         * @param contentType  (optional)
          * @return APIplayKubeLibpodRequest
          */
         public APIplayKubeLibpodRequest contentType(String contentType) {
