@@ -5851,6 +5851,11 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/specgen
     MacAddress:
         $ref: '#/definitions/HardwareAddr'
+        description: |-
+            HardwareAddr is the same as net.HardwareAddr except
+            that it adds the json marshal/unmarshal methods.
+            This allows us to read the mac from a json string
+            and a byte array.
     ManifestAddArtifactOptions:
         description: |-
             ManifestAddArtifactOptions provides the model for creating artifact manifests
@@ -11207,23 +11212,9 @@ definitions:
         x-go-package: github.com/docker/docker/api/types/container
     Version:
         properties:
-            APIVersion:
-                type: string
-            Version:
-                type: string
-            GoVersion:
-                type: string
-            GitCommit:
-                type: string
-            BuiltTime:
-                type: string
-            Built:
+            Index:
                 format: uint64
                 type: integer
-            OsArch:
-                type: string
-            Os:
-                type: string
         title: Version represents the internal object version.
         type: object
         x-go-package: github.com/docker/docker/api/types/swarm
@@ -11584,10 +11575,13 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers/swagger
     networkConnectRequest:
         $ref: '#/definitions/ConnectOptions'
+        description: Network connect
     networkConnectRequestLibpod:
         $ref: '#/definitions/NetworkConnectOptions'
+        description: Network connect
     networkCreate:
         $ref: '#/definitions/CreateRequest'
+        description: Network create
     networkCreateLibpod:
         description: Network create
         properties:
@@ -11675,8 +11669,10 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers/swagger
     networkDisconnectRequest:
         $ref: '#/definitions/DisconnectOptions'
+        description: Network disconnect
     networkUpdateRequestLibpod:
         $ref: '#/definitions/NetworkUpdateOptions'
+        description: Network update
     volumeCreate:
         description: Details for creating a volume
         properties:
@@ -16665,9 +16661,14 @@ paths:
                    image: foobar
                 ```
             operationId: PlayKubeLibpod
-            consumes:
-                - plain/text
             parameters:
+                - default: plain/text
+                  enum:
+                    - plain/text
+                    - application/x-tar
+                  in: header
+                  name: Content-Type
+                  type: string
                 - description: JSON encoded value of annotations (a map[string]string).
                   in: query
                   name: annotations
