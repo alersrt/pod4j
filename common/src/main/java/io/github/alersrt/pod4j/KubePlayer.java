@@ -146,7 +146,6 @@ public class KubePlayer implements GenericContainer {
 
         try {
             pods.playKubeDownLibpod()
-                    .contentType("plain/text")
                     .force(true)
                     .request(yaml)
                     .execute();

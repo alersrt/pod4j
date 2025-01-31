@@ -338,7 +338,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/generate/{name}/systemd"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -969,14 +969,6 @@ public class PodsApi {
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-                "application/json", "application/x-tar"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
@@ -1740,7 +1732,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1926,7 +1918,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/exists"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2088,7 +2080,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/json"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2254,7 +2246,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/kill"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2617,7 +2609,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/pause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2950,7 +2942,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/restart"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3121,7 +3113,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/start"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3484,7 +3476,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/stop"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3680,7 +3672,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/top"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3891,7 +3883,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/unpause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
