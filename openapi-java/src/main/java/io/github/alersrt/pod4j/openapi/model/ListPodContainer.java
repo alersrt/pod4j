@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ListPodContainer
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ListPodContainer implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -76,19 +74,22 @@ public class ListPodContainer implements Serializable {
   }
 
   public ListPodContainer id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * Get id
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -96,19 +97,22 @@ public class ListPodContainer implements Serializable {
 
 
   public ListPodContainer names(String names) {
-    this.names = names;
+
+      this.names = names;
     return this;
   }
 
-  /**
+    /**
    * Get names
    * @return names
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getNames() {
     return names;
   }
+
 
   public void setNames(String names) {
     this.names = names;
@@ -116,19 +120,22 @@ public class ListPodContainer implements Serializable {
 
 
   public ListPodContainer restartCount(Integer restartCount) {
-    this.restartCount = restartCount;
+
+      this.restartCount = restartCount;
     return this;
   }
 
-  /**
+    /**
    * Get restartCount
    * @return restartCount
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Integer getRestartCount() {
     return restartCount;
   }
+
 
   public void setRestartCount(Integer restartCount) {
     this.restartCount = restartCount;
@@ -136,19 +143,22 @@ public class ListPodContainer implements Serializable {
 
 
   public ListPodContainer status(String status) {
-    this.status = status;
+
+      this.status = status;
     return this;
   }
 
-  /**
+    /**
    * Get status
    * @return status
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getStatus() {
     return status;
   }
+
 
   public void setStatus(String status) {
     this.status = status;
@@ -215,27 +225,28 @@ public class ListPodContainer implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListPodContainer
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListPodContainer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ListPodContainer
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ListPodContainer.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ListPodContainer is not found in the empty JSON string", ListPodContainer.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ListPodContainer.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodContainer` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodContainer` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
       }
@@ -267,31 +278,31 @@ public class ListPodContainer implements Serializable {
 
            @Override
            public ListPodContainer read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ListPodContainer given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListPodContainer
-   * @throws IOException if the JSON string is invalid with respect to ListPodContainer
-   */
+    /**
+     * Create an instance of ListPodContainer given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ListPodContainer
+     * @throws IOException if the JSON string is invalid with respect to ListPodContainer
+     */
   public static ListPodContainer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListPodContainer.class);
   }
 
-  /**
-   * Convert an instance of ListPodContainer to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ListPodContainer to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

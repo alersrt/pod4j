@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,15 +28,16 @@ import io.github.alersrt.pod4j.openapi.model.InspectIDMappings;
 import io.github.alersrt.pod4j.openapi.model.InspectLogConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectRestartPolicy;
 import io.github.alersrt.pod4j.openapi.model.InspectUlimit;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,16 +49,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -64,13 +62,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * nolint:revive,stylecheck // Field names are fixed for compatibility and cannot be changed.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "nolint:revive,stylecheck // Field names are fixed for compatibility and cannot be changed.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectContainerHostConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
   @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
-  private Map<String, String> annotations = new HashMap<>();
+  private Map<String, String> annotations = null;
 
   public static final String SERIALIZED_NAME_AUTO_REMOVE = "AutoRemove";
   @SerializedName(SERIALIZED_NAME_AUTO_REMOVE)
@@ -82,23 +81,23 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_BINDS = "Binds";
   @SerializedName(SERIALIZED_NAME_BINDS)
-  private List<String> binds = new ArrayList<>();
+  private List<String> binds = null;
 
   public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
   @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS)
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
+  private List<InspectBlkioThrottleDevice> blkioDeviceReadBps = null;
 
   public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
   @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS)
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
+  private List<InspectBlkioThrottleDevice> blkioDeviceReadIOps = null;
 
   public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
   @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS)
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
+  private List<InspectBlkioThrottleDevice> blkioDeviceWriteBps = null;
 
   public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
   @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS)
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
+  private List<InspectBlkioThrottleDevice> blkioDeviceWriteIOps = null;
 
   public static final String SERIALIZED_NAME_BLKIO_WEIGHT = "BlkioWeight";
   @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT)
@@ -106,15 +105,15 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
   @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE)
-  private List<@Valid InspectBlkioWeightDevice> blkioWeightDevice = new ArrayList<>();
+  private List<InspectBlkioWeightDevice> blkioWeightDevice = null;
 
   public static final String SERIALIZED_NAME_CAP_ADD = "CapAdd";
   @SerializedName(SERIALIZED_NAME_CAP_ADD)
-  private List<String> capAdd = new ArrayList<>();
+  private List<String> capAdd = null;
 
   public static final String SERIALIZED_NAME_CAP_DROP = "CapDrop";
   @SerializedName(SERIALIZED_NAME_CAP_DROP)
-  private List<String> capDrop = new ArrayList<>();
+  private List<String> capDrop = null;
 
   public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
   @SerializedName(SERIALIZED_NAME_CGROUP)
@@ -122,7 +121,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_CGROUP_CONF = "CgroupConf";
   @SerializedName(SERIALIZED_NAME_CGROUP_CONF)
-  private Map<String, String> cgroupConf = new HashMap<>();
+  private Map<String, String> cgroupConf = null;
 
   public static final String SERIALIZED_NAME_CGROUP_MANAGER = "CgroupManager";
   @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
@@ -142,7 +141,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_CONSOLE_SIZE = "ConsoleSize";
   @SerializedName(SERIALIZED_NAME_CONSOLE_SIZE)
-  private List<Integer> consoleSize = new ArrayList<>();
+  private List<Integer> consoleSize = null;
 
   public static final String SERIALIZED_NAME_CONTAINER_I_D_FILE = "ContainerIDFile";
   @SerializedName(SERIALIZED_NAME_CONTAINER_I_D_FILE)
@@ -186,7 +185,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_DEVICES = "Devices";
   @SerializedName(SERIALIZED_NAME_DEVICES)
-  private List<@Valid InspectDevice> devices = new ArrayList<>();
+  private List<InspectDevice> devices = null;
 
   public static final String SERIALIZED_NAME_DISK_QUOTA = "DiskQuota";
   @SerializedName(SERIALIZED_NAME_DISK_QUOTA)
@@ -194,23 +193,23 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_DNS = "Dns";
   @SerializedName(SERIALIZED_NAME_DNS)
-  private List<String> dns = new ArrayList<>();
+  private List<String> dns = null;
 
   public static final String SERIALIZED_NAME_DNS_OPTIONS = "DnsOptions";
   @SerializedName(SERIALIZED_NAME_DNS_OPTIONS)
-  private List<String> dnsOptions = new ArrayList<>();
+  private List<String> dnsOptions = null;
 
   public static final String SERIALIZED_NAME_DNS_SEARCH = "DnsSearch";
   @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
-  private List<String> dnsSearch = new ArrayList<>();
+  private List<String> dnsSearch = null;
 
   public static final String SERIALIZED_NAME_EXTRA_HOSTS = "ExtraHosts";
   @SerializedName(SERIALIZED_NAME_EXTRA_HOSTS)
-  private List<String> extraHosts = new ArrayList<>();
+  private List<String> extraHosts = null;
 
   public static final String SERIALIZED_NAME_GROUP_ADD = "GroupAdd";
   @SerializedName(SERIALIZED_NAME_GROUP_ADD)
-  private List<String> groupAdd = new ArrayList<>();
+  private List<String> groupAdd = null;
 
   public static final String SERIALIZED_NAME_HOSTS_FILE = "HostsFile";
   @SerializedName(SERIALIZED_NAME_HOSTS_FILE)
@@ -250,7 +249,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_LINKS = "Links";
   @SerializedName(SERIALIZED_NAME_LINKS)
-  private List<String> links = new ArrayList<>();
+  private List<String> links = null;
 
   public static final String SERIALIZED_NAME_LOG_CONFIG = "LogConfig";
   @SerializedName(SERIALIZED_NAME_LOG_CONFIG)
@@ -298,7 +297,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_PORT_BINDINGS = "PortBindings";
   @SerializedName(SERIALIZED_NAME_PORT_BINDINGS)
-  private Map<String, List<@Valid InspectHostPort>> portBindings = new HashMap<>();
+  private Map<String, List<InspectHostPort>> portBindings = null;
 
   public static final String SERIALIZED_NAME_PRIVILEGED = "Privileged";
   @SerializedName(SERIALIZED_NAME_PRIVILEGED)
@@ -322,7 +321,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_SECURITY_OPT = "SecurityOpt";
   @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
-  private List<String> securityOpt = new ArrayList<>();
+  private List<String> securityOpt = null;
 
   public static final String SERIALIZED_NAME_SHM_SIZE = "ShmSize";
   @SerializedName(SERIALIZED_NAME_SHM_SIZE)
@@ -330,7 +329,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_TMPFS = "Tmpfs";
   @SerializedName(SERIALIZED_NAME_TMPFS)
-  private Map<String, String> tmpfs = new HashMap<>();
+  private Map<String, String> tmpfs = null;
 
   public static final String SERIALIZED_NAME_UT_S_MODE = "UTSMode";
   @SerializedName(SERIALIZED_NAME_UT_S_MODE)
@@ -338,7 +337,7 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_ULIMITS = "Ulimits";
   @SerializedName(SERIALIZED_NAME_ULIMITS)
-  private List<@Valid InspectUlimit> ulimits = new ArrayList<>();
+  private List<InspectUlimit> ulimits = null;
 
   public static final String SERIALIZED_NAME_USERNS_MODE = "UsernsMode";
   @SerializedName(SERIALIZED_NAME_USERNS_MODE)
@@ -350,13 +349,14 @@ public class InspectContainerHostConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_VOLUMES_FROM = "VolumesFrom";
   @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
-  private List<String> volumesFrom = new ArrayList<>();
+  private List<String> volumesFrom = null;
 
   public InspectContainerHostConfig() {
   }
 
   public InspectContainerHostConfig annotations(Map<String, String> annotations) {
-    this.annotations = annotations;
+
+      this.annotations = annotations;
     return this;
   }
 
@@ -368,15 +368,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Annotations are provided to the runtime when the container is started.
    * @return annotations
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Annotations are provided to the runtime when the container is started.")
 
   public Map<String, String> getAnnotations() {
     return annotations;
   }
+
 
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
@@ -384,19 +386,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig autoRemove(Boolean autoRemove) {
-    this.autoRemove = autoRemove;
+
+      this.autoRemove = autoRemove;
     return this;
   }
 
-  /**
+    /**
    * AutoRemove is whether the container will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
    * @return autoRemove
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "AutoRemove is whether the container will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.")
 
   public Boolean getAutoRemove() {
     return autoRemove;
   }
+
 
   public void setAutoRemove(Boolean autoRemove) {
     this.autoRemove = autoRemove;
@@ -404,19 +409,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig autoRemoveImage(Boolean autoRemoveImage) {
-    this.autoRemoveImage = autoRemoveImage;
+
+      this.autoRemoveImage = autoRemoveImage;
     return this;
   }
 
-  /**
+    /**
    * AutoRemoveImage is whether the container&#39;s image will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
    * @return autoRemoveImage
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "AutoRemoveImage is whether the container's image will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.")
 
   public Boolean getAutoRemoveImage() {
     return autoRemoveImage;
   }
+
 
   public void setAutoRemoveImage(Boolean autoRemoveImage) {
     this.autoRemoveImage = autoRemoveImage;
@@ -424,7 +432,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig binds(List<String> binds) {
-    this.binds = binds;
+
+      this.binds = binds;
     return this;
   }
 
@@ -436,22 +445,25 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Binds contains an array of user-added mounts. Both volume mounts and named volumes are included. Tmpfs mounts are NOT included. In &#39;docker inspect&#39; this is separated into &#39;Binds&#39; and &#39;Mounts&#39; based on how a mount was added. We do not make this distinction and do not include a Mounts field in inspect. Format: &lt;src&gt;:&lt;destination&gt;[:&lt;comma-separated options&gt;]
    * @return binds
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Binds contains an array of user-added mounts. Both volume mounts and named volumes are included. Tmpfs mounts are NOT included. In 'docker inspect' this is separated into 'Binds' and 'Mounts' based on how a mount was added. We do not make this distinction and do not include a Mounts field in inspect. Format: <src>:<destination>[:<comma-separated options>]")
 
   public List<String> getBinds() {
     return binds;
   }
+
 
   public void setBinds(List<String> binds) {
     this.binds = binds;
   }
 
 
-  public InspectContainerHostConfig blkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
+    public InspectContainerHostConfig blkioDeviceReadBps(List<InspectBlkioThrottleDevice> blkioDeviceReadBps) {
+    
     this.blkioDeviceReadBps = blkioDeviceReadBps;
     return this;
   }
@@ -464,23 +476,26 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * BlkioDeviceReadBps is an array of I/O throttle parameters for individual device nodes. This specifically sets read rate cap in bytes per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceReadBps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "BlkioDeviceReadBps is an array of I/O throttle parameters for individual device nodes. This specifically sets read rate cap in bytes per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don't guarantee the path will be identical to the original (though the node will be).")
 
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadBps() {
+    public List<InspectBlkioThrottleDevice> getBlkioDeviceReadBps() {
     return blkioDeviceReadBps;
   }
 
-  public void setBlkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
+
+    public void setBlkioDeviceReadBps(List<InspectBlkioThrottleDevice> blkioDeviceReadBps) {
     this.blkioDeviceReadBps = blkioDeviceReadBps;
   }
 
 
-  public InspectContainerHostConfig blkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
+    public InspectContainerHostConfig blkioDeviceReadIOps(List<InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
+    
     this.blkioDeviceReadIOps = blkioDeviceReadIOps;
     return this;
   }
@@ -493,23 +508,26 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * BlkioDeviceReadIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the read rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceReadIOps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "BlkioDeviceReadIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the read rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don't guarantee the path will be identical to the original (though the node will be).")
 
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadIOps() {
+    public List<InspectBlkioThrottleDevice> getBlkioDeviceReadIOps() {
     return blkioDeviceReadIOps;
   }
 
-  public void setBlkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
+
+    public void setBlkioDeviceReadIOps(List<InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
     this.blkioDeviceReadIOps = blkioDeviceReadIOps;
   }
 
 
-  public InspectContainerHostConfig blkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
+    public InspectContainerHostConfig blkioDeviceWriteBps(List<InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
+    
     this.blkioDeviceWriteBps = blkioDeviceWriteBps;
     return this;
   }
@@ -522,23 +540,26 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * BlkioDeviceWriteBps is an array of I/O throttle parameters for individual device nodes. this specifically sets write rate cap in bytes per second for device nodes. as with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceWriteBps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "BlkioDeviceWriteBps is an array of I/O throttle parameters for individual device nodes. this specifically sets write rate cap in bytes per second for device nodes. as with BlkioWeightDevice, we pull the path from /sys/dev, and we don't guarantee the path will be identical to the original (though the node will be).")
 
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteBps() {
+    public List<InspectBlkioThrottleDevice> getBlkioDeviceWriteBps() {
     return blkioDeviceWriteBps;
   }
 
-  public void setBlkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
+
+    public void setBlkioDeviceWriteBps(List<InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
     this.blkioDeviceWriteBps = blkioDeviceWriteBps;
   }
 
 
-  public InspectContainerHostConfig blkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
+    public InspectContainerHostConfig blkioDeviceWriteIOps(List<InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
+    
     this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
     return this;
   }
@@ -551,43 +572,49 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * BlkioDeviceWriteIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the write rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceWriteIOps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "BlkioDeviceWriteIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the write rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don't guarantee the path will be identical to the original (though the node will be).")
 
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteIOps() {
+    public List<InspectBlkioThrottleDevice> getBlkioDeviceWriteIOps() {
     return blkioDeviceWriteIOps;
   }
 
-  public void setBlkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
+
+    public void setBlkioDeviceWriteIOps(List<InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
     this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
   }
 
 
   public InspectContainerHostConfig blkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
+
+      this.blkioWeight = blkioWeight;
     return this;
   }
 
-  /**
+    /**
    * BlkioWeight indicates the I/O resources allocated to the container. It is a relative weight in the scheduler for assigning I/O time versus other Cgroups.
    * @return blkioWeight
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "BlkioWeight indicates the I/O resources allocated to the container. It is a relative weight in the scheduler for assigning I/O time versus other Cgroups.")
 
   public Integer getBlkioWeight() {
     return blkioWeight;
   }
+
 
   public void setBlkioWeight(Integer blkioWeight) {
     this.blkioWeight = blkioWeight;
   }
 
 
-  public InspectContainerHostConfig blkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
+    public InspectContainerHostConfig blkioWeightDevice(List<InspectBlkioWeightDevice> blkioWeightDevice) {
+    
     this.blkioWeightDevice = blkioWeightDevice;
     return this;
   }
@@ -600,24 +627,27 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * BlkioWeightDevice is an array of I/O resource priorities for individual device nodes. Unfortunately, the spec only stores the device&#39;s Major/Minor numbers and not the path, which is used here. Fortunately, the kernel provides an interface for retrieving the path of a given node by major:minor at /sys/dev/. However, the exact path in use may not be what was used in the original CLI invocation - though it is guaranteed that the device node will be the same, and using the given path will be functionally identical.
    * @return blkioWeightDevice
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "BlkioWeightDevice is an array of I/O resource priorities for individual device nodes. Unfortunately, the spec only stores the device's Major/Minor numbers and not the path, which is used here. Fortunately, the kernel provides an interface for retrieving the path of a given node by major:minor at /sys/dev/. However, the exact path in use may not be what was used in the original CLI invocation - though it is guaranteed that the device node will be the same, and using the given path will be functionally identical.")
 
-  public List<@Valid InspectBlkioWeightDevice> getBlkioWeightDevice() {
+    public List<InspectBlkioWeightDevice> getBlkioWeightDevice() {
     return blkioWeightDevice;
   }
 
-  public void setBlkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
+
+    public void setBlkioWeightDevice(List<InspectBlkioWeightDevice> blkioWeightDevice) {
     this.blkioWeightDevice = blkioWeightDevice;
   }
 
 
   public InspectContainerHostConfig capAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
+
+      this.capAdd = capAdd;
     return this;
   }
 
@@ -629,15 +659,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CapAdd is a list of capabilities added to the container. It is not directly stored by Libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
    * @return capAdd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CapAdd is a list of capabilities added to the container. It is not directly stored by Libpod, and instead computed from the capabilities listed in the container's spec, compared against a set of default capabilities.")
 
   public List<String> getCapAdd() {
     return capAdd;
   }
+
 
   public void setCapAdd(List<String> capAdd) {
     this.capAdd = capAdd;
@@ -645,7 +677,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig capDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
+
+      this.capDrop = capDrop;
     return this;
   }
 
@@ -657,15 +690,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CapDrop is a list of capabilities removed from the container. It is not directly stored by libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
    * @return capDrop
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CapDrop is a list of capabilities removed from the container. It is not directly stored by libpod, and instead computed from the capabilities listed in the container's spec, compared against a set of default capabilities.")
 
   public List<String> getCapDrop() {
     return capDrop;
   }
+
 
   public void setCapDrop(List<String> capDrop) {
     this.capDrop = capDrop;
@@ -673,19 +708,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroup(String cgroup) {
-    this.cgroup = cgroup;
+
+      this.cgroup = cgroup;
     return this;
   }
 
-  /**
+    /**
    * Cgroup contains the container&#39;s cgroup. It is presently not populated. TODO.
    * @return cgroup
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Cgroup contains the container's cgroup. It is presently not populated. TODO.")
 
   public String getCgroup() {
     return cgroup;
   }
+
 
   public void setCgroup(String cgroup) {
     this.cgroup = cgroup;
@@ -693,7 +731,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroupConf(Map<String, String> cgroupConf) {
-    this.cgroupConf = cgroupConf;
+
+      this.cgroupConf = cgroupConf;
     return this;
   }
 
@@ -705,15 +744,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CgroupConf is the configuration for cgroup v2.
    * @return cgroupConf
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CgroupConf is the configuration for cgroup v2.")
 
   public Map<String, String> getCgroupConf() {
     return cgroupConf;
   }
+
 
   public void setCgroupConf(Map<String, String> cgroupConf) {
     this.cgroupConf = cgroupConf;
@@ -721,19 +762,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroupManager(String cgroupManager) {
-    this.cgroupManager = cgroupManager;
+
+      this.cgroupManager = cgroupManager;
     return this;
   }
 
-  /**
+    /**
    * CgroupManager is the cgroup manager used by the container. At present, allowed values are either \&quot;cgroupfs\&quot; or \&quot;systemd\&quot;.
    * @return cgroupManager
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CgroupManager is the cgroup manager used by the container. At present, allowed values are either \"cgroupfs\" or \"systemd\".")
 
   public String getCgroupManager() {
     return cgroupManager;
   }
+
 
   public void setCgroupManager(String cgroupManager) {
     this.cgroupManager = cgroupManager;
@@ -741,19 +785,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroupMode(String cgroupMode) {
-    this.cgroupMode = cgroupMode;
+
+      this.cgroupMode = cgroupMode;
     return this;
   }
 
-  /**
+    /**
    * CgroupMode is the configuration of the container&#39;s cgroup namespace. Populated as follows: private - a cgroup namespace has been created host - No cgroup namespace created container:&lt;id&gt; - Using another container&#39;s cgroup namespace ns:&lt;path&gt; - A path to a cgroup namespace has been specified
    * @return cgroupMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CgroupMode is the configuration of the container's cgroup namespace. Populated as follows: private - a cgroup namespace has been created host - No cgroup namespace created container:<id> - Using another container's cgroup namespace ns:<path> - A path to a cgroup namespace has been specified")
 
   public String getCgroupMode() {
     return cgroupMode;
   }
+
 
   public void setCgroupMode(String cgroupMode) {
     this.cgroupMode = cgroupMode;
@@ -761,19 +808,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
+
+      this.cgroupParent = cgroupParent;
     return this;
   }
 
-  /**
+    /**
    * CgroupParent is the Cgroup parent of the container. Only set if not default.
    * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CgroupParent is the Cgroup parent of the container. Only set if not default.")
 
   public String getCgroupParent() {
     return cgroupParent;
   }
+
 
   public void setCgroupParent(String cgroupParent) {
     this.cgroupParent = cgroupParent;
@@ -781,19 +831,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cgroups(String cgroups) {
-    this.cgroups = cgroups;
+
+      this.cgroups = cgroups;
     return this;
   }
 
-  /**
+    /**
    * Cgroups contains the container&#39;s Cgroup mode. Allowed values are \&quot;default\&quot; (container is creating Cgroups) and \&quot;disabled\&quot; (container is not creating Cgroups). This is Libpod-specific and not included in &#x60;docker inspect&#x60;.
    * @return cgroups
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Cgroups contains the container's Cgroup mode. Allowed values are \"default\" (container is creating Cgroups) and \"disabled\" (container is not creating Cgroups). This is Libpod-specific and not included in `docker inspect`.")
 
   public String getCgroups() {
     return cgroups;
   }
+
 
   public void setCgroups(String cgroups) {
     this.cgroups = cgroups;
@@ -801,7 +854,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig consoleSize(List<Integer> consoleSize) {
-    this.consoleSize = consoleSize;
+
+      this.consoleSize = consoleSize;
     return this;
   }
 
@@ -813,15 +867,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * ConsoleSize is an array of 2 integers showing the size of the container&#39;s console. It is only set if the container is creating a terminal. TODO.
    * @return consoleSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ConsoleSize is an array of 2 integers showing the size of the container's console. It is only set if the container is creating a terminal. TODO.")
 
   public List<Integer> getConsoleSize() {
     return consoleSize;
   }
+
 
   public void setConsoleSize(List<Integer> consoleSize) {
     this.consoleSize = consoleSize;
@@ -829,19 +885,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig containerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
+
+      this.containerIDFile = containerIDFile;
     return this;
   }
 
-  /**
+    /**
    * ContainerIDFile is a file created during container creation to hold the ID of the created container. This is not handled within libpod and is stored in an annotation.
    * @return containerIDFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ContainerIDFile is a file created during container creation to hold the ID of the created container. This is not handled within libpod and is stored in an annotation.")
 
   public String getContainerIDFile() {
     return containerIDFile;
   }
+
 
   public void setContainerIDFile(String containerIDFile) {
     this.containerIDFile = containerIDFile;
@@ -849,19 +908,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuCount(Integer cpuCount) {
-    this.cpuCount = cpuCount;
+
+      this.cpuCount = cpuCount;
     return this;
   }
 
-  /**
+    /**
    * CpuCount is Windows-only and not presently implemented.
    * @return cpuCount
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuCount is Windows-only and not presently implemented.")
 
   public Integer getCpuCount() {
     return cpuCount;
   }
+
 
   public void setCpuCount(Integer cpuCount) {
     this.cpuCount = cpuCount;
@@ -869,19 +931,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuPercent(Integer cpuPercent) {
-    this.cpuPercent = cpuPercent;
+
+      this.cpuPercent = cpuPercent;
     return this;
   }
 
-  /**
+    /**
    * CpuPercent is Windows-only and not presently implemented.
    * @return cpuPercent
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuPercent is Windows-only and not presently implemented.")
 
   public Integer getCpuPercent() {
     return cpuPercent;
   }
+
 
   public void setCpuPercent(Integer cpuPercent) {
     this.cpuPercent = cpuPercent;
@@ -889,19 +954,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuPeriod(Integer cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
+
+      this.cpuPeriod = cpuPeriod;
     return this;
   }
 
-  /**
+    /**
    * CpuPeriod is the length of a CPU period in microseconds. It relates directly to CpuQuota.
    * @return cpuPeriod
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuPeriod is the length of a CPU period in microseconds. It relates directly to CpuQuota.")
 
   public Integer getCpuPeriod() {
     return cpuPeriod;
   }
+
 
   public void setCpuPeriod(Integer cpuPeriod) {
     this.cpuPeriod = cpuPeriod;
@@ -909,19 +977,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
+
+      this.cpuQuota = cpuQuota;
     return this;
   }
 
-  /**
+    /**
    * CpuPeriod is the amount of time (in microseconds) that a container can use the CPU in every CpuPeriod.
    * @return cpuQuota
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuPeriod is the amount of time (in microseconds) that a container can use the CPU in every CpuPeriod.")
 
   public Long getCpuQuota() {
     return cpuQuota;
   }
+
 
   public void setCpuQuota(Long cpuQuota) {
     this.cpuQuota = cpuQuota;
@@ -929,19 +1000,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuRealtimePeriod(Integer cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
+
+      this.cpuRealtimePeriod = cpuRealtimePeriod;
     return this;
   }
 
-  /**
+    /**
    * CpuRealtimePeriod is the length of time (in microseconds) of the CPU realtime period. If set to 0, no time will be allocated to realtime tasks.
    * @return cpuRealtimePeriod
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuRealtimePeriod is the length of time (in microseconds) of the CPU realtime period. If set to 0, no time will be allocated to realtime tasks.")
 
   public Integer getCpuRealtimePeriod() {
     return cpuRealtimePeriod;
   }
+
 
   public void setCpuRealtimePeriod(Integer cpuRealtimePeriod) {
     this.cpuRealtimePeriod = cpuRealtimePeriod;
@@ -949,19 +1023,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+
+      this.cpuRealtimeRuntime = cpuRealtimeRuntime;
     return this;
   }
 
-  /**
+    /**
    * CpuRealtimeRuntime is the length of time (in microseconds) allocated for realtime tasks within every CpuRealtimePeriod.
    * @return cpuRealtimeRuntime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuRealtimeRuntime is the length of time (in microseconds) allocated for realtime tasks within every CpuRealtimePeriod.")
 
   public Long getCpuRealtimeRuntime() {
     return cpuRealtimeRuntime;
   }
+
 
   public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
     this.cpuRealtimeRuntime = cpuRealtimeRuntime;
@@ -969,19 +1046,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpuShares(Integer cpuShares) {
-    this.cpuShares = cpuShares;
+
+      this.cpuShares = cpuShares;
     return this;
   }
 
-  /**
+    /**
    * CpuShares indicates the CPU resources allocated to the container. It is a relative weight in the scheduler for assigning CPU time versus other Cgroups.
    * @return cpuShares
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpuShares indicates the CPU resources allocated to the container. It is a relative weight in the scheduler for assigning CPU time versus other Cgroups.")
 
   public Integer getCpuShares() {
     return cpuShares;
   }
+
 
   public void setCpuShares(Integer cpuShares) {
     this.cpuShares = cpuShares;
@@ -989,19 +1069,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
+
+      this.cpusetCpus = cpusetCpus;
     return this;
   }
 
-  /**
+    /**
    * CpusetCpus is the set of CPUs that the container will execute on. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all CPUs.
    * @return cpusetCpus
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpusetCpus is the set of CPUs that the container will execute on. Formatted as `0-3` or `0,2`. Default (if unset) is all CPUs.")
 
   public String getCpusetCpus() {
     return cpusetCpus;
   }
+
 
   public void setCpusetCpus(String cpusetCpus) {
     this.cpusetCpus = cpusetCpus;
@@ -1009,26 +1092,30 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig cpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
+
+      this.cpusetMems = cpusetMems;
     return this;
   }
 
-  /**
+    /**
    * CpusetMems is the set of memory nodes the container will use. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all memory nodes.
    * @return cpusetMems
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CpusetMems is the set of memory nodes the container will use. Formatted as `0-3` or `0,2`. Default (if unset) is all memory nodes.")
 
   public String getCpusetMems() {
     return cpusetMems;
   }
+
 
   public void setCpusetMems(String cpusetMems) {
     this.cpusetMems = cpusetMems;
   }
 
 
-  public InspectContainerHostConfig devices(List<@Valid InspectDevice> devices) {
+    public InspectContainerHostConfig devices(List<InspectDevice> devices) {
+    
     this.devices = devices;
     return this;
   }
@@ -1041,36 +1128,41 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Devices is a list of device nodes that will be added to the container. These are stored in the OCI spec only as type, major, minor while we display the host path. We convert this with /sys/dev, but we cannot guarantee that the host path will be identical - only that the actual device will be.
    * @return devices
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Devices is a list of device nodes that will be added to the container. These are stored in the OCI spec only as type, major, minor while we display the host path. We convert this with /sys/dev, but we cannot guarantee that the host path will be identical - only that the actual device will be.")
 
-  public List<@Valid InspectDevice> getDevices() {
+    public List<InspectDevice> getDevices() {
     return devices;
   }
 
-  public void setDevices(List<@Valid InspectDevice> devices) {
+
+    public void setDevices(List<InspectDevice> devices) {
     this.devices = devices;
   }
 
 
   public InspectContainerHostConfig diskQuota(Integer diskQuota) {
-    this.diskQuota = diskQuota;
+
+      this.diskQuota = diskQuota;
     return this;
   }
 
-  /**
+    /**
    * DiskQuota is the maximum amount of disk space the container may use (in bytes). Presently not populated. TODO.
    * @return diskQuota
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DiskQuota is the maximum amount of disk space the container may use (in bytes). Presently not populated. TODO.")
 
   public Integer getDiskQuota() {
     return diskQuota;
   }
+
 
   public void setDiskQuota(Integer diskQuota) {
     this.diskQuota = diskQuota;
@@ -1078,7 +1170,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig dns(List<String> dns) {
-    this.dns = dns;
+
+      this.dns = dns;
     return this;
   }
 
@@ -1090,15 +1183,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Dns is a list of DNS nameservers that will be added to the container&#39;s resolv.conf
    * @return dns
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Dns is a list of DNS nameservers that will be added to the container's resolv.conf")
 
   public List<String> getDns() {
     return dns;
   }
+
 
   public void setDns(List<String> dns) {
     this.dns = dns;
@@ -1106,7 +1201,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig dnsOptions(List<String> dnsOptions) {
-    this.dnsOptions = dnsOptions;
+
+      this.dnsOptions = dnsOptions;
     return this;
   }
 
@@ -1118,15 +1214,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DnsOptions is a list of DNS options that will be set in the container&#39;s resolv.conf
    * @return dnsOptions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DnsOptions is a list of DNS options that will be set in the container's resolv.conf")
 
   public List<String> getDnsOptions() {
     return dnsOptions;
   }
+
 
   public void setDnsOptions(List<String> dnsOptions) {
     this.dnsOptions = dnsOptions;
@@ -1134,7 +1232,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
+
+      this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -1146,15 +1245,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DnsSearch is a list of DNS search domains that will be set in the container&#39;s resolv.conf
    * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DnsSearch is a list of DNS search domains that will be set in the container's resolv.conf")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
   }
+
 
   public void setDnsSearch(List<String> dnsSearch) {
     this.dnsSearch = dnsSearch;
@@ -1162,7 +1263,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig extraHosts(List<String> extraHosts) {
-    this.extraHosts = extraHosts;
+
+      this.extraHosts = extraHosts;
     return this;
   }
 
@@ -1174,15 +1276,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * ExtraHosts contains hosts that will be added to the container&#39;s etc/hosts.
    * @return extraHosts
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ExtraHosts contains hosts that will be added to the container's etc/hosts.")
 
   public List<String> getExtraHosts() {
     return extraHosts;
   }
+
 
   public void setExtraHosts(List<String> extraHosts) {
     this.extraHosts = extraHosts;
@@ -1190,7 +1294,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig groupAdd(List<String> groupAdd) {
-    this.groupAdd = groupAdd;
+
+      this.groupAdd = groupAdd;
     return this;
   }
 
@@ -1202,15 +1307,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * GroupAdd contains groups that the user inside the container will be added to.
    * @return groupAdd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "GroupAdd contains groups that the user inside the container will be added to.")
 
   public List<String> getGroupAdd() {
     return groupAdd;
   }
+
 
   public void setGroupAdd(List<String> groupAdd) {
     this.groupAdd = groupAdd;
@@ -1218,19 +1325,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig hostsFile(String hostsFile) {
-    this.hostsFile = hostsFile;
+
+      this.hostsFile = hostsFile;
     return this;
   }
 
-  /**
+    /**
    * HostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the container.
    * @return hostsFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HostsFile is the base file to create the `/etc/hosts` file inside the container.")
 
   public String getHostsFile() {
     return hostsFile;
   }
+
 
   public void setHostsFile(String hostsFile) {
     this.hostsFile = hostsFile;
@@ -1238,20 +1348,23 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig idMappings(InspectIDMappings idMappings) {
-    this.idMappings = idMappings;
+
+      this.idMappings = idMappings;
     return this;
   }
 
-  /**
+    /**
    * Get idMappings
    * @return idMappings
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectIDMappings getIdMappings() {
     return idMappings;
   }
+
 
   public void setIdMappings(InspectIDMappings idMappings) {
     this.idMappings = idMappings;
@@ -1259,19 +1372,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
+
+      this.ioMaximumBandwidth = ioMaximumBandwidth;
     return this;
   }
 
-  /**
+    /**
    * IOMaximumBandwidth is Windows-only and not presently implemented.
    * @return ioMaximumBandwidth
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IOMaximumBandwidth is Windows-only and not presently implemented.")
 
   public Integer getIoMaximumBandwidth() {
     return ioMaximumBandwidth;
   }
+
 
   public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
     this.ioMaximumBandwidth = ioMaximumBandwidth;
@@ -1279,19 +1395,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig ioMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
+
+      this.ioMaximumIOps = ioMaximumIOps;
     return this;
   }
 
-  /**
+    /**
    * IOMaximumIOps is Windows-only and not presently implemented.
    * @return ioMaximumIOps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IOMaximumIOps is Windows-only and not presently implemented.")
 
   public Integer getIoMaximumIOps() {
     return ioMaximumIOps;
   }
+
 
   public void setIoMaximumIOps(Integer ioMaximumIOps) {
     this.ioMaximumIOps = ioMaximumIOps;
@@ -1299,19 +1418,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig init(Boolean init) {
-    this.init = init;
+
+      this.init = init;
     return this;
   }
 
-  /**
+    /**
    * Init indicates whether the container has an init mounted into it.
    * @return init
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Init indicates whether the container has an init mounted into it.")
 
   public Boolean getInit() {
     return init;
   }
+
 
   public void setInit(Boolean init) {
     this.init = init;
@@ -1319,19 +1441,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig intelRdtClosID(String intelRdtClosID) {
-    this.intelRdtClosID = intelRdtClosID;
+
+      this.intelRdtClosID = intelRdtClosID;
     return this;
   }
 
-  /**
+    /**
    * IntelRdtClosID defines the Intel RDT CAT Class Of Service (COS) that all processes of the container should run in.
    * @return intelRdtClosID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IntelRdtClosID defines the Intel RDT CAT Class Of Service (COS) that all processes of the container should run in.")
 
   public String getIntelRdtClosID() {
     return intelRdtClosID;
   }
+
 
   public void setIntelRdtClosID(String intelRdtClosID) {
     this.intelRdtClosID = intelRdtClosID;
@@ -1339,19 +1464,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig ipcMode(String ipcMode) {
-    this.ipcMode = ipcMode;
+
+      this.ipcMode = ipcMode;
     return this;
   }
 
-  /**
+    /**
    * IpcMode represents the configuration of the container&#39;s IPC namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, an IPC namespace will be created host - No IPC namespace created container:&lt;id&gt; - Using another container&#39;s IPC namespace ns:&lt;path&gt; - A path to an IPC namespace has been specified
    * @return ipcMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IpcMode represents the configuration of the container's IPC namespace. Populated as follows: \"\" (empty string) - Default, an IPC namespace will be created host - No IPC namespace created container:<id> - Using another container's IPC namespace ns:<path> - A path to an IPC namespace has been specified")
 
   public String getIpcMode() {
     return ipcMode;
   }
+
 
   public void setIpcMode(String ipcMode) {
     this.ipcMode = ipcMode;
@@ -1359,19 +1487,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig isolation(String isolation) {
-    this.isolation = isolation;
+
+      this.isolation = isolation;
     return this;
   }
 
-  /**
+    /**
    * Isolation is presently unused and provided solely for Docker compatibility.
    * @return isolation
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Isolation is presently unused and provided solely for Docker compatibility.")
 
   public String getIsolation() {
     return isolation;
   }
+
 
   public void setIsolation(String isolation) {
     this.isolation = isolation;
@@ -1379,19 +1510,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig kernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
+
+      this.kernelMemory = kernelMemory;
     return this;
   }
 
-  /**
+    /**
    * KernelMemory is the maximum amount of memory the kernel will devote to the container.
    * @return kernelMemory
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "KernelMemory is the maximum amount of memory the kernel will devote to the container.")
 
   public Long getKernelMemory() {
     return kernelMemory;
   }
+
 
   public void setKernelMemory(Long kernelMemory) {
     this.kernelMemory = kernelMemory;
@@ -1399,7 +1533,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig links(List<String> links) {
-    this.links = links;
+
+      this.links = links;
     return this;
   }
 
@@ -1411,15 +1546,17 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Links is unused, and provided purely for Docker compatibility.
    * @return links
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Links is unused, and provided purely for Docker compatibility.")
 
   public List<String> getLinks() {
     return links;
   }
+
 
   public void setLinks(List<String> links) {
     this.links = links;
@@ -1427,20 +1564,23 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig logConfig(InspectLogConfig logConfig) {
-    this.logConfig = logConfig;
+
+      this.logConfig = logConfig;
     return this;
   }
 
-  /**
+    /**
    * Get logConfig
    * @return logConfig
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectLogConfig getLogConfig() {
     return logConfig;
   }
+
 
   public void setLogConfig(InspectLogConfig logConfig) {
     this.logConfig = logConfig;
@@ -1448,19 +1588,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig memory(Long memory) {
-    this.memory = memory;
+
+      this.memory = memory;
     return this;
   }
 
-  /**
+    /**
    * Memory indicates the memory resources allocated to the container. This is the limit (in bytes) of RAM the container may use.
    * @return memory
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Memory indicates the memory resources allocated to the container. This is the limit (in bytes) of RAM the container may use.")
 
   public Long getMemory() {
     return memory;
   }
+
 
   public void setMemory(Long memory) {
     this.memory = memory;
@@ -1468,19 +1611,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig memoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
+
+      this.memoryReservation = memoryReservation;
     return this;
   }
 
-  /**
+    /**
    * MemoryReservation is the reservation (soft limit) of memory available to the container. Soft limits are warnings only and can be exceeded.
    * @return memoryReservation
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "MemoryReservation is the reservation (soft limit) of memory available to the container. Soft limits are warnings only and can be exceeded.")
 
   public Long getMemoryReservation() {
     return memoryReservation;
   }
+
 
   public void setMemoryReservation(Long memoryReservation) {
     this.memoryReservation = memoryReservation;
@@ -1488,19 +1634,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig memorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
+
+      this.memorySwap = memorySwap;
     return this;
   }
 
-  /**
+    /**
    * MemorySwap is the total limit for all memory available to the container, including swap. 0 indicates that there is no limit to the amount of memory available.
    * @return memorySwap
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "MemorySwap is the total limit for all memory available to the container, including swap. 0 indicates that there is no limit to the amount of memory available.")
 
   public Long getMemorySwap() {
     return memorySwap;
   }
+
 
   public void setMemorySwap(Long memorySwap) {
     this.memorySwap = memorySwap;
@@ -1508,19 +1657,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig memorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
+
+      this.memorySwappiness = memorySwappiness;
     return this;
   }
 
-  /**
+    /**
    * MemorySwappiness is the willingness of the kernel to page container memory to swap. It is an integer from 0 to 100, with low numbers being more likely to be put into swap. 1, the default, will not set swappiness and use the system defaults.
    * @return memorySwappiness
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "MemorySwappiness is the willingness of the kernel to page container memory to swap. It is an integer from 0 to 100, with low numbers being more likely to be put into swap. 1, the default, will not set swappiness and use the system defaults.")
 
   public Long getMemorySwappiness() {
     return memorySwappiness;
   }
+
 
   public void setMemorySwappiness(Long memorySwappiness) {
     this.memorySwappiness = memorySwappiness;
@@ -1528,19 +1680,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig nanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
+
+      this.nanoCpus = nanoCpus;
     return this;
   }
 
-  /**
+    /**
    * NanoCpus indicates number of CPUs allocated to the container. It is an integer where one full CPU is indicated by 1000000000 (one billion). Thus, 2.5 CPUs (fractional portions of CPUs are allowed) would be 2500000000 (2.5 billion). In &#39;docker inspect&#39; this is set exclusively of two further options in the output (CpuPeriod and CpuQuota) which are both used to implement this functionality. We can&#39;t distinguish here, so if CpuQuota is set to the default of 100000, we will set both CpuQuota, CpuPeriod, and NanoCpus. If CpuQuota is not the default, we will not set NanoCpus.
    * @return nanoCpus
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "NanoCpus indicates number of CPUs allocated to the container. It is an integer where one full CPU is indicated by 1000000000 (one billion). Thus, 2.5 CPUs (fractional portions of CPUs are allowed) would be 2500000000 (2.5 billion). In 'docker inspect' this is set exclusively of two further options in the output (CpuPeriod and CpuQuota) which are both used to implement this functionality. We can't distinguish here, so if CpuQuota is set to the default of 100000, we will set both CpuQuota, CpuPeriod, and NanoCpus. If CpuQuota is not the default, we will not set NanoCpus.")
 
   public Long getNanoCpus() {
     return nanoCpus;
   }
+
 
   public void setNanoCpus(Long nanoCpus) {
     this.nanoCpus = nanoCpus;
@@ -1548,19 +1703,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig networkMode(String networkMode) {
-    this.networkMode = networkMode;
+
+      this.networkMode = networkMode;
     return this;
   }
 
-  /**
+    /**
    * NetworkMode is the configuration of the container&#39;s network namespace. Populated as follows: default - A network namespace is being created and configured via CNI none - A network namespace is being created, not configured via CNI host - No network namespace created container:&lt;id&gt; - Using another container&#39;s network namespace ns:&lt;path&gt; - A path to a network namespace has been specified
    * @return networkMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "NetworkMode is the configuration of the container's network namespace. Populated as follows: default - A network namespace is being created and configured via CNI none - A network namespace is being created, not configured via CNI host - No network namespace created container:<id> - Using another container's network namespace ns:<path> - A path to a network namespace has been specified")
 
   public String getNetworkMode() {
     return networkMode;
   }
+
 
   public void setNetworkMode(String networkMode) {
     this.networkMode = networkMode;
@@ -1568,19 +1726,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig oomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
+
+      this.oomKillDisable = oomKillDisable;
     return this;
   }
 
-  /**
+    /**
    * OomKillDisable indicates whether the kernel OOM killer is disabled for the container.
    * @return oomKillDisable
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OomKillDisable indicates whether the kernel OOM killer is disabled for the container.")
 
   public Boolean getOomKillDisable() {
     return oomKillDisable;
   }
+
 
   public void setOomKillDisable(Boolean oomKillDisable) {
     this.oomKillDisable = oomKillDisable;
@@ -1588,19 +1749,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig oomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
+
+      this.oomScoreAdj = oomScoreAdj;
     return this;
   }
 
-  /**
+    /**
    * OOMScoreAdj is an adjustment that will be made to the container&#39;s OOM score.
    * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OOMScoreAdj is an adjustment that will be made to the container's OOM score.")
 
   public Long getOomScoreAdj() {
     return oomScoreAdj;
   }
+
 
   public void setOomScoreAdj(Long oomScoreAdj) {
     this.oomScoreAdj = oomScoreAdj;
@@ -1608,19 +1772,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig pidMode(String pidMode) {
-    this.pidMode = pidMode;
+
+      this.pidMode = pidMode;
     return this;
   }
 
-  /**
+    /**
    * PidMode represents the configuration of the container&#39;s PID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a PID namespace will be created host - No PID namespace created container:&lt;id&gt; - Using another container&#39;s PID namespace ns:&lt;path&gt; - A path to a PID namespace has been specified
    * @return pidMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PidMode represents the configuration of the container's PID namespace. Populated as follows: \"\" (empty string) - Default, a PID namespace will be created host - No PID namespace created container:<id> - Using another container's PID namespace ns:<path> - A path to a PID namespace has been specified")
 
   public String getPidMode() {
     return pidMode;
   }
+
 
   public void setPidMode(String pidMode) {
     this.pidMode = pidMode;
@@ -1628,31 +1795,35 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig pidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
+
+      this.pidsLimit = pidsLimit;
     return this;
   }
 
-  /**
+    /**
    * PidsLimit is the maximum number of PIDs that may be created within the container. 0, the default, indicates no limit.
    * @return pidsLimit
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PidsLimit is the maximum number of PIDs that may be created within the container. 0, the default, indicates no limit.")
 
   public Long getPidsLimit() {
     return pidsLimit;
   }
+
 
   public void setPidsLimit(Long pidsLimit) {
     this.pidsLimit = pidsLimit;
   }
 
 
-  public InspectContainerHostConfig portBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
+    public InspectContainerHostConfig portBindings(Map<String, List<InspectHostPort>> portBindings) {
+    
     this.portBindings = portBindings;
     return this;
   }
 
-  public InspectContainerHostConfig putPortBindingsItem(String key, List<@Valid InspectHostPort> portBindingsItem) {
+    public InspectContainerHostConfig putPortBindingsItem(String key, List<InspectHostPort> portBindingsItem) {
     if (this.portBindings == null) {
       this.portBindings = new HashMap<>();
     }
@@ -1660,36 +1831,41 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * PortBindings contains the container&#39;s port bindings. It is formatted as map[string][]InspectHostPort. The string key here is formatted as &lt;integer port number&gt;/&lt;protocol&gt; and represents the container port. A single container port may be bound to multiple host ports (on different IPs).
    * @return portBindings
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "PortBindings contains the container's port bindings. It is formatted as map[string][]InspectHostPort. The string key here is formatted as <integer port number>/<protocol> and represents the container port. A single container port may be bound to multiple host ports (on different IPs).")
 
-  public Map<String, List<@Valid InspectHostPort>> getPortBindings() {
+    public Map<String, List<InspectHostPort>> getPortBindings() {
     return portBindings;
   }
 
-  public void setPortBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
+
+    public void setPortBindings(Map<String, List<InspectHostPort>> portBindings) {
     this.portBindings = portBindings;
   }
 
 
   public InspectContainerHostConfig privileged(Boolean privileged) {
-    this.privileged = privileged;
+
+      this.privileged = privileged;
     return this;
   }
 
-  /**
+    /**
    * Privileged indicates whether the container is running with elevated privileges. This has a very specific meaning in the Docker sense, so it&#39;s very difficult to decode from the spec and config, and so is stored as an annotation.
    * @return privileged
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Privileged indicates whether the container is running with elevated privileges. This has a very specific meaning in the Docker sense, so it's very difficult to decode from the spec and config, and so is stored as an annotation.")
 
   public Boolean getPrivileged() {
     return privileged;
   }
+
 
   public void setPrivileged(Boolean privileged) {
     this.privileged = privileged;
@@ -1697,19 +1873,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig publishAllPorts(Boolean publishAllPorts) {
-    this.publishAllPorts = publishAllPorts;
+
+      this.publishAllPorts = publishAllPorts;
     return this;
   }
 
-  /**
+    /**
    * PublishAllPorts indicates whether image ports are being published. This is not directly stored in libpod and is saved as an annotation.
    * @return publishAllPorts
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PublishAllPorts indicates whether image ports are being published. This is not directly stored in libpod and is saved as an annotation.")
 
   public Boolean getPublishAllPorts() {
     return publishAllPorts;
   }
+
 
   public void setPublishAllPorts(Boolean publishAllPorts) {
     this.publishAllPorts = publishAllPorts;
@@ -1717,19 +1896,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig readonlyRootfs(Boolean readonlyRootfs) {
-    this.readonlyRootfs = readonlyRootfs;
+
+      this.readonlyRootfs = readonlyRootfs;
     return this;
   }
 
-  /**
+    /**
    * ReadonlyRootfs is whether the container will be mounted read-only.
    * @return readonlyRootfs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ReadonlyRootfs is whether the container will be mounted read-only.")
 
   public Boolean getReadonlyRootfs() {
     return readonlyRootfs;
   }
+
 
   public void setReadonlyRootfs(Boolean readonlyRootfs) {
     this.readonlyRootfs = readonlyRootfs;
@@ -1737,20 +1919,23 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig restartPolicy(InspectRestartPolicy restartPolicy) {
-    this.restartPolicy = restartPolicy;
+
+      this.restartPolicy = restartPolicy;
     return this;
   }
 
-  /**
+    /**
    * Get restartPolicy
    * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectRestartPolicy getRestartPolicy() {
     return restartPolicy;
   }
+
 
   public void setRestartPolicy(InspectRestartPolicy restartPolicy) {
     this.restartPolicy = restartPolicy;
@@ -1758,19 +1943,22 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig runtime(String runtime) {
-    this.runtime = runtime;
+
+      this.runtime = runtime;
     return this;
   }
 
-  /**
+    /**
    * Runtime is provided purely for Docker compatibility. It is set unconditionally to \&quot;oci\&quot; as Podman does not presently support non-OCI runtimes.
    * @return runtime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Runtime is provided purely for Docker compatibility. It is set unconditionally to \"oci\" as Podman does not presently support non-OCI runtimes.")
 
   public String getRuntime() {
     return runtime;
   }
+
 
   public void setRuntime(String runtime) {
     this.runtime = runtime;
@@ -1778,7 +1966,8 @@ public class InspectContainerHostConfig implements Serializable {
 
 
   public InspectContainerHostConfig securityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
+
+      this.securityOpt = securityOpt;
     return this;
   }
 
@@ -1790,43 +1979,49 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * SecurityOpt is a list of security-related options that are set in the container.
    * @return securityOpt
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "SecurityOpt is a list of security-related options that are set in the container.")
 
   public List<String> getSecurityOpt() {
     return securityOpt;
   }
 
-  public void setSecurityOpt(List<String> securityOpt) {
+
+    public void setSecurityOpt(List<String> securityOpt) {
     this.securityOpt = securityOpt;
   }
 
 
   public InspectContainerHostConfig shmSize(Long shmSize) {
-    this.shmSize = shmSize;
+
+      this.shmSize = shmSize;
     return this;
   }
 
-  /**
+    /**
    * Get shmSize
    * @return shmSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getShmSize() {
     return shmSize;
   }
 
-  public void setShmSize(Long shmSize) {
+
+    public void setShmSize(Long shmSize) {
     this.shmSize = shmSize;
   }
 
 
   public InspectContainerHostConfig tmpfs(Map<String, String> tmpfs) {
-    this.tmpfs = tmpfs;
+
+      this.tmpfs = tmpfs;
     return this;
   }
 
@@ -1838,42 +2033,48 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Tmpfs is a list of tmpfs filesystems that will be mounted into the container. It is a map of destination path to options for the mount.
    * @return tmpfs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Tmpfs is a list of tmpfs filesystems that will be mounted into the container. It is a map of destination path to options for the mount.")
 
   public Map<String, String> getTmpfs() {
     return tmpfs;
   }
 
-  public void setTmpfs(Map<String, String> tmpfs) {
+
+    public void setTmpfs(Map<String, String> tmpfs) {
     this.tmpfs = tmpfs;
   }
 
 
   public InspectContainerHostConfig utSMode(String utSMode) {
-    this.utSMode = utSMode;
+
+      this.utSMode = utSMode;
     return this;
   }
 
-  /**
+    /**
    * UTSMode represents the configuration of the container&#39;s UID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a UTS namespace will be created host - no UTS namespace created container:&lt;id&gt; - Using another container&#39;s UTS namespace ns:&lt;path&gt; - A path to a UTS namespace has been specified
    * @return utSMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "UTSMode represents the configuration of the container's UID namespace. Populated as follows: \"\" (empty string) - Default, a UTS namespace will be created host - no UTS namespace created container:<id> - Using another container's UTS namespace ns:<path> - A path to a UTS namespace has been specified")
 
   public String getUtSMode() {
     return utSMode;
   }
 
-  public void setUtSMode(String utSMode) {
+
+    public void setUtSMode(String utSMode) {
     this.utSMode = utSMode;
   }
 
 
-  public InspectContainerHostConfig ulimits(List<@Valid InspectUlimit> ulimits) {
+    public InspectContainerHostConfig ulimits(List<InspectUlimit> ulimits) {
+    
     this.ulimits = ulimits;
     return this;
   }
@@ -1886,64 +2087,73 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Ulimits is a set of ulimits that will be set within the container.
    * @return ulimits
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Ulimits is a set of ulimits that will be set within the container.")
 
-  public List<@Valid InspectUlimit> getUlimits() {
+    public List<InspectUlimit> getUlimits() {
     return ulimits;
   }
 
-  public void setUlimits(List<@Valid InspectUlimit> ulimits) {
+
+    public void setUlimits(List<InspectUlimit> ulimits) {
     this.ulimits = ulimits;
   }
 
 
   public InspectContainerHostConfig usernsMode(String usernsMode) {
-    this.usernsMode = usernsMode;
+
+      this.usernsMode = usernsMode;
     return this;
   }
 
-  /**
+    /**
    * UsernsMode represents the configuration of the container&#39;s user namespace. When running rootless, a user namespace is created outside of libpod to allow some privileged operations. This will not be reflected here. Populated as follows: \&quot;\&quot; (empty string) - No user namespace will be created private - The container will be run in a user namespace container:&lt;id&gt; - Using another container&#39;s user namespace ns:&lt;path&gt; - A path to a user namespace has been specified TODO Rootless has an additional &#39;keep-id&#39; option, presently not reflected here.
    * @return usernsMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "UsernsMode represents the configuration of the container's user namespace. When running rootless, a user namespace is created outside of libpod to allow some privileged operations. This will not be reflected here. Populated as follows: \"\" (empty string) - No user namespace will be created private - The container will be run in a user namespace container:<id> - Using another container's user namespace ns:<path> - A path to a user namespace has been specified TODO Rootless has an additional 'keep-id' option, presently not reflected here.")
 
   public String getUsernsMode() {
     return usernsMode;
   }
 
-  public void setUsernsMode(String usernsMode) {
+
+    public void setUsernsMode(String usernsMode) {
     this.usernsMode = usernsMode;
   }
 
 
   public InspectContainerHostConfig volumeDriver(String volumeDriver) {
-    this.volumeDriver = volumeDriver;
+
+      this.volumeDriver = volumeDriver;
     return this;
   }
 
-  /**
+    /**
    * VolumeDriver is presently unused and is retained for Docker compatibility.
    * @return volumeDriver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "VolumeDriver is presently unused and is retained for Docker compatibility.")
 
   public String getVolumeDriver() {
     return volumeDriver;
   }
 
-  public void setVolumeDriver(String volumeDriver) {
+
+    public void setVolumeDriver(String volumeDriver) {
     this.volumeDriver = volumeDriver;
   }
 
 
   public InspectContainerHostConfig volumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
+
+      this.volumesFrom = volumesFrom;
     return this;
   }
 
@@ -1955,17 +2165,19 @@ public class InspectContainerHostConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs.
    * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs.")
 
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
 
-  public void setVolumesFrom(List<String> volumesFrom) {
+
+    public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
   }
 
@@ -2231,29 +2443,30 @@ public class InspectContainerHostConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectContainerHostConfig
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectContainerHostConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerHostConfig is not found in the empty JSON string", InspectContainerHostConfig.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to InspectContainerHostConfig
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (InspectContainerHostConfig.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerHostConfig is not found in the empty JSON string", InspectContainerHostConfig.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!InspectContainerHostConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerHostConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerHostConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull() && !jsonObj.get("Binds").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull()) && !jsonObj.get("Binds").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Binds` to be an array in the JSON string but got `%s`", jsonObj.get("Binds").toString()));
       }
       if (jsonObj.get("BlkioDeviceReadBps") != null && !jsonObj.get("BlkioDeviceReadBps").isJsonNull()) {
@@ -2266,7 +2479,7 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceReadBps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceReadBps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadBps.get(i));
+              InspectBlkioThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadBps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2280,7 +2493,7 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceReadIOps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceReadIOps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadIOps.get(i));
+              InspectBlkioThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadIOps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2294,7 +2507,7 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceWriteBps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceWriteBps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteBps.get(i));
+              InspectBlkioThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteBps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2308,7 +2521,7 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceWriteIOps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceWriteIOps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteIOps.get(i));
+              InspectBlkioThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteIOps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2322,16 +2535,16 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `BlkioWeightDevice` (array)
           for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
-            InspectBlkioWeightDevice.validateJsonElement(jsonArrayblkioWeightDevice.get(i));
+              InspectBlkioWeightDevice.validateJsonObject(jsonArrayblkioWeightDevice.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull() && !jsonObj.get("CapAdd").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull()) && !jsonObj.get("CapAdd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `CapAdd` to be an array in the JSON string but got `%s`", jsonObj.get("CapAdd").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull() && !jsonObj.get("CapDrop").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull()) && !jsonObj.get("CapDrop").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `CapDrop` to be an array in the JSON string but got `%s`", jsonObj.get("CapDrop").toString()));
       }
       if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
@@ -2349,8 +2562,8 @@ public class InspectContainerHostConfig implements Serializable {
       if ((jsonObj.get("Cgroups") != null && !jsonObj.get("Cgroups").isJsonNull()) && !jsonObj.get("Cgroups").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Cgroups` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroups").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull() && !jsonObj.get("ConsoleSize").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull()) && !jsonObj.get("ConsoleSize").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ConsoleSize` to be an array in the JSON string but got `%s`", jsonObj.get("ConsoleSize").toString()));
       }
       if ((jsonObj.get("ContainerIDFile") != null && !jsonObj.get("ContainerIDFile").isJsonNull()) && !jsonObj.get("ContainerIDFile").isJsonPrimitive()) {
@@ -2372,28 +2585,28 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `Devices` (array)
           for (int i = 0; i < jsonArraydevices.size(); i++) {
-            InspectDevice.validateJsonElement(jsonArraydevices.get(i));
+              InspectDevice.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull() && !jsonObj.get("Dns").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull()) && !jsonObj.get("Dns").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Dns` to be an array in the JSON string but got `%s`", jsonObj.get("Dns").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull() && !jsonObj.get("DnsOptions").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull()) && !jsonObj.get("DnsOptions").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DnsOptions` to be an array in the JSON string but got `%s`", jsonObj.get("DnsOptions").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull() && !jsonObj.get("DnsSearch").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull()) && !jsonObj.get("DnsSearch").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DnsSearch` to be an array in the JSON string but got `%s`", jsonObj.get("DnsSearch").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull() && !jsonObj.get("ExtraHosts").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull()) && !jsonObj.get("ExtraHosts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ExtraHosts` to be an array in the JSON string but got `%s`", jsonObj.get("ExtraHosts").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull() && !jsonObj.get("GroupAdd").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull()) && !jsonObj.get("GroupAdd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `GroupAdd` to be an array in the JSON string but got `%s`", jsonObj.get("GroupAdd").toString()));
       }
       if ((jsonObj.get("HostsFile") != null && !jsonObj.get("HostsFile").isJsonNull()) && !jsonObj.get("HostsFile").isJsonPrimitive()) {
@@ -2401,7 +2614,7 @@ public class InspectContainerHostConfig implements Serializable {
       }
       // validate the optional field `IDMappings`
       if (jsonObj.get("IDMappings") != null && !jsonObj.get("IDMappings").isJsonNull()) {
-        InspectIDMappings.validateJsonElement(jsonObj.get("IDMappings"));
+          InspectIDMappings.validateJsonObject(jsonObj.getAsJsonObject("IDMappings"));
       }
       if ((jsonObj.get("IntelRdtClosID") != null && !jsonObj.get("IntelRdtClosID").isJsonNull()) && !jsonObj.get("IntelRdtClosID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `IntelRdtClosID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IntelRdtClosID").toString()));
@@ -2412,13 +2625,13 @@ public class InspectContainerHostConfig implements Serializable {
       if ((jsonObj.get("Isolation") != null && !jsonObj.get("Isolation").isJsonNull()) && !jsonObj.get("Isolation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Isolation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Isolation").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull()) && !jsonObj.get("Links").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
       }
       // validate the optional field `LogConfig`
       if (jsonObj.get("LogConfig") != null && !jsonObj.get("LogConfig").isJsonNull()) {
-        InspectLogConfig.validateJsonElement(jsonObj.get("LogConfig"));
+          InspectLogConfig.validateJsonObject(jsonObj.getAsJsonObject("LogConfig"));
       }
       if ((jsonObj.get("NetworkMode") != null && !jsonObj.get("NetworkMode").isJsonNull()) && !jsonObj.get("NetworkMode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `NetworkMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkMode").toString()));
@@ -2428,13 +2641,13 @@ public class InspectContainerHostConfig implements Serializable {
       }
       // validate the optional field `RestartPolicy`
       if (jsonObj.get("RestartPolicy") != null && !jsonObj.get("RestartPolicy").isJsonNull()) {
-        InspectRestartPolicy.validateJsonElement(jsonObj.get("RestartPolicy"));
+          InspectRestartPolicy.validateJsonObject(jsonObj.getAsJsonObject("RestartPolicy"));
       }
       if ((jsonObj.get("Runtime") != null && !jsonObj.get("Runtime").isJsonNull()) && !jsonObj.get("Runtime").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Runtime").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull() && !jsonObj.get("SecurityOpt").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull()) && !jsonObj.get("SecurityOpt").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `SecurityOpt` to be an array in the JSON string but got `%s`", jsonObj.get("SecurityOpt").toString()));
       }
       if ((jsonObj.get("UTSMode") != null && !jsonObj.get("UTSMode").isJsonNull()) && !jsonObj.get("UTSMode").isJsonPrimitive()) {
@@ -2450,7 +2663,7 @@ public class InspectContainerHostConfig implements Serializable {
 
           // validate the optional field `Ulimits` (array)
           for (int i = 0; i < jsonArrayulimits.size(); i++) {
-            InspectUlimit.validateJsonElement(jsonArrayulimits.get(i));
+              InspectUlimit.validateJsonObject(jsonArrayulimits.get(i).getAsJsonObject());
           };
         }
       }
@@ -2460,8 +2673,8 @@ public class InspectContainerHostConfig implements Serializable {
       if ((jsonObj.get("VolumeDriver") != null && !jsonObj.get("VolumeDriver").isJsonNull()) && !jsonObj.get("VolumeDriver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `VolumeDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeDriver").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull() && !jsonObj.get("VolumesFrom").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull()) && !jsonObj.get("VolumesFrom").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `VolumesFrom` to be an array in the JSON string but got `%s`", jsonObj.get("VolumesFrom").toString()));
       }
   }
@@ -2486,31 +2699,31 @@ public class InspectContainerHostConfig implements Serializable {
 
            @Override
            public InspectContainerHostConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of InspectContainerHostConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectContainerHostConfig
-   * @throws IOException if the JSON string is invalid with respect to InspectContainerHostConfig
-   */
+    /**
+     * Create an instance of InspectContainerHostConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectContainerHostConfig
+     * @throws IOException if the JSON string is invalid with respect to InspectContainerHostConfig
+     */
   public static InspectContainerHostConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerHostConfig.class);
   }
 
-  /**
-   * Convert an instance of InspectContainerHostConfig to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of InspectContainerHostConfig to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

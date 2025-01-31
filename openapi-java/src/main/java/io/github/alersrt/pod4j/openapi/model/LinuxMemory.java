@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * LinuxMemory for Linux cgroup &#39;memory&#39; resource management
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "LinuxMemory for Linux cgroup 'memory' resource management")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LinuxMemory implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -96,19 +95,22 @@ public class LinuxMemory implements Serializable {
   }
 
   public LinuxMemory checkBeforeUpdate(Boolean checkBeforeUpdate) {
-    this.checkBeforeUpdate = checkBeforeUpdate;
+
+      this.checkBeforeUpdate = checkBeforeUpdate;
     return this;
   }
 
-  /**
+    /**
    * CheckBeforeUpdate enables checking if a new memory limit is lower than the current usage during update, and if so, rejecting the new limit.
    * @return checkBeforeUpdate
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CheckBeforeUpdate enables checking if a new memory limit is lower than the current usage during update, and if so, rejecting the new limit.")
 
   public Boolean getCheckBeforeUpdate() {
     return checkBeforeUpdate;
   }
+
 
   public void setCheckBeforeUpdate(Boolean checkBeforeUpdate) {
     this.checkBeforeUpdate = checkBeforeUpdate;
@@ -116,19 +118,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory disableOOMKiller(Boolean disableOOMKiller) {
-    this.disableOOMKiller = disableOOMKiller;
+
+      this.disableOOMKiller = disableOOMKiller;
     return this;
   }
 
-  /**
+    /**
    * DisableOOMKiller disables the OOM killer for out of memory conditions
    * @return disableOOMKiller
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DisableOOMKiller disables the OOM killer for out of memory conditions")
 
   public Boolean getDisableOOMKiller() {
     return disableOOMKiller;
   }
+
 
   public void setDisableOOMKiller(Boolean disableOOMKiller) {
     this.disableOOMKiller = disableOOMKiller;
@@ -136,19 +141,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory kernel(Long kernel) {
-    this.kernel = kernel;
+
+      this.kernel = kernel;
     return this;
   }
 
-  /**
+    /**
    * Kernel memory limit (in bytes).  Deprecated: kernel-memory limits are not supported in cgroups v2, and were obsoleted in [kernel v5.4]. This field should no longer be used, as it may be ignored by runtimes.  [kernel v5.4]: https://github.com/torvalds/linux/commit/0158115f702b0ba208ab0
    * @return kernel
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Kernel memory limit (in bytes).  Deprecated: kernel-memory limits are not supported in cgroups v2, and were obsoleted in [kernel v5.4]. This field should no longer be used, as it may be ignored by runtimes.  [kernel v5.4]: https://github.com/torvalds/linux/commit/0158115f702b0ba208ab0")
 
   public Long getKernel() {
     return kernel;
   }
+
 
   public void setKernel(Long kernel) {
     this.kernel = kernel;
@@ -156,19 +164,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory kernelTCP(Long kernelTCP) {
-    this.kernelTCP = kernelTCP;
+
+      this.kernelTCP = kernelTCP;
     return this;
   }
 
-  /**
+    /**
    * Kernel memory limit for tcp (in bytes)
    * @return kernelTCP
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Kernel memory limit for tcp (in bytes)")
 
   public Long getKernelTCP() {
     return kernelTCP;
   }
+
 
   public void setKernelTCP(Long kernelTCP) {
     this.kernelTCP = kernelTCP;
@@ -176,19 +187,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory limit(Long limit) {
-    this.limit = limit;
+
+      this.limit = limit;
     return this;
   }
 
-  /**
+    /**
    * Memory limit (in bytes).
    * @return limit
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Memory limit (in bytes).")
 
   public Long getLimit() {
     return limit;
   }
+
 
   public void setLimit(Long limit) {
     this.limit = limit;
@@ -196,19 +210,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory reservation(Long reservation) {
-    this.reservation = reservation;
+
+      this.reservation = reservation;
     return this;
   }
 
-  /**
+    /**
    * Memory reservation or soft_limit (in bytes).
    * @return reservation
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Memory reservation or soft_limit (in bytes).")
 
   public Long getReservation() {
     return reservation;
   }
+
 
   public void setReservation(Long reservation) {
     this.reservation = reservation;
@@ -216,19 +233,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory swap(Long swap) {
-    this.swap = swap;
+
+      this.swap = swap;
     return this;
   }
 
-  /**
+    /**
    * Total memory limit (memory + swap).
    * @return swap
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Total memory limit (memory + swap).")
 
   public Long getSwap() {
     return swap;
   }
+
 
   public void setSwap(Long swap) {
     this.swap = swap;
@@ -236,19 +256,22 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory swappiness(Integer swappiness) {
-    this.swappiness = swappiness;
+
+      this.swappiness = swappiness;
     return this;
   }
 
-  /**
+    /**
    * How aggressive the kernel will swap memory pages.
    * @return swappiness
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "How aggressive the kernel will swap memory pages.")
 
   public Integer getSwappiness() {
     return swappiness;
   }
+
 
   public void setSwappiness(Integer swappiness) {
     this.swappiness = swappiness;
@@ -256,21 +279,24 @@ public class LinuxMemory implements Serializable {
 
 
   public LinuxMemory useHierarchy(Boolean useHierarchy) {
-    this.useHierarchy = useHierarchy;
+
+      this.useHierarchy = useHierarchy;
     return this;
   }
 
-  /**
+    /**
    * Enables hierarchical memory accounting
    * @return useHierarchy
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Enables hierarchical memory accounting")
 
   public Boolean getUseHierarchy() {
     return useHierarchy;
   }
 
-  public void setUseHierarchy(Boolean useHierarchy) {
+
+    public void setUseHierarchy(Boolean useHierarchy) {
     this.useHierarchy = useHierarchy;
   }
 
@@ -350,27 +376,28 @@ public class LinuxMemory implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxMemory
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxMemory.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxMemory is not found in the empty JSON string", LinuxMemory.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to LinuxMemory
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (LinuxMemory.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxMemory is not found in the empty JSON string", LinuxMemory.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!LinuxMemory.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxMemory` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxMemory` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -393,31 +420,31 @@ public class LinuxMemory implements Serializable {
 
            @Override
            public LinuxMemory read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of LinuxMemory given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxMemory
-   * @throws IOException if the JSON string is invalid with respect to LinuxMemory
-   */
+    /**
+     * Create an instance of LinuxMemory given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxMemory
+     * @throws IOException if the JSON string is invalid with respect to LinuxMemory
+     */
   public static LinuxMemory fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxMemory.class);
   }
 
-  /**
-   * Convert an instance of LinuxMemory to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of LinuxMemory to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

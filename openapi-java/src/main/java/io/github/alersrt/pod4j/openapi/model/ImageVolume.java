@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ImageVolume is a volume based on a container image.  The container image is first mounted on the host and is then bind-mounted into the container.  An ImageVolume is always mounted read-only.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "ImageVolume is a volume based on a container image.  The container image is first mounted on the host and is then bind-mounted into the container.  An ImageVolume is always mounted read-only.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ImageVolume implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -76,19 +75,22 @@ public class ImageVolume implements Serializable {
   }
 
   public ImageVolume destination(String destination) {
-    this.destination = destination;
+
+      this.destination = destination;
     return this;
   }
 
-  /**
+    /**
    * Destination is the absolute path of the mount in the container.
    * @return destination
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Destination is the absolute path of the mount in the container.")
 
   public String getDestination() {
     return destination;
   }
+
 
   public void setDestination(String destination) {
     this.destination = destination;
@@ -96,19 +98,22 @@ public class ImageVolume implements Serializable {
 
 
   public ImageVolume readWrite(Boolean readWrite) {
-    this.readWrite = readWrite;
+
+      this.readWrite = readWrite;
     return this;
   }
 
-  /**
+    /**
    * ReadWrite sets the volume writable.
    * @return readWrite
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ReadWrite sets the volume writable.")
 
   public Boolean getReadWrite() {
     return readWrite;
   }
+
 
   public void setReadWrite(Boolean readWrite) {
     this.readWrite = readWrite;
@@ -116,19 +121,22 @@ public class ImageVolume implements Serializable {
 
 
   public ImageVolume source(String source) {
-    this.source = source;
+
+      this.source = source;
     return this;
   }
 
-  /**
+    /**
    * Source is the source of the image volume.  The image can be referred to by name and by ID.
    * @return source
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Source is the source of the image volume.  The image can be referred to by name and by ID.")
 
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;
@@ -136,19 +144,22 @@ public class ImageVolume implements Serializable {
 
 
   public ImageVolume subPath(String subPath) {
-    this.subPath = subPath;
+
+      this.subPath = subPath;
     return this;
   }
 
-  /**
+    /**
    * SubPath mounts a particular path within the image. If empty, the whole image is mounted.
    * @return subPath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "SubPath mounts a particular path within the image. If empty, the whole image is mounted.")
 
   public String getSubPath() {
     return subPath;
   }
+
 
   public void setSubPath(String subPath) {
     this.subPath = subPath;
@@ -215,27 +226,28 @@ public class ImageVolume implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageVolume
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ImageVolume
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ImageVolume.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ImageVolume is not found in the empty JSON string", ImageVolume.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ImageVolume.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageVolume` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageVolume` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
       }
@@ -267,31 +279,31 @@ public class ImageVolume implements Serializable {
 
            @Override
            public ImageVolume read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ImageVolume given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageVolume
-   * @throws IOException if the JSON string is invalid with respect to ImageVolume
-   */
+    /**
+     * Create an instance of ImageVolume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageVolume
+     * @throws IOException if the JSON string is invalid with respect to ImageVolume
+     */
   public static ImageVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageVolume.class);
   }
 
-  /**
-   * Convert an instance of ImageVolume to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ImageVolume to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

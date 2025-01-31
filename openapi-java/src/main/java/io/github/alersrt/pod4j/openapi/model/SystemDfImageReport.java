@@ -14,17 +14,19 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +38,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,7 +51,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SystemDfImageReport describes an image for use with df
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "SystemDfImageReport describes an image for use with df")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SystemDfImageReport implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -93,19 +92,22 @@ public class SystemDfImageReport implements Serializable {
   }
 
   public SystemDfImageReport containers(Long containers) {
-    this.containers = containers;
+
+      this.containers = containers;
     return this;
   }
 
-  /**
+    /**
    * Get containers
    * @return containers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getContainers() {
     return containers;
   }
+
 
   public void setContainers(Long containers) {
     this.containers = containers;
@@ -113,20 +115,23 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport created(OffsetDateTime created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Get created
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreated() {
     return created;
   }
+
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
@@ -134,19 +139,22 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport imageID(String imageID) {
-    this.imageID = imageID;
+
+      this.imageID = imageID;
     return this;
   }
 
-  /**
+    /**
    * Get imageID
    * @return imageID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImageID() {
     return imageID;
   }
+
 
   public void setImageID(String imageID) {
     this.imageID = imageID;
@@ -154,19 +162,22 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport repository(String repository) {
-    this.repository = repository;
+
+      this.repository = repository;
     return this;
   }
 
-  /**
+    /**
    * Get repository
    * @return repository
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getRepository() {
     return repository;
   }
+
 
   public void setRepository(String repository) {
     this.repository = repository;
@@ -174,19 +185,22 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport sharedSize(Long sharedSize) {
-    this.sharedSize = sharedSize;
+
+      this.sharedSize = sharedSize;
     return this;
   }
 
-  /**
+    /**
    * Get sharedSize
    * @return sharedSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSharedSize() {
     return sharedSize;
   }
+
 
   public void setSharedSize(Long sharedSize) {
     this.sharedSize = sharedSize;
@@ -194,19 +208,22 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport size(Long size) {
-    this.size = size;
+
+      this.size = size;
     return this;
   }
 
-  /**
+    /**
    * Get size
    * @return size
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSize() {
     return size;
   }
+
 
   public void setSize(Long size) {
     this.size = size;
@@ -214,19 +231,22 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport tag(String tag) {
-    this.tag = tag;
+
+      this.tag = tag;
     return this;
   }
 
-  /**
+    /**
    * Get tag
    * @return tag
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getTag() {
     return tag;
   }
+
 
   public void setTag(String tag) {
     this.tag = tag;
@@ -234,21 +254,24 @@ public class SystemDfImageReport implements Serializable {
 
 
   public SystemDfImageReport uniqueSize(Long uniqueSize) {
-    this.uniqueSize = uniqueSize;
+
+      this.uniqueSize = uniqueSize;
     return this;
   }
 
-  /**
+    /**
    * Get uniqueSize
    * @return uniqueSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getUniqueSize() {
     return uniqueSize;
   }
 
-  public void setUniqueSize(Long uniqueSize) {
+
+    public void setUniqueSize(Long uniqueSize) {
     this.uniqueSize = uniqueSize;
   }
 
@@ -325,27 +348,28 @@ public class SystemDfImageReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SystemDfImageReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SystemDfImageReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfImageReport is not found in the empty JSON string", SystemDfImageReport.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to SystemDfImageReport
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (SystemDfImageReport.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfImageReport is not found in the empty JSON string", SystemDfImageReport.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!SystemDfImageReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfImageReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfImageReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ImageID") != null && !jsonObj.get("ImageID").isJsonNull()) && !jsonObj.get("ImageID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ImageID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageID").toString()));
       }
@@ -377,31 +401,31 @@ public class SystemDfImageReport implements Serializable {
 
            @Override
            public SystemDfImageReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of SystemDfImageReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SystemDfImageReport
-   * @throws IOException if the JSON string is invalid with respect to SystemDfImageReport
-   */
+    /**
+     * Create an instance of SystemDfImageReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemDfImageReport
+     * @throws IOException if the JSON string is invalid with respect to SystemDfImageReport
+     */
   public static SystemDfImageReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemDfImageReport.class);
   }
 
-  /**
-   * Convert an instance of SystemDfImageReport to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of SystemDfImageReport to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

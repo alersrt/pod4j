@@ -14,21 +14,23 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,16 +42,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -57,7 +55,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * It should hold only portable information about the container. Here, \&quot;portable\&quot; means \&quot;independent from the host we are running on\&quot;. Non-portable information *should* appear in HostConfig. All fields added to this struct must be marked &#x60;omitempty&#x60; to keep getting predictable hashes from the old &#x60;v1Compatibility&#x60; configuration.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "It should hold only portable information about the container. Here, \"portable\" means \"independent from the host we are running on\". Non-portable information *should* appear in HostConfig. All fields added to this struct must be marked `omitempty` to keep getting predictable hashes from the old `v1Compatibility` configuration.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Config implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -79,7 +78,7 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_CMD = "Cmd";
   @SerializedName(SERIALIZED_NAME_CMD)
-  private List<String> cmd = new ArrayList<>();
+  private List<String> cmd = null;
 
   public static final String SERIALIZED_NAME_DOMAINNAME = "Domainname";
   @SerializedName(SERIALIZED_NAME_DOMAINNAME)
@@ -87,15 +86,15 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
   @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
-  private List<String> entrypoint = new ArrayList<>();
+  private List<String> entrypoint = null;
 
   public static final String SERIALIZED_NAME_ENV = "Env";
   @SerializedName(SERIALIZED_NAME_ENV)
-  private List<String> env = new ArrayList<>();
+  private List<String> env = null;
 
   public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
   @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
-  private Map<String, Object> exposedPorts = new HashMap<>();
+  private Map<String, Object> exposedPorts = null;
 
   public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
   @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
@@ -111,7 +110,7 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "Labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
   @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
@@ -123,7 +122,7 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_ON_BUILD = "OnBuild";
   @SerializedName(SERIALIZED_NAME_ON_BUILD)
-  private List<String> onBuild = new ArrayList<>();
+  private List<String> onBuild = null;
 
   public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
   @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
@@ -131,7 +130,7 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_SHELL = "Shell";
   @SerializedName(SERIALIZED_NAME_SHELL)
-  private List<String> shell = new ArrayList<>();
+  private List<String> shell = null;
 
   public static final String SERIALIZED_NAME_STDIN_ONCE = "StdinOnce";
   @SerializedName(SERIALIZED_NAME_STDIN_ONCE)
@@ -155,7 +154,7 @@ public class Config implements Serializable {
 
   public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
   @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private Map<String, Object> volumes = new HashMap<>();
+  private Map<String, Object> volumes = null;
 
   public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
   @SerializedName(SERIALIZED_NAME_WORKING_DIR)
@@ -165,19 +164,22 @@ public class Config implements Serializable {
   }
 
   public Config argsEscaped(Boolean argsEscaped) {
-    this.argsEscaped = argsEscaped;
+
+      this.argsEscaped = argsEscaped;
     return this;
   }
 
-  /**
+    /**
    * Get argsEscaped
    * @return argsEscaped
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getArgsEscaped() {
     return argsEscaped;
   }
+
 
   public void setArgsEscaped(Boolean argsEscaped) {
     this.argsEscaped = argsEscaped;
@@ -185,19 +187,22 @@ public class Config implements Serializable {
 
 
   public Config attachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
+
+      this.attachStderr = attachStderr;
     return this;
   }
 
-  /**
+    /**
    * Get attachStderr
    * @return attachStderr
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getAttachStderr() {
     return attachStderr;
   }
+
 
   public void setAttachStderr(Boolean attachStderr) {
     this.attachStderr = attachStderr;
@@ -205,19 +210,22 @@ public class Config implements Serializable {
 
 
   public Config attachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
+
+      this.attachStdin = attachStdin;
     return this;
   }
 
-  /**
+    /**
    * Get attachStdin
    * @return attachStdin
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getAttachStdin() {
     return attachStdin;
   }
+
 
   public void setAttachStdin(Boolean attachStdin) {
     this.attachStdin = attachStdin;
@@ -225,19 +233,22 @@ public class Config implements Serializable {
 
 
   public Config attachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
+
+      this.attachStdout = attachStdout;
     return this;
   }
 
-  /**
+    /**
    * Get attachStdout
    * @return attachStdout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getAttachStdout() {
     return attachStdout;
   }
+
 
   public void setAttachStdout(Boolean attachStdout) {
     this.attachStdout = attachStdout;
@@ -245,7 +256,8 @@ public class Config implements Serializable {
 
 
   public Config cmd(List<String> cmd) {
-    this.cmd = cmd;
+
+      this.cmd = cmd;
     return this;
   }
 
@@ -257,15 +269,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * We need to override the json decoder to accept both options.
    * @return cmd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
 
   public List<String> getCmd() {
     return cmd;
   }
+
 
   public void setCmd(List<String> cmd) {
     this.cmd = cmd;
@@ -273,19 +287,22 @@ public class Config implements Serializable {
 
 
   public Config domainname(String domainname) {
-    this.domainname = domainname;
+
+      this.domainname = domainname;
     return this;
   }
 
-  /**
+    /**
    * Get domainname
    * @return domainname
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getDomainname() {
     return domainname;
   }
+
 
   public void setDomainname(String domainname) {
     this.domainname = domainname;
@@ -293,7 +310,8 @@ public class Config implements Serializable {
 
 
   public Config entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
+
+      this.entrypoint = entrypoint;
     return this;
   }
 
@@ -305,15 +323,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * We need to override the json decoder to accept both options.
    * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
 
   public List<String> getEntrypoint() {
     return entrypoint;
   }
+
 
   public void setEntrypoint(List<String> entrypoint) {
     this.entrypoint = entrypoint;
@@ -321,7 +341,8 @@ public class Config implements Serializable {
 
 
   public Config env(List<String> env) {
-    this.env = env;
+
+      this.env = env;
     return this;
   }
 
@@ -333,15 +354,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get env
    * @return env
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getEnv() {
     return env;
   }
+
 
   public void setEnv(List<String> env) {
     this.env = env;
@@ -349,7 +372,8 @@ public class Config implements Serializable {
 
 
   public Config exposedPorts(Map<String, Object> exposedPorts) {
-    this.exposedPorts = exposedPorts;
+
+      this.exposedPorts = exposedPorts;
     return this;
   }
 
@@ -361,15 +385,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * PortSet is a collection of structs indexed by Port
    * @return exposedPorts
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PortSet is a collection of structs indexed by Port")
 
   public Map<String, Object> getExposedPorts() {
     return exposedPorts;
   }
+
 
   public void setExposedPorts(Map<String, Object> exposedPorts) {
     this.exposedPorts = exposedPorts;
@@ -377,20 +403,23 @@ public class Config implements Serializable {
 
 
   public Config healthcheck(HealthcheckConfig healthcheck) {
-    this.healthcheck = healthcheck;
+
+      this.healthcheck = healthcheck;
     return this;
   }
 
-  /**
+    /**
    * Get healthcheck
    * @return healthcheck
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public HealthcheckConfig getHealthcheck() {
     return healthcheck;
   }
+
 
   public void setHealthcheck(HealthcheckConfig healthcheck) {
     this.healthcheck = healthcheck;
@@ -398,19 +427,22 @@ public class Config implements Serializable {
 
 
   public Config hostname(String hostname) {
-    this.hostname = hostname;
+
+      this.hostname = hostname;
     return this;
   }
 
-  /**
+    /**
    * Get hostname
    * @return hostname
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getHostname() {
     return hostname;
   }
+
 
   public void setHostname(String hostname) {
     this.hostname = hostname;
@@ -418,19 +450,22 @@ public class Config implements Serializable {
 
 
   public Config image(String image) {
-    this.image = image;
+
+      this.image = image;
     return this;
   }
 
-  /**
+    /**
    * Get image
    * @return image
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImage() {
     return image;
   }
+
 
   public void setImage(String image) {
     this.image = image;
@@ -438,7 +473,8 @@ public class Config implements Serializable {
 
 
   public Config labels(Map<String, String> labels) {
-    this.labels = labels;
+
+      this.labels = labels;
     return this;
   }
 
@@ -450,15 +486,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get labels
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -466,19 +504,22 @@ public class Config implements Serializable {
 
 
   public Config macAddress(String macAddress) {
-    this.macAddress = macAddress;
+
+      this.macAddress = macAddress;
     return this;
   }
 
-  /**
+    /**
    * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
    * @return macAddress
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.")
 
   public String getMacAddress() {
     return macAddress;
   }
+
 
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
@@ -486,19 +527,22 @@ public class Config implements Serializable {
 
 
   public Config networkDisabled(Boolean networkDisabled) {
-    this.networkDisabled = networkDisabled;
+
+      this.networkDisabled = networkDisabled;
     return this;
   }
 
-  /**
+    /**
    * Get networkDisabled
    * @return networkDisabled
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getNetworkDisabled() {
     return networkDisabled;
   }
+
 
   public void setNetworkDisabled(Boolean networkDisabled) {
     this.networkDisabled = networkDisabled;
@@ -506,7 +550,8 @@ public class Config implements Serializable {
 
 
   public Config onBuild(List<String> onBuild) {
-    this.onBuild = onBuild;
+
+      this.onBuild = onBuild;
     return this;
   }
 
@@ -518,15 +563,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get onBuild
    * @return onBuild
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getOnBuild() {
     return onBuild;
   }
+
 
   public void setOnBuild(List<String> onBuild) {
     this.onBuild = onBuild;
@@ -534,19 +581,22 @@ public class Config implements Serializable {
 
 
   public Config openStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
+
+      this.openStdin = openStdin;
     return this;
   }
 
-  /**
+    /**
    * Get openStdin
    * @return openStdin
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getOpenStdin() {
     return openStdin;
   }
+
 
   public void setOpenStdin(Boolean openStdin) {
     this.openStdin = openStdin;
@@ -554,7 +604,8 @@ public class Config implements Serializable {
 
 
   public Config shell(List<String> shell) {
-    this.shell = shell;
+
+      this.shell = shell;
     return this;
   }
 
@@ -566,15 +617,17 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * We need to override the json decoder to accept both options.
    * @return shell
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
 
   public List<String> getShell() {
     return shell;
   }
+
 
   public void setShell(List<String> shell) {
     this.shell = shell;
@@ -582,19 +635,22 @@ public class Config implements Serializable {
 
 
   public Config stdinOnce(Boolean stdinOnce) {
-    this.stdinOnce = stdinOnce;
+
+      this.stdinOnce = stdinOnce;
     return this;
   }
 
-  /**
+    /**
    * Get stdinOnce
    * @return stdinOnce
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getStdinOnce() {
     return stdinOnce;
   }
+
 
   public void setStdinOnce(Boolean stdinOnce) {
     this.stdinOnce = stdinOnce;
@@ -602,19 +658,22 @@ public class Config implements Serializable {
 
 
   public Config stopSignal(String stopSignal) {
-    this.stopSignal = stopSignal;
+
+      this.stopSignal = stopSignal;
     return this;
   }
 
-  /**
+    /**
    * Get stopSignal
    * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getStopSignal() {
     return stopSignal;
   }
+
 
   public void setStopSignal(String stopSignal) {
     this.stopSignal = stopSignal;
@@ -622,19 +681,22 @@ public class Config implements Serializable {
 
 
   public Config stopTimeout(Long stopTimeout) {
-    this.stopTimeout = stopTimeout;
+
+      this.stopTimeout = stopTimeout;
     return this;
   }
 
-  /**
+    /**
    * Get stopTimeout
    * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getStopTimeout() {
     return stopTimeout;
   }
+
 
   public void setStopTimeout(Long stopTimeout) {
     this.stopTimeout = stopTimeout;
@@ -642,19 +704,22 @@ public class Config implements Serializable {
 
 
   public Config tty(Boolean tty) {
-    this.tty = tty;
+
+      this.tty = tty;
     return this;
   }
 
-  /**
+    /**
    * Get tty
    * @return tty
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getTty() {
     return tty;
   }
+
 
   public void setTty(Boolean tty) {
     this.tty = tty;
@@ -662,27 +727,31 @@ public class Config implements Serializable {
 
 
   public Config user(String user) {
-    this.user = user;
+
+      this.user = user;
     return this;
   }
 
-  /**
+    /**
    * Get user
    * @return user
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getUser() {
     return user;
   }
 
-  public void setUser(String user) {
+
+    public void setUser(String user) {
     this.user = user;
   }
 
 
   public Config volumes(Map<String, Object> volumes) {
-    this.volumes = volumes;
+
+      this.volumes = volumes;
     return this;
   }
 
@@ -694,37 +763,42 @@ public class Config implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get volumes
    * @return volumes
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, Object> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(Map<String, Object> volumes) {
+
+    public void setVolumes(Map<String, Object> volumes) {
     this.volumes = volumes;
   }
 
 
   public Config workingDir(String workingDir) {
-    this.workingDir = workingDir;
+
+      this.workingDir = workingDir;
     return this;
   }
 
-  /**
+    /**
    * Get workingDir
    * @return workingDir
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getWorkingDir() {
     return workingDir;
   }
 
-  public void setWorkingDir(String workingDir) {
+
+    public void setWorkingDir(String workingDir) {
     this.workingDir = workingDir;
   }
 
@@ -852,45 +926,46 @@ public class Config implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Config
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Config.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Config is not found in the empty JSON string", Config.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to Config
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (Config.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Config is not found in the empty JSON string", Config.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!Config.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Config` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Config` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull()) && !jsonObj.get("Cmd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
       }
       if ((jsonObj.get("Domainname") != null && !jsonObj.get("Domainname").isJsonNull()) && !jsonObj.get("Domainname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Domainname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Domainname").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull() && !jsonObj.get("Entrypoint").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull()) && !jsonObj.get("Entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull()) && !jsonObj.get("Env").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
       }
       // validate the optional field `Healthcheck`
       if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
-        HealthcheckConfig.validateJsonElement(jsonObj.get("Healthcheck"));
+          HealthcheckConfig.validateJsonObject(jsonObj.getAsJsonObject("Healthcheck"));
       }
       if ((jsonObj.get("Hostname") != null && !jsonObj.get("Hostname").isJsonNull()) && !jsonObj.get("Hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Hostname").toString()));
@@ -901,12 +976,12 @@ public class Config implements Serializable {
       if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("OnBuild") != null && !jsonObj.get("OnBuild").isJsonNull() && !jsonObj.get("OnBuild").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("OnBuild") != null && !jsonObj.get("OnBuild").isJsonNull()) && !jsonObj.get("OnBuild").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `OnBuild` to be an array in the JSON string but got `%s`", jsonObj.get("OnBuild").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Shell") != null && !jsonObj.get("Shell").isJsonNull() && !jsonObj.get("Shell").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Shell") != null && !jsonObj.get("Shell").isJsonNull()) && !jsonObj.get("Shell").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Shell` to be an array in the JSON string but got `%s`", jsonObj.get("Shell").toString()));
       }
       if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
@@ -940,31 +1015,31 @@ public class Config implements Serializable {
 
            @Override
            public Config read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of Config given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Config
-   * @throws IOException if the JSON string is invalid with respect to Config
-   */
+    /**
+     * Create an instance of Config given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Config
+     * @throws IOException if the JSON string is invalid with respect to Config
+     */
   public static Config fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Config.class);
   }
 
-  /**
-   * Convert an instance of Config to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of Config to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

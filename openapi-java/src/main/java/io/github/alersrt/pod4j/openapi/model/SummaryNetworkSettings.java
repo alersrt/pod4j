@@ -14,19 +14,21 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +40,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -55,19 +53,21 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SummaryNetworkSettings provides a summary of container&#39;s networks in /containers/json
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "SummaryNetworkSettings provides a summary of container's networks in /containers/json")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SummaryNetworkSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NETWORKS = "Networks";
   @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private Map<String, EndpointSettings> networks = new HashMap<>();
+  private Map<String, EndpointSettings> networks = null;
 
   public SummaryNetworkSettings() {
   }
 
   public SummaryNetworkSettings networks(Map<String, EndpointSettings> networks) {
-    this.networks = networks;
+
+      this.networks = networks;
     return this;
   }
 
@@ -79,16 +79,18 @@ public class SummaryNetworkSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get networks
    * @return networks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Map<String, EndpointSettings> getNetworks() {
     return networks;
   }
+
 
   public void setNetworks(Map<String, EndpointSettings> networks) {
     this.networks = networks;
@@ -146,27 +148,28 @@ public class SummaryNetworkSettings implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SummaryNetworkSettings
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SummaryNetworkSettings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to SummaryNetworkSettings
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (SummaryNetworkSettings.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SummaryNetworkSettings is not found in the empty JSON string", SummaryNetworkSettings.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!SummaryNetworkSettings.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SummaryNetworkSettings` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SummaryNetworkSettings` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -189,31 +192,31 @@ public class SummaryNetworkSettings implements Serializable {
 
            @Override
            public SummaryNetworkSettings read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of SummaryNetworkSettings given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SummaryNetworkSettings
-   * @throws IOException if the JSON string is invalid with respect to SummaryNetworkSettings
-   */
+    /**
+     * Create an instance of SummaryNetworkSettings given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SummaryNetworkSettings
+     * @throws IOException if the JSON string is invalid with respect to SummaryNetworkSettings
+  */
   public static SummaryNetworkSettings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SummaryNetworkSettings.class);
   }
 
-  /**
-   * Convert an instance of SummaryNetworkSettings to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of SummaryNetworkSettings to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

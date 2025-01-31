@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -21,13 +22,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,16 +41,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -56,34 +54,35 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * UpdateContainerDevicesLimits
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateContainerDevicesLimits implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE = "BlkIOWeightDevice";
   @SerializedName(SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE)
-  private List<@Valid WeightDevice> blkIOWeightDevice = new ArrayList<>();
+  private List<WeightDevice> blkIOWeightDevice = null;
 
   public static final String SERIALIZED_NAME_DEVICE_READ_B_PS = "DeviceReadBPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_READ_B_PS)
-  private List<@Valid ThrottleDevice> deviceReadBPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceReadBPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_READ_I_O_PS = "DeviceReadIOPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_READ_I_O_PS)
-  private List<@Valid ThrottleDevice> deviceReadIOPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceReadIOPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_WRITE_B_PS = "DeviceWriteBPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_B_PS)
-  private List<@Valid ThrottleDevice> deviceWriteBPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceWriteBPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_WRITE_I_O_PS = "DeviceWriteIOPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_I_O_PS)
-  private List<@Valid ThrottleDevice> deviceWriteIOPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceWriteIOPs = null;
 
   public UpdateContainerDevicesLimits() {
   }
 
-  public UpdateContainerDevicesLimits blkIOWeightDevice(List<@Valid WeightDevice> blkIOWeightDevice) {
+    public UpdateContainerDevicesLimits blkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
+    
     this.blkIOWeightDevice = blkIOWeightDevice;
     return this;
   }
@@ -96,23 +95,26 @@ public class UpdateContainerDevicesLimits implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Block IO weight (relative device weight) in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Weight\&quot;: weight}]&#x60;&#x60;&#x60;
    * @return blkIOWeightDevice
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Block IO weight (relative device weight) in the form: ```[{\"Path\": \"device_path\", \"Weight\": weight}]```")
 
-  public List<@Valid WeightDevice> getBlkIOWeightDevice() {
+    public List<WeightDevice> getBlkIOWeightDevice() {
     return blkIOWeightDevice;
   }
 
-  public void setBlkIOWeightDevice(List<@Valid WeightDevice> blkIOWeightDevice) {
+
+    public void setBlkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
     this.blkIOWeightDevice = blkIOWeightDevice;
   }
 
 
-  public UpdateContainerDevicesLimits deviceReadBPs(List<@Valid ThrottleDevice> deviceReadBPs) {
+    public UpdateContainerDevicesLimits deviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
+    
     this.deviceReadBPs = deviceReadBPs;
     return this;
   }
@@ -125,23 +127,26 @@ public class UpdateContainerDevicesLimits implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit read rate (bytes per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceReadBPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit read rate (bytes per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceReadBPs() {
+    public List<ThrottleDevice> getDeviceReadBPs() {
     return deviceReadBPs;
   }
 
-  public void setDeviceReadBPs(List<@Valid ThrottleDevice> deviceReadBPs) {
+
+    public void setDeviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
     this.deviceReadBPs = deviceReadBPs;
   }
 
 
-  public UpdateContainerDevicesLimits deviceReadIOPs(List<@Valid ThrottleDevice> deviceReadIOPs) {
+    public UpdateContainerDevicesLimits deviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
+    
     this.deviceReadIOPs = deviceReadIOPs;
     return this;
   }
@@ -154,23 +159,26 @@ public class UpdateContainerDevicesLimits implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit read rate (IO per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceReadIOPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit read rate (IO per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceReadIOPs() {
+    public List<ThrottleDevice> getDeviceReadIOPs() {
     return deviceReadIOPs;
   }
 
-  public void setDeviceReadIOPs(List<@Valid ThrottleDevice> deviceReadIOPs) {
+
+    public void setDeviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
     this.deviceReadIOPs = deviceReadIOPs;
   }
 
 
-  public UpdateContainerDevicesLimits deviceWriteBPs(List<@Valid ThrottleDevice> deviceWriteBPs) {
+    public UpdateContainerDevicesLimits deviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
+    
     this.deviceWriteBPs = deviceWriteBPs;
     return this;
   }
@@ -183,23 +191,26 @@ public class UpdateContainerDevicesLimits implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit write rate (bytes per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceWriteBPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit write rate (bytes per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceWriteBPs() {
+    public List<ThrottleDevice> getDeviceWriteBPs() {
     return deviceWriteBPs;
   }
 
-  public void setDeviceWriteBPs(List<@Valid ThrottleDevice> deviceWriteBPs) {
+
+    public void setDeviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
     this.deviceWriteBPs = deviceWriteBPs;
   }
 
 
-  public UpdateContainerDevicesLimits deviceWriteIOPs(List<@Valid ThrottleDevice> deviceWriteIOPs) {
+    public UpdateContainerDevicesLimits deviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
+    
     this.deviceWriteIOPs = deviceWriteIOPs;
     return this;
   }
@@ -212,18 +223,20 @@ public class UpdateContainerDevicesLimits implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit write rate (IO per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceWriteIOPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit write rate (IO per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceWriteIOPs() {
+    public List<ThrottleDevice> getDeviceWriteIOPs() {
     return deviceWriteIOPs;
   }
 
-  public void setDeviceWriteIOPs(List<@Valid ThrottleDevice> deviceWriteIOPs) {
+
+    public void setDeviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
     this.deviceWriteIOPs = deviceWriteIOPs;
   }
 
@@ -291,27 +304,28 @@ public class UpdateContainerDevicesLimits implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateContainerDevicesLimits
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!UpdateContainerDevicesLimits.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to UpdateContainerDevicesLimits
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (UpdateContainerDevicesLimits.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateContainerDevicesLimits is not found in the empty JSON string", UpdateContainerDevicesLimits.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!UpdateContainerDevicesLimits.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateContainerDevicesLimits` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateContainerDevicesLimits` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("BlkIOWeightDevice") != null && !jsonObj.get("BlkIOWeightDevice").isJsonNull()) {
         JsonArray jsonArrayblkIOWeightDevice = jsonObj.getAsJsonArray("BlkIOWeightDevice");
         if (jsonArrayblkIOWeightDevice != null) {
@@ -322,7 +336,7 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
           // validate the optional field `BlkIOWeightDevice` (array)
           for (int i = 0; i < jsonArrayblkIOWeightDevice.size(); i++) {
-            WeightDevice.validateJsonElement(jsonArrayblkIOWeightDevice.get(i));
+              WeightDevice.validateJsonObject(jsonArrayblkIOWeightDevice.get(i).getAsJsonObject());
           };
         }
       }
@@ -336,7 +350,7 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
           // validate the optional field `DeviceReadBPs` (array)
           for (int i = 0; i < jsonArraydeviceReadBPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceReadBPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceReadBPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -350,7 +364,7 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
           // validate the optional field `DeviceReadIOPs` (array)
           for (int i = 0; i < jsonArraydeviceReadIOPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceReadIOPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceReadIOPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -364,7 +378,7 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
           // validate the optional field `DeviceWriteBPs` (array)
           for (int i = 0; i < jsonArraydeviceWriteBPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceWriteBPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceWriteBPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -378,7 +392,7 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
           // validate the optional field `DeviceWriteIOPs` (array)
           for (int i = 0; i < jsonArraydeviceWriteIOPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceWriteIOPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceWriteIOPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -404,31 +418,31 @@ public class UpdateContainerDevicesLimits implements Serializable {
 
            @Override
            public UpdateContainerDevicesLimits read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of UpdateContainerDevicesLimits given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of UpdateContainerDevicesLimits
-   * @throws IOException if the JSON string is invalid with respect to UpdateContainerDevicesLimits
-   */
+    /**
+     * Create an instance of UpdateContainerDevicesLimits given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of UpdateContainerDevicesLimits
+     * @throws IOException if the JSON string is invalid with respect to UpdateContainerDevicesLimits
+  */
   public static UpdateContainerDevicesLimits fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateContainerDevicesLimits.class);
   }
 
-  /**
-   * Convert an instance of UpdateContainerDevicesLimits to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of UpdateContainerDevicesLimits to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

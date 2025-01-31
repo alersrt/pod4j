@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ContainerUpdateLibpod201Response;
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
@@ -40,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class SecretsCompatApi {
     private ApiClient localVarApiClient;
@@ -112,8 +112,7 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -126,7 +125,10 @@ public class SecretsCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call secretCreateValidateBeforeCall(SecretCreate create, final ApiCallback _callback) throws ApiException {
-        return secretCreateCall(create, _callback);
+
+
+        okhttp3.Call localVarCall = secretCreateCall(create, _callback);
+        return localVarCall;
 
     }
 
@@ -262,7 +264,7 @@ public class SecretsCompatApi {
 
         // create path and map variables
         String localVarPath = "/secrets/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -279,6 +281,7 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -291,12 +294,15 @@ public class SecretsCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call secretDeleteValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling secretDelete(Async)");
         }
 
-        return secretDeleteCall(name, _callback);
+
+        okhttp3.Call localVarCall = secretDeleteCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -420,7 +426,7 @@ public class SecretsCompatApi {
 
         // create path and map variables
         String localVarPath = "/secrets/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -437,6 +443,7 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -449,12 +456,15 @@ public class SecretsCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call secretInspectValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling secretInspect(Async)");
         }
 
-        return secretInspectCall(name, _callback);
+
+        okhttp3.Call localVarCall = secretInspectCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -602,6 +612,7 @@ public class SecretsCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -614,7 +625,10 @@ public class SecretsCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call secretListValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return secretListCall(filters, _callback);
+
+
+        okhttp3.Call localVarCall = secretListCall(filters, _callback);
+        return localVarCall;
 
     }
 

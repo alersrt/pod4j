@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,13 +52,13 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * RootFS
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RootFS implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_LAYERS = "Layers";
   @SerializedName(SERIALIZED_NAME_LAYERS)
-  private List<String> layers = new ArrayList<>();
+  private List<String> layers = null;
 
   public static final String SERIALIZED_NAME_TYPE = "Type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -70,7 +68,8 @@ public class RootFS implements Serializable {
   }
 
   public RootFS layers(List<String> layers) {
-    this.layers = layers;
+
+      this.layers = layers;
     return this;
   }
 
@@ -82,15 +81,17 @@ public class RootFS implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get layers
    * @return layers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getLayers() {
     return layers;
   }
+
 
   public void setLayers(List<String> layers) {
     this.layers = layers;
@@ -98,19 +99,22 @@ public class RootFS implements Serializable {
 
 
   public RootFS type(String type) {
-    this.type = type;
+
+      this.type = type;
     return this;
   }
 
-  /**
+    /**
    * Get type
    * @return type
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -171,29 +175,30 @@ public class RootFS implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to RootFS
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!RootFS.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to RootFS
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (RootFS.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in RootFS is not found in the empty JSON string", RootFS.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!RootFS.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RootFS` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RootFS` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Layers") != null && !jsonObj.get("Layers").isJsonNull() && !jsonObj.get("Layers").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Layers") != null && !jsonObj.get("Layers").isJsonNull()) && !jsonObj.get("Layers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Layers` to be an array in the JSON string but got `%s`", jsonObj.get("Layers").toString()));
       }
       if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
@@ -221,31 +226,31 @@ public class RootFS implements Serializable {
 
            @Override
            public RootFS read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of RootFS given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of RootFS
-   * @throws IOException if the JSON string is invalid with respect to RootFS
-   */
+    /**
+     * Create an instance of RootFS given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of RootFS
+     * @throws IOException if the JSON string is invalid with respect to RootFS
+     */
   public static RootFS fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RootFS.class);
   }
 
-  /**
-   * Convert an instance of RootFS to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of RootFS to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

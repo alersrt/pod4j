@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
@@ -39,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class VolumesApi {
     private ApiClient localVarApiClient;
@@ -111,8 +111,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -125,7 +124,10 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeCreateLibpodValidateBeforeCall(VolumeCreateOptions create, final ApiCallback _callback) throws ApiException {
-        return volumeCreateLibpodCall(create, _callback);
+
+
+        okhttp3.Call localVarCall = volumeCreateLibpodCall(create, _callback);
+        return localVarCall;
 
     }
 
@@ -256,7 +258,7 @@ public class VolumesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/volumes/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -277,6 +279,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -289,12 +292,15 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeDeleteLibpodValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling volumeDeleteLibpod(Async)");
         }
 
-        return volumeDeleteLibpodCall(name, force, _callback);
+
+        okhttp3.Call localVarCall = volumeDeleteLibpodCall(name, force, _callback);
+        return localVarCall;
 
     }
 
@@ -434,7 +440,7 @@ public class VolumesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/volumes/{name}/exists"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -451,6 +457,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -463,12 +470,15 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling volumeExistsLibpod(Async)");
         }
 
-        return volumeExistsLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = volumeExistsLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -592,7 +602,7 @@ public class VolumesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/volumes/{name}/json"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -609,6 +619,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -621,12 +632,15 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeInspectLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling volumeInspectLibpod(Async)");
         }
 
-        return volumeInspectLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = volumeInspectLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -774,6 +788,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -786,7 +801,10 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeListLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return volumeListLibpodCall(filters, _callback);
+
+
+        okhttp3.Call localVarCall = volumeListLibpodCall(filters, _callback);
+        return localVarCall;
 
     }
 
@@ -937,6 +955,7 @@ public class VolumesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -949,7 +968,10 @@ public class VolumesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumePruneLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return volumePruneLibpodCall(filters, _callback);
+
+
+        okhttp3.Call localVarCall = volumePruneLibpodCall(filters, _callback);
+        return localVarCall;
 
     }
 

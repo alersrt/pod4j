@@ -42,8 +42,7 @@ All URIs are relative to *http://podman.io*
 | [**playKubeLibpod**](ContainersApi.md#playKubeLibpod) | **POST** /libpod/play/kube | Play a Kubernetes YAML file. |
 | [**putContainerArchiveLibpod**](ContainersApi.md#putContainerArchiveLibpod) | **PUT** /libpod/containers/{name}/archive | Copy files into a container |
 
-
-<a id="containerAttachLibpod"></a>
+<a name="containerAttachLibpod"></a>
 # **containerAttachLibpod**
 > containerAttachLibpod(name).detachKeys(detachKeys).logs(logs).stream(stream).stdout(stdout).stderr(stderr).stdin(stdin).execute();
 
@@ -126,7 +125,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerChangesLibpod"></a>
+<a name="containerChangesLibpod"></a>
 # **containerChangesLibpod**
 > containerChangesLibpod(name).parent(parent).diffType(diffType).execute();
 
@@ -196,7 +195,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerCheckpointLibpod"></a>
+<a name="containerCheckpointLibpod"></a>
 # **containerCheckpointLibpod**
 > containerCheckpointLibpod(name).keep(keep).leaveRunning(leaveRunning).tcpEstablished(tcpEstablished).export(export).ignoreRootFS(ignoreRootFS).ignoreVolumes(ignoreVolumes).preCheckpoint(preCheckpoint).withPrevious(withPrevious).fileLocks(fileLocks).printStats(printStats).execute();
 
@@ -288,7 +287,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerCreateLibpod"></a>
+<a name="containerCreateLibpod"></a>
 # **containerCreateLibpod**
 > ContainerCreateResponse containerCreateLibpod(create).execute();
 
@@ -353,7 +352,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerDeleteLibpod"></a>
+<a name="containerDeleteLibpod"></a>
 # **containerDeleteLibpod**
 > List&lt;LibpodContainersRmReport&gt; containerDeleteLibpod(name).depend(depend).force(force).ignore(ignore).timeout(timeout).v(v).execute();
 
@@ -436,7 +435,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerExistsLibpod"></a>
+<a name="containerExistsLibpod"></a>
 # **containerExistsLibpod**
 > containerExistsLibpod(name).execute();
 
@@ -500,7 +499,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerExportLibpod"></a>
+<a name="containerExportLibpod"></a>
 # **containerExportLibpod**
 > containerExportLibpod(name).execute();
 
@@ -564,7 +563,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerHealthcheckLibpod"></a>
+<a name="containerHealthcheckLibpod"></a>
 # **containerHealthcheckLibpod**
 > HealthCheckResults containerHealthcheckLibpod(name).execute();
 
@@ -630,7 +629,7 @@ No authorization required
 | **409** | container has no healthcheck or is not running |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerInitLibpod"></a>
+<a name="containerInitLibpod"></a>
 # **containerInitLibpod**
 > containerInitLibpod(name).execute();
 
@@ -695,7 +694,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerInspectLibpod"></a>
+<a name="containerInspectLibpod"></a>
 # **containerInspectLibpod**
 > InspectContainerData containerInspectLibpod(name).size(size).execute();
 
@@ -763,7 +762,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerKillLibpod"></a>
+<a name="containerKillLibpod"></a>
 # **containerKillLibpod**
 > containerKillLibpod(name).signal(signal).execute();
 
@@ -831,7 +830,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerListLibpod"></a>
+<a name="containerListLibpod"></a>
 # **containerListLibpod**
 > List&lt;ListContainer&gt; containerListLibpod().all(all).limit(limit).namespace(namespace).pod(pod).size(size).sync(sync).filters(filters).execute();
 
@@ -915,7 +914,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerLogsLibpod"></a>
+<a name="containerLogsLibpod"></a>
 # **containerLogsLibpod**
 > containerLogsLibpod(name).follow(follow).stdout(stdout).stderr(stderr).since(since).until(until).timestamps(timestamps).tail(tail).execute();
 
@@ -1000,7 +999,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerMountLibpod"></a>
+<a name="containerMountLibpod"></a>
 # **containerMountLibpod**
 > String containerMountLibpod(name).execute();
 
@@ -1065,7 +1064,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerPauseLibpod"></a>
+<a name="containerPauseLibpod"></a>
 # **containerPauseLibpod**
 > containerPauseLibpod(name).execute();
 
@@ -1129,7 +1128,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerPruneLibpod"></a>
+<a name="containerPruneLibpod"></a>
 # **containerPruneLibpod**
 > List&lt;ContainersPruneReportLibpod&gt; containerPruneLibpod().filters(filters).execute();
 
@@ -1194,7 +1193,7 @@ No authorization required
 | **200** | Prune Containers |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerRenameLibpod"></a>
+<a name="containerRenameLibpod"></a>
 # **containerRenameLibpod**
 > containerRenameLibpod(name, name2).execute();
 
@@ -1261,7 +1260,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerResizeLibpod"></a>
+<a name="containerResizeLibpod"></a>
 # **containerResizeLibpod**
 > Object containerResizeLibpod(name).h(h).w(w).execute();
 
@@ -1333,7 +1332,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerRestartLibpod"></a>
+<a name="containerRestartLibpod"></a>
 # **containerRestartLibpod**
 > containerRestartLibpod(name).t(t).execute();
 
@@ -1398,7 +1397,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerRestoreLibpod"></a>
+<a name="containerRestoreLibpod"></a>
 # **containerRestoreLibpod**
 > containerRestoreLibpod(name).name2(name2).keep(keep).tcpEstablished(tcpEstablished)._import(_import).ignoreRootFS(ignoreRootFS).ignoreVolumes(ignoreVolumes).ignoreStaticIP(ignoreStaticIP).ignoreStaticMAC(ignoreStaticMAC).fileLocks(fileLocks).printStats(printStats).pod(pod).execute();
 
@@ -1495,7 +1494,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerShowMountedLibpod"></a>
+<a name="containerShowMountedLibpod"></a>
 # **containerShowMountedLibpod**
 > Map&lt;String, String&gt; containerShowMountedLibpod().execute();
 
@@ -1555,7 +1554,7 @@ No authorization required
 | **200** | mounted containers |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStartLibpod"></a>
+<a name="containerStartLibpod"></a>
 # **containerStartLibpod**
 > containerStartLibpod(name).detachKeys(detachKeys).execute();
 
@@ -1621,7 +1620,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStatsLibpod"></a>
+<a name="containerStatsLibpod"></a>
 # **containerStatsLibpod**
 > containerStatsLibpod(name).stream(stream).execute();
 
@@ -1689,7 +1688,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStopLibpod"></a>
+<a name="containerStopLibpod"></a>
 # **containerStopLibpod**
 > containerStopLibpod(name).timeout(timeout).ignore(ignore).execute();
 
@@ -1758,7 +1757,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerTopLibpod"></a>
+<a name="containerTopLibpod"></a>
 # **containerTopLibpod**
 > ContainerTopOKBody containerTopLibpod(name).stream(stream).delay(delay).psArgs(psArgs).execute();
 
@@ -1832,7 +1831,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerUnmountLibpod"></a>
+<a name="containerUnmountLibpod"></a>
 # **containerUnmountLibpod**
 > containerUnmountLibpod(name).execute();
 
@@ -1896,7 +1895,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerUnpauseLibpod"></a>
+<a name="containerUnpauseLibpod"></a>
 # **containerUnpauseLibpod**
 > containerUnpauseLibpod(name).execute();
 
@@ -1958,7 +1957,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerUpdateLibpod"></a>
+<a name="containerUpdateLibpod"></a>
 # **containerUpdateLibpod**
 > ContainerUpdateLibpod201Response containerUpdateLibpod(name).restartPolicy(restartPolicy).restartRetries(restartRetries).config(config).execute();
 
@@ -2033,7 +2032,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerWaitLibpod"></a>
+<a name="containerWaitLibpod"></a>
 # **containerWaitLibpod**
 > Integer containerWaitLibpod(name).condition(condition).interval(interval).execute();
 
@@ -2104,7 +2103,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containersStatsAllLibpod"></a>
+<a name="containersStatsAllLibpod"></a>
 # **containersStatsAllLibpod**
 > ContainerStats containersStatsAllLibpod().containers(containers).stream(stream).interval(interval).execute();
 
@@ -2176,7 +2175,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="generateKubeLibpod"></a>
+<a name="generateKubeLibpod"></a>
 # **generateKubeLibpod**
 > File generateKubeLibpod(names).service(service).type(type).replicas(replicas).noTrunc(noTrunc).podmanOnly(podmanOnly).execute();
 
@@ -2255,7 +2254,7 @@ No authorization required
 | **200** | Kubernetes YAML file describing pod |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="generateSystemdLibpod"></a>
+<a name="generateSystemdLibpod"></a>
 # **generateSystemdLibpod**
 > Map&lt;String, String&gt; generateSystemdLibpod(name).useName(useName)._new(_new).noHeader(noHeader).startTimeout(startTimeout).stopTimeout(stopTimeout).restartPolicy(restartPolicy).containerPrefix(containerPrefix).podPrefix(podPrefix).separator(separator).restartSec(restartSec).wants(wants).after(after).requires(requires).additionalEnvVariables(additionalEnvVariables).execute();
 
@@ -2361,7 +2360,7 @@ No authorization required
 | **200** | no error |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageCommitLibpod"></a>
+<a name="imageCommitLibpod"></a>
 # **imageCommitLibpod**
 > imageCommitLibpod(container).author(author).changes(changes).comment(comment).format(format).pause(pause).squash(squash).repo(repo).stream(stream).tag(tag).execute();
 
@@ -2452,7 +2451,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="kubeApplyLibpod"></a>
+<a name="kubeApplyLibpod"></a>
 # **kubeApplyLibpod**
 > File kubeApplyLibpod().caCertFile(caCertFile).kubeConfig(kubeConfig).namespace(namespace).service(service)._file(_file).request(request).execute();
 
@@ -2532,7 +2531,7 @@ No authorization required
 | **200** | Kubernetes YAML file successfully deployed to cluster |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="playKubeDownLibpod"></a>
+<a name="playKubeDownLibpod"></a>
 # **playKubeDownLibpod**
 > PlayKubeReport playKubeDownLibpod().force(force).execute();
 
@@ -2597,7 +2596,7 @@ No authorization required
 | **200** | PlayKube response |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="playKubeLibpod"></a>
+<a name="playKubeLibpod"></a>
 # **playKubeLibpod**
 > PlayKubeReport playKubeLibpod().contentType(contentType).annotations(annotations).logDriver(logDriver).logOptions(logOptions).network(network).noHosts(noHosts).noTrunc(noTrunc).publishPorts(publishPorts).publishAllPorts(publishAllPorts).replace(replace).serviceContainer(serviceContainer).start(start).staticIPs(staticIPs).staticMACs(staticMACs).tlsVerify(tlsVerify).userns(userns).wait(wait).build(build).request(request).execute();
 
@@ -2675,27 +2674,27 @@ public class Example {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **contentType** | **String**|  | [optional] [enum: plain/text, application/x-tar] |
-| **annotations** | **String**| JSON encoded value of annotations (a map[string]string). | [optional] |
-| **logDriver** | **String**| Logging driver for the containers in the pod. | [optional] |
-| **logOptions** | [**List&lt;String&gt;**](String.md)| logging driver options | [optional] |
-| **network** | [**List&lt;String&gt;**](String.md)| USe the network mode or specify an array of networks. | [optional] |
-| **noHosts** | **Boolean**| do not setup /etc/hosts file in container | [optional] [default to false] |
-| **noTrunc** | **Boolean**| use annotations that are not truncated to the Kubernetes maximum length of 63 characters | [optional] [default to false] |
-| **publishPorts** | [**List&lt;String&gt;**](String.md)| publish a container&#39;s port, or a range of ports, to the host | [optional] |
-| **publishAllPorts** | **Boolean**| Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published | [optional] |
-| **replace** | **Boolean**| replace existing pods and containers | [optional] [default to false] |
-| **serviceContainer** | **Boolean**| Starts a service container before all pods. | [optional] [default to false] |
-| **start** | **Boolean**| Start the pod after creating it. | [optional] [default to true] |
-| **staticIPs** | [**List&lt;String&gt;**](String.md)| Static IPs used for the pods. | [optional] |
-| **staticMACs** | [**List&lt;String&gt;**](String.md)| Static MACs used for the pods. | [optional] |
-| **tlsVerify** | **Boolean**| Require HTTPS and verify signatures when contacting registries. | [optional] [default to true] |
-| **userns** | **String**| Set the user namespace mode for the pods. | [optional] |
-| **wait** | **Boolean**| Clean up all objects created when a SIGTERM is received or pods exit. | [optional] [default to false] |
-| **build** | **Boolean**| Build the images with corresponding context. | [optional] |
-| **request** | **String**| Kubernetes YAML file. | [optional] |
+| Name                 | Type                                | Description                                                                                                                   | Notes                                                                    |
+|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| **contentType**      | **String**                          |                                                                                                                               | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
+| **annotations**      | **String**                          | JSON encoded value of annotations (a map[string]string).                                                                      | [optional]                                                               |
+| **logDriver**        | **String**                          | Logging driver for the containers in the pod.                                                                                 | [optional]                                                               |
+| **logOptions**       | [**List&lt;String&gt;**](String.md) | logging driver options                                                                                                        | [optional]                                                               |
+| **network**          | [**List&lt;String&gt;**](String.md) | USe the network mode or specify an array of networks.                                                                         | [optional]                                                               |
+| **noHosts**          | **Boolean**                         | do not setup /etc/hosts file in container                                                                                     | [optional] [default to false]                                            |
+| **noTrunc**          | **Boolean**                         | use annotations that are not truncated to the Kubernetes maximum length of 63 characters                                      | [optional] [default to false]                                            |
+| **publishPorts**     | [**List&lt;String&gt;**](String.md) | publish a container&#39;s port, or a range of ports, to the host                                                              | [optional]                                                               |
+| **publishAllPorts**  | **Boolean**                         | Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published | [optional]                                                               |
+| **replace**          | **Boolean**                         | replace existing pods and containers                                                                                          | [optional] [default to false]                                            |
+| **serviceContainer** | **Boolean**                         | Starts a service container before all pods.                                                                                   | [optional] [default to false]                                            |
+| **start**            | **Boolean**                         | Start the pod after creating it.                                                                                              | [optional] [default to true]                                             |
+| **staticIPs**        | [**List&lt;String&gt;**](String.md) | Static IPs used for the pods.                                                                                                 | [optional]                                                               |
+| **staticMACs**       | [**List&lt;String&gt;**](String.md) | Static MACs used for the pods.                                                                                                | [optional]                                                               |
+| **tlsVerify**        | **Boolean**                         | Require HTTPS and verify signatures when contacting registries.                                                               | [optional] [default to true]                                             |
+| **userns**           | **String**                          | Set the user namespace mode for the pods.                                                                                     | [optional]                                                               |
+| **wait**             | **Boolean**                         | Clean up all objects created when a SIGTERM is received or pods exit.                                                         | [optional] [default to false]                                            |
+| **build**            | **Boolean**                         | Build the images with corresponding context.                                                                                  | [optional]                                                               |
+| **request**          | **String**                          | Kubernetes YAML file.                                                                                                         | [optional]                                                               |
 
 ### Return type
 
@@ -2716,7 +2715,7 @@ No authorization required
 | **200** | PlayKube response |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="putContainerArchiveLibpod"></a>
+<a name="putContainerArchiveLibpod"></a>
 # **putContainerArchiveLibpod**
 > putContainerArchiveLibpod(name, path).pause(pause).request(request).execute();
 

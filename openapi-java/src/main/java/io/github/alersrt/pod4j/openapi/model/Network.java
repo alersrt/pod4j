@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -21,16 +22,17 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Route;
 import io.github.alersrt.pod4j.openapi.model.Subnet;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,16 +44,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -59,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Network
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Network implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -85,7 +83,7 @@ public class Network implements Serializable {
 
   public static final String SERIALIZED_NAME_IPAM_OPTIONS = "ipam_options";
   @SerializedName(SERIALIZED_NAME_IPAM_OPTIONS)
-  private Map<String, String> ipamOptions = new HashMap<>();
+  private Map<String, String> ipamOptions = null;
 
   public static final String SERIALIZED_NAME_IPV6_ENABLED = "ipv6_enabled";
   @SerializedName(SERIALIZED_NAME_IPV6_ENABLED)
@@ -93,7 +91,7 @@ public class Network implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -101,7 +99,7 @@ public class Network implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORK_DNS_SERVERS = "network_dns_servers";
   @SerializedName(SERIALIZED_NAME_NETWORK_DNS_SERVERS)
-  private List<String> networkDnsServers = new ArrayList<>();
+  private List<String> networkDnsServers = null;
 
   public static final String SERIALIZED_NAME_NETWORK_INTERFACE = "network_interface";
   @SerializedName(SERIALIZED_NAME_NETWORK_INTERFACE)
@@ -109,34 +107,37 @@ public class Network implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private Map<String, String> options = new HashMap<>();
+  private Map<String, String> options = null;
 
   public static final String SERIALIZED_NAME_ROUTES = "routes";
   @SerializedName(SERIALIZED_NAME_ROUTES)
-  private List<@Valid Route> routes = new ArrayList<>();
+  private List<Route> routes = null;
 
   public static final String SERIALIZED_NAME_SUBNETS = "subnets";
   @SerializedName(SERIALIZED_NAME_SUBNETS)
-  private List<@Valid Subnet> subnets = new ArrayList<>();
+  private List<Subnet> subnets = null;
 
   public Network() {
   }
 
   public Network created(OffsetDateTime created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Created contains the timestamp when this network was created.
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Created contains the timestamp when this network was created.")
 
   public OffsetDateTime getCreated() {
     return created;
   }
+
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
@@ -144,19 +145,22 @@ public class Network implements Serializable {
 
 
   public Network dnsEnabled(Boolean dnsEnabled) {
-    this.dnsEnabled = dnsEnabled;
+
+      this.dnsEnabled = dnsEnabled;
     return this;
   }
 
-  /**
+    /**
    * DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.
    * @return dnsEnabled
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.")
 
   public Boolean getDnsEnabled() {
     return dnsEnabled;
   }
+
 
   public void setDnsEnabled(Boolean dnsEnabled) {
     this.dnsEnabled = dnsEnabled;
@@ -164,19 +168,22 @@ public class Network implements Serializable {
 
 
   public Network driver(String driver) {
-    this.driver = driver;
+
+      this.driver = driver;
     return this;
   }
 
-  /**
+    /**
    * Driver for this Network, e.g. bridge, macvlan...
    * @return driver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Driver for this Network, e.g. bridge, macvlan...")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -184,19 +191,22 @@ public class Network implements Serializable {
 
 
   public Network id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * ID of the Network.
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ID of the Network.")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -204,19 +214,22 @@ public class Network implements Serializable {
 
 
   public Network internal(Boolean internal) {
-    this.internal = internal;
+
+      this.internal = internal;
     return this;
   }
 
-  /**
+    /**
    * Internal is whether the Network should not have external routes to public or other Networks.
    * @return internal
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Internal is whether the Network should not have external routes to public or other Networks.")
 
   public Boolean getInternal() {
     return internal;
   }
+
 
   public void setInternal(Boolean internal) {
     this.internal = internal;
@@ -224,7 +237,8 @@ public class Network implements Serializable {
 
 
   public Network ipamOptions(Map<String, String> ipamOptions) {
-    this.ipamOptions = ipamOptions;
+
+      this.ipamOptions = ipamOptions;
     return this;
   }
 
@@ -236,15 +250,17 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * IPAMOptions contains options used for the ip assignment.
    * @return ipamOptions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IPAMOptions contains options used for the ip assignment.")
 
   public Map<String, String> getIpamOptions() {
     return ipamOptions;
   }
+
 
   public void setIpamOptions(Map<String, String> ipamOptions) {
     this.ipamOptions = ipamOptions;
@@ -252,19 +268,22 @@ public class Network implements Serializable {
 
 
   public Network ipv6Enabled(Boolean ipv6Enabled) {
-    this.ipv6Enabled = ipv6Enabled;
+
+      this.ipv6Enabled = ipv6Enabled;
     return this;
   }
 
-  /**
+    /**
    * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
    * @return ipv6Enabled
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IPv6Enabled if set to true an ipv6 subnet should be created for this net.")
 
   public Boolean getIpv6Enabled() {
     return ipv6Enabled;
   }
+
 
   public void setIpv6Enabled(Boolean ipv6Enabled) {
     this.ipv6Enabled = ipv6Enabled;
@@ -272,7 +291,8 @@ public class Network implements Serializable {
 
 
   public Network labels(Map<String, String> labels) {
-    this.labels = labels;
+
+      this.labels = labels;
     return this;
   }
 
@@ -284,15 +304,17 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Labels is a set of key-value labels that have been applied to the Network.
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Labels is a set of key-value labels that have been applied to the Network.")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -300,19 +322,22 @@ public class Network implements Serializable {
 
 
   public Network name(String name) {
-    this.name = name;
+
+      this.name = name;
     return this;
   }
 
-  /**
+    /**
    * Name of the Network.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Name of the Network.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -320,7 +345,8 @@ public class Network implements Serializable {
 
 
   public Network networkDnsServers(List<String> networkDnsServers) {
-    this.networkDnsServers = networkDnsServers;
+
+      this.networkDnsServers = networkDnsServers;
     return this;
   }
 
@@ -332,15 +358,17 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.
    * @return networkDnsServers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "List of custom DNS server for podman's DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.")
 
   public List<String> getNetworkDnsServers() {
     return networkDnsServers;
   }
+
 
   public void setNetworkDnsServers(List<String> networkDnsServers) {
     this.networkDnsServers = networkDnsServers;
@@ -348,19 +376,22 @@ public class Network implements Serializable {
 
 
   public Network networkInterface(String networkInterface) {
-    this.networkInterface = networkInterface;
+
+      this.networkInterface = networkInterface;
     return this;
   }
 
-  /**
+    /**
    * NetworkInterface is the network interface name on the host.
    * @return networkInterface
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "NetworkInterface is the network interface name on the host.")
 
   public String getNetworkInterface() {
     return networkInterface;
   }
+
 
   public void setNetworkInterface(String networkInterface) {
     this.networkInterface = networkInterface;
@@ -368,7 +399,8 @@ public class Network implements Serializable {
 
 
   public Network options(Map<String, String> options) {
-    this.options = options;
+
+      this.options = options;
     return this;
   }
 
@@ -380,22 +412,25 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Options is a set of key-value options that have been applied to the Network.
    * @return options
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Options is a set of key-value options that have been applied to the Network.")
 
   public Map<String, String> getOptions() {
     return options;
   }
+
 
   public void setOptions(Map<String, String> options) {
     this.options = options;
   }
 
 
-  public Network routes(List<@Valid Route> routes) {
+    public Network routes(List<Route> routes) {
+    
     this.routes = routes;
     return this;
   }
@@ -408,23 +443,26 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Routes to use for this network.
    * @return routes
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Routes to use for this network.")
 
-  public List<@Valid Route> getRoutes() {
+    public List<Route> getRoutes() {
     return routes;
   }
 
-  public void setRoutes(List<@Valid Route> routes) {
+
+    public void setRoutes(List<Route> routes) {
     this.routes = routes;
   }
 
 
-  public Network subnets(List<@Valid Subnet> subnets) {
+    public Network subnets(List<Subnet> subnets) {
+    
     this.subnets = subnets;
     return this;
   }
@@ -437,18 +475,20 @@ public class Network implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Subnets to use for this network.
    * @return subnets
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Subnets to use for this network.")
 
-  public List<@Valid Subnet> getSubnets() {
+    public List<Subnet> getSubnets() {
     return subnets;
   }
 
-  public void setSubnets(List<@Valid Subnet> subnets) {
+
+    public void setSubnets(List<Subnet> subnets) {
     this.subnets = subnets;
   }
 
@@ -543,27 +583,28 @@ public class Network implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Network
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Network.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Network is not found in the empty JSON string", Network.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to Network
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (Network.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Network is not found in the empty JSON string", Network.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!Network.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Network` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Network` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull()) && !jsonObj.get("driver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("driver").toString()));
       }
@@ -573,8 +614,8 @@ public class Network implements Serializable {
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("network_dns_servers") != null && !jsonObj.get("network_dns_servers").isJsonNull() && !jsonObj.get("network_dns_servers").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("network_dns_servers") != null && !jsonObj.get("network_dns_servers").isJsonNull()) && !jsonObj.get("network_dns_servers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `network_dns_servers` to be an array in the JSON string but got `%s`", jsonObj.get("network_dns_servers").toString()));
       }
       if ((jsonObj.get("network_interface") != null && !jsonObj.get("network_interface").isJsonNull()) && !jsonObj.get("network_interface").isJsonPrimitive()) {
@@ -590,7 +631,7 @@ public class Network implements Serializable {
 
           // validate the optional field `routes` (array)
           for (int i = 0; i < jsonArrayroutes.size(); i++) {
-            Route.validateJsonElement(jsonArrayroutes.get(i));
+              Route.validateJsonObject(jsonArrayroutes.get(i).getAsJsonObject());
           };
         }
       }
@@ -604,7 +645,7 @@ public class Network implements Serializable {
 
           // validate the optional field `subnets` (array)
           for (int i = 0; i < jsonArraysubnets.size(); i++) {
-            Subnet.validateJsonElement(jsonArraysubnets.get(i));
+              Subnet.validateJsonObject(jsonArraysubnets.get(i).getAsJsonObject());
           };
         }
       }
@@ -630,31 +671,31 @@ public class Network implements Serializable {
 
            @Override
            public Network read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of Network given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Network
-   * @throws IOException if the JSON string is invalid with respect to Network
-   */
+    /**
+     * Create an instance of Network given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Network
+     * @throws IOException if the JSON string is invalid with respect to Network
+     */
   public static Network fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Network.class);
   }
 
-  /**
-   * Convert an instance of Network to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of Network to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

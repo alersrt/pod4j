@@ -14,17 +14,19 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +38,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * History
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class History implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -81,19 +79,22 @@ public class History implements Serializable {
   }
 
   public History author(String author) {
-    this.author = author;
+
+      this.author = author;
     return this;
   }
 
-  /**
+    /**
    * Author is the author of the build point.
    * @return author
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Author is the author of the build point.")
 
   public String getAuthor() {
     return author;
   }
+
 
   public void setAuthor(String author) {
     this.author = author;
@@ -101,19 +102,22 @@ public class History implements Serializable {
 
 
   public History comment(String comment) {
-    this.comment = comment;
+
+      this.comment = comment;
     return this;
   }
 
-  /**
+    /**
    * Comment is a custom message set when creating the layer.
    * @return comment
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Comment is a custom message set when creating the layer.")
 
   public String getComment() {
     return comment;
   }
+
 
   public void setComment(String comment) {
     this.comment = comment;
@@ -121,20 +125,23 @@ public class History implements Serializable {
 
 
   public History created(OffsetDateTime created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Created is the combined date and time at which the layer was created, formatted as defined by RFC 3339, section 5.6.
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Created is the combined date and time at which the layer was created, formatted as defined by RFC 3339, section 5.6.")
 
   public OffsetDateTime getCreated() {
     return created;
   }
+
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
@@ -142,19 +149,22 @@ public class History implements Serializable {
 
 
   public History createdBy(String createdBy) {
-    this.createdBy = createdBy;
+
+      this.createdBy = createdBy;
     return this;
   }
 
-  /**
+    /**
    * CreatedBy is the command which created the layer.
    * @return createdBy
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CreatedBy is the command which created the layer.")
 
   public String getCreatedBy() {
     return createdBy;
   }
+
 
   public void setCreatedBy(String createdBy) {
     this.createdBy = createdBy;
@@ -162,19 +172,22 @@ public class History implements Serializable {
 
 
   public History emptyLayer(Boolean emptyLayer) {
-    this.emptyLayer = emptyLayer;
+
+      this.emptyLayer = emptyLayer;
     return this;
   }
 
-  /**
+    /**
    * EmptyLayer is used to mark if the history item created a filesystem diff.
    * @return emptyLayer
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "EmptyLayer is used to mark if the history item created a filesystem diff.")
 
   public Boolean getEmptyLayer() {
     return emptyLayer;
   }
+
 
   public void setEmptyLayer(Boolean emptyLayer) {
     this.emptyLayer = emptyLayer;
@@ -244,27 +257,28 @@ public class History implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to History
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!History.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to History
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (History.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in History is not found in the empty JSON string", History.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!History.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `History` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `History` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("author") != null && !jsonObj.get("author").isJsonNull()) && !jsonObj.get("author").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("author").toString()));
       }
@@ -296,31 +310,31 @@ public class History implements Serializable {
 
            @Override
            public History read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of History given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of History
-   * @throws IOException if the JSON string is invalid with respect to History
-   */
+    /**
+     * Create an instance of History given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of History
+     * @throws IOException if the JSON string is invalid with respect to History
+     */
   public static History fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, History.class);
   }
 
-  /**
-   * Convert an instance of History to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of History to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

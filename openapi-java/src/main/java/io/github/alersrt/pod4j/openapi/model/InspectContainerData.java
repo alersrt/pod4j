@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -25,14 +26,15 @@ import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerState;
 import io.github.alersrt.pod4j.openapi.model.InspectMount;
 import io.github.alersrt.pod4j.openapi.model.InspectNetworkSettings;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,16 +46,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -61,7 +59,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectContainerData provides a detailed record of a container&#39;s configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with &#x60;docker inspect&#x60; JSON, but additional fields have been added as required to share information not in the original output.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "InspectContainerData provides a detailed record of a container's configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with `docker inspect` JSON, but additional fields have been added as required to share information not in the original output.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectContainerData implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -71,11 +70,11 @@ public class InspectContainerData implements Serializable {
 
   public static final String SERIALIZED_NAME_ARGS = "Args";
   @SerializedName(SERIALIZED_NAME_ARGS)
-  private List<String> args = new ArrayList<>();
+  private List<String> args = null;
 
   public static final String SERIALIZED_NAME_BOUNDING_CAPS = "BoundingCaps";
   @SerializedName(SERIALIZED_NAME_BOUNDING_CAPS)
-  private List<String> boundingCaps = new ArrayList<>();
+  private List<String> boundingCaps = null;
 
   public static final String SERIALIZED_NAME_CONFIG = "Config";
   @SerializedName(SERIALIZED_NAME_CONFIG)
@@ -91,7 +90,7 @@ public class InspectContainerData implements Serializable {
 
   public static final String SERIALIZED_NAME_DEPENDENCIES = "Dependencies";
   @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
-  private List<String> dependencies = new ArrayList<>();
+  private List<String> dependencies = null;
 
   public static final String SERIALIZED_NAME_DRIVER = "Driver";
   @SerializedName(SERIALIZED_NAME_DRIVER)
@@ -99,11 +98,11 @@ public class InspectContainerData implements Serializable {
 
   public static final String SERIALIZED_NAME_EFFECTIVE_CAPS = "EffectiveCaps";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_CAPS)
-  private List<String> effectiveCaps = new ArrayList<>();
+  private List<String> effectiveCaps = null;
 
   public static final String SERIALIZED_NAME_EXEC_I_DS = "ExecIDs";
   @SerializedName(SERIALIZED_NAME_EXEC_I_DS)
-  private List<String> execIDs = new ArrayList<>();
+  private List<String> execIDs = null;
 
   public static final String SERIALIZED_NAME_GRAPH_DRIVER = "GraphDriver";
   @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER)
@@ -155,7 +154,7 @@ public class InspectContainerData implements Serializable {
 
   public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
   @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<@Valid InspectMount> mounts = new ArrayList<>();
+  private List<InspectMount> mounts = null;
 
   public static final String SERIALIZED_NAME_NAME = "Name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -221,6 +220,14 @@ public class InspectContainerData implements Serializable {
   @SerializedName(SERIALIZED_NAME_STATIC_DIR)
   private String staticDir;
 
+    public static final String SERIALIZED_NAME_USE_IMAGE_HOSTNAME = "UseImageHostname";
+    @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTNAME)
+    private Boolean useImageHostname;
+
+    public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "UseImageHosts";
+    @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
+    private Boolean useImageHosts;
+
   public static final String SERIALIZED_NAME_LOCK_NUMBER = "lockNumber";
   @SerializedName(SERIALIZED_NAME_LOCK_NUMBER)
   private Integer lockNumber;
@@ -229,19 +236,22 @@ public class InspectContainerData implements Serializable {
   }
 
   public InspectContainerData appArmorProfile(String appArmorProfile) {
-    this.appArmorProfile = appArmorProfile;
+
+      this.appArmorProfile = appArmorProfile;
     return this;
   }
 
-  /**
+    /**
    * Get appArmorProfile
    * @return appArmorProfile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getAppArmorProfile() {
     return appArmorProfile;
   }
+
 
   public void setAppArmorProfile(String appArmorProfile) {
     this.appArmorProfile = appArmorProfile;
@@ -249,7 +259,8 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData args(List<String> args) {
-    this.args = args;
+
+      this.args = args;
     return this;
   }
 
@@ -261,15 +272,17 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get args
    * @return args
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getArgs() {
     return args;
   }
+
 
   public void setArgs(List<String> args) {
     this.args = args;
@@ -277,7 +290,8 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData boundingCaps(List<String> boundingCaps) {
-    this.boundingCaps = boundingCaps;
+
+      this.boundingCaps = boundingCaps;
     return this;
   }
 
@@ -289,15 +303,17 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get boundingCaps
    * @return boundingCaps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getBoundingCaps() {
     return boundingCaps;
   }
+
 
   public void setBoundingCaps(List<String> boundingCaps) {
     this.boundingCaps = boundingCaps;
@@ -305,20 +321,23 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData config(InspectContainerConfig config) {
-    this.config = config;
+
+      this.config = config;
     return this;
   }
 
-  /**
+    /**
    * Get config
    * @return config
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectContainerConfig getConfig() {
     return config;
   }
+
 
   public void setConfig(InspectContainerConfig config) {
     this.config = config;
@@ -326,19 +345,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData conmonPidFile(String conmonPidFile) {
-    this.conmonPidFile = conmonPidFile;
+
+      this.conmonPidFile = conmonPidFile;
     return this;
   }
 
-  /**
+    /**
    * Get conmonPidFile
    * @return conmonPidFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getConmonPidFile() {
     return conmonPidFile;
   }
+
 
   public void setConmonPidFile(String conmonPidFile) {
     this.conmonPidFile = conmonPidFile;
@@ -346,20 +368,23 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData created(OffsetDateTime created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Get created
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreated() {
     return created;
   }
+
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
@@ -367,7 +392,8 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData dependencies(List<String> dependencies) {
-    this.dependencies = dependencies;
+
+      this.dependencies = dependencies;
     return this;
   }
 
@@ -379,15 +405,17 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get dependencies
    * @return dependencies
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getDependencies() {
     return dependencies;
   }
+
 
   public void setDependencies(List<String> dependencies) {
     this.dependencies = dependencies;
@@ -395,19 +423,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData driver(String driver) {
-    this.driver = driver;
+
+      this.driver = driver;
     return this;
   }
 
-  /**
+    /**
    * Get driver
    * @return driver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -415,7 +446,8 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData effectiveCaps(List<String> effectiveCaps) {
-    this.effectiveCaps = effectiveCaps;
+
+      this.effectiveCaps = effectiveCaps;
     return this;
   }
 
@@ -427,15 +459,17 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get effectiveCaps
    * @return effectiveCaps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getEffectiveCaps() {
     return effectiveCaps;
   }
+
 
   public void setEffectiveCaps(List<String> effectiveCaps) {
     this.effectiveCaps = effectiveCaps;
@@ -443,7 +477,8 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData execIDs(List<String> execIDs) {
-    this.execIDs = execIDs;
+
+      this.execIDs = execIDs;
     return this;
   }
 
@@ -455,15 +490,17 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get execIDs
    * @return execIDs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getExecIDs() {
     return execIDs;
   }
+
 
   public void setExecIDs(List<String> execIDs) {
     this.execIDs = execIDs;
@@ -471,20 +508,23 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData graphDriver(DriverData graphDriver) {
-    this.graphDriver = graphDriver;
+
+      this.graphDriver = graphDriver;
     return this;
   }
 
-  /**
+    /**
    * Get graphDriver
    * @return graphDriver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public DriverData getGraphDriver() {
     return graphDriver;
   }
+
 
   public void setGraphDriver(DriverData graphDriver) {
     this.graphDriver = graphDriver;
@@ -492,20 +532,23 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData hostConfig(InspectContainerHostConfig hostConfig) {
-    this.hostConfig = hostConfig;
+
+      this.hostConfig = hostConfig;
     return this;
   }
 
-  /**
+    /**
    * Get hostConfig
    * @return hostConfig
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectContainerHostConfig getHostConfig() {
     return hostConfig;
   }
+
 
   public void setHostConfig(InspectContainerHostConfig hostConfig) {
     this.hostConfig = hostConfig;
@@ -513,19 +556,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData hostnamePath(String hostnamePath) {
-    this.hostnamePath = hostnamePath;
+
+      this.hostnamePath = hostnamePath;
     return this;
   }
 
-  /**
+    /**
    * Get hostnamePath
    * @return hostnamePath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getHostnamePath() {
     return hostnamePath;
   }
+
 
   public void setHostnamePath(String hostnamePath) {
     this.hostnamePath = hostnamePath;
@@ -533,19 +579,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData hostsPath(String hostsPath) {
-    this.hostsPath = hostsPath;
+
+      this.hostsPath = hostsPath;
     return this;
   }
 
-  /**
+    /**
    * Get hostsPath
    * @return hostsPath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getHostsPath() {
     return hostsPath;
   }
+
 
   public void setHostsPath(String hostsPath) {
     this.hostsPath = hostsPath;
@@ -553,19 +602,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * Get id
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -573,19 +625,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData image(String image) {
-    this.image = image;
+
+      this.image = image;
     return this;
   }
 
-  /**
+    /**
    * Get image
    * @return image
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImage() {
     return image;
   }
+
 
   public void setImage(String image) {
     this.image = image;
@@ -593,19 +648,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData imageDigest(String imageDigest) {
-    this.imageDigest = imageDigest;
+
+      this.imageDigest = imageDigest;
     return this;
   }
 
-  /**
+    /**
    * Get imageDigest
    * @return imageDigest
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImageDigest() {
     return imageDigest;
   }
+
 
   public void setImageDigest(String imageDigest) {
     this.imageDigest = imageDigest;
@@ -613,19 +671,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData imageName(String imageName) {
-    this.imageName = imageName;
+
+      this.imageName = imageName;
     return this;
   }
 
-  /**
+    /**
    * Get imageName
    * @return imageName
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImageName() {
     return imageName;
   }
+
 
   public void setImageName(String imageName) {
     this.imageName = imageName;
@@ -633,19 +694,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData isInfra(Boolean isInfra) {
-    this.isInfra = isInfra;
+
+      this.isInfra = isInfra;
     return this;
   }
 
-  /**
+    /**
    * Get isInfra
    * @return isInfra
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getIsInfra() {
     return isInfra;
   }
+
 
   public void setIsInfra(Boolean isInfra) {
     this.isInfra = isInfra;
@@ -653,19 +717,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData isService(Boolean isService) {
-    this.isService = isService;
+
+      this.isService = isService;
     return this;
   }
 
-  /**
+    /**
    * Get isService
    * @return isService
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getIsService() {
     return isService;
   }
+
 
   public void setIsService(Boolean isService) {
     this.isService = isService;
@@ -673,19 +740,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData kubeExitCodePropagation(String kubeExitCodePropagation) {
-    this.kubeExitCodePropagation = kubeExitCodePropagation;
+
+      this.kubeExitCodePropagation = kubeExitCodePropagation;
     return this;
   }
 
-  /**
+    /**
    * Get kubeExitCodePropagation
    * @return kubeExitCodePropagation
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getKubeExitCodePropagation() {
     return kubeExitCodePropagation;
   }
+
 
   public void setKubeExitCodePropagation(String kubeExitCodePropagation) {
     this.kubeExitCodePropagation = kubeExitCodePropagation;
@@ -693,26 +763,30 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData mountLabel(String mountLabel) {
-    this.mountLabel = mountLabel;
+
+      this.mountLabel = mountLabel;
     return this;
   }
 
-  /**
+    /**
    * Get mountLabel
    * @return mountLabel
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getMountLabel() {
     return mountLabel;
   }
+
 
   public void setMountLabel(String mountLabel) {
     this.mountLabel = mountLabel;
   }
 
 
-  public InspectContainerData mounts(List<@Valid InspectMount> mounts) {
+    public InspectContainerData mounts(List<InspectMount> mounts) {
+    
     this.mounts = mounts;
     return this;
   }
@@ -725,36 +799,41 @@ public class InspectContainerData implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get mounts
    * @return mounts
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid InspectMount> getMounts() {
+    public List<InspectMount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<@Valid InspectMount> mounts) {
+
+    public void setMounts(List<InspectMount> mounts) {
     this.mounts = mounts;
   }
 
 
   public InspectContainerData name(String name) {
-    this.name = name;
+
+      this.name = name;
     return this;
   }
 
-  /**
+    /**
    * Get name
    * @return name
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -762,19 +841,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData namespace(String namespace) {
-    this.namespace = namespace;
+
+      this.namespace = namespace;
     return this;
   }
 
-  /**
+    /**
    * Get namespace
    * @return namespace
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getNamespace() {
     return namespace;
   }
+
 
   public void setNamespace(String namespace) {
     this.namespace = namespace;
@@ -782,20 +864,23 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData networkSettings(InspectNetworkSettings networkSettings) {
-    this.networkSettings = networkSettings;
+
+      this.networkSettings = networkSettings;
     return this;
   }
 
-  /**
+    /**
    * Get networkSettings
    * @return networkSettings
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectNetworkSettings getNetworkSettings() {
     return networkSettings;
   }
+
 
   public void setNetworkSettings(InspectNetworkSettings networkSettings) {
     this.networkSettings = networkSettings;
@@ -803,19 +888,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData ocIConfigPath(String ocIConfigPath) {
-    this.ocIConfigPath = ocIConfigPath;
+
+      this.ocIConfigPath = ocIConfigPath;
     return this;
   }
 
-  /**
+    /**
    * Get ocIConfigPath
    * @return ocIConfigPath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getOcIConfigPath() {
     return ocIConfigPath;
   }
+
 
   public void setOcIConfigPath(String ocIConfigPath) {
     this.ocIConfigPath = ocIConfigPath;
@@ -823,19 +911,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData ocIRuntime(String ocIRuntime) {
-    this.ocIRuntime = ocIRuntime;
+
+      this.ocIRuntime = ocIRuntime;
     return this;
   }
 
-  /**
+    /**
    * Get ocIRuntime
    * @return ocIRuntime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getOcIRuntime() {
     return ocIRuntime;
   }
+
 
   public void setOcIRuntime(String ocIRuntime) {
     this.ocIRuntime = ocIRuntime;
@@ -843,19 +934,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData path(String path) {
-    this.path = path;
+
+      this.path = path;
     return this;
   }
 
-  /**
+    /**
    * Get path
    * @return path
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getPath() {
     return path;
   }
+
 
   public void setPath(String path) {
     this.path = path;
@@ -863,19 +957,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData pidFile(String pidFile) {
-    this.pidFile = pidFile;
+
+      this.pidFile = pidFile;
     return this;
   }
 
-  /**
+    /**
    * Get pidFile
    * @return pidFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getPidFile() {
     return pidFile;
   }
+
 
   public void setPidFile(String pidFile) {
     this.pidFile = pidFile;
@@ -883,19 +980,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData pod(String pod) {
-    this.pod = pod;
+
+      this.pod = pod;
     return this;
   }
 
-  /**
+    /**
    * Get pod
    * @return pod
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getPod() {
     return pod;
   }
+
 
   public void setPod(String pod) {
     this.pod = pod;
@@ -903,19 +1003,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData processLabel(String processLabel) {
-    this.processLabel = processLabel;
+
+      this.processLabel = processLabel;
     return this;
   }
 
-  /**
+    /**
    * Get processLabel
    * @return processLabel
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getProcessLabel() {
     return processLabel;
   }
+
 
   public void setProcessLabel(String processLabel) {
     this.processLabel = processLabel;
@@ -923,19 +1026,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData resolvConfPath(String resolvConfPath) {
-    this.resolvConfPath = resolvConfPath;
+
+      this.resolvConfPath = resolvConfPath;
     return this;
   }
 
-  /**
+    /**
    * Get resolvConfPath
    * @return resolvConfPath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getResolvConfPath() {
     return resolvConfPath;
   }
+
 
   public void setResolvConfPath(String resolvConfPath) {
     this.resolvConfPath = resolvConfPath;
@@ -943,19 +1049,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData restartCount(Integer restartCount) {
-    this.restartCount = restartCount;
+
+      this.restartCount = restartCount;
     return this;
   }
 
-  /**
+    /**
    * Get restartCount
    * @return restartCount
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Integer getRestartCount() {
     return restartCount;
   }
+
 
   public void setRestartCount(Integer restartCount) {
     this.restartCount = restartCount;
@@ -963,19 +1072,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData rootfs(String rootfs) {
-    this.rootfs = rootfs;
+
+      this.rootfs = rootfs;
     return this;
   }
 
-  /**
+    /**
    * Get rootfs
    * @return rootfs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getRootfs() {
     return rootfs;
   }
+
 
   public void setRootfs(String rootfs) {
     this.rootfs = rootfs;
@@ -983,19 +1095,22 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData sizeRootFs(Long sizeRootFs) {
-    this.sizeRootFs = sizeRootFs;
+
+      this.sizeRootFs = sizeRootFs;
     return this;
   }
 
-  /**
+    /**
    * Get sizeRootFs
    * @return sizeRootFs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSizeRootFs() {
     return sizeRootFs;
   }
+
 
   public void setSizeRootFs(Long sizeRootFs) {
     this.sizeRootFs = sizeRootFs;
@@ -1003,80 +1118,140 @@ public class InspectContainerData implements Serializable {
 
 
   public InspectContainerData sizeRw(Long sizeRw) {
-    this.sizeRw = sizeRw;
+
+      this.sizeRw = sizeRw;
     return this;
   }
 
-  /**
+    /**
    * Get sizeRw
    * @return sizeRw
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSizeRw() {
     return sizeRw;
   }
 
-  public void setSizeRw(Long sizeRw) {
+
+    public void setSizeRw(Long sizeRw) {
     this.sizeRw = sizeRw;
   }
 
 
   public InspectContainerData state(InspectContainerState state) {
-    this.state = state;
+
+      this.state = state;
     return this;
   }
 
-  /**
+    /**
    * Get state
    * @return state
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectContainerState getState() {
     return state;
   }
 
-  public void setState(InspectContainerState state) {
+
+    public void setState(InspectContainerState state) {
     this.state = state;
   }
 
 
   public InspectContainerData staticDir(String staticDir) {
-    this.staticDir = staticDir;
+
+      this.staticDir = staticDir;
     return this;
   }
 
-  /**
+    /**
    * Get staticDir
    * @return staticDir
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getStaticDir() {
     return staticDir;
   }
 
-  public void setStaticDir(String staticDir) {
+
+    public void setStaticDir(String staticDir) {
     this.staticDir = staticDir;
   }
 
 
-  public InspectContainerData lockNumber(Integer lockNumber) {
+    public InspectContainerData useImageHostname(Boolean useImageHostname) {
+
+        this.useImageHostname = useImageHostname;
+        return this;
+    }
+
+    /**
+     * Get useImageHostname
+     *
+     * @return useImageHostname
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+
+    public Boolean getUseImageHostname() {
+        return useImageHostname;
+    }
+
+
+    public void setUseImageHostname(Boolean useImageHostname) {
+        this.useImageHostname = useImageHostname;
+    }
+
+
+    public InspectContainerData useImageHosts(Boolean useImageHosts) {
+
+        this.useImageHosts = useImageHosts;
+        return this;
+    }
+
+    /**
+     * Get useImageHosts
+     *
+     * @return useImageHosts
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+
+    public Boolean getUseImageHosts() {
+        return useImageHosts;
+    }
+
+
+    public void setUseImageHosts(Boolean useImageHosts) {
+        this.useImageHosts = useImageHosts;
+    }
+
+
+    public InspectContainerData lockNumber(Integer lockNumber) {
+    
     this.lockNumber = lockNumber;
-    return this;
+        return this;
   }
 
-  /**
+   /**
    * Get lockNumber
-   * @return lockNumber
-   */
-  @jakarta.annotation.Nullable
+    * @return lockNumber
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "")
 
   public Integer getLockNumber() {
     return lockNumber;
   }
+
 
   public void setLockNumber(Integer lockNumber) {
     this.lockNumber = lockNumber;
@@ -1132,12 +1307,14 @@ public class InspectContainerData implements Serializable {
         Objects.equals(this.sizeRw, inspectContainerData.sizeRw) &&
         Objects.equals(this.state, inspectContainerData.state) &&
         Objects.equals(this.staticDir, inspectContainerData.staticDir) &&
+            Objects.equals(this.useImageHostname, inspectContainerData.useImageHostname) &&
+            Objects.equals(this.useImageHosts, inspectContainerData.useImageHosts) &&
         Objects.equals(this.lockNumber, inspectContainerData.lockNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(appArmorProfile, args, boundingCaps, config, conmonPidFile, created, dependencies, driver, effectiveCaps, execIDs, graphDriver, hostConfig, hostnamePath, hostsPath, id, image, imageDigest, imageName, isInfra, isService, kubeExitCodePropagation, mountLabel, mounts, name, namespace, networkSettings, ocIConfigPath, ocIRuntime, path, pidFile, pod, processLabel, resolvConfPath, restartCount, rootfs, sizeRootFs, sizeRw, state, staticDir, lockNumber);
+      return Objects.hash(appArmorProfile, args, boundingCaps, config, conmonPidFile, created, dependencies, driver, effectiveCaps, execIDs, graphDriver, hostConfig, hostnamePath, hostsPath, id, image, imageDigest, imageName, isInfra, isService, kubeExitCodePropagation, mountLabel, mounts, name, namespace, networkSettings, ocIConfigPath, ocIRuntime, path, pidFile, pod, processLabel, resolvConfPath, restartCount, rootfs, sizeRootFs, sizeRw, state, staticDir, useImageHostname, useImageHosts, lockNumber);
   }
 
   @Override
@@ -1183,6 +1360,8 @@ public class InspectContainerData implements Serializable {
     sb.append("    sizeRw: ").append(toIndentedString(sizeRw)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    staticDir: ").append(toIndentedString(staticDir)).append("\n");
+      sb.append("    useImageHostname: ").append(toIndentedString(useImageHostname)).append("\n");
+      sb.append("    useImageHosts: ").append(toIndentedString(useImageHosts)).append("\n");
     sb.append("    lockNumber: ").append(toIndentedString(lockNumber)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1245,73 +1424,76 @@ public class InspectContainerData implements Serializable {
     openapiFields.add("SizeRw");
     openapiFields.add("State");
     openapiFields.add("StaticDir");
+      openapiFields.add("UseImageHostname");
+      openapiFields.add("UseImageHosts");
     openapiFields.add("lockNumber");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectContainerData
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectContainerData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to InspectContainerData
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (InspectContainerData.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerData is not found in the empty JSON string", InspectContainerData.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!InspectContainerData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("AppArmorProfile") != null && !jsonObj.get("AppArmorProfile").isJsonNull()) && !jsonObj.get("AppArmorProfile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `AppArmorProfile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("AppArmorProfile").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Args") != null && !jsonObj.get("Args").isJsonNull() && !jsonObj.get("Args").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Args") != null && !jsonObj.get("Args").isJsonNull()) && !jsonObj.get("Args").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Args` to be an array in the JSON string but got `%s`", jsonObj.get("Args").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("BoundingCaps") != null && !jsonObj.get("BoundingCaps").isJsonNull() && !jsonObj.get("BoundingCaps").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("BoundingCaps") != null && !jsonObj.get("BoundingCaps").isJsonNull()) && !jsonObj.get("BoundingCaps").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `BoundingCaps` to be an array in the JSON string but got `%s`", jsonObj.get("BoundingCaps").toString()));
       }
       // validate the optional field `Config`
       if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
-        InspectContainerConfig.validateJsonElement(jsonObj.get("Config"));
+          InspectContainerConfig.validateJsonObject(jsonObj.getAsJsonObject("Config"));
       }
       if ((jsonObj.get("ConmonPidFile") != null && !jsonObj.get("ConmonPidFile").isJsonNull()) && !jsonObj.get("ConmonPidFile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ConmonPidFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ConmonPidFile").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Dependencies") != null && !jsonObj.get("Dependencies").isJsonNull() && !jsonObj.get("Dependencies").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Dependencies") != null && !jsonObj.get("Dependencies").isJsonNull()) && !jsonObj.get("Dependencies").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Dependencies` to be an array in the JSON string but got `%s`", jsonObj.get("Dependencies").toString()));
       }
       if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("EffectiveCaps") != null && !jsonObj.get("EffectiveCaps").isJsonNull() && !jsonObj.get("EffectiveCaps").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("EffectiveCaps") != null && !jsonObj.get("EffectiveCaps").isJsonNull()) && !jsonObj.get("EffectiveCaps").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `EffectiveCaps` to be an array in the JSON string but got `%s`", jsonObj.get("EffectiveCaps").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ExecIDs") != null && !jsonObj.get("ExecIDs").isJsonNull() && !jsonObj.get("ExecIDs").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("ExecIDs") != null && !jsonObj.get("ExecIDs").isJsonNull()) && !jsonObj.get("ExecIDs").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ExecIDs` to be an array in the JSON string but got `%s`", jsonObj.get("ExecIDs").toString()));
       }
       // validate the optional field `GraphDriver`
       if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
-        DriverData.validateJsonElement(jsonObj.get("GraphDriver"));
+          DriverData.validateJsonObject(jsonObj.getAsJsonObject("GraphDriver"));
       }
       // validate the optional field `HostConfig`
       if (jsonObj.get("HostConfig") != null && !jsonObj.get("HostConfig").isJsonNull()) {
-        InspectContainerHostConfig.validateJsonElement(jsonObj.get("HostConfig"));
+          InspectContainerHostConfig.validateJsonObject(jsonObj.getAsJsonObject("HostConfig"));
       }
       if ((jsonObj.get("HostnamePath") != null && !jsonObj.get("HostnamePath").isJsonNull()) && !jsonObj.get("HostnamePath").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `HostnamePath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostnamePath").toString()));
@@ -1347,7 +1529,7 @@ public class InspectContainerData implements Serializable {
 
           // validate the optional field `Mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-            InspectMount.validateJsonElement(jsonArraymounts.get(i));
+              InspectMount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -1359,7 +1541,7 @@ public class InspectContainerData implements Serializable {
       }
       // validate the optional field `NetworkSettings`
       if (jsonObj.get("NetworkSettings") != null && !jsonObj.get("NetworkSettings").isJsonNull()) {
-        InspectNetworkSettings.validateJsonElement(jsonObj.get("NetworkSettings"));
+          InspectNetworkSettings.validateJsonObject(jsonObj.getAsJsonObject("NetworkSettings"));
       }
       if ((jsonObj.get("OCIConfigPath") != null && !jsonObj.get("OCIConfigPath").isJsonNull()) && !jsonObj.get("OCIConfigPath").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `OCIConfigPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OCIConfigPath").toString()));
@@ -1387,7 +1569,7 @@ public class InspectContainerData implements Serializable {
       }
       // validate the optional field `State`
       if (jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) {
-        InspectContainerState.validateJsonElement(jsonObj.get("State"));
+          InspectContainerState.validateJsonObject(jsonObj.getAsJsonObject("State"));
       }
       if ((jsonObj.get("StaticDir") != null && !jsonObj.get("StaticDir").isJsonNull()) && !jsonObj.get("StaticDir").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `StaticDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StaticDir").toString()));
@@ -1414,31 +1596,31 @@ public class InspectContainerData implements Serializable {
 
            @Override
            public InspectContainerData read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of InspectContainerData given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectContainerData
-   * @throws IOException if the JSON string is invalid with respect to InspectContainerData
-   */
+    /**
+     * Create an instance of InspectContainerData given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectContainerData
+     * @throws IOException if the JSON string is invalid with respect to InspectContainerData
+  */
   public static InspectContainerData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerData.class);
   }
 
-  /**
-   * Convert an instance of InspectContainerData to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of InspectContainerData to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

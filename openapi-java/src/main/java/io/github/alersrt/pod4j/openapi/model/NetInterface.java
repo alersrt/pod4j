@@ -14,19 +14,21 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.NetAddress;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +40,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -55,7 +53,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetInterface
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NetInterface implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -65,32 +63,36 @@ public class NetInterface implements Serializable {
 
   public static final String SERIALIZED_NAME_SUBNETS = "subnets";
   @SerializedName(SERIALIZED_NAME_SUBNETS)
-  private List<@Valid NetAddress> subnets = new ArrayList<>();
+  private List<NetAddress> subnets = null;
 
   public NetInterface() {
   }
 
   public NetInterface macAddress(String macAddress) {
-    this.macAddress = macAddress;
+
+      this.macAddress = macAddress;
     return this;
   }
 
-  /**
+    /**
    * MacAddress for this Interface.
    * @return macAddress
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "MacAddress for this Interface.")
 
   public String getMacAddress() {
     return macAddress;
   }
+
 
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
   }
 
 
-  public NetInterface subnets(List<@Valid NetAddress> subnets) {
+    public NetInterface subnets(List<NetAddress> subnets) {
+    
     this.subnets = subnets;
     return this;
   }
@@ -103,18 +105,20 @@ public class NetInterface implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Subnets list of assigned subnets with their gateway.
    * @return subnets
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Subnets list of assigned subnets with their gateway.")
 
-  public List<@Valid NetAddress> getSubnets() {
+    public List<NetAddress> getSubnets() {
     return subnets;
   }
 
-  public void setSubnets(List<@Valid NetAddress> subnets) {
+
+    public void setSubnets(List<NetAddress> subnets) {
     this.subnets = subnets;
   }
 
@@ -173,27 +177,28 @@ public class NetInterface implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetInterface
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetInterface.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NetInterface
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NetInterface.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in NetInterface is not found in the empty JSON string", NetInterface.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NetInterface.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetInterface` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetInterface` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("mac_address") != null && !jsonObj.get("mac_address").isJsonNull()) && !jsonObj.get("mac_address").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mac_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mac_address").toString()));
       }
@@ -207,7 +212,7 @@ public class NetInterface implements Serializable {
 
           // validate the optional field `subnets` (array)
           for (int i = 0; i < jsonArraysubnets.size(); i++) {
-            NetAddress.validateJsonElement(jsonArraysubnets.get(i));
+              NetAddress.validateJsonObject(jsonArraysubnets.get(i).getAsJsonObject());
           };
         }
       }
@@ -233,31 +238,31 @@ public class NetInterface implements Serializable {
 
            @Override
            public NetInterface read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NetInterface given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetInterface
-   * @throws IOException if the JSON string is invalid with respect to NetInterface
-   */
+    /**
+     * Create an instance of NetInterface given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetInterface
+     * @throws IOException if the JSON string is invalid with respect to NetInterface
+  */
   public static NetInterface fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetInterface.class);
   }
 
-  /**
-   * Convert an instance of NetInterface to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NetInterface to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

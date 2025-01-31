@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,13 +24,14 @@ import io.github.alersrt.pod4j.openapi.model.HostInfo;
 import io.github.alersrt.pod4j.openapi.model.Plugins;
 import io.github.alersrt.pod4j.openapi.model.StoreInfo;
 import io.github.alersrt.pod4j.openapi.model.Version;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,16 +43,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -58,7 +56,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Info is the overall struct that describes the host system running libpod/podman
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "Info is the overall struct that describes the host system running libpod/podman")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LibpodInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -72,7 +71,7 @@ public class LibpodInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_REGISTRIES = "registries";
   @SerializedName(SERIALIZED_NAME_REGISTRIES)
-  private Map<String, Object> registries = new HashMap<>();
+  private Map<String, Object> registries = null;
 
   public static final String SERIALIZED_NAME_STORE = "store";
   @SerializedName(SERIALIZED_NAME_STORE)
@@ -86,20 +85,23 @@ public class LibpodInfo implements Serializable {
   }
 
   public LibpodInfo host(HostInfo host) {
-    this.host = host;
+
+      this.host = host;
     return this;
   }
 
-  /**
+    /**
    * Get host
    * @return host
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public HostInfo getHost() {
     return host;
   }
+
 
   public void setHost(HostInfo host) {
     this.host = host;
@@ -107,20 +109,23 @@ public class LibpodInfo implements Serializable {
 
 
   public LibpodInfo plugins(Plugins plugins) {
-    this.plugins = plugins;
+
+      this.plugins = plugins;
     return this;
   }
 
-  /**
+    /**
    * Get plugins
    * @return plugins
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Plugins getPlugins() {
     return plugins;
   }
+
 
   public void setPlugins(Plugins plugins) {
     this.plugins = plugins;
@@ -128,7 +133,8 @@ public class LibpodInfo implements Serializable {
 
 
   public LibpodInfo registries(Map<String, Object> registries) {
-    this.registries = registries;
+
+      this.registries = registries;
     return this;
   }
 
@@ -140,15 +146,17 @@ public class LibpodInfo implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get registries
    * @return registries
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, Object> getRegistries() {
     return registries;
   }
+
 
   public void setRegistries(Map<String, Object> registries) {
     this.registries = registries;
@@ -156,20 +164,23 @@ public class LibpodInfo implements Serializable {
 
 
   public LibpodInfo store(StoreInfo store) {
-    this.store = store;
+
+      this.store = store;
     return this;
   }
 
-  /**
+    /**
    * Get store
    * @return store
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public StoreInfo getStore() {
     return store;
   }
+
 
   public void setStore(StoreInfo store) {
     this.store = store;
@@ -177,20 +188,23 @@ public class LibpodInfo implements Serializable {
 
 
   public LibpodInfo version(Version version) {
-    this.version = version;
+
+      this.version = version;
     return this;
   }
 
-  /**
+    /**
    * Get version
    * @return version
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Version getVersion() {
     return version;
   }
+
 
   public void setVersion(Version version) {
     this.version = version;
@@ -260,42 +274,43 @@ public class LibpodInfo implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LibpodInfo
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LibpodInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to LibpodInfo
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (LibpodInfo.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LibpodInfo is not found in the empty JSON string", LibpodInfo.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!LibpodInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `host`
       if (jsonObj.get("host") != null && !jsonObj.get("host").isJsonNull()) {
-        HostInfo.validateJsonElement(jsonObj.get("host"));
+          HostInfo.validateJsonObject(jsonObj.getAsJsonObject("host"));
       }
       // validate the optional field `plugins`
       if (jsonObj.get("plugins") != null && !jsonObj.get("plugins").isJsonNull()) {
-        Plugins.validateJsonElement(jsonObj.get("plugins"));
+          Plugins.validateJsonObject(jsonObj.getAsJsonObject("plugins"));
       }
       // validate the optional field `store`
       if (jsonObj.get("store") != null && !jsonObj.get("store").isJsonNull()) {
-        StoreInfo.validateJsonElement(jsonObj.get("store"));
+          StoreInfo.validateJsonObject(jsonObj.getAsJsonObject("store"));
       }
       // validate the optional field `version`
       if (jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) {
-        Version.validateJsonElement(jsonObj.get("version"));
+          Version.validateJsonObject(jsonObj.getAsJsonObject("version"));
       }
   }
 
@@ -319,31 +334,31 @@ public class LibpodInfo implements Serializable {
 
            @Override
            public LibpodInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of LibpodInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LibpodInfo
-   * @throws IOException if the JSON string is invalid with respect to LibpodInfo
-   */
+    /**
+     * Create an instance of LibpodInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LibpodInfo
+     * @throws IOException if the JSON string is invalid with respect to LibpodInfo
+     */
   public static LibpodInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodInfo.class);
   }
 
-  /**
-   * Convert an instance of LibpodInfo to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of LibpodInfo to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

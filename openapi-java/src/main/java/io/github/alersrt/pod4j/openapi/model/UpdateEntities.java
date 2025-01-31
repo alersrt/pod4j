@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -29,15 +30,16 @@ import io.github.alersrt.pod4j.openapi.model.LinuxPids;
 import io.github.alersrt.pod4j.openapi.model.LinuxRdma;
 import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,16 +51,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -66,29 +64,30 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * UpdateEntities used to wrap the oci resource spec in a swagger model
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "UpdateEntities used to wrap the oci resource spec in a swagger model")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateEntities implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE = "BlkIOWeightDevice";
   @SerializedName(SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE)
-  private List<@Valid WeightDevice> blkIOWeightDevice = new ArrayList<>();
+  private List<WeightDevice> blkIOWeightDevice = null;
 
   public static final String SERIALIZED_NAME_DEVICE_READ_B_PS = "DeviceReadBPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_READ_B_PS)
-  private List<@Valid ThrottleDevice> deviceReadBPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceReadBPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_READ_I_O_PS = "DeviceReadIOPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_READ_I_O_PS)
-  private List<@Valid ThrottleDevice> deviceReadIOPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceReadIOPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_WRITE_B_PS = "DeviceWriteBPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_B_PS)
-  private List<@Valid ThrottleDevice> deviceWriteBPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceWriteBPs = null;
 
   public static final String SERIALIZED_NAME_DEVICE_WRITE_I_O_PS = "DeviceWriteIOPs";
   @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_I_O_PS)
-  private List<@Valid ThrottleDevice> deviceWriteIOPs = new ArrayList<>();
+  private List<ThrottleDevice> deviceWriteIOPs = null;
 
   public static final String SERIALIZED_NAME_BLOCK_I_O = "blockIO";
   @SerializedName(SERIALIZED_NAME_BLOCK_I_O)
@@ -100,7 +99,7 @@ public class UpdateEntities implements Serializable {
 
   public static final String SERIALIZED_NAME_DEVICES = "devices";
   @SerializedName(SERIALIZED_NAME_DEVICES)
-  private List<@Valid LinuxDeviceCgroup> devices = new ArrayList<>();
+  private List<LinuxDeviceCgroup> devices = null;
 
   public static final String SERIALIZED_NAME_HEALTH_CMD = "health_cmd";
   @SerializedName(SERIALIZED_NAME_HEALTH_CMD)
@@ -160,7 +159,7 @@ public class UpdateEntities implements Serializable {
 
   public static final String SERIALIZED_NAME_HUGEPAGE_LIMITS = "hugepageLimits";
   @SerializedName(SERIALIZED_NAME_HUGEPAGE_LIMITS)
-  private List<@Valid LinuxHugepageLimit> hugepageLimits = new ArrayList<>();
+  private List<LinuxHugepageLimit> hugepageLimits = null;
 
   public static final String SERIALIZED_NAME_MEMORY = "memory";
   @SerializedName(SERIALIZED_NAME_MEMORY)
@@ -180,16 +179,17 @@ public class UpdateEntities implements Serializable {
 
   public static final String SERIALIZED_NAME_RDMA = "rdma";
   @SerializedName(SERIALIZED_NAME_RDMA)
-  private Map<String, LinuxRdma> rdma = new HashMap<>();
+  private Map<String, LinuxRdma> rdma = null;
 
   public static final String SERIALIZED_NAME_UNIFIED = "unified";
   @SerializedName(SERIALIZED_NAME_UNIFIED)
-  private Map<String, String> unified = new HashMap<>();
+  private Map<String, String> unified = null;
 
   public UpdateEntities() {
   }
 
-  public UpdateEntities blkIOWeightDevice(List<@Valid WeightDevice> blkIOWeightDevice) {
+    public UpdateEntities blkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
+    
     this.blkIOWeightDevice = blkIOWeightDevice;
     return this;
   }
@@ -202,23 +202,26 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Block IO weight (relative device weight) in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Weight\&quot;: weight}]&#x60;&#x60;&#x60;
    * @return blkIOWeightDevice
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Block IO weight (relative device weight) in the form: ```[{\"Path\": \"device_path\", \"Weight\": weight}]```")
 
-  public List<@Valid WeightDevice> getBlkIOWeightDevice() {
+    public List<WeightDevice> getBlkIOWeightDevice() {
     return blkIOWeightDevice;
   }
 
-  public void setBlkIOWeightDevice(List<@Valid WeightDevice> blkIOWeightDevice) {
+
+    public void setBlkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
     this.blkIOWeightDevice = blkIOWeightDevice;
   }
 
 
-  public UpdateEntities deviceReadBPs(List<@Valid ThrottleDevice> deviceReadBPs) {
+    public UpdateEntities deviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
+    
     this.deviceReadBPs = deviceReadBPs;
     return this;
   }
@@ -231,23 +234,26 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit read rate (bytes per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceReadBPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit read rate (bytes per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceReadBPs() {
+    public List<ThrottleDevice> getDeviceReadBPs() {
     return deviceReadBPs;
   }
 
-  public void setDeviceReadBPs(List<@Valid ThrottleDevice> deviceReadBPs) {
+
+    public void setDeviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
     this.deviceReadBPs = deviceReadBPs;
   }
 
 
-  public UpdateEntities deviceReadIOPs(List<@Valid ThrottleDevice> deviceReadIOPs) {
+    public UpdateEntities deviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
+    
     this.deviceReadIOPs = deviceReadIOPs;
     return this;
   }
@@ -260,23 +266,26 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit read rate (IO per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceReadIOPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit read rate (IO per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceReadIOPs() {
+    public List<ThrottleDevice> getDeviceReadIOPs() {
     return deviceReadIOPs;
   }
 
-  public void setDeviceReadIOPs(List<@Valid ThrottleDevice> deviceReadIOPs) {
+
+    public void setDeviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
     this.deviceReadIOPs = deviceReadIOPs;
   }
 
 
-  public UpdateEntities deviceWriteBPs(List<@Valid ThrottleDevice> deviceWriteBPs) {
+    public UpdateEntities deviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
+    
     this.deviceWriteBPs = deviceWriteBPs;
     return this;
   }
@@ -289,23 +298,26 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit write rate (bytes per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceWriteBPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit write rate (bytes per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceWriteBPs() {
+    public List<ThrottleDevice> getDeviceWriteBPs() {
     return deviceWriteBPs;
   }
 
-  public void setDeviceWriteBPs(List<@Valid ThrottleDevice> deviceWriteBPs) {
+
+    public void setDeviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
     this.deviceWriteBPs = deviceWriteBPs;
   }
 
 
-  public UpdateEntities deviceWriteIOPs(List<@Valid ThrottleDevice> deviceWriteIOPs) {
+    public UpdateEntities deviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
+    
     this.deviceWriteIOPs = deviceWriteIOPs;
     return this;
   }
@@ -318,37 +330,42 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Limit write rate (IO per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
    * @return deviceWriteIOPs
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Limit write rate (IO per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
 
-  public List<@Valid ThrottleDevice> getDeviceWriteIOPs() {
+    public List<ThrottleDevice> getDeviceWriteIOPs() {
     return deviceWriteIOPs;
   }
 
-  public void setDeviceWriteIOPs(List<@Valid ThrottleDevice> deviceWriteIOPs) {
+
+    public void setDeviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
     this.deviceWriteIOPs = deviceWriteIOPs;
   }
 
 
   public UpdateEntities blockIO(LinuxBlockIO blockIO) {
-    this.blockIO = blockIO;
+
+      this.blockIO = blockIO;
     return this;
   }
 
-  /**
+    /**
    * Get blockIO
    * @return blockIO
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public LinuxBlockIO getBlockIO() {
     return blockIO;
   }
+
 
   public void setBlockIO(LinuxBlockIO blockIO) {
     this.blockIO = blockIO;
@@ -356,27 +373,31 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities cpu(LinuxCPU cpu) {
-    this.cpu = cpu;
+
+      this.cpu = cpu;
     return this;
   }
 
-  /**
+    /**
    * Get cpu
    * @return cpu
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public LinuxCPU getCpu() {
     return cpu;
   }
+
 
   public void setCpu(LinuxCPU cpu) {
     this.cpu = cpu;
   }
 
 
-  public UpdateEntities devices(List<@Valid LinuxDeviceCgroup> devices) {
+    public UpdateEntities devices(List<LinuxDeviceCgroup> devices) {
+    
     this.devices = devices;
     return this;
   }
@@ -389,36 +410,41 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Devices configures the device allowlist.
    * @return devices
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Devices configures the device allowlist.")
 
-  public List<@Valid LinuxDeviceCgroup> getDevices() {
+    public List<LinuxDeviceCgroup> getDevices() {
     return devices;
   }
 
-  public void setDevices(List<@Valid LinuxDeviceCgroup> devices) {
+
+    public void setDevices(List<LinuxDeviceCgroup> devices) {
     this.devices = devices;
   }
 
 
   public UpdateEntities healthCmd(String healthCmd) {
-    this.healthCmd = healthCmd;
+
+      this.healthCmd = healthCmd;
     return this;
   }
 
-  /**
+    /**
    * HealthCmd set a healthcheck command for the container. (&#39;none&#39; disables the existing healthcheck)
    * @return healthCmd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthCmd set a healthcheck command for the container. ('none' disables the existing healthcheck)")
 
   public String getHealthCmd() {
     return healthCmd;
   }
+
 
   public void setHealthCmd(String healthCmd) {
     this.healthCmd = healthCmd;
@@ -426,19 +452,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthInterval(String healthInterval) {
-    this.healthInterval = healthInterval;
+
+      this.healthInterval = healthInterval;
     return this;
   }
 
-  /**
+    /**
    * HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.
    * @return healthInterval
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.")
 
   public String getHealthInterval() {
     return healthInterval;
   }
+
 
   public void setHealthInterval(String healthInterval) {
     this.healthInterval = healthInterval;
@@ -446,19 +475,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthLogDestination(String healthLogDestination) {
-    this.healthLogDestination = healthLogDestination;
+
+      this.healthLogDestination = healthLogDestination;
     return this;
   }
 
-  /**
+    /**
    * HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!
    * @return healthLogDestination
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!")
 
   public String getHealthLogDestination() {
     return healthLogDestination;
   }
+
 
   public void setHealthLogDestination(String healthLogDestination) {
     this.healthLogDestination = healthLogDestination;
@@ -466,19 +498,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthMaxLogCount(Integer healthMaxLogCount) {
-    this.healthMaxLogCount = healthMaxLogCount;
+
+      this.healthMaxLogCount = healthMaxLogCount;
     return this;
   }
 
-  /**
+    /**
    * HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
 
   public Integer getHealthMaxLogCount() {
     return healthMaxLogCount;
   }
+
 
   public void setHealthMaxLogCount(Integer healthMaxLogCount) {
     this.healthMaxLogCount = healthMaxLogCount;
@@ -486,19 +521,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthMaxLogSize(Integer healthMaxLogSize) {
-    this.healthMaxLogSize = healthMaxLogSize;
+
+      this.healthMaxLogSize = healthMaxLogSize;
     return this;
   }
 
-  /**
+    /**
    * HealthMaxLogSize set maximum length in characters of stored HealthCheck log. (&#39;0&#39; value means an infinite log length)
    * @return healthMaxLogSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthMaxLogSize set maximum length in characters of stored HealthCheck log. ('0' value means an infinite log length)")
 
   public Integer getHealthMaxLogSize() {
     return healthMaxLogSize;
   }
+
 
   public void setHealthMaxLogSize(Integer healthMaxLogSize) {
     this.healthMaxLogSize = healthMaxLogSize;
@@ -506,19 +544,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthOnFailure(String healthOnFailure) {
-    this.healthOnFailure = healthOnFailure;
+
+      this.healthOnFailure = healthOnFailure;
     return this;
   }
 
-  /**
+    /**
    * HealthOnFailure set the action to take once the container turns unhealthy.
    * @return healthOnFailure
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthOnFailure set the action to take once the container turns unhealthy.")
 
   public String getHealthOnFailure() {
     return healthOnFailure;
   }
+
 
   public void setHealthOnFailure(String healthOnFailure) {
     this.healthOnFailure = healthOnFailure;
@@ -526,19 +567,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthRetries(Integer healthRetries) {
-    this.healthRetries = healthRetries;
+
+      this.healthRetries = healthRetries;
     return this;
   }
 
-  /**
+    /**
    * HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.
    * @return healthRetries
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.")
 
   public Integer getHealthRetries() {
     return healthRetries;
   }
+
 
   public void setHealthRetries(Integer healthRetries) {
     this.healthRetries = healthRetries;
@@ -546,19 +590,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartPeriod(String healthStartPeriod) {
-    this.healthStartPeriod = healthStartPeriod;
+
+      this.healthStartPeriod = healthStartPeriod;
     return this;
   }
 
-  /**
+    /**
    * HealthStartPeriod set the initialization time needed for a container to bootstrap.
    * @return healthStartPeriod
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartPeriod set the initialization time needed for a container to bootstrap.")
 
   public String getHealthStartPeriod() {
     return healthStartPeriod;
   }
+
 
   public void setHealthStartPeriod(String healthStartPeriod) {
     this.healthStartPeriod = healthStartPeriod;
@@ -566,19 +613,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartupCmd(String healthStartupCmd) {
-    this.healthStartupCmd = healthStartupCmd;
+
+      this.healthStartupCmd = healthStartupCmd;
     return this;
   }
 
-  /**
+    /**
    * HealthStartupCmd set a startup healthcheck command for the container.
    * @return healthStartupCmd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartupCmd set a startup healthcheck command for the container.")
 
   public String getHealthStartupCmd() {
     return healthStartupCmd;
   }
+
 
   public void setHealthStartupCmd(String healthStartupCmd) {
     this.healthStartupCmd = healthStartupCmd;
@@ -586,19 +636,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartupInterval(String healthStartupInterval) {
-    this.healthStartupInterval = healthStartupInterval;
+
+      this.healthStartupInterval = healthStartupInterval;
     return this;
   }
 
-  /**
+    /**
    * HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.
    * @return healthStartupInterval
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.")
 
   public String getHealthStartupInterval() {
     return healthStartupInterval;
   }
+
 
   public void setHealthStartupInterval(String healthStartupInterval) {
     this.healthStartupInterval = healthStartupInterval;
@@ -606,19 +659,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartupRetries(Integer healthStartupRetries) {
-    this.healthStartupRetries = healthStartupRetries;
+
+      this.healthStartupRetries = healthStartupRetries;
     return this;
   }
 
-  /**
+    /**
    * HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.
    * @return healthStartupRetries
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.")
 
   public Integer getHealthStartupRetries() {
     return healthStartupRetries;
   }
+
 
   public void setHealthStartupRetries(Integer healthStartupRetries) {
     this.healthStartupRetries = healthStartupRetries;
@@ -626,19 +682,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartupSuccess(Integer healthStartupSuccess) {
-    this.healthStartupSuccess = healthStartupSuccess;
+
+      this.healthStartupSuccess = healthStartupSuccess;
     return this;
   }
 
-  /**
+    /**
    * HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)
    * @return healthStartupSuccess
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)")
 
   public Integer getHealthStartupSuccess() {
     return healthStartupSuccess;
   }
+
 
   public void setHealthStartupSuccess(Integer healthStartupSuccess) {
     this.healthStartupSuccess = healthStartupSuccess;
@@ -646,19 +705,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthStartupTimeout(String healthStartupTimeout) {
-    this.healthStartupTimeout = healthStartupTimeout;
+
+      this.healthStartupTimeout = healthStartupTimeout;
     return this;
   }
 
-  /**
+    /**
    * HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.
    * @return healthStartupTimeout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.")
 
   public String getHealthStartupTimeout() {
     return healthStartupTimeout;
   }
+
 
   public void setHealthStartupTimeout(String healthStartupTimeout) {
     this.healthStartupTimeout = healthStartupTimeout;
@@ -666,26 +728,30 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities healthTimeout(String healthTimeout) {
-    this.healthTimeout = healthTimeout;
+
+      this.healthTimeout = healthTimeout;
     return this;
   }
 
-  /**
+    /**
    * HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.
    * @return healthTimeout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.")
 
   public String getHealthTimeout() {
     return healthTimeout;
   }
+
 
   public void setHealthTimeout(String healthTimeout) {
     this.healthTimeout = healthTimeout;
   }
 
 
-  public UpdateEntities hugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
+    public UpdateEntities hugepageLimits(List<LinuxHugepageLimit> hugepageLimits) {
+    
     this.hugepageLimits = hugepageLimits;
     return this;
   }
@@ -698,37 +764,42 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Hugetlb limits (in bytes). Default to reservation limits if supported.
    * @return hugepageLimits
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Hugetlb limits (in bytes). Default to reservation limits if supported.")
 
-  public List<@Valid LinuxHugepageLimit> getHugepageLimits() {
+    public List<LinuxHugepageLimit> getHugepageLimits() {
     return hugepageLimits;
   }
 
-  public void setHugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
+
+    public void setHugepageLimits(List<LinuxHugepageLimit> hugepageLimits) {
     this.hugepageLimits = hugepageLimits;
   }
 
 
   public UpdateEntities memory(LinuxMemory memory) {
-    this.memory = memory;
+
+      this.memory = memory;
     return this;
   }
 
-  /**
+    /**
    * Get memory
    * @return memory
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public LinuxMemory getMemory() {
     return memory;
   }
+
 
   public void setMemory(LinuxMemory memory) {
     this.memory = memory;
@@ -736,20 +807,23 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities network(LinuxNetwork network) {
-    this.network = network;
+
+      this.network = network;
     return this;
   }
 
-  /**
+    /**
    * Get network
    * @return network
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public LinuxNetwork getNetwork() {
     return network;
   }
+
 
   public void setNetwork(LinuxNetwork network) {
     this.network = network;
@@ -757,19 +831,22 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities noHealthcheck(Boolean noHealthcheck) {
-    this.noHealthcheck = noHealthcheck;
+
+      this.noHealthcheck = noHealthcheck;
     return this;
   }
 
-  /**
+    /**
    * Disable healthchecks on container.
    * @return noHealthcheck
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Disable healthchecks on container.")
 
   public Boolean getNoHealthcheck() {
     return noHealthcheck;
   }
+
 
   public void setNoHealthcheck(Boolean noHealthcheck) {
     this.noHealthcheck = noHealthcheck;
@@ -777,20 +854,23 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities pids(LinuxPids pids) {
-    this.pids = pids;
+
+      this.pids = pids;
     return this;
   }
 
-  /**
+    /**
    * Get pids
    * @return pids
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public LinuxPids getPids() {
     return pids;
   }
+
 
   public void setPids(LinuxPids pids) {
     this.pids = pids;
@@ -798,7 +878,8 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities rdma(Map<String, LinuxRdma> rdma) {
-    this.rdma = rdma;
+
+      this.rdma = rdma;
     return this;
   }
 
@@ -810,16 +891,18 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.
    * @return rdma
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.")
 
   public Map<String, LinuxRdma> getRdma() {
     return rdma;
   }
+
 
   public void setRdma(Map<String, LinuxRdma> rdma) {
     this.rdma = rdma;
@@ -827,7 +910,8 @@ public class UpdateEntities implements Serializable {
 
 
   public UpdateEntities unified(Map<String, String> unified) {
-    this.unified = unified;
+
+      this.unified = unified;
     return this;
   }
 
@@ -839,17 +923,19 @@ public class UpdateEntities implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Unified resources.
    * @return unified
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Unified resources.")
 
   public Map<String, String> getUnified() {
     return unified;
   }
 
-  public void setUnified(Map<String, String> unified) {
+
+    public void setUnified(Map<String, String> unified) {
     this.unified = unified;
   }
 
@@ -989,27 +1075,28 @@ public class UpdateEntities implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateEntities
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!UpdateEntities.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to UpdateEntities
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (UpdateEntities.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!UpdateEntities.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("BlkIOWeightDevice") != null && !jsonObj.get("BlkIOWeightDevice").isJsonNull()) {
         JsonArray jsonArrayblkIOWeightDevice = jsonObj.getAsJsonArray("BlkIOWeightDevice");
         if (jsonArrayblkIOWeightDevice != null) {
@@ -1020,7 +1107,7 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `BlkIOWeightDevice` (array)
           for (int i = 0; i < jsonArrayblkIOWeightDevice.size(); i++) {
-            WeightDevice.validateJsonElement(jsonArrayblkIOWeightDevice.get(i));
+              WeightDevice.validateJsonObject(jsonArrayblkIOWeightDevice.get(i).getAsJsonObject());
           };
         }
       }
@@ -1034,7 +1121,7 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `DeviceReadBPs` (array)
           for (int i = 0; i < jsonArraydeviceReadBPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceReadBPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceReadBPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -1048,7 +1135,7 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `DeviceReadIOPs` (array)
           for (int i = 0; i < jsonArraydeviceReadIOPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceReadIOPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceReadIOPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -1062,7 +1149,7 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `DeviceWriteBPs` (array)
           for (int i = 0; i < jsonArraydeviceWriteBPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceWriteBPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceWriteBPs.get(i).getAsJsonObject());
           };
         }
       }
@@ -1076,17 +1163,17 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `DeviceWriteIOPs` (array)
           for (int i = 0; i < jsonArraydeviceWriteIOPs.size(); i++) {
-            ThrottleDevice.validateJsonElement(jsonArraydeviceWriteIOPs.get(i));
+              ThrottleDevice.validateJsonObject(jsonArraydeviceWriteIOPs.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `blockIO`
       if (jsonObj.get("blockIO") != null && !jsonObj.get("blockIO").isJsonNull()) {
-        LinuxBlockIO.validateJsonElement(jsonObj.get("blockIO"));
+          LinuxBlockIO.validateJsonObject(jsonObj.getAsJsonObject("blockIO"));
       }
       // validate the optional field `cpu`
       if (jsonObj.get("cpu") != null && !jsonObj.get("cpu").isJsonNull()) {
-        LinuxCPU.validateJsonElement(jsonObj.get("cpu"));
+          LinuxCPU.validateJsonObject(jsonObj.getAsJsonObject("cpu"));
       }
       if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
         JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
@@ -1098,7 +1185,7 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `devices` (array)
           for (int i = 0; i < jsonArraydevices.size(); i++) {
-            LinuxDeviceCgroup.validateJsonElement(jsonArraydevices.get(i));
+              LinuxDeviceCgroup.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
           };
         }
       }
@@ -1139,21 +1226,21 @@ public class UpdateEntities implements Serializable {
 
           // validate the optional field `hugepageLimits` (array)
           for (int i = 0; i < jsonArrayhugepageLimits.size(); i++) {
-            LinuxHugepageLimit.validateJsonElement(jsonArrayhugepageLimits.get(i));
+              LinuxHugepageLimit.validateJsonObject(jsonArrayhugepageLimits.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `memory`
       if (jsonObj.get("memory") != null && !jsonObj.get("memory").isJsonNull()) {
-        LinuxMemory.validateJsonElement(jsonObj.get("memory"));
+          LinuxMemory.validateJsonObject(jsonObj.getAsJsonObject("memory"));
       }
       // validate the optional field `network`
       if (jsonObj.get("network") != null && !jsonObj.get("network").isJsonNull()) {
-        LinuxNetwork.validateJsonElement(jsonObj.get("network"));
+          LinuxNetwork.validateJsonObject(jsonObj.getAsJsonObject("network"));
       }
       // validate the optional field `pids`
       if (jsonObj.get("pids") != null && !jsonObj.get("pids").isJsonNull()) {
-        LinuxPids.validateJsonElement(jsonObj.get("pids"));
+          LinuxPids.validateJsonObject(jsonObj.getAsJsonObject("pids"));
       }
   }
 
@@ -1177,31 +1264,31 @@ public class UpdateEntities implements Serializable {
 
            @Override
            public UpdateEntities read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of UpdateEntities given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of UpdateEntities
-   * @throws IOException if the JSON string is invalid with respect to UpdateEntities
-   */
+    /**
+     * Create an instance of UpdateEntities given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of UpdateEntities
+     * @throws IOException if the JSON string is invalid with respect to UpdateEntities
+     */
   public static UpdateEntities fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateEntities.class);
   }
 
-  /**
-   * Convert an instance of UpdateEntities to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of UpdateEntities to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

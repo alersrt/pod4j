@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,13 +24,14 @@ import io.github.alersrt.pod4j.openapi.model.AccessMode;
 import io.github.alersrt.pod4j.openapi.model.CapacityRange;
 import io.github.alersrt.pod4j.openapi.model.Secret;
 import io.github.alersrt.pod4j.openapi.model.TopologyRequirement;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,16 +43,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -58,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ClusterVolumeSpec
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ClusterVolumeSpec implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -84,26 +82,29 @@ public class ClusterVolumeSpec implements Serializable {
 
   public static final String SERIALIZED_NAME_SECRETS = "Secrets";
   @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<@Valid Secret> secrets = new ArrayList<>();
+  private List<Secret> secrets = null;
 
   public ClusterVolumeSpec() {
   }
 
   public ClusterVolumeSpec accessMode(AccessMode accessMode) {
-    this.accessMode = accessMode;
+
+      this.accessMode = accessMode;
     return this;
   }
 
-  /**
+    /**
    * Get accessMode
    * @return accessMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public AccessMode getAccessMode() {
     return accessMode;
   }
+
 
   public void setAccessMode(AccessMode accessMode) {
     this.accessMode = accessMode;
@@ -111,20 +112,23 @@ public class ClusterVolumeSpec implements Serializable {
 
 
   public ClusterVolumeSpec accessibilityRequirements(TopologyRequirement accessibilityRequirements) {
-    this.accessibilityRequirements = accessibilityRequirements;
+
+      this.accessibilityRequirements = accessibilityRequirements;
     return this;
   }
 
-  /**
+    /**
    * Get accessibilityRequirements
    * @return accessibilityRequirements
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public TopologyRequirement getAccessibilityRequirements() {
     return accessibilityRequirements;
   }
+
 
   public void setAccessibilityRequirements(TopologyRequirement accessibilityRequirements) {
     this.accessibilityRequirements = accessibilityRequirements;
@@ -132,19 +136,22 @@ public class ClusterVolumeSpec implements Serializable {
 
 
   public ClusterVolumeSpec availability(String availability) {
-    this.availability = availability;
+
+      this.availability = availability;
     return this;
   }
 
-  /**
+    /**
    * Get availability
    * @return availability
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getAvailability() {
     return availability;
   }
+
 
   public void setAvailability(String availability) {
     this.availability = availability;
@@ -152,20 +159,23 @@ public class ClusterVolumeSpec implements Serializable {
 
 
   public ClusterVolumeSpec capacityRange(CapacityRange capacityRange) {
-    this.capacityRange = capacityRange;
+
+      this.capacityRange = capacityRange;
     return this;
   }
 
-  /**
+    /**
    * Get capacityRange
    * @return capacityRange
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public CapacityRange getCapacityRange() {
     return capacityRange;
   }
+
 
   public void setCapacityRange(CapacityRange capacityRange) {
     this.capacityRange = capacityRange;
@@ -173,26 +183,30 @@ public class ClusterVolumeSpec implements Serializable {
 
 
   public ClusterVolumeSpec group(String group) {
-    this.group = group;
+
+      this.group = group;
     return this;
   }
 
-  /**
+    /**
    * Group defines the volume group of this volume. Volumes belonging to the same group can be referred to by group name when creating Services. Referring to a volume by group instructs swarm to treat volumes in that group interchangeably for the purpose of scheduling. Volumes with an empty string for a group technically all belong to the same, emptystring group.
    * @return group
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Group defines the volume group of this volume. Volumes belonging to the same group can be referred to by group name when creating Services. Referring to a volume by group instructs swarm to treat volumes in that group interchangeably for the purpose of scheduling. Volumes with an empty string for a group technically all belong to the same, emptystring group.")
 
   public String getGroup() {
     return group;
   }
+
 
   public void setGroup(String group) {
     this.group = group;
   }
 
 
-  public ClusterVolumeSpec secrets(List<@Valid Secret> secrets) {
+    public ClusterVolumeSpec secrets(List<Secret> secrets) {
+    
     this.secrets = secrets;
     return this;
   }
@@ -205,18 +219,20 @@ public class ClusterVolumeSpec implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Secrets defines Swarm Secrets that are passed to the CSI storage plugin when operating on this volume.
    * @return secrets
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Secrets defines Swarm Secrets that are passed to the CSI storage plugin when operating on this volume.")
 
-  public List<@Valid Secret> getSecrets() {
+    public List<Secret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<@Valid Secret> secrets) {
+
+    public void setSecrets(List<Secret> secrets) {
     this.secrets = secrets;
   }
 
@@ -287,41 +303,42 @@ public class ClusterVolumeSpec implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ClusterVolumeSpec
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ClusterVolumeSpec.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ClusterVolumeSpec
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ClusterVolumeSpec.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ClusterVolumeSpec is not found in the empty JSON string", ClusterVolumeSpec.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ClusterVolumeSpec.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolumeSpec` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolumeSpec` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `AccessMode`
       if (jsonObj.get("AccessMode") != null && !jsonObj.get("AccessMode").isJsonNull()) {
-        AccessMode.validateJsonElement(jsonObj.get("AccessMode"));
+          AccessMode.validateJsonObject(jsonObj.getAsJsonObject("AccessMode"));
       }
       // validate the optional field `AccessibilityRequirements`
       if (jsonObj.get("AccessibilityRequirements") != null && !jsonObj.get("AccessibilityRequirements").isJsonNull()) {
-        TopologyRequirement.validateJsonElement(jsonObj.get("AccessibilityRequirements"));
+          TopologyRequirement.validateJsonObject(jsonObj.getAsJsonObject("AccessibilityRequirements"));
       }
       if ((jsonObj.get("Availability") != null && !jsonObj.get("Availability").isJsonNull()) && !jsonObj.get("Availability").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Availability` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Availability").toString()));
       }
       // validate the optional field `CapacityRange`
       if (jsonObj.get("CapacityRange") != null && !jsonObj.get("CapacityRange").isJsonNull()) {
-        CapacityRange.validateJsonElement(jsonObj.get("CapacityRange"));
+          CapacityRange.validateJsonObject(jsonObj.getAsJsonObject("CapacityRange"));
       }
       if ((jsonObj.get("Group") != null && !jsonObj.get("Group").isJsonNull()) && !jsonObj.get("Group").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Group` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Group").toString()));
@@ -336,7 +353,7 @@ public class ClusterVolumeSpec implements Serializable {
 
           // validate the optional field `Secrets` (array)
           for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            Secret.validateJsonElement(jsonArraysecrets.get(i));
+              Secret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
           };
         }
       }
@@ -362,31 +379,31 @@ public class ClusterVolumeSpec implements Serializable {
 
            @Override
            public ClusterVolumeSpec read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ClusterVolumeSpec given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ClusterVolumeSpec
-   * @throws IOException if the JSON string is invalid with respect to ClusterVolumeSpec
-   */
+    /**
+     * Create an instance of ClusterVolumeSpec given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ClusterVolumeSpec
+     * @throws IOException if the JSON string is invalid with respect to ClusterVolumeSpec
+     */
   public static ClusterVolumeSpec fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ClusterVolumeSpec.class);
   }
 
-  /**
-   * Convert an instance of ClusterVolumeSpec to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ClusterVolumeSpec to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

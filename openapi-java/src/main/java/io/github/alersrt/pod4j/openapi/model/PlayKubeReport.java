@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -26,13 +27,14 @@ import io.github.alersrt.pod4j.openapi.model.PodRmReport;
 import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.SecretRmReport;
 import io.github.alersrt.pod4j.openapi.model.VolumeRmReport;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,16 +46,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -61,7 +59,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * PlayKubeReport
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PlayKubeReport implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -71,19 +69,19 @@ public class PlayKubeReport implements Serializable {
 
   public static final String SERIALIZED_NAME_PODS = "Pods";
   @SerializedName(SERIALIZED_NAME_PODS)
-  private List<@Valid PlayKubePod> pods = new ArrayList<>();
+  private List<PlayKubePod> pods = null;
 
   public static final String SERIALIZED_NAME_RM_REPORT = "RmReport";
   @SerializedName(SERIALIZED_NAME_RM_REPORT)
-  private List<@Valid PodRmReport> rmReport = new ArrayList<>();
+  private List<PodRmReport> rmReport = null;
 
   public static final String SERIALIZED_NAME_SECRET_RM_REPORT = "SecretRmReport";
   @SerializedName(SERIALIZED_NAME_SECRET_RM_REPORT)
-  private List<@Valid SecretRmReport> secretRmReport = new ArrayList<>();
+  private List<SecretRmReport> secretRmReport = null;
 
   public static final String SERIALIZED_NAME_SECRETS = "Secrets";
   @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<@Valid PlaySecret> secrets = new ArrayList<>();
+  private List<PlaySecret> secrets = null;
 
   public static final String SERIALIZED_NAME_SERVICE_CONTAINER_I_D = "ServiceContainerID";
   @SerializedName(SERIALIZED_NAME_SERVICE_CONTAINER_I_D)
@@ -91,40 +89,44 @@ public class PlayKubeReport implements Serializable {
 
   public static final String SERIALIZED_NAME_STOP_REPORT = "StopReport";
   @SerializedName(SERIALIZED_NAME_STOP_REPORT)
-  private List<@Valid PodStopReport> stopReport = new ArrayList<>();
+  private List<PodStopReport> stopReport = null;
 
   public static final String SERIALIZED_NAME_VOLUME_RM_REPORT = "VolumeRmReport";
   @SerializedName(SERIALIZED_NAME_VOLUME_RM_REPORT)
-  private List<@Valid VolumeRmReport> volumeRmReport = new ArrayList<>();
+  private List<VolumeRmReport> volumeRmReport = null;
 
   public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
   @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<@Valid PlayKubeVolume> volumes = new ArrayList<>();
+  private List<PlayKubeVolume> volumes = null;
 
   public PlayKubeReport() {
   }
 
   public PlayKubeReport exitCode(Integer exitCode) {
-    this.exitCode = exitCode;
+
+      this.exitCode = exitCode;
     return this;
   }
 
-  /**
+    /**
    * If set, exit with the specified exit code.
    * @return exitCode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "If set, exit with the specified exit code.")
 
   public Integer getExitCode() {
     return exitCode;
   }
+
 
   public void setExitCode(Integer exitCode) {
     this.exitCode = exitCode;
   }
 
 
-  public PlayKubeReport pods(List<@Valid PlayKubePod> pods) {
+    public PlayKubeReport pods(List<PlayKubePod> pods) {
+    
     this.pods = pods;
     return this;
   }
@@ -137,23 +139,26 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Pods - pods created by play kube.
    * @return pods
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Pods - pods created by play kube.")
 
-  public List<@Valid PlayKubePod> getPods() {
+    public List<PlayKubePod> getPods() {
     return pods;
   }
 
-  public void setPods(List<@Valid PlayKubePod> pods) {
+
+    public void setPods(List<PlayKubePod> pods) {
     this.pods = pods;
   }
 
 
-  public PlayKubeReport rmReport(List<@Valid PodRmReport> rmReport) {
+    public PlayKubeReport rmReport(List<PodRmReport> rmReport) {
+    
     this.rmReport = rmReport;
     return this;
   }
@@ -166,23 +171,26 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get rmReport
    * @return rmReport
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid PodRmReport> getRmReport() {
+    public List<PodRmReport> getRmReport() {
     return rmReport;
   }
 
-  public void setRmReport(List<@Valid PodRmReport> rmReport) {
+
+    public void setRmReport(List<PodRmReport> rmReport) {
     this.rmReport = rmReport;
   }
 
 
-  public PlayKubeReport secretRmReport(List<@Valid SecretRmReport> secretRmReport) {
+    public PlayKubeReport secretRmReport(List<SecretRmReport> secretRmReport) {
+    
     this.secretRmReport = secretRmReport;
     return this;
   }
@@ -195,23 +203,26 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get secretRmReport
    * @return secretRmReport
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid SecretRmReport> getSecretRmReport() {
+    public List<SecretRmReport> getSecretRmReport() {
     return secretRmReport;
   }
 
-  public void setSecretRmReport(List<@Valid SecretRmReport> secretRmReport) {
+
+    public void setSecretRmReport(List<SecretRmReport> secretRmReport) {
     this.secretRmReport = secretRmReport;
   }
 
 
-  public PlayKubeReport secrets(List<@Valid PlaySecret> secrets) {
+    public PlayKubeReport secrets(List<PlaySecret> secrets) {
+    
     this.secrets = secrets;
     return this;
   }
@@ -224,43 +235,49 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Secrets - secrets created by play kube
    * @return secrets
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Secrets - secrets created by play kube")
 
-  public List<@Valid PlaySecret> getSecrets() {
+    public List<PlaySecret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<@Valid PlaySecret> secrets) {
+
+    public void setSecrets(List<PlaySecret> secrets) {
     this.secrets = secrets;
   }
 
 
   public PlayKubeReport serviceContainerID(String serviceContainerID) {
-    this.serviceContainerID = serviceContainerID;
+
+      this.serviceContainerID = serviceContainerID;
     return this;
   }
 
-  /**
+    /**
    * ServiceContainerID - ID of the service container if one is created
    * @return serviceContainerID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ServiceContainerID - ID of the service container if one is created")
 
   public String getServiceContainerID() {
     return serviceContainerID;
   }
+
 
   public void setServiceContainerID(String serviceContainerID) {
     this.serviceContainerID = serviceContainerID;
   }
 
 
-  public PlayKubeReport stopReport(List<@Valid PodStopReport> stopReport) {
+    public PlayKubeReport stopReport(List<PodStopReport> stopReport) {
+    
     this.stopReport = stopReport;
     return this;
   }
@@ -273,23 +290,26 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get stopReport
    * @return stopReport
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid PodStopReport> getStopReport() {
+    public List<PodStopReport> getStopReport() {
     return stopReport;
   }
 
-  public void setStopReport(List<@Valid PodStopReport> stopReport) {
+
+    public void setStopReport(List<PodStopReport> stopReport) {
     this.stopReport = stopReport;
   }
 
 
-  public PlayKubeReport volumeRmReport(List<@Valid VolumeRmReport> volumeRmReport) {
+    public PlayKubeReport volumeRmReport(List<VolumeRmReport> volumeRmReport) {
+    
     this.volumeRmReport = volumeRmReport;
     return this;
   }
@@ -302,23 +322,26 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get volumeRmReport
    * @return volumeRmReport
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid VolumeRmReport> getVolumeRmReport() {
+    public List<VolumeRmReport> getVolumeRmReport() {
     return volumeRmReport;
   }
 
-  public void setVolumeRmReport(List<@Valid VolumeRmReport> volumeRmReport) {
+
+    public void setVolumeRmReport(List<VolumeRmReport> volumeRmReport) {
     this.volumeRmReport = volumeRmReport;
   }
 
 
-  public PlayKubeReport volumes(List<@Valid PlayKubeVolume> volumes) {
+    public PlayKubeReport volumes(List<PlayKubeVolume> volumes) {
+    
     this.volumes = volumes;
     return this;
   }
@@ -331,18 +354,20 @@ public class PlayKubeReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Volumes - volumes created by play kube.
    * @return volumes
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Volumes - volumes created by play kube.")
 
-  public List<@Valid PlayKubeVolume> getVolumes() {
+    public List<PlayKubeVolume> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(List<@Valid PlayKubeVolume> volumes) {
+
+    public void setVolumes(List<PlayKubeVolume> volumes) {
     this.volumes = volumes;
   }
 
@@ -422,27 +447,28 @@ public class PlayKubeReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PlayKubeReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PlayKubeReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to PlayKubeReport
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (PlayKubeReport.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PlayKubeReport is not found in the empty JSON string", PlayKubeReport.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!PlayKubeReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlayKubeReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlayKubeReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("Pods") != null && !jsonObj.get("Pods").isJsonNull()) {
         JsonArray jsonArraypods = jsonObj.getAsJsonArray("Pods");
         if (jsonArraypods != null) {
@@ -453,7 +479,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `Pods` (array)
           for (int i = 0; i < jsonArraypods.size(); i++) {
-            PlayKubePod.validateJsonElement(jsonArraypods.get(i));
+              PlayKubePod.validateJsonObject(jsonArraypods.get(i).getAsJsonObject());
           };
         }
       }
@@ -467,7 +493,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `RmReport` (array)
           for (int i = 0; i < jsonArrayrmReport.size(); i++) {
-            PodRmReport.validateJsonElement(jsonArrayrmReport.get(i));
+              PodRmReport.validateJsonObject(jsonArrayrmReport.get(i).getAsJsonObject());
           };
         }
       }
@@ -481,7 +507,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `SecretRmReport` (array)
           for (int i = 0; i < jsonArraysecretRmReport.size(); i++) {
-            SecretRmReport.validateJsonElement(jsonArraysecretRmReport.get(i));
+              SecretRmReport.validateJsonObject(jsonArraysecretRmReport.get(i).getAsJsonObject());
           };
         }
       }
@@ -495,7 +521,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `Secrets` (array)
           for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            PlaySecret.validateJsonElement(jsonArraysecrets.get(i));
+              PlaySecret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
           };
         }
       }
@@ -512,7 +538,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `StopReport` (array)
           for (int i = 0; i < jsonArraystopReport.size(); i++) {
-            PodStopReport.validateJsonElement(jsonArraystopReport.get(i));
+              PodStopReport.validateJsonObject(jsonArraystopReport.get(i).getAsJsonObject());
           };
         }
       }
@@ -526,7 +552,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `VolumeRmReport` (array)
           for (int i = 0; i < jsonArrayvolumeRmReport.size(); i++) {
-            VolumeRmReport.validateJsonElement(jsonArrayvolumeRmReport.get(i));
+              VolumeRmReport.validateJsonObject(jsonArrayvolumeRmReport.get(i).getAsJsonObject());
           };
         }
       }
@@ -540,7 +566,7 @@ public class PlayKubeReport implements Serializable {
 
           // validate the optional field `Volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            PlayKubeVolume.validateJsonElement(jsonArrayvolumes.get(i));
+              PlayKubeVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -566,31 +592,31 @@ public class PlayKubeReport implements Serializable {
 
            @Override
            public PlayKubeReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of PlayKubeReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PlayKubeReport
-   * @throws IOException if the JSON string is invalid with respect to PlayKubeReport
-   */
+    /**
+     * Create an instance of PlayKubeReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PlayKubeReport
+     * @throws IOException if the JSON string is invalid with respect to PlayKubeReport
+     */
   public static PlayKubeReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PlayKubeReport.class);
   }
 
-  /**
-   * Convert an instance of PlayKubeReport to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of PlayKubeReport to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

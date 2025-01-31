@@ -13,8 +13,7 @@ All URIs are relative to *http://podman.io*
 | [**manifestPushLibpod**](ManifestsApi.md#manifestPushLibpod) | **POST** /libpod/manifests/{name}/registry/{destination} | Push manifest list to registry |
 | [**manifestPushV3Libpod**](ManifestsApi.md#manifestPushV3Libpod) | **POST** /libpod/manifests/{name}/push | Push manifest to registry |
 
-
-<a id="manifestAddLibpod"></a>
+<a name="manifestAddLibpod"></a>
 # **manifestAddLibpod**
 > IdResponse manifestAddLibpod(name).options(options).execute();
 
@@ -83,7 +82,7 @@ No authorization required
 | **409** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestCreateLibpod"></a>
+<a name="manifestCreateLibpod"></a>
 # **manifestCreateLibpod**
 > IdResponse manifestCreateLibpod(name, images).all(all).amend(amend).options(options).execute();
 
@@ -160,9 +159,10 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestDeleteLibpod"></a>
+<a name="manifestDeleteLibpod"></a>
 # **manifestDeleteLibpod**
-> LibpodImagesRemoveReport manifestDeleteLibpod(name).execute();
+
+> LibpodImagesRemoveReport manifestDeleteLibpod(name).ignore(ignore).execute();
 
 Delete manifest list
 
@@ -184,8 +184,10 @@ public class Example {
 
     ManifestsApi apiInstance = new ManifestsApi(defaultClient);
     String name = "name_example"; // String | The name or ID of the  list to be deleted
+    Boolean ignore = true; // Boolean | Ignore if a specified manifest does not exist and do not throw an error.
     try {
       LibpodImagesRemoveReport result = apiInstance.manifestDeleteLibpod(name)
+            .ignore(ignore)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -201,9 +203,10 @@ public class Example {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| The name or ID of the  list to be deleted | |
+| Name       | Type        | Description                                                              | Notes      |
+|------------|-------------|--------------------------------------------------------------------------|------------|
+| **name**   | **String**  | The name or ID of the  list to be deleted                                |            |
+| **ignore** | **Boolean** | Ignore if a specified manifest does not exist and do not throw an error. | [optional] |
 
 ### Return type
 
@@ -225,7 +228,7 @@ No authorization required
 | **404** | No such manifest |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestExistsLibpod"></a>
+<a name="manifestExistsLibpod"></a>
 # **manifestExistsLibpod**
 > manifestExistsLibpod(name).execute();
 
@@ -289,7 +292,7 @@ No authorization required
 | **404** | No such manifest |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestInspectLibpod"></a>
+<a name="manifestInspectLibpod"></a>
 # **manifestInspectLibpod**
 > Schema2ListPublic manifestInspectLibpod(name).tlsVerify(tlsVerify).execute();
 
@@ -357,7 +360,7 @@ No authorization required
 | **404** | No such manifest |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestModifyLibpod"></a>
+<a name="manifestModifyLibpod"></a>
 # **manifestModifyLibpod**
 > ManifestModifyReport manifestModifyLibpod(name, options).tlsVerify(tlsVerify).execute();
 
@@ -429,7 +432,7 @@ No authorization required
 | **409** | Operation had partial success, both Images and Errors may have members |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestPushLibpod"></a>
+<a name="manifestPushLibpod"></a>
 # **manifestPushLibpod**
 > IdResponse manifestPushLibpod(name, destination).addCompression(addCompression).forceCompressionFormat(forceCompressionFormat).all(all).tlsVerify(tlsVerify).quiet(quiet).execute();
 
@@ -512,7 +515,7 @@ No authorization required
 | **404** | No such manifest |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="manifestPushV3Libpod"></a>
+<a name="manifestPushV3Libpod"></a>
 # **manifestPushV3Libpod**
 > IdResponse manifestPushV3Libpod(name, destination).all(all).execute();
 

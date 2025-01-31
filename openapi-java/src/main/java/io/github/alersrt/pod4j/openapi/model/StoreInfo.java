@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -21,13 +22,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.ContainerStore;
 import io.github.alersrt.pod4j.openapi.model.ImageStore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,16 +41,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -56,7 +54,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * StoreInfo describes the container storage and its attributes
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "StoreInfo describes the container storage and its attributes")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class StoreInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -74,7 +73,7 @@ public class StoreInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_GRAPH_OPTIONS = "graphOptions";
   @SerializedName(SERIALIZED_NAME_GRAPH_OPTIONS)
-  private Map<String, Object> graphOptions = new HashMap<>();
+  private Map<String, Object> graphOptions = null;
 
   public static final String SERIALIZED_NAME_GRAPH_ROOT = "graphRoot";
   @SerializedName(SERIALIZED_NAME_GRAPH_ROOT)
@@ -90,7 +89,7 @@ public class StoreInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_GRAPH_STATUS = "graphStatus";
   @SerializedName(SERIALIZED_NAME_GRAPH_STATUS)
-  private Map<String, String> graphStatus = new HashMap<>();
+  private Map<String, String> graphStatus = null;
 
   public static final String SERIALIZED_NAME_IMAGE_COPY_TMP_DIR = "imageCopyTmpDir";
   @SerializedName(SERIALIZED_NAME_IMAGE_COPY_TMP_DIR)
@@ -116,19 +115,22 @@ public class StoreInfo implements Serializable {
   }
 
   public StoreInfo configFile(String configFile) {
-    this.configFile = configFile;
+
+      this.configFile = configFile;
     return this;
   }
 
-  /**
+    /**
    * Get configFile
    * @return configFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getConfigFile() {
     return configFile;
   }
+
 
   public void setConfigFile(String configFile) {
     this.configFile = configFile;
@@ -136,20 +138,23 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo containerStore(ContainerStore containerStore) {
-    this.containerStore = containerStore;
+
+      this.containerStore = containerStore;
     return this;
   }
 
-  /**
+    /**
    * Get containerStore
    * @return containerStore
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ContainerStore getContainerStore() {
     return containerStore;
   }
+
 
   public void setContainerStore(ContainerStore containerStore) {
     this.containerStore = containerStore;
@@ -157,19 +162,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphDriverName(String graphDriverName) {
-    this.graphDriverName = graphDriverName;
+
+      this.graphDriverName = graphDriverName;
     return this;
   }
 
-  /**
+    /**
    * Get graphDriverName
    * @return graphDriverName
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getGraphDriverName() {
     return graphDriverName;
   }
+
 
   public void setGraphDriverName(String graphDriverName) {
     this.graphDriverName = graphDriverName;
@@ -177,7 +185,8 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphOptions(Map<String, Object> graphOptions) {
-    this.graphOptions = graphOptions;
+
+      this.graphOptions = graphOptions;
     return this;
   }
 
@@ -189,15 +198,17 @@ public class StoreInfo implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get graphOptions
    * @return graphOptions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, Object> getGraphOptions() {
     return graphOptions;
   }
+
 
   public void setGraphOptions(Map<String, Object> graphOptions) {
     this.graphOptions = graphOptions;
@@ -205,19 +216,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphRoot(String graphRoot) {
-    this.graphRoot = graphRoot;
+
+      this.graphRoot = graphRoot;
     return this;
   }
 
-  /**
+    /**
    * Get graphRoot
    * @return graphRoot
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getGraphRoot() {
     return graphRoot;
   }
+
 
   public void setGraphRoot(String graphRoot) {
     this.graphRoot = graphRoot;
@@ -225,19 +239,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphRootAllocated(Integer graphRootAllocated) {
-    this.graphRootAllocated = graphRootAllocated;
+
+      this.graphRootAllocated = graphRootAllocated;
     return this;
   }
 
-  /**
+    /**
    * GraphRootAllocated is how much space the graphroot has in bytes
    * @return graphRootAllocated
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "GraphRootAllocated is how much space the graphroot has in bytes")
 
   public Integer getGraphRootAllocated() {
     return graphRootAllocated;
   }
+
 
   public void setGraphRootAllocated(Integer graphRootAllocated) {
     this.graphRootAllocated = graphRootAllocated;
@@ -245,19 +262,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphRootUsed(Integer graphRootUsed) {
-    this.graphRootUsed = graphRootUsed;
+
+      this.graphRootUsed = graphRootUsed;
     return this;
   }
 
-  /**
+    /**
    * GraphRootUsed is how much of graphroot is used in bytes
    * @return graphRootUsed
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "GraphRootUsed is how much of graphroot is used in bytes")
 
   public Integer getGraphRootUsed() {
     return graphRootUsed;
   }
+
 
   public void setGraphRootUsed(Integer graphRootUsed) {
     this.graphRootUsed = graphRootUsed;
@@ -265,7 +285,8 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo graphStatus(Map<String, String> graphStatus) {
-    this.graphStatus = graphStatus;
+
+      this.graphStatus = graphStatus;
     return this;
   }
 
@@ -277,15 +298,17 @@ public class StoreInfo implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get graphStatus
    * @return graphStatus
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, String> getGraphStatus() {
     return graphStatus;
   }
+
 
   public void setGraphStatus(Map<String, String> graphStatus) {
     this.graphStatus = graphStatus;
@@ -293,19 +316,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo imageCopyTmpDir(String imageCopyTmpDir) {
-    this.imageCopyTmpDir = imageCopyTmpDir;
+
+      this.imageCopyTmpDir = imageCopyTmpDir;
     return this;
   }
 
-  /**
+    /**
    * Get imageCopyTmpDir
    * @return imageCopyTmpDir
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getImageCopyTmpDir() {
     return imageCopyTmpDir;
   }
+
 
   public void setImageCopyTmpDir(String imageCopyTmpDir) {
     this.imageCopyTmpDir = imageCopyTmpDir;
@@ -313,20 +339,23 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo imageStore(ImageStore imageStore) {
-    this.imageStore = imageStore;
+
+      this.imageStore = imageStore;
     return this;
   }
 
-  /**
+    /**
    * Get imageStore
    * @return imageStore
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ImageStore getImageStore() {
     return imageStore;
   }
+
 
   public void setImageStore(ImageStore imageStore) {
     this.imageStore = imageStore;
@@ -334,19 +363,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo runRoot(String runRoot) {
-    this.runRoot = runRoot;
+
+      this.runRoot = runRoot;
     return this;
   }
 
-  /**
+    /**
    * Get runRoot
    * @return runRoot
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getRunRoot() {
     return runRoot;
   }
+
 
   public void setRunRoot(String runRoot) {
     this.runRoot = runRoot;
@@ -354,19 +386,22 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo transientStore(Boolean transientStore) {
-    this.transientStore = transientStore;
+
+      this.transientStore = transientStore;
     return this;
   }
 
-  /**
+    /**
    * Get transientStore
    * @return transientStore
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getTransientStore() {
     return transientStore;
   }
+
 
   public void setTransientStore(Boolean transientStore) {
     this.transientStore = transientStore;
@@ -374,21 +409,24 @@ public class StoreInfo implements Serializable {
 
 
   public StoreInfo volumePath(String volumePath) {
-    this.volumePath = volumePath;
+
+      this.volumePath = volumePath;
     return this;
   }
 
-  /**
+    /**
    * Get volumePath
    * @return volumePath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getVolumePath() {
     return volumePath;
   }
 
-  public void setVolumePath(String volumePath) {
+
+    public void setVolumePath(String volumePath) {
     this.volumePath = volumePath;
   }
 
@@ -480,33 +518,34 @@ public class StoreInfo implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to StoreInfo
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!StoreInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in StoreInfo is not found in the empty JSON string", StoreInfo.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to StoreInfo
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (StoreInfo.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in StoreInfo is not found in the empty JSON string", StoreInfo.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!StoreInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StoreInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StoreInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("configFile") != null && !jsonObj.get("configFile").isJsonNull()) && !jsonObj.get("configFile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `configFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("configFile").toString()));
       }
       // validate the optional field `containerStore`
       if (jsonObj.get("containerStore") != null && !jsonObj.get("containerStore").isJsonNull()) {
-        ContainerStore.validateJsonElement(jsonObj.get("containerStore"));
+          ContainerStore.validateJsonObject(jsonObj.getAsJsonObject("containerStore"));
       }
       if ((jsonObj.get("graphDriverName") != null && !jsonObj.get("graphDriverName").isJsonNull()) && !jsonObj.get("graphDriverName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `graphDriverName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("graphDriverName").toString()));
@@ -519,7 +558,7 @@ public class StoreInfo implements Serializable {
       }
       // validate the optional field `imageStore`
       if (jsonObj.get("imageStore") != null && !jsonObj.get("imageStore").isJsonNull()) {
-        ImageStore.validateJsonElement(jsonObj.get("imageStore"));
+          ImageStore.validateJsonObject(jsonObj.getAsJsonObject("imageStore"));
       }
       if ((jsonObj.get("runRoot") != null && !jsonObj.get("runRoot").isJsonNull()) && !jsonObj.get("runRoot").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `runRoot` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runRoot").toString()));
@@ -549,31 +588,31 @@ public class StoreInfo implements Serializable {
 
            @Override
            public StoreInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of StoreInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of StoreInfo
-   * @throws IOException if the JSON string is invalid with respect to StoreInfo
-   */
+    /**
+     * Create an instance of StoreInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of StoreInfo
+     * @throws IOException if the JSON string is invalid with respect to StoreInfo
+     */
   public static StoreInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, StoreInfo.class);
   }
 
-  /**
-   * Convert an instance of StoreInfo to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of StoreInfo to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

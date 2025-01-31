@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import java.io.File;
@@ -49,6 +48,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class ImagesApi {
     private ApiClient localVarApiClient;
@@ -253,6 +253,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -265,7 +266,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageBuildLibpodValidateBeforeCall(String dockerfile, String t, Boolean allplatforms, String extrahosts, Boolean nohosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume, final ApiCallback _callback) throws ApiException {
-        return imageBuildLibpodCall(dockerfile, t, allplatforms, extrahosts, nohosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume, _callback);
+
+
+        okhttp3.Call localVarCall = imageBuildLibpodCall(dockerfile, t, allplatforms, extrahosts, nohosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume, _callback);
+        return localVarCall;
 
     }
 
@@ -753,7 +757,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/changes"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -770,9 +774,7 @@ public class ImagesApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json",
-            "application/octet-stream",
-            "text/plain"
+                "application/json", "application/octet-stream", "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -780,6 +782,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -792,12 +795,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageChangesLibpodValidateBeforeCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageChangesLibpod(Async)");
         }
 
-        return imageChangesLibpodCall(name, parent, diffType, _callback);
+
+        okhttp3.Call localVarCall = imageChangesLibpodCall(name, parent, diffType, _callback);
+        return localVarCall;
 
     }
 
@@ -979,6 +985,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -991,7 +998,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageDeleteAllLibpodValidateBeforeCall(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest, final ApiCallback _callback) throws ApiException {
-        return imageDeleteAllLibpodCall(images, all, force, ignore, lookupManifest, _callback);
+
+
+        okhttp3.Call localVarCall = imageDeleteAllLibpodCall(images, all, force, ignore, lookupManifest, _callback);
+        return localVarCall;
 
     }
 
@@ -1171,7 +1181,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1192,6 +1202,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1204,12 +1215,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageDeleteLibpodValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageDeleteLibpod(Async)");
         }
 
-        return imageDeleteLibpodCall(name, force, _callback);
+
+        okhttp3.Call localVarCall = imageDeleteLibpodCall(name, force, _callback);
+        return localVarCall;
 
     }
 
@@ -1358,7 +1372,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/exists"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1375,6 +1389,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1387,12 +1402,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageExistsLibpod(Async)");
         }
 
-        return imageExistsLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = imageExistsLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -1548,6 +1566,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1560,7 +1579,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageExportLibpodValidateBeforeCall(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers, final ApiCallback _callback) throws ApiException {
-        return imageExportLibpodCall(format, references, compress, ociAcceptUncompressedLayers, _callback);
+
+
+        okhttp3.Call localVarCall = imageExportLibpodCall(format, references, compress, ociAcceptUncompressedLayers, _callback);
+        return localVarCall;
 
     }
 
@@ -1729,7 +1751,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/get"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1754,6 +1776,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1766,12 +1789,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageGetLibpodValidateBeforeCall(String name, String format, Boolean compress, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageGetLibpod(Async)");
         }
 
-        return imageGetLibpodCall(name, format, compress, _callback);
+
+        okhttp3.Call localVarCall = imageGetLibpodCall(name, format, compress, _callback);
+        return localVarCall;
 
     }
 
@@ -1921,7 +1947,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/history"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1938,6 +1964,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1950,12 +1977,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageHistoryLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageHistoryLibpod(Async)");
         }
 
-        return imageHistoryLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = imageHistoryLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -2132,12 +2162,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageImportLibpodValidateBeforeCall(File upload, String contentType, List<String> changes, String message, String reference, String url, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'upload' is set
         if (upload == null) {
             throw new ApiException("Missing the required parameter 'upload' when calling imageImportLibpod(Async)");
         }
 
-        return imageImportLibpodCall(upload, contentType, changes, message, reference, url, _callback);
+
+        okhttp3.Call localVarCall = imageImportLibpodCall(upload, contentType, changes, message, reference, url, _callback);
+        return localVarCall;
 
     }
 
@@ -2320,7 +2353,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/json"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2337,6 +2370,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2349,12 +2383,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageInspectLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageInspectLibpod(Async)");
         }
 
-        return imageInspectLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = imageInspectLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -2506,6 +2543,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2518,7 +2556,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageListLibpodValidateBeforeCall(Boolean all, String filters, final ApiCallback _callback) throws ApiException {
-        return imageListLibpodCall(all, filters, _callback);
+
+
+        okhttp3.Call localVarCall = imageListLibpodCall(all, filters, _callback);
+        return localVarCall;
 
     }
 
@@ -2689,12 +2730,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageLoadLibpodValidateBeforeCall(String upload, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'upload' is set
         if (upload == null) {
             throw new ApiException("Missing the required parameter 'upload' when calling imageLoadLibpod(Async)");
         }
 
-        return imageLoadLibpodCall(upload, _callback);
+
+        okhttp3.Call localVarCall = imageLoadLibpodCall(upload, _callback);
+        return localVarCall;
 
     }
 
@@ -2854,6 +2898,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2866,7 +2911,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imagePruneLibpodValidateBeforeCall(Boolean all, Boolean external, Boolean buildcache, String filters, final ApiCallback _callback) throws ApiException {
-        return imagePruneLibpodCall(all, external, buildcache, filters, _callback);
+
+
+        okhttp3.Call localVarCall = imagePruneLibpodCall(all, external, buildcache, filters, _callback);
+        return localVarCall;
 
     }
 
@@ -3086,6 +3134,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3098,7 +3147,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imagePullLibpodValidateBeforeCall(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
-        return imagePullLibpodCall(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth, _callback);
+
+
+        okhttp3.Call localVarCall = imagePullLibpodCall(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth, _callback);
+        return localVarCall;
 
     }
 
@@ -3333,7 +3385,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/push"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3398,6 +3450,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3410,12 +3463,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imagePushLibpodValidateBeforeCall(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imagePushLibpod(Async)");
         }
 
-        return imagePushLibpodCall(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth, _callback);
+
+        okhttp3.Call localVarCall = imagePushLibpodCall(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth, _callback);
+        return localVarCall;
 
     }
 
@@ -3675,7 +3731,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/resolve"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3692,6 +3748,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3704,12 +3761,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageResolveLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageResolveLibpod(Async)");
         }
 
-        return imageResolveLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = imageResolveLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -3833,7 +3893,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/scp/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3858,6 +3918,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -3870,12 +3931,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageScpLibpodValidateBeforeCall(String name, String destination, Boolean quiet, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageScpLibpod(Async)");
         }
 
-        return imageScpLibpodCall(name, destination, quiet, _callback);
+
+        okhttp3.Call localVarCall = imageScpLibpodCall(name, destination, quiet, _callback);
+        return localVarCall;
 
     }
 
@@ -4061,6 +4125,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -4073,7 +4138,10 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageSearchLibpodValidateBeforeCall(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback _callback) throws ApiException {
-        return imageSearchLibpodCall(term, limit, filters, tlsVerify, listTags, _callback);
+
+
+        okhttp3.Call localVarCall = imageSearchLibpodCall(term, limit, filters, tlsVerify, listTags, _callback);
+        return localVarCall;
 
     }
 
@@ -4248,7 +4316,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/tag"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4273,6 +4341,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -4285,12 +4354,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageTagLibpodValidateBeforeCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageTagLibpod(Async)");
         }
 
-        return imageTagLibpodCall(name, repo, tag, _callback);
+
+        okhttp3.Call localVarCall = imageTagLibpodCall(name, repo, tag, _callback);
+        return localVarCall;
 
     }
 
@@ -4446,7 +4518,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/tree"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4467,6 +4539,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -4479,12 +4552,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageTreeLibpodValidateBeforeCall(String name, Boolean whatrequires, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageTreeLibpod(Async)");
         }
 
-        return imageTreeLibpodCall(name, whatrequires, _callback);
+
+        okhttp3.Call localVarCall = imageTreeLibpodCall(name, whatrequires, _callback);
+        return localVarCall;
 
     }
 
@@ -4623,7 +4699,7 @@ public class ImagesApi {
 
         // create path and map variables
         String localVarPath = "/libpod/images/{name}/untag"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4648,6 +4724,7 @@ public class ImagesApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -4660,12 +4737,15 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imageUntagLibpodValidateBeforeCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling imageUntagLibpod(Async)");
         }
 
-        return imageUntagLibpodCall(name, repo, tag, _callback);
+
+        okhttp3.Call localVarCall = imageUntagLibpodCall(name, repo, tag, _callback);
+        return localVarCall;
 
     }
 

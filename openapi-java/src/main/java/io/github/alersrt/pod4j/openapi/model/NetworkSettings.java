@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,15 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Address;
 import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
 import io.github.alersrt.pod4j.openapi.model.PortBinding;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,16 +44,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -59,7 +57,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetworkSettings exposes the network settings in the api
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "NetworkSettings exposes the network settings in the api")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NetworkSettings implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -113,11 +112,11 @@ public class NetworkSettings implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORKS = "Networks";
   @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private Map<String, EndpointSettings> networks = new HashMap<>();
+  private Map<String, EndpointSettings> networks = null;
 
   public static final String SERIALIZED_NAME_PORTS = "Ports";
   @SerializedName(SERIALIZED_NAME_PORTS)
-  private Map<String, List<@Valid PortBinding>> ports = new HashMap<>();
+  private Map<String, List<PortBinding>> ports = null;
 
   public static final String SERIALIZED_NAME_SANDBOX_I_D = "SandboxID";
   @SerializedName(SERIALIZED_NAME_SANDBOX_I_D)
@@ -129,29 +128,32 @@ public class NetworkSettings implements Serializable {
 
   public static final String SERIALIZED_NAME_SECONDARY_I_P_ADDRESSES = "SecondaryIPAddresses";
   @SerializedName(SERIALIZED_NAME_SECONDARY_I_P_ADDRESSES)
-  private List<@Valid Address> secondaryIPAddresses = new ArrayList<>();
+  private List<Address> secondaryIPAddresses = null;
 
   public static final String SERIALIZED_NAME_SECONDARY_I_PV6_ADDRESSES = "SecondaryIPv6Addresses";
   @SerializedName(SERIALIZED_NAME_SECONDARY_I_PV6_ADDRESSES)
-  private List<@Valid Address> secondaryIPv6Addresses = new ArrayList<>();
+  private List<Address> secondaryIPv6Addresses = null;
 
   public NetworkSettings() {
   }
 
   public NetworkSettings bridge(String bridge) {
-    this.bridge = bridge;
+
+      this.bridge = bridge;
     return this;
   }
 
-  /**
+    /**
    * Get bridge
    * @return bridge
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getBridge() {
     return bridge;
   }
+
 
   public void setBridge(String bridge) {
     this.bridge = bridge;
@@ -159,19 +161,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings endpointID(String endpointID) {
-    this.endpointID = endpointID;
+
+      this.endpointID = endpointID;
     return this;
   }
 
-  /**
+    /**
    * Get endpointID
    * @return endpointID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getEndpointID() {
     return endpointID;
   }
+
 
   public void setEndpointID(String endpointID) {
     this.endpointID = endpointID;
@@ -179,19 +184,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings gateway(String gateway) {
-    this.gateway = gateway;
+
+      this.gateway = gateway;
     return this;
   }
 
-  /**
+    /**
    * Get gateway
    * @return gateway
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getGateway() {
     return gateway;
   }
+
 
   public void setGateway(String gateway) {
     this.gateway = gateway;
@@ -199,19 +207,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings globalIPv6Address(String globalIPv6Address) {
-    this.globalIPv6Address = globalIPv6Address;
+
+      this.globalIPv6Address = globalIPv6Address;
     return this;
   }
 
-  /**
+    /**
    * Get globalIPv6Address
    * @return globalIPv6Address
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getGlobalIPv6Address() {
     return globalIPv6Address;
   }
+
 
   public void setGlobalIPv6Address(String globalIPv6Address) {
     this.globalIPv6Address = globalIPv6Address;
@@ -219,19 +230,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+
+      this.globalIPv6PrefixLen = globalIPv6PrefixLen;
     return this;
   }
 
-  /**
+    /**
    * Get globalIPv6PrefixLen
    * @return globalIPv6PrefixLen
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getGlobalIPv6PrefixLen() {
     return globalIPv6PrefixLen;
   }
+
 
   public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
     this.globalIPv6PrefixLen = globalIPv6PrefixLen;
@@ -239,19 +253,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings hairpinMode(Boolean hairpinMode) {
-    this.hairpinMode = hairpinMode;
+
+      this.hairpinMode = hairpinMode;
     return this;
   }
 
-  /**
+    /**
    * HairpinMode specifies if hairpin NAT should be enabled on the virtual interface  Deprecated: This field is never set and will be removed in a future release.
    * @return hairpinMode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HairpinMode specifies if hairpin NAT should be enabled on the virtual interface  Deprecated: This field is never set and will be removed in a future release.")
 
   public Boolean getHairpinMode() {
     return hairpinMode;
   }
+
 
   public void setHairpinMode(Boolean hairpinMode) {
     this.hairpinMode = hairpinMode;
@@ -259,19 +276,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings ipAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
+
+      this.ipAddress = ipAddress;
     return this;
   }
 
-  /**
+    /**
    * Get ipAddress
    * @return ipAddress
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getIpAddress() {
     return ipAddress;
   }
+
 
   public void setIpAddress(String ipAddress) {
     this.ipAddress = ipAddress;
@@ -279,19 +299,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings ipPrefixLen(Long ipPrefixLen) {
-    this.ipPrefixLen = ipPrefixLen;
+
+      this.ipPrefixLen = ipPrefixLen;
     return this;
   }
 
-  /**
+    /**
    * Get ipPrefixLen
    * @return ipPrefixLen
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getIpPrefixLen() {
     return ipPrefixLen;
   }
+
 
   public void setIpPrefixLen(Long ipPrefixLen) {
     this.ipPrefixLen = ipPrefixLen;
@@ -299,19 +322,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings ipv6Gateway(String ipv6Gateway) {
-    this.ipv6Gateway = ipv6Gateway;
+
+      this.ipv6Gateway = ipv6Gateway;
     return this;
   }
 
-  /**
+    /**
    * Get ipv6Gateway
    * @return ipv6Gateway
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getIpv6Gateway() {
     return ipv6Gateway;
   }
+
 
   public void setIpv6Gateway(String ipv6Gateway) {
     this.ipv6Gateway = ipv6Gateway;
@@ -319,19 +345,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings linkLocalIPv6Address(String linkLocalIPv6Address) {
-    this.linkLocalIPv6Address = linkLocalIPv6Address;
+
+      this.linkLocalIPv6Address = linkLocalIPv6Address;
     return this;
   }
 
-  /**
+    /**
    * LinkLocalIPv6Address is an IPv6 unicast address using the link-local prefix  Deprecated: This field is never set and will be removed in a future release.
    * @return linkLocalIPv6Address
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "LinkLocalIPv6Address is an IPv6 unicast address using the link-local prefix  Deprecated: This field is never set and will be removed in a future release.")
 
   public String getLinkLocalIPv6Address() {
     return linkLocalIPv6Address;
   }
+
 
   public void setLinkLocalIPv6Address(String linkLocalIPv6Address) {
     this.linkLocalIPv6Address = linkLocalIPv6Address;
@@ -339,19 +368,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings linkLocalIPv6PrefixLen(Long linkLocalIPv6PrefixLen) {
-    this.linkLocalIPv6PrefixLen = linkLocalIPv6PrefixLen;
+
+      this.linkLocalIPv6PrefixLen = linkLocalIPv6PrefixLen;
     return this;
   }
 
-  /**
+    /**
    * LinkLocalIPv6PrefixLen is the prefix length of an IPv6 unicast address  Deprecated: This field is never set and will be removed in a future release.
    * @return linkLocalIPv6PrefixLen
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "LinkLocalIPv6PrefixLen is the prefix length of an IPv6 unicast address  Deprecated: This field is never set and will be removed in a future release.")
 
   public Long getLinkLocalIPv6PrefixLen() {
     return linkLocalIPv6PrefixLen;
   }
+
 
   public void setLinkLocalIPv6PrefixLen(Long linkLocalIPv6PrefixLen) {
     this.linkLocalIPv6PrefixLen = linkLocalIPv6PrefixLen;
@@ -359,19 +391,22 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings macAddress(String macAddress) {
-    this.macAddress = macAddress;
+
+      this.macAddress = macAddress;
     return this;
   }
 
-  /**
+    /**
    * Get macAddress
    * @return macAddress
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getMacAddress() {
     return macAddress;
   }
+
 
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
@@ -379,7 +414,8 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings networks(Map<String, EndpointSettings> networks) {
-    this.networks = networks;
+
+      this.networks = networks;
     return this;
   }
 
@@ -391,28 +427,31 @@ public class NetworkSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get networks
    * @return networks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Map<String, EndpointSettings> getNetworks() {
     return networks;
   }
+
 
   public void setNetworks(Map<String, EndpointSettings> networks) {
     this.networks = networks;
   }
 
 
-  public NetworkSettings ports(Map<String, List<@Valid PortBinding>> ports) {
+    public NetworkSettings ports(Map<String, List<PortBinding>> ports) {
+    
     this.ports = ports;
     return this;
   }
 
-  public NetworkSettings putPortsItem(String key, List<@Valid PortBinding> portsItem) {
+    public NetworkSettings putPortsItem(String key, List<PortBinding> portsItem) {
     if (this.ports == null) {
       this.ports = new HashMap<>();
     }
@@ -420,36 +459,41 @@ public class NetworkSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * PortMap is a collection of PortBinding indexed by Port
    * @return ports
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "PortMap is a collection of PortBinding indexed by Port")
 
-  public Map<String, List<@Valid PortBinding>> getPorts() {
+    public Map<String, List<PortBinding>> getPorts() {
     return ports;
   }
 
-  public void setPorts(Map<String, List<@Valid PortBinding>> ports) {
+
+    public void setPorts(Map<String, List<PortBinding>> ports) {
     this.ports = ports;
   }
 
 
   public NetworkSettings sandboxID(String sandboxID) {
-    this.sandboxID = sandboxID;
+
+      this.sandboxID = sandboxID;
     return this;
   }
 
-  /**
+    /**
    * Get sandboxID
    * @return sandboxID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getSandboxID() {
     return sandboxID;
   }
+
 
   public void setSandboxID(String sandboxID) {
     this.sandboxID = sandboxID;
@@ -457,26 +501,30 @@ public class NetworkSettings implements Serializable {
 
 
   public NetworkSettings sandboxKey(String sandboxKey) {
-    this.sandboxKey = sandboxKey;
+
+      this.sandboxKey = sandboxKey;
     return this;
   }
 
-  /**
+    /**
    * Get sandboxKey
    * @return sandboxKey
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getSandboxKey() {
     return sandboxKey;
   }
+
 
   public void setSandboxKey(String sandboxKey) {
     this.sandboxKey = sandboxKey;
   }
 
 
-  public NetworkSettings secondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
+    public NetworkSettings secondaryIPAddresses(List<Address> secondaryIPAddresses) {
+    
     this.secondaryIPAddresses = secondaryIPAddresses;
     return this;
   }
@@ -489,23 +537,26 @@ public class NetworkSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get secondaryIPAddresses
    * @return secondaryIPAddresses
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid Address> getSecondaryIPAddresses() {
+    public List<Address> getSecondaryIPAddresses() {
     return secondaryIPAddresses;
   }
 
-  public void setSecondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
+
+    public void setSecondaryIPAddresses(List<Address> secondaryIPAddresses) {
     this.secondaryIPAddresses = secondaryIPAddresses;
   }
 
 
-  public NetworkSettings secondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
+    public NetworkSettings secondaryIPv6Addresses(List<Address> secondaryIPv6Addresses) {
+    
     this.secondaryIPv6Addresses = secondaryIPv6Addresses;
     return this;
   }
@@ -518,18 +569,20 @@ public class NetworkSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get secondaryIPv6Addresses
    * @return secondaryIPv6Addresses
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid Address> getSecondaryIPv6Addresses() {
+    public List<Address> getSecondaryIPv6Addresses() {
     return secondaryIPv6Addresses;
   }
 
-  public void setSecondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
+
+    public void setSecondaryIPv6Addresses(List<Address> secondaryIPv6Addresses) {
     this.secondaryIPv6Addresses = secondaryIPv6Addresses;
   }
 
@@ -636,27 +689,28 @@ public class NetworkSettings implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetworkSettings
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetworkSettings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkSettings is not found in the empty JSON string", NetworkSettings.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NetworkSettings
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NetworkSettings.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkSettings is not found in the empty JSON string", NetworkSettings.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NetworkSettings.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkSettings` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkSettings` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Bridge") != null && !jsonObj.get("Bridge").isJsonNull()) && !jsonObj.get("Bridge").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Bridge` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Bridge").toString()));
       }
@@ -697,7 +751,7 @@ public class NetworkSettings implements Serializable {
 
           // validate the optional field `SecondaryIPAddresses` (array)
           for (int i = 0; i < jsonArraysecondaryIPAddresses.size(); i++) {
-            Address.validateJsonElement(jsonArraysecondaryIPAddresses.get(i));
+              Address.validateJsonObject(jsonArraysecondaryIPAddresses.get(i).getAsJsonObject());
           };
         }
       }
@@ -711,7 +765,7 @@ public class NetworkSettings implements Serializable {
 
           // validate the optional field `SecondaryIPv6Addresses` (array)
           for (int i = 0; i < jsonArraysecondaryIPv6Addresses.size(); i++) {
-            Address.validateJsonElement(jsonArraysecondaryIPv6Addresses.get(i));
+              Address.validateJsonObject(jsonArraysecondaryIPv6Addresses.get(i).getAsJsonObject());
           };
         }
       }
@@ -737,31 +791,31 @@ public class NetworkSettings implements Serializable {
 
            @Override
            public NetworkSettings read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NetworkSettings given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetworkSettings
-   * @throws IOException if the JSON string is invalid with respect to NetworkSettings
-   */
+    /**
+     * Create an instance of NetworkSettings given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkSettings
+     * @throws IOException if the JSON string is invalid with respect to NetworkSettings
+     */
   public static NetworkSettings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkSettings.class);
   }
 
-  /**
-   * Convert an instance of NetworkSettings to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NetworkSettings to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

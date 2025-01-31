@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,13 +52,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * IPAMConfig represents IPAM configurations
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "IPAMConfig represents IPAM configurations")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IPAMConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_AUXILIARY_ADDRESSES = "AuxiliaryAddresses";
   @SerializedName(SERIALIZED_NAME_AUXILIARY_ADDRESSES)
-  private Map<String, String> auxiliaryAddresses = new HashMap<>();
+  private Map<String, String> auxiliaryAddresses = null;
 
   public static final String SERIALIZED_NAME_GATEWAY = "Gateway";
   @SerializedName(SERIALIZED_NAME_GATEWAY)
@@ -78,7 +77,8 @@ public class IPAMConfig implements Serializable {
   }
 
   public IPAMConfig auxiliaryAddresses(Map<String, String> auxiliaryAddresses) {
-    this.auxiliaryAddresses = auxiliaryAddresses;
+
+      this.auxiliaryAddresses = auxiliaryAddresses;
     return this;
   }
 
@@ -90,15 +90,17 @@ public class IPAMConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get auxiliaryAddresses
    * @return auxiliaryAddresses
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, String> getAuxiliaryAddresses() {
     return auxiliaryAddresses;
   }
+
 
   public void setAuxiliaryAddresses(Map<String, String> auxiliaryAddresses) {
     this.auxiliaryAddresses = auxiliaryAddresses;
@@ -106,19 +108,22 @@ public class IPAMConfig implements Serializable {
 
 
   public IPAMConfig gateway(String gateway) {
-    this.gateway = gateway;
+
+      this.gateway = gateway;
     return this;
   }
 
-  /**
+    /**
    * Get gateway
    * @return gateway
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getGateway() {
     return gateway;
   }
+
 
   public void setGateway(String gateway) {
     this.gateway = gateway;
@@ -126,19 +131,22 @@ public class IPAMConfig implements Serializable {
 
 
   public IPAMConfig ipRange(String ipRange) {
-    this.ipRange = ipRange;
+
+      this.ipRange = ipRange;
     return this;
   }
 
-  /**
+    /**
    * Get ipRange
    * @return ipRange
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getIpRange() {
     return ipRange;
   }
+
 
   public void setIpRange(String ipRange) {
     this.ipRange = ipRange;
@@ -146,19 +154,22 @@ public class IPAMConfig implements Serializable {
 
 
   public IPAMConfig subnet(String subnet) {
-    this.subnet = subnet;
+
+      this.subnet = subnet;
     return this;
   }
 
-  /**
+    /**
    * Get subnet
    * @return subnet
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getSubnet() {
     return subnet;
   }
+
 
   public void setSubnet(String subnet) {
     this.subnet = subnet;
@@ -225,27 +236,28 @@ public class IPAMConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to IPAMConfig
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!IPAMConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to IPAMConfig
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (IPAMConfig.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in IPAMConfig is not found in the empty JSON string", IPAMConfig.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!IPAMConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IPAMConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IPAMConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Gateway") != null && !jsonObj.get("Gateway").isJsonNull()) && !jsonObj.get("Gateway").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Gateway").toString()));
       }
@@ -277,31 +289,31 @@ public class IPAMConfig implements Serializable {
 
            @Override
            public IPAMConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of IPAMConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of IPAMConfig
-   * @throws IOException if the JSON string is invalid with respect to IPAMConfig
-   */
+    /**
+     * Create an instance of IPAMConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of IPAMConfig
+     * @throws IOException if the JSON string is invalid with respect to IPAMConfig
+     */
   public static IPAMConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IPAMConfig.class);
   }
 
-  /**
-   * Convert an instance of IPAMConfig to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of IPAMConfig to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

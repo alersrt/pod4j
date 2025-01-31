@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ListResponse;
@@ -40,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class VolumesCompatApi {
     private ApiClient localVarApiClient;
@@ -112,8 +112,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -126,7 +125,10 @@ public class VolumesCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeCreateValidateBeforeCall(VolumeCreate create, final ApiCallback _callback) throws ApiException {
-        return volumeCreateCall(create, _callback);
+
+
+        okhttp3.Call localVarCall = volumeCreateCall(create, _callback);
+        return localVarCall;
 
     }
 
@@ -257,7 +259,7 @@ public class VolumesCompatApi {
 
         // create path and map variables
         String localVarPath = "/volumes/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -278,6 +280,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -290,12 +293,15 @@ public class VolumesCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeDeleteValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling volumeDelete(Async)");
         }
 
-        return volumeDeleteCall(name, force, _callback);
+
+        okhttp3.Call localVarCall = volumeDeleteCall(name, force, _callback);
+        return localVarCall;
 
     }
 
@@ -435,7 +441,7 @@ public class VolumesCompatApi {
 
         // create path and map variables
         String localVarPath = "/volumes/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -452,6 +458,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -464,12 +471,15 @@ public class VolumesCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeInspectValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling volumeInspect(Async)");
         }
 
-        return volumeInspectCall(name, _callback);
+
+        okhttp3.Call localVarCall = volumeInspectCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -612,6 +622,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -624,7 +635,10 @@ public class VolumesCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumeListValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return volumeListCall(filters, _callback);
+
+
+        okhttp3.Call localVarCall = volumeListCall(filters, _callback);
+        return localVarCall;
 
     }
 
@@ -775,6 +789,7 @@ public class VolumesCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -787,7 +802,10 @@ public class VolumesCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call volumePruneValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return volumePruneCall(filters, _callback);
+
+
+        okhttp3.Call localVarCall = volumePruneCall(filters, _callback);
+        return localVarCall;
 
     }
 

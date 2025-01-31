@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
@@ -42,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class ManifestsApi {
     private ApiClient localVarApiClient;
@@ -98,7 +98,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}/add"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -115,8 +115,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -129,12 +128,15 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestAddLibpodValidateBeforeCall(String name, ManifestAddOptions options, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestAddLibpod(Async)");
         }
 
-        return manifestAddLibpodCall(name, options, _callback);
+
+        okhttp3.Call localVarCall = manifestAddLibpodCall(name, options, _callback);
+        return localVarCall;
 
     }
 
@@ -278,7 +280,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -307,8 +309,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -321,6 +322,7 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestCreateLibpodValidateBeforeCall(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestCreateLibpod(Async)");
@@ -331,7 +333,9 @@ public class ManifestsApi {
             throw new ApiException("Missing the required parameter 'images' when calling manifestCreateLibpod(Async)");
         }
 
-        return manifestCreateLibpodCall(name, images, all, amend, options, _callback);
+
+        okhttp3.Call localVarCall = manifestCreateLibpodCall(name, images, all, amend, options, _callback);
+        return localVarCall;
 
     }
 
@@ -482,7 +486,8 @@ public class ManifestsApi {
     public APImanifestCreateLibpodRequest manifestCreateLibpod(String name, String images) {
         return new APImanifestCreateLibpodRequest(name, images);
     }
-    private okhttp3.Call manifestDeleteLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+
+    private okhttp3.Call manifestDeleteLibpodCall(String name, Boolean ignore, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -500,13 +505,17 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (ignore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignore", ignore));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -517,6 +526,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -528,26 +538,29 @@ public class ManifestsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call manifestDeleteLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call manifestDeleteLibpodValidateBeforeCall(String name, Boolean ignore, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestDeleteLibpod(Async)");
         }
 
-        return manifestDeleteLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = manifestDeleteLibpodCall(name, ignore, _callback);
+        return localVarCall;
 
     }
 
 
-    private ApiResponse<LibpodImagesRemoveReport> manifestDeleteLibpodWithHttpInfo( @NotNull String name) throws ApiException {
-        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, null);
+    private ApiResponse<LibpodImagesRemoveReport> manifestDeleteLibpodWithHttpInfo(@NotNull String name, Boolean ignore) throws ApiException {
+        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, ignore, null);
         Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call manifestDeleteLibpodAsync(String name, final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
+    private okhttp3.Call manifestDeleteLibpodAsync(String name, Boolean ignore, final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, _callback);
+        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, ignore, _callback);
         Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -555,9 +568,21 @@ public class ManifestsApi {
 
     public class APImanifestDeleteLibpodRequest {
         private final String name;
+        private Boolean ignore;
 
         private APImanifestDeleteLibpodRequest(String name) {
             this.name = name;
+        }
+
+        /**
+         * Set ignore
+         *
+         * @param ignore Ignore if a specified manifest does not exist and do not throw an error. (optional)
+         * @return APImanifestDeleteLibpodRequest
+         */
+        public APImanifestDeleteLibpodRequest ignore(Boolean ignore) {
+            this.ignore = ignore;
+            return this;
         }
 
         /**
@@ -574,7 +599,7 @@ public class ManifestsApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return manifestDeleteLibpodCall(name, _callback);
+            return manifestDeleteLibpodCall(name, ignore, _callback);
         }
 
         /**
@@ -590,7 +615,7 @@ public class ManifestsApi {
          </table>
          */
         public LibpodImagesRemoveReport execute() throws ApiException {
-            ApiResponse<LibpodImagesRemoveReport> localVarResp = manifestDeleteLibpodWithHttpInfo(name);
+            ApiResponse<LibpodImagesRemoveReport> localVarResp = manifestDeleteLibpodWithHttpInfo(name, ignore);
             return localVarResp.getData();
         }
 
@@ -607,7 +632,7 @@ public class ManifestsApi {
          </table>
          */
         public ApiResponse<LibpodImagesRemoveReport> executeWithHttpInfo() throws ApiException {
-            return manifestDeleteLibpodWithHttpInfo(name);
+            return manifestDeleteLibpodWithHttpInfo(name, ignore);
         }
 
         /**
@@ -624,7 +649,7 @@ public class ManifestsApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
-            return manifestDeleteLibpodAsync(name, _callback);
+            return manifestDeleteLibpodAsync(name, ignore, _callback);
         }
     }
 
@@ -662,7 +687,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}/exists"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -679,6 +704,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -691,12 +717,15 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestExistsLibpod(Async)");
         }
 
-        return manifestExistsLibpodCall(name, _callback);
+
+        okhttp3.Call localVarCall = manifestExistsLibpodCall(name, _callback);
+        return localVarCall;
 
     }
 
@@ -820,7 +849,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}/json"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -841,6 +870,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -853,12 +883,15 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestInspectLibpodValidateBeforeCall(String name, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestInspectLibpod(Async)");
         }
 
-        return manifestInspectLibpodCall(name, tlsVerify, _callback);
+
+        okhttp3.Call localVarCall = manifestInspectLibpodCall(name, tlsVerify, _callback);
+        return localVarCall;
 
     }
 
@@ -997,7 +1030,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1018,8 +1051,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1032,17 +1064,20 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestModifyLibpodValidateBeforeCall(String name, ManifestModifyOptions options, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestModifyLibpod(Async)");
         }
-
+        
         // verify the required parameter 'options' is set
         if (options == null) {
             throw new ApiException("Missing the required parameter 'options' when calling manifestModifyLibpod(Async)");
         }
 
-        return manifestModifyLibpodCall(name, options, tlsVerify, _callback);
+
+        okhttp3.Call localVarCall = manifestModifyLibpodCall(name, options, tlsVerify, _callback);
+        return localVarCall;
 
     }
 
@@ -1194,8 +1229,8 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}/registry/{destination}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()))
-            .replace("{" + "destination" + "}", localVarApiClient.escapeString(destination.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()))
+                .replaceAll("\\{" + "destination" + "\\}", localVarApiClient.escapeString(destination.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1232,6 +1267,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1244,17 +1280,20 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestPushLibpodValidateBeforeCall(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestPushLibpod(Async)");
         }
-
+        
         // verify the required parameter 'destination' is set
         if (destination == null) {
             throw new ApiException("Missing the required parameter 'destination' when calling manifestPushLibpod(Async)");
         }
 
-        return manifestPushLibpodCall(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet, _callback);
+
+        okhttp3.Call localVarCall = manifestPushLibpodCall(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet, _callback);
+        return localVarCall;
 
     }
 
@@ -1445,7 +1484,7 @@ public class ManifestsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/manifests/{name}/push"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1470,6 +1509,7 @@ public class ManifestsApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1482,17 +1522,20 @@ public class ManifestsApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call manifestPushV3LibpodValidateBeforeCall(String name, String destination, Boolean all, final ApiCallback _callback) throws ApiException {
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling manifestPushV3Libpod(Async)");
         }
-
+        
         // verify the required parameter 'destination' is set
         if (destination == null) {
             throw new ApiException("Missing the required parameter 'destination' when calling manifestPushV3Libpod(Async)");
         }
 
-        return manifestPushV3LibpodCall(name, destination, all, _callback);
+
+        okhttp3.Call localVarCall = manifestPushV3LibpodCall(name, destination, all, _callback);
+        return localVarCall;
 
     }
 

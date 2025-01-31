@@ -14,19 +14,21 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Schema2ManifestDescriptor;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +40,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -55,13 +53,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * This is publicly visible as c/image/manifest.Schema2List. Internal users should usually use Schema2List instead.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "This is publicly visible as c/image/manifest.Schema2List. Internal users should usually use Schema2List instead.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Schema2ListPublic implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_MANIFESTS = "manifests";
   @SerializedName(SERIALIZED_NAME_MANIFESTS)
-  private List<@Valid Schema2ManifestDescriptor> manifests = new ArrayList<>();
+  private List<Schema2ManifestDescriptor> manifests = null;
 
   public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
   @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
@@ -74,7 +73,8 @@ public class Schema2ListPublic implements Serializable {
   public Schema2ListPublic() {
   }
 
-  public Schema2ListPublic manifests(List<@Valid Schema2ManifestDescriptor> manifests) {
+    public Schema2ListPublic manifests(List<Schema2ManifestDescriptor> manifests) {
+    
     this.manifests = manifests;
     return this;
   }
@@ -87,36 +87,41 @@ public class Schema2ListPublic implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get manifests
    * @return manifests
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid Schema2ManifestDescriptor> getManifests() {
+    public List<Schema2ManifestDescriptor> getManifests() {
     return manifests;
   }
 
-  public void setManifests(List<@Valid Schema2ManifestDescriptor> manifests) {
+
+    public void setManifests(List<Schema2ManifestDescriptor> manifests) {
     this.manifests = manifests;
   }
 
 
   public Schema2ListPublic mediaType(String mediaType) {
-    this.mediaType = mediaType;
+
+      this.mediaType = mediaType;
     return this;
   }
 
-  /**
+    /**
    * Get mediaType
    * @return mediaType
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getMediaType() {
     return mediaType;
   }
+
 
   public void setMediaType(String mediaType) {
     this.mediaType = mediaType;
@@ -124,19 +129,22 @@ public class Schema2ListPublic implements Serializable {
 
 
   public Schema2ListPublic schemaVersion(Long schemaVersion) {
-    this.schemaVersion = schemaVersion;
+
+      this.schemaVersion = schemaVersion;
     return this;
   }
 
-  /**
+    /**
    * Get schemaVersion
    * @return schemaVersion
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSchemaVersion() {
     return schemaVersion;
   }
+
 
   public void setSchemaVersion(Long schemaVersion) {
     this.schemaVersion = schemaVersion;
@@ -200,27 +208,28 @@ public class Schema2ListPublic implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Schema2ListPublic
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Schema2ListPublic.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to Schema2ListPublic
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (Schema2ListPublic.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2ListPublic is not found in the empty JSON string", Schema2ListPublic.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!Schema2ListPublic.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ListPublic` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ListPublic` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("manifests") != null && !jsonObj.get("manifests").isJsonNull()) {
         JsonArray jsonArraymanifests = jsonObj.getAsJsonArray("manifests");
         if (jsonArraymanifests != null) {
@@ -231,7 +240,7 @@ public class Schema2ListPublic implements Serializable {
 
           // validate the optional field `manifests` (array)
           for (int i = 0; i < jsonArraymanifests.size(); i++) {
-            Schema2ManifestDescriptor.validateJsonElement(jsonArraymanifests.get(i));
+              Schema2ManifestDescriptor.validateJsonObject(jsonArraymanifests.get(i).getAsJsonObject());
           };
         }
       }
@@ -260,31 +269,31 @@ public class Schema2ListPublic implements Serializable {
 
            @Override
            public Schema2ListPublic read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of Schema2ListPublic given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Schema2ListPublic
-   * @throws IOException if the JSON string is invalid with respect to Schema2ListPublic
-   */
+    /**
+     * Create an instance of Schema2ListPublic given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Schema2ListPublic
+     * @throws IOException if the JSON string is invalid with respect to Schema2ListPublic
+     */
   public static Schema2ListPublic fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Schema2ListPublic.class);
   }
 
-  /**
-   * Convert an instance of Schema2ListPublic to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of Schema2ListPublic to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

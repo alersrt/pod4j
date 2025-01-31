@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * POSIXRlimit type and restrictions
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "POSIXRlimit type and restrictions")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class POSIXRlimit implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -72,19 +71,22 @@ public class POSIXRlimit implements Serializable {
   }
 
   public POSIXRlimit hard(Integer hard) {
-    this.hard = hard;
+
+      this.hard = hard;
     return this;
   }
 
-  /**
+    /**
    * Hard is the hard limit for the specified type
    * @return hard
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Hard is the hard limit for the specified type")
 
   public Integer getHard() {
     return hard;
   }
+
 
   public void setHard(Integer hard) {
     this.hard = hard;
@@ -92,19 +94,22 @@ public class POSIXRlimit implements Serializable {
 
 
   public POSIXRlimit soft(Integer soft) {
-    this.soft = soft;
+
+      this.soft = soft;
     return this;
   }
 
-  /**
+    /**
    * Soft is the soft limit for the specified type
    * @return soft
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Soft is the soft limit for the specified type")
 
   public Integer getSoft() {
     return soft;
   }
+
 
   public void setSoft(Integer soft) {
     this.soft = soft;
@@ -112,19 +117,22 @@ public class POSIXRlimit implements Serializable {
 
 
   public POSIXRlimit type(String type) {
-    this.type = type;
+
+      this.type = type;
     return this;
   }
 
-  /**
+    /**
    * Type of the rlimit to set
    * @return type
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Type of the rlimit to set")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -188,27 +196,28 @@ public class POSIXRlimit implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to POSIXRlimit
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!POSIXRlimit.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to POSIXRlimit
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (POSIXRlimit.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in POSIXRlimit is not found in the empty JSON string", POSIXRlimit.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!POSIXRlimit.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `POSIXRlimit` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `POSIXRlimit` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
@@ -234,31 +243,31 @@ public class POSIXRlimit implements Serializable {
 
            @Override
            public POSIXRlimit read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of POSIXRlimit given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of POSIXRlimit
-   * @throws IOException if the JSON string is invalid with respect to POSIXRlimit
-   */
+    /**
+     * Create an instance of POSIXRlimit given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of POSIXRlimit
+     * @throws IOException if the JSON string is invalid with respect to POSIXRlimit
+     */
   public static POSIXRlimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, POSIXRlimit.class);
   }
 
-  /**
-   * Convert an instance of POSIXRlimit to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of POSIXRlimit to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

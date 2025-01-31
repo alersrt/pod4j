@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -29,15 +30,16 @@ import io.github.alersrt.pod4j.openapi.model.PastaInfo;
 import io.github.alersrt.pod4j.openapi.model.RemoteSocket;
 import io.github.alersrt.pod4j.openapi.model.SecurityInfo;
 import io.github.alersrt.pod4j.openapi.model.SlirpInfo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,16 +51,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -66,7 +64,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * HostInfo describes the libpod host
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "HostInfo describes the libpod host")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class HostInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -80,7 +79,7 @@ public class HostInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_CGROUP_CONTROLLERS = "cgroupControllers";
   @SerializedName(SERIALIZED_NAME_CGROUP_CONTROLLERS)
-  private List<String> cgroupControllers = new ArrayList<>();
+  private List<String> cgroupControllers = null;
 
   public static final String SERIALIZED_NAME_CGROUP_MANAGER = "cgroupManager";
   @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
@@ -176,7 +175,7 @@ public class HostInfo implements Serializable {
 
   public static final String SERIALIZED_NAME_RUNTIME_INFO = "runtimeInfo";
   @SerializedName(SERIALIZED_NAME_RUNTIME_INFO)
-  private Map<String, Object> runtimeInfo = new HashMap<>();
+  private Map<String, Object> runtimeInfo = null;
 
   public static final String SERIALIZED_NAME_SECURITY = "security";
   @SerializedName(SERIALIZED_NAME_SECURITY)
@@ -210,19 +209,22 @@ public class HostInfo implements Serializable {
   }
 
   public HostInfo arch(String arch) {
-    this.arch = arch;
+
+      this.arch = arch;
     return this;
   }
 
-  /**
+    /**
    * Get arch
    * @return arch
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getArch() {
     return arch;
   }
+
 
   public void setArch(String arch) {
     this.arch = arch;
@@ -230,19 +232,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo buildahVersion(String buildahVersion) {
-    this.buildahVersion = buildahVersion;
+
+      this.buildahVersion = buildahVersion;
     return this;
   }
 
-  /**
+    /**
    * Get buildahVersion
    * @return buildahVersion
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getBuildahVersion() {
     return buildahVersion;
   }
+
 
   public void setBuildahVersion(String buildahVersion) {
     this.buildahVersion = buildahVersion;
@@ -250,7 +255,8 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo cgroupControllers(List<String> cgroupControllers) {
-    this.cgroupControllers = cgroupControllers;
+
+      this.cgroupControllers = cgroupControllers;
     return this;
   }
 
@@ -262,15 +268,17 @@ public class HostInfo implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get cgroupControllers
    * @return cgroupControllers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getCgroupControllers() {
     return cgroupControllers;
   }
+
 
   public void setCgroupControllers(List<String> cgroupControllers) {
     this.cgroupControllers = cgroupControllers;
@@ -278,19 +286,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo cgroupManager(String cgroupManager) {
-    this.cgroupManager = cgroupManager;
+
+      this.cgroupManager = cgroupManager;
     return this;
   }
 
-  /**
+    /**
    * Get cgroupManager
    * @return cgroupManager
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getCgroupManager() {
     return cgroupManager;
   }
+
 
   public void setCgroupManager(String cgroupManager) {
     this.cgroupManager = cgroupManager;
@@ -298,19 +309,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo cgroupVersion(String cgroupVersion) {
-    this.cgroupVersion = cgroupVersion;
+
+      this.cgroupVersion = cgroupVersion;
     return this;
   }
 
-  /**
+    /**
    * Get cgroupVersion
    * @return cgroupVersion
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getCgroupVersion() {
     return cgroupVersion;
   }
+
 
   public void setCgroupVersion(String cgroupVersion) {
     this.cgroupVersion = cgroupVersion;
@@ -318,20 +332,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo conmon(ConmonInfo conmon) {
-    this.conmon = conmon;
+
+      this.conmon = conmon;
     return this;
   }
 
-  /**
+    /**
    * Get conmon
    * @return conmon
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ConmonInfo getConmon() {
     return conmon;
   }
+
 
   public void setConmon(ConmonInfo conmon) {
     this.conmon = conmon;
@@ -339,20 +356,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo cpuUtilization(CPUUsage cpuUtilization) {
-    this.cpuUtilization = cpuUtilization;
+
+      this.cpuUtilization = cpuUtilization;
     return this;
   }
 
-  /**
+    /**
    * Get cpuUtilization
    * @return cpuUtilization
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public CPUUsage getCpuUtilization() {
     return cpuUtilization;
   }
+
 
   public void setCpuUtilization(CPUUsage cpuUtilization) {
     this.cpuUtilization = cpuUtilization;
@@ -360,19 +380,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo cpus(Long cpus) {
-    this.cpus = cpus;
+
+      this.cpus = cpus;
     return this;
   }
 
-  /**
+    /**
    * Get cpus
    * @return cpus
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getCpus() {
     return cpus;
   }
+
 
   public void setCpus(Long cpus) {
     this.cpus = cpus;
@@ -380,19 +403,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo databaseBackend(String databaseBackend) {
-    this.databaseBackend = databaseBackend;
+
+      this.databaseBackend = databaseBackend;
     return this;
   }
 
-  /**
+    /**
    * Get databaseBackend
    * @return databaseBackend
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getDatabaseBackend() {
     return databaseBackend;
   }
+
 
   public void setDatabaseBackend(String databaseBackend) {
     this.databaseBackend = databaseBackend;
@@ -400,20 +426,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo distribution(DistributionInfo distribution) {
-    this.distribution = distribution;
+
+      this.distribution = distribution;
     return this;
   }
 
-  /**
+    /**
    * Get distribution
    * @return distribution
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public DistributionInfo getDistribution() {
     return distribution;
   }
+
 
   public void setDistribution(DistributionInfo distribution) {
     this.distribution = distribution;
@@ -421,19 +450,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo eventLogger(String eventLogger) {
-    this.eventLogger = eventLogger;
+
+      this.eventLogger = eventLogger;
     return this;
   }
 
-  /**
+    /**
    * Get eventLogger
    * @return eventLogger
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getEventLogger() {
     return eventLogger;
   }
+
 
   public void setEventLogger(String eventLogger) {
     this.eventLogger = eventLogger;
@@ -441,19 +473,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo freeLocks(Integer freeLocks) {
-    this.freeLocks = freeLocks;
+
+      this.freeLocks = freeLocks;
     return this;
   }
 
-  /**
+    /**
    * Get freeLocks
    * @return freeLocks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Integer getFreeLocks() {
     return freeLocks;
   }
+
 
   public void setFreeLocks(Integer freeLocks) {
     this.freeLocks = freeLocks;
@@ -461,19 +496,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo hostname(String hostname) {
-    this.hostname = hostname;
+
+      this.hostname = hostname;
     return this;
   }
 
-  /**
+    /**
    * Get hostname
    * @return hostname
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getHostname() {
     return hostname;
   }
+
 
   public void setHostname(String hostname) {
     this.hostname = hostname;
@@ -481,20 +519,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo idMappings(IDMappings idMappings) {
-    this.idMappings = idMappings;
+
+      this.idMappings = idMappings;
     return this;
   }
 
-  /**
+    /**
    * Get idMappings
    * @return idMappings
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public IDMappings getIdMappings() {
     return idMappings;
   }
+
 
   public void setIdMappings(IDMappings idMappings) {
     this.idMappings = idMappings;
@@ -502,19 +543,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo kernel(String kernel) {
-    this.kernel = kernel;
+
+      this.kernel = kernel;
     return this;
   }
 
-  /**
+    /**
    * Get kernel
    * @return kernel
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getKernel() {
     return kernel;
   }
+
 
   public void setKernel(String kernel) {
     this.kernel = kernel;
@@ -522,19 +566,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo linkmode(String linkmode) {
-    this.linkmode = linkmode;
+
+      this.linkmode = linkmode;
     return this;
   }
 
-  /**
+    /**
    * Get linkmode
    * @return linkmode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getLinkmode() {
     return linkmode;
   }
+
 
   public void setLinkmode(String linkmode) {
     this.linkmode = linkmode;
@@ -542,19 +589,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo logDriver(String logDriver) {
-    this.logDriver = logDriver;
+
+      this.logDriver = logDriver;
     return this;
   }
 
-  /**
+    /**
    * Get logDriver
    * @return logDriver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getLogDriver() {
     return logDriver;
   }
+
 
   public void setLogDriver(String logDriver) {
     this.logDriver = logDriver;
@@ -562,19 +612,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo memFree(Long memFree) {
-    this.memFree = memFree;
+
+      this.memFree = memFree;
     return this;
   }
 
-  /**
+    /**
    * Get memFree
    * @return memFree
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getMemFree() {
     return memFree;
   }
+
 
   public void setMemFree(Long memFree) {
     this.memFree = memFree;
@@ -582,19 +635,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo memTotal(Long memTotal) {
-    this.memTotal = memTotal;
+
+      this.memTotal = memTotal;
     return this;
   }
 
-  /**
+    /**
    * Get memTotal
    * @return memTotal
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getMemTotal() {
     return memTotal;
   }
+
 
   public void setMemTotal(Long memTotal) {
     this.memTotal = memTotal;
@@ -602,19 +658,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo networkBackend(String networkBackend) {
-    this.networkBackend = networkBackend;
+
+      this.networkBackend = networkBackend;
     return this;
   }
 
-  /**
+    /**
    * Get networkBackend
    * @return networkBackend
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getNetworkBackend() {
     return networkBackend;
   }
+
 
   public void setNetworkBackend(String networkBackend) {
     this.networkBackend = networkBackend;
@@ -622,20 +681,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo networkBackendInfo(NetworkInfo networkBackendInfo) {
-    this.networkBackendInfo = networkBackendInfo;
+
+      this.networkBackendInfo = networkBackendInfo;
     return this;
   }
 
-  /**
+    /**
    * Get networkBackendInfo
    * @return networkBackendInfo
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public NetworkInfo getNetworkBackendInfo() {
     return networkBackendInfo;
   }
+
 
   public void setNetworkBackendInfo(NetworkInfo networkBackendInfo) {
     this.networkBackendInfo = networkBackendInfo;
@@ -643,20 +705,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo ociRuntime(OCIRuntimeInfo ociRuntime) {
-    this.ociRuntime = ociRuntime;
+
+      this.ociRuntime = ociRuntime;
     return this;
   }
 
-  /**
+    /**
    * Get ociRuntime
    * @return ociRuntime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public OCIRuntimeInfo getOciRuntime() {
     return ociRuntime;
   }
+
 
   public void setOciRuntime(OCIRuntimeInfo ociRuntime) {
     this.ociRuntime = ociRuntime;
@@ -664,19 +729,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo os(String os) {
-    this.os = os;
+
+      this.os = os;
     return this;
   }
 
-  /**
+    /**
    * Get os
    * @return os
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getOs() {
     return os;
   }
+
 
   public void setOs(String os) {
     this.os = os;
@@ -684,20 +752,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo pasta(PastaInfo pasta) {
-    this.pasta = pasta;
+
+      this.pasta = pasta;
     return this;
   }
 
-  /**
+    /**
    * Get pasta
    * @return pasta
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public PastaInfo getPasta() {
     return pasta;
   }
+
 
   public void setPasta(PastaInfo pasta) {
     this.pasta = pasta;
@@ -705,20 +776,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo remoteSocket(RemoteSocket remoteSocket) {
-    this.remoteSocket = remoteSocket;
+
+      this.remoteSocket = remoteSocket;
     return this;
   }
 
-  /**
+    /**
    * Get remoteSocket
    * @return remoteSocket
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public RemoteSocket getRemoteSocket() {
     return remoteSocket;
   }
+
 
   public void setRemoteSocket(RemoteSocket remoteSocket) {
     this.remoteSocket = remoteSocket;
@@ -726,19 +800,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo rootlessNetworkCmd(String rootlessNetworkCmd) {
-    this.rootlessNetworkCmd = rootlessNetworkCmd;
+
+      this.rootlessNetworkCmd = rootlessNetworkCmd;
     return this;
   }
 
-  /**
+    /**
    * RootlessNetworkCmd returns the default rootless network command (slirp4netns or pasta)
    * @return rootlessNetworkCmd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "RootlessNetworkCmd returns the default rootless network command (slirp4netns or pasta)")
 
   public String getRootlessNetworkCmd() {
     return rootlessNetworkCmd;
   }
+
 
   public void setRootlessNetworkCmd(String rootlessNetworkCmd) {
     this.rootlessNetworkCmd = rootlessNetworkCmd;
@@ -746,7 +823,8 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo runtimeInfo(Map<String, Object> runtimeInfo) {
-    this.runtimeInfo = runtimeInfo;
+
+      this.runtimeInfo = runtimeInfo;
     return this;
   }
 
@@ -758,15 +836,17 @@ public class HostInfo implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get runtimeInfo
    * @return runtimeInfo
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, Object> getRuntimeInfo() {
     return runtimeInfo;
   }
+
 
   public void setRuntimeInfo(Map<String, Object> runtimeInfo) {
     this.runtimeInfo = runtimeInfo;
@@ -774,20 +854,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo security(SecurityInfo security) {
-    this.security = security;
+
+      this.security = security;
     return this;
   }
 
-  /**
+    /**
    * Get security
    * @return security
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public SecurityInfo getSecurity() {
     return security;
   }
+
 
   public void setSecurity(SecurityInfo security) {
     this.security = security;
@@ -795,19 +878,22 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo serviceIsRemote(Boolean serviceIsRemote) {
-    this.serviceIsRemote = serviceIsRemote;
+
+      this.serviceIsRemote = serviceIsRemote;
     return this;
   }
 
-  /**
+    /**
    * ServiceIsRemote is true when the podman/libpod service is remote to the client
    * @return serviceIsRemote
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ServiceIsRemote is true when the podman/libpod service is remote to the client")
 
   public Boolean getServiceIsRemote() {
     return serviceIsRemote;
   }
+
 
   public void setServiceIsRemote(Boolean serviceIsRemote) {
     this.serviceIsRemote = serviceIsRemote;
@@ -815,20 +901,23 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo slirp4netns(SlirpInfo slirp4netns) {
-    this.slirp4netns = slirp4netns;
+
+      this.slirp4netns = slirp4netns;
     return this;
   }
 
-  /**
+    /**
    * Get slirp4netns
    * @return slirp4netns
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public SlirpInfo getSlirp4netns() {
     return slirp4netns;
   }
+
 
   public void setSlirp4netns(SlirpInfo slirp4netns) {
     this.slirp4netns = slirp4netns;
@@ -836,81 +925,93 @@ public class HostInfo implements Serializable {
 
 
   public HostInfo swapFree(Long swapFree) {
-    this.swapFree = swapFree;
+
+      this.swapFree = swapFree;
     return this;
   }
 
-  /**
+    /**
    * Get swapFree
    * @return swapFree
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSwapFree() {
     return swapFree;
   }
 
-  public void setSwapFree(Long swapFree) {
+
+    public void setSwapFree(Long swapFree) {
     this.swapFree = swapFree;
   }
 
 
   public HostInfo swapTotal(Long swapTotal) {
-    this.swapTotal = swapTotal;
+
+      this.swapTotal = swapTotal;
     return this;
   }
 
-  /**
+    /**
    * Get swapTotal
    * @return swapTotal
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getSwapTotal() {
     return swapTotal;
   }
 
-  public void setSwapTotal(Long swapTotal) {
+
+    public void setSwapTotal(Long swapTotal) {
     this.swapTotal = swapTotal;
   }
 
 
   public HostInfo uptime(String uptime) {
-    this.uptime = uptime;
+
+      this.uptime = uptime;
     return this;
   }
 
-  /**
+    /**
    * Get uptime
    * @return uptime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getUptime() {
     return uptime;
   }
 
-  public void setUptime(String uptime) {
+
+    public void setUptime(String uptime) {
     this.uptime = uptime;
   }
 
 
   public HostInfo variant(String variant) {
-    this.variant = variant;
+
+      this.variant = variant;
     return this;
   }
 
-  /**
+    /**
    * Get variant
    * @return variant
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getVariant() {
     return variant;
   }
 
-  public void setVariant(String variant) {
+
+    public void setVariant(String variant) {
     this.variant = variant;
   }
 
@@ -1065,35 +1166,36 @@ public class HostInfo implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to HostInfo
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!HostInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in HostInfo is not found in the empty JSON string", HostInfo.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to HostInfo
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (HostInfo.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in HostInfo is not found in the empty JSON string", HostInfo.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!HostInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
       }
       if ((jsonObj.get("buildahVersion") != null && !jsonObj.get("buildahVersion").isJsonNull()) && !jsonObj.get("buildahVersion").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `buildahVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buildahVersion").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cgroupControllers") != null && !jsonObj.get("cgroupControllers").isJsonNull() && !jsonObj.get("cgroupControllers").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("cgroupControllers") != null && !jsonObj.get("cgroupControllers").isJsonNull()) && !jsonObj.get("cgroupControllers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cgroupControllers` to be an array in the JSON string but got `%s`", jsonObj.get("cgroupControllers").toString()));
       }
       if ((jsonObj.get("cgroupManager") != null && !jsonObj.get("cgroupManager").isJsonNull()) && !jsonObj.get("cgroupManager").isJsonPrimitive()) {
@@ -1104,18 +1206,18 @@ public class HostInfo implements Serializable {
       }
       // validate the optional field `conmon`
       if (jsonObj.get("conmon") != null && !jsonObj.get("conmon").isJsonNull()) {
-        ConmonInfo.validateJsonElement(jsonObj.get("conmon"));
+          ConmonInfo.validateJsonObject(jsonObj.getAsJsonObject("conmon"));
       }
       // validate the optional field `cpuUtilization`
       if (jsonObj.get("cpuUtilization") != null && !jsonObj.get("cpuUtilization").isJsonNull()) {
-        CPUUsage.validateJsonElement(jsonObj.get("cpuUtilization"));
+          CPUUsage.validateJsonObject(jsonObj.getAsJsonObject("cpuUtilization"));
       }
       if ((jsonObj.get("databaseBackend") != null && !jsonObj.get("databaseBackend").isJsonNull()) && !jsonObj.get("databaseBackend").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `databaseBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("databaseBackend").toString()));
       }
       // validate the optional field `distribution`
       if (jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull()) {
-        DistributionInfo.validateJsonElement(jsonObj.get("distribution"));
+          DistributionInfo.validateJsonObject(jsonObj.getAsJsonObject("distribution"));
       }
       if ((jsonObj.get("eventLogger") != null && !jsonObj.get("eventLogger").isJsonNull()) && !jsonObj.get("eventLogger").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `eventLogger` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventLogger").toString()));
@@ -1125,7 +1227,7 @@ public class HostInfo implements Serializable {
       }
       // validate the optional field `idMappings`
       if (jsonObj.get("idMappings") != null && !jsonObj.get("idMappings").isJsonNull()) {
-        IDMappings.validateJsonElement(jsonObj.get("idMappings"));
+          IDMappings.validateJsonObject(jsonObj.getAsJsonObject("idMappings"));
       }
       if ((jsonObj.get("kernel") != null && !jsonObj.get("kernel").isJsonNull()) && !jsonObj.get("kernel").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `kernel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("kernel").toString()));
@@ -1141,33 +1243,33 @@ public class HostInfo implements Serializable {
       }
       // validate the optional field `networkBackendInfo`
       if (jsonObj.get("networkBackendInfo") != null && !jsonObj.get("networkBackendInfo").isJsonNull()) {
-        NetworkInfo.validateJsonElement(jsonObj.get("networkBackendInfo"));
+          NetworkInfo.validateJsonObject(jsonObj.getAsJsonObject("networkBackendInfo"));
       }
       // validate the optional field `ociRuntime`
       if (jsonObj.get("ociRuntime") != null && !jsonObj.get("ociRuntime").isJsonNull()) {
-        OCIRuntimeInfo.validateJsonElement(jsonObj.get("ociRuntime"));
+          OCIRuntimeInfo.validateJsonObject(jsonObj.getAsJsonObject("ociRuntime"));
       }
       if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
       }
       // validate the optional field `pasta`
       if (jsonObj.get("pasta") != null && !jsonObj.get("pasta").isJsonNull()) {
-        PastaInfo.validateJsonElement(jsonObj.get("pasta"));
+          PastaInfo.validateJsonObject(jsonObj.getAsJsonObject("pasta"));
       }
       // validate the optional field `remoteSocket`
       if (jsonObj.get("remoteSocket") != null && !jsonObj.get("remoteSocket").isJsonNull()) {
-        RemoteSocket.validateJsonElement(jsonObj.get("remoteSocket"));
+          RemoteSocket.validateJsonObject(jsonObj.getAsJsonObject("remoteSocket"));
       }
       if ((jsonObj.get("rootlessNetworkCmd") != null && !jsonObj.get("rootlessNetworkCmd").isJsonNull()) && !jsonObj.get("rootlessNetworkCmd").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `rootlessNetworkCmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootlessNetworkCmd").toString()));
       }
       // validate the optional field `security`
       if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
-        SecurityInfo.validateJsonElement(jsonObj.get("security"));
+          SecurityInfo.validateJsonObject(jsonObj.getAsJsonObject("security"));
       }
       // validate the optional field `slirp4netns`
       if (jsonObj.get("slirp4netns") != null && !jsonObj.get("slirp4netns").isJsonNull()) {
-        SlirpInfo.validateJsonElement(jsonObj.get("slirp4netns"));
+          SlirpInfo.validateJsonObject(jsonObj.getAsJsonObject("slirp4netns"));
       }
       if ((jsonObj.get("uptime") != null && !jsonObj.get("uptime").isJsonNull()) && !jsonObj.get("uptime").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `uptime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uptime").toString()));
@@ -1197,31 +1299,31 @@ public class HostInfo implements Serializable {
 
            @Override
            public HostInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of HostInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of HostInfo
-   * @throws IOException if the JSON string is invalid with respect to HostInfo
-   */
+    /**
+     * Create an instance of HostInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of HostInfo
+     * @throws IOException if the JSON string is invalid with respect to HostInfo
+     */
   public static HostInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HostInfo.class);
   }
 
-  /**
-   * Convert an instance of HostInfo to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of HostInfo to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

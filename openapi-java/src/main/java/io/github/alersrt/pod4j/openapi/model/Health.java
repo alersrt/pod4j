@@ -14,19 +14,21 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.HealthcheckResult;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +40,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -55,7 +53,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Health stores information about the container&#39;s healthcheck results
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "Health stores information about the container's healthcheck results")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Health implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -65,7 +64,7 @@ public class Health implements Serializable {
 
   public static final String SERIALIZED_NAME_LOG = "Log";
   @SerializedName(SERIALIZED_NAME_LOG)
-  private List<@Valid HealthcheckResult> log = new ArrayList<>();
+  private List<HealthcheckResult> log = null;
 
   public static final String SERIALIZED_NAME_STATUS = "Status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -75,26 +74,30 @@ public class Health implements Serializable {
   }
 
   public Health failingStreak(Long failingStreak) {
-    this.failingStreak = failingStreak;
+
+      this.failingStreak = failingStreak;
     return this;
   }
 
-  /**
+    /**
    * Get failingStreak
    * @return failingStreak
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Long getFailingStreak() {
     return failingStreak;
   }
+
 
   public void setFailingStreak(Long failingStreak) {
     this.failingStreak = failingStreak;
   }
 
 
-  public Health log(List<@Valid HealthcheckResult> log) {
+    public Health log(List<HealthcheckResult> log) {
+    
     this.log = log;
     return this;
   }
@@ -107,36 +110,41 @@ public class Health implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get log
    * @return log
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid HealthcheckResult> getLog() {
+    public List<HealthcheckResult> getLog() {
     return log;
   }
 
-  public void setLog(List<@Valid HealthcheckResult> log) {
+
+    public void setLog(List<HealthcheckResult> log) {
     this.log = log;
   }
 
 
   public Health status(String status) {
-    this.status = status;
+
+      this.status = status;
     return this;
   }
 
-  /**
+    /**
    * Get status
    * @return status
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getStatus() {
     return status;
   }
+
 
   public void setStatus(String status) {
     this.status = status;
@@ -200,27 +208,28 @@ public class Health implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Health
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Health.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to Health
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (Health.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in Health is not found in the empty JSON string", Health.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!Health.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Health` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Health` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("Log") != null && !jsonObj.get("Log").isJsonNull()) {
         JsonArray jsonArraylog = jsonObj.getAsJsonArray("Log");
         if (jsonArraylog != null) {
@@ -231,7 +240,7 @@ public class Health implements Serializable {
 
           // validate the optional field `Log` (array)
           for (int i = 0; i < jsonArraylog.size(); i++) {
-            HealthcheckResult.validateJsonElement(jsonArraylog.get(i));
+              HealthcheckResult.validateJsonObject(jsonArraylog.get(i).getAsJsonObject());
           };
         }
       }
@@ -260,31 +269,31 @@ public class Health implements Serializable {
 
            @Override
            public Health read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of Health given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Health
-   * @throws IOException if the JSON string is invalid with respect to Health
-   */
+    /**
+     * Create an instance of Health given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Health
+     * @throws IOException if the JSON string is invalid with respect to Health
+     */
   public static Health fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Health.class);
   }
 
-  /**
-   * Convert an instance of Health to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of Health to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

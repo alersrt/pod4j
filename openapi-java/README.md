@@ -2,7 +2,6 @@
 
 supports a RESTful API for the Libpod library
 - API version: 5.0.0
-  - Generator version: 7.7.0
 
 This documentation describes the Podman v2.x+ RESTful API. It consists of a Docker-compatible
 API and a Libpod API providing support for Podman’s unique features such as pods.
@@ -76,7 +75,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.github.alersrt</groupId>
   <artifactId>pod4j.openapi-java</artifactId>
-  <version>5.3.1</version>
+    <version>5.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -92,7 +91,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.github.alersrt:pod4j.openapi-java:5.3.1"
+      implementation "io.github.alersrt:pod4j.openapi-java:5.4.0"
   }
 ```
 
@@ -106,7 +105,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/pod4j.openapi-java-5.3.1.jar`
+* `target/pod4j.openapi-java-5.4.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -636,11 +635,10 @@ Class | Method | HTTP request | Description
  - [WeightDevice](docs/WeightDevice.md)
 
 
-<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-Endpoints do not require authorization.
-
+All endpoints do not require authorization.
+Authentication schemes defined for the API:
 
 ## Recommendation
 

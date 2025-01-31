@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,7 +52,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NamedVolume holds information about a named volume that will be mounted into the container.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "NamedVolume holds information about a named volume that will be mounted into the container.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NamedVolume implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -72,7 +71,7 @@ public class NamedVolume implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "Options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private List<String> options = new ArrayList<>();
+  private List<String> options = null;
 
   public static final String SERIALIZED_NAME_SUB_PATH = "SubPath";
   @SerializedName(SERIALIZED_NAME_SUB_PATH)
@@ -82,19 +81,22 @@ public class NamedVolume implements Serializable {
   }
 
   public NamedVolume dest(String dest) {
-    this.dest = dest;
+
+      this.dest = dest;
     return this;
   }
 
-  /**
+    /**
    * Destination to mount the named volume within the container. Must be an absolute path. Path will be created if it does not exist.
    * @return dest
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Destination to mount the named volume within the container. Must be an absolute path. Path will be created if it does not exist.")
 
   public String getDest() {
     return dest;
   }
+
 
   public void setDest(String dest) {
     this.dest = dest;
@@ -102,19 +104,22 @@ public class NamedVolume implements Serializable {
 
 
   public NamedVolume isAnonymous(Boolean isAnonymous) {
-    this.isAnonymous = isAnonymous;
+
+      this.isAnonymous = isAnonymous;
     return this;
   }
 
-  /**
+    /**
    * IsAnonymous sets the named volume as anonymous even if it has a name This is used for emptyDir volumes from a kube yaml
    * @return isAnonymous
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "IsAnonymous sets the named volume as anonymous even if it has a name This is used for emptyDir volumes from a kube yaml")
 
   public Boolean getIsAnonymous() {
     return isAnonymous;
   }
+
 
   public void setIsAnonymous(Boolean isAnonymous) {
     this.isAnonymous = isAnonymous;
@@ -122,19 +127,22 @@ public class NamedVolume implements Serializable {
 
 
   public NamedVolume name(String name) {
-    this.name = name;
+
+      this.name = name;
     return this;
   }
 
-  /**
+    /**
    * Name is the name of the named volume to be mounted. May be empty. If empty, a new named volume with a pseudorandomly generated name will be mounted at the given destination.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Name is the name of the named volume to be mounted. May be empty. If empty, a new named volume with a pseudorandomly generated name will be mounted at the given destination.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -142,7 +150,8 @@ public class NamedVolume implements Serializable {
 
 
   public NamedVolume options(List<String> options) {
-    this.options = options;
+
+      this.options = options;
     return this;
   }
 
@@ -154,15 +163,17 @@ public class NamedVolume implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Options are options that the named volume will be mounted with.
    * @return options
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Options are options that the named volume will be mounted with.")
 
   public List<String> getOptions() {
     return options;
   }
+
 
   public void setOptions(List<String> options) {
     this.options = options;
@@ -170,19 +181,22 @@ public class NamedVolume implements Serializable {
 
 
   public NamedVolume subPath(String subPath) {
-    this.subPath = subPath;
+
+      this.subPath = subPath;
     return this;
   }
 
-  /**
+    /**
    * SubPath stores the sub directory of the named volume to be mounted in the container
    * @return subPath
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "SubPath stores the sub directory of the named volume to be mounted in the container")
 
   public String getSubPath() {
     return subPath;
   }
+
 
   public void setSubPath(String subPath) {
     this.subPath = subPath;
@@ -252,35 +266,36 @@ public class NamedVolume implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NamedVolume
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NamedVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NamedVolume
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NamedVolume.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in NamedVolume is not found in the empty JSON string", NamedVolume.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NamedVolume.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NamedVolume` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NamedVolume` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Dest") != null && !jsonObj.get("Dest").isJsonNull()) && !jsonObj.get("Dest").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Dest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Dest").toString()));
       }
       if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull()) && !jsonObj.get("Options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
       }
       if ((jsonObj.get("SubPath") != null && !jsonObj.get("SubPath").isJsonNull()) && !jsonObj.get("SubPath").isJsonPrimitive()) {
@@ -308,31 +323,31 @@ public class NamedVolume implements Serializable {
 
            @Override
            public NamedVolume read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NamedVolume given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NamedVolume
-   * @throws IOException if the JSON string is invalid with respect to NamedVolume
-   */
+    /**
+     * Create an instance of NamedVolume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NamedVolume
+     * @throws IOException if the JSON string is invalid with respect to NamedVolume
+     */
   public static NamedVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NamedVolume.class);
   }
 
-  /**
-   * Convert an instance of NamedVolume to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NamedVolume to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

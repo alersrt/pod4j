@@ -14,17 +14,19 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.ContainerWait200ResponseError;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +38,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ContainerWait200Response
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContainerWait200Response implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -69,20 +67,23 @@ public class ContainerWait200Response implements Serializable {
   }
 
   public ContainerWait200Response error(ContainerWait200ResponseError error) {
-    this.error = error;
+
+      this.error = error;
     return this;
   }
 
-  /**
+    /**
    * Get error
    * @return error
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ContainerWait200ResponseError getError() {
     return error;
   }
+
 
   public void setError(ContainerWait200ResponseError error) {
     this.error = error;
@@ -90,19 +91,22 @@ public class ContainerWait200Response implements Serializable {
 
 
   public ContainerWait200Response statusCode(Long statusCode) {
-    this.statusCode = statusCode;
+
+      this.statusCode = statusCode;
     return this;
   }
 
-  /**
+    /**
    * container exit code
    * @return statusCode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "container exit code")
 
   public Long getStatusCode() {
     return statusCode;
   }
+
 
   public void setStatusCode(Long statusCode) {
     this.statusCode = statusCode;
@@ -163,30 +167,31 @@ public class ContainerWait200Response implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerWait200Response
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerWait200Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ContainerWait200Response
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ContainerWait200Response.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerWait200Response is not found in the empty JSON string", ContainerWait200Response.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ContainerWait200Response.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerWait200Response` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerWait200Response` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `Error`
       if (jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) {
-        ContainerWait200ResponseError.validateJsonElement(jsonObj.get("Error"));
+          ContainerWait200ResponseError.validateJsonObject(jsonObj.getAsJsonObject("Error"));
       }
   }
 
@@ -210,31 +215,31 @@ public class ContainerWait200Response implements Serializable {
 
            @Override
            public ContainerWait200Response read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ContainerWait200Response given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerWait200Response
-   * @throws IOException if the JSON string is invalid with respect to ContainerWait200Response
-   */
+    /**
+     * Create an instance of ContainerWait200Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerWait200Response
+     * @throws IOException if the JSON string is invalid with respect to ContainerWait200Response
+     */
   public static ContainerWait200Response fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerWait200Response.class);
   }
 
-  /**
-   * Convert an instance of ContainerWait200Response to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ContainerWait200Response to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

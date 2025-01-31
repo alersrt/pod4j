@@ -14,17 +14,19 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +38,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,7 +51,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ConnectOptions represents the data to be used to connect a container to the network.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "ConnectOptions represents the data to be used to connect a container to the network.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -69,19 +68,22 @@ public class ConnectOptions implements Serializable {
   }
 
   public ConnectOptions container(String container) {
-    this.container = container;
+
+      this.container = container;
     return this;
   }
 
-  /**
+    /**
    * Get container
    * @return container
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getContainer() {
     return container;
   }
+
 
   public void setContainer(String container) {
     this.container = container;
@@ -89,20 +91,23 @@ public class ConnectOptions implements Serializable {
 
 
   public ConnectOptions endpointConfig(EndpointSettings endpointConfig) {
-    this.endpointConfig = endpointConfig;
+
+      this.endpointConfig = endpointConfig;
     return this;
   }
 
-  /**
+    /**
    * Get endpointConfig
    * @return endpointConfig
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public EndpointSettings getEndpointConfig() {
     return endpointConfig;
   }
+
 
   public void setEndpointConfig(EndpointSettings endpointConfig) {
     this.endpointConfig = endpointConfig;
@@ -163,33 +168,34 @@ public class ConnectOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ConnectOptions
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ConnectOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ConnectOptions
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ConnectOptions.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ConnectOptions is not found in the empty JSON string", ConnectOptions.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ConnectOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ConnectOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ConnectOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Container") != null && !jsonObj.get("Container").isJsonNull()) && !jsonObj.get("Container").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Container` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Container").toString()));
       }
       // validate the optional field `EndpointConfig`
       if (jsonObj.get("EndpointConfig") != null && !jsonObj.get("EndpointConfig").isJsonNull()) {
-        EndpointSettings.validateJsonElement(jsonObj.get("EndpointConfig"));
+          EndpointSettings.validateJsonObject(jsonObj.getAsJsonObject("EndpointConfig"));
       }
   }
 
@@ -213,31 +219,31 @@ public class ConnectOptions implements Serializable {
 
            @Override
            public ConnectOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ConnectOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ConnectOptions
-   * @throws IOException if the JSON string is invalid with respect to ConnectOptions
-   */
+    /**
+     * Create an instance of ConnectOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ConnectOptions
+     * @throws IOException if the JSON string is invalid with respect to ConnectOptions
+     */
   public static ConnectOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ConnectOptions.class);
   }
 
-  /**
-   * Convert an instance of ConnectOptions to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ConnectOptions to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

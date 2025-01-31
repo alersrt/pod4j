@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * LinuxCPU for Linux cgroup &#39;cpu&#39; resource management
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "LinuxCPU for Linux cgroup 'cpu' resource management")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LinuxCPU implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -96,19 +95,22 @@ public class LinuxCPU implements Serializable {
   }
 
   public LinuxCPU burst(Integer burst) {
-    this.burst = burst;
+
+      this.burst = burst;
     return this;
   }
 
-  /**
+    /**
    * CPU hardcap burst limit (in usecs). Allowed accumulated cpu time additionally for burst in a given period.
    * @return burst
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPU hardcap burst limit (in usecs). Allowed accumulated cpu time additionally for burst in a given period.")
 
   public Integer getBurst() {
     return burst;
   }
+
 
   public void setBurst(Integer burst) {
     this.burst = burst;
@@ -116,19 +118,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU cpus(String cpus) {
-    this.cpus = cpus;
+
+      this.cpus = cpus;
     return this;
   }
 
-  /**
+    /**
    * CPUs to use within the cpuset. Default is to use any CPU available.
    * @return cpus
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPUs to use within the cpuset. Default is to use any CPU available.")
 
   public String getCpus() {
     return cpus;
   }
+
 
   public void setCpus(String cpus) {
     this.cpus = cpus;
@@ -136,19 +141,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU idle(Long idle) {
-    this.idle = idle;
+
+      this.idle = idle;
     return this;
   }
 
-  /**
+    /**
    * cgroups are configured with minimum weight, 0: default behavior, 1: SCHED_IDLE.
    * @return idle
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "cgroups are configured with minimum weight, 0: default behavior, 1: SCHED_IDLE.")
 
   public Long getIdle() {
     return idle;
   }
+
 
   public void setIdle(Long idle) {
     this.idle = idle;
@@ -156,19 +164,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU mems(String mems) {
-    this.mems = mems;
+
+      this.mems = mems;
     return this;
   }
 
-  /**
+    /**
    * List of memory nodes in the cpuset. Default is to use any available memory node.
    * @return mems
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "List of memory nodes in the cpuset. Default is to use any available memory node.")
 
   public String getMems() {
     return mems;
   }
+
 
   public void setMems(String mems) {
     this.mems = mems;
@@ -176,19 +187,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU period(Integer period) {
-    this.period = period;
+
+      this.period = period;
     return this;
   }
 
-  /**
+    /**
    * CPU period to be used for hardcapping (in usecs).
    * @return period
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPU period to be used for hardcapping (in usecs).")
 
   public Integer getPeriod() {
     return period;
   }
+
 
   public void setPeriod(Integer period) {
     this.period = period;
@@ -196,19 +210,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU quota(Long quota) {
-    this.quota = quota;
+
+      this.quota = quota;
     return this;
   }
 
-  /**
+    /**
    * CPU hardcap limit (in usecs). Allowed cpu time in a given period.
    * @return quota
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPU hardcap limit (in usecs). Allowed cpu time in a given period.")
 
   public Long getQuota() {
     return quota;
   }
+
 
   public void setQuota(Long quota) {
     this.quota = quota;
@@ -216,19 +233,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU realtimePeriod(Integer realtimePeriod) {
-    this.realtimePeriod = realtimePeriod;
+
+      this.realtimePeriod = realtimePeriod;
     return this;
   }
 
-  /**
+    /**
    * CPU period to be used for realtime scheduling (in usecs).
    * @return realtimePeriod
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPU period to be used for realtime scheduling (in usecs).")
 
   public Integer getRealtimePeriod() {
     return realtimePeriod;
   }
+
 
   public void setRealtimePeriod(Integer realtimePeriod) {
     this.realtimePeriod = realtimePeriod;
@@ -236,19 +256,22 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU realtimeRuntime(Long realtimeRuntime) {
-    this.realtimeRuntime = realtimeRuntime;
+
+      this.realtimeRuntime = realtimeRuntime;
     return this;
   }
 
-  /**
+    /**
    * How much time realtime scheduling may use (in usecs).
    * @return realtimeRuntime
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "How much time realtime scheduling may use (in usecs).")
 
   public Long getRealtimeRuntime() {
     return realtimeRuntime;
   }
+
 
   public void setRealtimeRuntime(Long realtimeRuntime) {
     this.realtimeRuntime = realtimeRuntime;
@@ -256,21 +279,24 @@ public class LinuxCPU implements Serializable {
 
 
   public LinuxCPU shares(Integer shares) {
-    this.shares = shares;
+
+      this.shares = shares;
     return this;
   }
 
-  /**
+    /**
    * CPU shares (relative weight (ratio) vs. other cgroups with cpu shares).
    * @return shares
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CPU shares (relative weight (ratio) vs. other cgroups with cpu shares).")
 
   public Integer getShares() {
     return shares;
   }
 
-  public void setShares(Integer shares) {
+
+    public void setShares(Integer shares) {
     this.shares = shares;
   }
 
@@ -350,27 +376,28 @@ public class LinuxCPU implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxCPU
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxCPU.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxCPU is not found in the empty JSON string", LinuxCPU.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to LinuxCPU
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (LinuxCPU.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxCPU is not found in the empty JSON string", LinuxCPU.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!LinuxCPU.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxCPU` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxCPU` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("cpus") != null && !jsonObj.get("cpus").isJsonNull()) && !jsonObj.get("cpus").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpus").toString()));
       }
@@ -399,31 +426,31 @@ public class LinuxCPU implements Serializable {
 
            @Override
            public LinuxCPU read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of LinuxCPU given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxCPU
-   * @throws IOException if the JSON string is invalid with respect to LinuxCPU
-   */
+    /**
+     * Create an instance of LinuxCPU given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxCPU
+     * @throws IOException if the JSON string is invalid with respect to LinuxCPU
+     */
   public static LinuxCPU fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxCPU.class);
   }
 
-  /**
-   * Convert an instance of LinuxCPU to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of LinuxCPU to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

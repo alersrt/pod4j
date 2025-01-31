@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,13 +24,14 @@ import io.github.alersrt.pod4j.openapi.model.Config;
 import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
 import io.github.alersrt.pod4j.openapi.model.Metadata;
 import io.github.alersrt.pod4j.openapi.model.RootFS;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,16 +43,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -58,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ImageInspect
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ImageInspect implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -120,11 +118,11 @@ public class ImageInspect implements Serializable {
 
   public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
   @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
-  private List<String> repoDigests = new ArrayList<>();
+  private List<String> repoDigests = null;
 
   public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
   @SerializedName(SERIALIZED_NAME_REPO_TAGS)
-  private List<String> repoTags = new ArrayList<>();
+  private List<String> repoTags = null;
 
   public static final String SERIALIZED_NAME_ROOT_F_S = "RootFS";
   @SerializedName(SERIALIZED_NAME_ROOT_F_S)
@@ -146,19 +144,22 @@ public class ImageInspect implements Serializable {
   }
 
   public ImageInspect architecture(String architecture) {
-    this.architecture = architecture;
+
+      this.architecture = architecture;
     return this;
   }
 
-  /**
+    /**
    * Architecture is the hardware CPU architecture that the image runs on.
    * @return architecture
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Architecture is the hardware CPU architecture that the image runs on.")
 
   public String getArchitecture() {
     return architecture;
   }
+
 
   public void setArchitecture(String architecture) {
     this.architecture = architecture;
@@ -166,19 +167,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect author(String author) {
-    this.author = author;
+
+      this.author = author;
     return this;
   }
 
-  /**
+    /**
    * Author is the name of the author that was specified when committing the image, or as specified through MAINTAINER (deprecated) in the Dockerfile.
    * @return author
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Author is the name of the author that was specified when committing the image, or as specified through MAINTAINER (deprecated) in the Dockerfile.")
 
   public String getAuthor() {
     return author;
   }
+
 
   public void setAuthor(String author) {
     this.author = author;
@@ -186,19 +190,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect comment(String comment) {
-    this.comment = comment;
+
+      this.comment = comment;
     return this;
   }
 
-  /**
+    /**
    * Comment is an optional message that can be set when committing or importing the image.
    * @return comment
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Comment is an optional message that can be set when committing or importing the image.")
 
   public String getComment() {
     return comment;
   }
+
 
   public void setComment(String comment) {
     this.comment = comment;
@@ -206,20 +213,23 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect config(Config config) {
-    this.config = config;
+
+      this.config = config;
     return this;
   }
 
-  /**
+    /**
    * Get config
    * @return config
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Config getConfig() {
     return config;
   }
+
 
   public void setConfig(Config config) {
     this.config = config;
@@ -227,19 +237,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect container(String container) {
-    this.container = container;
+
+      this.container = container;
     return this;
   }
 
-  /**
+    /**
    * Container is for backwards compat but is basically unused
    * @return container
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Container is for backwards compat but is basically unused")
 
   public String getContainer() {
     return container;
   }
+
 
   public void setContainer(String container) {
     this.container = container;
@@ -247,20 +260,23 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect containerConfig(Config containerConfig) {
-    this.containerConfig = containerConfig;
+
+      this.containerConfig = containerConfig;
     return this;
   }
 
-  /**
+    /**
    * Get containerConfig
    * @return containerConfig
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Config getContainerConfig() {
     return containerConfig;
   }
+
 
   public void setContainerConfig(Config containerConfig) {
     this.containerConfig = containerConfig;
@@ -268,19 +284,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect created(String created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Created is the date and time at which the image was created, formatted in RFC 3339 nano-seconds (time.RFC3339Nano).  This information is only available if present in the image, and omitted otherwise.
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Created is the date and time at which the image was created, formatted in RFC 3339 nano-seconds (time.RFC3339Nano).  This information is only available if present in the image, and omitted otherwise.")
 
   public String getCreated() {
     return created;
   }
+
 
   public void setCreated(String created) {
     this.created = created;
@@ -288,19 +307,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect dockerVersion(String dockerVersion) {
-    this.dockerVersion = dockerVersion;
+
+      this.dockerVersion = dockerVersion;
     return this;
   }
 
-  /**
+    /**
    * DockerVersion is the version of Docker that was used to build the image.  Depending on how the image was created, this field may be empty.
    * @return dockerVersion
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DockerVersion is the version of Docker that was used to build the image.  Depending on how the image was created, this field may be empty.")
 
   public String getDockerVersion() {
     return dockerVersion;
   }
+
 
   public void setDockerVersion(String dockerVersion) {
     this.dockerVersion = dockerVersion;
@@ -308,20 +330,23 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect graphDriver(GraphDriverData graphDriver) {
-    this.graphDriver = graphDriver;
+
+      this.graphDriver = graphDriver;
     return this;
   }
 
-  /**
+    /**
    * Get graphDriver
    * @return graphDriver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public GraphDriverData getGraphDriver() {
     return graphDriver;
   }
+
 
   public void setGraphDriver(GraphDriverData graphDriver) {
     this.graphDriver = graphDriver;
@@ -329,19 +354,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image's configuration (which includes the digests of layers used by the image).  Note that this digest differs from the `RepoDigests` below, which holds digests of image manifests that reference the image.")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -349,20 +377,23 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect metadata(Metadata metadata) {
-    this.metadata = metadata;
+
+      this.metadata = metadata;
     return this;
   }
 
-  /**
+    /**
    * Get metadata
    * @return metadata
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Metadata getMetadata() {
     return metadata;
   }
+
 
   public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
@@ -370,19 +401,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect os(String os) {
-    this.os = os;
+
+      this.os = os;
     return this;
   }
 
-  /**
+    /**
    * OS is the Operating System the image is built to run on.
    * @return os
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OS is the Operating System the image is built to run on.")
 
   public String getOs() {
     return os;
   }
+
 
   public void setOs(String os) {
     this.os = os;
@@ -390,19 +424,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect osVersion(String osVersion) {
-    this.osVersion = osVersion;
+
+      this.osVersion = osVersion;
     return this;
   }
 
-  /**
+    /**
    * OsVersion is the version of the Operating System the image is built to run on (especially for Windows).
    * @return osVersion
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OsVersion is the version of the Operating System the image is built to run on (especially for Windows).")
 
   public String getOsVersion() {
     return osVersion;
   }
+
 
   public void setOsVersion(String osVersion) {
     this.osVersion = osVersion;
@@ -410,19 +447,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect parent(String parent) {
-    this.parent = parent;
+
+      this.parent = parent;
     return this;
   }
 
-  /**
+    /**
    * Parent is the ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
    * @return parent
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Parent is the ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.")
 
   public String getParent() {
     return parent;
   }
+
 
   public void setParent(String parent) {
     this.parent = parent;
@@ -430,7 +470,8 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect repoDigests(List<String> repoDigests) {
-    this.repoDigests = repoDigests;
+
+      this.repoDigests = repoDigests;
     return this;
   }
 
@@ -442,15 +483,17 @@ public class ImageInspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * RepoDigests is a list of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
    * @return repoDigests
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "RepoDigests is a list of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.")
 
   public List<String> getRepoDigests() {
     return repoDigests;
   }
+
 
   public void setRepoDigests(List<String> repoDigests) {
     this.repoDigests = repoDigests;
@@ -458,7 +501,8 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect repoTags(List<String> repoTags) {
-    this.repoTags = repoTags;
+
+      this.repoTags = repoTags;
     return this;
   }
 
@@ -470,15 +514,17 @@ public class ImageInspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * RepoTags is a list of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
    * @return repoTags
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "RepoTags is a list of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \"untagged\", in which case it can still be referenced by its ID.")
 
   public List<String> getRepoTags() {
     return repoTags;
   }
+
 
   public void setRepoTags(List<String> repoTags) {
     this.repoTags = repoTags;
@@ -486,20 +532,23 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect rootFS(RootFS rootFS) {
-    this.rootFS = rootFS;
+
+      this.rootFS = rootFS;
     return this;
   }
 
-  /**
+    /**
    * Get rootFS
    * @return rootFS
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public RootFS getRootFS() {
     return rootFS;
   }
+
 
   public void setRootFS(RootFS rootFS) {
     this.rootFS = rootFS;
@@ -507,19 +556,22 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect size(Long size) {
-    this.size = size;
+
+      this.size = size;
     return this;
   }
 
-  /**
+    /**
    * Size is the total size of the image including all layers it is composed of.
    * @return size
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Size is the total size of the image including all layers it is composed of.")
 
   public Long getSize() {
     return size;
   }
+
 
   public void setSize(Long size) {
     this.size = size;
@@ -527,41 +579,47 @@ public class ImageInspect implements Serializable {
 
 
   public ImageInspect variant(String variant) {
-    this.variant = variant;
+
+      this.variant = variant;
     return this;
   }
 
-  /**
+    /**
    * Variant is the CPU architecture variant (presently ARM-only).
    * @return variant
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Variant is the CPU architecture variant (presently ARM-only).")
 
   public String getVariant() {
     return variant;
   }
 
-  public void setVariant(String variant) {
+
+    public void setVariant(String variant) {
     this.variant = variant;
   }
 
 
   public ImageInspect virtualSize(Long virtualSize) {
-    this.virtualSize = virtualSize;
+
+      this.virtualSize = virtualSize;
     return this;
   }
 
-  /**
+    /**
    * VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
    * @return virtualSize
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.")
 
   public Long getVirtualSize() {
     return virtualSize;
   }
 
-  public void setVirtualSize(Long virtualSize) {
+
+    public void setVirtualSize(Long virtualSize) {
     this.virtualSize = virtualSize;
   }
 
@@ -674,27 +732,28 @@ public class ImageInspect implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageInspect
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageInspect.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ImageInspect is not found in the empty JSON string", ImageInspect.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ImageInspect
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ImageInspect.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ImageInspect is not found in the empty JSON string", ImageInspect.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ImageInspect.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageInspect` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageInspect` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Architecture") != null && !jsonObj.get("Architecture").isJsonNull()) && !jsonObj.get("Architecture").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Architecture").toString()));
       }
@@ -706,14 +765,14 @@ public class ImageInspect implements Serializable {
       }
       // validate the optional field `Config`
       if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
-        Config.validateJsonElement(jsonObj.get("Config"));
+          Config.validateJsonObject(jsonObj.getAsJsonObject("Config"));
       }
       if ((jsonObj.get("Container") != null && !jsonObj.get("Container").isJsonNull()) && !jsonObj.get("Container").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Container` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Container").toString()));
       }
       // validate the optional field `ContainerConfig`
       if (jsonObj.get("ContainerConfig") != null && !jsonObj.get("ContainerConfig").isJsonNull()) {
-        Config.validateJsonElement(jsonObj.get("ContainerConfig"));
+          Config.validateJsonObject(jsonObj.getAsJsonObject("ContainerConfig"));
       }
       if ((jsonObj.get("Created") != null && !jsonObj.get("Created").isJsonNull()) && !jsonObj.get("Created").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Created").toString()));
@@ -723,14 +782,14 @@ public class ImageInspect implements Serializable {
       }
       // validate the optional field `GraphDriver`
       if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
-        GraphDriverData.validateJsonElement(jsonObj.get("GraphDriver"));
+          GraphDriverData.validateJsonObject(jsonObj.getAsJsonObject("GraphDriver"));
       }
       if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
       }
       // validate the optional field `Metadata`
       if (jsonObj.get("Metadata") != null && !jsonObj.get("Metadata").isJsonNull()) {
-        Metadata.validateJsonElement(jsonObj.get("Metadata"));
+          Metadata.validateJsonObject(jsonObj.getAsJsonObject("Metadata"));
       }
       if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
@@ -741,17 +800,17 @@ public class ImageInspect implements Serializable {
       if ((jsonObj.get("Parent") != null && !jsonObj.get("Parent").isJsonNull()) && !jsonObj.get("Parent").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Parent").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull() && !jsonObj.get("RepoDigests").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull()) && !jsonObj.get("RepoDigests").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull() && !jsonObj.get("RepoTags").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull()) && !jsonObj.get("RepoTags").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
       }
       // validate the optional field `RootFS`
       if (jsonObj.get("RootFS") != null && !jsonObj.get("RootFS").isJsonNull()) {
-        RootFS.validateJsonElement(jsonObj.get("RootFS"));
+          RootFS.validateJsonObject(jsonObj.getAsJsonObject("RootFS"));
       }
       if ((jsonObj.get("Variant") != null && !jsonObj.get("Variant").isJsonNull()) && !jsonObj.get("Variant").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Variant").toString()));
@@ -778,31 +837,31 @@ public class ImageInspect implements Serializable {
 
            @Override
            public ImageInspect read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ImageInspect given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageInspect
-   * @throws IOException if the JSON string is invalid with respect to ImageInspect
-   */
+    /**
+     * Create an instance of ImageInspect given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageInspect
+     * @throws IOException if the JSON string is invalid with respect to ImageInspect
+     */
   public static ImageInspect fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageInspect.class);
   }
 
-  /**
-   * Convert an instance of ImageInspect to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ImageInspect to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,23 +52,25 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetworkUpdateOptions describes options to update a network
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "NetworkUpdateOptions describes options to update a network")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NetworkUpdateOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ADDDNSSERVERS = "adddnsservers";
   @SerializedName(SERIALIZED_NAME_ADDDNSSERVERS)
-  private List<String> adddnsservers = new ArrayList<>();
+  private List<String> adddnsservers = null;
 
   public static final String SERIALIZED_NAME_REMOVEDNSSERVERS = "removednsservers";
   @SerializedName(SERIALIZED_NAME_REMOVEDNSSERVERS)
-  private List<String> removednsservers = new ArrayList<>();
+  private List<String> removednsservers = null;
 
   public NetworkUpdateOptions() {
   }
 
   public NetworkUpdateOptions adddnsservers(List<String> adddnsservers) {
-    this.adddnsservers = adddnsservers;
+
+      this.adddnsservers = adddnsservers;
     return this;
   }
 
@@ -82,15 +82,17 @@ public class NetworkUpdateOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get adddnsservers
    * @return adddnsservers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getAdddnsservers() {
     return adddnsservers;
   }
+
 
   public void setAdddnsservers(List<String> adddnsservers) {
     this.adddnsservers = adddnsservers;
@@ -98,7 +100,8 @@ public class NetworkUpdateOptions implements Serializable {
 
 
   public NetworkUpdateOptions removednsservers(List<String> removednsservers) {
-    this.removednsservers = removednsservers;
+
+      this.removednsservers = removednsservers;
     return this;
   }
 
@@ -110,15 +113,17 @@ public class NetworkUpdateOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get removednsservers
    * @return removednsservers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getRemovednsservers() {
     return removednsservers;
   }
+
 
   public void setRemovednsservers(List<String> removednsservers) {
     this.removednsservers = removednsservers;
@@ -179,33 +184,34 @@ public class NetworkUpdateOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetworkUpdateOptions
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetworkUpdateOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NetworkUpdateOptions
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NetworkUpdateOptions.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkUpdateOptions is not found in the empty JSON string", NetworkUpdateOptions.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NetworkUpdateOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkUpdateOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkUpdateOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("adddnsservers") != null && !jsonObj.get("adddnsservers").isJsonNull() && !jsonObj.get("adddnsservers").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("adddnsservers") != null && !jsonObj.get("adddnsservers").isJsonNull()) && !jsonObj.get("adddnsservers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `adddnsservers` to be an array in the JSON string but got `%s`", jsonObj.get("adddnsservers").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("removednsservers") != null && !jsonObj.get("removednsservers").isJsonNull() && !jsonObj.get("removednsservers").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("removednsservers") != null && !jsonObj.get("removednsservers").isJsonNull()) && !jsonObj.get("removednsservers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `removednsservers` to be an array in the JSON string but got `%s`", jsonObj.get("removednsservers").toString()));
       }
   }
@@ -230,31 +236,31 @@ public class NetworkUpdateOptions implements Serializable {
 
            @Override
            public NetworkUpdateOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NetworkUpdateOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetworkUpdateOptions
-   * @throws IOException if the JSON string is invalid with respect to NetworkUpdateOptions
-   */
+    /**
+     * Create an instance of NetworkUpdateOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkUpdateOptions
+     * @throws IOException if the JSON string is invalid with respect to NetworkUpdateOptions
+     */
   public static NetworkUpdateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkUpdateOptions.class);
   }
 
-  /**
-   * Convert an instance of NetworkUpdateOptions to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NetworkUpdateOptions to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

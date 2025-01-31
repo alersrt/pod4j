@@ -14,19 +14,21 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +40,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -55,7 +53,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * VolumeConfigResponse
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class VolumeConfigResponse implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -77,7 +75,7 @@ public class VolumeConfigResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "Labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_LOCK_NUMBER = "LockNumber";
   @SerializedName(SERIALIZED_NAME_LOCK_NUMBER)
@@ -105,7 +103,7 @@ public class VolumeConfigResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "Options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private Map<String, String> options = new HashMap<>();
+  private Map<String, String> options = null;
 
   public static final String SERIALIZED_NAME_SCOPE = "Scope";
   @SerializedName(SERIALIZED_NAME_SCOPE)
@@ -113,7 +111,7 @@ public class VolumeConfigResponse implements Serializable {
 
   public static final String SERIALIZED_NAME_STATUS = "Status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private Map<String, Object> status = new HashMap<>();
+  private Map<String, Object> status = null;
 
   public static final String SERIALIZED_NAME_STORAGE_I_D = "StorageID";
   @SerializedName(SERIALIZED_NAME_STORAGE_I_D)
@@ -131,19 +129,22 @@ public class VolumeConfigResponse implements Serializable {
   }
 
   public VolumeConfigResponse anonymous(Boolean anonymous) {
-    this.anonymous = anonymous;
+
+      this.anonymous = anonymous;
     return this;
   }
 
-  /**
+    /**
    * Anonymous indicates that the volume was created as an anonymous volume for a specific container, and will be removed when any container using it is removed.
    * @return anonymous
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Anonymous indicates that the volume was created as an anonymous volume for a specific container, and will be removed when any container using it is removed.")
 
   public Boolean getAnonymous() {
     return anonymous;
   }
+
 
   public void setAnonymous(Boolean anonymous) {
     this.anonymous = anonymous;
@@ -151,20 +152,23 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse createdAt(OffsetDateTime createdAt) {
-    this.createdAt = createdAt;
+
+      this.createdAt = createdAt;
     return this;
   }
 
-  /**
+    /**
    * CreatedAt is the date and time the volume was created at. This is not stored for older Libpod volumes; if so, it will be omitted.
    * @return createdAt
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "CreatedAt is the date and time the volume was created at. This is not stored for older Libpod volumes; if so, it will be omitted.")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
+
 
   public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
@@ -172,19 +176,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse driver(String driver) {
-    this.driver = driver;
+
+      this.driver = driver;
     return this;
   }
 
-  /**
+    /**
    * Driver is the driver used to create the volume. If set to \&quot;local\&quot; or \&quot;\&quot;, the Local driver (Podman built-in code) is used to service the volume; otherwise, a volume plugin with the given name is used to mount and manage the volume.
    * @return driver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Driver is the driver used to create the volume. If set to \"local\" or \"\", the Local driver (Podman built-in code) is used to service the volume; otherwise, a volume plugin with the given name is used to mount and manage the volume.")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -192,19 +199,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse GID(Long GID) {
-    this.GID = GID;
+
+      this.GID = GID;
     return this;
   }
 
-  /**
+    /**
    * GID is the GID that the volume was created with.
    * @return GID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "GID is the GID that the volume was created with.")
 
   public Long getGID() {
     return GID;
   }
+
 
   public void setGID(Long GID) {
     this.GID = GID;
@@ -212,7 +222,8 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse labels(Map<String, String> labels) {
-    this.labels = labels;
+
+      this.labels = labels;
     return this;
   }
 
@@ -224,15 +235,17 @@ public class VolumeConfigResponse implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Labels includes the volume&#39;s configured labels, key:value pairs that can be passed during volume creation to provide information for third party tools.
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Labels includes the volume's configured labels, key:value pairs that can be passed during volume creation to provide information for third party tools.")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -240,19 +253,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse lockNumber(Integer lockNumber) {
-    this.lockNumber = lockNumber;
+
+      this.lockNumber = lockNumber;
     return this;
   }
 
-  /**
+    /**
    * LockNumber is the number of the volume&#39;s Libpod lock.
    * @return lockNumber
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "LockNumber is the number of the volume's Libpod lock.")
 
   public Integer getLockNumber() {
     return lockNumber;
   }
+
 
   public void setLockNumber(Integer lockNumber) {
     this.lockNumber = lockNumber;
@@ -260,19 +276,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse mountCount(Integer mountCount) {
-    this.mountCount = mountCount;
+
+      this.mountCount = mountCount;
     return this;
   }
 
-  /**
+    /**
    * MountCount is the number of times this volume has been mounted.
    * @return mountCount
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "MountCount is the number of times this volume has been mounted.")
 
   public Integer getMountCount() {
     return mountCount;
   }
+
 
   public void setMountCount(Integer mountCount) {
     this.mountCount = mountCount;
@@ -280,19 +299,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse mountpoint(String mountpoint) {
-    this.mountpoint = mountpoint;
+
+      this.mountpoint = mountpoint;
     return this;
   }
 
-  /**
+    /**
    * Mountpoint is the path on the host where the volume is mounted.
    * @return mountpoint
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Mountpoint is the path on the host where the volume is mounted.")
 
   public String getMountpoint() {
     return mountpoint;
   }
+
 
   public void setMountpoint(String mountpoint) {
     this.mountpoint = mountpoint;
@@ -300,19 +322,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse name(String name) {
-    this.name = name;
+
+      this.name = name;
     return this;
   }
 
-  /**
+    /**
    * Name is the name of the volume.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Name is the name of the volume.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -320,19 +345,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse needsChown(Boolean needsChown) {
-    this.needsChown = needsChown;
+
+      this.needsChown = needsChown;
     return this;
   }
 
-  /**
+    /**
    * NeedsChown indicates that the next time the volume is mounted into a container, the container will chown the volume to the container process UID/GID.
    * @return needsChown
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "NeedsChown indicates that the next time the volume is mounted into a container, the container will chown the volume to the container process UID/GID.")
 
   public Boolean getNeedsChown() {
     return needsChown;
   }
+
 
   public void setNeedsChown(Boolean needsChown) {
     this.needsChown = needsChown;
@@ -340,19 +368,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse needsCopyUp(Boolean needsCopyUp) {
-    this.needsCopyUp = needsCopyUp;
+
+      this.needsCopyUp = needsCopyUp;
     return this;
   }
 
-  /**
+    /**
    * NeedsCopyUp indicates that the next time the volume is mounted into
    * @return needsCopyUp
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "NeedsCopyUp indicates that the next time the volume is mounted into")
 
   public Boolean getNeedsCopyUp() {
     return needsCopyUp;
   }
+
 
   public void setNeedsCopyUp(Boolean needsCopyUp) {
     this.needsCopyUp = needsCopyUp;
@@ -360,7 +391,8 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse options(Map<String, String> options) {
-    this.options = options;
+
+      this.options = options;
     return this;
   }
 
@@ -372,15 +404,17 @@ public class VolumeConfigResponse implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Options is a set of options that were used when creating the volume. For the Local driver, these are mount options that will be used to determine how a local filesystem is mounted; they are handled as parameters to Mount in a manner described in the volume create manpage. For non-local drivers, these are passed as-is to the volume plugin.
    * @return options
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Options is a set of options that were used when creating the volume. For the Local driver, these are mount options that will be used to determine how a local filesystem is mounted; they are handled as parameters to Mount in a manner described in the volume create manpage. For non-local drivers, these are passed as-is to the volume plugin.")
 
   public Map<String, String> getOptions() {
     return options;
   }
+
 
   public void setOptions(Map<String, String> options) {
     this.options = options;
@@ -388,19 +422,22 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse scope(String scope) {
-    this.scope = scope;
+
+      this.scope = scope;
     return this;
   }
 
-  /**
+    /**
    * Scope is unused and provided solely for Docker compatibility. It is unconditionally set to \&quot;local\&quot;.
    * @return scope
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Scope is unused and provided solely for Docker compatibility. It is unconditionally set to \"local\".")
 
   public String getScope() {
     return scope;
   }
+
 
   public void setScope(String scope) {
     this.scope = scope;
@@ -408,7 +445,8 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse status(Map<String, Object> status) {
-    this.status = status;
+
+      this.status = status;
     return this;
   }
 
@@ -420,15 +458,17 @@ public class VolumeConfigResponse implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Status is used to return information on the volume&#39;s current state, if the volume was created using a volume plugin (uses a Driver that is not the local driver). Status is provided to us by an external program, so no guarantees are made about its format or contents. Further, it is an optional field, so it may not be set even in cases where a volume plugin is in use.
    * @return status
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Status is used to return information on the volume's current state, if the volume was created using a volume plugin (uses a Driver that is not the local driver). Status is provided to us by an external program, so no guarantees are made about its format or contents. Further, it is an optional field, so it may not be set even in cases where a volume plugin is in use.")
 
   public Map<String, Object> getStatus() {
     return status;
   }
+
 
   public void setStatus(Map<String, Object> status) {
     this.status = status;
@@ -436,61 +476,70 @@ public class VolumeConfigResponse implements Serializable {
 
 
   public VolumeConfigResponse storageID(String storageID) {
-    this.storageID = storageID;
+
+      this.storageID = storageID;
     return this;
   }
 
-  /**
+    /**
    * StorageID is the ID of the container backing the volume in c/storage. Only used with Image Volumes.
    * @return storageID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "StorageID is the ID of the container backing the volume in c/storage. Only used with Image Volumes.")
 
   public String getStorageID() {
     return storageID;
   }
 
-  public void setStorageID(String storageID) {
+
+    public void setStorageID(String storageID) {
     this.storageID = storageID;
   }
 
 
   public VolumeConfigResponse timeout(Integer timeout) {
-    this.timeout = timeout;
+
+      this.timeout = timeout;
     return this;
   }
 
-  /**
+    /**
    * Timeout is the specified driver timeout if given
    * @return timeout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Timeout is the specified driver timeout if given")
 
   public Integer getTimeout() {
     return timeout;
   }
 
-  public void setTimeout(Integer timeout) {
+
+    public void setTimeout(Integer timeout) {
     this.timeout = timeout;
   }
 
 
   public VolumeConfigResponse UID(Long UID) {
-    this.UID = UID;
+
+      this.UID = UID;
     return this;
   }
 
-  /**
+    /**
    * UID is the UID that the volume was created with.
    * @return UID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "UID is the UID that the volume was created with.")
 
   public Long getUID() {
     return UID;
   }
 
-  public void setUID(Long UID) {
+
+    public void setUID(Long UID) {
     this.UID = UID;
   }
 
@@ -594,27 +643,28 @@ public class VolumeConfigResponse implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to VolumeConfigResponse
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!VolumeConfigResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in VolumeConfigResponse is not found in the empty JSON string", VolumeConfigResponse.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to VolumeConfigResponse
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (VolumeConfigResponse.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in VolumeConfigResponse is not found in the empty JSON string", VolumeConfigResponse.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!VolumeConfigResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeConfigResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeConfigResponse` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
       }
@@ -652,31 +702,31 @@ public class VolumeConfigResponse implements Serializable {
 
            @Override
            public VolumeConfigResponse read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of VolumeConfigResponse given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of VolumeConfigResponse
-   * @throws IOException if the JSON string is invalid with respect to VolumeConfigResponse
-   */
+    /**
+     * Create an instance of VolumeConfigResponse given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of VolumeConfigResponse
+     * @throws IOException if the JSON string is invalid with respect to VolumeConfigResponse
+     */
   public static VolumeConfigResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VolumeConfigResponse.class);
   }
 
-  /**
-   * Convert an instance of VolumeConfigResponse to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of VolumeConfigResponse to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

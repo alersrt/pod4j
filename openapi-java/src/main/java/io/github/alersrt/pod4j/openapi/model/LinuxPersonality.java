@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,7 +52,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * LinuxPersonality represents the Linux personality syscall input
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "LinuxPersonality represents the Linux personality syscall input")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LinuxPersonality implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -64,25 +63,28 @@ public class LinuxPersonality implements Serializable {
 
   public static final String SERIALIZED_NAME_FLAGS = "flags";
   @SerializedName(SERIALIZED_NAME_FLAGS)
-  private List<String> flags = new ArrayList<>();
+  private List<String> flags = null;
 
   public LinuxPersonality() {
   }
 
   public LinuxPersonality domain(String domain) {
-    this.domain = domain;
+
+      this.domain = domain;
     return this;
   }
 
-  /**
+    /**
    * Get domain
    * @return domain
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getDomain() {
     return domain;
   }
+
 
   public void setDomain(String domain) {
     this.domain = domain;
@@ -90,7 +92,8 @@ public class LinuxPersonality implements Serializable {
 
 
   public LinuxPersonality flags(List<String> flags) {
-    this.flags = flags;
+
+      this.flags = flags;
     return this;
   }
 
@@ -102,15 +105,17 @@ public class LinuxPersonality implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Additional flags
    * @return flags
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Additional flags")
 
   public List<String> getFlags() {
     return flags;
   }
+
 
   public void setFlags(List<String> flags) {
     this.flags = flags;
@@ -171,32 +176,33 @@ public class LinuxPersonality implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxPersonality
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxPersonality.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to LinuxPersonality
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (LinuxPersonality.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxPersonality is not found in the empty JSON string", LinuxPersonality.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!LinuxPersonality.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxPersonality` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxPersonality` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonNull()) && !jsonObj.get("domain").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `domain` to be a primitive type in the JSON string but got `%s`", jsonObj.get("domain").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("flags") != null && !jsonObj.get("flags").isJsonNull() && !jsonObj.get("flags").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("flags") != null && !jsonObj.get("flags").isJsonNull()) && !jsonObj.get("flags").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `flags` to be an array in the JSON string but got `%s`", jsonObj.get("flags").toString()));
       }
   }
@@ -221,31 +227,31 @@ public class LinuxPersonality implements Serializable {
 
            @Override
            public LinuxPersonality read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of LinuxPersonality given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxPersonality
-   * @throws IOException if the JSON string is invalid with respect to LinuxPersonality
-   */
+    /**
+     * Create an instance of LinuxPersonality given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxPersonality
+     * @throws IOException if the JSON string is invalid with respect to LinuxPersonality
+     */
   public static LinuxPersonality fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxPersonality.class);
   }
 
-  /**
-   * Convert an instance of LinuxPersonality to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of LinuxPersonality to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

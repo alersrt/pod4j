@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectDevice
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectDevice implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -72,19 +70,22 @@ public class InspectDevice implements Serializable {
   }
 
   public InspectDevice cgroupPermissions(String cgroupPermissions) {
-    this.cgroupPermissions = cgroupPermissions;
+
+      this.cgroupPermissions = cgroupPermissions;
     return this;
   }
 
-  /**
+    /**
    * CgroupPermissions is the permissions of the mounted device. Presently not populated. TODO.
    * @return cgroupPermissions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CgroupPermissions is the permissions of the mounted device. Presently not populated. TODO.")
 
   public String getCgroupPermissions() {
     return cgroupPermissions;
   }
+
 
   public void setCgroupPermissions(String cgroupPermissions) {
     this.cgroupPermissions = cgroupPermissions;
@@ -92,19 +93,22 @@ public class InspectDevice implements Serializable {
 
 
   public InspectDevice pathInContainer(String pathInContainer) {
-    this.pathInContainer = pathInContainer;
+
+      this.pathInContainer = pathInContainer;
     return this;
   }
 
-  /**
+    /**
    * PathInContainer is the path of the device within the container.
    * @return pathInContainer
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PathInContainer is the path of the device within the container.")
 
   public String getPathInContainer() {
     return pathInContainer;
   }
+
 
   public void setPathInContainer(String pathInContainer) {
     this.pathInContainer = pathInContainer;
@@ -112,19 +116,22 @@ public class InspectDevice implements Serializable {
 
 
   public InspectDevice pathOnHost(String pathOnHost) {
-    this.pathOnHost = pathOnHost;
+
+      this.pathOnHost = pathOnHost;
     return this;
   }
 
-  /**
+    /**
    * PathOnHost is the path of the device on the host.
    * @return pathOnHost
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PathOnHost is the path of the device on the host.")
 
   public String getPathOnHost() {
     return pathOnHost;
   }
+
 
   public void setPathOnHost(String pathOnHost) {
     this.pathOnHost = pathOnHost;
@@ -188,27 +195,28 @@ public class InspectDevice implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectDevice
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to InspectDevice
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (InspectDevice.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in InspectDevice is not found in the empty JSON string", InspectDevice.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!InspectDevice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectDevice` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("CgroupPermissions") != null && !jsonObj.get("CgroupPermissions").isJsonNull()) && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `CgroupPermissions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPermissions").toString()));
       }
@@ -240,31 +248,31 @@ public class InspectDevice implements Serializable {
 
            @Override
            public InspectDevice read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of InspectDevice given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectDevice
-   * @throws IOException if the JSON string is invalid with respect to InspectDevice
-   */
+    /**
+     * Create an instance of InspectDevice given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectDevice
+     * @throws IOException if the JSON string is invalid with respect to InspectDevice
+     */
   public static InspectDevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectDevice.class);
   }
 
-  /**
-   * Convert an instance of InspectDevice to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of InspectDevice to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

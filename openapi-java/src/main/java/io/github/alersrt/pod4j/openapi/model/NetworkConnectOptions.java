@@ -14,20 +14,22 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,16 +41,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -56,13 +54,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetworkConnectOptions describes options for connecting a container to a network
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.7.0")
+@ApiModel(description = "NetworkConnectOptions describes options for connecting a container to a network")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NetworkConnectOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ALIASES = "aliases";
   @SerializedName(SERIALIZED_NAME_ALIASES)
-  private List<String> aliases = new ArrayList<>();
+  private List<String> aliases = null;
 
   public static final String SERIALIZED_NAME_CONTAINER = "container";
   @SerializedName(SERIALIZED_NAME_CONTAINER)
@@ -74,11 +73,11 @@ public class NetworkConnectOptions implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private Map<String, String> options = new HashMap<>();
+  private Map<String, String> options = null;
 
   public static final String SERIALIZED_NAME_STATIC_IPS = "static_ips";
   @SerializedName(SERIALIZED_NAME_STATIC_IPS)
-  private List<String> staticIps = new ArrayList<>();
+  private List<String> staticIps = null;
 
   public static final String SERIALIZED_NAME_STATIC_MAC = "static_mac";
   @SerializedName(SERIALIZED_NAME_STATIC_MAC)
@@ -88,7 +87,8 @@ public class NetworkConnectOptions implements Serializable {
   }
 
   public NetworkConnectOptions aliases(List<String> aliases) {
-    this.aliases = aliases;
+
+      this.aliases = aliases;
     return this;
   }
 
@@ -100,15 +100,17 @@ public class NetworkConnectOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Aliases contains a list of names which the dns server should resolve to this container. Should only be set when DNSEnabled is true on the Network. If aliases are set but there is no dns support for this network the network interface implementation should ignore this and NOT error. Optional.
    * @return aliases
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Aliases contains a list of names which the dns server should resolve to this container. Should only be set when DNSEnabled is true on the Network. If aliases are set but there is no dns support for this network the network interface implementation should ignore this and NOT error. Optional.")
 
   public List<String> getAliases() {
     return aliases;
   }
+
 
   public void setAliases(List<String> aliases) {
     this.aliases = aliases;
@@ -116,19 +118,22 @@ public class NetworkConnectOptions implements Serializable {
 
 
   public NetworkConnectOptions container(String container) {
-    this.container = container;
+
+      this.container = container;
     return this;
   }
 
-  /**
+    /**
    * Get container
    * @return container
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getContainer() {
     return container;
   }
+
 
   public void setContainer(String container) {
     this.container = container;
@@ -136,19 +141,22 @@ public class NetworkConnectOptions implements Serializable {
 
 
   public NetworkConnectOptions interfaceName(String interfaceName) {
-    this.interfaceName = interfaceName;
+
+      this.interfaceName = interfaceName;
     return this;
   }
 
-  /**
+    /**
    * InterfaceName for this container. Required in the backend. Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.
    * @return interfaceName
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "InterfaceName for this container. Required in the backend. Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.")
 
   public String getInterfaceName() {
     return interfaceName;
   }
+
 
   public void setInterfaceName(String interfaceName) {
     this.interfaceName = interfaceName;
@@ -156,7 +164,8 @@ public class NetworkConnectOptions implements Serializable {
 
 
   public NetworkConnectOptions options(Map<String, String> options) {
-    this.options = options;
+
+      this.options = options;
     return this;
   }
 
@@ -168,15 +177,17 @@ public class NetworkConnectOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Driver-specific options for this container.
    * @return options
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Driver-specific options for this container.")
 
   public Map<String, String> getOptions() {
     return options;
   }
+
 
   public void setOptions(Map<String, String> options) {
     this.options = options;
@@ -184,7 +195,8 @@ public class NetworkConnectOptions implements Serializable {
 
 
   public NetworkConnectOptions staticIps(List<String> staticIps) {
-    this.staticIps = staticIps;
+
+      this.staticIps = staticIps;
     return this;
   }
 
@@ -196,15 +208,17 @@ public class NetworkConnectOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * StaticIPs for this container. Optional.
    * @return staticIps
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "StaticIPs for this container. Optional.")
 
   public List<String> getStaticIps() {
     return staticIps;
   }
+
 
   public void setStaticIps(List<String> staticIps) {
     this.staticIps = staticIps;
@@ -212,19 +226,22 @@ public class NetworkConnectOptions implements Serializable {
 
 
   public NetworkConnectOptions staticMac(String staticMac) {
-    this.staticMac = staticMac;
+
+      this.staticMac = staticMac;
     return this;
   }
 
-  /**
+    /**
    * StaticMac for this container. Optional.
    * @return staticMac
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "StaticMac for this container. Optional.")
 
   public String getStaticMac() {
     return staticMac;
   }
+
 
   public void setStaticMac(String staticMac) {
     this.staticMac = staticMac;
@@ -297,29 +314,30 @@ public class NetworkConnectOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetworkConnectOptions
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetworkConnectOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NetworkConnectOptions
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NetworkConnectOptions.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkConnectOptions is not found in the empty JSON string", NetworkConnectOptions.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NetworkConnectOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkConnectOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkConnectOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull() && !jsonObj.get("aliases").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("aliases") != null && !jsonObj.get("aliases").isJsonNull()) && !jsonObj.get("aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `aliases` to be an array in the JSON string but got `%s`", jsonObj.get("aliases").toString()));
       }
       if ((jsonObj.get("container") != null && !jsonObj.get("container").isJsonNull()) && !jsonObj.get("container").isJsonPrimitive()) {
@@ -328,8 +346,8 @@ public class NetworkConnectOptions implements Serializable {
       if ((jsonObj.get("interface_name") != null && !jsonObj.get("interface_name").isJsonNull()) && !jsonObj.get("interface_name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `interface_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("interface_name").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("static_ips") != null && !jsonObj.get("static_ips").isJsonNull() && !jsonObj.get("static_ips").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("static_ips") != null && !jsonObj.get("static_ips").isJsonNull()) && !jsonObj.get("static_ips").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `static_ips` to be an array in the JSON string but got `%s`", jsonObj.get("static_ips").toString()));
       }
       if ((jsonObj.get("static_mac") != null && !jsonObj.get("static_mac").isJsonNull()) && !jsonObj.get("static_mac").isJsonPrimitive()) {
@@ -357,31 +375,31 @@ public class NetworkConnectOptions implements Serializable {
 
            @Override
            public NetworkConnectOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NetworkConnectOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetworkConnectOptions
-   * @throws IOException if the JSON string is invalid with respect to NetworkConnectOptions
-   */
+    /**
+     * Create an instance of NetworkConnectOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkConnectOptions
+     * @throws IOException if the JSON string is invalid with respect to NetworkConnectOptions
+     */
   public static NetworkConnectOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkConnectOptions.class);
   }
 
-  /**
-   * Convert an instance of NetworkConnectOptions to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NetworkConnectOptions to an JSON string
+     *
+     * @return JSON string
+     */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

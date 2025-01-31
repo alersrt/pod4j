@@ -14,8 +14,7 @@ All URIs are relative to *http://podman.io*
 | [**networkPruneLibpod**](NetworksApi.md#networkPruneLibpod) | **POST** /libpod/networks/prune | Delete unused networks |
 | [**networkUpdateLibpod**](NetworksApi.md#networkUpdateLibpod) | **POST** /libpod/networks/{name}/update | Update existing podman network |
 
-
-<a id="networkConnectLibpod"></a>
+<a name="networkConnectLibpod"></a>
 # **networkConnectLibpod**
 > networkConnectLibpod(name).create(create).execute();
 
@@ -82,7 +81,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkCreateLibpod"></a>
+<a name="networkCreateLibpod"></a>
 # **networkCreateLibpod**
 > Network networkCreateLibpod().create(create).execute();
 
@@ -149,7 +148,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkDeleteLibpod"></a>
+<a name="networkDeleteLibpod"></a>
 # **networkDeleteLibpod**
 > List&lt;NetworkRmReport&gt; networkDeleteLibpod(name).force(force).execute();
 
@@ -217,7 +216,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkDisconnectLibpod"></a>
+<a name="networkDisconnectLibpod"></a>
 # **networkDisconnectLibpod**
 > networkDisconnectLibpod(name).create(create).execute();
 
@@ -284,7 +283,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkExistsLibpod"></a>
+<a name="networkExistsLibpod"></a>
 # **networkExistsLibpod**
 > networkExistsLibpod(name).execute();
 
@@ -348,7 +347,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkInspectLibpod"></a>
+<a name="networkInspectLibpod"></a>
 # **networkInspectLibpod**
 > NetworkInspectReport networkInspectLibpod(name).execute();
 
@@ -413,7 +412,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkListLibpod"></a>
+<a name="networkListLibpod"></a>
 # **networkListLibpod**
 > List&lt;Network&gt; networkListLibpod().filters(filters).execute();
 
@@ -478,7 +477,7 @@ No authorization required
 | **200** | Network list |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkPruneLibpod"></a>
+<a name="networkPruneLibpod"></a>
 # **networkPruneLibpod**
 > List&lt;NetworkPruneReport&gt; networkPruneLibpod().filters(filters).execute();
 
@@ -543,7 +542,7 @@ No authorization required
 | **200** | Network prune |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkUpdateLibpod"></a>
+<a name="networkUpdateLibpod"></a>
 # **networkUpdateLibpod**
 > networkUpdateLibpod(name).update(update).execute();
 
