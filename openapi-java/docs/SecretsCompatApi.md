@@ -9,10 +9,9 @@ All URIs are relative to *http://podman.io*
 | [**secretInspect**](SecretsCompatApi.md#secretInspect) | **GET** /secrets/{name} | Inspect secret |
 | [**secretList**](SecretsCompatApi.md#secretList) | **GET** /secrets | List secrets |
 
-
-<a id="secretCreate"></a>
+<a name="secretCreate"></a>
 # **secretCreate**
-> SecretCreateLibpod201Response secretCreate().create(create).execute();
+> ContainerUpdateLibpod201Response secretCreate().create(create).execute();
 
 Create a secret
 
@@ -33,7 +32,7 @@ public class Example {
     SecretsCompatApi apiInstance = new SecretsCompatApi(defaultClient);
     SecretCreate create = new SecretCreate(); // SecretCreate | attributes for creating a secret 
     try {
-      SecretCreateLibpod201Response result = apiInstance.secretCreate()
+      ContainerUpdateLibpod201Response result = apiInstance.secretCreate()
             .create(create)
             .execute();
       System.out.println(result);
@@ -56,7 +55,7 @@ public class Example {
 
 ### Return type
 
-[**SecretCreateLibpod201Response**](SecretCreateLibpod201Response.md)
+[**ContainerUpdateLibpod201Response**](ContainerUpdateLibpod201Response.md)
 
 ### Authorization
 
@@ -74,7 +73,7 @@ No authorization required
 | **409** | Secret in use |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretDelete"></a>
+<a name="secretDelete"></a>
 # **secretDelete**
 > secretDelete(name).execute();
 
@@ -136,7 +135,7 @@ No authorization required
 | **404** | No such secret |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretInspect"></a>
+<a name="secretInspect"></a>
 # **secretInspect**
 > SecretInfoReportCompat secretInspect(name).execute();
 
@@ -199,7 +198,7 @@ No authorization required
 | **404** | No such secret |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretList"></a>
+<a name="secretList"></a>
 # **secretList**
 > List&lt;SecretInfoReportCompat&gt; secretList().filters(filters).execute();
 

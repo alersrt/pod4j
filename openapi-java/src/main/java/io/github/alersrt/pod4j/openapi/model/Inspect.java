@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,16 +25,17 @@ import io.github.alersrt.pod4j.openapi.model.EndpointResource;
 import io.github.alersrt.pod4j.openapi.model.IPAM;
 import io.github.alersrt.pod4j.openapi.model.PeerInfo;
 import io.github.alersrt.pod4j.openapi.model.ServiceInfo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,16 +47,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -62,7 +60,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Inspect
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Inspect implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -80,7 +78,7 @@ public class Inspect implements Serializable {
 
   public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
   @SerializedName(SERIALIZED_NAME_CONTAINERS)
-  private Map<String, EndpointResource> containers = new HashMap<>();
+  private Map<String, EndpointResource> containers = null;
 
   public static final String SERIALIZED_NAME_CREATED = "Created";
   @SerializedName(SERIALIZED_NAME_CREATED)
@@ -112,7 +110,7 @@ public class Inspect implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "Labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_NAME = "Name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -120,11 +118,11 @@ public class Inspect implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "Options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private Map<String, String> options = new HashMap<>();
+  private Map<String, String> options = null;
 
   public static final String SERIALIZED_NAME_PEERS = "Peers";
   @SerializedName(SERIALIZED_NAME_PEERS)
-  private List<@Valid PeerInfo> peers = new ArrayList<>();
+  private List<PeerInfo> peers = null;
 
   public static final String SERIALIZED_NAME_SCOPE = "Scope";
   @SerializedName(SERIALIZED_NAME_SCOPE)
@@ -132,25 +130,28 @@ public class Inspect implements Serializable {
 
   public static final String SERIALIZED_NAME_SERVICES = "Services";
   @SerializedName(SERIALIZED_NAME_SERVICES)
-  private Map<String, ServiceInfo> services = new HashMap<>();
+  private Map<String, ServiceInfo> services = null;
 
   public Inspect() {
   }
 
   public Inspect attachable(Boolean attachable) {
-    this.attachable = attachable;
+
+      this.attachable = attachable;
     return this;
   }
 
-  /**
+    /**
    * Get attachable
    * @return attachable
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getAttachable() {
     return attachable;
   }
+
 
   public void setAttachable(Boolean attachable) {
     this.attachable = attachable;
@@ -158,20 +159,23 @@ public class Inspect implements Serializable {
 
 
   public Inspect configFrom(ConfigReference configFrom) {
-    this.configFrom = configFrom;
+
+      this.configFrom = configFrom;
     return this;
   }
 
-  /**
+    /**
    * Get configFrom
    * @return configFrom
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ConfigReference getConfigFrom() {
     return configFrom;
   }
+
 
   public void setConfigFrom(ConfigReference configFrom) {
     this.configFrom = configFrom;
@@ -179,19 +183,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect configOnly(Boolean configOnly) {
-    this.configOnly = configOnly;
+
+      this.configOnly = configOnly;
     return this;
   }
 
-  /**
+    /**
    * Get configOnly
    * @return configOnly
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getConfigOnly() {
     return configOnly;
   }
+
 
   public void setConfigOnly(Boolean configOnly) {
     this.configOnly = configOnly;
@@ -199,7 +206,8 @@ public class Inspect implements Serializable {
 
 
   public Inspect containers(Map<String, EndpointResource> containers) {
-    this.containers = containers;
+
+      this.containers = containers;
     return this;
   }
 
@@ -211,16 +219,18 @@ public class Inspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get containers
    * @return containers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Map<String, EndpointResource> getContainers() {
     return containers;
   }
+
 
   public void setContainers(Map<String, EndpointResource> containers) {
     this.containers = containers;
@@ -228,20 +238,23 @@ public class Inspect implements Serializable {
 
 
   public Inspect created(OffsetDateTime created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * Get created
    * @return created
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreated() {
     return created;
   }
+
 
   public void setCreated(OffsetDateTime created) {
     this.created = created;
@@ -249,19 +262,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect driver(String driver) {
-    this.driver = driver;
+
+      this.driver = driver;
     return this;
   }
 
-  /**
+    /**
    * Get driver
    * @return driver
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -269,19 +285,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect enableIPv6(Boolean enableIPv6) {
-    this.enableIPv6 = enableIPv6;
+
+      this.enableIPv6 = enableIPv6;
     return this;
   }
 
-  /**
+    /**
    * Get enableIPv6
    * @return enableIPv6
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getEnableIPv6() {
     return enableIPv6;
   }
+
 
   public void setEnableIPv6(Boolean enableIPv6) {
     this.enableIPv6 = enableIPv6;
@@ -289,20 +308,23 @@ public class Inspect implements Serializable {
 
 
   public Inspect ipam(IPAM ipam) {
-    this.ipam = ipam;
+
+      this.ipam = ipam;
     return this;
   }
 
-  /**
+    /**
    * Get ipam
    * @return ipam
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public IPAM getIPAM() {
     return ipam;
   }
+
 
   public void setIPAM(IPAM ipam) {
     this.ipam = ipam;
@@ -310,19 +332,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * Get id
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -330,19 +355,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect ingress(Boolean ingress) {
-    this.ingress = ingress;
+
+      this.ingress = ingress;
     return this;
   }
 
-  /**
+    /**
    * Get ingress
    * @return ingress
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getIngress() {
     return ingress;
   }
+
 
   public void setIngress(Boolean ingress) {
     this.ingress = ingress;
@@ -350,19 +378,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect internal(Boolean internal) {
-    this.internal = internal;
+
+      this.internal = internal;
     return this;
   }
 
-  /**
+    /**
    * Get internal
    * @return internal
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Boolean getInternal() {
     return internal;
   }
+
 
   public void setInternal(Boolean internal) {
     this.internal = internal;
@@ -370,7 +401,8 @@ public class Inspect implements Serializable {
 
 
   public Inspect labels(Map<String, String> labels) {
-    this.labels = labels;
+
+      this.labels = labels;
     return this;
   }
 
@@ -382,15 +414,17 @@ public class Inspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get labels
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -398,19 +432,22 @@ public class Inspect implements Serializable {
 
 
   public Inspect name(String name) {
-    this.name = name;
+
+      this.name = name;
     return this;
   }
 
-  /**
+    /**
    * Get name
    * @return name
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -418,7 +455,8 @@ public class Inspect implements Serializable {
 
 
   public Inspect options(Map<String, String> options) {
-    this.options = options;
+
+      this.options = options;
     return this;
   }
 
@@ -430,22 +468,25 @@ public class Inspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get options
    * @return options
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Map<String, String> getOptions() {
     return options;
   }
+
 
   public void setOptions(Map<String, String> options) {
     this.options = options;
   }
 
 
-  public Inspect peers(List<@Valid PeerInfo> peers) {
+    public Inspect peers(List<PeerInfo> peers) {
+    
     this.peers = peers;
     return this;
   }
@@ -458,44 +499,50 @@ public class Inspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get peers
    * @return peers
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
-  public List<@Valid PeerInfo> getPeers() {
+    public List<PeerInfo> getPeers() {
     return peers;
   }
 
-  public void setPeers(List<@Valid PeerInfo> peers) {
+
+    public void setPeers(List<PeerInfo> peers) {
     this.peers = peers;
   }
 
 
   public Inspect scope(String scope) {
-    this.scope = scope;
+
+      this.scope = scope;
     return this;
   }
 
-  /**
+    /**
    * Get scope
    * @return scope
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getScope() {
     return scope;
   }
 
-  public void setScope(String scope) {
+
+    public void setScope(String scope) {
     this.scope = scope;
   }
 
 
   public Inspect services(Map<String, ServiceInfo> services) {
-    this.services = services;
+
+      this.services = services;
     return this;
   }
 
@@ -507,18 +554,20 @@ public class Inspect implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get services
    * @return services
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Map<String, ServiceInfo> getServices() {
     return services;
   }
 
-  public void setServices(Map<String, ServiceInfo> services) {
+
+    public void setServices(Map<String, ServiceInfo> services) {
     this.services = services;
   }
 
@@ -622,37 +671,38 @@ public class Inspect implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Inspect
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Inspect.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Inspect is not found in the empty JSON string", Inspect.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to Inspect
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (Inspect.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Inspect is not found in the empty JSON string", Inspect.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!Inspect.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Inspect` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Inspect` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `ConfigFrom`
       if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
-        ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
+          ConfigReference.validateJsonObject(jsonObj.getAsJsonObject("ConfigFrom"));
       }
       if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
       }
       // validate the optional field `IPAM`
       if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
-        IPAM.validateJsonElement(jsonObj.get("IPAM"));
+          IPAM.validateJsonObject(jsonObj.getAsJsonObject("IPAM"));
       }
       if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
@@ -670,7 +720,7 @@ public class Inspect implements Serializable {
 
           // validate the optional field `Peers` (array)
           for (int i = 0; i < jsonArraypeers.size(); i++) {
-            PeerInfo.validateJsonElement(jsonArraypeers.get(i));
+              PeerInfo.validateJsonObject(jsonArraypeers.get(i).getAsJsonObject());
           };
         }
       }
@@ -699,31 +749,31 @@ public class Inspect implements Serializable {
 
            @Override
            public Inspect read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of Inspect given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Inspect
-   * @throws IOException if the JSON string is invalid with respect to Inspect
-   */
+    /**
+     * Create an instance of Inspect given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Inspect
+     * @throws IOException if the JSON string is invalid with respect to Inspect
+  */
   public static Inspect fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Inspect.class);
   }
 
-  /**
-   * Convert an instance of Inspect to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of Inspect to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

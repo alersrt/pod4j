@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -21,13 +22,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.ComponentVersion;
 import io.github.alersrt.pod4j.openapi.model.SystemComponentVersionPlatform;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,16 +41,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -56,7 +54,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SystemComponentVersion is the type used by pkg/domain/entities
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "SystemComponentVersion is the type used by pkg/domain/entities")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SystemComponentVersion implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -74,7 +73,7 @@ public class SystemComponentVersion implements Serializable {
 
   public static final String SERIALIZED_NAME_COMPONENTS = "Components";
   @SerializedName(SERIALIZED_NAME_COMPONENTS)
-  private List<@Valid ComponentVersion> components = new ArrayList<>();
+  private List<ComponentVersion> components = null;
 
   public static final String SERIALIZED_NAME_EXPERIMENTAL = "Experimental";
   @SerializedName(SERIALIZED_NAME_EXPERIMENTAL)
@@ -112,6 +111,7 @@ public class SystemComponentVersion implements Serializable {
   }
 
   public SystemComponentVersion apiVersion(String apiVersion) {
+
     this.apiVersion = apiVersion;
     return this;
   }
@@ -119,12 +119,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get apiVersion
    * @return apiVersion
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getApiVersion() {
     return apiVersion;
   }
+
 
   public void setApiVersion(String apiVersion) {
     this.apiVersion = apiVersion;
@@ -132,6 +134,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion arch(String arch) {
+
     this.arch = arch;
     return this;
   }
@@ -139,12 +142,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get arch
    * @return arch
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getArch() {
     return arch;
   }
+
 
   public void setArch(String arch) {
     this.arch = arch;
@@ -152,6 +157,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion buildTime(String buildTime) {
+
     this.buildTime = buildTime;
     return this;
   }
@@ -159,19 +165,22 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get buildTime
    * @return buildTime
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getBuildTime() {
     return buildTime;
   }
+
 
   public void setBuildTime(String buildTime) {
     this.buildTime = buildTime;
   }
 
 
-  public SystemComponentVersion components(List<@Valid ComponentVersion> components) {
+  public SystemComponentVersion components(List<ComponentVersion> components) {
+    
     this.components = components;
     return this;
   }
@@ -187,20 +196,23 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get components
    * @return components
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
-  public List<@Valid ComponentVersion> getComponents() {
+  public List<ComponentVersion> getComponents() {
     return components;
   }
 
-  public void setComponents(List<@Valid ComponentVersion> components) {
+
+  public void setComponents(List<ComponentVersion> components) {
     this.components = components;
   }
 
 
   public SystemComponentVersion experimental(Boolean experimental) {
+
     this.experimental = experimental;
     return this;
   }
@@ -208,12 +220,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get experimental
    * @return experimental
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getExperimental() {
     return experimental;
   }
+
 
   public void setExperimental(Boolean experimental) {
     this.experimental = experimental;
@@ -221,6 +235,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion gitCommit(String gitCommit) {
+
     this.gitCommit = gitCommit;
     return this;
   }
@@ -228,12 +243,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get gitCommit
    * @return gitCommit
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getGitCommit() {
     return gitCommit;
   }
+
 
   public void setGitCommit(String gitCommit) {
     this.gitCommit = gitCommit;
@@ -241,6 +258,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion goVersion(String goVersion) {
+
     this.goVersion = goVersion;
     return this;
   }
@@ -248,12 +266,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get goVersion
    * @return goVersion
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getGoVersion() {
     return goVersion;
   }
+
 
   public void setGoVersion(String goVersion) {
     this.goVersion = goVersion;
@@ -261,6 +281,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion kernelVersion(String kernelVersion) {
+
     this.kernelVersion = kernelVersion;
     return this;
   }
@@ -268,12 +289,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get kernelVersion
    * @return kernelVersion
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getKernelVersion() {
     return kernelVersion;
   }
+
 
   public void setKernelVersion(String kernelVersion) {
     this.kernelVersion = kernelVersion;
@@ -281,6 +304,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion minAPIVersion(String minAPIVersion) {
+
     this.minAPIVersion = minAPIVersion;
     return this;
   }
@@ -288,12 +312,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get minAPIVersion
    * @return minAPIVersion
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getMinAPIVersion() {
     return minAPIVersion;
   }
+
 
   public void setMinAPIVersion(String minAPIVersion) {
     this.minAPIVersion = minAPIVersion;
@@ -301,6 +327,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion os(String os) {
+
     this.os = os;
     return this;
   }
@@ -308,12 +335,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get os
    * @return os
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getOs() {
     return os;
   }
+
 
   public void setOs(String os) {
     this.os = os;
@@ -321,6 +350,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion platform(SystemComponentVersionPlatform platform) {
+
     this.platform = platform;
     return this;
   }
@@ -328,13 +358,15 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get platform
    * @return platform
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public SystemComponentVersionPlatform getPlatform() {
     return platform;
   }
+
 
   public void setPlatform(SystemComponentVersionPlatform platform) {
     this.platform = platform;
@@ -342,6 +374,7 @@ public class SystemComponentVersion implements Serializable {
 
 
   public SystemComponentVersion version(String version) {
+
     this.version = version;
     return this;
   }
@@ -349,12 +382,14 @@ public class SystemComponentVersion implements Serializable {
   /**
    * Get version
    * @return version
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getVersion() {
     return version;
   }
+
 
   public void setVersion(String version) {
     this.version = version;
@@ -446,26 +481,27 @@ public class SystemComponentVersion implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SystemComponentVersion
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SystemComponentVersion
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SystemComponentVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SystemComponentVersion is not found in the empty JSON string", SystemComponentVersion.openapiRequiredFields.toString()));
-        }
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SystemComponentVersion.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in SystemComponentVersion is not found in the empty JSON string", SystemComponentVersion.openapiRequiredFields.toString()));
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SystemComponentVersion.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemComponentVersion` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemComponentVersion` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ApiVersion") != null && !jsonObj.get("ApiVersion").isJsonNull()) && !jsonObj.get("ApiVersion").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ApiVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ApiVersion").toString()));
       }
@@ -485,7 +521,7 @@ public class SystemComponentVersion implements Serializable {
 
           // validate the optional field `Components` (array)
           for (int i = 0; i < jsonArraycomponents.size(); i++) {
-            ComponentVersion.validateJsonElement(jsonArraycomponents.get(i));
+            ComponentVersion.validateJsonObject(jsonArraycomponents.get(i).getAsJsonObject());
           };
         }
       }
@@ -506,7 +542,7 @@ public class SystemComponentVersion implements Serializable {
       }
       // validate the optional field `Platform`
       if (jsonObj.get("Platform") != null && !jsonObj.get("Platform").isJsonNull()) {
-        SystemComponentVersionPlatform.validateJsonElement(jsonObj.get("Platform"));
+        SystemComponentVersionPlatform.validateJsonObject(jsonObj.getAsJsonObject("Platform"));
       }
       if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
@@ -533,9 +569,9 @@ public class SystemComponentVersion implements Serializable {
 
            @Override
            public SystemComponentVersion read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -548,7 +584,7 @@ public class SystemComponentVersion implements Serializable {
    * @param jsonString JSON string
    * @return An instance of SystemComponentVersion
    * @throws IOException if the JSON string is invalid with respect to SystemComponentVersion
-   */
+  */
   public static SystemComponentVersion fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemComponentVersion.class);
   }
@@ -557,7 +593,7 @@ public class SystemComponentVersion implements Serializable {
    * Convert an instance of SystemComponentVersion to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,7 +52,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Details for creating a volume
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "Details for creating a volume")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class VolumeCreate implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -78,6 +77,7 @@ public class VolumeCreate implements Serializable {
   }
 
   public VolumeCreate driver(String driver) {
+
     this.driver = driver;
     return this;
   }
@@ -85,13 +85,15 @@ public class VolumeCreate implements Serializable {
   /**
    * Name of the volume driver to use.
    * @return driver
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "Name of the volume driver to use.")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -99,14 +101,12 @@ public class VolumeCreate implements Serializable {
 
 
   public VolumeCreate driverOpts(Map<String, String> driverOpts) {
+
     this.driverOpts = driverOpts;
     return this;
   }
 
   public VolumeCreate putDriverOptsItem(String key, String driverOptsItem) {
-    if (this.driverOpts == null) {
-      this.driverOpts = new HashMap<>();
-    }
     this.driverOpts.put(key, driverOptsItem);
     return this;
   }
@@ -114,13 +114,15 @@ public class VolumeCreate implements Serializable {
   /**
    * A mapping of driver options and values. These options are passed directly to the driver and are driver specific.
    * @return driverOpts
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "A mapping of driver options and values. These options are passed directly to the driver and are driver specific.")
 
   public Map<String, String> getDriverOpts() {
     return driverOpts;
   }
+
 
   public void setDriverOpts(Map<String, String> driverOpts) {
     this.driverOpts = driverOpts;
@@ -128,14 +130,12 @@ public class VolumeCreate implements Serializable {
 
 
   public VolumeCreate labels(Map<String, String> labels) {
+
     this.labels = labels;
     return this;
   }
 
   public VolumeCreate putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
     this.labels.put(key, labelsItem);
     return this;
   }
@@ -143,13 +143,15 @@ public class VolumeCreate implements Serializable {
   /**
    * User-defined key/value metadata.
    * @return labels
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "User-defined key/value metadata.")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -157,6 +159,7 @@ public class VolumeCreate implements Serializable {
 
 
   public VolumeCreate name(String name) {
+
     this.name = name;
     return this;
   }
@@ -164,13 +167,15 @@ public class VolumeCreate implements Serializable {
   /**
    * The new volume&#39;s name. If not specified, Docker generates a name.
    * @return name
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "The new volume's name. If not specified, Docker generates a name.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -242,37 +247,38 @@ public class VolumeCreate implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to VolumeCreate
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to VolumeCreate
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!VolumeCreate.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (VolumeCreate.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in VolumeCreate is not found in the empty JSON string", VolumeCreate.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!VolumeCreate.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeCreate` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeCreate` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : VolumeCreate.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("Driver").isJsonPrimitive()) {
+    if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-      }
-      if (!jsonObj.get("Name").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
       }
   }
@@ -297,9 +303,9 @@ public class VolumeCreate implements Serializable {
 
            @Override
            public VolumeCreate read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -312,7 +318,7 @@ public class VolumeCreate implements Serializable {
    * @param jsonString JSON string
    * @return An instance of VolumeCreate
    * @throws IOException if the JSON string is invalid with respect to VolumeCreate
-   */
+  */
   public static VolumeCreate fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VolumeCreate.class);
   }
@@ -321,7 +327,7 @@ public class VolumeCreate implements Serializable {
    * Convert an instance of VolumeCreate to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

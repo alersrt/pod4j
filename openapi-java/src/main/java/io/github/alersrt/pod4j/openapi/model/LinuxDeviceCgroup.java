@@ -13,46 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * LinuxDeviceCgroup represents a device rule for the devices specified to the device controller
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "LinuxDeviceCgroup represents a device rule for the devices specified to the device controller")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LinuxDeviceCgroup implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -80,6 +65,7 @@ public class LinuxDeviceCgroup implements Serializable {
   }
 
   public LinuxDeviceCgroup access(String access) {
+
     this.access = access;
     return this;
   }
@@ -87,12 +73,14 @@ public class LinuxDeviceCgroup implements Serializable {
   /**
    * Cgroup access permissions format, rwm.
    * @return access
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Cgroup access permissions format, rwm.")
 
   public String getAccess() {
     return access;
   }
+
 
   public void setAccess(String access) {
     this.access = access;
@@ -100,6 +88,7 @@ public class LinuxDeviceCgroup implements Serializable {
 
 
   public LinuxDeviceCgroup allow(Boolean allow) {
+
     this.allow = allow;
     return this;
   }
@@ -107,12 +96,14 @@ public class LinuxDeviceCgroup implements Serializable {
   /**
    * Allow or deny
    * @return allow
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Allow or deny")
 
   public Boolean getAllow() {
     return allow;
   }
+
 
   public void setAllow(Boolean allow) {
     this.allow = allow;
@@ -120,6 +111,7 @@ public class LinuxDeviceCgroup implements Serializable {
 
 
   public LinuxDeviceCgroup major(Long major) {
+
     this.major = major;
     return this;
   }
@@ -127,12 +119,14 @@ public class LinuxDeviceCgroup implements Serializable {
   /**
    * Major is the device&#39;s major number.
    * @return major
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Major is the device's major number.")
 
   public Long getMajor() {
     return major;
   }
+
 
   public void setMajor(Long major) {
     this.major = major;
@@ -140,6 +134,7 @@ public class LinuxDeviceCgroup implements Serializable {
 
 
   public LinuxDeviceCgroup minor(Long minor) {
+
     this.minor = minor;
     return this;
   }
@@ -147,12 +142,14 @@ public class LinuxDeviceCgroup implements Serializable {
   /**
    * Minor is the device&#39;s minor number.
    * @return minor
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Minor is the device's minor number.")
 
   public Long getMinor() {
     return minor;
   }
+
 
   public void setMinor(Long minor) {
     this.minor = minor;
@@ -160,6 +157,7 @@ public class LinuxDeviceCgroup implements Serializable {
 
 
   public LinuxDeviceCgroup type(String type) {
+
     this.type = type;
     return this;
   }
@@ -167,12 +165,14 @@ public class LinuxDeviceCgroup implements Serializable {
   /**
    * Device type, block, char, etc.
    * @return type
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Device type, block, char, etc.")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -243,26 +243,27 @@ public class LinuxDeviceCgroup implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxDeviceCgroup
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to LinuxDeviceCgroup
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxDeviceCgroup.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (LinuxDeviceCgroup.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxDeviceCgroup is not found in the empty JSON string", LinuxDeviceCgroup.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!LinuxDeviceCgroup.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxDeviceCgroup` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxDeviceCgroup` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("access") != null && !jsonObj.get("access").isJsonNull()) && !jsonObj.get("access").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `access` to be a primitive type in the JSON string but got `%s`", jsonObj.get("access").toString()));
       }
@@ -291,9 +292,9 @@ public class LinuxDeviceCgroup implements Serializable {
 
            @Override
            public LinuxDeviceCgroup read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -306,7 +307,7 @@ public class LinuxDeviceCgroup implements Serializable {
    * @param jsonString JSON string
    * @return An instance of LinuxDeviceCgroup
    * @throws IOException if the JSON string is invalid with respect to LinuxDeviceCgroup
-   */
+  */
   public static LinuxDeviceCgroup fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxDeviceCgroup.class);
   }
@@ -315,7 +316,7 @@ public class LinuxDeviceCgroup implements Serializable {
    * Convert an instance of LinuxDeviceCgroup to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

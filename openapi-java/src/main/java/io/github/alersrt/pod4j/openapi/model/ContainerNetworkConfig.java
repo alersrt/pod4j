@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,15 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,16 +44,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -59,13 +57,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ContainerNetworkConfig contains information on a container&#39;s network configuration.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "ContainerNetworkConfig contains information on a container's network configuration.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContainerNetworkConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NETWORKS = "Networks";
   @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private Map<String, PerNetworkOptions> networks = new HashMap<>();
+  private Map<String, PerNetworkOptions> networks = null;
 
   public static final String SERIALIZED_NAME_BASE_HOSTS_FILE = "base_hosts_file";
   @SerializedName(SERIALIZED_NAME_BASE_HOSTS_FILE)
@@ -73,19 +72,19 @@ public class ContainerNetworkConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_CNI_NETWORKS = "cni_networks";
   @SerializedName(SERIALIZED_NAME_CNI_NETWORKS)
-  private List<String> cniNetworks = new ArrayList<>();
+  private List<String> cniNetworks = null;
 
   public static final String SERIALIZED_NAME_DNS_OPTION = "dns_option";
   @SerializedName(SERIALIZED_NAME_DNS_OPTION)
-  private List<String> dnsOption = new ArrayList<>();
+  private List<String> dnsOption = null;
 
   public static final String SERIALIZED_NAME_DNS_SEARCH = "dns_search";
   @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
-  private List<String> dnsSearch = new ArrayList<>();
+  private List<String> dnsSearch = null;
 
   public static final String SERIALIZED_NAME_DNS_SERVER = "dns_server";
   @SerializedName(SERIALIZED_NAME_DNS_SERVER)
-  private List<String> dnsServer = new ArrayList<>();
+  private List<String> dnsServer = null;
 
   public static final String SERIALIZED_NAME_EXPOSE = "expose";
   @SerializedName(SERIALIZED_NAME_EXPOSE)
@@ -93,7 +92,7 @@ public class ContainerNetworkConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
   @SerializedName(SERIALIZED_NAME_HOSTADD)
-  private List<String> hostadd = new ArrayList<>();
+  private List<String> hostadd = null;
 
   public static final String SERIALIZED_NAME_NETNS = "netns";
   @SerializedName(SERIALIZED_NAME_NETNS)
@@ -101,15 +100,19 @@ public class ContainerNetworkConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "network_options";
   @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
-  private Map<String, List<String>> networkOptions = new HashMap<>();
+  private Map<String, List<String>> networkOptions = null;
 
   public static final String SERIALIZED_NAME_PORTMAPPINGS = "portmappings";
   @SerializedName(SERIALIZED_NAME_PORTMAPPINGS)
-  private List<@Valid PortMapping> portmappings = new ArrayList<>();
+  private List<PortMapping> portmappings = null;
 
   public static final String SERIALIZED_NAME_PUBLISH_IMAGE_PORTS = "publish_image_ports";
   @SerializedName(SERIALIZED_NAME_PUBLISH_IMAGE_PORTS)
   private Boolean publishImagePorts;
+
+    public static final String SERIALIZED_NAME_USE_IMAGE_HOSTNAME = "use_image_hostname";
+    @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTNAME)
+    private Boolean useImageHostname;
 
   public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "use_image_hosts";
   @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
@@ -123,7 +126,8 @@ public class ContainerNetworkConfig implements Serializable {
   }
 
   public ContainerNetworkConfig networks(Map<String, PerNetworkOptions> networks) {
-    this.networks = networks;
+
+      this.networks = networks;
     return this;
   }
 
@@ -135,16 +139,18 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
    * @return networks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.")
 
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
   }
+
 
   public void setNetworks(Map<String, PerNetworkOptions> networks) {
     this.networks = networks;
@@ -152,19 +158,22 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig baseHostsFile(String baseHostsFile) {
-    this.baseHostsFile = baseHostsFile;
+
+      this.baseHostsFile = baseHostsFile;
     return this;
   }
 
-  /**
-   * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
+    /**
+   * BaseHostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "BaseHostsFile is the base file to create the `/etc/hosts` file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.")
 
   public String getBaseHostsFile() {
     return baseHostsFile;
   }
+
 
   public void setBaseHostsFile(String baseHostsFile) {
     this.baseHostsFile = baseHostsFile;
@@ -172,7 +181,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig cniNetworks(List<String> cniNetworks) {
-    this.cniNetworks = cniNetworks;
+
+      this.cniNetworks = cniNetworks;
     return this;
   }
 
@@ -184,15 +194,17 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
 
   public List<String> getCniNetworks() {
     return cniNetworks;
   }
+
 
   public void setCniNetworks(List<String> cniNetworks) {
     this.cniNetworks = cniNetworks;
@@ -200,7 +212,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig dnsOption(List<String> dnsOption) {
-    this.dnsOption = dnsOption;
+
+      this.dnsOption = dnsOption;
     return this;
   }
 
@@ -212,15 +225,17 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsOption
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DNSOptions is a set of DNS options that will be used in the container's resolv.conf, replacing the host's DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsOption() {
     return dnsOption;
   }
+
 
   public void setDnsOption(List<String> dnsOption) {
     this.dnsOption = dnsOption;
@@ -228,7 +243,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
+
+      this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -240,15 +256,17 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the container's resolv.conf, replacing the host's DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
   }
+
 
   public void setDnsSearch(List<String> dnsSearch) {
     this.dnsSearch = dnsSearch;
@@ -256,7 +274,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig dnsServer(List<String> dnsServer) {
-    this.dnsServer = dnsServer;
+
+      this.dnsServer = dnsServer;
     return this;
   }
 
@@ -268,15 +287,17 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsServer
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DNSServers is a set of DNS servers that will be used in the container's resolv.conf, replacing the host's DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsServer() {
     return dnsServer;
   }
+
 
   public void setDnsServer(List<String> dnsServer) {
     this.dnsServer = dnsServer;
@@ -284,19 +305,22 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig expose(Object expose) {
-    this.expose = expose;
+
+      this.expose = expose;
     return this;
   }
 
-  /**
+    /**
    * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
    * @return expose
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \"tcp\", \"udp\", and \"sctp\", or some combination of the three separated by commas. If protocol is set to \"\" we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.")
 
   public Object getExpose() {
     return expose;
   }
+
 
   public void setExpose(Object expose) {
     this.expose = expose;
@@ -304,7 +328,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig hostadd(List<String> hostadd) {
-    this.hostadd = hostadd;
+
+      this.hostadd = hostadd;
     return this;
   }
 
@@ -316,15 +341,17 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
    * @return hostadd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "HostAdd is a set of hosts which will be added to the container's etc/hosts file. Conflicts with UseImageHosts. Optional.")
 
   public List<String> getHostadd() {
     return hostadd;
   }
+
 
   public void setHostadd(List<String> hostadd) {
     this.hostadd = hostadd;
@@ -332,20 +359,23 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig netns(Namespace netns) {
-    this.netns = netns;
+
+      this.netns = netns;
     return this;
   }
 
-  /**
+    /**
    * Get netns
    * @return netns
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Namespace getNetns() {
     return netns;
   }
+
 
   public void setNetns(Namespace netns) {
     this.netns = netns;
@@ -353,7 +383,8 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig networkOptions(Map<String, List<String>> networkOptions) {
-    this.networkOptions = networkOptions;
+
+      this.networkOptions = networkOptions;
     return this;
   }
 
@@ -365,23 +396,26 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
 
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
   }
+
 
   public void setNetworkOptions(Map<String, List<String>> networkOptions) {
     this.networkOptions = networkOptions;
   }
 
 
-  public ContainerNetworkConfig portmappings(List<@Valid PortMapping> portmappings) {
+    public ContainerNetworkConfig portmappings(List<PortMapping> portmappings) {
+    
     this.portmappings = portmappings;
     return this;
   }
@@ -394,56 +428,88 @@ public class ContainerNetworkConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
    * @return portmappings
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.")
 
-  public List<@Valid PortMapping> getPortmappings() {
+    public List<PortMapping> getPortmappings() {
     return portmappings;
   }
 
-  public void setPortmappings(List<@Valid PortMapping> portmappings) {
+
+    public void setPortmappings(List<PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
 
   public ContainerNetworkConfig publishImagePorts(Boolean publishImagePorts) {
-    this.publishImagePorts = publishImagePorts;
+
+      this.publishImagePorts = publishImagePorts;
     return this;
   }
 
-  /**
+    /**
    * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
    * @return publishImagePorts
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.")
 
   public Boolean getPublishImagePorts() {
     return publishImagePorts;
   }
+
 
   public void setPublishImagePorts(Boolean publishImagePorts) {
     this.publishImagePorts = publishImagePorts;
   }
 
 
+    public ContainerNetworkConfig useImageHostname(Boolean useImageHostname) {
+
+        this.useImageHostname = useImageHostname;
+        return this;
+    }
+
+    /**
+     * UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.
+     *
+     * @return useImageHostname
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.")
+
+    public Boolean getUseImageHostname() {
+        return useImageHostname;
+    }
+
+
+    public void setUseImageHostname(Boolean useImageHostname) {
+        this.useImageHostname = useImageHostname;
+  }
+
+
   public ContainerNetworkConfig useImageHosts(Boolean useImageHosts) {
+    
     this.useImageHosts = useImageHosts;
     return this;
   }
 
-  /**
+   /**
    * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
    * @return useImageHosts
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.")
 
   public Boolean getUseImageHosts() {
     return useImageHosts;
   }
+
 
   public void setUseImageHosts(Boolean useImageHosts) {
     this.useImageHosts = useImageHosts;
@@ -451,19 +517,22 @@ public class ContainerNetworkConfig implements Serializable {
 
 
   public ContainerNetworkConfig useImageResolveConf(Boolean useImageResolveConf) {
+    
     this.useImageResolveConf = useImageResolveConf;
     return this;
   }
 
-  /**
+   /**
    * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
    * @return useImageResolveConf
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.")
 
   public Boolean getUseImageResolveConf() {
     return useImageResolveConf;
   }
+
 
   public void setUseImageResolveConf(Boolean useImageResolveConf) {
     this.useImageResolveConf = useImageResolveConf;
@@ -492,13 +561,14 @@ public class ContainerNetworkConfig implements Serializable {
         Objects.equals(this.networkOptions, containerNetworkConfig.networkOptions) &&
         Objects.equals(this.portmappings, containerNetworkConfig.portmappings) &&
         Objects.equals(this.publishImagePorts, containerNetworkConfig.publishImagePorts) &&
+            Objects.equals(this.useImageHostname, containerNetworkConfig.useImageHostname) &&
         Objects.equals(this.useImageHosts, containerNetworkConfig.useImageHosts) &&
         Objects.equals(this.useImageResolveConf, containerNetworkConfig.useImageResolveConf);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(networks, baseHostsFile, cniNetworks, dnsOption, dnsSearch, dnsServer, expose, hostadd, netns, networkOptions, portmappings, publishImagePorts, useImageHosts, useImageResolveConf);
+      return Objects.hash(networks, baseHostsFile, cniNetworks, dnsOption, dnsSearch, dnsServer, expose, hostadd, netns, networkOptions, portmappings, publishImagePorts, useImageHostname, useImageHosts, useImageResolveConf);
   }
 
   @Override
@@ -517,6 +587,7 @@ public class ContainerNetworkConfig implements Serializable {
     sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
     sb.append("    portmappings: ").append(toIndentedString(portmappings)).append("\n");
     sb.append("    publishImagePorts: ").append(toIndentedString(publishImagePorts)).append("\n");
+      sb.append("    useImageHostname: ").append(toIndentedString(useImageHostname)).append("\n");
     sb.append("    useImageHosts: ").append(toIndentedString(useImageHosts)).append("\n");
     sb.append("    useImageResolveConf: ").append(toIndentedString(useImageResolveConf)).append("\n");
     sb.append("}");
@@ -553,6 +624,7 @@ public class ContainerNetworkConfig implements Serializable {
     openapiFields.add("network_options");
     openapiFields.add("portmappings");
     openapiFields.add("publish_image_ports");
+      openapiFields.add("use_image_hostname");
     openapiFields.add("use_image_hosts");
     openapiFields.add("use_image_resolve_conf");
 
@@ -560,53 +632,54 @@ public class ContainerNetworkConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerNetworkConfig
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerNetworkConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ContainerNetworkConfig
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ContainerNetworkConfig.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerNetworkConfig is not found in the empty JSON string", ContainerNetworkConfig.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ContainerNetworkConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNetworkConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNetworkConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("base_hosts_file") != null && !jsonObj.get("base_hosts_file").isJsonNull()) && !jsonObj.get("base_hosts_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `base_hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("base_hosts_file").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull() && !jsonObj.get("cni_networks").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull() && !jsonObj.get("dns_option").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull() && !jsonObj.get("dns_search").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull() && !jsonObj.get("dns_server").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("netns"));
+          Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
       }
       if (jsonObj.get("portmappings") != null && !jsonObj.get("portmappings").isJsonNull()) {
         JsonArray jsonArrayportmappings = jsonObj.getAsJsonArray("portmappings");
@@ -618,7 +691,7 @@ public class ContainerNetworkConfig implements Serializable {
 
           // validate the optional field `portmappings` (array)
           for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-            PortMapping.validateJsonElement(jsonArrayportmappings.get(i));
+              PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
           };
         }
       }
@@ -644,31 +717,31 @@ public class ContainerNetworkConfig implements Serializable {
 
            @Override
            public ContainerNetworkConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ContainerNetworkConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerNetworkConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerNetworkConfig
-   */
+    /**
+     * Create an instance of ContainerNetworkConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerNetworkConfig
+     * @throws IOException if the JSON string is invalid with respect to ContainerNetworkConfig
+  */
   public static ContainerNetworkConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerNetworkConfig.class);
   }
 
-  /**
-   * Convert an instance of ContainerNetworkConfig to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ContainerNetworkConfig to an JSON string
+  *
+  * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,19 +52,20 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ImageLoadReport
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ImageLoadReport implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NAMES = "Names";
   @SerializedName(SERIALIZED_NAME_NAMES)
-  private List<String> names = new ArrayList<>();
+  private List<String> names = null;
 
   public ImageLoadReport() {
   }
 
   public ImageLoadReport names(List<String> names) {
-    this.names = names;
+
+      this.names = names;
     return this;
   }
 
@@ -78,15 +77,17 @@ public class ImageLoadReport implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get names
    * @return names
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getNames() {
     return names;
   }
+
 
   public void setNames(List<String> names) {
     this.names = names;
@@ -144,29 +145,30 @@ public class ImageLoadReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageLoadReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageLoadReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ImageLoadReport
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ImageLoadReport.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ImageLoadReport is not found in the empty JSON string", ImageLoadReport.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ImageLoadReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageLoadReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageLoadReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull() && !jsonObj.get("Names").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull()) && !jsonObj.get("Names").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Names` to be an array in the JSON string but got `%s`", jsonObj.get("Names").toString()));
       }
   }
@@ -191,31 +193,31 @@ public class ImageLoadReport implements Serializable {
 
            @Override
            public ImageLoadReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ImageLoadReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageLoadReport
-   * @throws IOException if the JSON string is invalid with respect to ImageLoadReport
-   */
+    /**
+     * Create an instance of ImageLoadReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageLoadReport
+     * @throws IOException if the JSON string is invalid with respect to ImageLoadReport
+  */
   public static ImageLoadReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageLoadReport.class);
   }
 
-  /**
-   * Convert an instance of ImageLoadReport to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ImageLoadReport to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

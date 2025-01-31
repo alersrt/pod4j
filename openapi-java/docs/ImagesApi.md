@@ -26,10 +26,9 @@ All URIs are relative to *http://podman.io*
 | [**imageTreeLibpod**](ImagesApi.md#imageTreeLibpod) | **GET** /libpod/images/{name}/tree | Image tree |
 | [**imageUntagLibpod**](ImagesApi.md#imageUntagLibpod) | **POST** /libpod/images/{name}/untag | Untag an image |
 
-
-<a id="imageBuildLibpod"></a>
+<a name="imageBuildLibpod"></a>
 # **imageBuildLibpod**
-> ImageBuildLibpod200Response imageBuildLibpod().dockerfile(dockerfile).t(t).allplatforms(allplatforms).extrahosts(extrahosts).remote(remote).q(q).compatvolumes(compatvolumes).nocache(nocache).cachefrom(cachefrom).pull(pull).rm(rm).forcerm(forcerm).memory(memory).memswap(memswap).cpushares(cpushares).cpusetcpus(cpusetcpus).cpuperiod(cpuperiod).cpuquota(cpuquota).buildargs(buildargs).shmsize(shmsize).squash(squash).labels(labels).layerLabel(layerLabel).layers(layers).networkmode(networkmode).platform(platform).target(target).outputs(outputs).httpproxy(httpproxy).unsetenv(unsetenv).unsetlabel(unsetlabel).volume(volume).execute();
+> ImageBuildLibpod200Response imageBuildLibpod().dockerfile(dockerfile).t(t).allplatforms(allplatforms).extrahosts(extrahosts).nohosts(nohosts).remote(remote).q(q).compatvolumes(compatvolumes).nocache(nocache).cachefrom(cachefrom).pull(pull).rm(rm).forcerm(forcerm).memory(memory).memswap(memswap).cpushares(cpushares).cpusetcpus(cpusetcpus).cpuperiod(cpuperiod).cpuquota(cpuquota).buildargs(buildargs).shmsize(shmsize).squash(squash).labels(labels).layerLabel(layerLabel).layers(layers).networkmode(networkmode).platform(platform).target(target).outputs(outputs).httpproxy(httpproxy).unsetenv(unsetenv).unsetlabel(unsetlabel).volume(volume).execute();
 
 Create image
 
@@ -54,6 +53,7 @@ public class Example {
     String t = "latest"; // String | A name and optional tag to apply to the image in the `name:tag` format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters.
     Boolean allplatforms = false; // Boolean | Instead of building for a set of platforms specified using the platform option, inspect the build's base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully. 
     String extrahosts = "extrahosts_example"; // String | TBD Extra hosts to add to /etc/hosts (As of version 1.xx) 
+    Boolean nohosts = true; // Boolean | Not to create /etc/hosts when building the image 
     String remote = "remote_example"; // String | A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx) 
     Boolean q = false; // Boolean | Suppress verbose build output 
     Boolean compatvolumes = false; // Boolean | Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2) 
@@ -88,6 +88,7 @@ public class Example {
             .t(t)
             .allplatforms(allplatforms)
             .extrahosts(extrahosts)
+            .nohosts(nohosts)
             .remote(remote)
             .q(q)
             .compatvolumes(compatvolumes)
@@ -137,6 +138,7 @@ public class Example {
 | **t** | **String**| A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters. | [optional] [default to latest] |
 | **allplatforms** | **Boolean**| Instead of building for a set of platforms specified using the platform option, inspect the build&#39;s base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully.  | [optional] [default to false] |
 | **extrahosts** | **String**| TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  | [optional] |
+| **nohosts** | **Boolean**| Not to create /etc/hosts when building the image  | [optional] |
 | **remote** | **String**| A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  | [optional] |
 | **q** | **Boolean**| Suppress verbose build output  | [optional] [default to false] |
 | **compatvolumes** | **Boolean**| Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  | [optional] [default to false] |
@@ -186,7 +188,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageChangesLibpod"></a>
+<a name="imageChangesLibpod"></a>
 # **imageChangesLibpod**
 > imageChangesLibpod(name).parent(parent).diffType(diffType).execute();
 
@@ -256,7 +258,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageDeleteAllLibpod"></a>
+<a name="imageDeleteAllLibpod"></a>
 # **imageDeleteAllLibpod**
 > LibpodImagesRemoveReport imageDeleteAllLibpod().images(images).all(all).force(force).ignore(ignore).lookupManifest(lookupManifest).execute();
 
@@ -334,7 +336,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageDeleteLibpod"></a>
+<a name="imageDeleteLibpod"></a>
 # **imageDeleteLibpod**
 > LibpodImagesRemoveReport imageDeleteLibpod(name).force(force).execute();
 
@@ -404,7 +406,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageExistsLibpod"></a>
+<a name="imageExistsLibpod"></a>
 # **imageExistsLibpod**
 > imageExistsLibpod(name).execute();
 
@@ -468,7 +470,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageExportLibpod"></a>
+<a name="imageExportLibpod"></a>
 # **imageExportLibpod**
 > File imageExportLibpod().format(format).references(references).compress(compress).ociAcceptUncompressedLayers(ociAcceptUncompressedLayers).execute();
 
@@ -543,7 +545,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageGetLibpod"></a>
+<a name="imageGetLibpod"></a>
 # **imageGetLibpod**
 > File imageGetLibpod(name).format(format).compress(compress).execute();
 
@@ -614,7 +616,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageHistoryLibpod"></a>
+<a name="imageHistoryLibpod"></a>
 # **imageHistoryLibpod**
 > HistoryResponse imageHistoryLibpod(name).execute();
 
@@ -679,7 +681,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageImportLibpod"></a>
+<a name="imageImportLibpod"></a>
 # **imageImportLibpod**
 > ImageImportReport imageImportLibpod(upload).contentType(contentType).changes(changes).message(message).reference(reference).url(url).execute();
 
@@ -759,7 +761,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageInspectLibpod"></a>
+<a name="imageInspectLibpod"></a>
 # **imageInspectLibpod**
 > ImageData imageInspectLibpod(name).execute();
 
@@ -824,7 +826,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageListLibpod"></a>
+<a name="imageListLibpod"></a>
 # **imageListLibpod**
 > List&lt;LibpodImageSummary&gt; imageListLibpod().all(all).filters(filters).execute();
 
@@ -892,7 +894,7 @@ No authorization required
 | **200** | Image summary for libpod API |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageLoadLibpod"></a>
+<a name="imageLoadLibpod"></a>
 # **imageLoadLibpod**
 > ImageLoadReport imageLoadLibpod(upload).execute();
 
@@ -957,7 +959,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imagePruneLibpod"></a>
+<a name="imagePruneLibpod"></a>
 # **imagePruneLibpod**
 > List&lt;PruneReport&gt; imagePruneLibpod().all(all).external(external).buildcache(buildcache).filters(filters).execute();
 
@@ -1031,7 +1033,7 @@ No authorization required
 | **200** | Image Prune |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imagePullLibpod"></a>
+<a name="imagePullLibpod"></a>
 # **imagePullLibpod**
 > LibpodImagesPullReport imagePullLibpod().reference(reference).quiet(quiet).compatMode(compatMode).arch(arch).OS(OS).variant(variant).policy(policy).tlsVerify(tlsVerify).allTags(allTags).xRegistryAuth(xRegistryAuth).execute();
 
@@ -1124,7 +1126,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imagePushLibpod"></a>
+<a name="imagePushLibpod"></a>
 # **imagePushLibpod**
 > File imagePushLibpod(name).destination(destination).forceCompressionFormat(forceCompressionFormat).compressionFormat(compressionFormat).compressionLevel(compressionLevel).tlsVerify(tlsVerify).quiet(quiet).format(format).all(all).removeSignatures(removeSignatures).retry(retry).retryDelay(retryDelay).xRegistryAuth(xRegistryAuth).execute();
 
@@ -1225,7 +1227,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageResolveLibpod"></a>
+<a name="imageResolveLibpod"></a>
 # **imageResolveLibpod**
 > imageResolveLibpod(name).execute();
 
@@ -1289,7 +1291,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageScpLibpod"></a>
+<a name="imageScpLibpod"></a>
 # **imageScpLibpod**
 > ScpReport imageScpLibpod(name).destination(destination).quiet(quiet).execute();
 
@@ -1360,7 +1362,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageSearchLibpod"></a>
+<a name="imageSearchLibpod"></a>
 # **imageSearchLibpod**
 > ImageSearch200Response imageSearchLibpod().term(term).limit(limit).filters(filters).tlsVerify(tlsVerify).listTags(listTags).execute();
 
@@ -1437,7 +1439,7 @@ No authorization required
 | **200** | Registry Search |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageTagLibpod"></a>
+<a name="imageTagLibpod"></a>
 # **imageTagLibpod**
 > imageTagLibpod(name).repo(repo).tag(tag).execute();
 
@@ -1509,7 +1511,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageTreeLibpod"></a>
+<a name="imageTreeLibpod"></a>
 # **imageTreeLibpod**
 > ImageTreeReport imageTreeLibpod(name).whatrequires(whatrequires).execute();
 
@@ -1577,7 +1579,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageUntagLibpod"></a>
+<a name="imageUntagLibpod"></a>
 # **imageUntagLibpod**
 > imageUntagLibpod(name).repo(repo).tag(tag).execute();
 

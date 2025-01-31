@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,13 +52,14 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectExecProcess contains information about the process in a given exec session.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "InspectExecProcess contains information about the process in a given exec session.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectExecProcess implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_ARGUMENTS = "arguments";
   @SerializedName(SERIALIZED_NAME_ARGUMENTS)
-  private List<String> arguments = new ArrayList<>();
+  private List<String> arguments = null;
 
   public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
   @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
@@ -82,7 +81,8 @@ public class InspectExecProcess implements Serializable {
   }
 
   public InspectExecProcess arguments(List<String> arguments) {
-    this.arguments = arguments;
+
+      this.arguments = arguments;
     return this;
   }
 
@@ -94,15 +94,17 @@ public class InspectExecProcess implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Arguments are the arguments to the entrypoint command of the exec session.
    * @return arguments
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Arguments are the arguments to the entrypoint command of the exec session.")
 
   public List<String> getArguments() {
     return arguments;
   }
+
 
   public void setArguments(List<String> arguments) {
     this.arguments = arguments;
@@ -110,19 +112,22 @@ public class InspectExecProcess implements Serializable {
 
 
   public InspectExecProcess entrypoint(String entrypoint) {
-    this.entrypoint = entrypoint;
+
+      this.entrypoint = entrypoint;
     return this;
   }
 
-  /**
+    /**
    * Entrypoint is the entrypoint for the exec session (the command that will be executed in the container).
    * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Entrypoint is the entrypoint for the exec session (the command that will be executed in the container).")
 
   public String getEntrypoint() {
     return entrypoint;
   }
+
 
   public void setEntrypoint(String entrypoint) {
     this.entrypoint = entrypoint;
@@ -130,19 +135,22 @@ public class InspectExecProcess implements Serializable {
 
 
   public InspectExecProcess privileged(Boolean privileged) {
-    this.privileged = privileged;
+
+      this.privileged = privileged;
     return this;
   }
 
-  /**
+    /**
    * Privileged is whether the exec session will be started with elevated privileges.
    * @return privileged
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Privileged is whether the exec session will be started with elevated privileges.")
 
   public Boolean getPrivileged() {
     return privileged;
   }
+
 
   public void setPrivileged(Boolean privileged) {
     this.privileged = privileged;
@@ -150,19 +158,22 @@ public class InspectExecProcess implements Serializable {
 
 
   public InspectExecProcess tty(Boolean tty) {
-    this.tty = tty;
+
+      this.tty = tty;
     return this;
   }
 
-  /**
+    /**
    * Tty is whether the exec session created a terminal.
    * @return tty
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Tty is whether the exec session created a terminal.")
 
   public Boolean getTty() {
     return tty;
   }
+
 
   public void setTty(Boolean tty) {
     this.tty = tty;
@@ -170,19 +181,22 @@ public class InspectExecProcess implements Serializable {
 
 
   public InspectExecProcess user(String user) {
-    this.user = user;
+
+      this.user = user;
     return this;
   }
 
-  /**
+    /**
    * User is the user the exec session was started as.
    * @return user
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "User is the user the exec session was started as.")
 
   public String getUser() {
     return user;
   }
+
 
   public void setUser(String user) {
     this.user = user;
@@ -252,29 +266,30 @@ public class InspectExecProcess implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectExecProcess
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectExecProcess.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to InspectExecProcess
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (InspectExecProcess.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecProcess is not found in the empty JSON string", InspectExecProcess.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!InspectExecProcess.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecProcess` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecProcess` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("arguments") != null && !jsonObj.get("arguments").isJsonNull() && !jsonObj.get("arguments").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("arguments") != null && !jsonObj.get("arguments").isJsonNull()) && !jsonObj.get("arguments").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `arguments` to be an array in the JSON string but got `%s`", jsonObj.get("arguments").toString()));
       }
       if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonPrimitive()) {
@@ -305,31 +320,31 @@ public class InspectExecProcess implements Serializable {
 
            @Override
            public InspectExecProcess read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of InspectExecProcess given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectExecProcess
-   * @throws IOException if the JSON string is invalid with respect to InspectExecProcess
-   */
+    /**
+     * Create an instance of InspectExecProcess given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectExecProcess
+     * @throws IOException if the JSON string is invalid with respect to InspectExecProcess
+  */
   public static InspectExecProcess fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectExecProcess.class);
   }
 
-  /**
-   * Convert an instance of InspectExecProcess to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of InspectExecProcess to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

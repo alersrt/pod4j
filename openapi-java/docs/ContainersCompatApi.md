@@ -30,8 +30,7 @@ All URIs are relative to *http://podman.io*
 | [**imageCommit**](ContainersCompatApi.md#imageCommit) | **POST** /commit | New Image |
 | [**putContainerArchive**](ContainersCompatApi.md#putContainerArchive) | **PUT** /containers/{name}/archive | Put files into a container |
 
-
-<a id="containerArchive"></a>
+<a name="containerArchive"></a>
 # **containerArchive**
 > File containerArchive(name, path).execute();
 
@@ -99,7 +98,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerArchiveLibpod"></a>
+<a name="containerArchiveLibpod"></a>
 # **containerArchiveLibpod**
 > File containerArchiveLibpod(name, path).rename(rename).execute();
 
@@ -170,7 +169,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerAttach"></a>
+<a name="containerAttach"></a>
 # **containerAttach**
 > containerAttach(name).detachKeys(detachKeys).logs(logs).stream(stream).stdout(stdout).stderr(stderr).stdin(stdin).execute();
 
@@ -253,7 +252,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerChangesLibpod"></a>
+<a name="containerChangesLibpod"></a>
 # **containerChangesLibpod**
 > containerChangesLibpod(name).parent(parent).diffType(diffType).execute();
 
@@ -323,7 +322,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerCreate"></a>
+<a name="containerCreate"></a>
 # **containerCreate**
 > ContainerCreateResponse containerCreate(body).name(name).execute();
 
@@ -391,7 +390,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerDelete"></a>
+<a name="containerDelete"></a>
 # **containerDelete**
 > containerDelete(name).force(force).v(v).link(link).execute();
 
@@ -464,7 +463,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerExport"></a>
+<a name="containerExport"></a>
 # **containerExport**
 > containerExport(name).execute();
 
@@ -528,7 +527,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerInspect"></a>
+<a name="containerInspect"></a>
 # **containerInspect**
 > ContainerJSON containerInspect(name).size(size).execute();
 
@@ -596,7 +595,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerKill"></a>
+<a name="containerKill"></a>
 # **containerKill**
 > containerKill(name).all(all).signal(signal).execute();
 
@@ -667,7 +666,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerList"></a>
+<a name="containerList"></a>
 # **containerList**
 > List&lt;Container&gt; containerList().all(all).external(external).limit(limit).size(size).filters(filters).execute();
 
@@ -745,7 +744,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerLogs"></a>
+<a name="containerLogs"></a>
 # **containerLogs**
 > containerLogs(name).follow(follow).stdout(stdout).stderr(stderr).since(since).until(until).timestamps(timestamps).tail(tail).execute();
 
@@ -830,7 +829,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerPause"></a>
+<a name="containerPause"></a>
 # **containerPause**
 > containerPause(name).execute();
 
@@ -894,7 +893,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerPrune"></a>
+<a name="containerPrune"></a>
 # **containerPrune**
 > List&lt;ContainersPruneReport&gt; containerPrune().filters(filters).execute();
 
@@ -959,7 +958,7 @@ No authorization required
 | **200** | Prune Containers |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerRename"></a>
+<a name="containerRename"></a>
 # **containerRename**
 > containerRename(name, name2).execute();
 
@@ -1026,7 +1025,7 @@ No authorization required
 | **409** | Conflict error in operation |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerResize"></a>
+<a name="containerResize"></a>
 # **containerResize**
 > Object containerResize(name).h(h).w(w).running(running).execute();
 
@@ -1100,7 +1099,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerRestart"></a>
+<a name="containerRestart"></a>
 # **containerRestart**
 > containerRestart(name).t(t).execute();
 
@@ -1165,7 +1164,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStart"></a>
+<a name="containerStart"></a>
 # **containerStart**
 > containerStart(name).detachKeys(detachKeys).execute();
 
@@ -1231,7 +1230,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStats"></a>
+<a name="containerStats"></a>
 # **containerStats**
 > Object containerStats(name).stream(stream).oneShot(oneShot).execute();
 
@@ -1302,7 +1301,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerStop"></a>
+<a name="containerStop"></a>
 # **containerStop**
 > containerStop(name).t(t).execute();
 
@@ -1370,7 +1369,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerTop"></a>
+<a name="containerTop"></a>
 # **containerTop**
 > ContainerTopOKBody containerTop(name).psArgs(psArgs).execute();
 
@@ -1436,7 +1435,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerUnpause"></a>
+<a name="containerUnpause"></a>
 # **containerUnpause**
 > containerUnpause(name).execute();
 
@@ -1500,7 +1499,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerUpdate"></a>
+<a name="containerUpdate"></a>
 # **containerUpdate**
 > containerUpdate(name).resources(resources).execute();
 
@@ -1524,7 +1523,7 @@ public class Example {
 
     ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
     String name = "name_example"; // String | Full or partial ID or full name of the container to rename
-    UpdateConfig resources = new UpdateConfig(); // UpdateConfig | attributes for updating the container
+    ContainerUpdateRequest resources = new ContainerUpdateRequest(); // ContainerUpdateRequest | attributes for updating the container
     try {
       apiInstance.containerUpdate(name)
             .resources(resources)
@@ -1545,7 +1544,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| Full or partial ID or full name of the container to rename | |
-| **resources** | **UpdateConfig**| attributes for updating the container | [optional] |
+| **resources** | [**ContainerUpdateRequest**](ContainerUpdateRequest.md)| attributes for updating the container | [optional] |
 
 ### Return type
 
@@ -1567,7 +1566,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="containerWait"></a>
+<a name="containerWait"></a>
 # **containerWait**
 > ContainerWait200Response containerWait(name).condition(condition).interval(interval).execute();
 
@@ -1638,7 +1637,7 @@ No authorization required
 | **404** | No such container |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="imageCommit"></a>
+<a name="imageCommit"></a>
 # **imageCommit**
 > imageCommit().container(container).repo(repo).tag(tag).comment(comment).author(author).pause(pause).changes(changes).squash(squash).execute();
 
@@ -1724,7 +1723,7 @@ No authorization required
 | **404** | No such image |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="putContainerArchive"></a>
+<a name="putContainerArchive"></a>
 # **putContainerArchive**
 > putContainerArchive(name, path).noOverwriteDirNonDir(noOverwriteDirNonDir).copyUIDGID(copyUIDGID).request(request).execute();
 

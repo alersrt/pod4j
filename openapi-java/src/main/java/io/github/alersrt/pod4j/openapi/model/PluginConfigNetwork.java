@@ -13,46 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 /**
  * PluginConfigNetwork plugin config network
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "PluginConfigNetwork plugin config network")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PluginConfigNetwork implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -64,20 +50,23 @@ public class PluginConfigNetwork implements Serializable {
   }
 
   public PluginConfigNetwork type(String type) {
-    this.type = type;
+
+      this.type = type;
     return this;
   }
 
-  /**
+    /**
    * type
    * @return type
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "type")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -136,35 +125,36 @@ public class PluginConfigNetwork implements Serializable {
     openapiRequiredFields.add("Type");
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PluginConfigNetwork
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PluginConfigNetwork.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to PluginConfigNetwork
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (PluginConfigNetwork.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigNetwork is not found in the empty JSON string", PluginConfigNetwork.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!PluginConfigNetwork.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigNetwork` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigNetwork` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PluginConfigNetwork.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
+          if (jsonObj.get(requiredField) == null) {
+              throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+          }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("Type").isJsonPrimitive()) {
+        if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
       }
   }
@@ -189,31 +179,31 @@ public class PluginConfigNetwork implements Serializable {
 
            @Override
            public PluginConfigNetwork read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of PluginConfigNetwork given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PluginConfigNetwork
-   * @throws IOException if the JSON string is invalid with respect to PluginConfigNetwork
-   */
+    /**
+     * Create an instance of PluginConfigNetwork given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PluginConfigNetwork
+     * @throws IOException if the JSON string is invalid with respect to PluginConfigNetwork
+  */
   public static PluginConfigNetwork fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginConfigNetwork.class);
   }
 
-  /**
-   * Convert an instance of PluginConfigNetwork to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of PluginConfigNetwork to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

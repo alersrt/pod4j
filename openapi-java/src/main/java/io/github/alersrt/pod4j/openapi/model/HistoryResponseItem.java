@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,7 +52,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * HistoryResponseItem individual image layer information in response to ImageHistory operation
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "HistoryResponseItem individual image layer information in response to ImageHistory operation")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class HistoryResponseItem implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -86,20 +85,23 @@ public class HistoryResponseItem implements Serializable {
   }
 
   public HistoryResponseItem comment(String comment) {
-    this.comment = comment;
+
+      this.comment = comment;
     return this;
   }
 
-  /**
+    /**
    * comment
    * @return comment
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "comment")
 
   public String getComment() {
     return comment;
   }
+
 
   public void setComment(String comment) {
     this.comment = comment;
@@ -107,20 +109,23 @@ public class HistoryResponseItem implements Serializable {
 
 
   public HistoryResponseItem created(Long created) {
-    this.created = created;
+
+      this.created = created;
     return this;
   }
 
-  /**
+    /**
    * created
    * @return created
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "created")
 
   public Long getCreated() {
     return created;
   }
+
 
   public void setCreated(Long created) {
     this.created = created;
@@ -128,20 +133,23 @@ public class HistoryResponseItem implements Serializable {
 
 
   public HistoryResponseItem createdBy(String createdBy) {
-    this.createdBy = createdBy;
+
+      this.createdBy = createdBy;
     return this;
   }
 
-  /**
+    /**
    * created by
    * @return createdBy
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "created by")
 
   public String getCreatedBy() {
     return createdBy;
   }
+
 
   public void setCreatedBy(String createdBy) {
     this.createdBy = createdBy;
@@ -149,20 +157,23 @@ public class HistoryResponseItem implements Serializable {
 
 
   public HistoryResponseItem id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * Id
    * @return id
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "Id")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -170,20 +181,23 @@ public class HistoryResponseItem implements Serializable {
 
 
   public HistoryResponseItem size(Long size) {
-    this.size = size;
+
+      this.size = size;
     return this;
   }
 
-  /**
+    /**
    * size
    * @return size
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "size")
 
   public Long getSize() {
     return size;
   }
+
 
   public void setSize(Long size) {
     this.size = size;
@@ -191,28 +205,28 @@ public class HistoryResponseItem implements Serializable {
 
 
   public HistoryResponseItem tags(List<String> tags) {
-    this.tags = tags;
+
+      this.tags = tags;
     return this;
   }
 
   public HistoryResponseItem addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
     this.tags.add(tagsItem);
     return this;
   }
 
-  /**
+    /**
    * tags
    * @return tags
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "tags")
 
   public List<String> getTags() {
     return tags;
   }
+
 
   public void setTags(List<String> tags) {
     this.tags = tags;
@@ -291,47 +305,46 @@ public class HistoryResponseItem implements Serializable {
     openapiRequiredFields.add("Tags");
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to HistoryResponseItem
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!HistoryResponseItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to HistoryResponseItem
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (HistoryResponseItem.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in HistoryResponseItem is not found in the empty JSON string", HistoryResponseItem.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!HistoryResponseItem.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HistoryResponseItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HistoryResponseItem` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : HistoryResponseItem.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
+          if (jsonObj.get(requiredField) == null) {
+              throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+          }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("Comment").isJsonPrimitive()) {
+        if ((jsonObj.get("Comment") != null && !jsonObj.get("Comment").isJsonNull()) && !jsonObj.get("Comment").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Comment").toString()));
-      }
-      if (!jsonObj.get("CreatedBy").isJsonPrimitive()) {
+        }
+        if ((jsonObj.get("CreatedBy") != null && !jsonObj.get("CreatedBy").isJsonNull()) && !jsonObj.get("CreatedBy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `CreatedBy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CreatedBy").toString()));
-      }
-      if (!jsonObj.get("Id").isJsonPrimitive()) {
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("Tags") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("Tags").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("Tags") != null && !jsonObj.get("Tags").isJsonNull()) && !jsonObj.get("Tags").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Tags` to be an array in the JSON string but got `%s`", jsonObj.get("Tags").toString()));
       }
   }
@@ -356,31 +369,31 @@ public class HistoryResponseItem implements Serializable {
 
            @Override
            public HistoryResponseItem read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of HistoryResponseItem given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of HistoryResponseItem
-   * @throws IOException if the JSON string is invalid with respect to HistoryResponseItem
-   */
+    /**
+     * Create an instance of HistoryResponseItem given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of HistoryResponseItem
+     * @throws IOException if the JSON string is invalid with respect to HistoryResponseItem
+  */
   public static HistoryResponseItem fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HistoryResponseItem.class);
   }
 
-  /**
-   * Convert an instance of HistoryResponseItem to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of HistoryResponseItem to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

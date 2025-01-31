@@ -13,66 +13,47 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ImageVolume;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.NamedVolume;
-import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * PodStorageConfig
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PodStorageConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_IMAGE_VOLUMES = "image_volumes";
   @SerializedName(SERIALIZED_NAME_IMAGE_VOLUMES)
-  private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
+  private List<ImageVolume> imageVolumes = null;
 
   public static final String SERIALIZED_NAME_MOUNTS = "mounts";
   @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<@Valid Mount> mounts = new ArrayList<>();
+  private List<Mount> mounts = null;
 
   public static final String SERIALIZED_NAME_OVERLAY_VOLUMES = "overlay_volumes";
   @SerializedName(SERIALIZED_NAME_OVERLAY_VOLUMES)
-  private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
+  private List<OverlayVolume> overlayVolumes = null;
 
   public static final String SERIALIZED_NAME_SHM_SIZE = "shm_size";
   @SerializedName(SERIALIZED_NAME_SHM_SIZE)
@@ -84,16 +65,17 @@ public class PodStorageConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_VOLUMES = "volumes";
   @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<@Valid NamedVolume> volumes = new ArrayList<>();
+  private List<NamedVolume> volumes = null;
 
   public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
   @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
-  private List<String> volumesFrom = new ArrayList<>();
+  private List<String> volumesFrom = null;
 
   public PodStorageConfig() {
   }
 
-  public PodStorageConfig imageVolumes(List<@Valid ImageVolume> imageVolumes) {
+  public PodStorageConfig imageVolumes(List<ImageVolume> imageVolumes) {
+    
     this.imageVolumes = imageVolumes;
     return this;
   }
@@ -109,20 +91,23 @@ public class PodStorageConfig implements Serializable {
   /**
    * Image volumes bind-mount a container-image mount into the pod&#39;s infra container. Optional.
    * @return imageVolumes
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the pod's infra container. Optional.")
 
-  public List<@Valid ImageVolume> getImageVolumes() {
+  public List<ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
-  public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
+
+  public void setImageVolumes(List<ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
 
-  public PodStorageConfig mounts(List<@Valid Mount> mounts) {
+  public PodStorageConfig mounts(List<Mount> mounts) {
+    
     this.mounts = mounts;
     return this;
   }
@@ -138,20 +123,23 @@ public class PodStorageConfig implements Serializable {
   /**
    * Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
 
-  public List<@Valid Mount> getMounts() {
+  public List<Mount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<@Valid Mount> mounts) {
+
+  public void setMounts(List<Mount> mounts) {
     this.mounts = mounts;
   }
 
 
-  public PodStorageConfig overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+  public PodStorageConfig overlayVolumes(List<OverlayVolume> overlayVolumes) {
+    
     this.overlayVolumes = overlayVolumes;
     return this;
   }
@@ -167,20 +155,23 @@ public class PodStorageConfig implements Serializable {
   /**
    * Overlay volumes are named volumes that will be added to the pod. Optional.
    * @return overlayVolumes
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Overlay volumes are named volumes that will be added to the pod. Optional.")
 
-  public List<@Valid OverlayVolume> getOverlayVolumes() {
+  public List<OverlayVolume> getOverlayVolumes() {
     return overlayVolumes;
   }
 
-  public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+
+  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
 
   public PodStorageConfig shmSize(Long shmSize) {
+
     this.shmSize = shmSize;
     return this;
   }
@@ -188,12 +179,14 @@ public class PodStorageConfig implements Serializable {
   /**
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.")
 
   public Long getShmSize() {
     return shmSize;
   }
+
 
   public void setShmSize(Long shmSize) {
     this.shmSize = shmSize;
@@ -201,6 +194,7 @@ public class PodStorageConfig implements Serializable {
 
 
   public PodStorageConfig shmSizeSystemd(Long shmSizeSystemd) {
+
     this.shmSizeSystemd = shmSizeSystemd;
     return this;
   }
@@ -208,19 +202,22 @@ public class PodStorageConfig implements Serializable {
   /**
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional")
 
   public Long getShmSizeSystemd() {
     return shmSizeSystemd;
   }
+
 
   public void setShmSizeSystemd(Long shmSizeSystemd) {
     this.shmSizeSystemd = shmSizeSystemd;
   }
 
 
-  public PodStorageConfig volumes(List<@Valid NamedVolume> volumes) {
+  public PodStorageConfig volumes(List<NamedVolume> volumes) {
+    
     this.volumes = volumes;
     return this;
   }
@@ -236,20 +233,23 @@ public class PodStorageConfig implements Serializable {
   /**
    * Volumes are named volumes that will be added to the pod. These will supersede Image Volumes and VolumesFrom  volumes where there are conflicts. Optional.
    * @return volumes
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Volumes are named volumes that will be added to the pod. These will supersede Image Volumes and VolumesFrom  volumes where there are conflicts. Optional.")
 
-  public List<@Valid NamedVolume> getVolumes() {
+  public List<NamedVolume> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(List<@Valid NamedVolume> volumes) {
+
+  public void setVolumes(List<NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
 
   public PodStorageConfig volumesFrom(List<String> volumesFrom) {
+
     this.volumesFrom = volumesFrom;
     return this;
   }
@@ -265,12 +265,14 @@ public class PodStorageConfig implements Serializable {
   /**
    * VolumesFrom is a set of containers whose volumes will be added to this pod. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container.
    * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "VolumesFrom is a set of containers whose volumes will be added to this pod. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are 'ro', 'rw', and 'z'. Options will be used for all volumes sourced from the container.")
 
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
+
 
   public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
@@ -347,26 +349,27 @@ public class PodStorageConfig implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodStorageConfig
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PodStorageConfig
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodStorageConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PodStorageConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PodStorageConfig is not found in the empty JSON string", PodStorageConfig.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PodStorageConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStorageConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStorageConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("image_volumes") != null && !jsonObj.get("image_volumes").isJsonNull()) {
         JsonArray jsonArrayimageVolumes = jsonObj.getAsJsonArray("image_volumes");
         if (jsonArrayimageVolumes != null) {
@@ -377,7 +380,7 @@ public class PodStorageConfig implements Serializable {
 
           // validate the optional field `image_volumes` (array)
           for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-            ImageVolume.validateJsonElement(jsonArrayimageVolumes.get(i));
+            ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -391,7 +394,7 @@ public class PodStorageConfig implements Serializable {
 
           // validate the optional field `mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-            Mount.validateJsonElement(jsonArraymounts.get(i));
+            Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -405,7 +408,7 @@ public class PodStorageConfig implements Serializable {
 
           // validate the optional field `overlay_volumes` (array)
           for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-            OverlayVolume.validateJsonElement(jsonArrayoverlayVolumes.get(i));
+            OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -419,12 +422,12 @@ public class PodStorageConfig implements Serializable {
 
           // validate the optional field `volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            NamedVolume.validateJsonElement(jsonArrayvolumes.get(i));
+            NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
       }
   }
@@ -449,9 +452,9 @@ public class PodStorageConfig implements Serializable {
 
            @Override
            public PodStorageConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -464,7 +467,7 @@ public class PodStorageConfig implements Serializable {
    * @param jsonString JSON string
    * @return An instance of PodStorageConfig
    * @throws IOException if the JSON string is invalid with respect to PodStorageConfig
-   */
+  */
   public static PodStorageConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodStorageConfig.class);
   }
@@ -473,7 +476,7 @@ public class PodStorageConfig implements Serializable {
    * Convert an instance of PodStorageConfig to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

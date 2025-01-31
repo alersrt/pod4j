@@ -13,46 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * DistributionInfo describes the host distribution for libpod
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "DistributionInfo describes the host distribution for libpod")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DistributionInfo implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -76,6 +61,7 @@ public class DistributionInfo implements Serializable {
   }
 
   public DistributionInfo codename(String codename) {
+
     this.codename = codename;
     return this;
   }
@@ -83,12 +69,14 @@ public class DistributionInfo implements Serializable {
   /**
    * Get codename
    * @return codename
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCodename() {
     return codename;
   }
+
 
   public void setCodename(String codename) {
     this.codename = codename;
@@ -96,6 +84,7 @@ public class DistributionInfo implements Serializable {
 
 
   public DistributionInfo distribution(String distribution) {
+
     this.distribution = distribution;
     return this;
   }
@@ -103,12 +92,14 @@ public class DistributionInfo implements Serializable {
   /**
    * Get distribution
    * @return distribution
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getDistribution() {
     return distribution;
   }
+
 
   public void setDistribution(String distribution) {
     this.distribution = distribution;
@@ -116,6 +107,7 @@ public class DistributionInfo implements Serializable {
 
 
   public DistributionInfo variant(String variant) {
+
     this.variant = variant;
     return this;
   }
@@ -123,12 +115,14 @@ public class DistributionInfo implements Serializable {
   /**
    * Get variant
    * @return variant
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getVariant() {
     return variant;
   }
+
 
   public void setVariant(String variant) {
     this.variant = variant;
@@ -136,6 +130,7 @@ public class DistributionInfo implements Serializable {
 
 
   public DistributionInfo version(String version) {
+
     this.version = version;
     return this;
   }
@@ -143,12 +138,14 @@ public class DistributionInfo implements Serializable {
   /**
    * Get version
    * @return version
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getVersion() {
     return version;
   }
+
 
   public void setVersion(String version) {
     this.version = version;
@@ -216,26 +213,27 @@ public class DistributionInfo implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DistributionInfo
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to DistributionInfo
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DistributionInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (DistributionInfo.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in DistributionInfo is not found in the empty JSON string", DistributionInfo.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!DistributionInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DistributionInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DistributionInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("codename") != null && !jsonObj.get("codename").isJsonNull()) && !jsonObj.get("codename").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `codename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codename").toString()));
       }
@@ -270,9 +268,9 @@ public class DistributionInfo implements Serializable {
 
            @Override
            public DistributionInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -285,7 +283,7 @@ public class DistributionInfo implements Serializable {
    * @param jsonString JSON string
    * @return An instance of DistributionInfo
    * @throws IOException if the JSON string is invalid with respect to DistributionInfo
-   */
+  */
   public static DistributionInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DistributionInfo.class);
   }
@@ -294,7 +292,7 @@ public class DistributionInfo implements Serializable {
    * Convert an instance of DistributionInfo to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

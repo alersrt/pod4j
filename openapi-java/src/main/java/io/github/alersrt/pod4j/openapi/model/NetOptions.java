@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,15 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,16 +44,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -59,25 +57,30 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * NetOptions reflect the shared network options between pods and containers
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "NetOptions reflect the shared network options between pods and containers")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NetOptions implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_DNS_OPTION = "dns_option";
   @SerializedName(SERIALIZED_NAME_DNS_OPTION)
-  private List<String> dnsOption = new ArrayList<>();
+  private List<String> dnsOption = null;
 
   public static final String SERIALIZED_NAME_DNS_SEARCH = "dns_search";
   @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
-  private List<String> dnsSearch = new ArrayList<>();
+  private List<String> dnsSearch = null;
 
   public static final String SERIALIZED_NAME_DNS_SERVER = "dns_server";
   @SerializedName(SERIALIZED_NAME_DNS_SERVER)
-  private List<String> dnsServer = new ArrayList<>();
+  private List<String> dnsServer = null;
 
   public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
   @SerializedName(SERIALIZED_NAME_HOSTADD)
-  private List<String> hostadd = new ArrayList<>();
+  private List<String> hostadd = null;
+
+  public static final String SERIALIZED_NAME_HOSTS_FILE = "hosts_file";
+  @SerializedName(SERIALIZED_NAME_HOSTS_FILE)
+  private String hostsFile;
 
   public static final String SERIALIZED_NAME_NETNS = "netns";
   @SerializedName(SERIALIZED_NAME_NETNS)
@@ -85,15 +88,19 @@ public class NetOptions implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORK_ALIAS = "network_alias";
   @SerializedName(SERIALIZED_NAME_NETWORK_ALIAS)
-  private List<String> networkAlias = new ArrayList<>();
+  private List<String> networkAlias = null;
 
   public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "network_options";
   @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
-  private Map<String, List<String>> networkOptions = new HashMap<>();
+  private Map<String, List<String>> networkOptions = null;
 
   public static final String SERIALIZED_NAME_NETWORKS = "networks";
   @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private Map<String, PerNetworkOptions> networks = new HashMap<>();
+  private Map<String, PerNetworkOptions> networks = null;
+
+    public static final String SERIALIZED_NAME_NO_MANAGE_HOSTNAME = "no_manage_hostname";
+    @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTNAME)
+    private Boolean noManageHostname;
 
   public static final String SERIALIZED_NAME_NO_MANAGE_HOSTS = "no_manage_hosts";
   @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTS)
@@ -105,13 +112,14 @@ public class NetOptions implements Serializable {
 
   public static final String SERIALIZED_NAME_PORTMAPPINGS = "portmappings";
   @SerializedName(SERIALIZED_NAME_PORTMAPPINGS)
-  private List<@Valid PortMapping> portmappings = new ArrayList<>();
+  private List<PortMapping> portmappings = null;
 
   public NetOptions() {
   }
 
   public NetOptions dnsOption(List<String> dnsOption) {
-    this.dnsOption = dnsOption;
+
+      this.dnsOption = dnsOption;
     return this;
   }
 
@@ -123,15 +131,17 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get dnsOption
    * @return dnsOption
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getDnsOption() {
     return dnsOption;
   }
+
 
   public void setDnsOption(List<String> dnsOption) {
     this.dnsOption = dnsOption;
@@ -139,7 +149,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
+
+      this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -151,15 +162,17 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get dnsSearch
    * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
   }
+
 
   public void setDnsSearch(List<String> dnsSearch) {
     this.dnsSearch = dnsSearch;
@@ -167,7 +180,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions dnsServer(List<String> dnsServer) {
-    this.dnsServer = dnsServer;
+
+      this.dnsServer = dnsServer;
     return this;
   }
 
@@ -179,15 +193,17 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get dnsServer
    * @return dnsServer
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getDnsServer() {
     return dnsServer;
   }
+
 
   public void setDnsServer(List<String> dnsServer) {
     this.dnsServer = dnsServer;
@@ -195,7 +211,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions hostadd(List<String> hostadd) {
-    this.hostadd = hostadd;
+
+      this.hostadd = hostadd;
     return this;
   }
 
@@ -207,36 +224,64 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get hostadd
    * @return hostadd
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getHostadd() {
     return hostadd;
   }
+
 
   public void setHostadd(List<String> hostadd) {
     this.hostadd = hostadd;
   }
 
 
-  public NetOptions netns(Namespace netns) {
-    this.netns = netns;
+  public NetOptions hostsFile(String hostsFile) {
+
+      this.hostsFile = hostsFile;
     return this;
   }
 
-  /**
+    /**
+   * Get hostsFile
+   * @return hostsFile
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+
+  public String getHostsFile() {
+    return hostsFile;
+  }
+
+
+  public void setHostsFile(String hostsFile) {
+    this.hostsFile = hostsFile;
+  }
+
+
+  public NetOptions netns(Namespace netns) {
+
+      this.netns = netns;
+    return this;
+  }
+
+    /**
    * Get netns
    * @return netns
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Namespace getNetns() {
     return netns;
   }
+
 
   public void setNetns(Namespace netns) {
     this.netns = netns;
@@ -244,7 +289,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions networkAlias(List<String> networkAlias) {
-    this.networkAlias = networkAlias;
+
+      this.networkAlias = networkAlias;
     return this;
   }
 
@@ -256,15 +302,17 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get networkAlias
    * @return networkAlias
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public List<String> getNetworkAlias() {
     return networkAlias;
   }
+
 
   public void setNetworkAlias(List<String> networkAlias) {
     this.networkAlias = networkAlias;
@@ -272,7 +320,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions networkOptions(Map<String, List<String>> networkOptions) {
-    this.networkOptions = networkOptions;
+
+      this.networkOptions = networkOptions;
     return this;
   }
 
@@ -284,16 +333,18 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * NetworkOptions are additional options for each network
    * @return networkOptions
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "NetworkOptions are additional options for each network")
 
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
   }
+
 
   public void setNetworkOptions(Map<String, List<String>> networkOptions) {
     this.networkOptions = networkOptions;
@@ -301,7 +352,8 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions networks(Map<String, PerNetworkOptions> networks) {
-    this.networks = networks;
+
+      this.networks = networks;
     return this;
   }
 
@@ -313,36 +365,65 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get networks
    * @return networks
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
   }
+
 
   public void setNetworks(Map<String, PerNetworkOptions> networks) {
     this.networks = networks;
   }
 
 
+    public NetOptions noManageHostname(Boolean noManageHostname) {
+
+        this.noManageHostname = noManageHostname;
+        return this;
+    }
+
+    /**
+     * Get noManageHostname
+     *
+     * @return noManageHostname
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+
+    public Boolean getNoManageHostname() {
+        return noManageHostname;
+    }
+
+
+    public void setNoManageHostname(Boolean noManageHostname) {
+        this.noManageHostname = noManageHostname;
+  }
+
+
   public NetOptions noManageHosts(Boolean noManageHosts) {
+    
     this.noManageHosts = noManageHosts;
     return this;
   }
 
-  /**
+   /**
    * Get noManageHosts
    * @return noManageHosts
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "")
 
   public Boolean getNoManageHosts() {
     return noManageHosts;
   }
+
 
   public void setNoManageHosts(Boolean noManageHosts) {
     this.noManageHosts = noManageHosts;
@@ -350,26 +431,30 @@ public class NetOptions implements Serializable {
 
 
   public NetOptions noManageResolvConf(Boolean noManageResolvConf) {
+    
     this.noManageResolvConf = noManageResolvConf;
     return this;
   }
 
-  /**
+   /**
    * Get noManageResolvConf
    * @return noManageResolvConf
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "")
 
   public Boolean getNoManageResolvConf() {
     return noManageResolvConf;
   }
+
 
   public void setNoManageResolvConf(Boolean noManageResolvConf) {
     this.noManageResolvConf = noManageResolvConf;
   }
 
 
-  public NetOptions portmappings(List<@Valid PortMapping> portmappings) {
+    public NetOptions portmappings(List<PortMapping> portmappings) {
+    
     this.portmappings = portmappings;
     return this;
   }
@@ -382,18 +467,20 @@ public class NetOptions implements Serializable {
     return this;
   }
 
-  /**
+   /**
    * Get portmappings
    * @return portmappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
+    **/
+   @javax.annotation.Nullable
+   @Valid
+   @ApiModelProperty(value = "")
 
-  public List<@Valid PortMapping> getPortmappings() {
+   public List<PortMapping> getPortmappings() {
     return portmappings;
-  }
+   }
 
-  public void setPortmappings(List<@Valid PortMapping> portmappings) {
+
+    public void setPortmappings(List<PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
@@ -412,10 +499,12 @@ public class NetOptions implements Serializable {
         Objects.equals(this.dnsSearch, netOptions.dnsSearch) &&
         Objects.equals(this.dnsServer, netOptions.dnsServer) &&
         Objects.equals(this.hostadd, netOptions.hostadd) &&
+        Objects.equals(this.hostsFile, netOptions.hostsFile) &&
         Objects.equals(this.netns, netOptions.netns) &&
         Objects.equals(this.networkAlias, netOptions.networkAlias) &&
         Objects.equals(this.networkOptions, netOptions.networkOptions) &&
         Objects.equals(this.networks, netOptions.networks) &&
+            Objects.equals(this.noManageHostname, netOptions.noManageHostname) &&
         Objects.equals(this.noManageHosts, netOptions.noManageHosts) &&
         Objects.equals(this.noManageResolvConf, netOptions.noManageResolvConf) &&
         Objects.equals(this.portmappings, netOptions.portmappings);
@@ -423,7 +512,7 @@ public class NetOptions implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dnsOption, dnsSearch, dnsServer, hostadd, netns, networkAlias, networkOptions, networks, noManageHosts, noManageResolvConf, portmappings);
+      return Objects.hash(dnsOption, dnsSearch, dnsServer, hostadd, hostsFile, netns, networkAlias, networkOptions, networks, noManageHostname, noManageHosts, noManageResolvConf, portmappings);
   }
 
   @Override
@@ -434,10 +523,12 @@ public class NetOptions implements Serializable {
     sb.append("    dnsSearch: ").append(toIndentedString(dnsSearch)).append("\n");
     sb.append("    dnsServer: ").append(toIndentedString(dnsServer)).append("\n");
     sb.append("    hostadd: ").append(toIndentedString(hostadd)).append("\n");
+    sb.append("    hostsFile: ").append(toIndentedString(hostsFile)).append("\n");
     sb.append("    netns: ").append(toIndentedString(netns)).append("\n");
     sb.append("    networkAlias: ").append(toIndentedString(networkAlias)).append("\n");
     sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
     sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
+      sb.append("    noManageHostname: ").append(toIndentedString(noManageHostname)).append("\n");
     sb.append("    noManageHosts: ").append(toIndentedString(noManageHosts)).append("\n");
     sb.append("    noManageResolvConf: ").append(toIndentedString(noManageResolvConf)).append("\n");
     sb.append("    portmappings: ").append(toIndentedString(portmappings)).append("\n");
@@ -467,10 +558,12 @@ public class NetOptions implements Serializable {
     openapiFields.add("dns_search");
     openapiFields.add("dns_server");
     openapiFields.add("hostadd");
+    openapiFields.add("hosts_file");
     openapiFields.add("netns");
     openapiFields.add("network_alias");
     openapiFields.add("network_options");
     openapiFields.add("networks");
+      openapiFields.add("no_manage_hostname");
     openapiFields.add("no_manage_hosts");
     openapiFields.add("no_manage_resolv_conf");
     openapiFields.add("portmappings");
@@ -479,49 +572,53 @@ public class NetOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetOptions
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to NetOptions
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (NetOptions.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in NetOptions is not found in the empty JSON string", NetOptions.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!NetOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull() && !jsonObj.get("dns_option").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull() && !jsonObj.get("dns_search").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull() && !jsonObj.get("dns_server").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
+        }
+        // ensure the json data is an array
+        if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
+      }
+      if ((jsonObj.get("hosts_file") != null && !jsonObj.get("hosts_file").isJsonNull()) && !jsonObj.get("hosts_file").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hosts_file").toString()));
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("netns"));
+          Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("network_alias") != null && !jsonObj.get("network_alias").isJsonNull() && !jsonObj.get("network_alias").isJsonArray()) {
+        // ensure the json data is an array
+        if ((jsonObj.get("network_alias") != null && !jsonObj.get("network_alias").isJsonNull()) && !jsonObj.get("network_alias").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `network_alias` to be an array in the JSON string but got `%s`", jsonObj.get("network_alias").toString()));
       }
       if (jsonObj.get("portmappings") != null && !jsonObj.get("portmappings").isJsonNull()) {
@@ -534,7 +631,7 @@ public class NetOptions implements Serializable {
 
           // validate the optional field `portmappings` (array)
           for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-            PortMapping.validateJsonElement(jsonArrayportmappings.get(i));
+              PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
           };
         }
       }
@@ -560,31 +657,31 @@ public class NetOptions implements Serializable {
 
            @Override
            public NetOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of NetOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetOptions
-   * @throws IOException if the JSON string is invalid with respect to NetOptions
-   */
+    /**
+     * Create an instance of NetOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetOptions
+     * @throws IOException if the JSON string is invalid with respect to NetOptions
+  */
   public static NetOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetOptions.class);
   }
 
-  /**
-   * Convert an instance of NetOptions to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of NetOptions to an JSON string
+  *
+  * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

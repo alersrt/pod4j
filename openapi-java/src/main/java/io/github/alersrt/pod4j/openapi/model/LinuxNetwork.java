@@ -13,49 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxInterfacePriority;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * LinuxNetwork identification and priority configuration
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "LinuxNetwork identification and priority configuration")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LinuxNetwork implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -65,12 +51,13 @@ public class LinuxNetwork implements Serializable {
 
   public static final String SERIALIZED_NAME_PRIORITIES = "priorities";
   @SerializedName(SERIALIZED_NAME_PRIORITIES)
-  private List<@Valid LinuxInterfacePriority> priorities = new ArrayList<>();
+  private List<LinuxInterfacePriority> priorities = null;
 
   public LinuxNetwork() {
   }
 
   public LinuxNetwork classID(Integer classID) {
+
     this.classID = classID;
     return this;
   }
@@ -78,19 +65,22 @@ public class LinuxNetwork implements Serializable {
   /**
    * Set class identifier for container&#39;s network packets
    * @return classID
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Set class identifier for container's network packets")
 
   public Integer getClassID() {
     return classID;
   }
+
 
   public void setClassID(Integer classID) {
     this.classID = classID;
   }
 
 
-  public LinuxNetwork priorities(List<@Valid LinuxInterfacePriority> priorities) {
+  public LinuxNetwork priorities(List<LinuxInterfacePriority> priorities) {
+    
     this.priorities = priorities;
     return this;
   }
@@ -106,15 +96,17 @@ public class LinuxNetwork implements Serializable {
   /**
    * Set priority of network traffic for container
    * @return priorities
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Set priority of network traffic for container")
 
-  public List<@Valid LinuxInterfacePriority> getPriorities() {
+  public List<LinuxInterfacePriority> getPriorities() {
     return priorities;
   }
 
-  public void setPriorities(List<@Valid LinuxInterfacePriority> priorities) {
+
+  public void setPriorities(List<LinuxInterfacePriority> priorities) {
     this.priorities = priorities;
   }
 
@@ -174,26 +166,27 @@ public class LinuxNetwork implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxNetwork
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to LinuxNetwork
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxNetwork.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (LinuxNetwork.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxNetwork is not found in the empty JSON string", LinuxNetwork.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!LinuxNetwork.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxNetwork` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxNetwork` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (jsonObj.get("priorities") != null && !jsonObj.get("priorities").isJsonNull()) {
         JsonArray jsonArraypriorities = jsonObj.getAsJsonArray("priorities");
         if (jsonArraypriorities != null) {
@@ -204,7 +197,7 @@ public class LinuxNetwork implements Serializable {
 
           // validate the optional field `priorities` (array)
           for (int i = 0; i < jsonArraypriorities.size(); i++) {
-            LinuxInterfacePriority.validateJsonElement(jsonArraypriorities.get(i));
+            LinuxInterfacePriority.validateJsonObject(jsonArraypriorities.get(i).getAsJsonObject());
           };
         }
       }
@@ -230,9 +223,9 @@ public class LinuxNetwork implements Serializable {
 
            @Override
            public LinuxNetwork read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -245,7 +238,7 @@ public class LinuxNetwork implements Serializable {
    * @param jsonString JSON string
    * @return An instance of LinuxNetwork
    * @throws IOException if the JSON string is invalid with respect to LinuxNetwork
-   */
+  */
   public static LinuxNetwork fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxNetwork.class);
   }
@@ -254,7 +247,7 @@ public class LinuxNetwork implements Serializable {
    * Convert an instance of LinuxNetwork to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

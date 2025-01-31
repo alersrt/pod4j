@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ContainerExecRequest;
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
@@ -39,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class ExecCompatApi {
     private ApiClient localVarApiClient;
@@ -95,7 +95,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/exec"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -112,8 +112,7 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -126,12 +125,15 @@ public class ExecCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call containerExecValidateBeforeCall(String name, ContainerExecRequest control, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling containerExec(Async)");
         }
 
-        return containerExecCall(name, control, _callback);
+
+        okhttp3.Call localVarCall = containerExecCall(name, control, _callback);
+        return localVarCall;
 
     }
 
@@ -271,7 +273,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/json"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+                .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -288,6 +290,7 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -300,12 +303,15 @@ public class ExecCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call execInspectValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling execInspect(Async)");
         }
 
-        return execInspectCall(id, _callback);
+
+        okhttp3.Call localVarCall = execInspectCall(id, _callback);
+        return localVarCall;
 
     }
 
@@ -433,7 +439,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/resize"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+                .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -462,6 +468,7 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -474,12 +481,15 @@ public class ExecCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call execResizeValidateBeforeCall(String id, Integer h, Integer w, Boolean running, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling execResize(Async)");
         }
 
-        return execResizeCall(id, h, w, running, _callback);
+
+        okhttp3.Call localVarCall = execResizeCall(id, h, w, running, _callback);
+        return localVarCall;
 
     }
 
@@ -636,7 +646,7 @@ public class ExecCompatApi {
 
         // create path and map variables
         String localVarPath = "/exec/{id}/start"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+                .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -653,8 +663,7 @@ public class ExecCompatApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -667,12 +676,15 @@ public class ExecCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call execStartValidateBeforeCall(String id, ExecStartRequest control, final ApiCallback _callback) throws ApiException {
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling execStart(Async)");
         }
 
-        return execStartCall(id, control, _callback);
+
+        okhttp3.Call localVarCall = execStartCall(id, control, _callback);
+        return localVarCall;
 
     }
 

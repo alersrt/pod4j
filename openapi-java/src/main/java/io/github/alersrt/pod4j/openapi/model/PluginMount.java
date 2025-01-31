@@ -13,48 +13,34 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.constraints.NotNull;
 
 /**
  * PluginMount plugin mount
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "PluginMount plugin mount")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PluginMount implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -90,6 +76,7 @@ public class PluginMount implements Serializable {
   }
 
   public PluginMount description(String description) {
+
     this.description = description;
     return this;
   }
@@ -97,13 +84,15 @@ public class PluginMount implements Serializable {
   /**
    * description
    * @return description
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "description")
 
   public String getDescription() {
     return description;
   }
+
 
   public void setDescription(String description) {
     this.description = description;
@@ -111,6 +100,7 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount destination(String destination) {
+
     this.destination = destination;
     return this;
   }
@@ -118,13 +108,15 @@ public class PluginMount implements Serializable {
   /**
    * destination
    * @return destination
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "destination")
 
   public String getDestination() {
     return destination;
   }
+
 
   public void setDestination(String destination) {
     this.destination = destination;
@@ -132,6 +124,7 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount name(String name) {
+
     this.name = name;
     return this;
   }
@@ -139,13 +132,15 @@ public class PluginMount implements Serializable {
   /**
    * name
    * @return name
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "name")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -153,14 +148,12 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount options(List<String> options) {
+
     this.options = options;
     return this;
   }
 
   public PluginMount addOptionsItem(String optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
     this.options.add(optionsItem);
     return this;
   }
@@ -168,13 +161,15 @@ public class PluginMount implements Serializable {
   /**
    * options
    * @return options
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "options")
 
   public List<String> getOptions() {
     return options;
   }
+
 
   public void setOptions(List<String> options) {
     this.options = options;
@@ -182,14 +177,12 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount settable(List<String> settable) {
+
     this.settable = settable;
     return this;
   }
 
   public PluginMount addSettableItem(String settableItem) {
-    if (this.settable == null) {
-      this.settable = new ArrayList<>();
-    }
     this.settable.add(settableItem);
     return this;
   }
@@ -197,13 +190,15 @@ public class PluginMount implements Serializable {
   /**
    * settable
    * @return settable
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "settable")
 
   public List<String> getSettable() {
     return settable;
   }
+
 
   public void setSettable(List<String> settable) {
     this.settable = settable;
@@ -211,6 +206,7 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount source(String source) {
+
     this.source = source;
     return this;
   }
@@ -218,13 +214,15 @@ public class PluginMount implements Serializable {
   /**
    * source
    * @return source
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "source")
 
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;
@@ -232,6 +230,7 @@ public class PluginMount implements Serializable {
 
 
   public PluginMount type(String type) {
+
     this.type = type;
     return this;
   }
@@ -239,13 +238,15 @@ public class PluginMount implements Serializable {
   /**
    * type
    * @return type
-   */
-  @jakarta.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
+  @ApiModelProperty(required = true, value = "type")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -329,58 +330,55 @@ public class PluginMount implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PluginMount
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PluginMount
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PluginMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PluginMount.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PluginMount is not found in the empty JSON string", PluginMount.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PluginMount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginMount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginMount` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PluginMount.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("Description").isJsonPrimitive()) {
+    if ((jsonObj.get("Description") != null && !jsonObj.get("Description").isJsonNull()) && !jsonObj.get("Description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Description").toString()));
-      }
-      if (!jsonObj.get("Destination").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
-      }
-      if (!jsonObj.get("Name").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("Options") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("Options").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull()) && !jsonObj.get("Options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("Settable") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("Settable").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Settable") != null && !jsonObj.get("Settable").isJsonNull()) && !jsonObj.get("Settable").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Settable` to be an array in the JSON string but got `%s`", jsonObj.get("Settable").toString()));
-      }
-      if (!jsonObj.get("Source").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Source") != null && !jsonObj.get("Source").isJsonNull()) && !jsonObj.get("Source").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Source").toString()));
-      }
-      if (!jsonObj.get("Type").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
       }
   }
@@ -405,9 +403,9 @@ public class PluginMount implements Serializable {
 
            @Override
            public PluginMount read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -420,7 +418,7 @@ public class PluginMount implements Serializable {
    * @param jsonString JSON string
    * @return An instance of PluginMount
    * @throws IOException if the JSON string is invalid with respect to PluginMount
-   */
+  */
   public static PluginMount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginMount.class);
   }
@@ -429,7 +427,7 @@ public class PluginMount implements Serializable {
    * Convert an instance of PluginMount to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

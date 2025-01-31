@@ -14,18 +14,20 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,16 +39,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -54,7 +52,8 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Task carries the information about one backend task
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "Task carries the information about one backend task")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Task implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -68,7 +67,7 @@ public class Task implements Serializable {
 
   public static final String SERIALIZED_NAME_INFO = "Info";
   @SerializedName(SERIALIZED_NAME_INFO)
-  private Map<String, String> info = new HashMap<>();
+  private Map<String, String> info = null;
 
   public static final String SERIALIZED_NAME_NAME = "Name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -78,6 +77,7 @@ public class Task implements Serializable {
   }
 
   public Task endpointID(String endpointID) {
+
     this.endpointID = endpointID;
     return this;
   }
@@ -85,12 +85,14 @@ public class Task implements Serializable {
   /**
    * Get endpointID
    * @return endpointID
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getEndpointID() {
     return endpointID;
   }
+
 
   public void setEndpointID(String endpointID) {
     this.endpointID = endpointID;
@@ -98,6 +100,7 @@ public class Task implements Serializable {
 
 
   public Task endpointIP(String endpointIP) {
+
     this.endpointIP = endpointIP;
     return this;
   }
@@ -105,12 +108,14 @@ public class Task implements Serializable {
   /**
    * Get endpointIP
    * @return endpointIP
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getEndpointIP() {
     return endpointIP;
   }
+
 
   public void setEndpointIP(String endpointIP) {
     this.endpointIP = endpointIP;
@@ -118,6 +123,7 @@ public class Task implements Serializable {
 
 
   public Task info(Map<String, String> info) {
+
     this.info = info;
     return this;
   }
@@ -133,12 +139,14 @@ public class Task implements Serializable {
   /**
    * Get info
    * @return info
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getInfo() {
     return info;
   }
+
 
   public void setInfo(Map<String, String> info) {
     this.info = info;
@@ -146,6 +154,7 @@ public class Task implements Serializable {
 
 
   public Task name(String name) {
+
     this.name = name;
     return this;
   }
@@ -153,12 +162,14 @@ public class Task implements Serializable {
   /**
    * Get name
    * @return name
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -226,26 +237,27 @@ public class Task implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Task
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to Task
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Task.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (Task.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in Task is not found in the empty JSON string", Task.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!Task.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Task` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Task` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
       }
@@ -277,9 +289,9 @@ public class Task implements Serializable {
 
            @Override
            public Task read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -292,7 +304,7 @@ public class Task implements Serializable {
    * @param jsonString JSON string
    * @return An instance of Task
    * @throws IOException if the JSON string is invalid with respect to Task
-   */
+  */
   public static Task fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Task.class);
   }
@@ -301,7 +313,7 @@ public class Task implements Serializable {
    * Convert an instance of Task to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

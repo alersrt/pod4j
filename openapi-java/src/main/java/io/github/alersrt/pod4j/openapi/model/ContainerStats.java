@@ -13,51 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * ContainerStats contains the statistics information for a running container
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "ContainerStats contains the statistics information for a running container")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContainerStats implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -111,7 +96,7 @@ public class ContainerStats implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORK = "Network";
   @SerializedName(SERIALIZED_NAME_NETWORK)
-  private Map<String, ContainerNetworkStats> network = new HashMap<>();
+  private Map<String, ContainerNetworkStats> network = null;
 
   public static final String SERIALIZED_NAME_PI_DS = "PIDs";
   @SerializedName(SERIALIZED_NAME_PI_DS)
@@ -119,7 +104,7 @@ public class ContainerStats implements Serializable {
 
   public static final String SERIALIZED_NAME_PER_C_P_U = "PerCPU";
   @SerializedName(SERIALIZED_NAME_PER_C_P_U)
-  private List<Integer> perCPU = new ArrayList<>();
+  private List<Integer> perCPU = null;
 
   public static final String SERIALIZED_NAME_SYSTEM_NANO = "SystemNano";
   @SerializedName(SERIALIZED_NAME_SYSTEM_NANO)
@@ -133,6 +118,7 @@ public class ContainerStats implements Serializable {
   }
 
   public ContainerStats avgCPU(Double avgCPU) {
+
     this.avgCPU = avgCPU;
     return this;
   }
@@ -140,12 +126,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get avgCPU
    * @return avgCPU
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Double getAvgCPU() {
     return avgCPU;
   }
+
 
   public void setAvgCPU(Double avgCPU) {
     this.avgCPU = avgCPU;
@@ -153,6 +141,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats blockInput(Integer blockInput) {
+
     this.blockInput = blockInput;
     return this;
   }
@@ -160,12 +149,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get blockInput
    * @return blockInput
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getBlockInput() {
     return blockInput;
   }
+
 
   public void setBlockInput(Integer blockInput) {
     this.blockInput = blockInput;
@@ -173,6 +164,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats blockOutput(Integer blockOutput) {
+
     this.blockOutput = blockOutput;
     return this;
   }
@@ -180,12 +172,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get blockOutput
    * @return blockOutput
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getBlockOutput() {
     return blockOutput;
   }
+
 
   public void setBlockOutput(Integer blockOutput) {
     this.blockOutput = blockOutput;
@@ -193,6 +187,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats CPU(Double CPU) {
+
     this.CPU = CPU;
     return this;
   }
@@ -200,12 +195,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get CPU
    * @return CPU
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Double getCPU() {
     return CPU;
   }
+
 
   public void setCPU(Double CPU) {
     this.CPU = CPU;
@@ -213,6 +210,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats cpUNano(Integer cpUNano) {
+
     this.cpUNano = cpUNano;
     return this;
   }
@@ -220,12 +218,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get cpUNano
    * @return cpUNano
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getCpUNano() {
     return cpUNano;
   }
+
 
   public void setCpUNano(Integer cpUNano) {
     this.cpUNano = cpUNano;
@@ -233,6 +233,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats cpUSystemNano(Integer cpUSystemNano) {
+
     this.cpUSystemNano = cpUSystemNano;
     return this;
   }
@@ -240,12 +241,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get cpUSystemNano
    * @return cpUSystemNano
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getCpUSystemNano() {
     return cpUSystemNano;
   }
+
 
   public void setCpUSystemNano(Integer cpUSystemNano) {
     this.cpUSystemNano = cpUSystemNano;
@@ -253,6 +256,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats containerID(String containerID) {
+
     this.containerID = containerID;
     return this;
   }
@@ -260,12 +264,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get containerID
    * @return containerID
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getContainerID() {
     return containerID;
   }
+
 
   public void setContainerID(String containerID) {
     this.containerID = containerID;
@@ -273,6 +279,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats duration(Integer duration) {
+
     this.duration = duration;
     return this;
   }
@@ -280,12 +287,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get duration
    * @return duration
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getDuration() {
     return duration;
   }
+
 
   public void setDuration(Integer duration) {
     this.duration = duration;
@@ -293,6 +302,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats memLimit(Integer memLimit) {
+
     this.memLimit = memLimit;
     return this;
   }
@@ -300,12 +310,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get memLimit
    * @return memLimit
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getMemLimit() {
     return memLimit;
   }
+
 
   public void setMemLimit(Integer memLimit) {
     this.memLimit = memLimit;
@@ -313,6 +325,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats memPerc(Double memPerc) {
+
     this.memPerc = memPerc;
     return this;
   }
@@ -320,12 +333,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get memPerc
    * @return memPerc
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Double getMemPerc() {
     return memPerc;
   }
+
 
   public void setMemPerc(Double memPerc) {
     this.memPerc = memPerc;
@@ -333,6 +348,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats memUsage(Integer memUsage) {
+
     this.memUsage = memUsage;
     return this;
   }
@@ -340,12 +356,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get memUsage
    * @return memUsage
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getMemUsage() {
     return memUsage;
   }
+
 
   public void setMemUsage(Integer memUsage) {
     this.memUsage = memUsage;
@@ -353,6 +371,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats name(String name) {
+
     this.name = name;
     return this;
   }
@@ -360,12 +379,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get name
    * @return name
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -373,6 +394,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats network(Map<String, ContainerNetworkStats> network) {
+
     this.network = network;
     return this;
   }
@@ -388,13 +410,15 @@ public class ContainerStats implements Serializable {
   /**
    * Map of interface name to network statistics for that interface.
    * @return network
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Map of interface name to network statistics for that interface.")
 
   public Map<String, ContainerNetworkStats> getNetwork() {
     return network;
   }
+
 
   public void setNetwork(Map<String, ContainerNetworkStats> network) {
     this.network = network;
@@ -402,6 +426,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats piDs(Integer piDs) {
+
     this.piDs = piDs;
     return this;
   }
@@ -409,12 +434,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get piDs
    * @return piDs
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getPiDs() {
     return piDs;
   }
+
 
   public void setPiDs(Integer piDs) {
     this.piDs = piDs;
@@ -422,6 +449,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats perCPU(List<Integer> perCPU) {
+
     this.perCPU = perCPU;
     return this;
   }
@@ -437,12 +465,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get perCPU
    * @return perCPU
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<Integer> getPerCPU() {
     return perCPU;
   }
+
 
   public void setPerCPU(List<Integer> perCPU) {
     this.perCPU = perCPU;
@@ -450,6 +480,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats systemNano(Integer systemNano) {
+
     this.systemNano = systemNano;
     return this;
   }
@@ -457,12 +488,14 @@ public class ContainerStats implements Serializable {
   /**
    * Get systemNano
    * @return systemNano
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getSystemNano() {
     return systemNano;
   }
+
 
   public void setSystemNano(Integer systemNano) {
     this.systemNano = systemNano;
@@ -470,6 +503,7 @@ public class ContainerStats implements Serializable {
 
 
   public ContainerStats upTime(Long upTime) {
+
     this.upTime = upTime;
     return this;
   }
@@ -477,12 +511,14 @@ public class ContainerStats implements Serializable {
   /**
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return upTime
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
 
   public Long getUpTime() {
     return upTime;
   }
+
 
   public void setUpTime(Long upTime) {
     this.upTime = upTime;
@@ -589,34 +625,35 @@ public class ContainerStats implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerStats
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ContainerStats
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerStats.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerStats is not found in the empty JSON string", ContainerStats.openapiRequiredFields.toString()));
-        }
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ContainerStats.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerStats is not found in the empty JSON string", ContainerStats.openapiRequiredFields.toString()));
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ContainerStats.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerStats` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerStats` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
       }
       if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("PerCPU") != null && !jsonObj.get("PerCPU").isJsonNull() && !jsonObj.get("PerCPU").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("PerCPU") != null && !jsonObj.get("PerCPU").isJsonNull()) && !jsonObj.get("PerCPU").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `PerCPU` to be an array in the JSON string but got `%s`", jsonObj.get("PerCPU").toString()));
       }
   }
@@ -641,9 +678,9 @@ public class ContainerStats implements Serializable {
 
            @Override
            public ContainerStats read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -656,7 +693,7 @@ public class ContainerStats implements Serializable {
    * @param jsonString JSON string
    * @return An instance of ContainerStats
    * @throws IOException if the JSON string is invalid with respect to ContainerStats
-   */
+  */
   public static ContainerStats fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerStats.class);
   }
@@ -665,7 +702,7 @@ public class ContainerStats implements Serializable {
    * Convert an instance of ContainerStats to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

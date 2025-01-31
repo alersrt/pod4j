@@ -19,3 +19,9 @@ spec:
       ports:
         - containerPort: 80
           protocol: TCP
+      env:
+        - name: EXTRA_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-config
+              key: TEST_ENV

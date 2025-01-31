@@ -13,51 +13,34 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * PodBasicConfig
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PodBasicConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -71,7 +54,7 @@ public class PodBasicConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_INFRA_COMMAND = "infra_command";
   @SerializedName(SERIALIZED_NAME_INFRA_COMMAND)
-  private List<String> infraCommand = new ArrayList<>();
+  private List<String> infraCommand = null;
 
   public static final String SERIALIZED_NAME_INFRA_CONMON_PID_FILE = "infra_conmon_pid_file";
   @SerializedName(SERIALIZED_NAME_INFRA_CONMON_PID_FILE)
@@ -91,7 +74,7 @@ public class PodBasicConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -107,11 +90,11 @@ public class PodBasicConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_POD_CREATE_COMMAND = "pod_create_command";
   @SerializedName(SERIALIZED_NAME_POD_CREATE_COMMAND)
-  private List<String> podCreateCommand = new ArrayList<>();
+  private List<String> podCreateCommand = null;
 
   public static final String SERIALIZED_NAME_POD_DEVICES = "pod_devices";
   @SerializedName(SERIALIZED_NAME_POD_DEVICES)
-  private List<String> podDevices = new ArrayList<>();
+  private List<String> podDevices = null;
 
   public static final String SERIALIZED_NAME_RESTART_POLICY = "restart_policy";
   @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
@@ -127,11 +110,11 @@ public class PodBasicConfig implements Serializable {
 
   public static final String SERIALIZED_NAME_SHARED_NAMESPACES = "shared_namespaces";
   @SerializedName(SERIALIZED_NAME_SHARED_NAMESPACES)
-  private List<String> sharedNamespaces = new ArrayList<>();
+  private List<String> sharedNamespaces = null;
 
   public static final String SERIALIZED_NAME_SYSCTL = "sysctl";
   @SerializedName(SERIALIZED_NAME_SYSCTL)
-  private Map<String, String> sysctl = new HashMap<>();
+  private Map<String, String> sysctl = null;
 
   public static final String SERIALIZED_NAME_USERNS = "userns";
   @SerializedName(SERIALIZED_NAME_USERNS)
@@ -145,6 +128,7 @@ public class PodBasicConfig implements Serializable {
   }
 
   public PodBasicConfig exitPolicy(String exitPolicy) {
+
     this.exitPolicy = exitPolicy;
     return this;
   }
@@ -152,12 +136,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * ExitPolicy determines the pod&#39;s exit and stop behaviour.
    * @return exitPolicy
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ExitPolicy determines the pod's exit and stop behaviour.")
 
   public String getExitPolicy() {
     return exitPolicy;
   }
+
 
   public void setExitPolicy(String exitPolicy) {
     this.exitPolicy = exitPolicy;
@@ -165,6 +151,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig hostname(String hostname) {
+
     this.hostname = hostname;
     return this;
   }
@@ -172,12 +159,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Hostname is the pod&#39;s hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.
    * @return hostname
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Hostname is the pod's hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.")
 
   public String getHostname() {
     return hostname;
   }
+
 
   public void setHostname(String hostname) {
     this.hostname = hostname;
@@ -185,6 +174,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig infraCommand(List<String> infraCommand) {
+
     this.infraCommand = infraCommand;
     return this;
   }
@@ -200,12 +190,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraCommand
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getInfraCommand() {
     return infraCommand;
   }
+
 
   public void setInfraCommand(List<String> infraCommand) {
     this.infraCommand = infraCommand;
@@ -213,6 +205,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig infraConmonPidFile(String infraConmonPidFile) {
+
     this.infraConmonPidFile = infraConmonPidFile;
     return this;
   }
@@ -220,12 +213,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * InfraConmonPidFile is a custom path to store the infra container&#39;s conmon PID.
    * @return infraConmonPidFile
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraConmonPidFile is a custom path to store the infra container's conmon PID.")
 
   public String getInfraConmonPidFile() {
     return infraConmonPidFile;
   }
+
 
   public void setInfraConmonPidFile(String infraConmonPidFile) {
     this.infraConmonPidFile = infraConmonPidFile;
@@ -233,6 +228,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig infraImage(String infraImage) {
+
     this.infraImage = infraImage;
     return this;
   }
@@ -240,12 +236,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraImage
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public String getInfraImage() {
     return infraImage;
   }
+
 
   public void setInfraImage(String infraImage) {
     this.infraImage = infraImage;
@@ -253,6 +251,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig infraName(String infraName) {
+
     this.infraName = infraName;
     return this;
   }
@@ -260,12 +259,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraName
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public String getInfraName() {
     return infraName;
   }
+
 
   public void setInfraName(String infraName) {
     this.infraName = infraName;
@@ -273,6 +274,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig ipcns(Namespace ipcns) {
+
     this.ipcns = ipcns;
     return this;
   }
@@ -280,13 +282,15 @@ public class PodBasicConfig implements Serializable {
   /**
    * Get ipcns
    * @return ipcns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getIpcns() {
     return ipcns;
   }
+
 
   public void setIpcns(Namespace ipcns) {
     this.ipcns = ipcns;
@@ -294,6 +298,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig labels(Map<String, String> labels) {
+
     this.labels = labels;
     return this;
   }
@@ -309,12 +314,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Labels are key-value pairs that are used to add metadata to pods. Optional.
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to pods. Optional.")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -322,6 +329,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig name(String name) {
+
     this.name = name;
     return this;
   }
@@ -329,12 +337,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -342,6 +352,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig noInfra(Boolean noInfra) {
+
     this.noInfra = noInfra;
     return this;
   }
@@ -349,12 +360,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.
    * @return noInfra
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.")
 
   public Boolean getNoInfra() {
     return noInfra;
   }
+
 
   public void setNoInfra(Boolean noInfra) {
     this.noInfra = noInfra;
@@ -362,6 +375,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig pidns(Namespace pidns) {
+
     this.pidns = pidns;
     return this;
   }
@@ -369,13 +383,15 @@ public class PodBasicConfig implements Serializable {
   /**
    * Get pidns
    * @return pidns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getPidns() {
     return pidns;
   }
+
 
   public void setPidns(Namespace pidns) {
     this.pidns = pidns;
@@ -383,6 +399,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig podCreateCommand(List<String> podCreateCommand) {
+
     this.podCreateCommand = podCreateCommand;
     return this;
   }
@@ -398,12 +415,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Get podCreateCommand
    * @return podCreateCommand
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getPodCreateCommand() {
     return podCreateCommand;
   }
+
 
   public void setPodCreateCommand(List<String> podCreateCommand) {
     this.podCreateCommand = podCreateCommand;
@@ -411,6 +430,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig podDevices(List<String> podDevices) {
+
     this.podDevices = podDevices;
     return this;
   }
@@ -426,12 +446,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Devices contains user specified Devices to be added to the Pod
    * @return podDevices
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Devices contains user specified Devices to be added to the Pod")
 
   public List<String> getPodDevices() {
     return podDevices;
   }
+
 
   public void setPodDevices(List<String> podDevices) {
     this.podDevices = podDevices;
@@ -439,6 +461,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig restartPolicy(String restartPolicy) {
+
     this.restartPolicy = restartPolicy;
     return this;
   }
@@ -446,12 +469,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * RestartPolicy is the pod&#39;s restart policy - an action which will be taken when one or all the containers in the pod exits. If not given, the default policy will be set to Always, which restarts the containers in the pod when they exit indefinitely. Optional.
    * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartPolicy is the pod's restart policy - an action which will be taken when one or all the containers in the pod exits. If not given, the default policy will be set to Always, which restarts the containers in the pod when they exit indefinitely. Optional.")
 
   public String getRestartPolicy() {
     return restartPolicy;
   }
+
 
   public void setRestartPolicy(String restartPolicy) {
     this.restartPolicy = restartPolicy;
@@ -459,6 +484,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig restartTries(Integer restartTries) {
+
     this.restartTries = restartTries;
     return this;
   }
@@ -466,12 +492,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
 
   public Integer getRestartTries() {
     return restartTries;
   }
+
 
   public void setRestartTries(Integer restartTries) {
     this.restartTries = restartTries;
@@ -479,6 +507,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig shareParent(Boolean shareParent) {
+
     this.shareParent = shareParent;
     return this;
   }
@@ -486,12 +515,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * PodCreateCommand is the command used to create this pod. This will be shown in the output of Inspect() on the pod, and may also be used by some tools that wish to recreate the pod (e.g. &#x60;podman generate systemd --new&#x60;). Optional. ShareParent determines if all containers in the pod will share the pod&#39;s cgroup as the cgroup parent
    * @return shareParent
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PodCreateCommand is the command used to create this pod. This will be shown in the output of Inspect() on the pod, and may also be used by some tools that wish to recreate the pod (e.g. `podman generate systemd --new`). Optional. ShareParent determines if all containers in the pod will share the pod's cgroup as the cgroup parent")
 
   public Boolean getShareParent() {
     return shareParent;
   }
+
 
   public void setShareParent(Boolean shareParent) {
     this.shareParent = shareParent;
@@ -499,6 +530,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig sharedNamespaces(List<String> sharedNamespaces) {
+
     this.sharedNamespaces = sharedNamespaces;
     return this;
   }
@@ -514,12 +546,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * SharedNamespaces instructs the pod to share a set of namespaces. Shared namespaces will be joined (by default) by every container which joins the pod. If not set and NoInfra is false, the pod will set a default set of namespaces to share. Conflicts with NoInfra&#x3D;true. Optional.
    * @return sharedNamespaces
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SharedNamespaces instructs the pod to share a set of namespaces. Shared namespaces will be joined (by default) by every container which joins the pod. If not set and NoInfra is false, the pod will set a default set of namespaces to share. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getSharedNamespaces() {
     return sharedNamespaces;
   }
+
 
   public void setSharedNamespaces(List<String> sharedNamespaces) {
     this.sharedNamespaces = sharedNamespaces;
@@ -527,6 +561,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig sysctl(Map<String, String> sysctl) {
+
     this.sysctl = sysctl;
     return this;
   }
@@ -542,12 +577,14 @@ public class PodBasicConfig implements Serializable {
   /**
    * Sysctl sets kernel parameters for the pod
    * @return sysctl
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Sysctl sets kernel parameters for the pod")
 
   public Map<String, String> getSysctl() {
     return sysctl;
   }
+
 
   public void setSysctl(Map<String, String> sysctl) {
     this.sysctl = sysctl;
@@ -555,6 +592,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig userns(Namespace userns) {
+
     this.userns = userns;
     return this;
   }
@@ -562,13 +600,15 @@ public class PodBasicConfig implements Serializable {
   /**
    * Get userns
    * @return userns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getUserns() {
     return userns;
   }
+
 
   public void setUserns(Namespace userns) {
     this.userns = userns;
@@ -576,6 +616,7 @@ public class PodBasicConfig implements Serializable {
 
 
   public PodBasicConfig utsns(Namespace utsns) {
+
     this.utsns = utsns;
     return this;
   }
@@ -583,13 +624,15 @@ public class PodBasicConfig implements Serializable {
   /**
    * Get utsns
    * @return utsns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getUtsns() {
     return utsns;
   }
+
 
   public void setUtsns(Namespace utsns) {
     this.utsns = utsns;
@@ -705,34 +748,35 @@ public class PodBasicConfig implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodBasicConfig
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PodBasicConfig
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodBasicConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodBasicConfig is not found in the empty JSON string", PodBasicConfig.openapiRequiredFields.toString()));
-        }
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PodBasicConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in PodBasicConfig is not found in the empty JSON string", PodBasicConfig.openapiRequiredFields.toString()));
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PodBasicConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodBasicConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodBasicConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("exit_policy") != null && !jsonObj.get("exit_policy").isJsonNull()) && !jsonObj.get("exit_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `exit_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exit_policy").toString()));
       }
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("infra_command") != null && !jsonObj.get("infra_command").isJsonNull() && !jsonObj.get("infra_command").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("infra_command") != null && !jsonObj.get("infra_command").isJsonNull()) && !jsonObj.get("infra_command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `infra_command` to be an array in the JSON string but got `%s`", jsonObj.get("infra_command").toString()));
       }
       if ((jsonObj.get("infra_conmon_pid_file") != null && !jsonObj.get("infra_conmon_pid_file").isJsonNull()) && !jsonObj.get("infra_conmon_pid_file").isJsonPrimitive()) {
@@ -746,37 +790,37 @@ public class PodBasicConfig implements Serializable {
       }
       // validate the optional field `ipcns`
       if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("ipcns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       // validate the optional field `pidns`
       if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("pidns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("pod_create_command") != null && !jsonObj.get("pod_create_command").isJsonNull() && !jsonObj.get("pod_create_command").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("pod_create_command") != null && !jsonObj.get("pod_create_command").isJsonNull()) && !jsonObj.get("pod_create_command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod_create_command` to be an array in the JSON string but got `%s`", jsonObj.get("pod_create_command").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("pod_devices") != null && !jsonObj.get("pod_devices").isJsonNull() && !jsonObj.get("pod_devices").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("pod_devices") != null && !jsonObj.get("pod_devices").isJsonNull()) && !jsonObj.get("pod_devices").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod_devices` to be an array in the JSON string but got `%s`", jsonObj.get("pod_devices").toString()));
       }
       if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("shared_namespaces") != null && !jsonObj.get("shared_namespaces").isJsonNull() && !jsonObj.get("shared_namespaces").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("shared_namespaces") != null && !jsonObj.get("shared_namespaces").isJsonNull()) && !jsonObj.get("shared_namespaces").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `shared_namespaces` to be an array in the JSON string but got `%s`", jsonObj.get("shared_namespaces").toString()));
       }
       // validate the optional field `userns`
       if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("userns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
       }
       // validate the optional field `utsns`
       if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("utsns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
       }
   }
 
@@ -800,9 +844,9 @@ public class PodBasicConfig implements Serializable {
 
            @Override
            public PodBasicConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -815,7 +859,7 @@ public class PodBasicConfig implements Serializable {
    * @param jsonString JSON string
    * @return An instance of PodBasicConfig
    * @throws IOException if the JSON string is invalid with respect to PodBasicConfig
-   */
+  */
   public static PodBasicConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodBasicConfig.class);
   }
@@ -824,7 +868,7 @@ public class PodBasicConfig implements Serializable {
    * Convert an instance of PodBasicConfig to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

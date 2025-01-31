@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * LeaseRange
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LeaseRange implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -68,19 +66,22 @@ public class LeaseRange implements Serializable {
   }
 
   public LeaseRange endIp(String endIp) {
-    this.endIp = endIp;
+
+      this.endIp = endIp;
     return this;
   }
 
-  /**
+    /**
    * EndIP last IP in the subnet which should be used to assign ips.
    * @return endIp
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "EndIP last IP in the subnet which should be used to assign ips.")
 
   public String getEndIp() {
     return endIp;
   }
+
 
   public void setEndIp(String endIp) {
     this.endIp = endIp;
@@ -88,19 +89,22 @@ public class LeaseRange implements Serializable {
 
 
   public LeaseRange startIp(String startIp) {
-    this.startIp = startIp;
+
+      this.startIp = startIp;
     return this;
   }
 
-  /**
+    /**
    * StartIP first IP in the subnet which should be used to assign ips.
    * @return startIp
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "StartIP first IP in the subnet which should be used to assign ips.")
 
   public String getStartIp() {
     return startIp;
   }
+
 
   public void setStartIp(String startIp) {
     this.startIp = startIp;
@@ -161,27 +165,28 @@ public class LeaseRange implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LeaseRange
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LeaseRange.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to LeaseRange
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (LeaseRange.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LeaseRange is not found in the empty JSON string", LeaseRange.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!LeaseRange.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LeaseRange` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LeaseRange` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("end_ip") != null && !jsonObj.get("end_ip").isJsonNull()) && !jsonObj.get("end_ip").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `end_ip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("end_ip").toString()));
       }
@@ -210,31 +215,31 @@ public class LeaseRange implements Serializable {
 
            @Override
            public LeaseRange read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of LeaseRange given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LeaseRange
-   * @throws IOException if the JSON string is invalid with respect to LeaseRange
-   */
+    /**
+     * Create an instance of LeaseRange given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LeaseRange
+     * @throws IOException if the JSON string is invalid with respect to LeaseRange
+  */
   public static LeaseRange fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LeaseRange.class);
   }
 
-  /**
-   * Convert an instance of LeaseRange to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of LeaseRange to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

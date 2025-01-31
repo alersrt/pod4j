@@ -13,48 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * InspectMount provides a record of a single mount in a container. It contains fields for both named and normal volumes. Only user-specified volumes will be included, and tmpfs volumes are not included even if the user specified them.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "InspectMount provides a record of a single mount in a container. It contains fields for both named and normal volumes. Only user-specified volumes will be included, and tmpfs volumes are not included even if the user specified them.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectMount implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -76,7 +61,7 @@ public class InspectMount implements Serializable {
 
   public static final String SERIALIZED_NAME_OPTIONS = "Options";
   @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private List<String> options = new ArrayList<>();
+  private List<String> options = null;
 
   public static final String SERIALIZED_NAME_PROPAGATION = "Propagation";
   @SerializedName(SERIALIZED_NAME_PROPAGATION)
@@ -102,6 +87,7 @@ public class InspectMount implements Serializable {
   }
 
   public InspectMount destination(String destination) {
+
     this.destination = destination;
     return this;
   }
@@ -109,12 +95,14 @@ public class InspectMount implements Serializable {
   /**
    * The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.
    * @return destination
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.")
 
   public String getDestination() {
     return destination;
   }
+
 
   public void setDestination(String destination) {
     this.destination = destination;
@@ -122,6 +110,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount driver(String driver) {
+
     this.driver = driver;
     return this;
   }
@@ -129,12 +118,14 @@ public class InspectMount implements Serializable {
   /**
    * The driver used for the named volume. Empty for bind mounts.
    * @return driver
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The driver used for the named volume. Empty for bind mounts.")
 
   public String getDriver() {
     return driver;
   }
+
 
   public void setDriver(String driver) {
     this.driver = driver;
@@ -142,6 +133,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount mode(String mode) {
+
     this.mode = mode;
     return this;
   }
@@ -149,12 +141,14 @@ public class InspectMount implements Serializable {
   /**
    * Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.
    * @return mode
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.")
 
   public String getMode() {
     return mode;
   }
+
 
   public void setMode(String mode) {
     this.mode = mode;
@@ -162,6 +156,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount name(String name) {
+
     this.name = name;
     return this;
   }
@@ -169,12 +164,14 @@ public class InspectMount implements Serializable {
   /**
    * The name of the volume. Empty for bind mounts.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The name of the volume. Empty for bind mounts.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -182,6 +179,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount options(List<String> options) {
+
     this.options = options;
     return this;
   }
@@ -197,12 +195,14 @@ public class InspectMount implements Serializable {
   /**
    * All remaining mount options. Additional data, not present in the original output.
    * @return options
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "All remaining mount options. Additional data, not present in the original output.")
 
   public List<String> getOptions() {
     return options;
   }
+
 
   public void setOptions(List<String> options) {
     this.options = options;
@@ -210,6 +210,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount propagation(String propagation) {
+
     this.propagation = propagation;
     return this;
   }
@@ -217,12 +218,14 @@ public class InspectMount implements Serializable {
   /**
    * Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.
    * @return propagation
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.")
 
   public String getPropagation() {
     return propagation;
   }
+
 
   public void setPropagation(String propagation) {
     this.propagation = propagation;
@@ -230,6 +233,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount RW(Boolean RW) {
+
     this.RW = RW;
     return this;
   }
@@ -237,12 +241,14 @@ public class InspectMount implements Serializable {
   /**
    * Whether the volume is read-write
    * @return RW
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the volume is read-write")
 
   public Boolean getRW() {
     return RW;
   }
+
 
   public void setRW(Boolean RW) {
     this.RW = RW;
@@ -250,6 +256,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount source(String source) {
+
     this.source = source;
     return this;
   }
@@ -257,12 +264,14 @@ public class InspectMount implements Serializable {
   /**
    * The source directory for the volume.
    * @return source
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The source directory for the volume.")
 
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;
@@ -270,6 +279,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount subPath(String subPath) {
+
     this.subPath = subPath;
     return this;
   }
@@ -277,12 +287,14 @@ public class InspectMount implements Serializable {
   /**
    * SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.
    * @return subPath
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.")
 
   public String getSubPath() {
     return subPath;
   }
+
 
   public void setSubPath(String subPath) {
     this.subPath = subPath;
@@ -290,6 +302,7 @@ public class InspectMount implements Serializable {
 
 
   public InspectMount type(String type) {
+
     this.type = type;
     return this;
   }
@@ -297,12 +310,14 @@ public class InspectMount implements Serializable {
   /**
    * Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;.
    * @return type
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the mount is a volume or bind mount. Allowed values are \"volume\" and \"bind\".")
 
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
@@ -388,26 +403,27 @@ public class InspectMount implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectMount
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to InspectMount
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields.toString()));
-        }
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (InspectMount.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields.toString()));
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!InspectMount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
       }
@@ -420,8 +436,8 @@ public class InspectMount implements Serializable {
       if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull()) && !jsonObj.get("Options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
       }
       if ((jsonObj.get("Propagation") != null && !jsonObj.get("Propagation").isJsonNull()) && !jsonObj.get("Propagation").isJsonPrimitive()) {
@@ -458,9 +474,9 @@ public class InspectMount implements Serializable {
 
            @Override
            public InspectMount read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -473,7 +489,7 @@ public class InspectMount implements Serializable {
    * @param jsonString JSON string
    * @return An instance of InspectMount
    * @throws IOException if the JSON string is invalid with respect to InspectMount
-   */
+  */
   public static InspectMount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectMount.class);
   }
@@ -482,7 +498,7 @@ public class InspectMount implements Serializable {
    * Convert an instance of InspectMount to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

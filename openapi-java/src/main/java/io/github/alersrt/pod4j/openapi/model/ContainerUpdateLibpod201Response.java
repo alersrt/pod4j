@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,48 +37,47 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
- * SecretCreateLibpod201Response
+ * ContainerUpdateLibpod201Response
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class SecretCreateLibpod201Response implements Serializable {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+public class ContainerUpdateLibpod201Response implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_I_D = "ID";
   @SerializedName(SERIALIZED_NAME_I_D)
   private String ID;
 
-  public SecretCreateLibpod201Response() {
+  public ContainerUpdateLibpod201Response() {
   }
 
-  public SecretCreateLibpod201Response ID(String ID) {
-    this.ID = ID;
+  public ContainerUpdateLibpod201Response ID(String ID) {
+
+      this.ID = ID;
     return this;
   }
 
-  /**
+    /**
    * Get ID
    * @return ID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public String getID() {
     return ID;
   }
+
 
   public void setID(String ID) {
     this.ID = ID;
@@ -92,8 +93,8 @@ public class SecretCreateLibpod201Response implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SecretCreateLibpod201Response secretCreateLibpod201Response = (SecretCreateLibpod201Response) o;
-    return Objects.equals(this.ID, secretCreateLibpod201Response.ID);
+    ContainerUpdateLibpod201Response containerUpdateLibpod201Response = (ContainerUpdateLibpod201Response) o;
+    return Objects.equals(this.ID, containerUpdateLibpod201Response.ID);
   }
 
   @Override
@@ -104,7 +105,7 @@ public class SecretCreateLibpod201Response implements Serializable {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SecretCreateLibpod201Response {\n");
+    sb.append("class ContainerUpdateLibpod201Response {\n");
     sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -134,27 +135,28 @@ public class SecretCreateLibpod201Response implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SecretCreateLibpod201Response
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SecretCreateLibpod201Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SecretCreateLibpod201Response is not found in the empty JSON string", SecretCreateLibpod201Response.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ContainerUpdateLibpod201Response
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ContainerUpdateLibpod201Response.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerUpdateLibpod201Response is not found in the empty JSON string", ContainerUpdateLibpod201Response.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SecretCreateLibpod201Response.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretCreateLibpod201Response` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        for (Entry<String, JsonElement> entry : entries) {
+        if (!ContainerUpdateLibpod201Response.openapiFields.contains(entry.getKey())) {
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerUpdateLibpod201Response` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
       }
@@ -164,47 +166,47 @@ public class SecretCreateLibpod201Response implements Serializable {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SecretCreateLibpod201Response.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SecretCreateLibpod201Response' and its subtypes
+       if (!ContainerUpdateLibpod201Response.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ContainerUpdateLibpod201Response' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SecretCreateLibpod201Response> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SecretCreateLibpod201Response.class));
+       final TypeAdapter<ContainerUpdateLibpod201Response> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerUpdateLibpod201Response.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<SecretCreateLibpod201Response>() {
+       return (TypeAdapter<T>) new TypeAdapter<ContainerUpdateLibpod201Response>() {
            @Override
-           public void write(JsonWriter out, SecretCreateLibpod201Response value) throws IOException {
+           public void write(JsonWriter out, ContainerUpdateLibpod201Response value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public SecretCreateLibpod201Response read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+           public ContainerUpdateLibpod201Response read(JsonReader in) throws IOException {
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of SecretCreateLibpod201Response given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SecretCreateLibpod201Response
-   * @throws IOException if the JSON string is invalid with respect to SecretCreateLibpod201Response
-   */
-  public static SecretCreateLibpod201Response fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SecretCreateLibpod201Response.class);
+    /**
+     * Create an instance of ContainerUpdateLibpod201Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerUpdateLibpod201Response
+     * @throws IOException if the JSON string is invalid with respect to ContainerUpdateLibpod201Response
+  */
+  public static ContainerUpdateLibpod201Response fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ContainerUpdateLibpod201Response.class);
   }
 
-  /**
-   * Convert an instance of SecretCreateLibpod201Response to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ContainerUpdateLibpod201Response to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

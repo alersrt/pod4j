@@ -4,22 +4,19 @@ import io.github.alersrt.pod4j.exceptions.PodmanException;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.api.PodsApi;
+import io.github.alersrt.pod4j.openapi.api.SystemApi;
+import io.github.alersrt.pod4j.openapi.model.LibpodInfo;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 /**
  * Work with /kube/play API.
@@ -28,12 +25,15 @@ public class KubePlayer implements GenericContainer {
 
     private final ApiClient api;
     private final String yamlPath;
+    private final String hostname;
 
     private final List<ServiceBinding> servicesBindings = new ArrayList<>();
 
+    private boolean doCleanup = true;
+
     /**
-     * Creates player with specified path for k8s YAML specification.
-     * The socket path is autodetected via {@code PODMAN_SOCKET} environment variable.
+     * Creates player with specified path for k8s YAML specification. The socket path is autodetected via {@code PODMAN_SOCKET} environment
+     * variable.
      *
      * @param yamlPath path to k8s YAML specification.
      * @throws PodmanException if {@link #yamlPath} is empty or error during initialization is happened.
@@ -43,8 +43,8 @@ public class KubePlayer implements GenericContainer {
     }
 
     /**
-     * Creates player with specified paths for socket file and k8s YAML specification.
-     * The socket path is autodetected via {@code PODMAN_SOCKET} environment variable.
+     * Creates player with specified paths for socket file and k8s YAML specification. The socket path is autodetected via
+     * {@code PODMAN_SOCKET} environment variable.
      *
      * @param socketPath path to socket file.
      * @param yamlPath   path to k8s YAML specification.
@@ -64,10 +64,23 @@ public class KubePlayer implements GenericContainer {
                 .setBasePath("http://localhost/v5.0.0");
 
         this.yamlPath = yamlPath;
+
+        final SystemApi systemApi = new SystemApi(this.api);
+
+        LibpodInfo libpodInfo = null;
+        try {
+            libpodInfo = systemApi.systemInfoLibpod().execute();
+        } catch (ApiException ex) {
+            throw new PodmanException("Doesn't initialized", ex);
+        }
+        this.hostname = libpodInfo.getHost().getHostname();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }
 
     @Override
-    public KubePlayer withExposedService(String serviceName, int exposedPort) throws PodmanException {
+    public KubePlayer withExposedService(String serviceName,
+                                         int exposedPort) throws PodmanException {
         final Predicate<ServiceBinding> isBindingExist = serviceBinding -> Objects.equals(serviceBinding.getServiceName(), serviceName)
                 && Objects.equals(serviceBinding.getExposedPort(), exposedPort);
 
@@ -75,10 +88,15 @@ public class KubePlayer implements GenericContainer {
             throw new PodmanException("Binging[serviceName=%s, exposedPort=%d] already exists".formatted(serviceName, exposedPort));
         }
 
-        final String mappedHost = "localhost"; // TODO: need to think how to get the proper hostname.
-        final int mappedPort = findFreePort();
+        final int mappedPort = Utils.findFreePort();
 
-        servicesBindings.add(new ServiceBinding(serviceName, mappedHost, exposedPort, mappedPort));
+        servicesBindings.add(new ServiceBinding(serviceName, this.hostname, exposedPort, mappedPort));
+        return this;
+    }
+
+    @Override
+    public KubePlayer withCleanup(boolean doCleanup) {
+        this.doCleanup = doCleanup;
         return this;
     }
 
@@ -88,7 +106,7 @@ public class KubePlayer implements GenericContainer {
 
         String yaml = null;
         try {
-            yaml = readFile(this.yamlPath);
+            yaml = Utils.readYaml(this.yamlPath);
         } catch (IOException e) {
             throw new PodmanException(e);
         }
@@ -96,8 +114,13 @@ public class KubePlayer implements GenericContainer {
         PlayKubeReport report = null;
         try {
             report = podsApi.playKubeLibpod()
-                    .publishPorts(servicesBindings.stream().map(serviceBinding -> "%d:%d".formatted(serviceBinding.getMappedPort(), serviceBinding.getExposedPort())).collect(Collectors.toList()))
-                    .wait(true)
+                    .publishPorts(servicesBindings.stream()
+                            .map(serviceBinding -> "%d:%d".formatted(
+                                    serviceBinding.getMappedPort(),
+                                    serviceBinding.getExposedPort()
+                            ))
+                            .toList())
+                    .wait(this.doCleanup)
                     .start(true)
                     .request(yaml)
                     .execute();
@@ -113,19 +136,21 @@ public class KubePlayer implements GenericContainer {
     @Override
     public void stop() throws PodmanException {
         final var pods = new PodsApi(this.api);
+
         String yaml = null;
         try {
-            yaml = readFile(this.yamlPath);
+            yaml = Utils.readYaml(this.yamlPath);
         } catch (IOException e) {
             throw new PodmanException(e);
         }
+
         try {
             pods.playKubeDownLibpod()
                     .force(true)
                     .request(yaml)
                     .execute();
         } catch (ApiException e) {
-            throw new RuntimeException(e);
+            throw new PodmanException(e);
         }
     }
 
@@ -151,35 +176,5 @@ public class KubePlayer implements GenericContainer {
                 .map(ServiceBinding::getMappedPort)
                 .findAny()
                 .orElseThrow(() -> new PodmanException("Here is no mapped port"));
-    }
-
-    private int findFreePort() throws PodmanException {
-        Integer result = null;
-        for (int port : IntStream.range(34400, 34500).toArray()) {
-            try (ServerSocket serverSocket = new ServerSocket(port)) {
-                if (serverSocket != null && serverSocket.getLocalPort() == port) {
-                    result = port;
-                    break;
-                }
-            } catch (IOException ignored) {
-            }
-        }
-
-        if (result == null) {
-            throw new PodmanException("There is no free port");
-        }
-
-        return result;
-    }
-
-    private String readFile(String filename) throws IOException {
-        StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename)))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
-            }
-        }
-        return resultStringBuilder.toString();
     }
 }

@@ -5,7 +5,6 @@ import java.util.Map;
 /**
  * Representing a Server configuration.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ServerConfiguration {
     public String URL;
     public String description;
@@ -43,7 +42,7 @@ public class ServerConfiguration {
                     throw new IllegalArgumentException("The variable " + name + " in the server URL has invalid value " + value + ".");
                 }
             }
-            url = url.replace("{" + name + "}", value);
+            url = url.replaceAll("\\{" + name + "\\}", value);
         }
         return url;
     }

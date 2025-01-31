@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,15 +40,16 @@ import io.github.alersrt.pod4j.openapi.model.PortMapping;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.Secret;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,16 +61,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -76,17 +74,18 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SpecGenerator creates an OCI spec and Libpod configuration options to create a container based on the given configuration.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "SpecGenerator creates an OCI spec and Libpod configuration options to create a container based on the given configuration.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SpecGenerator implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final String SERIALIZED_NAME_NETWORKS = "Networks";
   @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private Map<String, PerNetworkOptions> networks = new HashMap<>();
+  private Map<String, PerNetworkOptions> networks = null;
 
   public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
   @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
-  private Map<String, String> annotations = new HashMap<>();
+  private Map<String, String> annotations = null;
 
   public static final String SERIALIZED_NAME_APPARMOR_PROFILE = "apparmor_profile";
   @SerializedName(SERIALIZED_NAME_APPARMOR_PROFILE)
@@ -98,11 +97,11 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_CAP_ADD = "cap_add";
   @SerializedName(SERIALIZED_NAME_CAP_ADD)
-  private List<String> capAdd = new ArrayList<>();
+  private List<String> capAdd = null;
 
   public static final String SERIALIZED_NAME_CAP_DROP = "cap_drop";
   @SerializedName(SERIALIZED_NAME_CAP_DROP)
-  private List<String> capDrop = new ArrayList<>();
+  private List<String> capDrop = null;
 
   public static final String SERIALIZED_NAME_CGROUP_PARENT = "cgroup_parent";
   @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
@@ -118,15 +117,15 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_CHROOT_DIRECTORIES = "chroot_directories";
   @SerializedName(SERIALIZED_NAME_CHROOT_DIRECTORIES)
-  private List<String> chrootDirectories = new ArrayList<>();
+  private List<String> chrootDirectories = null;
 
   public static final String SERIALIZED_NAME_CNI_NETWORKS = "cni_networks";
   @SerializedName(SERIALIZED_NAME_CNI_NETWORKS)
-  private List<String> cniNetworks = new ArrayList<>();
+  private List<String> cniNetworks = null;
 
   public static final String SERIALIZED_NAME_COMMAND = "command";
   @SerializedName(SERIALIZED_NAME_COMMAND)
-  private List<String> command = new ArrayList<>();
+  private List<String> command = null;
 
   public static final String SERIALIZED_NAME_CONMON_PID_FILE = "conmon_pid_file";
   @SerializedName(SERIALIZED_NAME_CONMON_PID_FILE)
@@ -134,7 +133,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_CONTAINER_CREATE_COMMAND = "containerCreateCommand";
   @SerializedName(SERIALIZED_NAME_CONTAINER_CREATE_COMMAND)
-  private List<String> containerCreateCommand = new ArrayList<>();
+  private List<String> containerCreateCommand = null;
 
   public static final String SERIALIZED_NAME_CREATE_WORKING_DIR = "create_working_dir";
   @SerializedName(SERIALIZED_NAME_CREATE_WORKING_DIR)
@@ -142,39 +141,39 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_DEPENDENCY_CONTAINERS = "dependencyContainers";
   @SerializedName(SERIALIZED_NAME_DEPENDENCY_CONTAINERS)
-  private List<String> dependencyContainers = new ArrayList<>();
+  private List<String> dependencyContainers = null;
 
   public static final String SERIALIZED_NAME_DEVICE_CGROUP_RULE = "device_cgroup_rule";
   @SerializedName(SERIALIZED_NAME_DEVICE_CGROUP_RULE)
-  private List<@Valid LinuxDeviceCgroup> deviceCgroupRule = new ArrayList<>();
+  private List<LinuxDeviceCgroup> deviceCgroupRule = null;
 
   public static final String SERIALIZED_NAME_DEVICES = "devices";
   @SerializedName(SERIALIZED_NAME_DEVICES)
-  private List<@Valid LinuxDevice> devices = new ArrayList<>();
+  private List<LinuxDevice> devices = null;
 
   public static final String SERIALIZED_NAME_DEVICES_FROM = "devices_from";
   @SerializedName(SERIALIZED_NAME_DEVICES_FROM)
-  private List<String> devicesFrom = new ArrayList<>();
+  private List<String> devicesFrom = null;
 
   public static final String SERIALIZED_NAME_DNS_OPTION = "dns_option";
   @SerializedName(SERIALIZED_NAME_DNS_OPTION)
-  private List<String> dnsOption = new ArrayList<>();
+  private List<String> dnsOption = null;
 
   public static final String SERIALIZED_NAME_DNS_SEARCH = "dns_search";
   @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
-  private List<String> dnsSearch = new ArrayList<>();
+  private List<String> dnsSearch = null;
 
   public static final String SERIALIZED_NAME_DNS_SERVER = "dns_server";
   @SerializedName(SERIALIZED_NAME_DNS_SERVER)
-  private List<String> dnsServer = new ArrayList<>();
+  private List<String> dnsServer = null;
 
   public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
   @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
-  private List<String> entrypoint = new ArrayList<>();
+  private List<String> entrypoint = null;
 
   public static final String SERIALIZED_NAME_ENV = "env";
   @SerializedName(SERIALIZED_NAME_ENV)
-  private Map<String, String> env = new HashMap<>();
+  private Map<String, String> env = null;
 
   public static final String SERIALIZED_NAME_ENV_HOST = "env_host";
   @SerializedName(SERIALIZED_NAME_ENV_HOST)
@@ -182,7 +181,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_ENVMERGE = "envmerge";
   @SerializedName(SERIALIZED_NAME_ENVMERGE)
-  private List<String> envmerge = new ArrayList<>();
+  private List<String> envmerge = null;
 
   public static final String SERIALIZED_NAME_EXPOSE = "expose";
   @SerializedName(SERIALIZED_NAME_EXPOSE)
@@ -194,7 +193,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_GROUPS = "groups";
   @SerializedName(SERIALIZED_NAME_GROUPS)
-  private List<String> groups = new ArrayList<>();
+  private List<String> groups = null;
 
   public static final String SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
   @SerializedName(SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION)
@@ -218,11 +217,11 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_HOST_DEVICE_LIST = "host_device_list";
   @SerializedName(SERIALIZED_NAME_HOST_DEVICE_LIST)
-  private List<@Valid LinuxDevice> hostDeviceList = new ArrayList<>();
+  private List<LinuxDevice> hostDeviceList = null;
 
   public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
   @SerializedName(SERIALIZED_NAME_HOSTADD)
-  private List<String> hostadd = new ArrayList<>();
+  private List<String> hostadd = null;
 
   public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
   @SerializedName(SERIALIZED_NAME_HOSTNAME)
@@ -230,7 +229,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_HOSTUSERS = "hostusers";
   @SerializedName(SERIALIZED_NAME_HOSTUSERS)
-  private List<String> hostusers = new ArrayList<>();
+  private List<String> hostusers = null;
 
   public static final String SERIALIZED_NAME_HTTPPROXY = "httpproxy";
   @SerializedName(SERIALIZED_NAME_HTTPPROXY)
@@ -262,7 +261,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_IMAGE_VOLUMES = "image_volumes";
   @SerializedName(SERIALIZED_NAME_IMAGE_VOLUMES)
-  private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
+  private List<ImageVolume> imageVolumes = null;
 
   public static final String SERIALIZED_NAME_INIT = "init";
   @SerializedName(SERIALIZED_NAME_INIT)
@@ -290,7 +289,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels = null;
 
   public static final String SERIALIZED_NAME_LOG_CONFIGURATION = "log_configuration";
   @SerializedName(SERIALIZED_NAME_LOG_CONFIGURATION)
@@ -302,11 +301,11 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_MASK = "mask";
   @SerializedName(SERIALIZED_NAME_MASK)
-  private List<String> mask = new ArrayList<>();
+  private List<String> mask = null;
 
   public static final String SERIALIZED_NAME_MOUNTS = "mounts";
   @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<@Valid Mount> mounts = new ArrayList<>();
+  private List<Mount> mounts = null;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -318,7 +317,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "network_options";
   @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
-  private Map<String, List<String>> networkOptions = new HashMap<>();
+  private Map<String, List<String>> networkOptions = null;
 
   public static final String SERIALIZED_NAME_NO_NEW_PRIVILEGES = "no_new_privileges";
   @SerializedName(SERIALIZED_NAME_NO_NEW_PRIVILEGES)
@@ -334,7 +333,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_OVERLAY_VOLUMES = "overlay_volumes";
   @SerializedName(SERIALIZED_NAME_OVERLAY_VOLUMES)
-  private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
+  private List<OverlayVolume> overlayVolumes = null;
 
   public static final String SERIALIZED_NAME_PASSWD_ENTRY = "passwd_entry";
   @SerializedName(SERIALIZED_NAME_PASSWD_ENTRY)
@@ -354,7 +353,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_PORTMAPPINGS = "portmappings";
   @SerializedName(SERIALIZED_NAME_PORTMAPPINGS)
-  private List<@Valid PortMapping> portmappings = new ArrayList<>();
+  private List<PortMapping> portmappings = null;
 
   public static final String SERIALIZED_NAME_PRIVILEGED = "privileged";
   @SerializedName(SERIALIZED_NAME_PRIVILEGED)
@@ -362,7 +361,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_PROCFS_OPTS = "procfs_opts";
   @SerializedName(SERIALIZED_NAME_PROCFS_OPTS)
-  private List<String> procfsOpts = new ArrayList<>();
+  private List<String> procfsOpts = null;
 
   public static final String SERIALIZED_NAME_PUBLISH_IMAGE_PORTS = "publish_image_ports";
   @SerializedName(SERIALIZED_NAME_PUBLISH_IMAGE_PORTS)
@@ -370,7 +369,7 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_R_LIMITS = "r_limits";
   @SerializedName(SERIALIZED_NAME_R_LIMITS)
-  private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
+  private List<POSIXRlimit> rLimits = null;
 
   public static final String SERIALIZED_NAME_RAW_IMAGE_NAME = "raw_image_name";
   @SerializedName(SERIALIZED_NAME_RAW_IMAGE_NAME)
@@ -434,15 +433,15 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_SECRET_ENV = "secret_env";
   @SerializedName(SERIALIZED_NAME_SECRET_ENV)
-  private Map<String, String> secretEnv = new HashMap<>();
+  private Map<String, String> secretEnv = null;
 
   public static final String SERIALIZED_NAME_SECRETS = "secrets";
   @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<@Valid Secret> secrets = new ArrayList<>();
+  private List<Secret> secrets = null;
 
   public static final String SERIALIZED_NAME_SELINUX_OPTS = "selinux_opts";
   @SerializedName(SERIALIZED_NAME_SELINUX_OPTS)
-  private List<String> selinuxOpts = new ArrayList<>();
+  private List<String> selinuxOpts = null;
 
   public static final String SERIALIZED_NAME_SHM_SIZE = "shm_size";
   @SerializedName(SERIALIZED_NAME_SHM_SIZE)
@@ -470,11 +469,11 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_STORAGE_OPTS = "storage_opts";
   @SerializedName(SERIALIZED_NAME_STORAGE_OPTS)
-  private Map<String, String> storageOpts = new HashMap<>();
+  private Map<String, String> storageOpts = null;
 
   public static final String SERIALIZED_NAME_SYSCTL = "sysctl";
   @SerializedName(SERIALIZED_NAME_SYSCTL)
-  private Map<String, String> sysctl = new HashMap<>();
+  private Map<String, String> sysctl = null;
 
   public static final String SERIALIZED_NAME_SYSTEMD = "systemd";
   @SerializedName(SERIALIZED_NAME_SYSTEMD)
@@ -486,19 +485,19 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
   @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
-  private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
+  private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = null;
 
   public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
   @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
-  private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
+  private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = null;
 
   public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
   @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
-  private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
+  private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = null;
 
   public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
   @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
+  private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = null;
 
   public static final String SERIALIZED_NAME_TIMEOUT = "timeout";
   @SerializedName(SERIALIZED_NAME_TIMEOUT)
@@ -514,19 +513,23 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_UNIFIED = "unified";
   @SerializedName(SERIALIZED_NAME_UNIFIED)
-  private Map<String, String> unified = new HashMap<>();
+  private Map<String, String> unified = null;
 
   public static final String SERIALIZED_NAME_UNMASK = "unmask";
   @SerializedName(SERIALIZED_NAME_UNMASK)
-  private List<String> unmask = new ArrayList<>();
+  private List<String> unmask = null;
 
   public static final String SERIALIZED_NAME_UNSETENV = "unsetenv";
   @SerializedName(SERIALIZED_NAME_UNSETENV)
-  private List<String> unsetenv = new ArrayList<>();
+  private List<String> unsetenv = null;
 
   public static final String SERIALIZED_NAME_UNSETENVALL = "unsetenvall";
   @SerializedName(SERIALIZED_NAME_UNSETENVALL)
   private Boolean unsetenvall;
+
+  public static final String SERIALIZED_NAME_USE_IMAGE_HOSTNAME = "use_image_hostname";
+  @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTNAME)
+  private Boolean useImageHostname;
 
   public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "use_image_hosts";
   @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
@@ -554,15 +557,15 @@ public class SpecGenerator implements Serializable {
 
   public static final String SERIALIZED_NAME_VOLUMES = "volumes";
   @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<@Valid NamedVolume> volumes = new ArrayList<>();
+  private List<NamedVolume> volumes = null;
 
   public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
   @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
-  private List<String> volumesFrom = new ArrayList<>();
+  private List<String> volumesFrom = null;
 
   public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
   @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
-  private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
+  private Map<String, LinuxWeightDevice> weightDevice = null;
 
   public static final String SERIALIZED_NAME_WORK_DIR = "work_dir";
   @SerializedName(SERIALIZED_NAME_WORK_DIR)
@@ -572,6 +575,7 @@ public class SpecGenerator implements Serializable {
   }
 
   public SpecGenerator networks(Map<String, PerNetworkOptions> networks) {
+
     this.networks = networks;
     return this;
   }
@@ -587,13 +591,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
    * @return networks
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.")
 
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
   }
+
 
   public void setNetworks(Map<String, PerNetworkOptions> networks) {
     this.networks = networks;
@@ -601,6 +607,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator annotations(Map<String, String> annotations) {
+
     this.annotations = annotations;
     return this;
   }
@@ -616,12 +623,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
    * @return annotations
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.")
 
   public Map<String, String> getAnnotations() {
     return annotations;
   }
+
 
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
@@ -629,6 +638,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator apparmorProfile(String apparmorProfile) {
+
     this.apparmorProfile = apparmorProfile;
     return this;
   }
@@ -636,12 +646,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
    * @return apparmorProfile
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ApparmorProfile is the name of the Apparmor profile the container will use. Optional.")
 
   public String getApparmorProfile() {
     return apparmorProfile;
   }
+
 
   public void setApparmorProfile(String apparmorProfile) {
     this.apparmorProfile = apparmorProfile;
@@ -649,19 +661,22 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator baseHostsFile(String baseHostsFile) {
+
     this.baseHostsFile = baseHostsFile;
     return this;
   }
 
   /**
-   * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
+   * BaseHostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BaseHostsFile is the base file to create the `/etc/hosts` file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.")
 
   public String getBaseHostsFile() {
     return baseHostsFile;
   }
+
 
   public void setBaseHostsFile(String baseHostsFile) {
     this.baseHostsFile = baseHostsFile;
@@ -669,6 +684,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator capAdd(List<String> capAdd) {
+
     this.capAdd = capAdd;
     return this;
   }
@@ -684,12 +700,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
    * @return capAdd
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.")
 
   public List<String> getCapAdd() {
     return capAdd;
   }
+
 
   public void setCapAdd(List<String> capAdd) {
     this.capAdd = capAdd;
@@ -697,6 +715,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator capDrop(List<String> capDrop) {
+
     this.capDrop = capDrop;
     return this;
   }
@@ -712,12 +731,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
    * @return capDrop
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.")
 
   public List<String> getCapDrop() {
     return capDrop;
   }
+
 
   public void setCapDrop(List<String> capDrop) {
     this.capDrop = capDrop;
@@ -725,6 +746,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator cgroupParent(String cgroupParent) {
+
     this.cgroupParent = cgroupParent;
     return this;
   }
@@ -732,12 +754,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CgroupParent is the container&#39;s Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.
    * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupParent is the container's Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.")
 
   public String getCgroupParent() {
     return cgroupParent;
   }
+
 
   public void setCgroupParent(String cgroupParent) {
     this.cgroupParent = cgroupParent;
@@ -745,6 +769,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator cgroupns(Namespace cgroupns) {
+
     this.cgroupns = cgroupns;
     return this;
   }
@@ -752,13 +777,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get cgroupns
    * @return cgroupns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getCgroupns() {
     return cgroupns;
   }
+
 
   public void setCgroupns(Namespace cgroupns) {
     this.cgroupns = cgroupns;
@@ -766,6 +793,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator cgroupsMode(String cgroupsMode) {
+
     this.cgroupsMode = cgroupsMode;
     return this;
   }
@@ -773,12 +801,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.
    * @return cgroupsMode
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.")
 
   public String getCgroupsMode() {
     return cgroupsMode;
   }
+
 
   public void setCgroupsMode(String cgroupsMode) {
     this.cgroupsMode = cgroupsMode;
@@ -786,6 +816,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator chrootDirectories(List<String> chrootDirectories) {
+
     this.chrootDirectories = chrootDirectories;
     return this;
   }
@@ -801,12 +832,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
    * @return chrootDirectories
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.")
 
   public List<String> getChrootDirectories() {
     return chrootDirectories;
   }
+
 
   public void setChrootDirectories(List<String> chrootDirectories) {
     this.chrootDirectories = chrootDirectories;
@@ -814,6 +847,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator cniNetworks(List<String> cniNetworks) {
+
     this.cniNetworks = cniNetworks;
     return this;
   }
@@ -829,12 +863,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
 
   public List<String> getCniNetworks() {
     return cniNetworks;
   }
+
 
   public void setCniNetworks(List<String> cniNetworks) {
     this.cniNetworks = cniNetworks;
@@ -842,6 +878,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator command(List<String> command) {
+
     this.command = command;
     return this;
   }
@@ -857,12 +894,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return command
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Command is the container's command. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getCommand() {
     return command;
   }
+
 
   public void setCommand(List<String> command) {
     this.command = command;
@@ -870,6 +909,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator conmonPidFile(String conmonPidFile) {
+
     this.conmonPidFile = conmonPidFile;
     return this;
   }
@@ -877,12 +917,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
    * @return conmonPidFile
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.")
 
   public String getConmonPidFile() {
     return conmonPidFile;
   }
+
 
   public void setConmonPidFile(String conmonPidFile) {
     this.conmonPidFile = conmonPidFile;
@@ -890,6 +932,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator containerCreateCommand(List<String> containerCreateCommand) {
+
     this.containerCreateCommand = containerCreateCommand;
     return this;
   }
@@ -905,12 +948,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
    * @return containerCreateCommand
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. `podman generate systemd --new`). Optional.")
 
   public List<String> getContainerCreateCommand() {
     return containerCreateCommand;
   }
+
 
   public void setContainerCreateCommand(List<String> containerCreateCommand) {
     this.containerCreateCommand = containerCreateCommand;
@@ -918,6 +963,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator createWorkingDir(Boolean createWorkingDir) {
+
     this.createWorkingDir = createWorkingDir;
     return this;
   }
@@ -925,12 +971,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
    * @return createWorkingDir
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Create the working directory if it doesn't exist. If unset, it doesn't create it. Optional.")
 
   public Boolean getCreateWorkingDir() {
     return createWorkingDir;
   }
+
 
   public void setCreateWorkingDir(Boolean createWorkingDir) {
     this.createWorkingDir = createWorkingDir;
@@ -938,6 +986,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator dependencyContainers(List<String> dependencyContainers) {
+
     this.dependencyContainers = dependencyContainers;
     return this;
   }
@@ -953,19 +1002,22 @@ public class SpecGenerator implements Serializable {
   /**
    * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
    * @return dependencyContainers
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.")
 
   public List<String> getDependencyContainers() {
     return dependencyContainers;
   }
+
 
   public void setDependencyContainers(List<String> dependencyContainers) {
     this.dependencyContainers = dependencyContainers;
   }
 
 
-  public SpecGenerator deviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
+  public SpecGenerator deviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
+    
     this.deviceCgroupRule = deviceCgroupRule;
     return this;
   }
@@ -981,20 +1033,23 @@ public class SpecGenerator implements Serializable {
   /**
    * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
    * @return deviceCgroupRule
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.")
 
-  public List<@Valid LinuxDeviceCgroup> getDeviceCgroupRule() {
+  public List<LinuxDeviceCgroup> getDeviceCgroupRule() {
     return deviceCgroupRule;
   }
 
-  public void setDeviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
+
+  public void setDeviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
     this.deviceCgroupRule = deviceCgroupRule;
   }
 
 
-  public SpecGenerator devices(List<@Valid LinuxDevice> devices) {
+  public SpecGenerator devices(List<LinuxDevice> devices) {
+    
     this.devices = devices;
     return this;
   }
@@ -1010,20 +1065,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Devices are devices that will be added to the container. Optional.
    * @return devices
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Devices are devices that will be added to the container. Optional.")
 
-  public List<@Valid LinuxDevice> getDevices() {
+  public List<LinuxDevice> getDevices() {
     return devices;
   }
 
-  public void setDevices(List<@Valid LinuxDevice> devices) {
+
+  public void setDevices(List<LinuxDevice> devices) {
     this.devices = devices;
   }
 
 
   public SpecGenerator devicesFrom(List<String> devicesFrom) {
+
     this.devicesFrom = devicesFrom;
     return this;
   }
@@ -1039,12 +1097,14 @@ public class SpecGenerator implements Serializable {
   /**
    * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
    * @return devicesFrom
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.")
 
   public List<String> getDevicesFrom() {
     return devicesFrom;
   }
+
 
   public void setDevicesFrom(List<String> devicesFrom) {
     this.devicesFrom = devicesFrom;
@@ -1052,6 +1112,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator dnsOption(List<String> dnsOption) {
+
     this.dnsOption = dnsOption;
     return this;
   }
@@ -1067,12 +1128,14 @@ public class SpecGenerator implements Serializable {
   /**
    * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsOption
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSOptions is a set of DNS options that will be used in the container's resolv.conf, replacing the host's DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsOption() {
     return dnsOption;
   }
+
 
   public void setDnsOption(List<String> dnsOption) {
     this.dnsOption = dnsOption;
@@ -1080,6 +1143,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator dnsSearch(List<String> dnsSearch) {
+
     this.dnsSearch = dnsSearch;
     return this;
   }
@@ -1095,12 +1159,14 @@ public class SpecGenerator implements Serializable {
   /**
    * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the container's resolv.conf, replacing the host's DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
   }
+
 
   public void setDnsSearch(List<String> dnsSearch) {
     this.dnsSearch = dnsSearch;
@@ -1108,6 +1174,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator dnsServer(List<String> dnsServer) {
+
     this.dnsServer = dnsServer;
     return this;
   }
@@ -1123,12 +1190,14 @@ public class SpecGenerator implements Serializable {
   /**
    * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsServer
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSServers is a set of DNS servers that will be used in the container's resolv.conf, replacing the host's DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsServer() {
     return dnsServer;
   }
+
 
   public void setDnsServer(List<String> dnsServer) {
     this.dnsServer = dnsServer;
@@ -1136,6 +1205,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator entrypoint(List<String> entrypoint) {
+
     this.entrypoint = entrypoint;
     return this;
   }
@@ -1151,12 +1221,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Entrypoint is the container's entrypoint. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getEntrypoint() {
     return entrypoint;
   }
+
 
   public void setEntrypoint(List<String> entrypoint) {
     this.entrypoint = entrypoint;
@@ -1164,6 +1236,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator env(Map<String, String> env) {
+
     this.env = env;
     return this;
   }
@@ -1179,12 +1252,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Env is a set of environment variables that will be set in the container. Optional.
    * @return env
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Env is a set of environment variables that will be set in the container. Optional.")
 
   public Map<String, String> getEnv() {
     return env;
   }
+
 
   public void setEnv(Map<String, String> env) {
     this.env = env;
@@ -1192,6 +1267,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator envHost(Boolean envHost) {
+
     this.envHost = envHost;
     return this;
   }
@@ -1199,12 +1275,14 @@ public class SpecGenerator implements Serializable {
   /**
    * EnvHost indicates that the host environment should be added to container Optional.
    * @return envHost
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHost indicates that the host environment should be added to container Optional.")
 
   public Boolean getEnvHost() {
     return envHost;
   }
+
 
   public void setEnvHost(Boolean envHost) {
     this.envHost = envHost;
@@ -1212,6 +1290,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator envmerge(List<String> envmerge) {
+
     this.envmerge = envmerge;
     return this;
   }
@@ -1227,12 +1306,14 @@ public class SpecGenerator implements Serializable {
   /**
    * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
    * @return envmerge
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.")
 
   public List<String> getEnvmerge() {
     return envmerge;
   }
+
 
   public void setEnvmerge(List<String> envmerge) {
     this.envmerge = envmerge;
@@ -1240,6 +1321,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator expose(Object expose) {
+
     this.expose = expose;
     return this;
   }
@@ -1247,12 +1329,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
    * @return expose
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \"tcp\", \"udp\", and \"sctp\", or some combination of the three separated by commas. If protocol is set to \"\" we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.")
 
   public Object getExpose() {
     return expose;
   }
+
 
   public void setExpose(Object expose) {
     this.expose = expose;
@@ -1260,6 +1344,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator groupEntry(String groupEntry) {
+
     this.groupEntry = groupEntry;
     return this;
   }
@@ -1267,12 +1352,14 @@ public class SpecGenerator implements Serializable {
   /**
    * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
    * @return groupEntry
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "GroupEntry specifies an arbitrary string to append to the container's /etc/group file. Optional.")
 
   public String getGroupEntry() {
     return groupEntry;
   }
+
 
   public void setGroupEntry(String groupEntry) {
     this.groupEntry = groupEntry;
@@ -1280,6 +1367,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator groups(List<String> groups) {
+
     this.groups = groups;
     return this;
   }
@@ -1295,12 +1383,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
    * @return groups
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Groups are a list of supplemental groups the container's user will be granted access to. Optional.")
 
   public List<String> getGroups() {
     return groups;
   }
+
 
   public void setGroups(List<String> groups) {
     this.groups = groups;
@@ -1308,6 +1398,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator healthCheckOnFailureAction(Long healthCheckOnFailureAction) {
+
     this.healthCheckOnFailureAction = healthCheckOnFailureAction;
     return this;
   }
@@ -1315,12 +1406,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
    * @return healthCheckOnFailureAction
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthCheckOnFailureAction defines how Podman reacts when a container's health status turns unhealthy.")
 
   public Long getHealthCheckOnFailureAction() {
     return healthCheckOnFailureAction;
   }
+
 
   public void setHealthCheckOnFailureAction(Long healthCheckOnFailureAction) {
     this.healthCheckOnFailureAction = healthCheckOnFailureAction;
@@ -1328,6 +1421,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator healthLogDestination(String healthLogDestination) {
+
     this.healthLogDestination = healthLogDestination;
     return this;
   }
@@ -1335,12 +1429,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthLogDestination defines the destination where the log is stored")
 
   public String getHealthLogDestination() {
     return healthLogDestination;
   }
+
 
   public void setHealthLogDestination(String healthLogDestination) {
     this.healthLogDestination = healthLogDestination;
@@ -1348,6 +1444,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator healthMaxLogCount(Integer healthMaxLogCount) {
+
     this.healthMaxLogCount = healthMaxLogCount;
     return this;
   }
@@ -1355,12 +1452,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
 
   public Integer getHealthMaxLogCount() {
     return healthMaxLogCount;
   }
+
 
   public void setHealthMaxLogCount(Integer healthMaxLogCount) {
     this.healthMaxLogCount = healthMaxLogCount;
@@ -1368,6 +1467,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator healthMaxLogSize(Integer healthMaxLogSize) {
+
     this.healthMaxLogSize = healthMaxLogSize;
     return this;
   }
@@ -1375,12 +1475,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthMaxLogSize
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\"0\" value means an infinite log length)")
 
   public Integer getHealthMaxLogSize() {
     return healthMaxLogSize;
   }
+
 
   public void setHealthMaxLogSize(Integer healthMaxLogSize) {
     this.healthMaxLogSize = healthMaxLogSize;
@@ -1388,6 +1490,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator healthconfig(Schema2HealthConfig healthconfig) {
+
     this.healthconfig = healthconfig;
     return this;
   }
@@ -1395,20 +1498,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Get healthconfig
    * @return healthconfig
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Schema2HealthConfig getHealthconfig() {
     return healthconfig;
   }
+
 
   public void setHealthconfig(Schema2HealthConfig healthconfig) {
     this.healthconfig = healthconfig;
   }
 
 
-  public SpecGenerator hostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
+  public SpecGenerator hostDeviceList(List<LinuxDevice> hostDeviceList) {
+    
     this.hostDeviceList = hostDeviceList;
     return this;
   }
@@ -1424,20 +1530,23 @@ public class SpecGenerator implements Serializable {
   /**
    * HostDeviceList is used to recreate the mounted device on inherited containers
    * @return hostDeviceList
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "HostDeviceList is used to recreate the mounted device on inherited containers")
 
-  public List<@Valid LinuxDevice> getHostDeviceList() {
+  public List<LinuxDevice> getHostDeviceList() {
     return hostDeviceList;
   }
 
-  public void setHostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
+
+  public void setHostDeviceList(List<LinuxDevice> hostDeviceList) {
     this.hostDeviceList = hostDeviceList;
   }
 
 
   public SpecGenerator hostadd(List<String> hostadd) {
+
     this.hostadd = hostadd;
     return this;
   }
@@ -1453,12 +1562,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
    * @return hostadd
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostAdd is a set of hosts which will be added to the container's etc/hosts file. Conflicts with UseImageHosts. Optional.")
 
   public List<String> getHostadd() {
     return hostadd;
   }
+
 
   public void setHostadd(List<String> hostadd) {
     this.hostadd = hostadd;
@@ -1466,6 +1577,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator hostname(String hostname) {
+
     this.hostname = hostname;
     return this;
   }
@@ -1473,12 +1585,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
    * @return hostname
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Hostname is the container's hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.")
 
   public String getHostname() {
     return hostname;
   }
+
 
   public void setHostname(String hostname) {
     this.hostname = hostname;
@@ -1486,6 +1600,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator hostusers(List<String> hostusers) {
+
     this.hostusers = hostusers;
     return this;
   }
@@ -1501,12 +1616,14 @@ public class SpecGenerator implements Serializable {
   /**
    * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
    * @return hostusers
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file")
 
   public List<String> getHostusers() {
     return hostusers;
   }
+
 
   public void setHostusers(List<String> hostusers) {
     this.hostusers = hostusers;
@@ -1514,6 +1631,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator httpproxy(Boolean httpproxy) {
+
     this.httpproxy = httpproxy;
     return this;
   }
@@ -1521,12 +1639,14 @@ public class SpecGenerator implements Serializable {
   /**
    * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
    * @return httpproxy
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.")
 
   public Boolean getHttpproxy() {
     return httpproxy;
   }
+
 
   public void setHttpproxy(Boolean httpproxy) {
     this.httpproxy = httpproxy;
@@ -1534,6 +1654,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator idmappings(IDMappingOptions idmappings) {
+
     this.idmappings = idmappings;
     return this;
   }
@@ -1541,13 +1662,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get idmappings
    * @return idmappings
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public IDMappingOptions getIdmappings() {
     return idmappings;
   }
+
 
   public void setIdmappings(IDMappingOptions idmappings) {
     this.idmappings = idmappings;
@@ -1555,6 +1678,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator image(String image) {
+
     this.image = image;
     return this;
   }
@@ -1562,12 +1686,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
    * @return image
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Image is the image the container will be based on. The image will be used as the container's root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.")
 
   public String getImage() {
     return image;
   }
+
 
   public void setImage(String image) {
     this.image = image;
@@ -1575,6 +1701,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator imageArch(String imageArch) {
+
     this.imageArch = imageArch;
     return this;
   }
@@ -1582,12 +1709,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
    * @return imageArch
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageArch() {
     return imageArch;
   }
+
 
   public void setImageArch(String imageArch) {
     this.imageArch = imageArch;
@@ -1595,6 +1724,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator imageOs(String imageOs) {
+
     this.imageOs = imageOs;
     return this;
   }
@@ -1602,12 +1732,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
    * @return imageOs
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageOs() {
     return imageOs;
   }
+
 
   public void setImageOs(String imageOs) {
     this.imageOs = imageOs;
@@ -1615,6 +1747,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator imageVariant(String imageVariant) {
+
     this.imageVariant = imageVariant;
     return this;
   }
@@ -1622,12 +1755,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
    * @return imageVariant
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageVariant() {
     return imageVariant;
   }
+
 
   public void setImageVariant(String imageVariant) {
     this.imageVariant = imageVariant;
@@ -1635,6 +1770,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator imageVolumeMode(String imageVolumeMode) {
+
     this.imageVolumeMode = imageVolumeMode;
     return this;
   }
@@ -1642,19 +1778,22 @@ public class SpecGenerator implements Serializable {
   /**
    * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
    * @return imageVolumeMode
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageVolumeMode indicates how image volumes will be created. Supported modes are \"ignore\" (do not create), \"tmpfs\" (create as tmpfs), and \"anonymous\" (create as anonymous volumes). The default if unset is anonymous. Optional.")
 
   public String getImageVolumeMode() {
     return imageVolumeMode;
   }
+
 
   public void setImageVolumeMode(String imageVolumeMode) {
     this.imageVolumeMode = imageVolumeMode;
   }
 
 
-  public SpecGenerator imageVolumes(List<@Valid ImageVolume> imageVolumes) {
+  public SpecGenerator imageVolumes(List<ImageVolume> imageVolumes) {
+    
     this.imageVolumes = imageVolumes;
     return this;
   }
@@ -1670,20 +1809,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Image volumes bind-mount a container-image mount into the container. Optional.
    * @return imageVolumes
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the container. Optional.")
 
-  public List<@Valid ImageVolume> getImageVolumes() {
+  public List<ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
-  public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
+
+  public void setImageVolumes(List<ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
 
   public SpecGenerator init(Boolean init) {
+
     this.init = init;
     return this;
   }
@@ -1691,12 +1833,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
    * @return init
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.")
 
   public Boolean getInit() {
     return init;
   }
+
 
   public void setInit(Boolean init) {
     this.init = init;
@@ -1704,6 +1848,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator initContainerType(String initContainerType) {
+
     this.initContainerType = initContainerType;
     return this;
   }
@@ -1711,12 +1856,14 @@ public class SpecGenerator implements Serializable {
   /**
    * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
    * @return initContainerType
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.")
 
   public String getInitContainerType() {
     return initContainerType;
   }
+
 
   public void setInitContainerType(String initContainerType) {
     this.initContainerType = initContainerType;
@@ -1724,6 +1871,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator initPath(String initPath) {
+
     this.initPath = initPath;
     return this;
   }
@@ -1731,12 +1879,14 @@ public class SpecGenerator implements Serializable {
   /**
    * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
    * @return initPath
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.")
 
   public String getInitPath() {
     return initPath;
   }
+
 
   public void setInitPath(String initPath) {
     this.initPath = initPath;
@@ -1744,6 +1894,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator intelRdt(LinuxIntelRdt intelRdt) {
+
     this.intelRdt = intelRdt;
     return this;
   }
@@ -1751,13 +1902,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get intelRdt
    * @return intelRdt
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public LinuxIntelRdt getIntelRdt() {
     return intelRdt;
   }
+
 
   public void setIntelRdt(LinuxIntelRdt intelRdt) {
     this.intelRdt = intelRdt;
@@ -1765,6 +1918,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator ipcns(Namespace ipcns) {
+
     this.ipcns = ipcns;
     return this;
   }
@@ -1772,13 +1926,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get ipcns
    * @return ipcns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getIpcns() {
     return ipcns;
   }
+
 
   public void setIpcns(Namespace ipcns) {
     this.ipcns = ipcns;
@@ -1786,6 +1942,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator labelNested(Boolean labelNested) {
+
     this.labelNested = labelNested;
     return this;
   }
@@ -1793,12 +1950,14 @@ public class SpecGenerator implements Serializable {
   /**
    * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
    * @return labelNested
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.")
 
   public Boolean getLabelNested() {
     return labelNested;
   }
+
 
   public void setLabelNested(Boolean labelNested) {
     this.labelNested = labelNested;
@@ -1806,6 +1965,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator labels(Map<String, String> labels) {
+
     this.labels = labels;
     return this;
   }
@@ -1821,12 +1981,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Labels are key-value pairs that are used to add metadata to containers. Optional.
    * @return labels
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to containers. Optional.")
 
   public Map<String, String> getLabels() {
     return labels;
   }
+
 
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
@@ -1834,6 +1996,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator logConfiguration(LogConfigLibpod logConfiguration) {
+
     this.logConfiguration = logConfiguration;
     return this;
   }
@@ -1841,13 +2004,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get logConfiguration
    * @return logConfiguration
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public LogConfigLibpod getLogConfiguration() {
     return logConfiguration;
   }
+
 
   public void setLogConfiguration(LogConfigLibpod logConfiguration) {
     this.logConfiguration = logConfiguration;
@@ -1855,6 +2020,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator managePassword(Boolean managePassword) {
+
     this.managePassword = managePassword;
     return this;
   }
@@ -1862,12 +2028,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Passwd is a container run option that determines if we are validating users/groups before running the container
    * @return managePassword
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Passwd is a container run option that determines if we are validating users/groups before running the container")
 
   public Boolean getManagePassword() {
     return managePassword;
   }
+
 
   public void setManagePassword(Boolean managePassword) {
     this.managePassword = managePassword;
@@ -1875,6 +2043,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator mask(List<String> mask) {
+
     this.mask = mask;
     return this;
   }
@@ -1890,19 +2059,22 @@ public class SpecGenerator implements Serializable {
   /**
    * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
    * @return mask
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional")
 
   public List<String> getMask() {
     return mask;
   }
+
 
   public void setMask(List<String> mask) {
     this.mask = mask;
   }
 
 
-  public SpecGenerator mounts(List<@Valid Mount> mounts) {
+  public SpecGenerator mounts(List<Mount> mounts) {
+    
     this.mounts = mounts;
     return this;
   }
@@ -1918,20 +2090,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
 
-  public List<@Valid Mount> getMounts() {
+  public List<Mount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<@Valid Mount> mounts) {
+
+  public void setMounts(List<Mount> mounts) {
     this.mounts = mounts;
   }
 
 
   public SpecGenerator name(String name) {
+
     this.name = name;
     return this;
   }
@@ -1939,12 +2114,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
    * @return name
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.")
 
   public String getName() {
     return name;
   }
+
 
   public void setName(String name) {
     this.name = name;
@@ -1952,6 +2129,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator netns(Namespace netns) {
+
     this.netns = netns;
     return this;
   }
@@ -1959,13 +2137,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get netns
    * @return netns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getNetns() {
     return netns;
   }
+
 
   public void setNetns(Namespace netns) {
     this.netns = netns;
@@ -1973,6 +2153,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator networkOptions(Map<String, List<String>> networkOptions) {
+
     this.networkOptions = networkOptions;
     return this;
   }
@@ -1988,13 +2169,15 @@ public class SpecGenerator implements Serializable {
   /**
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
 
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
   }
+
 
   public void setNetworkOptions(Map<String, List<String>> networkOptions) {
     this.networkOptions = networkOptions;
@@ -2002,6 +2185,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator noNewPrivileges(Boolean noNewPrivileges) {
+
     this.noNewPrivileges = noNewPrivileges;
     return this;
   }
@@ -2009,12 +2193,14 @@ public class SpecGenerator implements Serializable {
   /**
    * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
    * @return noNewPrivileges
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.")
 
   public Boolean getNoNewPrivileges() {
     return noNewPrivileges;
   }
+
 
   public void setNoNewPrivileges(Boolean noNewPrivileges) {
     this.noNewPrivileges = noNewPrivileges;
@@ -2022,6 +2208,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator ociRuntime(String ociRuntime) {
+
     this.ociRuntime = ociRuntime;
     return this;
   }
@@ -2029,12 +2216,14 @@ public class SpecGenerator implements Serializable {
   /**
    * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
    * @return ociRuntime
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.")
 
   public String getOciRuntime() {
     return ociRuntime;
   }
+
 
   public void setOciRuntime(String ociRuntime) {
     this.ociRuntime = ociRuntime;
@@ -2042,6 +2231,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator oomScoreAdj(Long oomScoreAdj) {
+
     this.oomScoreAdj = oomScoreAdj;
     return this;
   }
@@ -2049,19 +2239,22 @@ public class SpecGenerator implements Serializable {
   /**
    * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
    * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container's process. Optional.")
 
   public Long getOomScoreAdj() {
     return oomScoreAdj;
   }
+
 
   public void setOomScoreAdj(Long oomScoreAdj) {
     this.oomScoreAdj = oomScoreAdj;
   }
 
 
-  public SpecGenerator overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+  public SpecGenerator overlayVolumes(List<OverlayVolume> overlayVolumes) {
+    
     this.overlayVolumes = overlayVolumes;
     return this;
   }
@@ -2077,20 +2270,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Overlay volumes are named volumes that will be added to the container. Optional.
    * @return overlayVolumes
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Overlay volumes are named volumes that will be added to the container. Optional.")
 
-  public List<@Valid OverlayVolume> getOverlayVolumes() {
+  public List<OverlayVolume> getOverlayVolumes() {
     return overlayVolumes;
   }
 
-  public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+
+  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
 
   public SpecGenerator passwdEntry(String passwdEntry) {
+
     this.passwdEntry = passwdEntry;
     return this;
   }
@@ -2098,12 +2294,14 @@ public class SpecGenerator implements Serializable {
   /**
    * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
    * @return passwdEntry
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PasswdEntry specifies an arbitrary string to append to the container's /etc/passwd file. Optional.")
 
   public String getPasswdEntry() {
     return passwdEntry;
   }
+
 
   public void setPasswdEntry(String passwdEntry) {
     this.passwdEntry = passwdEntry;
@@ -2111,6 +2309,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator personality(LinuxPersonality personality) {
+
     this.personality = personality;
     return this;
   }
@@ -2118,13 +2317,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get personality
    * @return personality
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public LinuxPersonality getPersonality() {
     return personality;
   }
+
 
   public void setPersonality(LinuxPersonality personality) {
     this.personality = personality;
@@ -2132,6 +2333,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator pidns(Namespace pidns) {
+
     this.pidns = pidns;
     return this;
   }
@@ -2139,13 +2341,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get pidns
    * @return pidns
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Namespace getPidns() {
     return pidns;
   }
+
 
   public void setPidns(Namespace pidns) {
     this.pidns = pidns;
@@ -2153,6 +2357,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator pod(String pod) {
+
     this.pod = pod;
     return this;
   }
@@ -2160,19 +2365,22 @@ public class SpecGenerator implements Serializable {
   /**
    * Pod is the ID of the pod the container will join. Optional.
    * @return pod
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Pod is the ID of the pod the container will join. Optional.")
 
   public String getPod() {
     return pod;
   }
+
 
   public void setPod(String pod) {
     this.pod = pod;
   }
 
 
-  public SpecGenerator portmappings(List<@Valid PortMapping> portmappings) {
+  public SpecGenerator portmappings(List<PortMapping> portmappings) {
+    
     this.portmappings = portmappings;
     return this;
   }
@@ -2188,20 +2396,23 @@ public class SpecGenerator implements Serializable {
   /**
    * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
    * @return portmappings
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.")
 
-  public List<@Valid PortMapping> getPortmappings() {
+  public List<PortMapping> getPortmappings() {
     return portmappings;
   }
 
-  public void setPortmappings(List<@Valid PortMapping> portmappings) {
+
+  public void setPortmappings(List<PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
 
   public SpecGenerator privileged(Boolean privileged) {
+
     this.privileged = privileged;
     return this;
   }
@@ -2209,12 +2420,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
    * @return privileged
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.")
 
   public Boolean getPrivileged() {
     return privileged;
   }
+
 
   public void setPrivileged(Boolean privileged) {
     this.privileged = privileged;
@@ -2222,6 +2435,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator procfsOpts(List<String> procfsOpts) {
+
     this.procfsOpts = procfsOpts;
     return this;
   }
@@ -2237,12 +2451,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ProcOpts are the options used for the proc mount.
    * @return procfsOpts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ProcOpts are the options used for the proc mount.")
 
   public List<String> getProcfsOpts() {
     return procfsOpts;
   }
+
 
   public void setProcfsOpts(List<String> procfsOpts) {
     this.procfsOpts = procfsOpts;
@@ -2250,6 +2466,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator publishImagePorts(Boolean publishImagePorts) {
+
     this.publishImagePorts = publishImagePorts;
     return this;
   }
@@ -2257,19 +2474,22 @@ public class SpecGenerator implements Serializable {
   /**
    * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
    * @return publishImagePorts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.")
 
   public Boolean getPublishImagePorts() {
     return publishImagePorts;
   }
+
 
   public void setPublishImagePorts(Boolean publishImagePorts) {
     this.publishImagePorts = publishImagePorts;
   }
 
 
-  public SpecGenerator rLimits(List<@Valid POSIXRlimit> rLimits) {
+  public SpecGenerator rLimits(List<POSIXRlimit> rLimits) {
+    
     this.rLimits = rLimits;
     return this;
   }
@@ -2285,20 +2505,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Rlimits are POSIX rlimits to apply to the container. Optional.
    * @return rLimits
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Rlimits are POSIX rlimits to apply to the container. Optional.")
 
-  public List<@Valid POSIXRlimit> getrLimits() {
+  public List<POSIXRlimit> getrLimits() {
     return rLimits;
   }
 
-  public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
+
+  public void setrLimits(List<POSIXRlimit> rLimits) {
     this.rLimits = rLimits;
   }
 
 
   public SpecGenerator rawImageName(String rawImageName) {
+
     this.rawImageName = rawImageName;
     return this;
   }
@@ -2306,12 +2529,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
    * @return rawImageName
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.")
 
   public String getRawImageName() {
     return rawImageName;
   }
+
 
   public void setRawImageName(String rawImageName) {
     this.rawImageName = rawImageName;
@@ -2319,6 +2544,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator readOnlyFilesystem(Boolean readOnlyFilesystem) {
+
     this.readOnlyFilesystem = readOnlyFilesystem;
     return this;
   }
@@ -2326,12 +2552,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
    * @return readOnlyFilesystem
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.")
 
   public Boolean getReadOnlyFilesystem() {
     return readOnlyFilesystem;
   }
+
 
   public void setReadOnlyFilesystem(Boolean readOnlyFilesystem) {
     this.readOnlyFilesystem = readOnlyFilesystem;
@@ -2339,6 +2567,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator readWriteTmpfs(Boolean readWriteTmpfs) {
+
     this.readWriteTmpfs = readWriteTmpfs;
     return this;
   }
@@ -2346,12 +2575,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
    * @return readWriteTmpfs
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.")
 
   public Boolean getReadWriteTmpfs() {
     return readWriteTmpfs;
   }
+
 
   public void setReadWriteTmpfs(Boolean readWriteTmpfs) {
     this.readWriteTmpfs = readWriteTmpfs;
@@ -2359,6 +2590,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator remove(Boolean remove) {
+
     this.remove = remove;
     return this;
   }
@@ -2366,12 +2598,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Remove indicates if the container should be removed once it has been started and exits. Optional.
    * @return remove
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Remove indicates if the container should be removed once it has been started and exits. Optional.")
 
   public Boolean getRemove() {
     return remove;
   }
+
 
   public void setRemove(Boolean remove) {
     this.remove = remove;
@@ -2379,6 +2613,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator removeImage(Boolean removeImage) {
+
     this.removeImage = removeImage;
     return this;
   }
@@ -2386,12 +2621,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
    * @return removeImage
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.")
 
   public Boolean getRemoveImage() {
     return removeImage;
   }
+
 
   public void setRemoveImage(Boolean removeImage) {
     this.removeImage = removeImage;
@@ -2399,6 +2636,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator resourceLimits(LinuxResources resourceLimits) {
+
     this.resourceLimits = resourceLimits;
     return this;
   }
@@ -2406,13 +2644,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get resourceLimits
    * @return resourceLimits
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public LinuxResources getResourceLimits() {
     return resourceLimits;
   }
+
 
   public void setResourceLimits(LinuxResources resourceLimits) {
     this.resourceLimits = resourceLimits;
@@ -2420,6 +2660,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator restartPolicy(String restartPolicy) {
+
     this.restartPolicy = restartPolicy;
     return this;
   }
@@ -2427,12 +2668,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
    * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartPolicy is the container's restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.")
 
   public String getRestartPolicy() {
     return restartPolicy;
   }
+
 
   public void setRestartPolicy(String restartPolicy) {
     this.restartPolicy = restartPolicy;
@@ -2440,6 +2683,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator restartTries(Integer restartTries) {
+
     this.restartTries = restartTries;
     return this;
   }
@@ -2447,12 +2691,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
 
   public Integer getRestartTries() {
     return restartTries;
   }
+
 
   public void setRestartTries(Integer restartTries) {
     this.restartTries = restartTries;
@@ -2460,6 +2706,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator rootfs(String rootfs) {
+
     this.rootfs = rootfs;
     return this;
   }
@@ -2467,12 +2714,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
    * @return rootfs
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Rootfs is the path to a directory that will be used as the container's root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.")
 
   public String getRootfs() {
     return rootfs;
   }
+
 
   public void setRootfs(String rootfs) {
     this.rootfs = rootfs;
@@ -2480,6 +2729,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator rootfsMapping(String rootfsMapping) {
+
     this.rootfsMapping = rootfsMapping;
     return this;
   }
@@ -2487,12 +2737,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
    * @return rootfsMapping
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.")
 
   public String getRootfsMapping() {
     return rootfsMapping;
   }
+
 
   public void setRootfsMapping(String rootfsMapping) {
     this.rootfsMapping = rootfsMapping;
@@ -2500,6 +2752,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator rootfsOverlay(Boolean rootfsOverlay) {
+
     this.rootfsOverlay = rootfsOverlay;
     return this;
   }
@@ -2507,12 +2760,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
    * @return rootfsOverlay
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.")
 
   public Boolean getRootfsOverlay() {
     return rootfsOverlay;
   }
+
 
   public void setRootfsOverlay(Boolean rootfsOverlay) {
     this.rootfsOverlay = rootfsOverlay;
@@ -2520,6 +2775,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator rootfsPropagation(String rootfsPropagation) {
+
     this.rootfsPropagation = rootfsPropagation;
     return this;
   }
@@ -2527,12 +2783,14 @@ public class SpecGenerator implements Serializable {
   /**
    * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
    * @return rootfsPropagation
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.")
 
   public String getRootfsPropagation() {
     return rootfsPropagation;
   }
+
 
   public void setRootfsPropagation(String rootfsPropagation) {
     this.rootfsPropagation = rootfsPropagation;
@@ -2540,6 +2798,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator sdnotifyMode(String sdnotifyMode) {
+
     this.sdnotifyMode = sdnotifyMode;
     return this;
   }
@@ -2547,12 +2806,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
    * @return sdnotifyMode
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \"container\" - let the OCI runtime deal with it, advertise conmon's MAINPID \"conmon-only\" - advertise conmon's MAINPID, send READY when started, don't pass to OCI \"ignore\" - unset NOTIFY_SOCKET Optional.")
 
   public String getSdnotifyMode() {
     return sdnotifyMode;
   }
+
 
   public void setSdnotifyMode(String sdnotifyMode) {
     this.sdnotifyMode = sdnotifyMode;
@@ -2560,6 +2821,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator seccompPolicy(String seccompPolicy) {
+
     this.seccompPolicy = seccompPolicy;
     return this;
   }
@@ -2567,12 +2829,14 @@ public class SpecGenerator implements Serializable {
   /**
    * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
    * @return seccompPolicy
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image")
 
   public String getSeccompPolicy() {
     return seccompPolicy;
   }
+
 
   public void setSeccompPolicy(String seccompPolicy) {
     this.seccompPolicy = seccompPolicy;
@@ -2580,6 +2844,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator seccompProfilePath(String seccompProfilePath) {
+
     this.seccompProfilePath = seccompProfilePath;
     return this;
   }
@@ -2587,12 +2852,14 @@ public class SpecGenerator implements Serializable {
   /**
    * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
    * @return seccompProfilePath
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SeccompProfilePath is the path to a JSON file containing the container's Seccomp profile. If not specified, no Seccomp profile will be used. Optional.")
 
   public String getSeccompProfilePath() {
     return seccompProfilePath;
   }
+
 
   public void setSeccompProfilePath(String seccompProfilePath) {
     this.seccompProfilePath = seccompProfilePath;
@@ -2600,6 +2867,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator secretEnv(Map<String, String> secretEnv) {
+
     this.secretEnv = secretEnv;
     return this;
   }
@@ -2615,19 +2883,22 @@ public class SpecGenerator implements Serializable {
   /**
    * EnvSecrets are secrets that will be set as environment variables Optional.
    * @return secretEnv
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvSecrets are secrets that will be set as environment variables Optional.")
 
   public Map<String, String> getSecretEnv() {
     return secretEnv;
   }
+
 
   public void setSecretEnv(Map<String, String> secretEnv) {
     this.secretEnv = secretEnv;
   }
 
 
-  public SpecGenerator secrets(List<@Valid Secret> secrets) {
+  public SpecGenerator secrets(List<Secret> secrets) {
+    
     this.secrets = secrets;
     return this;
   }
@@ -2643,20 +2914,23 @@ public class SpecGenerator implements Serializable {
   /**
    * Secrets are the secrets that will be added to the container Optional.
    * @return secrets
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Secrets are the secrets that will be added to the container Optional.")
 
-  public List<@Valid Secret> getSecrets() {
+  public List<Secret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<@Valid Secret> secrets) {
+
+  public void setSecrets(List<Secret> secrets) {
     this.secrets = secrets;
   }
 
 
   public SpecGenerator selinuxOpts(List<String> selinuxOpts) {
+
     this.selinuxOpts = selinuxOpts;
     return this;
   }
@@ -2672,12 +2946,14 @@ public class SpecGenerator implements Serializable {
   /**
    * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
    * @return selinuxOpts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.")
 
   public List<String> getSelinuxOpts() {
     return selinuxOpts;
   }
+
 
   public void setSelinuxOpts(List<String> selinuxOpts) {
     this.selinuxOpts = selinuxOpts;
@@ -2685,6 +2961,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator shmSize(Long shmSize) {
+
     this.shmSize = shmSize;
     return this;
   }
@@ -2692,12 +2969,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.")
 
   public Long getShmSize() {
     return shmSize;
   }
+
 
   public void setShmSize(Long shmSize) {
     this.shmSize = shmSize;
@@ -2705,6 +2984,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator shmSizeSystemd(Long shmSizeSystemd) {
+
     this.shmSizeSystemd = shmSizeSystemd;
     return this;
   }
@@ -2712,12 +2992,14 @@ public class SpecGenerator implements Serializable {
   /**
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional")
 
   public Long getShmSizeSystemd() {
     return shmSizeSystemd;
   }
+
 
   public void setShmSizeSystemd(Long shmSizeSystemd) {
     this.shmSizeSystemd = shmSizeSystemd;
@@ -2725,6 +3007,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator startupHealthConfig(StartupHealthCheck startupHealthConfig) {
+
     this.startupHealthConfig = startupHealthConfig;
     return this;
   }
@@ -2732,13 +3015,15 @@ public class SpecGenerator implements Serializable {
   /**
    * Get startupHealthConfig
    * @return startupHealthConfig
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public StartupHealthCheck getStartupHealthConfig() {
     return startupHealthConfig;
   }
+
 
   public void setStartupHealthConfig(StartupHealthCheck startupHealthConfig) {
     this.startupHealthConfig = startupHealthConfig;
@@ -2746,6 +3031,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator stdin(Boolean stdin) {
+
     this.stdin = stdin;
     return this;
   }
@@ -2753,12 +3039,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Stdin is whether the container will keep its STDIN open. Optional.
    * @return stdin
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Stdin is whether the container will keep its STDIN open. Optional.")
 
   public Boolean getStdin() {
     return stdin;
   }
+
 
   public void setStdin(Boolean stdin) {
     this.stdin = stdin;
@@ -2766,6 +3054,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator stopSignal(Long stopSignal) {
+
     this.stopSignal = stopSignal;
     return this;
   }
@@ -2773,12 +3062,14 @@ public class SpecGenerator implements Serializable {
   /**
    * It implements the [os.Signal] interface.
    * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "It implements the [os.Signal] interface.")
 
   public Long getStopSignal() {
     return stopSignal;
   }
+
 
   public void setStopSignal(Long stopSignal) {
     this.stopSignal = stopSignal;
@@ -2786,6 +3077,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator stopTimeout(Integer stopTimeout) {
+
     this.stopTimeout = stopTimeout;
     return this;
   }
@@ -2793,12 +3085,14 @@ public class SpecGenerator implements Serializable {
   /**
    * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
    * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StopTimeout is a timeout between the container's stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.")
 
   public Integer getStopTimeout() {
     return stopTimeout;
   }
+
 
   public void setStopTimeout(Integer stopTimeout) {
     this.stopTimeout = stopTimeout;
@@ -2806,6 +3100,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator storageOpts(Map<String, String> storageOpts) {
+
     this.storageOpts = storageOpts;
     return this;
   }
@@ -2821,12 +3116,14 @@ public class SpecGenerator implements Serializable {
   /**
    * StorageOpts is the container&#39;s storage options Optional.
    * @return storageOpts
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StorageOpts is the container's storage options Optional.")
 
   public Map<String, String> getStorageOpts() {
     return storageOpts;
   }
+
 
   public void setStorageOpts(Map<String, String> storageOpts) {
     this.storageOpts = storageOpts;
@@ -2834,6 +3131,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator sysctl(Map<String, String> sysctl) {
+
     this.sysctl = sysctl;
     return this;
   }
@@ -2849,12 +3147,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Sysctl sets kernel parameters for the container
    * @return sysctl
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Sysctl sets kernel parameters for the container")
 
   public Map<String, String> getSysctl() {
     return sysctl;
   }
+
 
   public void setSysctl(Map<String, String> sysctl) {
     this.sysctl = sysctl;
@@ -2862,6 +3162,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator systemd(String systemd) {
+
     this.systemd = systemd;
     return this;
   }
@@ -2869,12 +3170,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
    * @return systemd
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Systemd is whether the container will be started in systemd mode. Valid options are \"true\", \"false\", and \"always\". \"true\" enables this mode only if the binary run in the container is sbin/init or systemd. \"always\" unconditionally enables systemd mode. \"false\" unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \"always\" or set to \"true\" and conditionally triggered, conflicts with StopSignal. If not specified, \"false\" will be assumed. Optional.")
 
   public String getSystemd() {
     return systemd;
   }
+
 
   public void setSystemd(String systemd) {
     this.systemd = systemd;
@@ -2882,6 +3185,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator terminal(Boolean terminal) {
+
     this.terminal = terminal;
     return this;
   }
@@ -2889,12 +3193,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Terminal is whether the container will create a PTY. Optional.
    * @return terminal
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Terminal is whether the container will create a PTY. Optional.")
 
   public Boolean getTerminal() {
     return terminal;
   }
+
 
   public void setTerminal(Boolean terminal) {
     this.terminal = terminal;
@@ -2902,6 +3208,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
+
     this.throttleReadBpsDevice = throttleReadBpsDevice;
     return this;
   }
@@ -2917,13 +3224,15 @@ public class SpecGenerator implements Serializable {
   /**
    * IO read rate limit per cgroup per device, bytes per second
    * @return throttleReadBpsDevice
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "IO read rate limit per cgroup per device, bytes per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
     return throttleReadBpsDevice;
   }
+
 
   public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
     this.throttleReadBpsDevice = throttleReadBpsDevice;
@@ -2931,6 +3240,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
+
     this.throttleReadIOPSDevice = throttleReadIOPSDevice;
     return this;
   }
@@ -2946,13 +3256,15 @@ public class SpecGenerator implements Serializable {
   /**
    * IO read rate limit per cgroup per device, IO per second
    * @return throttleReadIOPSDevice
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "IO read rate limit per cgroup per device, IO per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
     return throttleReadIOPSDevice;
   }
+
 
   public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
     this.throttleReadIOPSDevice = throttleReadIOPSDevice;
@@ -2960,6 +3272,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
+
     this.throttleWriteBpsDevice = throttleWriteBpsDevice;
     return this;
   }
@@ -2975,13 +3288,15 @@ public class SpecGenerator implements Serializable {
   /**
    * IO write rate limit per cgroup per device, bytes per second
    * @return throttleWriteBpsDevice
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "IO write rate limit per cgroup per device, bytes per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
     return throttleWriteBpsDevice;
   }
+
 
   public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
     this.throttleWriteBpsDevice = throttleWriteBpsDevice;
@@ -2989,6 +3304,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
+
     this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
     return this;
   }
@@ -3004,13 +3320,15 @@ public class SpecGenerator implements Serializable {
   /**
    * IO write rate limit per cgroup per device, IO per second
    * @return throttleWriteIOPSDevice
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "IO write rate limit per cgroup per device, IO per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
     return throttleWriteIOPSDevice;
   }
+
 
   public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
     this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
@@ -3018,6 +3336,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator timeout(Integer timeout) {
+
     this.timeout = timeout;
     return this;
   }
@@ -3025,12 +3344,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
    * @return timeout
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.")
 
   public Integer getTimeout() {
     return timeout;
   }
+
 
   public void setTimeout(Integer timeout) {
     this.timeout = timeout;
@@ -3038,6 +3359,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator timezone(String timezone) {
+
     this.timezone = timezone;
     return this;
   }
@@ -3045,12 +3367,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
    * @return timezone
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.")
 
   public String getTimezone() {
     return timezone;
   }
+
 
   public void setTimezone(String timezone) {
     this.timezone = timezone;
@@ -3058,6 +3382,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator umask(String umask) {
+
     this.umask = umask;
     return this;
   }
@@ -3065,12 +3390,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Umask is the umask the init process of the container will be run with.
    * @return umask
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Umask is the umask the init process of the container will be run with.")
 
   public String getUmask() {
     return umask;
   }
+
 
   public void setUmask(String umask) {
     this.umask = umask;
@@ -3078,6 +3405,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator unified(Map<String, String> unified) {
+
     this.unified = unified;
     return this;
   }
@@ -3093,12 +3421,14 @@ public class SpecGenerator implements Serializable {
   /**
    * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
    * @return unified
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.")
 
   public Map<String, String> getUnified() {
     return unified;
   }
+
 
   public void setUnified(Map<String, String> unified) {
     this.unified = unified;
@@ -3106,6 +3436,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator unmask(List<String> unmask) {
+
     this.unmask = unmask;
     return this;
   }
@@ -3121,12 +3452,14 @@ public class SpecGenerator implements Serializable {
   /**
    * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
    * @return unmask
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.")
 
   public List<String> getUnmask() {
     return unmask;
   }
+
 
   public void setUnmask(List<String> unmask) {
     this.unmask = unmask;
@@ -3134,6 +3467,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator unsetenv(List<String> unsetenv) {
+
     this.unsetenv = unsetenv;
     return this;
   }
@@ -3149,12 +3483,14 @@ public class SpecGenerator implements Serializable {
   /**
    * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
    * @return unsetenv
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.")
 
   public List<String> getUnsetenv() {
     return unsetenv;
   }
+
 
   public void setUnsetenv(List<String> unsetenv) {
     this.unsetenv = unsetenv;
@@ -3162,6 +3498,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator unsetenvall(Boolean unsetenvall) {
+
     this.unsetenvall = unsetenvall;
     return this;
   }
@@ -3169,32 +3506,60 @@ public class SpecGenerator implements Serializable {
   /**
    * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
    * @return unsetenvall
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.")
 
   public Boolean getUnsetenvall() {
     return unsetenvall;
   }
+
 
   public void setUnsetenvall(Boolean unsetenvall) {
     this.unsetenvall = unsetenvall;
   }
 
 
-  public SpecGenerator useImageHosts(Boolean useImageHosts) {
-    this.useImageHosts = useImageHosts;
+  public SpecGenerator useImageHostname(Boolean useImageHostname) {
+
+    this.useImageHostname = useImageHostname;
     return this;
   }
 
   /**
+   * UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.
+   * @return useImageHostname
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.")
+
+  public Boolean getUseImageHostname() {
+    return useImageHostname;
+  }
+
+
+  public void setUseImageHostname(Boolean useImageHostname) {
+    this.useImageHostname = useImageHostname;
+  }
+
+
+  public SpecGenerator useImageHosts(Boolean useImageHosts) {
+    
+    this.useImageHosts = useImageHosts;
+    return this;
+  }
+
+   /**
    * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
    * @return useImageHosts
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.")
 
   public Boolean getUseImageHosts() {
     return useImageHosts;
   }
+
 
   public void setUseImageHosts(Boolean useImageHosts) {
     this.useImageHosts = useImageHosts;
@@ -3202,19 +3567,22 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator useImageResolveConf(Boolean useImageResolveConf) {
+    
     this.useImageResolveConf = useImageResolveConf;
     return this;
   }
 
-  /**
+   /**
    * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
    * @return useImageResolveConf
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.")
 
   public Boolean getUseImageResolveConf() {
     return useImageResolveConf;
   }
+
 
   public void setUseImageResolveConf(Boolean useImageResolveConf) {
     this.useImageResolveConf = useImageResolveConf;
@@ -3222,19 +3590,22 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator user(String user) {
+    
     this.user = user;
     return this;
   }
 
-  /**
+   /**
    * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
    * @return user
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container's /etc/passwd. If unset, the container will be run as root. Optional.")
 
   public String getUser() {
     return user;
   }
+
 
   public void setUser(String user) {
     this.user = user;
@@ -3242,20 +3613,23 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator userns(Namespace userns) {
+    
     this.userns = userns;
     return this;
   }
 
-  /**
+   /**
    * Get userns
    * @return userns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
+    **/
+   @javax.annotation.Nullable
+   @Valid
+   @ApiModelProperty(value = "")
 
   public Namespace getUserns() {
     return userns;
   }
+
 
   public void setUserns(Namespace userns) {
     this.userns = userns;
@@ -3263,20 +3637,23 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator utsns(Namespace utsns) {
+    
     this.utsns = utsns;
     return this;
   }
 
-  /**
+   /**
    * Get utsns
    * @return utsns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
+    **/
+   @javax.annotation.Nullable
+   @Valid
+   @ApiModelProperty(value = "")
 
   public Namespace getUtsns() {
     return utsns;
   }
+
 
   public void setUtsns(Namespace utsns) {
     this.utsns = utsns;
@@ -3284,26 +3661,30 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator _volatile(Boolean _volatile) {
+    
     this._volatile = _volatile;
     return this;
   }
 
-  /**
+   /**
    * Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.
    * @return _volatile
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.")
 
   public Boolean getVolatile() {
     return _volatile;
   }
+
 
   public void setVolatile(Boolean _volatile) {
     this._volatile = _volatile;
   }
 
 
-  public SpecGenerator volumes(List<@Valid NamedVolume> volumes) {
+  public SpecGenerator volumes(List<NamedVolume> volumes) {
+    
     this.volumes = volumes;
     return this;
   }
@@ -3316,23 +3697,26 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-  /**
+   /**
    * Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return volumes
-   */
-  @jakarta.annotation.Nullable
-  @Valid
+    **/
+   @javax.annotation.Nullable
+   @Valid
+   @ApiModelProperty(value = "Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
 
-  public List<@Valid NamedVolume> getVolumes() {
+   public List<NamedVolume> getVolumes() {
     return volumes;
-  }
+   }
 
-  public void setVolumes(List<@Valid NamedVolume> volumes) {
+
+  public void setVolumes(List<NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
 
   public SpecGenerator volumesFrom(List<String> volumesFrom) {
+    
     this.volumesFrom = volumesFrom;
     return this;
   }
@@ -3345,15 +3729,17 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-  /**
+   /**
    * VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. Optional.
    * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are 'ro', 'rw', and 'z'. Options will be used for all volumes sourced from the container. Optional.")
 
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
+
 
   public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
@@ -3361,6 +3747,7 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator weightDevice(Map<String, LinuxWeightDevice> weightDevice) {
+    
     this.weightDevice = weightDevice;
     return this;
   }
@@ -3373,16 +3760,18 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-  /**
+   /**
    * Weight per cgroup per device, can override BlkioWeight
    * @return weightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
+    **/
+   @javax.annotation.Nullable
+   @Valid
+   @ApiModelProperty(value = "Weight per cgroup per device, can override BlkioWeight")
 
   public Map<String, LinuxWeightDevice> getWeightDevice() {
     return weightDevice;
   }
+
 
   public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
     this.weightDevice = weightDevice;
@@ -3390,19 +3779,22 @@ public class SpecGenerator implements Serializable {
 
 
   public SpecGenerator workDir(String workDir) {
+    
     this.workDir = workDir;
     return this;
   }
 
-  /**
+   /**
    * WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional.
    * @return workDir
-   */
-  @jakarta.annotation.Nullable
+    **/
+   @javax.annotation.Nullable
+   @ApiModelProperty(value = "WorkDir is the container's working directory. If unset, the default, /, will be used. Optional.")
 
   public String getWorkDir() {
     return workDir;
   }
+
 
   public void setWorkDir(String workDir) {
     this.workDir = workDir;
@@ -3531,6 +3923,7 @@ public class SpecGenerator implements Serializable {
         Objects.equals(this.unmask, specGenerator.unmask) &&
         Objects.equals(this.unsetenv, specGenerator.unsetenv) &&
         Objects.equals(this.unsetenvall, specGenerator.unsetenvall) &&
+            Objects.equals(this.useImageHostname, specGenerator.useImageHostname) &&
         Objects.equals(this.useImageHosts, specGenerator.useImageHosts) &&
         Objects.equals(this.useImageResolveConf, specGenerator.useImageResolveConf) &&
         Objects.equals(this.user, specGenerator.user) &&
@@ -3545,7 +3938,7 @@ public class SpecGenerator implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
+    return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHostname, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
   }
 
   @Override
@@ -3664,6 +4057,7 @@ public class SpecGenerator implements Serializable {
     sb.append("    unmask: ").append(toIndentedString(unmask)).append("\n");
     sb.append("    unsetenv: ").append(toIndentedString(unsetenv)).append("\n");
     sb.append("    unsetenvall: ").append(toIndentedString(unsetenvall)).append("\n");
+    sb.append("    useImageHostname: ").append(toIndentedString(useImageHostname)).append("\n");
     sb.append("    useImageHosts: ").append(toIndentedString(useImageHosts)).append("\n");
     sb.append("    useImageResolveConf: ").append(toIndentedString(useImageResolveConf)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
@@ -3808,6 +4202,7 @@ public class SpecGenerator implements Serializable {
     openapiFields.add("unmask");
     openapiFields.add("unsetenv");
     openapiFields.add("unsetenvall");
+    openapiFields.add("use_image_hostname");
     openapiFields.add("use_image_hosts");
     openapiFields.add("use_image_resolve_conf");
     openapiFields.add("user");
@@ -3824,38 +4219,39 @@ public class SpecGenerator implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SpecGenerator
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SpecGenerator
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SpecGenerator.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+      if (jsonObj == null) {
+        if (SpecGenerator.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SpecGenerator is not found in the empty JSON string", SpecGenerator.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+      for (Entry<String, JsonElement> entry : entries) {
         if (!SpecGenerator.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SpecGenerator` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SpecGenerator` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("apparmor_profile") != null && !jsonObj.get("apparmor_profile").isJsonNull()) && !jsonObj.get("apparmor_profile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `apparmor_profile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apparmor_profile").toString()));
       }
       if ((jsonObj.get("base_hosts_file") != null && !jsonObj.get("base_hosts_file").isJsonNull()) && !jsonObj.get("base_hosts_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `base_hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("base_hosts_file").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull() && !jsonObj.get("cap_add").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull()) && !jsonObj.get("cap_add").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_add` to be an array in the JSON string but got `%s`", jsonObj.get("cap_add").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull() && !jsonObj.get("cap_drop").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull()) && !jsonObj.get("cap_drop").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_drop` to be an array in the JSON string but got `%s`", jsonObj.get("cap_drop").toString()));
       }
       if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
@@ -3863,32 +4259,32 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `cgroupns`
       if (jsonObj.get("cgroupns") != null && !jsonObj.get("cgroupns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("cgroupns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("cgroupns"));
       }
       if ((jsonObj.get("cgroups_mode") != null && !jsonObj.get("cgroups_mode").isJsonNull()) && !jsonObj.get("cgroups_mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cgroups_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroups_mode").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull() && !jsonObj.get("chroot_directories").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull()) && !jsonObj.get("chroot_directories").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `chroot_directories` to be an array in the JSON string but got `%s`", jsonObj.get("chroot_directories").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull() && !jsonObj.get("cni_networks").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull() && !jsonObj.get("command").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull()) && !jsonObj.get("command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `command` to be an array in the JSON string but got `%s`", jsonObj.get("command").toString()));
       }
       if ((jsonObj.get("conmon_pid_file") != null && !jsonObj.get("conmon_pid_file").isJsonNull()) && !jsonObj.get("conmon_pid_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conmon_pid_file").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull() && !jsonObj.get("containerCreateCommand").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull()) && !jsonObj.get("containerCreateCommand").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `containerCreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("containerCreateCommand").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull() && !jsonObj.get("dependencyContainers").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull()) && !jsonObj.get("dependencyContainers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dependencyContainers` to be an array in the JSON string but got `%s`", jsonObj.get("dependencyContainers").toString()));
       }
       if (jsonObj.get("device_cgroup_rule") != null && !jsonObj.get("device_cgroup_rule").isJsonNull()) {
@@ -3901,7 +4297,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `device_cgroup_rule` (array)
           for (int i = 0; i < jsonArraydeviceCgroupRule.size(); i++) {
-            LinuxDeviceCgroup.validateJsonElement(jsonArraydeviceCgroupRule.get(i));
+            LinuxDeviceCgroup.validateJsonObject(jsonArraydeviceCgroupRule.get(i).getAsJsonObject());
           };
         }
       }
@@ -3915,39 +4311,39 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `devices` (array)
           for (int i = 0; i < jsonArraydevices.size(); i++) {
-            LinuxDevice.validateJsonElement(jsonArraydevices.get(i));
+            LinuxDevice.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull() && !jsonObj.get("devices_from").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull()) && !jsonObj.get("devices_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `devices_from` to be an array in the JSON string but got `%s`", jsonObj.get("devices_from").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull() && !jsonObj.get("dns_option").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull() && !jsonObj.get("dns_search").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull() && !jsonObj.get("dns_server").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull() && !jsonObj.get("entrypoint").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull() && !jsonObj.get("envmerge").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull()) && !jsonObj.get("envmerge").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `envmerge` to be an array in the JSON string but got `%s`", jsonObj.get("envmerge").toString()));
       }
       if ((jsonObj.get("group_entry") != null && !jsonObj.get("group_entry").isJsonNull()) && !jsonObj.get("group_entry").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `group_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("group_entry").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull() && !jsonObj.get("groups").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) && !jsonObj.get("groups").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
       }
       if ((jsonObj.get("healthLogDestination") != null && !jsonObj.get("healthLogDestination").isJsonNull()) && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
@@ -3955,7 +4351,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `healthconfig`
       if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {
-        Schema2HealthConfig.validateJsonElement(jsonObj.get("healthconfig"));
+        Schema2HealthConfig.validateJsonObject(jsonObj.getAsJsonObject("healthconfig"));
       }
       if (jsonObj.get("host_device_list") != null && !jsonObj.get("host_device_list").isJsonNull()) {
         JsonArray jsonArrayhostDeviceList = jsonObj.getAsJsonArray("host_device_list");
@@ -3967,24 +4363,24 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `host_device_list` (array)
           for (int i = 0; i < jsonArrayhostDeviceList.size(); i++) {
-            LinuxDevice.validateJsonElement(jsonArrayhostDeviceList.get(i));
+            LinuxDevice.validateJsonObject(jsonArrayhostDeviceList.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
       }
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull() && !jsonObj.get("hostusers").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull()) && !jsonObj.get("hostusers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostusers` to be an array in the JSON string but got `%s`", jsonObj.get("hostusers").toString()));
       }
       // validate the optional field `idmappings`
       if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
-        IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
+        IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
       }
       if ((jsonObj.get("image") != null && !jsonObj.get("image").isJsonNull()) && !jsonObj.get("image").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image").toString()));
@@ -4011,7 +4407,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `image_volumes` (array)
           for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-            ImageVolume.validateJsonElement(jsonArrayimageVolumes.get(i));
+            ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -4023,18 +4419,18 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `intelRdt`
       if (jsonObj.get("intelRdt") != null && !jsonObj.get("intelRdt").isJsonNull()) {
-        LinuxIntelRdt.validateJsonElement(jsonObj.get("intelRdt"));
+        LinuxIntelRdt.validateJsonObject(jsonObj.getAsJsonObject("intelRdt"));
       }
       // validate the optional field `ipcns`
       if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("ipcns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
       }
       // validate the optional field `log_configuration`
       if (jsonObj.get("log_configuration") != null && !jsonObj.get("log_configuration").isJsonNull()) {
-        LogConfigLibpod.validateJsonElement(jsonObj.get("log_configuration"));
+        LogConfigLibpod.validateJsonObject(jsonObj.getAsJsonObject("log_configuration"));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull() && !jsonObj.get("mask").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull()) && !jsonObj.get("mask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mask` to be an array in the JSON string but got `%s`", jsonObj.get("mask").toString()));
       }
       if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
@@ -4047,7 +4443,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-            Mount.validateJsonElement(jsonArraymounts.get(i));
+            Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -4056,7 +4452,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("netns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
       }
       if ((jsonObj.get("oci_runtime") != null && !jsonObj.get("oci_runtime").isJsonNull()) && !jsonObj.get("oci_runtime").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `oci_runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oci_runtime").toString()));
@@ -4071,7 +4467,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `overlay_volumes` (array)
           for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-            OverlayVolume.validateJsonElement(jsonArrayoverlayVolumes.get(i));
+            OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -4080,11 +4476,11 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `personality`
       if (jsonObj.get("personality") != null && !jsonObj.get("personality").isJsonNull()) {
-        LinuxPersonality.validateJsonElement(jsonObj.get("personality"));
+        LinuxPersonality.validateJsonObject(jsonObj.getAsJsonObject("personality"));
       }
       // validate the optional field `pidns`
       if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("pidns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
       }
       if ((jsonObj.get("pod") != null && !jsonObj.get("pod").isJsonNull()) && !jsonObj.get("pod").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pod").toString()));
@@ -4099,12 +4495,12 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `portmappings` (array)
           for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-            PortMapping.validateJsonElement(jsonArrayportmappings.get(i));
+            PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull() && !jsonObj.get("procfs_opts").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull()) && !jsonObj.get("procfs_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `procfs_opts` to be an array in the JSON string but got `%s`", jsonObj.get("procfs_opts").toString()));
       }
       if (jsonObj.get("r_limits") != null && !jsonObj.get("r_limits").isJsonNull()) {
@@ -4117,7 +4513,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `r_limits` (array)
           for (int i = 0; i < jsonArrayrLimits.size(); i++) {
-            POSIXRlimit.validateJsonElement(jsonArrayrLimits.get(i));
+            POSIXRlimit.validateJsonObject(jsonArrayrLimits.get(i).getAsJsonObject());
           };
         }
       }
@@ -4126,7 +4522,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `resource_limits`
       if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
-        LinuxResources.validateJsonElement(jsonObj.get("resource_limits"));
+        LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
       }
       if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
@@ -4159,17 +4555,17 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `secrets` (array)
           for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            Secret.validateJsonElement(jsonArraysecrets.get(i));
+            Secret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull() && !jsonObj.get("selinux_opts").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull()) && !jsonObj.get("selinux_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `selinux_opts` to be an array in the JSON string but got `%s`", jsonObj.get("selinux_opts").toString()));
       }
       // validate the optional field `startupHealthConfig`
       if (jsonObj.get("startupHealthConfig") != null && !jsonObj.get("startupHealthConfig").isJsonNull()) {
-        StartupHealthCheck.validateJsonElement(jsonObj.get("startupHealthConfig"));
+        StartupHealthCheck.validateJsonObject(jsonObj.getAsJsonObject("startupHealthConfig"));
       }
       if ((jsonObj.get("systemd") != null && !jsonObj.get("systemd").isJsonNull()) && !jsonObj.get("systemd").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `systemd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("systemd").toString()));
@@ -4180,12 +4576,12 @@ public class SpecGenerator implements Serializable {
       if ((jsonObj.get("umask") != null && !jsonObj.get("umask").isJsonNull()) && !jsonObj.get("umask").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("umask").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull() && !jsonObj.get("unmask").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull()) && !jsonObj.get("unmask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unmask` to be an array in the JSON string but got `%s`", jsonObj.get("unmask").toString()));
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull() && !jsonObj.get("unsetenv").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull()) && !jsonObj.get("unsetenv").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unsetenv` to be an array in the JSON string but got `%s`", jsonObj.get("unsetenv").toString()));
       }
       if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
@@ -4193,11 +4589,11 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `userns`
       if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("userns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
       }
       // validate the optional field `utsns`
       if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("utsns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
       }
       if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
         JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
@@ -4209,12 +4605,12 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            NamedVolume.validateJsonElement(jsonArrayvolumes.get(i));
+            NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           };
         }
       }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
       }
       if ((jsonObj.get("work_dir") != null && !jsonObj.get("work_dir").isJsonNull()) && !jsonObj.get("work_dir").isJsonPrimitive()) {
@@ -4242,9 +4638,9 @@ public class SpecGenerator implements Serializable {
 
            @Override
            public SpecGenerator read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -4257,16 +4653,16 @@ public class SpecGenerator implements Serializable {
    * @param jsonString JSON string
    * @return An instance of SpecGenerator
    * @throws IOException if the JSON string is invalid with respect to SpecGenerator
-   */
+  */
   public static SpecGenerator fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SpecGenerator.class);
   }
 
   /**
    * Convert an instance of SpecGenerator to an JSON string
-   *
-   * @return JSON string
-   */
+  *
+  * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

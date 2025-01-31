@@ -14,17 +14,19 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +38,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectExecSession
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InspectExecSession implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -105,19 +103,22 @@ public class InspectExecSession implements Serializable {
   }
 
   public InspectExecSession canRemove(Boolean canRemove) {
-    this.canRemove = canRemove;
+
+      this.canRemove = canRemove;
     return this;
   }
 
-  /**
+    /**
    * CanRemove is legacy and used purely for compatibility reasons. Will always be set to true, unless the exec session is running.
    * @return canRemove
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "CanRemove is legacy and used purely for compatibility reasons. Will always be set to true, unless the exec session is running.")
 
   public Boolean getCanRemove() {
     return canRemove;
   }
+
 
   public void setCanRemove(Boolean canRemove) {
     this.canRemove = canRemove;
@@ -125,19 +126,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession containerID(String containerID) {
-    this.containerID = containerID;
+
+      this.containerID = containerID;
     return this;
   }
 
-  /**
+    /**
    * ContainerID is the ID of the container this exec session is attached to.
    * @return containerID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ContainerID is the ID of the container this exec session is attached to.")
 
   public String getContainerID() {
     return containerID;
   }
+
 
   public void setContainerID(String containerID) {
     this.containerID = containerID;
@@ -145,19 +149,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession detachKeys(String detachKeys) {
-    this.detachKeys = detachKeys;
+
+      this.detachKeys = detachKeys;
     return this;
   }
 
-  /**
+    /**
    * DetachKeys are the detach keys used by the exec session. If set to \&quot;\&quot; the default keys are being used. Will show \&quot;&lt;none&gt;\&quot; if no detach keys are set.
    * @return detachKeys
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "DetachKeys are the detach keys used by the exec session. If set to \"\" the default keys are being used. Will show \"<none>\" if no detach keys are set.")
 
   public String getDetachKeys() {
     return detachKeys;
   }
+
 
   public void setDetachKeys(String detachKeys) {
     this.detachKeys = detachKeys;
@@ -165,19 +172,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession exitCode(Long exitCode) {
-    this.exitCode = exitCode;
+
+      this.exitCode = exitCode;
     return this;
   }
 
-  /**
+    /**
    * ExitCode is the exit code of the exec session. Will be set to 0 if the exec session has not yet exited.
    * @return exitCode
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ExitCode is the exit code of the exec session. Will be set to 0 if the exec session has not yet exited.")
 
   public Long getExitCode() {
     return exitCode;
   }
+
 
   public void setExitCode(Long exitCode) {
     this.exitCode = exitCode;
@@ -185,19 +195,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession ID(String ID) {
-    this.ID = ID;
+
+      this.ID = ID;
     return this;
   }
 
-  /**
+    /**
    * ID is the ID of the exec session.
    * @return ID
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ID is the ID of the exec session.")
 
   public String getID() {
     return ID;
   }
+
 
   public void setID(String ID) {
     this.ID = ID;
@@ -205,19 +218,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession openStderr(Boolean openStderr) {
-    this.openStderr = openStderr;
+
+      this.openStderr = openStderr;
     return this;
   }
 
-  /**
+    /**
    * OpenStderr is whether the container&#39;s STDERR stream will be attached. Always set to true if the exec session created a TTY.
    * @return openStderr
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OpenStderr is whether the container's STDERR stream will be attached. Always set to true if the exec session created a TTY.")
 
   public Boolean getOpenStderr() {
     return openStderr;
   }
+
 
   public void setOpenStderr(Boolean openStderr) {
     this.openStderr = openStderr;
@@ -225,19 +241,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession openStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
+
+      this.openStdin = openStdin;
     return this;
   }
 
-  /**
+    /**
    * OpenStdin is whether the container&#39;s STDIN stream will be attached to.
    * @return openStdin
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OpenStdin is whether the container's STDIN stream will be attached to.")
 
   public Boolean getOpenStdin() {
     return openStdin;
   }
+
 
   public void setOpenStdin(Boolean openStdin) {
     this.openStdin = openStdin;
@@ -245,19 +264,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession openStdout(Boolean openStdout) {
-    this.openStdout = openStdout;
+
+      this.openStdout = openStdout;
     return this;
   }
 
-  /**
+    /**
    * OpenStdout is whether the container&#39;s STDOUT stream will be attached. Always set to true if the exec session created a TTY.
    * @return openStdout
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "OpenStdout is whether the container's STDOUT stream will be attached. Always set to true if the exec session created a TTY.")
 
   public Boolean getOpenStdout() {
     return openStdout;
   }
+
 
   public void setOpenStdout(Boolean openStdout) {
     this.openStdout = openStdout;
@@ -265,19 +287,22 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession pid(Long pid) {
-    this.pid = pid;
+
+      this.pid = pid;
     return this;
   }
 
-  /**
+    /**
    * Pid is the PID of the exec session&#39;s process. Will be set to 0 if the exec session is not running.
    * @return pid
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Pid is the PID of the exec session's process. Will be set to 0 if the exec session is not running.")
 
   public Long getPid() {
     return pid;
   }
+
 
   public void setPid(Long pid) {
     this.pid = pid;
@@ -285,20 +310,23 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession processConfig(InspectExecProcess processConfig) {
-    this.processConfig = processConfig;
+
+      this.processConfig = processConfig;
     return this;
   }
 
-  /**
+    /**
    * Get processConfig
    * @return processConfig
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public InspectExecProcess getProcessConfig() {
     return processConfig;
   }
+
 
   public void setProcessConfig(InspectExecProcess processConfig) {
     this.processConfig = processConfig;
@@ -306,21 +334,24 @@ public class InspectExecSession implements Serializable {
 
 
   public InspectExecSession running(Boolean running) {
-    this.running = running;
+
+      this.running = running;
     return this;
   }
 
-  /**
+    /**
    * Running is whether the exec session is running.
    * @return running
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Running is whether the exec session is running.")
 
   public Boolean getRunning() {
     return running;
   }
 
-  public void setRunning(Boolean running) {
+
+    public void setRunning(Boolean running) {
     this.running = running;
   }
 
@@ -406,27 +437,28 @@ public class InspectExecSession implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectExecSession
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectExecSession.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecSession is not found in the empty JSON string", InspectExecSession.openapiRequiredFields.toString()));
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to InspectExecSession
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (InspectExecSession.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecSession is not found in the empty JSON string", InspectExecSession.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!InspectExecSession.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecSession` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecSession` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
       }
@@ -438,7 +470,7 @@ public class InspectExecSession implements Serializable {
       }
       // validate the optional field `ProcessConfig`
       if (jsonObj.get("ProcessConfig") != null && !jsonObj.get("ProcessConfig").isJsonNull()) {
-        InspectExecProcess.validateJsonElement(jsonObj.get("ProcessConfig"));
+          InspectExecProcess.validateJsonObject(jsonObj.getAsJsonObject("ProcessConfig"));
       }
   }
 
@@ -462,31 +494,31 @@ public class InspectExecSession implements Serializable {
 
            @Override
            public InspectExecSession read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of InspectExecSession given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectExecSession
-   * @throws IOException if the JSON string is invalid with respect to InspectExecSession
-   */
+    /**
+     * Create an instance of InspectExecSession given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectExecSession
+     * @throws IOException if the JSON string is invalid with respect to InspectExecSession
+  */
   public static InspectExecSession fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectExecSession.class);
   }
 
-  /**
-   * Convert an instance of InspectExecSession to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of InspectExecSession to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

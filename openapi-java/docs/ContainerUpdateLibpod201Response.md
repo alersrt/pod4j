@@ -1,6 +1,6 @@
 
 
-# SecretCreateLibpod201Response
+# ContainerUpdateLibpod201Response
 
 
 ## Properties

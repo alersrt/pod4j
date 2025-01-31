@@ -12,8 +12,7 @@ All URIs are relative to *http://podman.io*
 | [**networkList**](NetworksCompatApi.md#networkList) | **GET** /networks | List networks |
 | [**networkPrune**](NetworksCompatApi.md#networkPrune) | **POST** /networks/prune | Delete unused networks |
 
-
-<a id="networkConnect"></a>
+<a name="networkConnect"></a>
 # **networkConnect**
 > networkConnect(name).create(create).execute();
 
@@ -81,7 +80,7 @@ No authorization required
 | **403** | Network is already connected and container is running or transitioning to the running state (&#39;initialized&#39;) |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkCreate"></a>
+<a name="networkCreate"></a>
 # **networkCreate**
 > NetworkCreate201Response networkCreate().create(create).execute();
 
@@ -147,7 +146,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkDelete"></a>
+<a name="networkDelete"></a>
 # **networkDelete**
 > networkDelete(name).execute();
 
@@ -211,7 +210,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkDisconnect"></a>
+<a name="networkDisconnect"></a>
 # **networkDisconnect**
 > networkDisconnect(name).create(create).execute();
 
@@ -278,7 +277,7 @@ No authorization required
 | **400** | Bad parameter in request |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkInspect"></a>
+<a name="networkInspect"></a>
 # **networkInspect**
 > Inspect networkInspect(name).verbose(verbose).scope(scope).execute();
 
@@ -349,7 +348,7 @@ No authorization required
 | **404** | No such network |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkList"></a>
+<a name="networkList"></a>
 # **networkList**
 > List&lt;Inspect&gt; networkList().filters(filters).execute();
 
@@ -414,7 +413,7 @@ No authorization required
 | **200** | Network list |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="networkPrune"></a>
+<a name="networkPrune"></a>
 # **networkPrune**
 > NetworkPrune200Response networkPrune().filters(filters).execute();
 

@@ -1,6 +1,5 @@
 package io.github.alersrt.pod4j;
 
-import io.github.alersrt.pod4j.exceptions.PodmanException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.junit.jupiter.api.Assertions;
@@ -9,31 +8,35 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+
 class KubePlayerTest {
 
+    protected static final KubePlayer ENVIRONMENT = new KubePlayer(
+        "/var/run/user/1000/podman/podman.sock",
+        Paths.get("src/test/resources/").toAbsolutePath().toString()
+    );
+
+    protected static final String SERVICE = "nginx";
+    protected static final int PORT = 80;
+
+    static {
+        ENVIRONMENT.withExposedService(SERVICE, PORT).start();
+    }
+
     @Test
-    void startStop() throws IOException, PodmanException {
+    void startStop() throws IOException {
         /*------ Arranges ------*/
-        final String socketPath = "/var/run/user/1000/podman/podman.sock";
-        final String yamlPath = Paths.get("src/test/resources/nginx.yaml").toAbsolutePath().toString();
-
-        final String serviceName = "nginx";
-        final int exposedPort = 80;
-
         var client = new OkHttpClient.Builder().build();
-        var testedUnit = new KubePlayer(socketPath, yamlPath).withExposedService(serviceName, exposedPort);
 
         /*------ Actions ------*/
-        testedUnit.start();
 
-        int mappedPort = testedUnit.getMappedPort(serviceName, exposedPort);
+        var mappedPort = ENVIRONMENT.getMappedPort(SERVICE, PORT);
         var result = client
-                .newCall(new Request.Builder().url("http://localhost:%d".formatted(mappedPort)).build())
-                .execute();
-        testedUnit.stop();
+            .newCall(new Request.Builder().url("http://localhost:%d".formatted(mappedPort)).build())
+            .execute();
 
         /*------ Asserts ------*/
-        Assertions.assertNotEquals(mappedPort, exposedPort);
+        Assertions.assertNotEquals(PORT, mappedPort);
         Assertions.assertTrue(result.isSuccessful());
     }
 }

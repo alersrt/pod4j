@@ -14,6 +14,7 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,11 +24,12 @@ import io.github.alersrt.pod4j.openapi.model.AttestationProperties;
 import io.github.alersrt.pod4j.openapi.model.Descriptor;
 import io.github.alersrt.pod4j.openapi.model.ImageProperties;
 import io.github.alersrt.pod4j.openapi.model.ManifestSummarySize;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,16 +41,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -56,7 +54,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ManifestSummary
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ManifestSummary implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -92,20 +90,23 @@ public class ManifestSummary implements Serializable {
   }
 
   public ManifestSummary available(Boolean available) {
-    this.available = available;
+
+      this.available = available;
     return this;
   }
 
-  /**
+    /**
    * Indicates whether all the child content (image config, layers) is fully available locally
    * @return available
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "Indicates whether all the child content (image config, layers) is fully available locally")
 
   public Boolean getAvailable() {
     return available;
   }
+
 
   public void setAvailable(Boolean available) {
     this.available = available;
@@ -113,21 +114,24 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary descriptor(Descriptor descriptor) {
-    this.descriptor = descriptor;
+
+      this.descriptor = descriptor;
     return this;
   }
 
-  /**
+    /**
    * Get descriptor
    * @return descriptor
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
   @Valid
+    @ApiModelProperty(required = true, value = "")
 
   public Descriptor getDescriptor() {
     return descriptor;
   }
+
 
   public void setDescriptor(Descriptor descriptor) {
     this.descriptor = descriptor;
@@ -135,20 +139,23 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary ID(String ID) {
-    this.ID = ID;
+
+      this.ID = ID;
     return this;
   }
 
-  /**
+    /**
    * ID is the content-addressable ID of an image and is the same as the digest of the image manifest.
    * @return ID
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "ID is the content-addressable ID of an image and is the same as the digest of the image manifest.")
 
   public String getID() {
     return ID;
   }
+
 
   public void setID(String ID) {
     this.ID = ID;
@@ -156,20 +163,23 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary kind(String kind) {
-    this.kind = kind;
+
+      this.kind = kind;
     return this;
   }
 
-  /**
+    /**
    * Get kind
    * @return kind
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
+    @ApiModelProperty(required = true, value = "")
 
   public String getKind() {
     return kind;
   }
+
 
   public void setKind(String kind) {
     this.kind = kind;
@@ -177,21 +187,24 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary size(ManifestSummarySize size) {
-    this.size = size;
+
+      this.size = size;
     return this;
   }
 
-  /**
+    /**
    * Get size
    * @return size
-   */
-  @jakarta.annotation.Nonnull
+     **/
+    @javax.annotation.Nonnull
   @NotNull
   @Valid
+    @ApiModelProperty(required = true, value = "")
 
   public ManifestSummarySize getSize() {
     return size;
   }
+
 
   public void setSize(ManifestSummarySize size) {
     this.size = size;
@@ -199,20 +212,23 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary attestationData(AttestationProperties attestationData) {
-    this.attestationData = attestationData;
+
+      this.attestationData = attestationData;
     return this;
   }
 
-  /**
+    /**
    * Get attestationData
    * @return attestationData
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public AttestationProperties getAttestationData() {
     return attestationData;
   }
+
 
   public void setAttestationData(AttestationProperties attestationData) {
     this.attestationData = attestationData;
@@ -220,20 +236,23 @@ public class ManifestSummary implements Serializable {
 
 
   public ManifestSummary imageData(ImageProperties imageData) {
-    this.imageData = imageData;
+
+      this.imageData = imageData;
     return this;
   }
 
-  /**
+    /**
    * Get imageData
    * @return imageData
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
   @Valid
+    @ApiModelProperty(value = "")
 
   public ImageProperties getImageData() {
     return imageData;
   }
+
 
   public void setImageData(ImageProperties imageData) {
     this.imageData = imageData;
@@ -314,51 +333,56 @@ public class ManifestSummary implements Serializable {
     openapiRequiredFields.add("Size");
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ManifestSummary
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ManifestSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ManifestSummary
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ManifestSummary.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestSummary is not found in the empty JSON string", ManifestSummary.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ManifestSummary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestSummary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestSummary` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ManifestSummary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+          if (jsonObj.get(requiredField) == null) {
+              throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+          }
+      }
+        // validate the optional field `Descriptor`
+        if (jsonObj.get("Descriptor") != null && !jsonObj.get("Descriptor").isJsonNull()) {
+            Descriptor.validateJsonObject(jsonObj.getAsJsonObject("Descriptor"));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `Descriptor`
-      Descriptor.validateJsonElement(jsonObj.get("Descriptor"));
-      if (!jsonObj.get("ID").isJsonPrimitive()) {
+        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      if (!jsonObj.get("Kind").isJsonPrimitive()) {
+        }
+        if ((jsonObj.get("Kind") != null && !jsonObj.get("Kind").isJsonNull()) && !jsonObj.get("Kind").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Kind` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Kind").toString()));
+        }
+        // validate the optional field `Size`
+        if (jsonObj.get("Size") != null && !jsonObj.get("Size").isJsonNull()) {
+            ManifestSummarySize.validateJsonObject(jsonObj.getAsJsonObject("Size"));
       }
-      // validate the required field `Size`
-      ManifestSummarySize.validateJsonElement(jsonObj.get("Size"));
       // validate the optional field `AttestationData`
       if (jsonObj.get("AttestationData") != null && !jsonObj.get("AttestationData").isJsonNull()) {
-        AttestationProperties.validateJsonElement(jsonObj.get("AttestationData"));
+          AttestationProperties.validateJsonObject(jsonObj.getAsJsonObject("AttestationData"));
       }
       // validate the optional field `ImageData`
       if (jsonObj.get("ImageData") != null && !jsonObj.get("ImageData").isJsonNull()) {
-        ImageProperties.validateJsonElement(jsonObj.get("ImageData"));
+          ImageProperties.validateJsonObject(jsonObj.getAsJsonObject("ImageData"));
       }
   }
 
@@ -382,31 +406,31 @@ public class ManifestSummary implements Serializable {
 
            @Override
            public ManifestSummary read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ManifestSummary given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ManifestSummary
-   * @throws IOException if the JSON string is invalid with respect to ManifestSummary
-   */
+    /**
+     * Create an instance of ManifestSummary given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ManifestSummary
+     * @throws IOException if the JSON string is invalid with respect to ManifestSummary
+  */
   public static ManifestSummary fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestSummary.class);
   }
 
-  /**
-   * Convert an instance of ManifestSummary to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ManifestSummary to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

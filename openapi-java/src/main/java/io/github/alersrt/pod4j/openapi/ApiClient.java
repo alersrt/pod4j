@@ -13,19 +13,7 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
-import io.github.alersrt.pod4j.openapi.auth.Authentication;
-import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.tls.OkHostnameVerifier;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,14 +22,15 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
@@ -50,30 +39,21 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+
+import io.github.alersrt.pod4j.openapi.auth.Authentication;
+import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
+import io.github.alersrt.pod4j.openapi.auth.HttpBearerAuth;
+import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
 
 /**
  * <p>ApiClient class.</p>
@@ -81,23 +61,9 @@ import javax.net.ssl.X509TrustManager;
 public class ApiClient {
 
     private String basePath = "http://podman.io";
-    protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
-    new ServerConfiguration(
-      "http://podman.io",
-      "No description provided",
-      new HashMap<String, ServerVariable>()
-    ),
-    new ServerConfiguration(
-      "https://podman.io",
-      "No description provided",
-      new HashMap<String, ServerVariable>()
-    )
-  ));
-    protected Integer serverIndex = 0;
-    protected Map<String, String> serverVariables = null;
     private boolean debugging = false;
-    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
+    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -144,7 +110,7 @@ public class ApiClient {
     }
 
     private void initHttpClient() {
-        initHttpClient(Collections.emptyList());
+        initHttpClient(Collections.<Interceptor>emptyList());
     }
 
     private void initHttpClient(List<Interceptor> interceptors) {
@@ -163,7 +129,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/5.3.0-1/java");
+        setUserAgent("OpenAPI-Generator/5.4.0/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -185,34 +151,6 @@ public class ApiClient {
      */
     public ApiClient setBasePath(String basePath) {
         this.basePath = basePath;
-        this.serverIndex = null;
-        return this;
-    }
-
-    public List<ServerConfiguration> getServers() {
-        return servers;
-    }
-
-    public ApiClient setServers(List<ServerConfiguration> servers) {
-        this.servers = servers;
-        return this;
-    }
-
-    public Integer getServerIndex() {
-        return serverIndex;
-    }
-
-    public ApiClient setServerIndex(Integer serverIndex) {
-        this.serverIndex = serverIndex;
-        return this;
-    }
-
-    public Map<String, String> getServerVariables() {
-        return serverVariables;
-    }
-
-    public ApiClient setServerVariables(Map<String, String> serverVariables) {
-        this.serverVariables = serverVariables;
         return this;
     }
 
@@ -340,7 +278,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setDateFormat(DateFormat dateFormat) {
-        JSON.setDateFormat(dateFormat);
+        this.json.setDateFormat(dateFormat);
         return this;
     }
 
@@ -351,7 +289,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setSqlDateFormat(DateFormat dateFormat) {
-        JSON.setSqlDateFormat(dateFormat);
+        this.json.setSqlDateFormat(dateFormat);
         return this;
     }
 
@@ -362,7 +300,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
-        JSON.setOffsetDateTimeFormat(dateFormat);
+        this.json.setOffsetDateTimeFormat(dateFormat);
         return this;
     }
 
@@ -373,7 +311,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
-        JSON.setLocalDateFormat(dateFormat);
+        this.json.setLocalDateFormat(dateFormat);
         return this;
     }
 
@@ -384,7 +322,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
-        JSON.setLenientOnJson(lenientOnJson);
+        this.json.setLenientOnJson(lenientOnJson);
         return this;
     }
 
@@ -475,31 +413,6 @@ public class ApiClient {
      */
     public void setAccessToken(String accessToken) {
         throw new RuntimeException("No OAuth2 authentication configured!");
-    }
-
-    /**
-     * Helper method to set credentials for AWSV4 Signature
-     *
-     * @param accessKey Access Key
-     * @param secretKey Secret Key
-     * @param region Region
-     * @param service Service to access to
-     */
-    public void setAWS4Configuration(String accessKey, String secretKey, String region, String service) {
-        throw new RuntimeException("No AWS4 authentication configured!");
-    }
-
-    /**
-     * Helper method to set credentials for AWSV4 Signature
-     *
-     * @param accessKey Access Key
-     * @param secretKey Secret Key
-     * @param sessionToken Session Token
-     * @param region Region
-     * @param service Service to access to
-     */
-    public void setAWS4Configuration(String accessKey, String secretKey, String sessionToken, String region, String service) {
-        throw new RuntimeException("No AWS4 authentication configured!");
     }
 
     /**
@@ -670,7 +583,7 @@ public class ApiClient {
             return "";
         } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
-            String jsonStr = JSON.serialize(param);
+            String jsonStr = json.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
         } else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
@@ -678,7 +591,7 @@ public class ApiClient {
                 if (b.length() > 0) {
                     b.append(",");
                 }
-                b.append(o);
+                b.append(String.valueOf(o));
             }
             return b.toString();
         } else {
@@ -873,7 +786,11 @@ public class ApiClient {
      * @return Escaped string
      */
     public String escapeString(String str) {
-        return URLEncoder.encode(str, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+        try {
+            return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            return str;
+        }
     }
 
     /**
@@ -925,7 +842,7 @@ public class ApiClient {
             contentType = "application/json";
         }
         if (isJsonMime(contentType)) {
-            return JSON.deserialize(respBody, returnType);
+            return json.deserialize(respBody, returnType);
         } else if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
             return (T) respBody;
@@ -959,13 +876,13 @@ public class ApiClient {
         } else if (isJsonMime(contentType)) {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = json.serialize(obj);
             } else {
                 content = null;
             }
             return RequestBody.create(content, MediaType.parse(contentType));
         } else if (obj instanceof String) {
-            return RequestBody.create((String) obj, contentType == null ? null : MediaType.parse(contentType));
+            return RequestBody.create(contentType == null ? null : MediaType.parse(contentType), (String) obj);
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }
@@ -1098,7 +1015,7 @@ public class ApiClient {
             public void onResponse(Call call, Response response) throws IOException {
                 T result;
                 try {
-                    result = handleResponse(response, returnType);
+                    result = (T) handleResponse(response, returnType);
                 } catch (ApiException e) {
                     callback.onFailure(e, response.code(), response.headers().toMultimap());
                     return;
@@ -1200,15 +1117,12 @@ public class ApiClient {
         // prepare HTTP request body
         RequestBody reqBody;
         String contentType = headerParams.get("Content-Type");
-        String contentTypePure = contentType;
-        if (contentTypePure != null && contentTypePure.contains(";")) {
-            contentTypePure = contentType.substring(0, contentType.indexOf(";"));
-        }
+
         if (!HttpMethod.permitsRequestBody(method)) {
             reqBody = null;
-        } else if ("application/x-www-form-urlencoded".equals(contentTypePure)) {
+        } else if ("application/x-www-form-urlencoded".equals(contentType)) {
             reqBody = buildRequestBodyFormEncoding(formParams);
-        } else if ("multipart/form-data".equals(contentTypePure)) {
+        } else if ("multipart/form-data".equals(contentType)) {
             reqBody = buildRequestBodyMultipart(formParams);
         } else if (body == null) {
             if ("DELETE".equals(method)) {
@@ -1259,18 +1173,7 @@ public class ApiClient {
         if (baseUrl != null) {
             url.append(baseUrl).append(path);
         } else {
-            String baseURL;
-            if (serverIndex != null) {
-                if (serverIndex < 0 || serverIndex >= servers.size()) {
-                    throw new ArrayIndexOutOfBoundsException(String.format(
-                    "Invalid index %d when selecting the host settings. Must be less than %d", serverIndex, servers.size()
-                    ));
-                }
-                baseURL = servers.get(serverIndex).URL(serverVariables);
-            } else {
-                baseURL = basePath;
-            }
-            url.append(baseURL).append(path);
+            url.append(basePath).append(path);
         }
 
         if (queryParams != null && !queryParams.isEmpty()) {
@@ -1391,9 +1294,11 @@ public class ApiClient {
     public RequestBody buildRequestBodyMultipart(Map<String, Object> formParams) {
         MultipartBody.Builder mpBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (Entry<String, Object> param : formParams.entrySet()) {
-            if (param.getValue() instanceof File file) {
+            if (param.getValue() instanceof File) {
+                File file = (File) param.getValue();
                 addPartToMultiPartBuilder(mpBuilder, param.getKey(), file);
-            } else if (param.getValue() instanceof List list) {
+            } else if (param.getValue() instanceof List) {
+                List list = (List) param.getValue();
                 for (Object item: list) {
                     if (item instanceof File) {
                         addPartToMultiPartBuilder(mpBuilder, param.getKey(), (File) item);
@@ -1450,7 +1355,7 @@ public class ApiClient {
         } else {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = json.serialize(obj);
             } else {
                 content = null;
             }
@@ -1471,7 +1376,8 @@ public class ApiClient {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 final Request request = chain.request();
                 final Response originalResponse = chain.proceed(request);
-                if (request.tag() instanceof ApiCallback callback) {
+                if (request.tag() instanceof ApiCallback) {
+                    final ApiCallback callback = (ApiCallback) request.tag();
                     return originalResponse.newBuilder()
                         .body(new ProgressResponseBody(originalResponse.body(), callback))
                         .build();
@@ -1527,7 +1433,7 @@ public class ApiClient {
                     KeyStore caKeyStore = newEmptyKeyStore(password);
                     int index = 0;
                     for (Certificate certificate : certificates) {
-                        String certificateAlias = "ca" + (index++);
+                        String certificateAlias = "ca" + Integer.toString(index++);
                         caKeyStore.setCertificateEntry(certificateAlias, certificate);
                     }
                     trustManagerFactory.init(caKeyStore);

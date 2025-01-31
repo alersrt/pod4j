@@ -14,17 +14,32 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
+import io.github.alersrt.pod4j.openapi.model.LinuxBlockIO;
+import io.github.alersrt.pod4j.openapi.model.LinuxCPU;
+import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
+import io.github.alersrt.pod4j.openapi.model.LinuxHugepageLimit;
+import io.github.alersrt.pod4j.openapi.model.LinuxMemory;
+import io.github.alersrt.pod4j.openapi.model.LinuxNetwork;
+import io.github.alersrt.pod4j.openapi.model.LinuxPids;
+import io.github.alersrt.pod4j.openapi.model.LinuxRdma;
+import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
+import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,16 +51,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -53,35 +64,879 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * UpdateEntities used to wrap the oci resource spec in a swagger model
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "UpdateEntities used to wrap the oci resource spec in a swagger model")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateEntities implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String SERIALIZED_NAME_RESOURCES = "Resources";
-  @SerializedName(SERIALIZED_NAME_RESOURCES)
-  private LinuxResources resources;
+  public static final String SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE = "BlkIOWeightDevice";
+  @SerializedName(SERIALIZED_NAME_BLK_I_O_WEIGHT_DEVICE)
+  private List<WeightDevice> blkIOWeightDevice = null;
+
+  public static final String SERIALIZED_NAME_DEVICE_READ_B_PS = "DeviceReadBPs";
+  @SerializedName(SERIALIZED_NAME_DEVICE_READ_B_PS)
+  private List<ThrottleDevice> deviceReadBPs = null;
+
+  public static final String SERIALIZED_NAME_DEVICE_READ_I_O_PS = "DeviceReadIOPs";
+  @SerializedName(SERIALIZED_NAME_DEVICE_READ_I_O_PS)
+  private List<ThrottleDevice> deviceReadIOPs = null;
+
+  public static final String SERIALIZED_NAME_DEVICE_WRITE_B_PS = "DeviceWriteBPs";
+  @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_B_PS)
+  private List<ThrottleDevice> deviceWriteBPs = null;
+
+  public static final String SERIALIZED_NAME_DEVICE_WRITE_I_O_PS = "DeviceWriteIOPs";
+  @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_I_O_PS)
+  private List<ThrottleDevice> deviceWriteIOPs = null;
+
+  public static final String SERIALIZED_NAME_BLOCK_I_O = "blockIO";
+  @SerializedName(SERIALIZED_NAME_BLOCK_I_O)
+  private LinuxBlockIO blockIO;
+
+  public static final String SERIALIZED_NAME_CPU = "cpu";
+  @SerializedName(SERIALIZED_NAME_CPU)
+  private LinuxCPU cpu;
+
+  public static final String SERIALIZED_NAME_DEVICES = "devices";
+  @SerializedName(SERIALIZED_NAME_DEVICES)
+  private List<LinuxDeviceCgroup> devices = null;
+
+  public static final String SERIALIZED_NAME_HEALTH_CMD = "health_cmd";
+  @SerializedName(SERIALIZED_NAME_HEALTH_CMD)
+  private String healthCmd;
+
+  public static final String SERIALIZED_NAME_HEALTH_INTERVAL = "health_interval";
+  @SerializedName(SERIALIZED_NAME_HEALTH_INTERVAL)
+  private String healthInterval;
+
+  public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "health_log_destination";
+  @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
+  private String healthLogDestination;
+
+  public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT = "health_max_log_count";
+  @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT)
+  private Integer healthMaxLogCount;
+
+  public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE = "health_max_log_size";
+  @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE)
+  private Integer healthMaxLogSize;
+
+  public static final String SERIALIZED_NAME_HEALTH_ON_FAILURE = "health_on_failure";
+  @SerializedName(SERIALIZED_NAME_HEALTH_ON_FAILURE)
+  private String healthOnFailure;
+
+  public static final String SERIALIZED_NAME_HEALTH_RETRIES = "health_retries";
+  @SerializedName(SERIALIZED_NAME_HEALTH_RETRIES)
+  private Integer healthRetries;
+
+  public static final String SERIALIZED_NAME_HEALTH_START_PERIOD = "health_start_period";
+  @SerializedName(SERIALIZED_NAME_HEALTH_START_PERIOD)
+  private String healthStartPeriod;
+
+  public static final String SERIALIZED_NAME_HEALTH_STARTUP_CMD = "health_startup_cmd";
+  @SerializedName(SERIALIZED_NAME_HEALTH_STARTUP_CMD)
+  private String healthStartupCmd;
+
+  public static final String SERIALIZED_NAME_HEALTH_STARTUP_INTERVAL = "health_startup_interval";
+  @SerializedName(SERIALIZED_NAME_HEALTH_STARTUP_INTERVAL)
+  private String healthStartupInterval;
+
+  public static final String SERIALIZED_NAME_HEALTH_STARTUP_RETRIES = "health_startup_retries";
+  @SerializedName(SERIALIZED_NAME_HEALTH_STARTUP_RETRIES)
+  private Integer healthStartupRetries;
+
+  public static final String SERIALIZED_NAME_HEALTH_STARTUP_SUCCESS = "health_startup_success";
+  @SerializedName(SERIALIZED_NAME_HEALTH_STARTUP_SUCCESS)
+  private Integer healthStartupSuccess;
+
+  public static final String SERIALIZED_NAME_HEALTH_STARTUP_TIMEOUT = "health_startup_timeout";
+  @SerializedName(SERIALIZED_NAME_HEALTH_STARTUP_TIMEOUT)
+  private String healthStartupTimeout;
+
+  public static final String SERIALIZED_NAME_HEALTH_TIMEOUT = "health_timeout";
+  @SerializedName(SERIALIZED_NAME_HEALTH_TIMEOUT)
+  private String healthTimeout;
+
+  public static final String SERIALIZED_NAME_HUGEPAGE_LIMITS = "hugepageLimits";
+  @SerializedName(SERIALIZED_NAME_HUGEPAGE_LIMITS)
+  private List<LinuxHugepageLimit> hugepageLimits = null;
+
+  public static final String SERIALIZED_NAME_MEMORY = "memory";
+  @SerializedName(SERIALIZED_NAME_MEMORY)
+  private LinuxMemory memory;
+
+  public static final String SERIALIZED_NAME_NETWORK = "network";
+  @SerializedName(SERIALIZED_NAME_NETWORK)
+  private LinuxNetwork network;
+
+  public static final String SERIALIZED_NAME_NO_HEALTHCHECK = "no_healthcheck";
+  @SerializedName(SERIALIZED_NAME_NO_HEALTHCHECK)
+  private Boolean noHealthcheck;
+
+  public static final String SERIALIZED_NAME_PIDS = "pids";
+  @SerializedName(SERIALIZED_NAME_PIDS)
+  private LinuxPids pids;
+
+  public static final String SERIALIZED_NAME_RDMA = "rdma";
+  @SerializedName(SERIALIZED_NAME_RDMA)
+  private Map<String, LinuxRdma> rdma = null;
+
+  public static final String SERIALIZED_NAME_UNIFIED = "unified";
+  @SerializedName(SERIALIZED_NAME_UNIFIED)
+  private Map<String, String> unified = null;
 
   public UpdateEntities() {
   }
 
-  public UpdateEntities resources(LinuxResources resources) {
-    this.resources = resources;
+  public UpdateEntities blkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
+    
+    this.blkIOWeightDevice = blkIOWeightDevice;
+    return this;
+  }
+
+  public UpdateEntities addBlkIOWeightDeviceItem(WeightDevice blkIOWeightDeviceItem) {
+    if (this.blkIOWeightDevice == null) {
+      this.blkIOWeightDevice = new ArrayList<>();
+    }
+    this.blkIOWeightDevice.add(blkIOWeightDeviceItem);
     return this;
   }
 
   /**
-   * Get resources
-   * @return resources
-   */
-  @jakarta.annotation.Nullable
+   * Block IO weight (relative device weight) in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Weight\&quot;: weight}]&#x60;&#x60;&#x60;
+   * @return blkIOWeightDevice
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "Block IO weight (relative device weight) in the form: ```[{\"Path\": \"device_path\", \"Weight\": weight}]```")
 
-  public LinuxResources getResources() {
-    return resources;
+  public List<WeightDevice> getBlkIOWeightDevice() {
+    return blkIOWeightDevice;
   }
 
-  public void setResources(LinuxResources resources) {
-    this.resources = resources;
+
+  public void setBlkIOWeightDevice(List<WeightDevice> blkIOWeightDevice) {
+    this.blkIOWeightDevice = blkIOWeightDevice;
+  }
+
+
+  public UpdateEntities deviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
+    
+    this.deviceReadBPs = deviceReadBPs;
+    return this;
+  }
+
+  public UpdateEntities addDeviceReadBPsItem(ThrottleDevice deviceReadBPsItem) {
+    if (this.deviceReadBPs == null) {
+      this.deviceReadBPs = new ArrayList<>();
+    }
+    this.deviceReadBPs.add(deviceReadBPsItem);
+    return this;
+  }
+
+  /**
+   * Limit read rate (bytes per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
+   * @return deviceReadBPs
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Limit read rate (bytes per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
+
+  public List<ThrottleDevice> getDeviceReadBPs() {
+    return deviceReadBPs;
+  }
+
+
+  public void setDeviceReadBPs(List<ThrottleDevice> deviceReadBPs) {
+    this.deviceReadBPs = deviceReadBPs;
+  }
+
+
+  public UpdateEntities deviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
+    
+    this.deviceReadIOPs = deviceReadIOPs;
+    return this;
+  }
+
+  public UpdateEntities addDeviceReadIOPsItem(ThrottleDevice deviceReadIOPsItem) {
+    if (this.deviceReadIOPs == null) {
+      this.deviceReadIOPs = new ArrayList<>();
+    }
+    this.deviceReadIOPs.add(deviceReadIOPsItem);
+    return this;
+  }
+
+  /**
+   * Limit read rate (IO per second) from a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
+   * @return deviceReadIOPs
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Limit read rate (IO per second) from a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
+
+  public List<ThrottleDevice> getDeviceReadIOPs() {
+    return deviceReadIOPs;
+  }
+
+
+  public void setDeviceReadIOPs(List<ThrottleDevice> deviceReadIOPs) {
+    this.deviceReadIOPs = deviceReadIOPs;
+  }
+
+
+  public UpdateEntities deviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
+    
+    this.deviceWriteBPs = deviceWriteBPs;
+    return this;
+  }
+
+  public UpdateEntities addDeviceWriteBPsItem(ThrottleDevice deviceWriteBPsItem) {
+    if (this.deviceWriteBPs == null) {
+      this.deviceWriteBPs = new ArrayList<>();
+    }
+    this.deviceWriteBPs.add(deviceWriteBPsItem);
+    return this;
+  }
+
+  /**
+   * Limit write rate (bytes per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
+   * @return deviceWriteBPs
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Limit write rate (bytes per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
+
+  public List<ThrottleDevice> getDeviceWriteBPs() {
+    return deviceWriteBPs;
+  }
+
+
+  public void setDeviceWriteBPs(List<ThrottleDevice> deviceWriteBPs) {
+    this.deviceWriteBPs = deviceWriteBPs;
+  }
+
+
+  public UpdateEntities deviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
+    
+    this.deviceWriteIOPs = deviceWriteIOPs;
+    return this;
+  }
+
+  public UpdateEntities addDeviceWriteIOPsItem(ThrottleDevice deviceWriteIOPsItem) {
+    if (this.deviceWriteIOPs == null) {
+      this.deviceWriteIOPs = new ArrayList<>();
+    }
+    this.deviceWriteIOPs.add(deviceWriteIOPsItem);
+    return this;
+  }
+
+  /**
+   * Limit write rate (IO per second) to a device, in the form: &#x60;&#x60;&#x60;[{\&quot;Path\&quot;: \&quot;device_path\&quot;, \&quot;Rate\&quot;: rate}]&#x60;&#x60;&#x60;
+   * @return deviceWriteIOPs
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Limit write rate (IO per second) to a device, in the form: ```[{\"Path\": \"device_path\", \"Rate\": rate}]```")
+
+  public List<ThrottleDevice> getDeviceWriteIOPs() {
+    return deviceWriteIOPs;
+  }
+
+
+  public void setDeviceWriteIOPs(List<ThrottleDevice> deviceWriteIOPs) {
+    this.deviceWriteIOPs = deviceWriteIOPs;
+  }
+
+
+  public UpdateEntities blockIO(LinuxBlockIO blockIO) {
+
+    this.blockIO = blockIO;
+    return this;
+  }
+
+  /**
+   * Get blockIO
+   * @return blockIO
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "")
+
+  public LinuxBlockIO getBlockIO() {
+    return blockIO;
+  }
+
+
+  public void setBlockIO(LinuxBlockIO blockIO) {
+    this.blockIO = blockIO;
+  }
+
+
+  public UpdateEntities cpu(LinuxCPU cpu) {
+
+    this.cpu = cpu;
+    return this;
+  }
+
+  /**
+   * Get cpu
+   * @return cpu
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "")
+
+  public LinuxCPU getCpu() {
+    return cpu;
+  }
+
+
+  public void setCpu(LinuxCPU cpu) {
+    this.cpu = cpu;
+  }
+
+
+  public UpdateEntities devices(List<LinuxDeviceCgroup> devices) {
+    
+    this.devices = devices;
+    return this;
+  }
+
+  public UpdateEntities addDevicesItem(LinuxDeviceCgroup devicesItem) {
+    if (this.devices == null) {
+      this.devices = new ArrayList<>();
+    }
+    this.devices.add(devicesItem);
+    return this;
+  }
+
+  /**
+   * Devices configures the device allowlist.
+   * @return devices
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Devices configures the device allowlist.")
+
+  public List<LinuxDeviceCgroup> getDevices() {
+    return devices;
+  }
+
+
+  public void setDevices(List<LinuxDeviceCgroup> devices) {
+    this.devices = devices;
+  }
+
+
+  public UpdateEntities healthCmd(String healthCmd) {
+
+    this.healthCmd = healthCmd;
+    return this;
+  }
+
+  /**
+   * HealthCmd set a healthcheck command for the container. (&#39;none&#39; disables the existing healthcheck)
+   * @return healthCmd
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthCmd set a healthcheck command for the container. ('none' disables the existing healthcheck)")
+
+  public String getHealthCmd() {
+    return healthCmd;
+  }
+
+
+  public void setHealthCmd(String healthCmd) {
+    this.healthCmd = healthCmd;
+  }
+
+
+  public UpdateEntities healthInterval(String healthInterval) {
+
+    this.healthInterval = healthInterval;
+    return this;
+  }
+
+  /**
+   * HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.
+   * @return healthInterval
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.")
+
+  public String getHealthInterval() {
+    return healthInterval;
+  }
+
+
+  public void setHealthInterval(String healthInterval) {
+    this.healthInterval = healthInterval;
+  }
+
+
+  public UpdateEntities healthLogDestination(String healthLogDestination) {
+
+    this.healthLogDestination = healthLogDestination;
+    return this;
+  }
+
+  /**
+   * HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!
+   * @return healthLogDestination
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!")
+
+  public String getHealthLogDestination() {
+    return healthLogDestination;
+  }
+
+
+  public void setHealthLogDestination(String healthLogDestination) {
+    this.healthLogDestination = healthLogDestination;
+  }
+
+
+  public UpdateEntities healthMaxLogCount(Integer healthMaxLogCount) {
+
+    this.healthMaxLogCount = healthMaxLogCount;
+    return this;
+  }
+
+  /**
+   * HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
+   * @return healthMaxLogCount
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
+
+  public Integer getHealthMaxLogCount() {
+    return healthMaxLogCount;
+  }
+
+
+  public void setHealthMaxLogCount(Integer healthMaxLogCount) {
+    this.healthMaxLogCount = healthMaxLogCount;
+  }
+
+
+  public UpdateEntities healthMaxLogSize(Integer healthMaxLogSize) {
+
+    this.healthMaxLogSize = healthMaxLogSize;
+    return this;
+  }
+
+  /**
+   * HealthMaxLogSize set maximum length in characters of stored HealthCheck log. (&#39;0&#39; value means an infinite log length)
+   * @return healthMaxLogSize
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogSize set maximum length in characters of stored HealthCheck log. ('0' value means an infinite log length)")
+
+  public Integer getHealthMaxLogSize() {
+    return healthMaxLogSize;
+  }
+
+
+  public void setHealthMaxLogSize(Integer healthMaxLogSize) {
+    this.healthMaxLogSize = healthMaxLogSize;
+  }
+
+
+  public UpdateEntities healthOnFailure(String healthOnFailure) {
+
+    this.healthOnFailure = healthOnFailure;
+    return this;
+  }
+
+  /**
+   * HealthOnFailure set the action to take once the container turns unhealthy.
+   * @return healthOnFailure
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthOnFailure set the action to take once the container turns unhealthy.")
+
+  public String getHealthOnFailure() {
+    return healthOnFailure;
+  }
+
+
+  public void setHealthOnFailure(String healthOnFailure) {
+    this.healthOnFailure = healthOnFailure;
+  }
+
+
+  public UpdateEntities healthRetries(Integer healthRetries) {
+
+    this.healthRetries = healthRetries;
+    return this;
+  }
+
+  /**
+   * HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.
+   * @return healthRetries
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.")
+
+  public Integer getHealthRetries() {
+    return healthRetries;
+  }
+
+
+  public void setHealthRetries(Integer healthRetries) {
+    this.healthRetries = healthRetries;
+  }
+
+
+  public UpdateEntities healthStartPeriod(String healthStartPeriod) {
+
+    this.healthStartPeriod = healthStartPeriod;
+    return this;
+  }
+
+  /**
+   * HealthStartPeriod set the initialization time needed for a container to bootstrap.
+   * @return healthStartPeriod
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartPeriod set the initialization time needed for a container to bootstrap.")
+
+  public String getHealthStartPeriod() {
+    return healthStartPeriod;
+  }
+
+
+  public void setHealthStartPeriod(String healthStartPeriod) {
+    this.healthStartPeriod = healthStartPeriod;
+  }
+
+
+  public UpdateEntities healthStartupCmd(String healthStartupCmd) {
+
+    this.healthStartupCmd = healthStartupCmd;
+    return this;
+  }
+
+  /**
+   * HealthStartupCmd set a startup healthcheck command for the container.
+   * @return healthStartupCmd
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupCmd set a startup healthcheck command for the container.")
+
+  public String getHealthStartupCmd() {
+    return healthStartupCmd;
+  }
+
+
+  public void setHealthStartupCmd(String healthStartupCmd) {
+    this.healthStartupCmd = healthStartupCmd;
+  }
+
+
+  public UpdateEntities healthStartupInterval(String healthStartupInterval) {
+
+    this.healthStartupInterval = healthStartupInterval;
+    return this;
+  }
+
+  /**
+   * HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.
+   * @return healthStartupInterval
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.")
+
+  public String getHealthStartupInterval() {
+    return healthStartupInterval;
+  }
+
+
+  public void setHealthStartupInterval(String healthStartupInterval) {
+    this.healthStartupInterval = healthStartupInterval;
+  }
+
+
+  public UpdateEntities healthStartupRetries(Integer healthStartupRetries) {
+
+    this.healthStartupRetries = healthStartupRetries;
+    return this;
+  }
+
+  /**
+   * HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.
+   * @return healthStartupRetries
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.")
+
+  public Integer getHealthStartupRetries() {
+    return healthStartupRetries;
+  }
+
+
+  public void setHealthStartupRetries(Integer healthStartupRetries) {
+    this.healthStartupRetries = healthStartupRetries;
+  }
+
+
+  public UpdateEntities healthStartupSuccess(Integer healthStartupSuccess) {
+
+    this.healthStartupSuccess = healthStartupSuccess;
+    return this;
+  }
+
+  /**
+   * HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)
+   * @return healthStartupSuccess
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)")
+
+  public Integer getHealthStartupSuccess() {
+    return healthStartupSuccess;
+  }
+
+
+  public void setHealthStartupSuccess(Integer healthStartupSuccess) {
+    this.healthStartupSuccess = healthStartupSuccess;
+  }
+
+
+  public UpdateEntities healthStartupTimeout(String healthStartupTimeout) {
+
+    this.healthStartupTimeout = healthStartupTimeout;
+    return this;
+  }
+
+  /**
+   * HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.
+   * @return healthStartupTimeout
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.")
+
+  public String getHealthStartupTimeout() {
+    return healthStartupTimeout;
+  }
+
+
+  public void setHealthStartupTimeout(String healthStartupTimeout) {
+    this.healthStartupTimeout = healthStartupTimeout;
+  }
+
+
+  public UpdateEntities healthTimeout(String healthTimeout) {
+
+    this.healthTimeout = healthTimeout;
+    return this;
+  }
+
+  /**
+   * HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.
+   * @return healthTimeout
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.")
+
+  public String getHealthTimeout() {
+    return healthTimeout;
+  }
+
+
+  public void setHealthTimeout(String healthTimeout) {
+    this.healthTimeout = healthTimeout;
+  }
+
+
+  public UpdateEntities hugepageLimits(List<LinuxHugepageLimit> hugepageLimits) {
+    
+    this.hugepageLimits = hugepageLimits;
+    return this;
+  }
+
+  public UpdateEntities addHugepageLimitsItem(LinuxHugepageLimit hugepageLimitsItem) {
+    if (this.hugepageLimits == null) {
+      this.hugepageLimits = new ArrayList<>();
+    }
+    this.hugepageLimits.add(hugepageLimitsItem);
+    return this;
+  }
+
+  /**
+   * Hugetlb limits (in bytes). Default to reservation limits if supported.
+   * @return hugepageLimits
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Hugetlb limits (in bytes). Default to reservation limits if supported.")
+
+  public List<LinuxHugepageLimit> getHugepageLimits() {
+    return hugepageLimits;
+  }
+
+
+  public void setHugepageLimits(List<LinuxHugepageLimit> hugepageLimits) {
+    this.hugepageLimits = hugepageLimits;
+  }
+
+
+  public UpdateEntities memory(LinuxMemory memory) {
+
+    this.memory = memory;
+    return this;
+  }
+
+  /**
+   * Get memory
+   * @return memory
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "")
+
+  public LinuxMemory getMemory() {
+    return memory;
+  }
+
+
+  public void setMemory(LinuxMemory memory) {
+    this.memory = memory;
+  }
+
+
+  public UpdateEntities network(LinuxNetwork network) {
+
+    this.network = network;
+    return this;
+  }
+
+  /**
+   * Get network
+   * @return network
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "")
+
+  public LinuxNetwork getNetwork() {
+    return network;
+  }
+
+
+  public void setNetwork(LinuxNetwork network) {
+    this.network = network;
+  }
+
+
+  public UpdateEntities noHealthcheck(Boolean noHealthcheck) {
+
+    this.noHealthcheck = noHealthcheck;
+    return this;
+  }
+
+  /**
+   * Disable healthchecks on container.
+   * @return noHealthcheck
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Disable healthchecks on container.")
+
+  public Boolean getNoHealthcheck() {
+    return noHealthcheck;
+  }
+
+
+  public void setNoHealthcheck(Boolean noHealthcheck) {
+    this.noHealthcheck = noHealthcheck;
+  }
+
+
+  public UpdateEntities pids(LinuxPids pids) {
+
+    this.pids = pids;
+    return this;
+  }
+
+  /**
+   * Get pids
+   * @return pids
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "")
+
+  public LinuxPids getPids() {
+    return pids;
+  }
+
+
+  public void setPids(LinuxPids pids) {
+    this.pids = pids;
+  }
+
+
+  public UpdateEntities rdma(Map<String, LinuxRdma> rdma) {
+
+    this.rdma = rdma;
+    return this;
+  }
+
+  public UpdateEntities putRdmaItem(String key, LinuxRdma rdmaItem) {
+    if (this.rdma == null) {
+      this.rdma = new HashMap<>();
+    }
+    this.rdma.put(key, rdmaItem);
+    return this;
+  }
+
+  /**
+   * Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.
+   * @return rdma
+   **/
+  @javax.annotation.Nullable
+  @Valid
+  @ApiModelProperty(value = "Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.")
+
+  public Map<String, LinuxRdma> getRdma() {
+    return rdma;
+  }
+
+
+  public void setRdma(Map<String, LinuxRdma> rdma) {
+    this.rdma = rdma;
+  }
+
+
+  public UpdateEntities unified(Map<String, String> unified) {
+
+    this.unified = unified;
+    return this;
+  }
+
+  public UpdateEntities putUnifiedItem(String key, String unifiedItem) {
+    if (this.unified == null) {
+      this.unified = new HashMap<>();
+    }
+    this.unified.put(key, unifiedItem);
+    return this;
+  }
+
+  /**
+   * Unified resources.
+   * @return unified
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unified resources.")
+
+  public Map<String, String> getUnified() {
+    return unified;
+  }
+
+
+  public void setUnified(Map<String, String> unified) {
+    this.unified = unified;
   }
 
 
@@ -95,19 +950,75 @@ public class UpdateEntities implements Serializable {
       return false;
     }
     UpdateEntities updateEntities = (UpdateEntities) o;
-    return Objects.equals(this.resources, updateEntities.resources);
+    return Objects.equals(this.blkIOWeightDevice, updateEntities.blkIOWeightDevice) &&
+        Objects.equals(this.deviceReadBPs, updateEntities.deviceReadBPs) &&
+        Objects.equals(this.deviceReadIOPs, updateEntities.deviceReadIOPs) &&
+        Objects.equals(this.deviceWriteBPs, updateEntities.deviceWriteBPs) &&
+        Objects.equals(this.deviceWriteIOPs, updateEntities.deviceWriteIOPs) &&
+        Objects.equals(this.blockIO, updateEntities.blockIO) &&
+        Objects.equals(this.cpu, updateEntities.cpu) &&
+        Objects.equals(this.devices, updateEntities.devices) &&
+        Objects.equals(this.healthCmd, updateEntities.healthCmd) &&
+        Objects.equals(this.healthInterval, updateEntities.healthInterval) &&
+        Objects.equals(this.healthLogDestination, updateEntities.healthLogDestination) &&
+        Objects.equals(this.healthMaxLogCount, updateEntities.healthMaxLogCount) &&
+        Objects.equals(this.healthMaxLogSize, updateEntities.healthMaxLogSize) &&
+        Objects.equals(this.healthOnFailure, updateEntities.healthOnFailure) &&
+        Objects.equals(this.healthRetries, updateEntities.healthRetries) &&
+        Objects.equals(this.healthStartPeriod, updateEntities.healthStartPeriod) &&
+        Objects.equals(this.healthStartupCmd, updateEntities.healthStartupCmd) &&
+        Objects.equals(this.healthStartupInterval, updateEntities.healthStartupInterval) &&
+        Objects.equals(this.healthStartupRetries, updateEntities.healthStartupRetries) &&
+        Objects.equals(this.healthStartupSuccess, updateEntities.healthStartupSuccess) &&
+        Objects.equals(this.healthStartupTimeout, updateEntities.healthStartupTimeout) &&
+        Objects.equals(this.healthTimeout, updateEntities.healthTimeout) &&
+        Objects.equals(this.hugepageLimits, updateEntities.hugepageLimits) &&
+        Objects.equals(this.memory, updateEntities.memory) &&
+        Objects.equals(this.network, updateEntities.network) &&
+        Objects.equals(this.noHealthcheck, updateEntities.noHealthcheck) &&
+        Objects.equals(this.pids, updateEntities.pids) &&
+        Objects.equals(this.rdma, updateEntities.rdma) &&
+        Objects.equals(this.unified, updateEntities.unified);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resources);
+    return Objects.hash(blkIOWeightDevice, deviceReadBPs, deviceReadIOPs, deviceWriteBPs, deviceWriteIOPs, blockIO, cpu, devices, healthCmd, healthInterval, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthOnFailure, healthRetries, healthStartPeriod, healthStartupCmd, healthStartupInterval, healthStartupRetries, healthStartupSuccess, healthStartupTimeout, healthTimeout, hugepageLimits, memory, network, noHealthcheck, pids, rdma, unified);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateEntities {\n");
-    sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
+    sb.append("    blkIOWeightDevice: ").append(toIndentedString(blkIOWeightDevice)).append("\n");
+    sb.append("    deviceReadBPs: ").append(toIndentedString(deviceReadBPs)).append("\n");
+    sb.append("    deviceReadIOPs: ").append(toIndentedString(deviceReadIOPs)).append("\n");
+    sb.append("    deviceWriteBPs: ").append(toIndentedString(deviceWriteBPs)).append("\n");
+    sb.append("    deviceWriteIOPs: ").append(toIndentedString(deviceWriteIOPs)).append("\n");
+    sb.append("    blockIO: ").append(toIndentedString(blockIO)).append("\n");
+    sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
+    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
+    sb.append("    healthCmd: ").append(toIndentedString(healthCmd)).append("\n");
+    sb.append("    healthInterval: ").append(toIndentedString(healthInterval)).append("\n");
+    sb.append("    healthLogDestination: ").append(toIndentedString(healthLogDestination)).append("\n");
+    sb.append("    healthMaxLogCount: ").append(toIndentedString(healthMaxLogCount)).append("\n");
+    sb.append("    healthMaxLogSize: ").append(toIndentedString(healthMaxLogSize)).append("\n");
+    sb.append("    healthOnFailure: ").append(toIndentedString(healthOnFailure)).append("\n");
+    sb.append("    healthRetries: ").append(toIndentedString(healthRetries)).append("\n");
+    sb.append("    healthStartPeriod: ").append(toIndentedString(healthStartPeriod)).append("\n");
+    sb.append("    healthStartupCmd: ").append(toIndentedString(healthStartupCmd)).append("\n");
+    sb.append("    healthStartupInterval: ").append(toIndentedString(healthStartupInterval)).append("\n");
+    sb.append("    healthStartupRetries: ").append(toIndentedString(healthStartupRetries)).append("\n");
+    sb.append("    healthStartupSuccess: ").append(toIndentedString(healthStartupSuccess)).append("\n");
+    sb.append("    healthStartupTimeout: ").append(toIndentedString(healthStartupTimeout)).append("\n");
+    sb.append("    healthTimeout: ").append(toIndentedString(healthTimeout)).append("\n");
+    sb.append("    hugepageLimits: ").append(toIndentedString(hugepageLimits)).append("\n");
+    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
+    sb.append("    network: ").append(toIndentedString(network)).append("\n");
+    sb.append("    noHealthcheck: ").append(toIndentedString(noHealthcheck)).append("\n");
+    sb.append("    pids: ").append(toIndentedString(pids)).append("\n");
+    sb.append("    rdma: ").append(toIndentedString(rdma)).append("\n");
+    sb.append("    unified: ").append(toIndentedString(unified)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -130,36 +1041,206 @@ public class UpdateEntities implements Serializable {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("Resources");
+    openapiFields.add("BlkIOWeightDevice");
+    openapiFields.add("DeviceReadBPs");
+    openapiFields.add("DeviceReadIOPs");
+    openapiFields.add("DeviceWriteBPs");
+    openapiFields.add("DeviceWriteIOPs");
+    openapiFields.add("blockIO");
+    openapiFields.add("cpu");
+    openapiFields.add("devices");
+    openapiFields.add("health_cmd");
+    openapiFields.add("health_interval");
+    openapiFields.add("health_log_destination");
+    openapiFields.add("health_max_log_count");
+    openapiFields.add("health_max_log_size");
+    openapiFields.add("health_on_failure");
+    openapiFields.add("health_retries");
+    openapiFields.add("health_start_period");
+    openapiFields.add("health_startup_cmd");
+    openapiFields.add("health_startup_interval");
+    openapiFields.add("health_startup_retries");
+    openapiFields.add("health_startup_success");
+    openapiFields.add("health_startup_timeout");
+    openapiFields.add("health_timeout");
+    openapiFields.add("hugepageLimits");
+    openapiFields.add("memory");
+    openapiFields.add("network");
+    openapiFields.add("no_healthcheck");
+    openapiFields.add("pids");
+    openapiFields.add("rdma");
+    openapiFields.add("unified");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateEntities
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to UpdateEntities
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!UpdateEntities.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields.toString()));
-        }
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (UpdateEntities.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateEntities is not found in the empty JSON string", UpdateEntities.openapiRequiredFields.toString()));
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!UpdateEntities.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateEntities` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `Resources`
-      if (jsonObj.get("Resources") != null && !jsonObj.get("Resources").isJsonNull()) {
-        LinuxResources.validateJsonElement(jsonObj.get("Resources"));
+      if (jsonObj.get("BlkIOWeightDevice") != null && !jsonObj.get("BlkIOWeightDevice").isJsonNull()) {
+        JsonArray jsonArrayblkIOWeightDevice = jsonObj.getAsJsonArray("BlkIOWeightDevice");
+        if (jsonArrayblkIOWeightDevice != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("BlkIOWeightDevice").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `BlkIOWeightDevice` to be an array in the JSON string but got `%s`", jsonObj.get("BlkIOWeightDevice").toString()));
+          }
+
+          // validate the optional field `BlkIOWeightDevice` (array)
+          for (int i = 0; i < jsonArrayblkIOWeightDevice.size(); i++) {
+            WeightDevice.validateJsonObject(jsonArrayblkIOWeightDevice.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("DeviceReadBPs") != null && !jsonObj.get("DeviceReadBPs").isJsonNull()) {
+        JsonArray jsonArraydeviceReadBPs = jsonObj.getAsJsonArray("DeviceReadBPs");
+        if (jsonArraydeviceReadBPs != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("DeviceReadBPs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceReadBPs` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceReadBPs").toString()));
+          }
+
+          // validate the optional field `DeviceReadBPs` (array)
+          for (int i = 0; i < jsonArraydeviceReadBPs.size(); i++) {
+            ThrottleDevice.validateJsonObject(jsonArraydeviceReadBPs.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("DeviceReadIOPs") != null && !jsonObj.get("DeviceReadIOPs").isJsonNull()) {
+        JsonArray jsonArraydeviceReadIOPs = jsonObj.getAsJsonArray("DeviceReadIOPs");
+        if (jsonArraydeviceReadIOPs != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("DeviceReadIOPs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceReadIOPs` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceReadIOPs").toString()));
+          }
+
+          // validate the optional field `DeviceReadIOPs` (array)
+          for (int i = 0; i < jsonArraydeviceReadIOPs.size(); i++) {
+            ThrottleDevice.validateJsonObject(jsonArraydeviceReadIOPs.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("DeviceWriteBPs") != null && !jsonObj.get("DeviceWriteBPs").isJsonNull()) {
+        JsonArray jsonArraydeviceWriteBPs = jsonObj.getAsJsonArray("DeviceWriteBPs");
+        if (jsonArraydeviceWriteBPs != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("DeviceWriteBPs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceWriteBPs` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceWriteBPs").toString()));
+          }
+
+          // validate the optional field `DeviceWriteBPs` (array)
+          for (int i = 0; i < jsonArraydeviceWriteBPs.size(); i++) {
+            ThrottleDevice.validateJsonObject(jsonArraydeviceWriteBPs.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if (jsonObj.get("DeviceWriteIOPs") != null && !jsonObj.get("DeviceWriteIOPs").isJsonNull()) {
+        JsonArray jsonArraydeviceWriteIOPs = jsonObj.getAsJsonArray("DeviceWriteIOPs");
+        if (jsonArraydeviceWriteIOPs != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("DeviceWriteIOPs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceWriteIOPs` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceWriteIOPs").toString()));
+          }
+
+          // validate the optional field `DeviceWriteIOPs` (array)
+          for (int i = 0; i < jsonArraydeviceWriteIOPs.size(); i++) {
+            ThrottleDevice.validateJsonObject(jsonArraydeviceWriteIOPs.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `blockIO`
+      if (jsonObj.get("blockIO") != null && !jsonObj.get("blockIO").isJsonNull()) {
+        LinuxBlockIO.validateJsonObject(jsonObj.getAsJsonObject("blockIO"));
+      }
+      // validate the optional field `cpu`
+      if (jsonObj.get("cpu") != null && !jsonObj.get("cpu").isJsonNull()) {
+        LinuxCPU.validateJsonObject(jsonObj.getAsJsonObject("cpu"));
+      }
+      if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
+        JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
+        if (jsonArraydevices != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("devices").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `devices` to be an array in the JSON string but got `%s`", jsonObj.get("devices").toString()));
+          }
+
+          // validate the optional field `devices` (array)
+          for (int i = 0; i < jsonArraydevices.size(); i++) {
+            LinuxDeviceCgroup.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
+          };
+        }
+      }
+      if ((jsonObj.get("health_cmd") != null && !jsonObj.get("health_cmd").isJsonNull()) && !jsonObj.get("health_cmd").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_cmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_cmd").toString()));
+      }
+      if ((jsonObj.get("health_interval") != null && !jsonObj.get("health_interval").isJsonNull()) && !jsonObj.get("health_interval").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_interval` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_interval").toString()));
+      }
+      if ((jsonObj.get("health_log_destination") != null && !jsonObj.get("health_log_destination").isJsonNull()) && !jsonObj.get("health_log_destination").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_log_destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_log_destination").toString()));
+      }
+      if ((jsonObj.get("health_on_failure") != null && !jsonObj.get("health_on_failure").isJsonNull()) && !jsonObj.get("health_on_failure").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_on_failure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_on_failure").toString()));
+      }
+      if ((jsonObj.get("health_start_period") != null && !jsonObj.get("health_start_period").isJsonNull()) && !jsonObj.get("health_start_period").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_start_period` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_start_period").toString()));
+      }
+      if ((jsonObj.get("health_startup_cmd") != null && !jsonObj.get("health_startup_cmd").isJsonNull()) && !jsonObj.get("health_startup_cmd").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_startup_cmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_startup_cmd").toString()));
+      }
+      if ((jsonObj.get("health_startup_interval") != null && !jsonObj.get("health_startup_interval").isJsonNull()) && !jsonObj.get("health_startup_interval").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_startup_interval` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_startup_interval").toString()));
+      }
+      if ((jsonObj.get("health_startup_timeout") != null && !jsonObj.get("health_startup_timeout").isJsonNull()) && !jsonObj.get("health_startup_timeout").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_startup_timeout` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_startup_timeout").toString()));
+      }
+      if ((jsonObj.get("health_timeout") != null && !jsonObj.get("health_timeout").isJsonNull()) && !jsonObj.get("health_timeout").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `health_timeout` to be a primitive type in the JSON string but got `%s`", jsonObj.get("health_timeout").toString()));
+      }
+      if (jsonObj.get("hugepageLimits") != null && !jsonObj.get("hugepageLimits").isJsonNull()) {
+        JsonArray jsonArrayhugepageLimits = jsonObj.getAsJsonArray("hugepageLimits");
+        if (jsonArrayhugepageLimits != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("hugepageLimits").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hugepageLimits` to be an array in the JSON string but got `%s`", jsonObj.get("hugepageLimits").toString()));
+          }
+
+          // validate the optional field `hugepageLimits` (array)
+          for (int i = 0; i < jsonArrayhugepageLimits.size(); i++) {
+            LinuxHugepageLimit.validateJsonObject(jsonArrayhugepageLimits.get(i).getAsJsonObject());
+          };
+        }
+      }
+      // validate the optional field `memory`
+      if (jsonObj.get("memory") != null && !jsonObj.get("memory").isJsonNull()) {
+        LinuxMemory.validateJsonObject(jsonObj.getAsJsonObject("memory"));
+      }
+      // validate the optional field `network`
+      if (jsonObj.get("network") != null && !jsonObj.get("network").isJsonNull()) {
+        LinuxNetwork.validateJsonObject(jsonObj.getAsJsonObject("network"));
+      }
+      // validate the optional field `pids`
+      if (jsonObj.get("pids") != null && !jsonObj.get("pids").isJsonNull()) {
+        LinuxPids.validateJsonObject(jsonObj.getAsJsonObject("pids"));
       }
   }
 
@@ -183,9 +1264,9 @@ public class UpdateEntities implements Serializable {
 
            @Override
            public UpdateEntities read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -198,7 +1279,7 @@ public class UpdateEntities implements Serializable {
    * @param jsonString JSON string
    * @return An instance of UpdateEntities
    * @throws IOException if the JSON string is invalid with respect to UpdateEntities
-   */
+  */
   public static UpdateEntities fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateEntities.class);
   }
@@ -207,7 +1288,7 @@ public class UpdateEntities implements Serializable {
    * Convert an instance of UpdateEntities to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

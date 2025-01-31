@@ -26,8 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.LibpodInfo;
@@ -41,6 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 
 public class SystemApi {
     private ApiClient localVarApiClient;
@@ -129,6 +129,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -141,7 +142,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemCheckLibpodValidateBeforeCall(Boolean quick, Boolean repair, Boolean repairLossy, String unreferencedLayerMaxAge, final ApiCallback _callback) throws ApiException {
-        return systemCheckLibpodCall(quick, repair, repairLossy, unreferencedLayerMaxAge, _callback);
+
+
+        okhttp3.Call localVarCall = systemCheckLibpodCall(quick, repair, repairLossy, unreferencedLayerMaxAge, _callback);
+        return localVarCall;
 
     }
 
@@ -326,6 +330,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -338,7 +343,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemDataUsageLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return systemDataUsageLibpodCall(_callback);
+
+
+        okhttp3.Call localVarCall = systemDataUsageLibpodCall(_callback);
+        return localVarCall;
 
     }
 
@@ -490,6 +498,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -502,7 +511,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemEventsLibpodValidateBeforeCall(String since, String until, String filters, Boolean stream, final ApiCallback _callback) throws ApiException {
-        return systemEventsLibpodCall(since, until, filters, stream, _callback);
+
+
+        okhttp3.Call localVarCall = systemEventsLibpodCall(since, until, filters, stream, _callback);
+        return localVarCall;
 
     }
 
@@ -678,6 +690,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -690,7 +703,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemInfoLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return systemInfoLibpodCall(_callback);
+
+
+        okhttp3.Call localVarCall = systemInfoLibpodCall(_callback);
+        return localVarCall;
 
     }
 
@@ -826,6 +842,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -838,7 +855,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemPingValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return systemPingCall(_callback);
+
+
+        okhttp3.Call localVarCall = systemPingCall(_callback);
+        return localVarCall;
 
     }
 
@@ -974,6 +994,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -986,7 +1007,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemPruneLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return systemPruneLibpodCall(_callback);
+
+
+        okhttp3.Call localVarCall = systemPruneLibpodCall(_callback);
+        return localVarCall;
 
     }
 
@@ -1127,6 +1151,7 @@ public class SystemApi {
         }
 
         final String[] localVarContentTypes = {
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1139,7 +1164,10 @@ public class SystemApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call systemVersionLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return systemVersionLibpodCall(_callback);
+
+
+        okhttp3.Call localVarCall = systemVersionLibpodCall(_callback);
+        return localVarCall;
 
     }
 

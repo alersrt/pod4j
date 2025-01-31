@@ -2,11 +2,12 @@ package io.github.alersrt.pod4j;
 
 import io.github.alersrt.pod4j.exceptions.PodmanException;
 
-public interface GenericContainer {
+
+public interface GenericContainer extends AutoCloseable {
 
     /**
-     * Creates the pod or container and immediately starts it. All created resources will be
-     * cleared out when a SIGTERM is received or pods exit.
+     * Creates the pod or container and immediately starts it. All created resources will be cleared
+     * out when a SIGTERM is received or pods exit.
      */
     void start() throws PodmanException;
 
@@ -22,7 +23,16 @@ public interface GenericContainer {
      * @param exposedPort port to expose.
      * @return container with exposed services.
      */
-    GenericContainer withExposedService(final String serviceName, final int exposedPort) throws PodmanException;
+    GenericContainer withExposedService(final String serviceName,
+                                        final int exposedPort) throws PodmanException;
+
+    /**
+     * Do resources cleanup after stopping.
+     *
+     * @param doCleanup default if true.
+     * @return customised container.
+     */
+    GenericContainer withCleanup(boolean doCleanup);
 
     /**
      * Getting mapped host for the given service's name and exposed port.
@@ -42,4 +52,8 @@ public interface GenericContainer {
      */
     int getMappedPort(final String serviceName, final int exposedPort) throws PodmanException;
 
+    @Override
+    default void close() throws Exception {
+        this.stop();
+    }
 }

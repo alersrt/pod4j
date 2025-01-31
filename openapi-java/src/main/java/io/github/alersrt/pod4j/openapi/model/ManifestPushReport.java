@@ -14,16 +14,18 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Arrays;
 import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,16 +37,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import io.github.alersrt.pod4j.openapi.JSON;
@@ -52,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * ManifestPushReport
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ManifestPushReport implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -72,19 +70,22 @@ public class ManifestPushReport implements Serializable {
   }
 
   public ManifestPushReport id(String id) {
-    this.id = id;
+
+      this.id = id;
     return this;
   }
 
-  /**
+    /**
    * ID of the pushed manifest
    * @return id
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "ID of the pushed manifest")
 
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
@@ -92,19 +93,22 @@ public class ManifestPushReport implements Serializable {
 
 
   public ManifestPushReport error(String error) {
-    this.error = error;
+
+      this.error = error;
     return this;
   }
 
-  /**
+    /**
    * Error contains text of errors from pushing
    * @return error
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Error contains text of errors from pushing")
 
   public String getError() {
     return error;
   }
+
 
   public void setError(String error) {
     this.error = error;
@@ -112,19 +116,22 @@ public class ManifestPushReport implements Serializable {
 
 
   public ManifestPushReport stream(String stream) {
-    this.stream = stream;
+
+      this.stream = stream;
     return this;
   }
 
-  /**
+    /**
    * Stream used to provide push progress
    * @return stream
-   */
-  @jakarta.annotation.Nullable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "Stream used to provide push progress")
 
   public String getStream() {
     return stream;
   }
+
 
   public void setStream(String stream) {
     this.stream = stream;
@@ -188,27 +195,28 @@ public class ManifestPushReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ManifestPushReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ManifestPushReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ManifestPushReport
+     */
+    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+        if (jsonObj == null) {
+            if (ManifestPushReport.openapiRequiredFields.isEmpty()) {
+                return;
+            } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestPushReport is not found in the empty JSON string", ManifestPushReport.openapiRequiredFields.toString()));
+            }
         }
-      }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+        for (Entry<String, JsonElement> entry : entries) {
         if (!ManifestPushReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestPushReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestPushReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
       }
@@ -240,31 +248,31 @@ public class ManifestPushReport implements Serializable {
 
            @Override
            public ManifestPushReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+               validateJsonObject(jsonObj);
+               return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-  /**
-   * Create an instance of ManifestPushReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ManifestPushReport
-   * @throws IOException if the JSON string is invalid with respect to ManifestPushReport
-   */
+    /**
+     * Create an instance of ManifestPushReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ManifestPushReport
+     * @throws IOException if the JSON string is invalid with respect to ManifestPushReport
+  */
   public static ManifestPushReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestPushReport.class);
   }
 
-  /**
-   * Convert an instance of ManifestPushReport to an JSON string
-   *
-   * @return JSON string
-   */
+    /**
+     * Convert an instance of ManifestPushReport to an JSON string
+     *
+     * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

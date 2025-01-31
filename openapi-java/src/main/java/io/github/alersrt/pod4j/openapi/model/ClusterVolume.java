@@ -13,53 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ClusterVolumeSpec;
-import io.github.alersrt.pod4j.openapi.model.Info;
-import io.github.alersrt.pod4j.openapi.model.PublishStatus;
-import io.github.alersrt.pod4j.openapi.model.Version;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.Serializable;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * ClusterVolume contains options and information specific to, and only present on, Swarm CSI cluster volumes.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@ApiModel(description = "ClusterVolume contains options and information specific to, and only present on, Swarm CSI cluster volumes.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ClusterVolume implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -77,7 +60,7 @@ public class ClusterVolume implements Serializable {
 
   public static final String SERIALIZED_NAME_PUBLISH_STATUS = "PublishStatus";
   @SerializedName(SERIALIZED_NAME_PUBLISH_STATUS)
-  private List<@Valid PublishStatus> publishStatus = new ArrayList<>();
+  private List<PublishStatus> publishStatus = null;
 
   public static final String SERIALIZED_NAME_SPEC = "Spec";
   @SerializedName(SERIALIZED_NAME_SPEC)
@@ -95,6 +78,7 @@ public class ClusterVolume implements Serializable {
   }
 
   public ClusterVolume createdAt(OffsetDateTime createdAt) {
+
     this.createdAt = createdAt;
     return this;
   }
@@ -102,13 +86,15 @@ public class ClusterVolume implements Serializable {
   /**
    * Get createdAt
    * @return createdAt
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
+
 
   public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
@@ -116,6 +102,7 @@ public class ClusterVolume implements Serializable {
 
 
   public ClusterVolume ID(String ID) {
+
     this.ID = ID;
     return this;
   }
@@ -123,12 +110,14 @@ public class ClusterVolume implements Serializable {
   /**
    * ID is the Swarm ID of the volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes, which only have a Name. This ID can be used to refer to the cluster volume.
    * @return ID
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ID is the Swarm ID of the volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes, which only have a Name. This ID can be used to refer to the cluster volume.")
 
   public String getID() {
     return ID;
   }
+
 
   public void setID(String ID) {
     this.ID = ID;
@@ -136,6 +125,7 @@ public class ClusterVolume implements Serializable {
 
 
   public ClusterVolume info(Info info) {
+
     this.info = info;
     return this;
   }
@@ -143,20 +133,23 @@ public class ClusterVolume implements Serializable {
   /**
    * Get info
    * @return info
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Info getInfo() {
     return info;
   }
+
 
   public void setInfo(Info info) {
     this.info = info;
   }
 
 
-  public ClusterVolume publishStatus(List<@Valid PublishStatus> publishStatus) {
+  public ClusterVolume publishStatus(List<PublishStatus> publishStatus) {
+    
     this.publishStatus = publishStatus;
     return this;
   }
@@ -172,20 +165,23 @@ public class ClusterVolume implements Serializable {
   /**
    * PublishStatus contains the status of the volume as it pertains to its publishing on Nodes.
    * @return publishStatus
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "PublishStatus contains the status of the volume as it pertains to its publishing on Nodes.")
 
-  public List<@Valid PublishStatus> getPublishStatus() {
+  public List<PublishStatus> getPublishStatus() {
     return publishStatus;
   }
 
-  public void setPublishStatus(List<@Valid PublishStatus> publishStatus) {
+
+  public void setPublishStatus(List<PublishStatus> publishStatus) {
     this.publishStatus = publishStatus;
   }
 
 
   public ClusterVolume spec(ClusterVolumeSpec spec) {
+
     this.spec = spec;
     return this;
   }
@@ -193,13 +189,15 @@ public class ClusterVolume implements Serializable {
   /**
    * Get spec
    * @return spec
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public ClusterVolumeSpec getSpec() {
     return spec;
   }
+
 
   public void setSpec(ClusterVolumeSpec spec) {
     this.spec = spec;
@@ -207,6 +205,7 @@ public class ClusterVolume implements Serializable {
 
 
   public ClusterVolume updatedAt(OffsetDateTime updatedAt) {
+
     this.updatedAt = updatedAt;
     return this;
   }
@@ -214,13 +213,15 @@ public class ClusterVolume implements Serializable {
   /**
    * Get updatedAt
    * @return updatedAt
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
+
 
   public void setUpdatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
@@ -228,6 +229,7 @@ public class ClusterVolume implements Serializable {
 
 
   public ClusterVolume version(Version version) {
+
     this.version = version;
     return this;
   }
@@ -235,13 +237,15 @@ public class ClusterVolume implements Serializable {
   /**
    * Get version
    * @return version
-   */
-  @jakarta.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
+  @ApiModelProperty(value = "")
 
   public Version getVersion() {
     return version;
   }
+
 
   public void setVersion(Version version) {
     this.version = version;
@@ -318,32 +322,33 @@ public class ClusterVolume implements Serializable {
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Validates the JSON Object and throws an exception if issues found
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ClusterVolume
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ClusterVolume
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ClusterVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ClusterVolume.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ClusterVolume is not found in the empty JSON string", ClusterVolume.openapiRequiredFields.toString()));
-        }
       }
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ClusterVolume.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolume` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolume` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
       }
       // validate the optional field `Info`
       if (jsonObj.get("Info") != null && !jsonObj.get("Info").isJsonNull()) {
-        Info.validateJsonElement(jsonObj.get("Info"));
+        Info.validateJsonObject(jsonObj.getAsJsonObject("Info"));
       }
       if (jsonObj.get("PublishStatus") != null && !jsonObj.get("PublishStatus").isJsonNull()) {
         JsonArray jsonArraypublishStatus = jsonObj.getAsJsonArray("PublishStatus");
@@ -355,17 +360,17 @@ public class ClusterVolume implements Serializable {
 
           // validate the optional field `PublishStatus` (array)
           for (int i = 0; i < jsonArraypublishStatus.size(); i++) {
-            PublishStatus.validateJsonElement(jsonArraypublishStatus.get(i));
+            PublishStatus.validateJsonObject(jsonArraypublishStatus.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `Spec`
       if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
-        ClusterVolumeSpec.validateJsonElement(jsonObj.get("Spec"));
+        ClusterVolumeSpec.validateJsonObject(jsonObj.getAsJsonObject("Spec"));
       }
       // validate the optional field `Version`
       if (jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) {
-        Version.validateJsonElement(jsonObj.get("Version"));
+        Version.validateJsonObject(jsonObj.getAsJsonObject("Version"));
       }
   }
 
@@ -389,9 +394,9 @@ public class ClusterVolume implements Serializable {
 
            @Override
            public ClusterVolume read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -404,7 +409,7 @@ public class ClusterVolume implements Serializable {
    * @param jsonString JSON string
    * @return An instance of ClusterVolume
    * @throws IOException if the JSON string is invalid with respect to ClusterVolume
-   */
+  */
   public static ClusterVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ClusterVolume.class);
   }
@@ -413,7 +418,7 @@ public class ClusterVolume implements Serializable {
    * Convert an instance of ClusterVolume to an JSON string
    *
    * @return JSON string
-   */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

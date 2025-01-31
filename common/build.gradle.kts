@@ -15,8 +15,9 @@ dependencies {
     implementation(project("pod4j.openapi-java"))
     implementation("com.squareup.okhttp3.sample:unixdomainsockets:3.14.9")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    testImplementation(platform("org.junit:junit-bom:5.10.3"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.slf4j:slf4j-simple:2.0.16")
+    implementation(platform("org.junit:junit-bom:5.10.3"))
+    implementation("org.junit.jupiter:junit-jupiter")
 }
 
 group = "io.github.alersrt.pod4j"

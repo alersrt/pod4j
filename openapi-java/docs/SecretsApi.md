@@ -10,10 +10,9 @@ All URIs are relative to *http://podman.io*
 | [**secretInspectLibpod**](SecretsApi.md#secretInspectLibpod) | **GET** /libpod/secrets/{name}/json | Inspect secret |
 | [**secretListLibpod**](SecretsApi.md#secretListLibpod) | **GET** /libpod/secrets/json | List secrets |
 
-
-<a id="secretCreateLibpod"></a>
+<a name="secretCreateLibpod"></a>
 # **secretCreateLibpod**
-> SecretCreateLibpod201Response secretCreateLibpod(name).driver(driver).driveropts(driveropts).labels(labels).request(request).execute();
+> ContainerUpdateLibpod201Response secretCreateLibpod(name).driver(driver).driveropts(driveropts).labels(labels).request(request).execute();
 
 Create a secret
 
@@ -38,7 +37,7 @@ public class Example {
     String labels = "labels_example"; // String | Labels on the secret
     String request = "request_example"; // String | Secret
     try {
-      SecretCreateLibpod201Response result = apiInstance.secretCreateLibpod(name)
+      ContainerUpdateLibpod201Response result = apiInstance.secretCreateLibpod(name)
             .driver(driver)
             .driveropts(driveropts)
             .labels(labels)
@@ -68,7 +67,7 @@ public class Example {
 
 ### Return type
 
-[**SecretCreateLibpod201Response**](SecretCreateLibpod201Response.md)
+[**ContainerUpdateLibpod201Response**](ContainerUpdateLibpod201Response.md)
 
 ### Authorization
 
@@ -85,7 +84,7 @@ No authorization required
 | **201** | Secret create response |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretDeleteLibpod"></a>
+<a name="secretDeleteLibpod"></a>
 # **secretDeleteLibpod**
 > secretDeleteLibpod(name).all(all).execute();
 
@@ -150,7 +149,7 @@ No authorization required
 | **404** | No such secret |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretExistsLibpod"></a>
+<a name="secretExistsLibpod"></a>
 # **secretExistsLibpod**
 > secretExistsLibpod(name).execute();
 
@@ -212,7 +211,7 @@ No authorization required
 | **404** | No such secret |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretInspectLibpod"></a>
+<a name="secretInspectLibpod"></a>
 # **secretInspectLibpod**
 > SecretInfoReport secretInspectLibpod(name).showsecret(showsecret).execute();
 
@@ -278,7 +277,7 @@ No authorization required
 | **404** | No such secret |  -  |
 | **500** | Internal server error |  -  |
 
-<a id="secretListLibpod"></a>
+<a name="secretListLibpod"></a>
 # **secretListLibpod**
 > List&lt;SecretInfoReport&gt; secretListLibpod().filters(filters).execute();
 
