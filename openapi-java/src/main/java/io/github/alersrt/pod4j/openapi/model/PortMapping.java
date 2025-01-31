@@ -13,39 +13,24 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * PortMapping
@@ -79,16 +64,16 @@ public class PortMapping implements Serializable {
 
   public PortMapping containerPort(Integer containerPort) {
 
-      this.containerPort = containerPort;
+    this.containerPort = containerPort;
     return this;
   }
 
-    /**
+  /**
    * ContainerPort is the port number that will be exposed from the container. Mandatory.
    * @return containerPort
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ContainerPort is the port number that will be exposed from the container. Mandatory.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ContainerPort is the port number that will be exposed from the container. Mandatory.")
 
   public Integer getContainerPort() {
     return containerPort;
@@ -102,16 +87,16 @@ public class PortMapping implements Serializable {
 
   public PortMapping hostIp(String hostIp) {
 
-      this.hostIp = hostIp;
+    this.hostIp = hostIp;
     return this;
   }
 
-    /**
+  /**
    * HostIP is the IP that we will bind to on the host. If unset, assumed to be 0.0.0.0 (all interfaces).
    * @return hostIp
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostIP is the IP that we will bind to on the host. If unset, assumed to be 0.0.0.0 (all interfaces).")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostIP is the IP that we will bind to on the host. If unset, assumed to be 0.0.0.0 (all interfaces).")
 
   public String getHostIp() {
     return hostIp;
@@ -125,16 +110,16 @@ public class PortMapping implements Serializable {
 
   public PortMapping hostPort(Integer hostPort) {
 
-      this.hostPort = hostPort;
+    this.hostPort = hostPort;
     return this;
   }
 
-    /**
+  /**
    * HostPort is the port number that will be forwarded from the host into the container. If omitted, a random port on the host (guaranteed to be over 1024) will be assigned.
    * @return hostPort
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostPort is the port number that will be forwarded from the host into the container. If omitted, a random port on the host (guaranteed to be over 1024) will be assigned.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostPort is the port number that will be forwarded from the host into the container. If omitted, a random port on the host (guaranteed to be over 1024) will be assigned.")
 
   public Integer getHostPort() {
     return hostPort;
@@ -148,16 +133,16 @@ public class PortMapping implements Serializable {
 
   public PortMapping protocol(String protocol) {
 
-      this.protocol = protocol;
+    this.protocol = protocol;
     return this;
   }
 
-    /**
+  /**
    * Protocol is the protocol forward. Must be either \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of these separated by commas. If unset, assumed to be TCP.
    * @return protocol
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Protocol is the protocol forward. Must be either \"tcp\", \"udp\", and \"sctp\", or some combination of these separated by commas. If unset, assumed to be TCP.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Protocol is the protocol forward. Must be either \"tcp\", \"udp\", and \"sctp\", or some combination of these separated by commas. If unset, assumed to be TCP.")
 
   public String getProtocol() {
     return protocol;
@@ -171,16 +156,16 @@ public class PortMapping implements Serializable {
 
   public PortMapping range(Integer range) {
 
-      this.range = range;
+    this.range = range;
     return this;
   }
 
-    /**
+  /**
    * Range is the number of ports that will be forwarded, starting at HostPort and ContainerPort and counting up. This is 1-indexed, so 1 is assumed to be a single port (only the Hostport:Containerport mapping will be added), 2 is two ports (both Hostport:Containerport and Hostport+1:Containerport+1), etc. If unset, assumed to be 1 (a single port). Both hostport + range and containerport + range must be less than 65536.
    * @return range
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Range is the number of ports that will be forwarded, starting at HostPort and ContainerPort and counting up. This is 1-indexed, so 1 is assumed to be a single port (only the Hostport:Containerport mapping will be added), 2 is two ports (both Hostport:Containerport and Hostport+1:Containerport+1), etc. If unset, assumed to be 1 (a single port). Both hostport + range and containerport + range must be less than 65536.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Range is the number of ports that will be forwarded, starting at HostPort and ContainerPort and counting up. This is 1-indexed, so 1 is assumed to be a single port (only the Hostport:Containerport mapping will be added), 2 is two ports (both Hostport:Containerport and Hostport+1:Containerport+1), etc. If unset, assumed to be 1 (a single port). Both hostport + range and containerport + range must be less than 65536.")
 
   public Integer getRange() {
     return range;
@@ -255,26 +240,26 @@ public class PortMapping implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PortMapping
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (PortMapping.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PortMapping
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PortMapping.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PortMapping is not found in the empty JSON string", PortMapping.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PortMapping.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PortMapping` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PortMapping` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("host_ip") != null && !jsonObj.get("host_ip").isJsonNull()) && !jsonObj.get("host_ip").isJsonPrimitive()) {
@@ -305,30 +290,30 @@ public class PortMapping implements Serializable {
 
            @Override
            public PortMapping read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of PortMapping given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PortMapping
-     * @throws IOException if the JSON string is invalid with respect to PortMapping
+  /**
+   * Create an instance of PortMapping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PortMapping
+   * @throws IOException if the JSON string is invalid with respect to PortMapping
   */
   public static PortMapping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PortMapping.class);
   }
 
-    /**
-     * Convert an instance of PortMapping to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of PortMapping to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

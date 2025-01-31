@@ -13,24 +13,39 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.IOException;
 import java.io.Serializable;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * Ulimit
@@ -56,16 +71,16 @@ public class Ulimit implements Serializable {
 
   public Ulimit hard(Long hard) {
 
-      this.hard = hard;
+    this.hard = hard;
     return this;
   }
 
-    /**
+  /**
    * Get hard
    * @return hard
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getHard() {
     return hard;
@@ -79,16 +94,16 @@ public class Ulimit implements Serializable {
 
   public Ulimit name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Get name
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
@@ -102,16 +117,16 @@ public class Ulimit implements Serializable {
 
   public Ulimit soft(Long soft) {
 
-      this.soft = soft;
+    this.soft = soft;
     return this;
   }
 
-    /**
+  /**
    * Get soft
    * @return soft
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getSoft() {
     return soft;
@@ -180,26 +195,26 @@ public class Ulimit implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to Ulimit
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (Ulimit.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to Ulimit
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (Ulimit.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in Ulimit is not found in the empty JSON string", Ulimit.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!Ulimit.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Ulimit` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Ulimit` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
@@ -227,30 +242,30 @@ public class Ulimit implements Serializable {
 
            @Override
            public Ulimit read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of Ulimit given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of Ulimit
-     * @throws IOException if the JSON string is invalid with respect to Ulimit
+  /**
+   * Create an instance of Ulimit given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Ulimit
+   * @throws IOException if the JSON string is invalid with respect to Ulimit
   */
   public static Ulimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Ulimit.class);
   }
 
-    /**
-     * Convert an instance of Ulimit to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of Ulimit to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

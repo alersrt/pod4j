@@ -13,53 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import io.github.alersrt.pod4j.openapi.model.ImageVolume;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.NamedVolume;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
-import io.github.alersrt.pod4j.openapi.model.PortMapping;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * PodSpecGenerator describes options to create a pod
@@ -169,9 +147,9 @@ public class PodSpecGenerator implements Serializable {
   @SerializedName(SERIALIZED_NAME_NO_INFRA)
   private Boolean noInfra;
 
-    public static final String SERIALIZED_NAME_NO_MANAGE_HOSTNAME = "no_manage_hostname";
-    @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTNAME)
-    private Boolean noManageHostname;
+  public static final String SERIALIZED_NAME_NO_MANAGE_HOSTNAME = "no_manage_hostname";
+  @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTNAME)
+  private Boolean noManageHostname;
 
   public static final String SERIALIZED_NAME_NO_MANAGE_HOSTS = "no_manage_hosts";
   @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTS)
@@ -266,7 +244,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator networks(Map<String, PerNetworkOptions> networks) {
 
-      this.networks = networks;
+    this.networks = networks;
     return this;
   }
 
@@ -278,13 +256,13 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Map of networks names to ids the container should join to. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network.
    * @return networks
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Map of networks names to ids the container should join to. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network.")
+  @ApiModelProperty(value = "Map of networks names to ids the container should join to. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network.")
 
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
@@ -298,16 +276,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator cgroupParent(String cgroupParent) {
 
-      this.cgroupParent = cgroupParent;
+    this.cgroupParent = cgroupParent;
     return this;
   }
 
-    /**
+  /**
    * CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.
    * @return cgroupParent
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.")
 
   public String getCgroupParent() {
     return cgroupParent;
@@ -321,7 +299,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator cniNetworks(List<String> cniNetworks) {
 
-      this.cniNetworks = cniNetworks;
+    this.cniNetworks = cniNetworks;
     return this;
   }
 
@@ -333,12 +311,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
 
   public List<String> getCniNetworks() {
     return cniNetworks;
@@ -352,16 +330,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator cpuPeriod(Integer cpuPeriod) {
 
-      this.cpuPeriod = cpuPeriod;
+    this.cpuPeriod = cpuPeriod;
     return this;
   }
 
-    /**
+  /**
    * CPU period of the cpuset, determined by --cpus
    * @return cpuPeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CPU period of the cpuset, determined by --cpus")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CPU period of the cpuset, determined by --cpus")
 
   public Integer getCpuPeriod() {
     return cpuPeriod;
@@ -375,16 +353,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator cpuQuota(Long cpuQuota) {
 
-      this.cpuQuota = cpuQuota;
+    this.cpuQuota = cpuQuota;
     return this;
   }
 
-    /**
+  /**
    * CPU quota of the cpuset, determined by --cpus
    * @return cpuQuota
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CPU quota of the cpuset, determined by --cpus")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CPU quota of the cpuset, determined by --cpus")
 
   public Long getCpuQuota() {
     return cpuQuota;
@@ -398,7 +376,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator dnsOption(List<String> dnsOption) {
 
-      this.dnsOption = dnsOption;
+    this.dnsOption = dnsOption;
     return this;
   }
 
@@ -410,12 +388,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSOption is a set of DNS options that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsOption
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSOption is a set of DNS options that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSOption is a set of DNS options that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getDnsOption() {
     return dnsOption;
@@ -429,7 +407,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator dnsSearch(List<String> dnsSearch) {
 
-      this.dnsSearch = dnsSearch;
+    this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -441,12 +419,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSSearch is a set of DNS search domains that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, DNS search domains from the host&#39;s resolv.conf will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsSearch
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, DNS search domains from the host's resolv.conf will be used. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, DNS search domains from the host's resolv.conf will be used. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
@@ -460,7 +438,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator dnsServer(List<String> dnsServer) {
 
-      this.dnsServer = dnsServer;
+    this.dnsServer = dnsServer;
     return this;
   }
 
@@ -472,12 +450,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSServer is a set of DNS servers that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, the host&#39;s DNS servers will be used, unless the only server set is a localhost address. As the container cannot connect to the host&#39;s localhost, a default server will instead be set. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsServer
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSServer is a set of DNS servers that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, the host's DNS servers will be used, unless the only server set is a localhost address. As the container cannot connect to the host's localhost, a default server will instead be set. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSServer is a set of DNS servers that will be used in the infra container's resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, the host's DNS servers will be used, unless the only server set is a localhost address. As the container cannot connect to the host's localhost, a default server will instead be set. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getDnsServer() {
     return dnsServer;
@@ -491,16 +469,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator exitPolicy(String exitPolicy) {
 
-      this.exitPolicy = exitPolicy;
+    this.exitPolicy = exitPolicy;
     return this;
   }
 
-    /**
+  /**
    * ExitPolicy determines the pod&#39;s exit and stop behaviour.
    * @return exitPolicy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ExitPolicy determines the pod's exit and stop behaviour.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ExitPolicy determines the pod's exit and stop behaviour.")
 
   public String getExitPolicy() {
     return exitPolicy;
@@ -514,7 +492,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator hostadd(List<String> hostadd) {
 
-      this.hostadd = hostadd;
+    this.hostadd = hostadd;
     return this;
   }
 
@@ -526,12 +504,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * HostAdd is a set of hosts that will be added to the infra container&#39;s etc/hosts that will, by default, be shared with all containers in the pod. Conflicts with NoInfra&#x3D;true and NoManageHosts. Optional.
    * @return hostadd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostAdd is a set of hosts that will be added to the infra container's etc/hosts that will, by default, be shared with all containers in the pod. Conflicts with NoInfra=true and NoManageHosts. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostAdd is a set of hosts that will be added to the infra container's etc/hosts that will, by default, be shared with all containers in the pod. Conflicts with NoInfra=true and NoManageHosts. Optional.")
 
   public List<String> getHostadd() {
     return hostadd;
@@ -545,16 +523,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator hostname(String hostname) {
 
-      this.hostname = hostname;
+    this.hostname = hostname;
     return this;
   }
 
-    /**
+  /**
    * Hostname is the pod&#39;s hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.
    * @return hostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Hostname is the pod's hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Hostname is the pod's hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.")
 
   public String getHostname() {
     return hostname;
@@ -568,16 +546,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator hostsFile(String hostsFile) {
 
-      this.hostsFile = hostsFile;
+    this.hostsFile = hostsFile;
     return this;
   }
 
-    /**
+  /**
    * HostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the infra container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Conflicts with NoInfra&#x3D;true and NoManageHosts. Optional.
    * @return hostsFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostsFile is the base file to create the `/etc/hosts` file inside the infra container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Conflicts with NoInfra=true and NoManageHosts. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostsFile is the base file to create the `/etc/hosts` file inside the infra container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Conflicts with NoInfra=true and NoManageHosts. Optional.")
 
   public String getHostsFile() {
     return hostsFile;
@@ -591,17 +569,17 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator idmappings(IDMappingOptions idmappings) {
 
-      this.idmappings = idmappings;
+    this.idmappings = idmappings;
     return this;
   }
 
-    /**
+  /**
    * Get idmappings
    * @return idmappings
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public IDMappingOptions getIdmappings() {
     return idmappings;
@@ -613,7 +591,7 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator imageVolumes(List<ImageVolume> imageVolumes) {
+  public PodSpecGenerator imageVolumes(List<ImageVolume> imageVolumes) {
     
     this.imageVolumes = imageVolumes;
     return this;
@@ -627,27 +605,27 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Image volumes bind-mount a container-image mount into the pod&#39;s infra container. Optional.
    * @return imageVolumes
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the pod's infra container. Optional.")
+  @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the pod's infra container. Optional.")
 
-    public List<ImageVolume> getImageVolumes() {
+  public List<ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
 
-    public void setImageVolumes(List<ImageVolume> imageVolumes) {
+  public void setImageVolumes(List<ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
 
   public PodSpecGenerator infraCommand(List<String> infraCommand) {
 
-      this.infraCommand = infraCommand;
+    this.infraCommand = infraCommand;
     return this;
   }
 
@@ -659,12 +637,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraCommand
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public List<String> getInfraCommand() {
     return infraCommand;
@@ -678,16 +656,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator infraConmonPidFile(String infraConmonPidFile) {
 
-      this.infraConmonPidFile = infraConmonPidFile;
+    this.infraConmonPidFile = infraConmonPidFile;
     return this;
   }
 
-    /**
+  /**
    * InfraConmonPidFile is a custom path to store the infra container&#39;s conmon PID.
    * @return infraConmonPidFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InfraConmonPidFile is a custom path to store the infra container's conmon PID.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraConmonPidFile is a custom path to store the infra container's conmon PID.")
 
   public String getInfraConmonPidFile() {
     return infraConmonPidFile;
@@ -701,16 +679,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator infraImage(String infraImage) {
 
-      this.infraImage = infraImage;
+    this.infraImage = infraImage;
     return this;
   }
 
-    /**
+  /**
    * InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraImage
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public String getInfraImage() {
     return infraImage;
@@ -724,16 +702,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator infraName(String infraName) {
 
-      this.infraName = infraName;
+    this.infraName = infraName;
     return this;
   }
 
-    /**
+  /**
    * InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraName
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra=true. Optional.")
 
   public String getInfraName() {
     return infraName;
@@ -747,17 +725,17 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator ipcns(Namespace ipcns) {
 
-      this.ipcns = ipcns;
+    this.ipcns = ipcns;
     return this;
   }
 
-    /**
+  /**
    * Get ipcns
    * @return ipcns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getIpcns() {
     return ipcns;
@@ -771,7 +749,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -783,12 +761,12 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Labels are key-value pairs that are used to add metadata to pods. Optional.
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to pods. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to pods. Optional.")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -800,7 +778,7 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator mounts(List<Mount> mounts) {
+  public PodSpecGenerator mounts(List<Mount> mounts) {
     
     this.mounts = mounts;
     return this;
@@ -814,36 +792,36 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
+  @ApiModelProperty(value = "Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
 
-    public List<Mount> getMounts() {
+  public List<Mount> getMounts() {
     return mounts;
   }
 
 
-    public void setMounts(List<Mount> mounts) {
+  public void setMounts(List<Mount> mounts) {
     this.mounts = mounts;
   }
 
 
   public PodSpecGenerator name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.")
 
   public String getName() {
     return name;
@@ -857,17 +835,17 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator netns(Namespace netns) {
 
-      this.netns = netns;
+    this.netns = netns;
     return this;
   }
 
-    /**
+  /**
    * Get netns
    * @return netns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getNetns() {
     return netns;
@@ -881,7 +859,7 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator networkOptions(Map<String, List<String>> networkOptions) {
 
-      this.networkOptions = networkOptions;
+    this.networkOptions = networkOptions;
     return this;
   }
 
@@ -893,13 +871,13 @@ public class PodSpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
+  @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
 
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
@@ -913,16 +891,16 @@ public class PodSpecGenerator implements Serializable {
 
   public PodSpecGenerator noInfra(Boolean noInfra) {
 
-      this.noInfra = noInfra;
+    this.noInfra = noInfra;
     return this;
   }
 
-    /**
+  /**
    * NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.
    * @return noInfra
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.")
 
   public Boolean getNoInfra() {
     return noInfra;
@@ -934,27 +912,27 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator noManageHostname(Boolean noManageHostname) {
+  public PodSpecGenerator noManageHostname(Boolean noManageHostname) {
 
-        this.noManageHostname = noManageHostname;
-        return this;
-    }
+    this.noManageHostname = noManageHostname;
+    return this;
+  }
 
-    /**
-     * NoManageHostname indicates that /etc/hostname should not be managed by the pod. Instead, each container will create a separate etc/hostname as they would if not in a pod.
-     *
-     * @return noManageHostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "NoManageHostname indicates that /etc/hostname should not be managed by the pod. Instead, each container will create a separate etc/hostname as they would if not in a pod.")
+  /**
+   * NoManageHostname indicates that /etc/hostname should not be managed by the pod. Instead, each container will create a separate etc/hostname as they would if not in a pod.
+   *
+   * @return noManageHostname
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "NoManageHostname indicates that /etc/hostname should not be managed by the pod. Instead, each container will create a separate etc/hostname as they would if not in a pod.")
 
-    public Boolean getNoManageHostname() {
-        return noManageHostname;
-    }
+  public Boolean getNoManageHostname() {
+    return noManageHostname;
+  }
 
 
-    public void setNoManageHostname(Boolean noManageHostname) {
-        this.noManageHostname = noManageHostname;
+  public void setNoManageHostname(Boolean noManageHostname) {
+    this.noManageHostname = noManageHostname;
   }
 
 
@@ -1004,7 +982,7 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator overlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public PodSpecGenerator overlayVolumes(List<OverlayVolume> overlayVolumes) {
     
     this.overlayVolumes = overlayVolumes;
     return this;
@@ -1031,7 +1009,7 @@ public class PodSpecGenerator implements Serializable {
    }
 
 
-    public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
@@ -1122,7 +1100,7 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator portmappings(List<PortMapping> portmappings) {
+  public PodSpecGenerator portmappings(List<PortMapping> portmappings) {
     
     this.portmappings = portmappings;
     return this;
@@ -1149,7 +1127,7 @@ public class PodSpecGenerator implements Serializable {
    }
 
 
-    public void setPortmappings(List<PortMapping> portmappings) {
+  public void setPortmappings(List<PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
@@ -1489,7 +1467,7 @@ public class PodSpecGenerator implements Serializable {
   }
 
 
-    public PodSpecGenerator volumes(List<NamedVolume> volumes) {
+  public PodSpecGenerator volumes(List<NamedVolume> volumes) {
     
     this.volumes = volumes;
     return this;
@@ -1516,7 +1494,7 @@ public class PodSpecGenerator implements Serializable {
    }
 
 
-    public void setVolumes(List<NamedVolume> volumes) {
+  public void setVolumes(List<NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
@@ -1614,7 +1592,7 @@ public class PodSpecGenerator implements Serializable {
 
   @Override
   public int hashCode() {
-      return Objects.hash(networks, cgroupParent, cniNetworks, cpuPeriod, cpuQuota, dnsOption, dnsSearch, dnsServer, exitPolicy, hostadd, hostname, hostsFile, idmappings, imageVolumes, infraCommand, infraConmonPidFile, infraImage, infraName, ipcns, labels, mounts, name, netns, networkOptions, noInfra, noManageHostname, noManageHosts, noManageResolvConf, overlayVolumes, pidns, podCreateCommand, podDevices, portmappings, resourceLimits, restartPolicy, restartTries, securityOpt, serviceContainerID, shareParent, sharedNamespaces, shmSize, shmSizeSystemd, sysctl, throttleReadBpsDevice, userns, utsns, volumes, volumesFrom);
+    return Objects.hash(networks, cgroupParent, cniNetworks, cpuPeriod, cpuQuota, dnsOption, dnsSearch, dnsServer, exitPolicy, hostadd, hostname, hostsFile, idmappings, imageVolumes, infraCommand, infraConmonPidFile, infraImage, infraName, ipcns, labels, mounts, name, netns, networkOptions, noInfra, noManageHostname, noManageHosts, noManageResolvConf, overlayVolumes, pidns, podCreateCommand, podDevices, portmappings, resourceLimits, restartPolicy, restartTries, securityOpt, serviceContainerID, shareParent, sharedNamespaces, shmSize, shmSizeSystemd, sysctl, throttleReadBpsDevice, userns, utsns, volumes, volumesFrom);
   }
 
   @Override
@@ -1646,7 +1624,7 @@ public class PodSpecGenerator implements Serializable {
     sb.append("    netns: ").append(toIndentedString(netns)).append("\n");
     sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
     sb.append("    noInfra: ").append(toIndentedString(noInfra)).append("\n");
-      sb.append("    noManageHostname: ").append(toIndentedString(noManageHostname)).append("\n");
+    sb.append("    noManageHostname: ").append(toIndentedString(noManageHostname)).append("\n");
     sb.append("    noManageHosts: ").append(toIndentedString(noManageHosts)).append("\n");
     sb.append("    noManageResolvConf: ").append(toIndentedString(noManageResolvConf)).append("\n");
     sb.append("    overlayVolumes: ").append(toIndentedString(overlayVolumes)).append("\n");
@@ -1716,7 +1694,7 @@ public class PodSpecGenerator implements Serializable {
     openapiFields.add("netns");
     openapiFields.add("network_options");
     openapiFields.add("no_infra");
-      openapiFields.add("no_manage_hostname");
+    openapiFields.add("no_manage_hostname");
     openapiFields.add("no_manage_hosts");
     openapiFields.add("no_manage_resolv_conf");
     openapiFields.add("overlay_volumes");
@@ -1744,52 +1722,52 @@ public class PodSpecGenerator implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PodSpecGenerator
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (PodSpecGenerator.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PodSpecGenerator is not found in the empty JSON string", PodSpecGenerator.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PodSpecGenerator
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PodSpecGenerator.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in PodSpecGenerator is not found in the empty JSON string", PodSpecGenerator.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PodSpecGenerator.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodSpecGenerator` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodSpecGenerator` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cgroup_parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroup_parent").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
       }
       if ((jsonObj.get("exit_policy") != null && !jsonObj.get("exit_policy").isJsonNull()) && !jsonObj.get("exit_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `exit_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exit_policy").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
       }
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
@@ -1800,7 +1778,7 @@ public class PodSpecGenerator implements Serializable {
       }
       // validate the optional field `idmappings`
       if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
-          IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
+        IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
       }
       if (jsonObj.get("image_volumes") != null && !jsonObj.get("image_volumes").isJsonNull()) {
         JsonArray jsonArrayimageVolumes = jsonObj.getAsJsonArray("image_volumes");
@@ -1812,13 +1790,13 @@ public class PodSpecGenerator implements Serializable {
 
           // validate the optional field `image_volumes` (array)
           for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-              ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
+            ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("infra_command") != null && !jsonObj.get("infra_command").isJsonNull()) && !jsonObj.get("infra_command").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("infra_command") != null && !jsonObj.get("infra_command").isJsonNull()) && !jsonObj.get("infra_command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `infra_command` to be an array in the JSON string but got `%s`", jsonObj.get("infra_command").toString()));
       }
       if ((jsonObj.get("infra_conmon_pid_file") != null && !jsonObj.get("infra_conmon_pid_file").isJsonNull()) && !jsonObj.get("infra_conmon_pid_file").isJsonPrimitive()) {
@@ -1832,7 +1810,7 @@ public class PodSpecGenerator implements Serializable {
       }
       // validate the optional field `ipcns`
       if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
       }
       if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
         JsonArray jsonArraymounts = jsonObj.getAsJsonArray("mounts");
@@ -1844,7 +1822,7 @@ public class PodSpecGenerator implements Serializable {
 
           // validate the optional field `mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-              Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
+            Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -1853,7 +1831,7 @@ public class PodSpecGenerator implements Serializable {
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
       }
       if (jsonObj.get("overlay_volumes") != null && !jsonObj.get("overlay_volumes").isJsonNull()) {
         JsonArray jsonArrayoverlayVolumes = jsonObj.getAsJsonArray("overlay_volumes");
@@ -1865,20 +1843,20 @@ public class PodSpecGenerator implements Serializable {
 
           // validate the optional field `overlay_volumes` (array)
           for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-              OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
+            OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `pidns`
       if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("pod_create_command") != null && !jsonObj.get("pod_create_command").isJsonNull()) && !jsonObj.get("pod_create_command").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("pod_create_command") != null && !jsonObj.get("pod_create_command").isJsonNull()) && !jsonObj.get("pod_create_command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod_create_command` to be an array in the JSON string but got `%s`", jsonObj.get("pod_create_command").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("pod_devices") != null && !jsonObj.get("pod_devices").isJsonNull()) && !jsonObj.get("pod_devices").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("pod_devices") != null && !jsonObj.get("pod_devices").isJsonNull()) && !jsonObj.get("pod_devices").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod_devices` to be an array in the JSON string but got `%s`", jsonObj.get("pod_devices").toString()));
       }
       if (jsonObj.get("portmappings") != null && !jsonObj.get("portmappings").isJsonNull()) {
@@ -1891,35 +1869,35 @@ public class PodSpecGenerator implements Serializable {
 
           // validate the optional field `portmappings` (array)
           for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-              PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
+            PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `resource_limits`
       if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
-          LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
+        LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
       }
       if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("security_opt") != null && !jsonObj.get("security_opt").isJsonNull()) && !jsonObj.get("security_opt").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("security_opt") != null && !jsonObj.get("security_opt").isJsonNull()) && !jsonObj.get("security_opt").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `security_opt` to be an array in the JSON string but got `%s`", jsonObj.get("security_opt").toString()));
       }
       if ((jsonObj.get("serviceContainerID") != null && !jsonObj.get("serviceContainerID").isJsonNull()) && !jsonObj.get("serviceContainerID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `serviceContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("serviceContainerID").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("shared_namespaces") != null && !jsonObj.get("shared_namespaces").isJsonNull()) && !jsonObj.get("shared_namespaces").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("shared_namespaces") != null && !jsonObj.get("shared_namespaces").isJsonNull()) && !jsonObj.get("shared_namespaces").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `shared_namespaces` to be an array in the JSON string but got `%s`", jsonObj.get("shared_namespaces").toString()));
       }
       // validate the optional field `userns`
       if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
       }
       // validate the optional field `utsns`
       if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
       }
       if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
         JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
@@ -1931,13 +1909,13 @@ public class PodSpecGenerator implements Serializable {
 
           // validate the optional field `volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-              NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
+            NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
       }
   }
@@ -1962,28 +1940,28 @@ public class PodSpecGenerator implements Serializable {
 
            @Override
            public PodSpecGenerator read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of PodSpecGenerator given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodSpecGenerator
-     * @throws IOException if the JSON string is invalid with respect to PodSpecGenerator
+  /**
+   * Create an instance of PodSpecGenerator given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodSpecGenerator
+   * @throws IOException if the JSON string is invalid with respect to PodSpecGenerator
   */
   public static PodSpecGenerator fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodSpecGenerator.class);
   }
 
-    /**
-     * Convert an instance of PodSpecGenerator to an JSON string
+  /**
+   * Convert an instance of PodSpecGenerator to an JSON string
   *
   * @return JSON string
   */

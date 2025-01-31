@@ -72,16 +72,16 @@ public class SlirpInfo implements Serializable {
 
   public SlirpInfo executable(String executable) {
 
-      this.executable = executable;
+    this.executable = executable;
     return this;
   }
 
-    /**
+  /**
    * Get executable
    * @return executable
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getExecutable() {
     return executable;
@@ -95,16 +95,16 @@ public class SlirpInfo implements Serializable {
 
   public SlirpInfo _package(String _package) {
 
-      this._package = _package;
+    this._package = _package;
     return this;
   }
 
-    /**
+  /**
    * Get _package
    * @return _package
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getPackage() {
     return _package;
@@ -118,16 +118,16 @@ public class SlirpInfo implements Serializable {
 
   public SlirpInfo version(String version) {
 
-      this.version = version;
+    this.version = version;
     return this;
   }
 
-    /**
+  /**
    * Get version
    * @return version
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getVersion() {
     return version;
@@ -196,26 +196,26 @@ public class SlirpInfo implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SlirpInfo
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SlirpInfo.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SlirpInfo
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SlirpInfo.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SlirpInfo is not found in the empty JSON string", SlirpInfo.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SlirpInfo.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlirpInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlirpInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("executable") != null && !jsonObj.get("executable").isJsonNull()) && !jsonObj.get("executable").isJsonPrimitive()) {
@@ -249,30 +249,30 @@ public class SlirpInfo implements Serializable {
 
            @Override
            public SlirpInfo read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SlirpInfo given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SlirpInfo
-     * @throws IOException if the JSON string is invalid with respect to SlirpInfo
+  /**
+   * Create an instance of SlirpInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SlirpInfo
+   * @throws IOException if the JSON string is invalid with respect to SlirpInfo
   */
   public static SlirpInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SlirpInfo.class);
   }
 
-    /**
-     * Convert an instance of SlirpInfo to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SlirpInfo to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

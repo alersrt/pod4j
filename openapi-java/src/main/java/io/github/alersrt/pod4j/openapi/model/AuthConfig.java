@@ -13,39 +13,25 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * AuthConfig contains authorization information for connecting to a Registry
@@ -88,14 +74,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig auth(String auth) {
 
-      this.auth = auth;
+    this.auth = auth;
     return this;
   }
 
-    /**
+  /**
    * Get auth
    * @return auth
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -111,14 +97,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig email(String email) {
 
-      this.email = email;
+    this.email = email;
     return this;
   }
 
-    /**
+  /**
    * Email is an optional value associated with the username. This field is deprecated and will be removed in a later version of docker.
    * @return email
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Email is an optional value associated with the username. This field is deprecated and will be removed in a later version of docker.")
 
@@ -134,14 +120,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig identitytoken(String identitytoken) {
 
-      this.identitytoken = identitytoken;
+    this.identitytoken = identitytoken;
     return this;
   }
 
-    /**
+  /**
    * IdentityToken is used to authenticate the user and get an access token for the registry.
    * @return identitytoken
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "IdentityToken is used to authenticate the user and get an access token for the registry.")
 
@@ -157,14 +143,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig password(String password) {
 
-      this.password = password;
+    this.password = password;
     return this;
   }
 
-    /**
+  /**
    * Get password
    * @return password
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -180,14 +166,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig registrytoken(String registrytoken) {
 
-      this.registrytoken = registrytoken;
+    this.registrytoken = registrytoken;
     return this;
   }
 
-    /**
+  /**
    * RegistryToken is a bearer token to be sent to a registry
    * @return registrytoken
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "RegistryToken is a bearer token to be sent to a registry")
 
@@ -203,14 +189,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig serveraddress(String serveraddress) {
 
-      this.serveraddress = serveraddress;
+    this.serveraddress = serveraddress;
     return this;
   }
 
-    /**
+  /**
    * Get serveraddress
    * @return serveraddress
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -226,14 +212,14 @@ public class AuthConfig implements Serializable {
 
   public AuthConfig username(String username) {
 
-      this.username = username;
+    this.username = username;
     return this;
   }
 
-    /**
+  /**
    * Get username
    * @return username
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -316,19 +302,19 @@ public class AuthConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to AuthConfig
-     */
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to AuthConfig
+   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-          if (AuthConfig.openapiRequiredFields.isEmpty()) {
-              return;
-          } else { // has required fields
-              throw new IllegalArgumentException(String.format("The required field(s) %s in AuthConfig is not found in the empty JSON string", AuthConfig.openapiRequiredFields.toString()));
-          }
+        if (AuthConfig.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthConfig is not found in the empty JSON string", AuthConfig.openapiRequiredFields.toString()));
+        }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
@@ -390,21 +376,21 @@ public class AuthConfig implements Serializable {
     }
   }
 
-    /**
-     * Create an instance of AuthConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of AuthConfig
-     * @throws IOException if the JSON string is invalid with respect to AuthConfig
+  /**
+   * Create an instance of AuthConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AuthConfig
+   * @throws IOException if the JSON string is invalid with respect to AuthConfig
   */
   public static AuthConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthConfig.class);
   }
 
-    /**
-     * Convert an instance of AuthConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of AuthConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

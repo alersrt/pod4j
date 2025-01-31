@@ -13,41 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import javax.validation.Valid;
 
 /**
  * InspectContainerState provides a detailed record of a container&#39;s current state. It is returned as part of InspectContainerData. As with InspectContainerData, many portions of this struct are matched to Docker, but here we see more fields that are unused (nonsensical in the context of Libpod).
@@ -154,16 +140,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState cgroupPath(String cgroupPath) {
 
-      this.cgroupPath = cgroupPath;
+    this.cgroupPath = cgroupPath;
     return this;
   }
 
-    /**
+  /**
    * Get cgroupPath
    * @return cgroupPath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCgroupPath() {
     return cgroupPath;
@@ -177,16 +163,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState checkpointLog(String checkpointLog) {
 
-      this.checkpointLog = checkpointLog;
+    this.checkpointLog = checkpointLog;
     return this;
   }
 
-    /**
+  /**
    * Get checkpointLog
    * @return checkpointLog
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCheckpointLog() {
     return checkpointLog;
@@ -200,16 +186,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState checkpointPath(String checkpointPath) {
 
-      this.checkpointPath = checkpointPath;
+    this.checkpointPath = checkpointPath;
     return this;
   }
 
-    /**
+  /**
    * Get checkpointPath
    * @return checkpointPath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCheckpointPath() {
     return checkpointPath;
@@ -223,16 +209,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState checkpointed(Boolean checkpointed) {
 
-      this.checkpointed = checkpointed;
+    this.checkpointed = checkpointed;
     return this;
   }
 
-    /**
+  /**
    * Get checkpointed
    * @return checkpointed
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getCheckpointed() {
     return checkpointed;
@@ -246,17 +232,17 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState checkpointedAt(OffsetDateTime checkpointedAt) {
 
-      this.checkpointedAt = checkpointedAt;
+    this.checkpointedAt = checkpointedAt;
     return this;
   }
 
-    /**
+  /**
    * Get checkpointedAt
    * @return checkpointedAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getCheckpointedAt() {
     return checkpointedAt;
@@ -270,16 +256,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState conmonPid(Long conmonPid) {
 
-      this.conmonPid = conmonPid;
+    this.conmonPid = conmonPid;
     return this;
   }
 
-    /**
+  /**
    * Get conmonPid
    * @return conmonPid
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getConmonPid() {
     return conmonPid;
@@ -293,16 +279,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState dead(Boolean dead) {
 
-      this.dead = dead;
+    this.dead = dead;
     return this;
   }
 
-    /**
+  /**
    * Get dead
    * @return dead
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getDead() {
     return dead;
@@ -316,16 +302,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState error(String error) {
 
-      this.error = error;
+    this.error = error;
     return this;
   }
 
-    /**
+  /**
    * Get error
    * @return error
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getError() {
     return error;
@@ -339,16 +325,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState exitCode(Integer exitCode) {
 
-      this.exitCode = exitCode;
+    this.exitCode = exitCode;
     return this;
   }
 
-    /**
+  /**
    * Get exitCode
    * @return exitCode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getExitCode() {
     return exitCode;
@@ -362,17 +348,17 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState finishedAt(OffsetDateTime finishedAt) {
 
-      this.finishedAt = finishedAt;
+    this.finishedAt = finishedAt;
     return this;
   }
 
-    /**
+  /**
    * Get finishedAt
    * @return finishedAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getFinishedAt() {
     return finishedAt;
@@ -386,17 +372,17 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState health(HealthCheckResults health) {
 
-      this.health = health;
+    this.health = health;
     return this;
   }
 
-    /**
+  /**
    * Get health
    * @return health
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public HealthCheckResults getHealth() {
     return health;
@@ -410,16 +396,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState ooMKilled(Boolean ooMKilled) {
 
-      this.ooMKilled = ooMKilled;
+    this.ooMKilled = ooMKilled;
     return this;
   }
 
-    /**
+  /**
    * Get ooMKilled
    * @return ooMKilled
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getOoMKilled() {
     return ooMKilled;
@@ -433,16 +419,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState ociVersion(String ociVersion) {
 
-      this.ociVersion = ociVersion;
+    this.ociVersion = ociVersion;
     return this;
   }
 
-    /**
+  /**
    * Get ociVersion
    * @return ociVersion
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getOciVersion() {
     return ociVersion;
@@ -456,16 +442,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState paused(Boolean paused) {
 
-      this.paused = paused;
+    this.paused = paused;
     return this;
   }
 
-    /**
+  /**
    * Get paused
    * @return paused
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getPaused() {
     return paused;
@@ -479,16 +465,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState pid(Long pid) {
 
-      this.pid = pid;
+    this.pid = pid;
     return this;
   }
 
-    /**
+  /**
    * Get pid
    * @return pid
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getPid() {
     return pid;
@@ -502,16 +488,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState restarting(Boolean restarting) {
 
-      this.restarting = restarting;
+    this.restarting = restarting;
     return this;
   }
 
-    /**
+  /**
    * Get restarting
    * @return restarting
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getRestarting() {
     return restarting;
@@ -525,16 +511,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState restoreLog(String restoreLog) {
 
-      this.restoreLog = restoreLog;
+    this.restoreLog = restoreLog;
     return this;
   }
 
-    /**
+  /**
    * Get restoreLog
    * @return restoreLog
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getRestoreLog() {
     return restoreLog;
@@ -548,16 +534,16 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState restored(Boolean restored) {
 
-      this.restored = restored;
+    this.restored = restored;
     return this;
   }
 
-    /**
+  /**
    * Get restored
    * @return restored
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getRestored() {
     return restored;
@@ -571,17 +557,17 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState restoredAt(OffsetDateTime restoredAt) {
 
-      this.restoredAt = restoredAt;
+    this.restoredAt = restoredAt;
     return this;
   }
 
-    /**
+  /**
    * Get restoredAt
    * @return restoredAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getRestoredAt() {
     return restoredAt;
@@ -595,93 +581,93 @@ public class InspectContainerState implements Serializable {
 
   public InspectContainerState running(Boolean running) {
 
-      this.running = running;
+    this.running = running;
     return this;
   }
 
-    /**
+  /**
    * Get running
    * @return running
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getRunning() {
     return running;
   }
 
 
-    public void setRunning(Boolean running) {
+  public void setRunning(Boolean running) {
     this.running = running;
   }
 
 
   public InspectContainerState startedAt(OffsetDateTime startedAt) {
 
-      this.startedAt = startedAt;
+    this.startedAt = startedAt;
     return this;
   }
 
-    /**
+  /**
    * Get startedAt
    * @return startedAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getStartedAt() {
     return startedAt;
   }
 
 
-    public void setStartedAt(OffsetDateTime startedAt) {
+  public void setStartedAt(OffsetDateTime startedAt) {
     this.startedAt = startedAt;
   }
 
 
   public InspectContainerState status(String status) {
 
-      this.status = status;
+    this.status = status;
     return this;
   }
 
-    /**
+  /**
    * Get status
    * @return status
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getStatus() {
     return status;
   }
 
 
-    public void setStatus(String status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 
 
   public InspectContainerState stoppedByUser(Boolean stoppedByUser) {
 
-      this.stoppedByUser = stoppedByUser;
+    this.stoppedByUser = stoppedByUser;
     return this;
   }
 
-    /**
+  /**
    * Get stoppedByUser
    * @return stoppedByUser
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getStoppedByUser() {
     return stoppedByUser;
   }
 
 
-    public void setStoppedByUser(Boolean stoppedByUser) {
+  public void setStoppedByUser(Boolean stoppedByUser) {
     this.stoppedByUser = stoppedByUser;
   }
 
@@ -803,26 +789,26 @@ public class InspectContainerState implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to InspectContainerState
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (InspectContainerState.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerState is not found in the empty JSON string", InspectContainerState.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to InspectContainerState
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (InspectContainerState.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerState is not found in the empty JSON string", InspectContainerState.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!InspectContainerState.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerState` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerState` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("CgroupPath") != null && !jsonObj.get("CgroupPath").isJsonNull()) && !jsonObj.get("CgroupPath").isJsonPrimitive()) {
@@ -839,7 +825,7 @@ public class InspectContainerState implements Serializable {
       }
       // validate the optional field `Health`
       if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
-          HealthCheckResults.validateJsonObject(jsonObj.getAsJsonObject("Health"));
+        HealthCheckResults.validateJsonObject(jsonObj.getAsJsonObject("Health"));
       }
       if ((jsonObj.get("OciVersion") != null && !jsonObj.get("OciVersion").isJsonNull()) && !jsonObj.get("OciVersion").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `OciVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OciVersion").toString()));
@@ -872,30 +858,30 @@ public class InspectContainerState implements Serializable {
 
            @Override
            public InspectContainerState read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of InspectContainerState given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of InspectContainerState
-     * @throws IOException if the JSON string is invalid with respect to InspectContainerState
+  /**
+   * Create an instance of InspectContainerState given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InspectContainerState
+   * @throws IOException if the JSON string is invalid with respect to InspectContainerState
   */
   public static InspectContainerState fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerState.class);
   }
 
-    /**
-     * Convert an instance of InspectContainerState to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of InspectContainerState to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

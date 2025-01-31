@@ -13,8 +13,10 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+
+import javax.ws.rs.core.GenericType;
 
 /**
  * <p>ApiException class.</p>

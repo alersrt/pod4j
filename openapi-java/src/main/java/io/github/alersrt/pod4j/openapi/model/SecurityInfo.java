@@ -84,16 +84,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo apparmorEnabled(Boolean apparmorEnabled) {
 
-      this.apparmorEnabled = apparmorEnabled;
+    this.apparmorEnabled = apparmorEnabled;
     return this;
   }
 
-    /**
+  /**
    * Get apparmorEnabled
    * @return apparmorEnabled
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getApparmorEnabled() {
     return apparmorEnabled;
@@ -107,16 +107,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo capabilities(String capabilities) {
 
-      this.capabilities = capabilities;
+    this.capabilities = capabilities;
     return this;
   }
 
-    /**
+  /**
    * Get capabilities
    * @return capabilities
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCapabilities() {
     return capabilities;
@@ -130,16 +130,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo rootless(Boolean rootless) {
 
-      this.rootless = rootless;
+    this.rootless = rootless;
     return this;
   }
 
-    /**
+  /**
    * Get rootless
    * @return rootless
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getRootless() {
     return rootless;
@@ -153,16 +153,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo seccompEnabled(Boolean seccompEnabled) {
 
-      this.seccompEnabled = seccompEnabled;
+    this.seccompEnabled = seccompEnabled;
     return this;
   }
 
-    /**
+  /**
    * Get seccompEnabled
    * @return seccompEnabled
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getSeccompEnabled() {
     return seccompEnabled;
@@ -176,16 +176,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo seccompProfilePath(String seccompProfilePath) {
 
-      this.seccompProfilePath = seccompProfilePath;
+    this.seccompProfilePath = seccompProfilePath;
     return this;
   }
 
-    /**
+  /**
    * Get seccompProfilePath
    * @return seccompProfilePath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getSeccompProfilePath() {
     return seccompProfilePath;
@@ -199,16 +199,16 @@ public class SecurityInfo implements Serializable {
 
   public SecurityInfo selinuxEnabled(Boolean selinuxEnabled) {
 
-      this.selinuxEnabled = selinuxEnabled;
+    this.selinuxEnabled = selinuxEnabled;
     return this;
   }
 
-    /**
+  /**
    * Get selinuxEnabled
    * @return selinuxEnabled
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getSelinuxEnabled() {
     return selinuxEnabled;
@@ -286,26 +286,26 @@ public class SecurityInfo implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SecurityInfo
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SecurityInfo.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SecurityInfo
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SecurityInfo.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SecurityInfo is not found in the empty JSON string", SecurityInfo.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SecurityInfo.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecurityInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecurityInfo` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("capabilities") != null && !jsonObj.get("capabilities").isJsonNull()) && !jsonObj.get("capabilities").isJsonPrimitive()) {
@@ -336,30 +336,30 @@ public class SecurityInfo implements Serializable {
 
            @Override
            public SecurityInfo read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SecurityInfo given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SecurityInfo
-     * @throws IOException if the JSON string is invalid with respect to SecurityInfo
+  /**
+   * Create an instance of SecurityInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SecurityInfo
+   * @throws IOException if the JSON string is invalid with respect to SecurityInfo
   */
   public static SecurityInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecurityInfo.class);
   }
 
-    /**
-     * Convert an instance of SecurityInfo to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SecurityInfo to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

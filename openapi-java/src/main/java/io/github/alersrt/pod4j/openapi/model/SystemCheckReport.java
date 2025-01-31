@@ -13,30 +13,43 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Set;
+import java.io.Serializable;
+import javax.validation.constraints.*;
 import javax.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * SystemCheckReport provides a report of what a storage consistency check found, and if we removed anything that was damaged, what we removed.
@@ -87,7 +100,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport containers(Map<String, List<String>> containers) {
 
-      this.containers = containers;
+    this.containers = containers;
     return this;
   }
 
@@ -99,13 +112,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get containers
    * @return containers
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getContainers() {
     return containers;
@@ -119,16 +132,16 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport errors(Boolean errors) {
 
-      this.errors = errors;
+    this.errors = errors;
     return this;
   }
 
-    /**
+  /**
    * Get errors
    * @return errors
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getErrors() {
     return errors;
@@ -142,7 +155,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport images(Map<String, List<String>> images) {
 
-      this.images = images;
+    this.images = images;
     return this;
   }
 
@@ -154,13 +167,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get images
    * @return images
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getImages() {
     return images;
@@ -174,7 +187,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport layers(Map<String, List<String>> layers) {
 
-      this.layers = layers;
+    this.layers = layers;
     return this;
   }
 
@@ -186,13 +199,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get layers
    * @return layers
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getLayers() {
     return layers;
@@ -206,7 +219,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport roImages(Map<String, List<String>> roImages) {
 
-      this.roImages = roImages;
+    this.roImages = roImages;
     return this;
   }
 
@@ -218,13 +231,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get roImages
    * @return roImages
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getRoImages() {
     return roImages;
@@ -238,7 +251,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport roLayers(Map<String, List<String>> roLayers) {
 
-      this.roLayers = roLayers;
+    this.roLayers = roLayers;
     return this;
   }
 
@@ -250,13 +263,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get roLayers
    * @return roLayers
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getRoLayers() {
     return roLayers;
@@ -270,7 +283,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport removedContainers(Map<String, String> removedContainers) {
 
-      this.removedContainers = removedContainers;
+    this.removedContainers = removedContainers;
     return this;
   }
 
@@ -282,12 +295,12 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get removedContainers
    * @return removedContainers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getRemovedContainers() {
     return removedContainers;
@@ -301,7 +314,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport removedImages(Map<String, List<String>> removedImages) {
 
-      this.removedImages = removedImages;
+    this.removedImages = removedImages;
     return this;
   }
 
@@ -313,13 +326,13 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get removedImages
    * @return removedImages
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Map<String, List<String>> getRemovedImages() {
     return removedImages;
@@ -333,7 +346,7 @@ public class SystemCheckReport implements Serializable {
 
   public SystemCheckReport removedLayers(List<String> removedLayers) {
 
-      this.removedLayers = removedLayers;
+    this.removedLayers = removedLayers;
     return this;
   }
 
@@ -345,19 +358,19 @@ public class SystemCheckReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get removedLayers
    * @return removedLayers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getRemovedLayers() {
     return removedLayers;
   }
 
 
-    public void setRemovedLayers(List<String> removedLayers) {
+  public void setRemovedLayers(List<String> removedLayers) {
     this.removedLayers = removedLayers;
   }
 
@@ -437,30 +450,30 @@ public class SystemCheckReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SystemCheckReport
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SystemCheckReport.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemCheckReport is not found in the empty JSON string", SystemCheckReport.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SystemCheckReport
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SystemCheckReport.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in SystemCheckReport is not found in the empty JSON string", SystemCheckReport.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SystemCheckReport.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemCheckReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemCheckReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("RemovedLayers") != null && !jsonObj.get("RemovedLayers").isJsonNull()) && !jsonObj.get("RemovedLayers").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("RemovedLayers") != null && !jsonObj.get("RemovedLayers").isJsonNull()) && !jsonObj.get("RemovedLayers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `RemovedLayers` to be an array in the JSON string but got `%s`", jsonObj.get("RemovedLayers").toString()));
       }
   }
@@ -485,30 +498,30 @@ public class SystemCheckReport implements Serializable {
 
            @Override
            public SystemCheckReport read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SystemCheckReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SystemCheckReport
-     * @throws IOException if the JSON string is invalid with respect to SystemCheckReport
+  /**
+   * Create an instance of SystemCheckReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SystemCheckReport
+   * @throws IOException if the JSON string is invalid with respect to SystemCheckReport
   */
   public static SystemCheckReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemCheckReport.class);
   }
 
-    /**
-     * Convert an instance of SystemCheckReport to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SystemCheckReport to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

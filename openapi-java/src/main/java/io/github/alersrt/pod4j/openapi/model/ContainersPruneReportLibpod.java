@@ -13,40 +13,26 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * ContainersPruneReportLibpod
@@ -72,16 +58,16 @@ public class ContainersPruneReportLibpod implements Serializable {
 
   public ContainersPruneReportLibpod err(String err) {
 
-      this.err = err;
+    this.err = err;
     return this;
   }
 
-    /**
+  /**
    * Error which occurred during prune operation (if any). This field is optional and may be omitted if no error occurred.
    * @return err
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Error which occurred during prune operation (if any). This field is optional and may be omitted if no error occurred.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Error which occurred during prune operation (if any). This field is optional and may be omitted if no error occurred.")
 
   public String getErr() {
     return err;
@@ -95,16 +81,16 @@ public class ContainersPruneReportLibpod implements Serializable {
 
   public ContainersPruneReportLibpod id(String id) {
 
-      this.id = id;
+    this.id = id;
     return this;
   }
 
-    /**
+  /**
    * Get id
    * @return id
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
@@ -118,16 +104,16 @@ public class ContainersPruneReportLibpod implements Serializable {
 
   public ContainersPruneReportLibpod size(Long size) {
 
-      this.size = size;
+    this.size = size;
     return this;
   }
 
-    /**
+  /**
    * Get size
    * @return size
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getSize() {
     return size;
@@ -207,26 +193,26 @@ public class ContainersPruneReportLibpod implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ContainersPruneReportLibpod
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ContainersPruneReportLibpod.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ContainersPruneReportLibpod
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ContainersPruneReportLibpod.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in ContainersPruneReportLibpod is not found in the empty JSON string", ContainersPruneReportLibpod.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ContainersPruneReportLibpod.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainersPruneReportLibpod` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainersPruneReportLibpod` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull()) && !jsonObj.get("Err").isJsonPrimitive()) {
@@ -257,30 +243,30 @@ public class ContainersPruneReportLibpod implements Serializable {
 
            @Override
            public ContainersPruneReportLibpod read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of ContainersPruneReportLibpod given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ContainersPruneReportLibpod
-     * @throws IOException if the JSON string is invalid with respect to ContainersPruneReportLibpod
+  /**
+   * Create an instance of ContainersPruneReportLibpod given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ContainersPruneReportLibpod
+   * @throws IOException if the JSON string is invalid with respect to ContainersPruneReportLibpod
   */
   public static ContainersPruneReportLibpod fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainersPruneReportLibpod.class);
   }
 
-    /**
-     * Convert an instance of ContainersPruneReportLibpod to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of ContainersPruneReportLibpod to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

@@ -13,29 +13,44 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.SystemDfContainerReport;
+import io.github.alersrt.pod4j.openapi.model.SystemDfImageReport;
+import io.github.alersrt.pod4j.openapi.model.SystemDfVolumeReport;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Set;
+import java.io.Serializable;
+import javax.validation.constraints.*;
 import javax.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * SystemDfReport describes the response for df information
@@ -64,7 +79,7 @@ public class SystemDfReport implements Serializable {
   public SystemDfReport() {
   }
 
-    public SystemDfReport containers(List<SystemDfContainerReport> containers) {
+  public SystemDfReport containers(List<SystemDfContainerReport> containers) {
     
     this.containers = containers;
     return this;
@@ -78,25 +93,25 @@ public class SystemDfReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get containers
    * @return containers
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<SystemDfContainerReport> getContainers() {
+  public List<SystemDfContainerReport> getContainers() {
     return containers;
   }
 
 
-    public void setContainers(List<SystemDfContainerReport> containers) {
+  public void setContainers(List<SystemDfContainerReport> containers) {
     this.containers = containers;
   }
 
 
-    public SystemDfReport images(List<SystemDfImageReport> images) {
+  public SystemDfReport images(List<SystemDfImageReport> images) {
     
     this.images = images;
     return this;
@@ -110,36 +125,36 @@ public class SystemDfReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get images
    * @return images
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<SystemDfImageReport> getImages() {
+  public List<SystemDfImageReport> getImages() {
     return images;
   }
 
 
-    public void setImages(List<SystemDfImageReport> images) {
+  public void setImages(List<SystemDfImageReport> images) {
     this.images = images;
   }
 
 
   public SystemDfReport imagesSize(Long imagesSize) {
 
-      this.imagesSize = imagesSize;
+    this.imagesSize = imagesSize;
     return this;
   }
 
-    /**
+  /**
    * Get imagesSize
    * @return imagesSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getImagesSize() {
     return imagesSize;
@@ -151,7 +166,7 @@ public class SystemDfReport implements Serializable {
   }
 
 
-    public SystemDfReport volumes(List<SystemDfVolumeReport> volumes) {
+  public SystemDfReport volumes(List<SystemDfVolumeReport> volumes) {
     
     this.volumes = volumes;
     return this;
@@ -165,20 +180,20 @@ public class SystemDfReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get volumes
    * @return volumes
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<SystemDfVolumeReport> getVolumes() {
+  public List<SystemDfVolumeReport> getVolumes() {
     return volumes;
   }
 
 
-    public void setVolumes(List<SystemDfVolumeReport> volumes) {
+  public void setVolumes(List<SystemDfVolumeReport> volumes) {
     this.volumes = volumes;
   }
 
@@ -243,26 +258,26 @@ public class SystemDfReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SystemDfReport
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SystemDfReport.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SystemDfReport
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SystemDfReport.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfReport is not found in the empty JSON string", SystemDfReport.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SystemDfReport.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull()) {
@@ -275,7 +290,7 @@ public class SystemDfReport implements Serializable {
 
           // validate the optional field `Containers` (array)
           for (int i = 0; i < jsonArraycontainers.size(); i++) {
-              SystemDfContainerReport.validateJsonObject(jsonArraycontainers.get(i).getAsJsonObject());
+            SystemDfContainerReport.validateJsonObject(jsonArraycontainers.get(i).getAsJsonObject());
           };
         }
       }
@@ -289,7 +304,7 @@ public class SystemDfReport implements Serializable {
 
           // validate the optional field `Images` (array)
           for (int i = 0; i < jsonArrayimages.size(); i++) {
-              SystemDfImageReport.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
+            SystemDfImageReport.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
           };
         }
       }
@@ -303,7 +318,7 @@ public class SystemDfReport implements Serializable {
 
           // validate the optional field `Volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-              SystemDfVolumeReport.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
+            SystemDfVolumeReport.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -329,30 +344,30 @@ public class SystemDfReport implements Serializable {
 
            @Override
            public SystemDfReport read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SystemDfReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SystemDfReport
-     * @throws IOException if the JSON string is invalid with respect to SystemDfReport
+  /**
+   * Create an instance of SystemDfReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SystemDfReport
+   * @throws IOException if the JSON string is invalid with respect to SystemDfReport
   */
   public static SystemDfReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemDfReport.class);
   }
 
-    /**
-     * Convert an instance of SystemDfReport to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SystemDfReport to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

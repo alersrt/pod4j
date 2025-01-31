@@ -13,41 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * OverlayVolume holds information about an overlay volume that will be mounted into the container.
@@ -74,16 +60,16 @@ public class OverlayVolume implements Serializable {
 
   public OverlayVolume destination(String destination) {
 
-      this.destination = destination;
+    this.destination = destination;
     return this;
   }
 
-    /**
+  /**
    * Destination is the absolute path where the mount will be placed in the container.
    * @return destination
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Destination is the absolute path where the mount will be placed in the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Destination is the absolute path where the mount will be placed in the container.")
 
   public String getDestination() {
     return destination;
@@ -97,7 +83,7 @@ public class OverlayVolume implements Serializable {
 
   public OverlayVolume options(List<String> options) {
 
-      this.options = options;
+    this.options = options;
     return this;
   }
 
@@ -109,12 +95,12 @@ public class OverlayVolume implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Options holds overlay volume options.
    * @return options
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Options holds overlay volume options.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Options holds overlay volume options.")
 
   public List<String> getOptions() {
     return options;
@@ -128,16 +114,16 @@ public class OverlayVolume implements Serializable {
 
   public OverlayVolume source(String source) {
 
-      this.source = source;
+    this.source = source;
     return this;
   }
 
-    /**
+  /**
    * Source specifies the source path of the mount.
    * @return source
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Source specifies the source path of the mount.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Source specifies the source path of the mount.")
 
   public String getSource() {
     return source;
@@ -206,33 +192,33 @@ public class OverlayVolume implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to OverlayVolume
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (OverlayVolume.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to OverlayVolume
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (OverlayVolume.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in OverlayVolume is not found in the empty JSON string", OverlayVolume.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!OverlayVolume.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OverlayVolume` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OverlayVolume` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("destination") != null && !jsonObj.get("destination").isJsonNull()) && !jsonObj.get("destination").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull()) && !jsonObj.get("options").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull()) && !jsonObj.get("options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
       }
       if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) && !jsonObj.get("source").isJsonPrimitive()) {
@@ -260,30 +246,30 @@ public class OverlayVolume implements Serializable {
 
            @Override
            public OverlayVolume read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of OverlayVolume given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of OverlayVolume
-     * @throws IOException if the JSON string is invalid with respect to OverlayVolume
+  /**
+   * Create an instance of OverlayVolume given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of OverlayVolume
+   * @throws IOException if the JSON string is invalid with respect to OverlayVolume
   */
   public static OverlayVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, OverlayVolume.class);
   }
 
-    /**
-     * Convert an instance of OverlayVolume to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of OverlayVolume to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

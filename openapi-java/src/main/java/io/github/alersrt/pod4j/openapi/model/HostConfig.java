@@ -13,52 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
-import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
-import io.github.alersrt.pod4j.openapi.model.LogConfig;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.PortBinding;
-import io.github.alersrt.pod4j.openapi.model.RestartPolicy;
-import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.Ulimit;
-import io.github.alersrt.pod4j.openapi.model.WeightDevice;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * Here, \&quot;non-portable\&quot; means \&quot;dependent of the host we are running on\&quot;. Portable information *should* appear in Config.
@@ -357,7 +336,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig annotations(Map<String, String> annotations) {
 
-      this.annotations = annotations;
+    this.annotations = annotations;
     return this;
   }
 
@@ -369,12 +348,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get annotations
    * @return annotations
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getAnnotations() {
     return annotations;
@@ -388,16 +367,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig autoRemove(Boolean autoRemove) {
 
-      this.autoRemove = autoRemove;
+    this.autoRemove = autoRemove;
     return this;
   }
 
-    /**
+  /**
    * Get autoRemove
    * @return autoRemove
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getAutoRemove() {
     return autoRemove;
@@ -411,7 +390,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig binds(List<String> binds) {
 
-      this.binds = binds;
+    this.binds = binds;
     return this;
   }
 
@@ -423,12 +402,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Applicable to all platforms
    * @return binds
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Applicable to all platforms")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Applicable to all platforms")
 
   public List<String> getBinds() {
     return binds;
@@ -440,7 +419,7 @@ public class HostConfig implements Serializable {
   }
 
 
-    public HostConfig blkioDeviceReadBps(List<ThrottleDevice> blkioDeviceReadBps) {
+  public HostConfig blkioDeviceReadBps(List<ThrottleDevice> blkioDeviceReadBps) {
     
     this.blkioDeviceReadBps = blkioDeviceReadBps;
     return this;
@@ -454,25 +433,25 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get blkioDeviceReadBps
    * @return blkioDeviceReadBps
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<ThrottleDevice> getBlkioDeviceReadBps() {
+  public List<ThrottleDevice> getBlkioDeviceReadBps() {
     return blkioDeviceReadBps;
   }
 
 
-    public void setBlkioDeviceReadBps(List<ThrottleDevice> blkioDeviceReadBps) {
+  public void setBlkioDeviceReadBps(List<ThrottleDevice> blkioDeviceReadBps) {
     this.blkioDeviceReadBps = blkioDeviceReadBps;
   }
 
 
-    public HostConfig blkioDeviceReadIOps(List<ThrottleDevice> blkioDeviceReadIOps) {
+  public HostConfig blkioDeviceReadIOps(List<ThrottleDevice> blkioDeviceReadIOps) {
     
     this.blkioDeviceReadIOps = blkioDeviceReadIOps;
     return this;
@@ -486,25 +465,25 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get blkioDeviceReadIOps
    * @return blkioDeviceReadIOps
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<ThrottleDevice> getBlkioDeviceReadIOps() {
+  public List<ThrottleDevice> getBlkioDeviceReadIOps() {
     return blkioDeviceReadIOps;
   }
 
 
-    public void setBlkioDeviceReadIOps(List<ThrottleDevice> blkioDeviceReadIOps) {
+  public void setBlkioDeviceReadIOps(List<ThrottleDevice> blkioDeviceReadIOps) {
     this.blkioDeviceReadIOps = blkioDeviceReadIOps;
   }
 
 
-    public HostConfig blkioDeviceWriteBps(List<ThrottleDevice> blkioDeviceWriteBps) {
+  public HostConfig blkioDeviceWriteBps(List<ThrottleDevice> blkioDeviceWriteBps) {
     
     this.blkioDeviceWriteBps = blkioDeviceWriteBps;
     return this;
@@ -518,25 +497,25 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get blkioDeviceWriteBps
    * @return blkioDeviceWriteBps
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<ThrottleDevice> getBlkioDeviceWriteBps() {
+  public List<ThrottleDevice> getBlkioDeviceWriteBps() {
     return blkioDeviceWriteBps;
   }
 
 
-    public void setBlkioDeviceWriteBps(List<ThrottleDevice> blkioDeviceWriteBps) {
+  public void setBlkioDeviceWriteBps(List<ThrottleDevice> blkioDeviceWriteBps) {
     this.blkioDeviceWriteBps = blkioDeviceWriteBps;
   }
 
 
-    public HostConfig blkioDeviceWriteIOps(List<ThrottleDevice> blkioDeviceWriteIOps) {
+  public HostConfig blkioDeviceWriteIOps(List<ThrottleDevice> blkioDeviceWriteIOps) {
     
     this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
     return this;
@@ -550,36 +529,36 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get blkioDeviceWriteIOps
    * @return blkioDeviceWriteIOps
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<ThrottleDevice> getBlkioDeviceWriteIOps() {
+  public List<ThrottleDevice> getBlkioDeviceWriteIOps() {
     return blkioDeviceWriteIOps;
   }
 
 
-    public void setBlkioDeviceWriteIOps(List<ThrottleDevice> blkioDeviceWriteIOps) {
+  public void setBlkioDeviceWriteIOps(List<ThrottleDevice> blkioDeviceWriteIOps) {
     this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
   }
 
 
   public HostConfig blkioWeight(Integer blkioWeight) {
 
-      this.blkioWeight = blkioWeight;
+    this.blkioWeight = blkioWeight;
     return this;
   }
 
-    /**
+  /**
    * Get blkioWeight
    * @return blkioWeight
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getBlkioWeight() {
     return blkioWeight;
@@ -591,7 +570,7 @@ public class HostConfig implements Serializable {
   }
 
 
-    public HostConfig blkioWeightDevice(List<WeightDevice> blkioWeightDevice) {
+  public HostConfig blkioWeightDevice(List<WeightDevice> blkioWeightDevice) {
     
     this.blkioWeightDevice = blkioWeightDevice;
     return this;
@@ -605,27 +584,27 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get blkioWeightDevice
    * @return blkioWeightDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<WeightDevice> getBlkioWeightDevice() {
+  public List<WeightDevice> getBlkioWeightDevice() {
     return blkioWeightDevice;
   }
 
 
-    public void setBlkioWeightDevice(List<WeightDevice> blkioWeightDevice) {
+  public void setBlkioWeightDevice(List<WeightDevice> blkioWeightDevice) {
     this.blkioWeightDevice = blkioWeightDevice;
   }
 
 
   public HostConfig capAdd(List<String> capAdd) {
 
-      this.capAdd = capAdd;
+    this.capAdd = capAdd;
     return this;
   }
 
@@ -637,12 +616,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * We need to override the json decoder to accept both options.
    * @return capAdd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
 
   public List<String> getCapAdd() {
     return capAdd;
@@ -656,7 +635,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig capDrop(List<String> capDrop) {
 
-      this.capDrop = capDrop;
+    this.capDrop = capDrop;
     return this;
   }
 
@@ -668,12 +647,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * We need to override the json decoder to accept both options.
    * @return capDrop
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "We need to override the json decoder to accept both options.")
 
   public List<String> getCapDrop() {
     return capDrop;
@@ -687,16 +666,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cgroup(String cgroup) {
 
-      this.cgroup = cgroup;
+    this.cgroup = cgroup;
     return this;
   }
 
-    /**
+  /**
    * Get cgroup
    * @return cgroup
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCgroup() {
     return cgroup;
@@ -710,16 +689,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cgroupParent(String cgroupParent) {
 
-      this.cgroupParent = cgroupParent;
+    this.cgroupParent = cgroupParent;
     return this;
   }
 
-    /**
+  /**
    * Applicable to UNIX platforms
    * @return cgroupParent
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Applicable to UNIX platforms")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Applicable to UNIX platforms")
 
   public String getCgroupParent() {
     return cgroupParent;
@@ -733,16 +712,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cgroupnsMode(String cgroupnsMode) {
 
-      this.cgroupnsMode = cgroupnsMode;
+    this.cgroupnsMode = cgroupnsMode;
     return this;
   }
 
-    /**
+  /**
    * CgroupnsMode represents the cgroup namespace mode of the container
    * @return cgroupnsMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CgroupnsMode represents the cgroup namespace mode of the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupnsMode represents the cgroup namespace mode of the container")
 
   public String getCgroupnsMode() {
     return cgroupnsMode;
@@ -756,7 +735,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig consoleSize(List<Integer> consoleSize) {
 
-      this.consoleSize = consoleSize;
+    this.consoleSize = consoleSize;
     return this;
   }
 
@@ -768,12 +747,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get consoleSize
    * @return consoleSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<Integer> getConsoleSize() {
     return consoleSize;
@@ -787,16 +766,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig containerIDFile(String containerIDFile) {
 
-      this.containerIDFile = containerIDFile;
+    this.containerIDFile = containerIDFile;
     return this;
   }
 
-    /**
+  /**
    * Get containerIDFile
    * @return containerIDFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getContainerIDFile() {
     return containerIDFile;
@@ -810,16 +789,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuCount(Long cpuCount) {
 
-      this.cpuCount = cpuCount;
+    this.cpuCount = cpuCount;
     return this;
   }
 
-    /**
+  /**
    * Applicable to Windows
    * @return cpuCount
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Applicable to Windows")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Applicable to Windows")
 
   public Long getCpuCount() {
     return cpuCount;
@@ -833,16 +812,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuPercent(Long cpuPercent) {
 
-      this.cpuPercent = cpuPercent;
+    this.cpuPercent = cpuPercent;
     return this;
   }
 
-    /**
+  /**
    * Get cpuPercent
    * @return cpuPercent
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCpuPercent() {
     return cpuPercent;
@@ -856,16 +835,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuPeriod(Long cpuPeriod) {
 
-      this.cpuPeriod = cpuPeriod;
+    this.cpuPeriod = cpuPeriod;
     return this;
   }
 
-    /**
+  /**
    * Get cpuPeriod
    * @return cpuPeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCpuPeriod() {
     return cpuPeriod;
@@ -879,16 +858,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuQuota(Long cpuQuota) {
 
-      this.cpuQuota = cpuQuota;
+    this.cpuQuota = cpuQuota;
     return this;
   }
 
-    /**
+  /**
    * Get cpuQuota
    * @return cpuQuota
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCpuQuota() {
     return cpuQuota;
@@ -902,16 +881,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuRealtimePeriod(Long cpuRealtimePeriod) {
 
-      this.cpuRealtimePeriod = cpuRealtimePeriod;
+    this.cpuRealtimePeriod = cpuRealtimePeriod;
     return this;
   }
 
-    /**
+  /**
    * Get cpuRealtimePeriod
    * @return cpuRealtimePeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCpuRealtimePeriod() {
     return cpuRealtimePeriod;
@@ -925,16 +904,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
 
-      this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
     return this;
   }
 
-    /**
+  /**
    * Get cpuRealtimeRuntime
    * @return cpuRealtimeRuntime
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCpuRealtimeRuntime() {
     return cpuRealtimeRuntime;
@@ -948,16 +927,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpuShares(Long cpuShares) {
 
-      this.cpuShares = cpuShares;
+    this.cpuShares = cpuShares;
     return this;
   }
 
-    /**
+  /**
    * Applicable to all platforms
    * @return cpuShares
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Applicable to all platforms")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Applicable to all platforms")
 
   public Long getCpuShares() {
     return cpuShares;
@@ -971,16 +950,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpusetCpus(String cpusetCpus) {
 
-      this.cpusetCpus = cpusetCpus;
+    this.cpusetCpus = cpusetCpus;
     return this;
   }
 
-    /**
+  /**
    * Get cpusetCpus
    * @return cpusetCpus
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCpusetCpus() {
     return cpusetCpus;
@@ -994,16 +973,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig cpusetMems(String cpusetMems) {
 
-      this.cpusetMems = cpusetMems;
+    this.cpusetMems = cpusetMems;
     return this;
   }
 
-    /**
+  /**
    * Get cpusetMems
    * @return cpusetMems
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCpusetMems() {
     return cpusetMems;
@@ -1017,7 +996,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig deviceCgroupRules(List<String> deviceCgroupRules) {
 
-      this.deviceCgroupRules = deviceCgroupRules;
+    this.deviceCgroupRules = deviceCgroupRules;
     return this;
   }
 
@@ -1029,12 +1008,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get deviceCgroupRules
    * @return deviceCgroupRules
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getDeviceCgroupRules() {
     return deviceCgroupRules;
@@ -1046,7 +1025,7 @@ public class HostConfig implements Serializable {
   }
 
 
-    public HostConfig deviceRequests(List<DeviceRequest> deviceRequests) {
+  public HostConfig deviceRequests(List<DeviceRequest> deviceRequests) {
     
     this.deviceRequests = deviceRequests;
     return this;
@@ -1060,25 +1039,25 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get deviceRequests
    * @return deviceRequests
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<DeviceRequest> getDeviceRequests() {
+  public List<DeviceRequest> getDeviceRequests() {
     return deviceRequests;
   }
 
 
-    public void setDeviceRequests(List<DeviceRequest> deviceRequests) {
+  public void setDeviceRequests(List<DeviceRequest> deviceRequests) {
     this.deviceRequests = deviceRequests;
   }
 
 
-    public HostConfig devices(List<DeviceMapping> devices) {
+  public HostConfig devices(List<DeviceMapping> devices) {
     
     this.devices = devices;
     return this;
@@ -1092,27 +1071,27 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get devices
    * @return devices
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<DeviceMapping> getDevices() {
+  public List<DeviceMapping> getDevices() {
     return devices;
   }
 
 
-    public void setDevices(List<DeviceMapping> devices) {
+  public void setDevices(List<DeviceMapping> devices) {
     this.devices = devices;
   }
 
 
   public HostConfig dns(List<String> dns) {
 
-      this.dns = dns;
+    this.dns = dns;
     return this;
   }
 
@@ -1124,12 +1103,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get dns
    * @return dns
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getDns() {
     return dns;
@@ -1143,7 +1122,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig dnsOptions(List<String> dnsOptions) {
 
-      this.dnsOptions = dnsOptions;
+    this.dnsOptions = dnsOptions;
     return this;
   }
 
@@ -1155,12 +1134,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get dnsOptions
    * @return dnsOptions
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getDnsOptions() {
     return dnsOptions;
@@ -1174,7 +1153,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig dnsSearch(List<String> dnsSearch) {
 
-      this.dnsSearch = dnsSearch;
+    this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -1186,12 +1165,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get dnsSearch
    * @return dnsSearch
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
@@ -1205,7 +1184,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig extraHosts(List<String> extraHosts) {
 
-      this.extraHosts = extraHosts;
+    this.extraHosts = extraHosts;
     return this;
   }
 
@@ -1217,12 +1196,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get extraHosts
    * @return extraHosts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getExtraHosts() {
     return extraHosts;
@@ -1236,7 +1215,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig groupAdd(List<String> groupAdd) {
 
-      this.groupAdd = groupAdd;
+    this.groupAdd = groupAdd;
     return this;
   }
 
@@ -1248,12 +1227,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get groupAdd
    * @return groupAdd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getGroupAdd() {
     return groupAdd;
@@ -1267,16 +1246,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
 
-      this.ioMaximumBandwidth = ioMaximumBandwidth;
+    this.ioMaximumBandwidth = ioMaximumBandwidth;
     return this;
   }
 
-    /**
+  /**
    * Get ioMaximumBandwidth
    * @return ioMaximumBandwidth
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getIoMaximumBandwidth() {
     return ioMaximumBandwidth;
@@ -1290,16 +1269,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig ioMaximumIOps(Integer ioMaximumIOps) {
 
-      this.ioMaximumIOps = ioMaximumIOps;
+    this.ioMaximumIOps = ioMaximumIOps;
     return this;
   }
 
-    /**
+  /**
    * Get ioMaximumIOps
    * @return ioMaximumIOps
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Integer getIoMaximumIOps() {
     return ioMaximumIOps;
@@ -1313,16 +1292,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig init(Boolean init) {
 
-      this.init = init;
+    this.init = init;
     return this;
   }
 
-    /**
+  /**
    * Run a custom init inside the container, if null, use the daemon&#39;s configured settings
    * @return init
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Run a custom init inside the container, if null, use the daemon's configured settings")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Run a custom init inside the container, if null, use the daemon's configured settings")
 
   public Boolean getInit() {
     return init;
@@ -1336,16 +1315,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig ipcMode(String ipcMode) {
 
-      this.ipcMode = ipcMode;
+    this.ipcMode = ipcMode;
     return this;
   }
 
-    /**
+  /**
    * Get ipcMode
    * @return ipcMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getIpcMode() {
     return ipcMode;
@@ -1359,16 +1338,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig isolation(String isolation) {
 
-      this.isolation = isolation;
+    this.isolation = isolation;
     return this;
   }
 
-    /**
+  /**
    * Isolation represents the isolation technology of a container. The supported values are platform specific
    * @return isolation
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Isolation represents the isolation technology of a container. The supported values are platform specific")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Isolation represents the isolation technology of a container. The supported values are platform specific")
 
   public String getIsolation() {
     return isolation;
@@ -1382,16 +1361,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig kernelMemory(Long kernelMemory) {
 
-      this.kernelMemory = kernelMemory;
+    this.kernelMemory = kernelMemory;
     return this;
   }
 
-    /**
+  /**
    * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
    * @return kernelMemory
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.")
 
   public Long getKernelMemory() {
     return kernelMemory;
@@ -1405,16 +1384,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig kernelMemoryTCP(Long kernelMemoryTCP) {
 
-      this.kernelMemoryTCP = kernelMemoryTCP;
+    this.kernelMemoryTCP = kernelMemoryTCP;
     return this;
   }
 
-    /**
+  /**
    * Get kernelMemoryTCP
    * @return kernelMemoryTCP
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getKernelMemoryTCP() {
     return kernelMemoryTCP;
@@ -1428,7 +1407,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig links(List<String> links) {
 
-      this.links = links;
+    this.links = links;
     return this;
   }
 
@@ -1440,12 +1419,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get links
    * @return links
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getLinks() {
     return links;
@@ -1459,17 +1438,17 @@ public class HostConfig implements Serializable {
 
   public HostConfig logConfig(LogConfig logConfig) {
 
-      this.logConfig = logConfig;
+    this.logConfig = logConfig;
     return this;
   }
 
-    /**
+  /**
    * Get logConfig
    * @return logConfig
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LogConfig getLogConfig() {
     return logConfig;
@@ -1483,7 +1462,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig maskedPaths(List<String> maskedPaths) {
 
-      this.maskedPaths = maskedPaths;
+    this.maskedPaths = maskedPaths;
     return this;
   }
 
@@ -1495,12 +1474,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)
    * @return maskedPaths
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)")
 
   public List<String> getMaskedPaths() {
     return maskedPaths;
@@ -1514,16 +1493,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig memory(Long memory) {
 
-      this.memory = memory;
+    this.memory = memory;
     return this;
   }
 
-    /**
+  /**
    * Get memory
    * @return memory
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getMemory() {
     return memory;
@@ -1537,16 +1516,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig memoryReservation(Long memoryReservation) {
 
-      this.memoryReservation = memoryReservation;
+    this.memoryReservation = memoryReservation;
     return this;
   }
 
-    /**
+  /**
    * Get memoryReservation
    * @return memoryReservation
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getMemoryReservation() {
     return memoryReservation;
@@ -1560,16 +1539,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig memorySwap(Long memorySwap) {
 
-      this.memorySwap = memorySwap;
+    this.memorySwap = memorySwap;
     return this;
   }
 
-    /**
+  /**
    * Get memorySwap
    * @return memorySwap
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getMemorySwap() {
     return memorySwap;
@@ -1583,16 +1562,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig memorySwappiness(Long memorySwappiness) {
 
-      this.memorySwappiness = memorySwappiness;
+    this.memorySwappiness = memorySwappiness;
     return this;
   }
 
-    /**
+  /**
    * Get memorySwappiness
    * @return memorySwappiness
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getMemorySwappiness() {
     return memorySwappiness;
@@ -1604,7 +1583,7 @@ public class HostConfig implements Serializable {
   }
 
 
-    public HostConfig mounts(List<Mount> mounts) {
+  public HostConfig mounts(List<Mount> mounts) {
     
     this.mounts = mounts;
     return this;
@@ -1618,36 +1597,36 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Mounts specs used by the container
    * @return mounts
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Mounts specs used by the container")
+  @ApiModelProperty(value = "Mounts specs used by the container")
 
-    public List<Mount> getMounts() {
+  public List<Mount> getMounts() {
     return mounts;
   }
 
 
-    public void setMounts(List<Mount> mounts) {
+  public void setMounts(List<Mount> mounts) {
     this.mounts = mounts;
   }
 
 
   public HostConfig nanoCpus(Long nanoCpus) {
 
-      this.nanoCpus = nanoCpus;
+    this.nanoCpus = nanoCpus;
     return this;
   }
 
-    /**
+  /**
    * Get nanoCpus
    * @return nanoCpus
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getNanoCpus() {
     return nanoCpus;
@@ -1661,16 +1640,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig networkMode(String networkMode) {
 
-      this.networkMode = networkMode;
+    this.networkMode = networkMode;
     return this;
   }
 
-    /**
+  /**
    * Get networkMode
    * @return networkMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getNetworkMode() {
     return networkMode;
@@ -1684,16 +1663,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig oomKillDisable(Boolean oomKillDisable) {
 
-      this.oomKillDisable = oomKillDisable;
+    this.oomKillDisable = oomKillDisable;
     return this;
   }
 
-    /**
+  /**
    * Get oomKillDisable
    * @return oomKillDisable
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getOomKillDisable() {
     return oomKillDisable;
@@ -1707,16 +1686,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig oomScoreAdj(Long oomScoreAdj) {
 
-      this.oomScoreAdj = oomScoreAdj;
+    this.oomScoreAdj = oomScoreAdj;
     return this;
   }
 
-    /**
+  /**
    * Get oomScoreAdj
    * @return oomScoreAdj
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getOomScoreAdj() {
     return oomScoreAdj;
@@ -1730,16 +1709,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig pidMode(String pidMode) {
 
-      this.pidMode = pidMode;
+    this.pidMode = pidMode;
     return this;
   }
 
-    /**
+  /**
    * Get pidMode
    * @return pidMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getPidMode() {
     return pidMode;
@@ -1753,16 +1732,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig pidsLimit(Long pidsLimit) {
 
-      this.pidsLimit = pidsLimit;
+    this.pidsLimit = pidsLimit;
     return this;
   }
 
-    /**
+  /**
    * Get pidsLimit
    * @return pidsLimit
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getPidsLimit() {
     return pidsLimit;
@@ -1774,13 +1753,13 @@ public class HostConfig implements Serializable {
   }
 
 
-    public HostConfig portBindings(Map<String, List<PortBinding>> portBindings) {
+  public HostConfig portBindings(Map<String, List<PortBinding>> portBindings) {
     
     this.portBindings = portBindings;
     return this;
   }
 
-    public HostConfig putPortBindingsItem(String key, List<PortBinding> portBindingsItem) {
+  public HostConfig putPortBindingsItem(String key, List<PortBinding> portBindingsItem) {
     if (this.portBindings == null) {
       this.portBindings = new HashMap<>();
     }
@@ -1788,36 +1767,36 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * PortMap is a collection of PortBinding indexed by Port
    * @return portBindings
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "PortMap is a collection of PortBinding indexed by Port")
+  @ApiModelProperty(value = "PortMap is a collection of PortBinding indexed by Port")
 
-    public Map<String, List<PortBinding>> getPortBindings() {
+  public Map<String, List<PortBinding>> getPortBindings() {
     return portBindings;
   }
 
 
-    public void setPortBindings(Map<String, List<PortBinding>> portBindings) {
+  public void setPortBindings(Map<String, List<PortBinding>> portBindings) {
     this.portBindings = portBindings;
   }
 
 
   public HostConfig privileged(Boolean privileged) {
 
-      this.privileged = privileged;
+    this.privileged = privileged;
     return this;
   }
 
-    /**
+  /**
    * Get privileged
    * @return privileged
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getPrivileged() {
     return privileged;
@@ -1831,16 +1810,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig publishAllPorts(Boolean publishAllPorts) {
 
-      this.publishAllPorts = publishAllPorts;
+    this.publishAllPorts = publishAllPorts;
     return this;
   }
 
-    /**
+  /**
    * Get publishAllPorts
    * @return publishAllPorts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getPublishAllPorts() {
     return publishAllPorts;
@@ -1854,7 +1833,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig readonlyPaths(List<String> readonlyPaths) {
 
-      this.readonlyPaths = readonlyPaths;
+    this.readonlyPaths = readonlyPaths;
     return this;
   }
 
@@ -1866,12 +1845,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)
    * @return readonlyPaths
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)")
 
   public List<String> getReadonlyPaths() {
     return readonlyPaths;
@@ -1885,16 +1864,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig readonlyRootfs(Boolean readonlyRootfs) {
 
-      this.readonlyRootfs = readonlyRootfs;
+    this.readonlyRootfs = readonlyRootfs;
     return this;
   }
 
-    /**
+  /**
    * Get readonlyRootfs
    * @return readonlyRootfs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getReadonlyRootfs() {
     return readonlyRootfs;
@@ -1908,17 +1887,17 @@ public class HostConfig implements Serializable {
 
   public HostConfig restartPolicy(RestartPolicy restartPolicy) {
 
-      this.restartPolicy = restartPolicy;
+    this.restartPolicy = restartPolicy;
     return this;
   }
 
-    /**
+  /**
    * Get restartPolicy
    * @return restartPolicy
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public RestartPolicy getRestartPolicy() {
     return restartPolicy;
@@ -1932,16 +1911,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig runtime(String runtime) {
 
-      this.runtime = runtime;
+    this.runtime = runtime;
     return this;
   }
 
-    /**
+  /**
    * Get runtime
    * @return runtime
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getRuntime() {
     return runtime;
@@ -1955,7 +1934,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig securityOpt(List<String> securityOpt) {
 
-      this.securityOpt = securityOpt;
+    this.securityOpt = securityOpt;
     return this;
   }
 
@@ -1967,12 +1946,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get securityOpt
    * @return securityOpt
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getSecurityOpt() {
     return securityOpt;
@@ -1986,16 +1965,16 @@ public class HostConfig implements Serializable {
 
   public HostConfig shmSize(Long shmSize) {
 
-      this.shmSize = shmSize;
+    this.shmSize = shmSize;
     return this;
   }
 
-    /**
+  /**
    * Get shmSize
    * @return shmSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getShmSize() {
     return shmSize;
@@ -2009,7 +1988,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig storageOpt(Map<String, String> storageOpt) {
 
-      this.storageOpt = storageOpt;
+    this.storageOpt = storageOpt;
     return this;
   }
 
@@ -2021,12 +2000,12 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get storageOpt
    * @return storageOpt
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getStorageOpt() {
     return storageOpt;
@@ -2040,7 +2019,7 @@ public class HostConfig implements Serializable {
 
   public HostConfig sysctls(Map<String, String> sysctls) {
 
-      this.sysctls = sysctls;
+    this.sysctls = sysctls;
     return this;
   }
 
@@ -2052,26 +2031,26 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get sysctls
    * @return sysctls
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getSysctls() {
     return sysctls;
   }
 
 
-    public void setSysctls(Map<String, String> sysctls) {
+  public void setSysctls(Map<String, String> sysctls) {
     this.sysctls = sysctls;
   }
 
 
   public HostConfig tmpfs(Map<String, String> tmpfs) {
 
-      this.tmpfs = tmpfs;
+    this.tmpfs = tmpfs;
     return this;
   }
 
@@ -2083,47 +2062,47 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get tmpfs
    * @return tmpfs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getTmpfs() {
     return tmpfs;
   }
 
 
-    public void setTmpfs(Map<String, String> tmpfs) {
+  public void setTmpfs(Map<String, String> tmpfs) {
     this.tmpfs = tmpfs;
   }
 
 
   public HostConfig utSMode(String utSMode) {
 
-      this.utSMode = utSMode;
+    this.utSMode = utSMode;
     return this;
   }
 
-    /**
+  /**
    * Get utSMode
    * @return utSMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getUtSMode() {
     return utSMode;
   }
 
 
-    public void setUtSMode(String utSMode) {
+  public void setUtSMode(String utSMode) {
     this.utSMode = utSMode;
   }
 
 
-    public HostConfig ulimits(List<Ulimit> ulimits) {
+  public HostConfig ulimits(List<Ulimit> ulimits) {
     
     this.ulimits = ulimits;
     return this;
@@ -2137,73 +2116,73 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get ulimits
    * @return ulimits
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<Ulimit> getUlimits() {
+  public List<Ulimit> getUlimits() {
     return ulimits;
   }
 
 
-    public void setUlimits(List<Ulimit> ulimits) {
+  public void setUlimits(List<Ulimit> ulimits) {
     this.ulimits = ulimits;
   }
 
 
   public HostConfig usernsMode(String usernsMode) {
 
-      this.usernsMode = usernsMode;
+    this.usernsMode = usernsMode;
     return this;
   }
 
-    /**
+  /**
    * Get usernsMode
    * @return usernsMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getUsernsMode() {
     return usernsMode;
   }
 
 
-    public void setUsernsMode(String usernsMode) {
+  public void setUsernsMode(String usernsMode) {
     this.usernsMode = usernsMode;
   }
 
 
   public HostConfig volumeDriver(String volumeDriver) {
 
-      this.volumeDriver = volumeDriver;
+    this.volumeDriver = volumeDriver;
     return this;
   }
 
-    /**
+  /**
    * Get volumeDriver
    * @return volumeDriver
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getVolumeDriver() {
     return volumeDriver;
   }
 
 
-    public void setVolumeDriver(String volumeDriver) {
+  public void setVolumeDriver(String volumeDriver) {
     this.volumeDriver = volumeDriver;
   }
 
 
   public HostConfig volumesFrom(List<String> volumesFrom) {
 
-      this.volumesFrom = volumesFrom;
+    this.volumesFrom = volumesFrom;
     return this;
   }
 
@@ -2215,19 +2194,19 @@ public class HostConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get volumesFrom
    * @return volumesFrom
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
 
 
-    public void setVolumesFrom(List<String> volumesFrom) {
+  public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
   }
 
@@ -2493,30 +2472,30 @@ public class HostConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to HostConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (HostConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in HostConfig is not found in the empty JSON string", HostConfig.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to HostConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (HostConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in HostConfig is not found in the empty JSON string", HostConfig.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!HostConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull()) && !jsonObj.get("Binds").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull()) && !jsonObj.get("Binds").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Binds` to be an array in the JSON string but got `%s`", jsonObj.get("Binds").toString()));
       }
       if (jsonObj.get("BlkioDeviceReadBps") != null && !jsonObj.get("BlkioDeviceReadBps").isJsonNull()) {
@@ -2529,7 +2508,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceReadBps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceReadBps.size(); i++) {
-              ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadBps.get(i).getAsJsonObject());
+            ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadBps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2543,7 +2522,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceReadIOps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceReadIOps.size(); i++) {
-              ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadIOps.get(i).getAsJsonObject());
+            ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceReadIOps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2557,7 +2536,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceWriteBps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceWriteBps.size(); i++) {
-              ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteBps.get(i).getAsJsonObject());
+            ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteBps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2571,7 +2550,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `BlkioDeviceWriteIOps` (array)
           for (int i = 0; i < jsonArrayblkioDeviceWriteIOps.size(); i++) {
-              ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteIOps.get(i).getAsJsonObject());
+            ThrottleDevice.validateJsonObject(jsonArrayblkioDeviceWriteIOps.get(i).getAsJsonObject());
           };
         }
       }
@@ -2585,16 +2564,16 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `BlkioWeightDevice` (array)
           for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
-              WeightDevice.validateJsonObject(jsonArrayblkioWeightDevice.get(i).getAsJsonObject());
+            WeightDevice.validateJsonObject(jsonArrayblkioWeightDevice.get(i).getAsJsonObject());
           };
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull()) && !jsonObj.get("CapAdd").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull()) && !jsonObj.get("CapAdd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `CapAdd` to be an array in the JSON string but got `%s`", jsonObj.get("CapAdd").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull()) && !jsonObj.get("CapDrop").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull()) && !jsonObj.get("CapDrop").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `CapDrop` to be an array in the JSON string but got `%s`", jsonObj.get("CapDrop").toString()));
       }
       if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
@@ -2606,8 +2585,8 @@ public class HostConfig implements Serializable {
       if ((jsonObj.get("CgroupnsMode") != null && !jsonObj.get("CgroupnsMode").isJsonNull()) && !jsonObj.get("CgroupnsMode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `CgroupnsMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupnsMode").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull()) && !jsonObj.get("ConsoleSize").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull()) && !jsonObj.get("ConsoleSize").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ConsoleSize` to be an array in the JSON string but got `%s`", jsonObj.get("ConsoleSize").toString()));
       }
       if ((jsonObj.get("ContainerIDFile") != null && !jsonObj.get("ContainerIDFile").isJsonNull()) && !jsonObj.get("ContainerIDFile").isJsonPrimitive()) {
@@ -2619,8 +2598,8 @@ public class HostConfig implements Serializable {
       if ((jsonObj.get("CpusetMems") != null && !jsonObj.get("CpusetMems").isJsonNull()) && !jsonObj.get("CpusetMems").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `CpusetMems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetMems").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("DeviceCgroupRules") != null && !jsonObj.get("DeviceCgroupRules").isJsonNull()) && !jsonObj.get("DeviceCgroupRules").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("DeviceCgroupRules") != null && !jsonObj.get("DeviceCgroupRules").isJsonNull()) && !jsonObj.get("DeviceCgroupRules").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DeviceCgroupRules` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceCgroupRules").toString()));
       }
       if (jsonObj.get("DeviceRequests") != null && !jsonObj.get("DeviceRequests").isJsonNull()) {
@@ -2633,7 +2612,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `DeviceRequests` (array)
           for (int i = 0; i < jsonArraydeviceRequests.size(); i++) {
-              DeviceRequest.validateJsonObject(jsonArraydeviceRequests.get(i).getAsJsonObject());
+            DeviceRequest.validateJsonObject(jsonArraydeviceRequests.get(i).getAsJsonObject());
           };
         }
       }
@@ -2647,28 +2626,28 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `Devices` (array)
           for (int i = 0; i < jsonArraydevices.size(); i++) {
-              DeviceMapping.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
+            DeviceMapping.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
           };
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull()) && !jsonObj.get("Dns").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull()) && !jsonObj.get("Dns").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Dns` to be an array in the JSON string but got `%s`", jsonObj.get("Dns").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull()) && !jsonObj.get("DnsOptions").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull()) && !jsonObj.get("DnsOptions").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DnsOptions` to be an array in the JSON string but got `%s`", jsonObj.get("DnsOptions").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull()) && !jsonObj.get("DnsSearch").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull()) && !jsonObj.get("DnsSearch").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DnsSearch` to be an array in the JSON string but got `%s`", jsonObj.get("DnsSearch").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull()) && !jsonObj.get("ExtraHosts").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull()) && !jsonObj.get("ExtraHosts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ExtraHosts` to be an array in the JSON string but got `%s`", jsonObj.get("ExtraHosts").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull()) && !jsonObj.get("GroupAdd").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull()) && !jsonObj.get("GroupAdd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `GroupAdd` to be an array in the JSON string but got `%s`", jsonObj.get("GroupAdd").toString()));
       }
       if ((jsonObj.get("IpcMode") != null && !jsonObj.get("IpcMode").isJsonNull()) && !jsonObj.get("IpcMode").isJsonPrimitive()) {
@@ -2677,16 +2656,16 @@ public class HostConfig implements Serializable {
       if ((jsonObj.get("Isolation") != null && !jsonObj.get("Isolation").isJsonNull()) && !jsonObj.get("Isolation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Isolation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Isolation").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull()) && !jsonObj.get("Links").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull()) && !jsonObj.get("Links").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
       }
       // validate the optional field `LogConfig`
       if (jsonObj.get("LogConfig") != null && !jsonObj.get("LogConfig").isJsonNull()) {
-          LogConfig.validateJsonObject(jsonObj.getAsJsonObject("LogConfig"));
+        LogConfig.validateJsonObject(jsonObj.getAsJsonObject("LogConfig"));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("MaskedPaths") != null && !jsonObj.get("MaskedPaths").isJsonNull()) && !jsonObj.get("MaskedPaths").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("MaskedPaths") != null && !jsonObj.get("MaskedPaths").isJsonNull()) && !jsonObj.get("MaskedPaths").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `MaskedPaths` to be an array in the JSON string but got `%s`", jsonObj.get("MaskedPaths").toString()));
       }
       if (jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) {
@@ -2699,7 +2678,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `Mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-              Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
+            Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -2709,19 +2688,19 @@ public class HostConfig implements Serializable {
       if ((jsonObj.get("PidMode") != null && !jsonObj.get("PidMode").isJsonNull()) && !jsonObj.get("PidMode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `PidMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PidMode").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("ReadonlyPaths") != null && !jsonObj.get("ReadonlyPaths").isJsonNull()) && !jsonObj.get("ReadonlyPaths").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("ReadonlyPaths") != null && !jsonObj.get("ReadonlyPaths").isJsonNull()) && !jsonObj.get("ReadonlyPaths").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ReadonlyPaths` to be an array in the JSON string but got `%s`", jsonObj.get("ReadonlyPaths").toString()));
       }
       // validate the optional field `RestartPolicy`
       if (jsonObj.get("RestartPolicy") != null && !jsonObj.get("RestartPolicy").isJsonNull()) {
-          RestartPolicy.validateJsonObject(jsonObj.getAsJsonObject("RestartPolicy"));
+        RestartPolicy.validateJsonObject(jsonObj.getAsJsonObject("RestartPolicy"));
       }
       if ((jsonObj.get("Runtime") != null && !jsonObj.get("Runtime").isJsonNull()) && !jsonObj.get("Runtime").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Runtime").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull()) && !jsonObj.get("SecurityOpt").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull()) && !jsonObj.get("SecurityOpt").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `SecurityOpt` to be an array in the JSON string but got `%s`", jsonObj.get("SecurityOpt").toString()));
       }
       if ((jsonObj.get("UTSMode") != null && !jsonObj.get("UTSMode").isJsonNull()) && !jsonObj.get("UTSMode").isJsonPrimitive()) {
@@ -2737,7 +2716,7 @@ public class HostConfig implements Serializable {
 
           // validate the optional field `Ulimits` (array)
           for (int i = 0; i < jsonArrayulimits.size(); i++) {
-              Ulimit.validateJsonObject(jsonArrayulimits.get(i).getAsJsonObject());
+            Ulimit.validateJsonObject(jsonArrayulimits.get(i).getAsJsonObject());
           };
         }
       }
@@ -2747,8 +2726,8 @@ public class HostConfig implements Serializable {
       if ((jsonObj.get("VolumeDriver") != null && !jsonObj.get("VolumeDriver").isJsonNull()) && !jsonObj.get("VolumeDriver").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `VolumeDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeDriver").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull()) && !jsonObj.get("VolumesFrom").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull()) && !jsonObj.get("VolumesFrom").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `VolumesFrom` to be an array in the JSON string but got `%s`", jsonObj.get("VolumesFrom").toString()));
       }
   }
@@ -2773,30 +2752,30 @@ public class HostConfig implements Serializable {
 
            @Override
            public HostConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of HostConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of HostConfig
-     * @throws IOException if the JSON string is invalid with respect to HostConfig
+  /**
+   * Create an instance of HostConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HostConfig
+   * @throws IOException if the JSON string is invalid with respect to HostConfig
   */
   public static HostConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HostConfig.class);
   }
 
-    /**
-     * Convert an instance of HostConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of HostConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

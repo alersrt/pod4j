@@ -89,16 +89,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck interval(Long interval) {
 
-      this.interval = interval;
+    this.interval = interval;
     return this;
   }
 
-    /**
+  /**
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return interval
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
 
   public Long getInterval() {
     return interval;
@@ -112,16 +112,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck retries(Long retries) {
 
-      this.retries = retries;
+    this.retries = retries;
     return this;
   }
 
-    /**
+  /**
    * Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.
    * @return retries
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.")
 
   public Long getRetries() {
     return retries;
@@ -135,16 +135,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck startInterval(Long startInterval) {
 
-      this.startInterval = startInterval;
+    this.startInterval = startInterval;
     return this;
   }
 
-    /**
+  /**
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return startInterval
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
 
   public Long getStartInterval() {
     return startInterval;
@@ -158,16 +158,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck startPeriod(Long startPeriod) {
 
-      this.startPeriod = startPeriod;
+    this.startPeriod = startPeriod;
     return this;
   }
 
-    /**
+  /**
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return startPeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
 
   public Long getStartPeriod() {
     return startPeriod;
@@ -181,16 +181,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck successes(Long successes) {
 
-      this.successes = successes;
+    this.successes = successes;
     return this;
   }
 
-    /**
+  /**
    * Successes are the number of successes required to mark the startup HC as passed. If set to 0, a single success will mark the HC as passed.
    * @return successes
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Successes are the number of successes required to mark the startup HC as passed. If set to 0, a single success will mark the HC as passed.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Successes are the number of successes required to mark the startup HC as passed. If set to 0, a single success will mark the HC as passed.")
 
   public Long getSuccesses() {
     return successes;
@@ -204,7 +204,7 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck test(List<String> test) {
 
-      this.test = test;
+    this.test = test;
     return this;
   }
 
@@ -216,12 +216,12 @@ public class StartupHealthCheck implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\&quot;NONE\&quot;} : disable healthcheck {\&quot;CMD\&quot;, args...} : exec arguments directly {\&quot;CMD-SHELL\&quot;, command} : run command with system&#39;s default shell
    * @return test
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\"NONE\"} : disable healthcheck {\"CMD\", args...} : exec arguments directly {\"CMD-SHELL\", command} : run command with system's default shell")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\"NONE\"} : disable healthcheck {\"CMD\", args...} : exec arguments directly {\"CMD-SHELL\", command} : run command with system's default shell")
 
   public List<String> getTest() {
     return test;
@@ -235,16 +235,16 @@ public class StartupHealthCheck implements Serializable {
 
   public StartupHealthCheck timeout(Long timeout) {
 
-      this.timeout = timeout;
+    this.timeout = timeout;
     return this;
   }
 
-    /**
+  /**
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return timeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
 
   public Long getTimeout() {
     return timeout;
@@ -325,30 +325,30 @@ public class StartupHealthCheck implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to StartupHealthCheck
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (StartupHealthCheck.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to StartupHealthCheck
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (StartupHealthCheck.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in StartupHealthCheck is not found in the empty JSON string", StartupHealthCheck.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!StartupHealthCheck.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StartupHealthCheck` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StartupHealthCheck` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Test") != null && !jsonObj.get("Test").isJsonNull()) && !jsonObj.get("Test").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Test") != null && !jsonObj.get("Test").isJsonNull()) && !jsonObj.get("Test").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Test` to be an array in the JSON string but got `%s`", jsonObj.get("Test").toString()));
       }
   }
@@ -373,30 +373,30 @@ public class StartupHealthCheck implements Serializable {
 
            @Override
            public StartupHealthCheck read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of StartupHealthCheck given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of StartupHealthCheck
-     * @throws IOException if the JSON string is invalid with respect to StartupHealthCheck
+  /**
+   * Create an instance of StartupHealthCheck given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of StartupHealthCheck
+   * @throws IOException if the JSON string is invalid with respect to StartupHealthCheck
   */
   public static StartupHealthCheck fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, StartupHealthCheck.class);
   }
 
-    /**
-     * Convert an instance of StartupHealthCheck to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of StartupHealthCheck to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

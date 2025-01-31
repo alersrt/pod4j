@@ -13,24 +13,13 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
+import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
-import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
-import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
-
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-import javax.validation.constraints.*;
-
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.InspectPodData;
 import io.github.alersrt.pod4j.openapi.model.ListPodsReport;
@@ -47,12 +36,13 @@ import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.PodTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.PodUnpauseReport;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
+import javax.validation.constraints.NotNull;
 
 public class PodsApi {
     private ApiClient localVarApiClient;
@@ -348,7 +338,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/generate/{name}/systemd"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -940,7 +930,7 @@ public class PodsApi {
         return new APIkubeApplyLibpodRequest();
     }
 
-    private okhttp3.Call playKubeDownLibpodCall(Boolean force, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -969,6 +959,10 @@ public class PodsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
 
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -990,34 +984,46 @@ public class PodsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, String request, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(String contentType, Boolean force, String request, final ApiCallback _callback) throws ApiException {
 
 
-        okhttp3.Call localVarCall = playKubeDownLibpodCall(force, request, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodCall(contentType, force, request, _callback);
         return localVarCall;
 
     }
 
 
-    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force, String request) throws ApiException {
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, request, null);
+    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(String contentType, Boolean force, String request) throws ApiException {
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call playKubeDownLibpodAsync(Boolean force, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodAsync(String contentType, Boolean force, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, request, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(contentType, force, request, _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     public class APIplayKubeDownLibpodRequest {
+        private String contentType;
         private Boolean force;
         private String request;
 
         private APIplayKubeDownLibpodRequest() {
+        }
+
+        /**
+         * Set contentType
+         *
+         * @param contentType (optional, default to plain/text)
+         * @return APIplayKubeDownLibpodRequest
+         */
+        public APIplayKubeDownLibpodRequest contentType(String contentType) {
+            this.contentType = contentType;
+            return this;
         }
 
         /**
@@ -1032,7 +1038,6 @@ public class PodsApi {
 
         /**
          * Set request
-         *
          * @param request Kubernetes YAML file. (optional)
          * @return APIplayKubeDownLibpodRequest
          */
@@ -1054,7 +1059,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return playKubeDownLibpodCall(force, request, _callback);
+            return playKubeDownLibpodCall(contentType, force, request, _callback);
         }
 
         /**
@@ -1069,7 +1074,7 @@ public class PodsApi {
          </table>
          */
         public PlayKubeReport execute() throws ApiException {
-            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force, request);
+            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(contentType, force, request);
             return localVarResp.getData();
         }
 
@@ -1085,7 +1090,7 @@ public class PodsApi {
          </table>
          */
         public ApiResponse<PlayKubeReport> executeWithHttpInfo() throws ApiException {
-            return playKubeDownLibpodWithHttpInfo(force, request);
+            return playKubeDownLibpodWithHttpInfo(contentType, force, request);
         }
 
         /**
@@ -1101,7 +1106,7 @@ public class PodsApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-            return playKubeDownLibpodAsync(force, request, _callback);
+            return playKubeDownLibpodAsync(contentType, force, request, _callback);
         }
     }
 
@@ -1210,6 +1215,10 @@ public class PodsApi {
 
         if (build != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
+        }
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
         }
 
         final String[] localVarAccepts = {
@@ -1731,7 +1740,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1917,7 +1926,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/exists"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2079,7 +2088,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/json"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2245,7 +2254,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/kill"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2608,7 +2617,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/pause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2941,7 +2950,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/restart"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3112,7 +3121,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/start"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3475,7 +3484,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/stop"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3671,7 +3680,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/top"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3882,7 +3891,7 @@ public class PodsApi {
 
         // create path and map variables
         String localVarPath = "/libpod/pods/{name}/unpause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

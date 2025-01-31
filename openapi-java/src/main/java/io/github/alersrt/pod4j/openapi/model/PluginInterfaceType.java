@@ -13,39 +13,26 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 /**
  * PluginInterfaceType plugin interface type
@@ -72,17 +59,17 @@ public class PluginInterfaceType implements Serializable {
 
   public PluginInterfaceType capability(String capability) {
 
-      this.capability = capability;
+    this.capability = capability;
     return this;
   }
 
-    /**
+  /**
    * capability
    * @return capability
-     **/
-    @javax.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
-    @ApiModelProperty(required = true, value = "capability")
+  @ApiModelProperty(required = true, value = "capability")
 
   public String getCapability() {
     return capability;
@@ -96,17 +83,17 @@ public class PluginInterfaceType implements Serializable {
 
   public PluginInterfaceType prefix(String prefix) {
 
-      this.prefix = prefix;
+    this.prefix = prefix;
     return this;
   }
 
-    /**
+  /**
    * prefix
    * @return prefix
-     **/
-    @javax.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
-    @ApiModelProperty(required = true, value = "prefix")
+  @ApiModelProperty(required = true, value = "prefix")
 
   public String getPrefix() {
     return prefix;
@@ -120,17 +107,17 @@ public class PluginInterfaceType implements Serializable {
 
   public PluginInterfaceType version(String version) {
 
-      this.version = version;
+    this.version = version;
     return this;
   }
 
-    /**
+  /**
    * version
    * @return version
-     **/
-    @javax.annotation.Nonnull
+   **/
+  @javax.annotation.Nonnull
   @NotNull
-    @ApiModelProperty(required = true, value = "version")
+  @ApiModelProperty(required = true, value = "version")
 
   public String getVersion() {
     return version;
@@ -202,42 +189,42 @@ public class PluginInterfaceType implements Serializable {
     openapiRequiredFields.add("Version");
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PluginInterfaceType
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (PluginInterfaceType.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PluginInterfaceType
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PluginInterfaceType.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PluginInterfaceType is not found in the empty JSON string", PluginInterfaceType.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PluginInterfaceType.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginInterfaceType` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginInterfaceType` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : PluginInterfaceType.openapiRequiredFields) {
-          if (jsonObj.get(requiredField) == null) {
-              throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-          }
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
       }
-        if ((jsonObj.get("Capability") != null && !jsonObj.get("Capability").isJsonNull()) && !jsonObj.get("Capability").isJsonPrimitive()) {
+    if ((jsonObj.get("Capability") != null && !jsonObj.get("Capability").isJsonNull()) && !jsonObj.get("Capability").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Capability` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Capability").toString()));
-        }
-        if ((jsonObj.get("Prefix") != null && !jsonObj.get("Prefix").isJsonNull()) && !jsonObj.get("Prefix").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Prefix") != null && !jsonObj.get("Prefix").isJsonNull()) && !jsonObj.get("Prefix").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Prefix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Prefix").toString()));
-        }
-        if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
+    }
+    if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
       }
   }
@@ -262,30 +249,30 @@ public class PluginInterfaceType implements Serializable {
 
            @Override
            public PluginInterfaceType read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of PluginInterfaceType given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PluginInterfaceType
-     * @throws IOException if the JSON string is invalid with respect to PluginInterfaceType
+  /**
+   * Create an instance of PluginInterfaceType given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PluginInterfaceType
+   * @throws IOException if the JSON string is invalid with respect to PluginInterfaceType
   */
   public static PluginInterfaceType fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginInterfaceType.class);
   }
 
-    /**
-     * Convert an instance of PluginInterfaceType to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of PluginInterfaceType to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

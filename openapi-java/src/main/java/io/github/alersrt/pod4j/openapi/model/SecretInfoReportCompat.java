@@ -86,17 +86,17 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat createdAt(OffsetDateTime createdAt) {
 
-      this.createdAt = createdAt;
+    this.createdAt = createdAt;
     return this;
   }
 
-    /**
+  /**
    * Get createdAt
    * @return createdAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -110,16 +110,16 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat ID(String ID) {
 
-      this.ID = ID;
+    this.ID = ID;
     return this;
   }
 
-    /**
+  /**
    * Get ID
    * @return ID
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getID() {
     return ID;
@@ -133,16 +133,16 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat secretData(String secretData) {
 
-      this.secretData = secretData;
+    this.secretData = secretData;
     return this;
   }
 
-    /**
+  /**
    * Get secretData
    * @return secretData
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getSecretData() {
     return secretData;
@@ -156,17 +156,17 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat spec(SecretSpec spec) {
 
-      this.spec = spec;
+    this.spec = spec;
     return this;
   }
 
-    /**
+  /**
    * Get spec
    * @return spec
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public SecretSpec getSpec() {
     return spec;
@@ -180,17 +180,17 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat updatedAt(OffsetDateTime updatedAt) {
 
-      this.updatedAt = updatedAt;
+    this.updatedAt = updatedAt;
     return this;
   }
 
-    /**
+  /**
    * Get updatedAt
    * @return updatedAt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
@@ -204,17 +204,17 @@ public class SecretInfoReportCompat implements Serializable {
 
   public SecretInfoReportCompat version(SecretVersion version) {
 
-      this.version = version;
+    this.version = version;
     return this;
   }
 
-    /**
+  /**
    * Get version
    * @return version
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public SecretVersion getVersion() {
     return version;
@@ -292,26 +292,26 @@ public class SecretInfoReportCompat implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SecretInfoReportCompat
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SecretInfoReportCompat.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SecretInfoReportCompat
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SecretInfoReportCompat.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in SecretInfoReportCompat is not found in the empty JSON string", SecretInfoReportCompat.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SecretInfoReportCompat.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretInfoReportCompat` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretInfoReportCompat` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
@@ -322,11 +322,11 @@ public class SecretInfoReportCompat implements Serializable {
       }
       // validate the optional field `Spec`
       if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
-          SecretSpec.validateJsonObject(jsonObj.getAsJsonObject("Spec"));
+        SecretSpec.validateJsonObject(jsonObj.getAsJsonObject("Spec"));
       }
       // validate the optional field `Version`
       if (jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) {
-          SecretVersion.validateJsonObject(jsonObj.getAsJsonObject("Version"));
+        SecretVersion.validateJsonObject(jsonObj.getAsJsonObject("Version"));
       }
   }
 
@@ -350,30 +350,30 @@ public class SecretInfoReportCompat implements Serializable {
 
            @Override
            public SecretInfoReportCompat read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SecretInfoReportCompat given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SecretInfoReportCompat
-     * @throws IOException if the JSON string is invalid with respect to SecretInfoReportCompat
+  /**
+   * Create an instance of SecretInfoReportCompat given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SecretInfoReportCompat
+   * @throws IOException if the JSON string is invalid with respect to SecretInfoReportCompat
   */
   public static SecretInfoReportCompat fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretInfoReportCompat.class);
   }
 
-    /**
-     * Convert an instance of SecretInfoReportCompat to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SecretInfoReportCompat to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

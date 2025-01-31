@@ -13,46 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxPersonality;
-import io.github.alersrt.pod4j.openapi.model.LogConfigLibpod;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * ContainerBasicConfig
@@ -226,7 +209,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig annotations(Map<String, String> annotations) {
 
-      this.annotations = annotations;
+    this.annotations = annotations;
     return this;
   }
 
@@ -238,12 +221,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
    * @return annotations
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.")
 
   public Map<String, String> getAnnotations() {
     return annotations;
@@ -257,7 +240,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig command(List<String> command) {
 
-      this.command = command;
+    this.command = command;
     return this;
   }
 
@@ -269,12 +252,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return command
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Command is the container's command. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Command is the container's command. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getCommand() {
     return command;
@@ -288,16 +271,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig conmonPidFile(String conmonPidFile) {
 
-      this.conmonPidFile = conmonPidFile;
+    this.conmonPidFile = conmonPidFile;
     return this;
   }
 
-    /**
+  /**
    * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
    * @return conmonPidFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.")
 
   public String getConmonPidFile() {
     return conmonPidFile;
@@ -311,7 +294,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig containerCreateCommand(List<String> containerCreateCommand) {
 
-      this.containerCreateCommand = containerCreateCommand;
+    this.containerCreateCommand = containerCreateCommand;
     return this;
   }
 
@@ -323,12 +306,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
    * @return containerCreateCommand
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. `podman generate systemd --new`). Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. `podman generate systemd --new`). Optional.")
 
   public List<String> getContainerCreateCommand() {
     return containerCreateCommand;
@@ -342,7 +325,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig dependencyContainers(List<String> dependencyContainers) {
 
-      this.dependencyContainers = dependencyContainers;
+    this.dependencyContainers = dependencyContainers;
     return this;
   }
 
@@ -354,12 +337,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
    * @return dependencyContainers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.")
 
   public List<String> getDependencyContainers() {
     return dependencyContainers;
@@ -373,7 +356,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig entrypoint(List<String> entrypoint) {
 
-      this.entrypoint = entrypoint;
+    this.entrypoint = entrypoint;
     return this;
   }
 
@@ -385,12 +368,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return entrypoint
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Entrypoint is the container's entrypoint. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Entrypoint is the container's entrypoint. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getEntrypoint() {
     return entrypoint;
@@ -404,7 +387,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig env(Map<String, String> env) {
 
-      this.env = env;
+    this.env = env;
     return this;
   }
 
@@ -416,12 +399,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Env is a set of environment variables that will be set in the container. Optional.
    * @return env
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Env is a set of environment variables that will be set in the container. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Env is a set of environment variables that will be set in the container. Optional.")
 
   public Map<String, String> getEnv() {
     return env;
@@ -435,16 +418,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig envHost(Boolean envHost) {
 
-      this.envHost = envHost;
+    this.envHost = envHost;
     return this;
   }
 
-    /**
+  /**
    * EnvHost indicates that the host environment should be added to container Optional.
    * @return envHost
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvHost indicates that the host environment should be added to container Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHost indicates that the host environment should be added to container Optional.")
 
   public Boolean getEnvHost() {
     return envHost;
@@ -458,7 +441,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig envmerge(List<String> envmerge) {
 
-      this.envmerge = envmerge;
+    this.envmerge = envmerge;
     return this;
   }
 
@@ -470,12 +453,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
    * @return envmerge
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.")
 
   public List<String> getEnvmerge() {
     return envmerge;
@@ -489,16 +472,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig groupEntry(String groupEntry) {
 
-      this.groupEntry = groupEntry;
+    this.groupEntry = groupEntry;
     return this;
   }
 
-    /**
+  /**
    * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
    * @return groupEntry
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "GroupEntry specifies an arbitrary string to append to the container's /etc/group file. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "GroupEntry specifies an arbitrary string to append to the container's /etc/group file. Optional.")
 
   public String getGroupEntry() {
     return groupEntry;
@@ -512,16 +495,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig hostname(String hostname) {
 
-      this.hostname = hostname;
+    this.hostname = hostname;
     return this;
   }
 
-    /**
+  /**
    * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
    * @return hostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Hostname is the container's hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Hostname is the container's hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.")
 
   public String getHostname() {
     return hostname;
@@ -535,7 +518,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig hostusers(List<String> hostusers) {
 
-      this.hostusers = hostusers;
+    this.hostusers = hostusers;
     return this;
   }
 
@@ -547,12 +530,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
    * @return hostusers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file")
 
   public List<String> getHostusers() {
     return hostusers;
@@ -566,16 +549,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig httpproxy(Boolean httpproxy) {
 
-      this.httpproxy = httpproxy;
+    this.httpproxy = httpproxy;
     return this;
   }
 
-    /**
+  /**
    * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
    * @return httpproxy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.")
 
   public Boolean getHttpproxy() {
     return httpproxy;
@@ -589,16 +572,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig initContainerType(String initContainerType) {
 
-      this.initContainerType = initContainerType;
+    this.initContainerType = initContainerType;
     return this;
   }
 
-    /**
+  /**
    * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
    * @return initContainerType
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.")
 
   public String getInitContainerType() {
     return initContainerType;
@@ -612,7 +595,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -624,12 +607,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Labels are key-value pairs that are used to add metadata to containers. Optional.
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to containers. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to containers. Optional.")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -643,17 +626,17 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig logConfiguration(LogConfigLibpod logConfiguration) {
 
-      this.logConfiguration = logConfiguration;
+    this.logConfiguration = logConfiguration;
     return this;
   }
 
-    /**
+  /**
    * Get logConfiguration
    * @return logConfiguration
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LogConfigLibpod getLogConfiguration() {
     return logConfiguration;
@@ -667,16 +650,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig managePassword(Boolean managePassword) {
 
-      this.managePassword = managePassword;
+    this.managePassword = managePassword;
     return this;
   }
 
-    /**
+  /**
    * Passwd is a container run option that determines if we are validating users/groups before running the container
    * @return managePassword
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Passwd is a container run option that determines if we are validating users/groups before running the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Passwd is a container run option that determines if we are validating users/groups before running the container")
 
   public Boolean getManagePassword() {
     return managePassword;
@@ -690,16 +673,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.")
 
   public String getName() {
     return name;
@@ -713,16 +696,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig ociRuntime(String ociRuntime) {
 
-      this.ociRuntime = ociRuntime;
+    this.ociRuntime = ociRuntime;
     return this;
   }
 
-    /**
+  /**
    * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
    * @return ociRuntime
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.")
 
   public String getOciRuntime() {
     return ociRuntime;
@@ -736,16 +719,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig passwdEntry(String passwdEntry) {
 
-      this.passwdEntry = passwdEntry;
+    this.passwdEntry = passwdEntry;
     return this;
   }
 
-    /**
+  /**
    * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
    * @return passwdEntry
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "PasswdEntry specifies an arbitrary string to append to the container's /etc/passwd file. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PasswdEntry specifies an arbitrary string to append to the container's /etc/passwd file. Optional.")
 
   public String getPasswdEntry() {
     return passwdEntry;
@@ -759,17 +742,17 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig personality(LinuxPersonality personality) {
 
-      this.personality = personality;
+    this.personality = personality;
     return this;
   }
 
-    /**
+  /**
    * Get personality
    * @return personality
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LinuxPersonality getPersonality() {
     return personality;
@@ -783,17 +766,17 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig pidns(Namespace pidns) {
 
-      this.pidns = pidns;
+    this.pidns = pidns;
     return this;
   }
 
-    /**
+  /**
    * Get pidns
    * @return pidns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getPidns() {
     return pidns;
@@ -807,16 +790,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig pod(String pod) {
 
-      this.pod = pod;
+    this.pod = pod;
     return this;
   }
 
-    /**
+  /**
    * Pod is the ID of the pod the container will join. Optional.
    * @return pod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Pod is the ID of the pod the container will join. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Pod is the ID of the pod the container will join. Optional.")
 
   public String getPod() {
     return pod;
@@ -830,16 +813,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig remove(Boolean remove) {
 
-      this.remove = remove;
+    this.remove = remove;
     return this;
   }
 
-    /**
+  /**
    * Remove indicates if the container should be removed once it has been started and exits. Optional.
    * @return remove
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Remove indicates if the container should be removed once it has been started and exits. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Remove indicates if the container should be removed once it has been started and exits. Optional.")
 
   public Boolean getRemove() {
     return remove;
@@ -853,16 +836,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig removeImage(Boolean removeImage) {
 
-      this.removeImage = removeImage;
+    this.removeImage = removeImage;
     return this;
   }
 
-    /**
+  /**
    * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
    * @return removeImage
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.")
 
   public Boolean getRemoveImage() {
     return removeImage;
@@ -876,16 +859,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig restartPolicy(String restartPolicy) {
 
-      this.restartPolicy = restartPolicy;
+    this.restartPolicy = restartPolicy;
     return this;
   }
 
-    /**
+  /**
    * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
    * @return restartPolicy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RestartPolicy is the container's restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartPolicy is the container's restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.")
 
   public String getRestartPolicy() {
     return restartPolicy;
@@ -899,16 +882,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig restartTries(Integer restartTries) {
 
-      this.restartTries = restartTries;
+    this.restartTries = restartTries;
     return this;
   }
 
-    /**
+  /**
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
 
   public Integer getRestartTries() {
     return restartTries;
@@ -922,16 +905,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig sdnotifyMode(String sdnotifyMode) {
 
-      this.sdnotifyMode = sdnotifyMode;
+    this.sdnotifyMode = sdnotifyMode;
     return this;
   }
 
-    /**
+  /**
    * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
    * @return sdnotifyMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \"container\" - let the OCI runtime deal with it, advertise conmon's MAINPID \"conmon-only\" - advertise conmon's MAINPID, send READY when started, don't pass to OCI \"ignore\" - unset NOTIFY_SOCKET Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \"container\" - let the OCI runtime deal with it, advertise conmon's MAINPID \"conmon-only\" - advertise conmon's MAINPID, send READY when started, don't pass to OCI \"ignore\" - unset NOTIFY_SOCKET Optional.")
 
   public String getSdnotifyMode() {
     return sdnotifyMode;
@@ -945,7 +928,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig secretEnv(Map<String, String> secretEnv) {
 
-      this.secretEnv = secretEnv;
+    this.secretEnv = secretEnv;
     return this;
   }
 
@@ -957,12 +940,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * EnvSecrets are secrets that will be set as environment variables Optional.
    * @return secretEnv
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvSecrets are secrets that will be set as environment variables Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvSecrets are secrets that will be set as environment variables Optional.")
 
   public Map<String, String> getSecretEnv() {
     return secretEnv;
@@ -976,16 +959,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig stdin(Boolean stdin) {
 
-      this.stdin = stdin;
+    this.stdin = stdin;
     return this;
   }
 
-    /**
+  /**
    * Stdin is whether the container will keep its STDIN open. Optional.
    * @return stdin
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Stdin is whether the container will keep its STDIN open. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Stdin is whether the container will keep its STDIN open. Optional.")
 
   public Boolean getStdin() {
     return stdin;
@@ -999,16 +982,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig stopSignal(Long stopSignal) {
 
-      this.stopSignal = stopSignal;
+    this.stopSignal = stopSignal;
     return this;
   }
 
-    /**
+  /**
    * It implements the [os.Signal] interface.
    * @return stopSignal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "It implements the [os.Signal] interface.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "It implements the [os.Signal] interface.")
 
   public Long getStopSignal() {
     return stopSignal;
@@ -1022,16 +1005,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig stopTimeout(Integer stopTimeout) {
 
-      this.stopTimeout = stopTimeout;
+    this.stopTimeout = stopTimeout;
     return this;
   }
 
-    /**
+  /**
    * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
    * @return stopTimeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "StopTimeout is a timeout between the container's stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StopTimeout is a timeout between the container's stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.")
 
   public Integer getStopTimeout() {
     return stopTimeout;
@@ -1045,7 +1028,7 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig sysctl(Map<String, String> sysctl) {
 
-      this.sysctl = sysctl;
+    this.sysctl = sysctl;
     return this;
   }
 
@@ -1057,12 +1040,12 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Sysctl sets kernel parameters for the container
    * @return sysctl
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Sysctl sets kernel parameters for the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Sysctl sets kernel parameters for the container")
 
   public Map<String, String> getSysctl() {
     return sysctl;
@@ -1076,16 +1059,16 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig systemd(String systemd) {
 
-      this.systemd = systemd;
+    this.systemd = systemd;
     return this;
   }
 
-    /**
+  /**
    * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
    * @return systemd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Systemd is whether the container will be started in systemd mode. Valid options are \"true\", \"false\", and \"always\". \"true\" enables this mode only if the binary run in the container is sbin/init or systemd. \"always\" unconditionally enables systemd mode. \"false\" unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \"always\" or set to \"true\" and conditionally triggered, conflicts with StopSignal. If not specified, \"false\" will be assumed. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Systemd is whether the container will be started in systemd mode. Valid options are \"true\", \"false\", and \"always\". \"true\" enables this mode only if the binary run in the container is sbin/init or systemd. \"always\" unconditionally enables systemd mode. \"false\" unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \"always\" or set to \"true\" and conditionally triggered, conflicts with StopSignal. If not specified, \"false\" will be assumed. Optional.")
 
   public String getSystemd() {
     return systemd;
@@ -1099,76 +1082,76 @@ public class ContainerBasicConfig implements Serializable {
 
   public ContainerBasicConfig terminal(Boolean terminal) {
 
-      this.terminal = terminal;
+    this.terminal = terminal;
     return this;
   }
 
-    /**
+  /**
    * Terminal is whether the container will create a PTY. Optional.
    * @return terminal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Terminal is whether the container will create a PTY. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Terminal is whether the container will create a PTY. Optional.")
 
   public Boolean getTerminal() {
     return terminal;
   }
 
 
-    public void setTerminal(Boolean terminal) {
+  public void setTerminal(Boolean terminal) {
     this.terminal = terminal;
   }
 
 
   public ContainerBasicConfig timeout(Integer timeout) {
 
-      this.timeout = timeout;
+    this.timeout = timeout;
     return this;
   }
 
-    /**
+  /**
    * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
    * @return timeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.")
 
   public Integer getTimeout() {
     return timeout;
   }
 
 
-    public void setTimeout(Integer timeout) {
+  public void setTimeout(Integer timeout) {
     this.timeout = timeout;
   }
 
 
   public ContainerBasicConfig timezone(String timezone) {
 
-      this.timezone = timezone;
+    this.timezone = timezone;
     return this;
   }
 
-    /**
+  /**
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
    * @return timezone
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.")
 
   public String getTimezone() {
     return timezone;
   }
 
 
-    public void setTimezone(String timezone) {
+  public void setTimezone(String timezone) {
     this.timezone = timezone;
   }
 
 
   public ContainerBasicConfig unsetenv(List<String> unsetenv) {
 
-      this.unsetenv = unsetenv;
+    this.unsetenv = unsetenv;
     return this;
   }
 
@@ -1180,66 +1163,66 @@ public class ContainerBasicConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
    * @return unsetenv
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.")
 
   public List<String> getUnsetenv() {
     return unsetenv;
   }
 
 
-    public void setUnsetenv(List<String> unsetenv) {
+  public void setUnsetenv(List<String> unsetenv) {
     this.unsetenv = unsetenv;
   }
 
 
   public ContainerBasicConfig unsetenvall(Boolean unsetenvall) {
 
-      this.unsetenvall = unsetenvall;
+    this.unsetenvall = unsetenvall;
     return this;
   }
 
-    /**
+  /**
    * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
    * @return unsetenvall
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.")
 
   public Boolean getUnsetenvall() {
     return unsetenvall;
   }
 
 
-    public void setUnsetenvall(Boolean unsetenvall) {
+  public void setUnsetenvall(Boolean unsetenvall) {
     this.unsetenvall = unsetenvall;
   }
 
 
   public ContainerBasicConfig utsns(Namespace utsns) {
 
-      this.utsns = utsns;
+    this.utsns = utsns;
     return this;
   }
 
-    /**
+  /**
    * Get utsns
    * @return utsns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getUtsns() {
     return utsns;
   }
 
 
-    public void setUtsns(Namespace utsns) {
+  public void setUtsns(Namespace utsns) {
     this.utsns = utsns;
   }
 
@@ -1412,49 +1395,49 @@ public class ContainerBasicConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ContainerBasicConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ContainerBasicConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerBasicConfig is not found in the empty JSON string", ContainerBasicConfig.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ContainerBasicConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ContainerBasicConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerBasicConfig is not found in the empty JSON string", ContainerBasicConfig.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ContainerBasicConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerBasicConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerBasicConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull()) && !jsonObj.get("command").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull()) && !jsonObj.get("command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `command` to be an array in the JSON string but got `%s`", jsonObj.get("command").toString()));
       }
       if ((jsonObj.get("conmon_pid_file") != null && !jsonObj.get("conmon_pid_file").isJsonNull()) && !jsonObj.get("conmon_pid_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conmon_pid_file").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull()) && !jsonObj.get("containerCreateCommand").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull()) && !jsonObj.get("containerCreateCommand").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `containerCreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("containerCreateCommand").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull()) && !jsonObj.get("dependencyContainers").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull()) && !jsonObj.get("dependencyContainers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dependencyContainers` to be an array in the JSON string but got `%s`", jsonObj.get("dependencyContainers").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull()) && !jsonObj.get("envmerge").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull()) && !jsonObj.get("envmerge").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `envmerge` to be an array in the JSON string but got `%s`", jsonObj.get("envmerge").toString()));
       }
       if ((jsonObj.get("group_entry") != null && !jsonObj.get("group_entry").isJsonNull()) && !jsonObj.get("group_entry").isJsonPrimitive()) {
@@ -1463,8 +1446,8 @@ public class ContainerBasicConfig implements Serializable {
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull()) && !jsonObj.get("hostusers").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull()) && !jsonObj.get("hostusers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostusers` to be an array in the JSON string but got `%s`", jsonObj.get("hostusers").toString()));
       }
       if ((jsonObj.get("init_container_type") != null && !jsonObj.get("init_container_type").isJsonNull()) && !jsonObj.get("init_container_type").isJsonPrimitive()) {
@@ -1472,7 +1455,7 @@ public class ContainerBasicConfig implements Serializable {
       }
       // validate the optional field `log_configuration`
       if (jsonObj.get("log_configuration") != null && !jsonObj.get("log_configuration").isJsonNull()) {
-          LogConfigLibpod.validateJsonObject(jsonObj.getAsJsonObject("log_configuration"));
+        LogConfigLibpod.validateJsonObject(jsonObj.getAsJsonObject("log_configuration"));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
@@ -1485,11 +1468,11 @@ public class ContainerBasicConfig implements Serializable {
       }
       // validate the optional field `personality`
       if (jsonObj.get("personality") != null && !jsonObj.get("personality").isJsonNull()) {
-          LinuxPersonality.validateJsonObject(jsonObj.getAsJsonObject("personality"));
+        LinuxPersonality.validateJsonObject(jsonObj.getAsJsonObject("personality"));
       }
       // validate the optional field `pidns`
       if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
       }
       if ((jsonObj.get("pod") != null && !jsonObj.get("pod").isJsonNull()) && !jsonObj.get("pod").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pod").toString()));
@@ -1506,13 +1489,13 @@ public class ContainerBasicConfig implements Serializable {
       if ((jsonObj.get("timezone") != null && !jsonObj.get("timezone").isJsonNull()) && !jsonObj.get("timezone").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `timezone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("timezone").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull()) && !jsonObj.get("unsetenv").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull()) && !jsonObj.get("unsetenv").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unsetenv` to be an array in the JSON string but got `%s`", jsonObj.get("unsetenv").toString()));
       }
       // validate the optional field `utsns`
       if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
       }
   }
 
@@ -1536,30 +1519,30 @@ public class ContainerBasicConfig implements Serializable {
 
            @Override
            public ContainerBasicConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of ContainerBasicConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ContainerBasicConfig
-     * @throws IOException if the JSON string is invalid with respect to ContainerBasicConfig
+  /**
+   * Create an instance of ContainerBasicConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ContainerBasicConfig
+   * @throws IOException if the JSON string is invalid with respect to ContainerBasicConfig
   */
   public static ContainerBasicConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerBasicConfig.class);
   }
 
-    /**
-     * Convert an instance of ContainerBasicConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of ContainerBasicConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

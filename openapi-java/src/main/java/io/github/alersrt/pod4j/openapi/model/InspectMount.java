@@ -13,41 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * InspectMount provides a record of a single mount in a container. It contains fields for both named and normal volumes. Only user-specified volumes will be included, and tmpfs volumes are not included even if the user specified them.
@@ -102,16 +88,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount destination(String destination) {
 
-      this.destination = destination;
+    this.destination = destination;
     return this;
   }
 
-    /**
+  /**
    * The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.
    * @return destination
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.")
 
   public String getDestination() {
     return destination;
@@ -125,16 +111,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount driver(String driver) {
 
-      this.driver = driver;
+    this.driver = driver;
     return this;
   }
 
-    /**
+  /**
    * The driver used for the named volume. Empty for bind mounts.
    * @return driver
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The driver used for the named volume. Empty for bind mounts.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The driver used for the named volume. Empty for bind mounts.")
 
   public String getDriver() {
     return driver;
@@ -148,16 +134,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount mode(String mode) {
 
-      this.mode = mode;
+    this.mode = mode;
     return this;
   }
 
-    /**
+  /**
    * Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.
    * @return mode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.")
 
   public String getMode() {
     return mode;
@@ -171,16 +157,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * The name of the volume. Empty for bind mounts.
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The name of the volume. Empty for bind mounts.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The name of the volume. Empty for bind mounts.")
 
   public String getName() {
     return name;
@@ -194,7 +180,7 @@ public class InspectMount implements Serializable {
 
   public InspectMount options(List<String> options) {
 
-      this.options = options;
+    this.options = options;
     return this;
   }
 
@@ -206,12 +192,12 @@ public class InspectMount implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * All remaining mount options. Additional data, not present in the original output.
    * @return options
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "All remaining mount options. Additional data, not present in the original output.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "All remaining mount options. Additional data, not present in the original output.")
 
   public List<String> getOptions() {
     return options;
@@ -225,16 +211,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount propagation(String propagation) {
 
-      this.propagation = propagation;
+    this.propagation = propagation;
     return this;
   }
 
-    /**
+  /**
    * Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.
    * @return propagation
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.")
 
   public String getPropagation() {
     return propagation;
@@ -248,16 +234,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount RW(Boolean RW) {
 
-      this.RW = RW;
+    this.RW = RW;
     return this;
   }
 
-    /**
+  /**
    * Whether the volume is read-write
    * @return RW
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Whether the volume is read-write")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the volume is read-write")
 
   public Boolean getRW() {
     return RW;
@@ -271,16 +257,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount source(String source) {
 
-      this.source = source;
+    this.source = source;
     return this;
   }
 
-    /**
+  /**
    * The source directory for the volume.
    * @return source
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The source directory for the volume.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The source directory for the volume.")
 
   public String getSource() {
     return source;
@@ -294,16 +280,16 @@ public class InspectMount implements Serializable {
 
   public InspectMount subPath(String subPath) {
 
-      this.subPath = subPath;
+    this.subPath = subPath;
     return this;
   }
 
-    /**
+  /**
    * SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.
    * @return subPath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.")
 
   public String getSubPath() {
     return subPath;
@@ -317,23 +303,23 @@ public class InspectMount implements Serializable {
 
   public InspectMount type(String type) {
 
-      this.type = type;
+    this.type = type;
     return this;
   }
 
-    /**
+  /**
    * Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;.
    * @return type
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Whether the mount is a volume or bind mount. Allowed values are \"volume\" and \"bind\".")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the mount is a volume or bind mount. Allowed values are \"volume\" and \"bind\".")
 
   public String getType() {
     return type;
   }
 
 
-    public void setType(String type) {
+  public void setType(String type) {
     this.type = type;
   }
 
@@ -416,26 +402,26 @@ public class InspectMount implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to InspectMount
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (InspectMount.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to InspectMount
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (InspectMount.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!InspectMount.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
@@ -450,8 +436,8 @@ public class InspectMount implements Serializable {
       if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull()) && !jsonObj.get("Options").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull()) && !jsonObj.get("Options").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
       }
       if ((jsonObj.get("Propagation") != null && !jsonObj.get("Propagation").isJsonNull()) && !jsonObj.get("Propagation").isJsonPrimitive()) {
@@ -488,30 +474,30 @@ public class InspectMount implements Serializable {
 
            @Override
            public InspectMount read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of InspectMount given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of InspectMount
-     * @throws IOException if the JSON string is invalid with respect to InspectMount
+  /**
+   * Create an instance of InspectMount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InspectMount
+   * @throws IOException if the JSON string is invalid with respect to InspectMount
   */
   public static InspectMount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectMount.class);
   }
 
-    /**
-     * Convert an instance of InspectMount to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of InspectMount to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

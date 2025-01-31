@@ -13,43 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * Used by GPU device drivers.
@@ -84,7 +71,7 @@ public class DeviceRequest implements Serializable {
 
   public DeviceRequest capabilities(List<List<String>> capabilities) {
 
-      this.capabilities = capabilities;
+    this.capabilities = capabilities;
     return this;
   }
 
@@ -96,13 +83,13 @@ public class DeviceRequest implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get capabilities
    * @return capabilities
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public List<List<String>> getCapabilities() {
     return capabilities;
@@ -116,16 +103,16 @@ public class DeviceRequest implements Serializable {
 
   public DeviceRequest count(Long count) {
 
-      this.count = count;
+    this.count = count;
     return this;
   }
 
-    /**
+  /**
    * Get count
    * @return count
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Long getCount() {
     return count;
@@ -139,7 +126,7 @@ public class DeviceRequest implements Serializable {
 
   public DeviceRequest deviceIDs(List<String> deviceIDs) {
 
-      this.deviceIDs = deviceIDs;
+    this.deviceIDs = deviceIDs;
     return this;
   }
 
@@ -151,12 +138,12 @@ public class DeviceRequest implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get deviceIDs
    * @return deviceIDs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public List<String> getDeviceIDs() {
     return deviceIDs;
@@ -170,16 +157,16 @@ public class DeviceRequest implements Serializable {
 
   public DeviceRequest driver(String driver) {
 
-      this.driver = driver;
+    this.driver = driver;
     return this;
   }
 
-    /**
+  /**
    * Get driver
    * @return driver
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getDriver() {
     return driver;
@@ -193,7 +180,7 @@ public class DeviceRequest implements Serializable {
 
   public DeviceRequest options(Map<String, String> options) {
 
-      this.options = options;
+    this.options = options;
     return this;
   }
 
@@ -205,12 +192,12 @@ public class DeviceRequest implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get options
    * @return options
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getOptions() {
     return options;
@@ -285,34 +272,34 @@ public class DeviceRequest implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to DeviceRequest
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (DeviceRequest.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to DeviceRequest
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (DeviceRequest.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in DeviceRequest is not found in the empty JSON string", DeviceRequest.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!DeviceRequest.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Capabilities") != null && !jsonObj.get("Capabilities").isJsonNull()) && !jsonObj.get("Capabilities").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Capabilities") != null && !jsonObj.get("Capabilities").isJsonNull()) && !jsonObj.get("Capabilities").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Capabilities` to be an array in the JSON string but got `%s`", jsonObj.get("Capabilities").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("DeviceIDs") != null && !jsonObj.get("DeviceIDs").isJsonNull()) && !jsonObj.get("DeviceIDs").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("DeviceIDs") != null && !jsonObj.get("DeviceIDs").isJsonNull()) && !jsonObj.get("DeviceIDs").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DeviceIDs` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceIDs").toString()));
       }
       if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
@@ -340,30 +327,30 @@ public class DeviceRequest implements Serializable {
 
            @Override
            public DeviceRequest read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of DeviceRequest given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of DeviceRequest
-     * @throws IOException if the JSON string is invalid with respect to DeviceRequest
+  /**
+   * Create an instance of DeviceRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DeviceRequest
+   * @throws IOException if the JSON string is invalid with respect to DeviceRequest
   */
   public static DeviceRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DeviceRequest.class);
   }
 
-    /**
-     * Convert an instance of DeviceRequest to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of DeviceRequest to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

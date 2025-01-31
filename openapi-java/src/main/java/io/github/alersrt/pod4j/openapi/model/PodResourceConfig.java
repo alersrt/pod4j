@@ -13,43 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * PodResourceConfig
@@ -79,16 +63,16 @@ public class PodResourceConfig implements Serializable {
 
   public PodResourceConfig cpuPeriod(Integer cpuPeriod) {
 
-      this.cpuPeriod = cpuPeriod;
+    this.cpuPeriod = cpuPeriod;
     return this;
   }
 
-    /**
+  /**
    * CPU period of the cpuset, determined by --cpus
    * @return cpuPeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CPU period of the cpuset, determined by --cpus")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CPU period of the cpuset, determined by --cpus")
 
   public Integer getCpuPeriod() {
     return cpuPeriod;
@@ -102,16 +86,16 @@ public class PodResourceConfig implements Serializable {
 
   public PodResourceConfig cpuQuota(Long cpuQuota) {
 
-      this.cpuQuota = cpuQuota;
+    this.cpuQuota = cpuQuota;
     return this;
   }
 
-    /**
+  /**
    * CPU quota of the cpuset, determined by --cpus
    * @return cpuQuota
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CPU quota of the cpuset, determined by --cpus")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CPU quota of the cpuset, determined by --cpus")
 
   public Long getCpuQuota() {
     return cpuQuota;
@@ -125,17 +109,17 @@ public class PodResourceConfig implements Serializable {
 
   public PodResourceConfig resourceLimits(LinuxResources resourceLimits) {
 
-      this.resourceLimits = resourceLimits;
+    this.resourceLimits = resourceLimits;
     return this;
   }
 
-    /**
+  /**
    * Get resourceLimits
    * @return resourceLimits
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LinuxResources getResourceLimits() {
     return resourceLimits;
@@ -149,7 +133,7 @@ public class PodResourceConfig implements Serializable {
 
   public PodResourceConfig throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
 
-      this.throttleReadBpsDevice = throttleReadBpsDevice;
+    this.throttleReadBpsDevice = throttleReadBpsDevice;
     return this;
   }
 
@@ -161,13 +145,13 @@ public class PodResourceConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed
    * @return throttleReadBpsDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed")
+  @ApiModelProperty(value = "ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed")
 
   public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
     return throttleReadBpsDevice;
@@ -239,31 +223,31 @@ public class PodResourceConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PodResourceConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (PodResourceConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PodResourceConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PodResourceConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PodResourceConfig is not found in the empty JSON string", PodResourceConfig.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PodResourceConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodResourceConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodResourceConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       // validate the optional field `resource_limits`
       if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
-          LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
+        LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
       }
   }
 
@@ -287,30 +271,30 @@ public class PodResourceConfig implements Serializable {
 
            @Override
            public PodResourceConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of PodResourceConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodResourceConfig
-     * @throws IOException if the JSON string is invalid with respect to PodResourceConfig
+  /**
+   * Create an instance of PodResourceConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodResourceConfig
+   * @throws IOException if the JSON string is invalid with respect to PodResourceConfig
   */
   public static PodResourceConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodResourceConfig.class);
   }
 
-    /**
-     * Convert an instance of PodResourceConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of PodResourceConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

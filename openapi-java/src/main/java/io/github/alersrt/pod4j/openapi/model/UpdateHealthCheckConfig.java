@@ -13,24 +13,39 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.IOException;
 import java.io.Serializable;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * UpdateHealthCheckConfig
@@ -104,16 +119,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthCmd(String healthCmd) {
 
-      this.healthCmd = healthCmd;
+    this.healthCmd = healthCmd;
     return this;
   }
 
-    /**
+  /**
    * HealthCmd set a healthcheck command for the container. (&#39;none&#39; disables the existing healthcheck)
    * @return healthCmd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthCmd set a healthcheck command for the container. ('none' disables the existing healthcheck)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthCmd set a healthcheck command for the container. ('none' disables the existing healthcheck)")
 
   public String getHealthCmd() {
     return healthCmd;
@@ -127,16 +142,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthInterval(String healthInterval) {
 
-      this.healthInterval = healthInterval;
+    this.healthInterval = healthInterval;
     return this;
   }
 
-    /**
+  /**
    * HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.
    * @return healthInterval
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthInterval set an interval for the healthcheck. (a value of disable results in no automatic timer setup) Changing this setting resets timer.")
 
   public String getHealthInterval() {
     return healthInterval;
@@ -150,16 +165,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthLogDestination(String healthLogDestination) {
 
-      this.healthLogDestination = healthLogDestination;
+    this.healthLogDestination = healthLogDestination;
     return this;
   }
 
-    /**
+  /**
    * HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!
    * @return healthLogDestination
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthLogDestination set the destination of the HealthCheck log. Directory path, local or events_logger (local use container state file) Warning: Changing this setting may cause the loss of previous logs!")
 
   public String getHealthLogDestination() {
     return healthLogDestination;
@@ -173,16 +188,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthMaxLogCount(Integer healthMaxLogCount) {
 
-      this.healthMaxLogCount = healthMaxLogCount;
+    this.healthMaxLogCount = healthMaxLogCount;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogCount set maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
 
   public Integer getHealthMaxLogCount() {
     return healthMaxLogCount;
@@ -196,16 +211,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthMaxLogSize(Integer healthMaxLogSize) {
 
-      this.healthMaxLogSize = healthMaxLogSize;
+    this.healthMaxLogSize = healthMaxLogSize;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogSize set maximum length in characters of stored HealthCheck log. (&#39;0&#39; value means an infinite log length)
    * @return healthMaxLogSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogSize set maximum length in characters of stored HealthCheck log. ('0' value means an infinite log length)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogSize set maximum length in characters of stored HealthCheck log. ('0' value means an infinite log length)")
 
   public Integer getHealthMaxLogSize() {
     return healthMaxLogSize;
@@ -219,16 +234,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthOnFailure(String healthOnFailure) {
 
-      this.healthOnFailure = healthOnFailure;
+    this.healthOnFailure = healthOnFailure;
     return this;
   }
 
-    /**
+  /**
    * HealthOnFailure set the action to take once the container turns unhealthy.
    * @return healthOnFailure
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthOnFailure set the action to take once the container turns unhealthy.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthOnFailure set the action to take once the container turns unhealthy.")
 
   public String getHealthOnFailure() {
     return healthOnFailure;
@@ -242,16 +257,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthRetries(Integer healthRetries) {
 
-      this.healthRetries = healthRetries;
+    this.healthRetries = healthRetries;
     return this;
   }
 
-    /**
+  /**
    * HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.
    * @return healthRetries
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthRetries set the number of retries allowed before a healthcheck is considered to be unhealthy.")
 
   public Integer getHealthRetries() {
     return healthRetries;
@@ -265,16 +280,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartPeriod(String healthStartPeriod) {
 
-      this.healthStartPeriod = healthStartPeriod;
+    this.healthStartPeriod = healthStartPeriod;
     return this;
   }
 
-    /**
+  /**
    * HealthStartPeriod set the initialization time needed for a container to bootstrap.
    * @return healthStartPeriod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartPeriod set the initialization time needed for a container to bootstrap.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartPeriod set the initialization time needed for a container to bootstrap.")
 
   public String getHealthStartPeriod() {
     return healthStartPeriod;
@@ -288,16 +303,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartupCmd(String healthStartupCmd) {
 
-      this.healthStartupCmd = healthStartupCmd;
+    this.healthStartupCmd = healthStartupCmd;
     return this;
   }
 
-    /**
+  /**
    * HealthStartupCmd set a startup healthcheck command for the container.
    * @return healthStartupCmd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartupCmd set a startup healthcheck command for the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupCmd set a startup healthcheck command for the container.")
 
   public String getHealthStartupCmd() {
     return healthStartupCmd;
@@ -311,16 +326,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartupInterval(String healthStartupInterval) {
 
-      this.healthStartupInterval = healthStartupInterval;
+    this.healthStartupInterval = healthStartupInterval;
     return this;
   }
 
-    /**
+  /**
    * HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.
    * @return healthStartupInterval
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupInterval set an interval for the startup healthcheck. Changing this setting resets the timer, depending on the state of the container.")
 
   public String getHealthStartupInterval() {
     return healthStartupInterval;
@@ -334,16 +349,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartupRetries(Integer healthStartupRetries) {
 
-      this.healthStartupRetries = healthStartupRetries;
+    this.healthStartupRetries = healthStartupRetries;
     return this;
   }
 
-    /**
+  /**
    * HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.
    * @return healthStartupRetries
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupRetries set the maximum number of retries before the startup healthcheck will restart the container.")
 
   public Integer getHealthStartupRetries() {
     return healthStartupRetries;
@@ -357,16 +372,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartupSuccess(Integer healthStartupSuccess) {
 
-      this.healthStartupSuccess = healthStartupSuccess;
+    this.healthStartupSuccess = healthStartupSuccess;
     return this;
   }
 
-    /**
+  /**
    * HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)
    * @return healthStartupSuccess
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupSuccess set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)")
 
   public Integer getHealthStartupSuccess() {
     return healthStartupSuccess;
@@ -380,16 +395,16 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthStartupTimeout(String healthStartupTimeout) {
 
-      this.healthStartupTimeout = healthStartupTimeout;
+    this.healthStartupTimeout = healthStartupTimeout;
     return this;
   }
 
-    /**
+  /**
    * HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.
    * @return healthStartupTimeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthStartupTimeout set the maximum amount of time that the startup healthcheck may take before it is considered failed.")
 
   public String getHealthStartupTimeout() {
     return healthStartupTimeout;
@@ -403,46 +418,46 @@ public class UpdateHealthCheckConfig implements Serializable {
 
   public UpdateHealthCheckConfig healthTimeout(String healthTimeout) {
 
-      this.healthTimeout = healthTimeout;
+    this.healthTimeout = healthTimeout;
     return this;
   }
 
-    /**
+  /**
    * HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.
    * @return healthTimeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthTimeout set the maximum time allowed to complete the healthcheck before an interval is considered failed.")
 
   public String getHealthTimeout() {
     return healthTimeout;
   }
 
 
-    public void setHealthTimeout(String healthTimeout) {
+  public void setHealthTimeout(String healthTimeout) {
     this.healthTimeout = healthTimeout;
   }
 
 
   public UpdateHealthCheckConfig noHealthcheck(Boolean noHealthcheck) {
 
-      this.noHealthcheck = noHealthcheck;
+    this.noHealthcheck = noHealthcheck;
     return this;
   }
 
-    /**
+  /**
    * Disable healthchecks on container.
    * @return noHealthcheck
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Disable healthchecks on container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Disable healthchecks on container.")
 
   public Boolean getNoHealthcheck() {
     return noHealthcheck;
   }
 
 
-    public void setNoHealthcheck(Boolean noHealthcheck) {
+  public void setNoHealthcheck(Boolean noHealthcheck) {
     this.noHealthcheck = noHealthcheck;
   }
 
@@ -540,26 +555,26 @@ public class UpdateHealthCheckConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to UpdateHealthCheckConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (UpdateHealthCheckConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateHealthCheckConfig is not found in the empty JSON string", UpdateHealthCheckConfig.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to UpdateHealthCheckConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (UpdateHealthCheckConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateHealthCheckConfig is not found in the empty JSON string", UpdateHealthCheckConfig.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!UpdateHealthCheckConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateHealthCheckConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateHealthCheckConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("health_cmd") != null && !jsonObj.get("health_cmd").isJsonNull()) && !jsonObj.get("health_cmd").isJsonPrimitive()) {
@@ -611,30 +626,30 @@ public class UpdateHealthCheckConfig implements Serializable {
 
            @Override
            public UpdateHealthCheckConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of UpdateHealthCheckConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of UpdateHealthCheckConfig
-     * @throws IOException if the JSON string is invalid with respect to UpdateHealthCheckConfig
+  /**
+   * Create an instance of UpdateHealthCheckConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateHealthCheckConfig
+   * @throws IOException if the JSON string is invalid with respect to UpdateHealthCheckConfig
   */
   public static UpdateHealthCheckConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateHealthCheckConfig.class);
   }
 
-    /**
-     * Convert an instance of UpdateHealthCheckConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of UpdateHealthCheckConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

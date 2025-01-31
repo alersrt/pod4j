@@ -13,41 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * LogConfig describes the logging characteristics for a container
@@ -78,16 +64,16 @@ public class LogConfigLibpod implements Serializable {
 
   public LogConfigLibpod driver(String driver) {
 
-      this.driver = driver;
+    this.driver = driver;
     return this;
   }
 
-    /**
+  /**
    * LogDriver is the container&#39;s log driver. Optional.
    * @return driver
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "LogDriver is the container's log driver. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "LogDriver is the container's log driver. Optional.")
 
   public String getDriver() {
     return driver;
@@ -101,7 +87,7 @@ public class LogConfigLibpod implements Serializable {
 
   public LogConfigLibpod options(Map<String, String> options) {
 
-      this.options = options;
+    this.options = options;
     return this;
   }
 
@@ -113,12 +99,12 @@ public class LogConfigLibpod implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * A set of options to accompany the log driver. Optional.
    * @return options
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A set of options to accompany the log driver. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A set of options to accompany the log driver. Optional.")
 
   public Map<String, String> getOptions() {
     return options;
@@ -132,16 +118,16 @@ public class LogConfigLibpod implements Serializable {
 
   public LogConfigLibpod path(String path) {
 
-      this.path = path;
+    this.path = path;
     return this;
   }
 
-    /**
+  /**
    * LogPath is the path the container&#39;s logs will be stored at. Only available if LogDriver is set to \&quot;json-file\&quot; or \&quot;k8s-file\&quot;. Optional.
    * @return path
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "LogPath is the path the container's logs will be stored at. Only available if LogDriver is set to \"json-file\" or \"k8s-file\". Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "LogPath is the path the container's logs will be stored at. Only available if LogDriver is set to \"json-file\" or \"k8s-file\". Optional.")
 
   public String getPath() {
     return path;
@@ -155,16 +141,16 @@ public class LogConfigLibpod implements Serializable {
 
   public LogConfigLibpod size(Long size) {
 
-      this.size = size;
+    this.size = size;
     return this;
   }
 
-    /**
+  /**
    * Size is the maximum size of the log file Optional.
    * @return size
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Size is the maximum size of the log file Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Size is the maximum size of the log file Optional.")
 
   public Long getSize() {
     return size;
@@ -236,26 +222,26 @@ public class LogConfigLibpod implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to LogConfigLibpod
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (LogConfigLibpod.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to LogConfigLibpod
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (LogConfigLibpod.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in LogConfigLibpod is not found in the empty JSON string", LogConfigLibpod.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!LogConfigLibpod.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LogConfigLibpod` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LogConfigLibpod` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull()) && !jsonObj.get("driver").isJsonPrimitive()) {
@@ -286,30 +272,30 @@ public class LogConfigLibpod implements Serializable {
 
            @Override
            public LogConfigLibpod read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of LogConfigLibpod given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of LogConfigLibpod
-     * @throws IOException if the JSON string is invalid with respect to LogConfigLibpod
+  /**
+   * Create an instance of LogConfigLibpod given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LogConfigLibpod
+   * @throws IOException if the JSON string is invalid with respect to LogConfigLibpod
   */
   public static LogConfigLibpod fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LogConfigLibpod.class);
   }
 
-    /**
-     * Convert an instance of LogConfigLibpod to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of LogConfigLibpod to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

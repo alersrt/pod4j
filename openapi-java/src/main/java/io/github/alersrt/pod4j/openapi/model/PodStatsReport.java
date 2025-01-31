@@ -13,39 +13,24 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * PodStatsReport
@@ -99,16 +84,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport blockIO(String blockIO) {
 
-      this.blockIO = blockIO;
+    this.blockIO = blockIO;
     return this;
   }
 
-    /**
+  /**
    * Humanized disk usage read + write
    * @return blockIO
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Humanized disk usage read + write")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Humanized disk usage read + write")
 
   public String getBlockIO() {
     return blockIO;
@@ -122,16 +107,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport CID(String CID) {
 
-      this.CID = CID;
+    this.CID = CID;
     return this;
   }
 
-    /**
+  /**
    * Container ID
    * @return CID
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "e43534f89a7d", value = "Container ID")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "e43534f89a7d", value = "Container ID")
 
   public String getCID() {
     return CID;
@@ -145,16 +130,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport CPU(String CPU) {
 
-      this.CPU = CPU;
+    this.CPU = CPU;
     return this;
   }
 
-    /**
+  /**
    * Percentage of CPU utilized by pod
    * @return CPU
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "75.5%", value = "Percentage of CPU utilized by pod")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "75.5%", value = "Percentage of CPU utilized by pod")
 
   public String getCPU() {
     return CPU;
@@ -168,16 +153,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport mem(String mem) {
 
-      this.mem = mem;
+    this.mem = mem;
     return this;
   }
 
-    /**
+  /**
    * Percentage of Memory utilized by pod
    * @return mem
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "50.5%", value = "Percentage of Memory utilized by pod")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "50.5%", value = "Percentage of Memory utilized by pod")
 
   public String getMem() {
     return mem;
@@ -191,16 +176,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport memUsage(String memUsage) {
 
-      this.memUsage = memUsage;
+    this.memUsage = memUsage;
     return this;
   }
 
-    /**
+  /**
    * Humanized Memory usage and maximum
    * @return memUsage
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "12mb / 24mb", value = "Humanized Memory usage and maximum")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "12mb / 24mb", value = "Humanized Memory usage and maximum")
 
   public String getMemUsage() {
     return memUsage;
@@ -214,16 +199,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport memUsageBytes(String memUsageBytes) {
 
-      this.memUsageBytes = memUsageBytes;
+    this.memUsageBytes = memUsageBytes;
     return this;
   }
 
-    /**
+  /**
    * Memory usage and maximum in bytes
    * @return memUsageBytes
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "1,000,000 / 4,000,000", value = "Memory usage and maximum in bytes")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1,000,000 / 4,000,000", value = "Memory usage and maximum in bytes")
 
   public String getMemUsageBytes() {
     return memUsageBytes;
@@ -237,16 +222,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Pod Name
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "elastic_pascal", value = "Pod Name")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "elastic_pascal", value = "Pod Name")
 
   public String getName() {
     return name;
@@ -260,16 +245,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport netIO(String netIO) {
 
-      this.netIO = netIO;
+    this.netIO = netIO;
     return this;
   }
 
-    /**
+  /**
    * Network usage inbound + outbound
    * @return netIO
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Network usage inbound + outbound")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Network usage inbound + outbound")
 
   public String getNetIO() {
     return netIO;
@@ -283,16 +268,16 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport PIDS(String PIDS) {
 
-      this.PIDS = PIDS;
+    this.PIDS = PIDS;
     return this;
   }
 
-    /**
+  /**
    * Container PID
    * @return PIDS
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container PID")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container PID")
 
   public String getPIDS() {
     return PIDS;
@@ -306,23 +291,23 @@ public class PodStatsReport implements Serializable {
 
   public PodStatsReport pod(String pod) {
 
-      this.pod = pod;
+    this.pod = pod;
     return this;
   }
 
-    /**
+  /**
    * Pod ID
    * @return pod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(example = "62310217a19e", value = "Pod ID")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "62310217a19e", value = "Pod ID")
 
   public String getPod() {
     return pod;
   }
 
 
-    public void setPod(String pod) {
+  public void setPod(String pod) {
     this.pod = pod;
   }
 
@@ -405,26 +390,26 @@ public class PodStatsReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PodStatsReport
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (PodStatsReport.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PodStatsReport is not found in the empty JSON string", PodStatsReport.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PodStatsReport
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (PodStatsReport.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in PodStatsReport is not found in the empty JSON string", PodStatsReport.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!PodStatsReport.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStatsReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStatsReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("BlockIO") != null && !jsonObj.get("BlockIO").isJsonNull()) && !jsonObj.get("BlockIO").isJsonPrimitive()) {
@@ -479,30 +464,30 @@ public class PodStatsReport implements Serializable {
 
            @Override
            public PodStatsReport read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of PodStatsReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodStatsReport
-     * @throws IOException if the JSON string is invalid with respect to PodStatsReport
+  /**
+   * Create an instance of PodStatsReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodStatsReport
+   * @throws IOException if the JSON string is invalid with respect to PodStatsReport
   */
   public static PodStatsReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodStatsReport.class);
   }
 
-    /**
-     * Convert an instance of PodStatsReport to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of PodStatsReport to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

@@ -13,46 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.InspectSecret;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * InspectContainerConfig holds further data about how a container was initially configured.
@@ -215,7 +200,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig annotations(Map<String, String> annotations) {
 
-      this.annotations = annotations;
+    this.annotations = annotations;
     return this;
   }
 
@@ -227,12 +212,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container annotations
    * @return annotations
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container annotations")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container annotations")
 
   public Map<String, String> getAnnotations() {
     return annotations;
@@ -246,16 +231,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig attachStderr(Boolean attachStderr) {
 
-      this.attachStderr = attachStderr;
+    this.attachStderr = attachStderr;
     return this;
   }
 
-    /**
+  /**
    * Unused, at present
    * @return attachStderr
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Unused, at present")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unused, at present")
 
   public Boolean getAttachStderr() {
     return attachStderr;
@@ -269,16 +254,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig attachStdin(Boolean attachStdin) {
 
-      this.attachStdin = attachStdin;
+    this.attachStdin = attachStdin;
     return this;
   }
 
-    /**
+  /**
    * Unused, at present
    * @return attachStdin
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Unused, at present")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unused, at present")
 
   public Boolean getAttachStdin() {
     return attachStdin;
@@ -292,16 +277,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig attachStdout(Boolean attachStdout) {
 
-      this.attachStdout = attachStdout;
+    this.attachStdout = attachStdout;
     return this;
   }
 
-    /**
+  /**
    * Unused, at present
    * @return attachStdout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Unused, at present")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unused, at present")
 
   public Boolean getAttachStdout() {
     return attachStdout;
@@ -315,7 +300,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig chrootDirs(List<String> chrootDirs) {
 
-      this.chrootDirs = chrootDirs;
+    this.chrootDirs = chrootDirs;
     return this;
   }
 
@@ -327,12 +312,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories.
    * @return chrootDirs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories.")
 
   public List<String> getChrootDirs() {
     return chrootDirs;
@@ -346,7 +331,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig cmd(List<String> cmd) {
 
-      this.cmd = cmd;
+    this.cmd = cmd;
     return this;
   }
 
@@ -358,12 +343,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container command
    * @return cmd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container command")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container command")
 
   public List<String> getCmd() {
     return cmd;
@@ -377,7 +362,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig createCommand(List<String> createCommand) {
 
-      this.createCommand = createCommand;
+    this.createCommand = createCommand;
     return this;
   }
 
@@ -389,12 +374,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CreateCommand is the full command plus arguments of the process the container has been created with.
    * @return createCommand
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CreateCommand is the full command plus arguments of the process the container has been created with.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CreateCommand is the full command plus arguments of the process the container has been created with.")
 
   public List<String> getCreateCommand() {
     return createCommand;
@@ -408,16 +393,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig domainname(String domainname) {
 
-      this.domainname = domainname;
+    this.domainname = domainname;
     return this;
   }
 
-    /**
+  /**
    * Container domain name - unused at present
    * @return domainname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container domain name - unused at present")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container domain name - unused at present")
 
   public String getDomainname() {
     return domainname;
@@ -431,7 +416,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig entrypoint(List<String> entrypoint) {
 
-      this.entrypoint = entrypoint;
+    this.entrypoint = entrypoint;
     return this;
   }
 
@@ -443,12 +428,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container entrypoint
    * @return entrypoint
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container entrypoint")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container entrypoint")
 
   public List<String> getEntrypoint() {
     return entrypoint;
@@ -462,7 +447,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig env(List<String> env) {
 
-      this.env = env;
+    this.env = env;
     return this;
   }
 
@@ -474,12 +459,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container environment variables
    * @return env
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container environment variables")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container environment variables")
 
   public List<String> getEnv() {
     return env;
@@ -493,7 +478,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig exposedPorts(Map<String, Object> exposedPorts) {
 
-      this.exposedPorts = exposedPorts;
+    this.exposedPorts = exposedPorts;
     return this;
   }
 
@@ -505,12 +490,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ExposedPorts includes ports the container has exposed.
    * @return exposedPorts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ExposedPorts includes ports the container has exposed.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ExposedPorts includes ports the container has exposed.")
 
   public Map<String, Object> getExposedPorts() {
     return exposedPorts;
@@ -524,16 +509,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig healthLogDestination(String healthLogDestination) {
 
-      this.healthLogDestination = healthLogDestination;
+    this.healthLogDestination = healthLogDestination;
     return this;
   }
 
-    /**
+  /**
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthLogDestination defines the destination where the log is stored")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthLogDestination defines the destination where the log is stored")
 
   public String getHealthLogDestination() {
     return healthLogDestination;
@@ -547,17 +532,17 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig healthcheck(Schema2HealthConfig healthcheck) {
 
-      this.healthcheck = healthcheck;
+    this.healthcheck = healthcheck;
     return this;
   }
 
-    /**
+  /**
    * Get healthcheck
    * @return healthcheck
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Schema2HealthConfig getHealthcheck() {
     return healthcheck;
@@ -571,16 +556,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig healthcheckMaxLogCount(Integer healthcheckMaxLogCount) {
 
-      this.healthcheckMaxLogCount = healthcheckMaxLogCount;
+    this.healthcheckMaxLogCount = healthcheckMaxLogCount;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthcheckMaxLogCount
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
 
   public Integer getHealthcheckMaxLogCount() {
     return healthcheckMaxLogCount;
@@ -594,16 +579,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig healthcheckMaxLogSize(Integer healthcheckMaxLogSize) {
 
-      this.healthcheckMaxLogSize = healthcheckMaxLogSize;
+    this.healthcheckMaxLogSize = healthcheckMaxLogSize;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthcheckMaxLogSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\"0\" value means an infinite log length)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\"0\" value means an infinite log length)")
 
   public Integer getHealthcheckMaxLogSize() {
     return healthcheckMaxLogSize;
@@ -617,16 +602,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig healthcheckOnFailureAction(String healthcheckOnFailureAction) {
 
-      this.healthcheckOnFailureAction = healthcheckOnFailureAction;
+    this.healthcheckOnFailureAction = healthcheckOnFailureAction;
     return this;
   }
 
-    /**
+  /**
    * HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.
    * @return healthcheckOnFailureAction
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.")
 
   public String getHealthcheckOnFailureAction() {
     return healthcheckOnFailureAction;
@@ -640,16 +625,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig hostname(String hostname) {
 
-      this.hostname = hostname;
+    this.hostname = hostname;
     return this;
   }
 
-    /**
+  /**
    * Container hostname
    * @return hostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container hostname")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container hostname")
 
   public String getHostname() {
     return hostname;
@@ -663,16 +648,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig image(String image) {
 
-      this.image = image;
+    this.image = image;
     return this;
   }
 
-    /**
+  /**
    * Container image
    * @return image
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container image")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container image")
 
   public String getImage() {
     return image;
@@ -686,7 +671,7 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -698,12 +683,12 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container labels
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container labels")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container labels")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -717,16 +702,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig onBuild(String onBuild) {
 
-      this.onBuild = onBuild;
+    this.onBuild = onBuild;
     return this;
   }
 
-    /**
+  /**
    * On-build arguments - presently unused. More of Buildah&#39;s domain.
    * @return onBuild
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "On-build arguments - presently unused. More of Buildah's domain.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "On-build arguments - presently unused. More of Buildah's domain.")
 
   public String getOnBuild() {
     return onBuild;
@@ -740,16 +725,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig openStdin(Boolean openStdin) {
 
-      this.openStdin = openStdin;
+    this.openStdin = openStdin;
     return this;
   }
 
-    /**
+  /**
    * Whether the container leaves STDIN open
    * @return openStdin
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Whether the container leaves STDIN open")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the container leaves STDIN open")
 
   public Boolean getOpenStdin() {
     return openStdin;
@@ -763,16 +748,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig passwd(Boolean passwd) {
 
-      this.passwd = passwd;
+    this.passwd = passwd;
     return this;
   }
 
-    /**
+  /**
    * Passwd determines whether or not podman can add entries to /etc/passwd and /etc/group
    * @return passwd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Passwd determines whether or not podman can add entries to /etc/passwd and /etc/group")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Passwd determines whether or not podman can add entries to /etc/passwd and /etc/group")
 
   public Boolean getPasswd() {
     return passwd;
@@ -784,7 +769,7 @@ public class InspectContainerConfig implements Serializable {
   }
 
 
-    public InspectContainerConfig secrets(List<InspectSecret> secrets) {
+  public InspectContainerConfig secrets(List<InspectSecret> secrets) {
     
     this.secrets = secrets;
     return this;
@@ -798,37 +783,37 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Secrets are the secrets mounted in the container
    * @return secrets
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Secrets are the secrets mounted in the container")
+  @ApiModelProperty(value = "Secrets are the secrets mounted in the container")
 
-    public List<InspectSecret> getSecrets() {
+  public List<InspectSecret> getSecrets() {
     return secrets;
   }
 
 
-    public void setSecrets(List<InspectSecret> secrets) {
+  public void setSecrets(List<InspectSecret> secrets) {
     this.secrets = secrets;
   }
 
 
   public InspectContainerConfig startupHealthCheck(StartupHealthCheck startupHealthCheck) {
 
-      this.startupHealthCheck = startupHealthCheck;
+    this.startupHealthCheck = startupHealthCheck;
     return this;
   }
 
-    /**
+  /**
    * Get startupHealthCheck
    * @return startupHealthCheck
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public StartupHealthCheck getStartupHealthCheck() {
     return startupHealthCheck;
@@ -842,16 +827,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig stdinOnce(Boolean stdinOnce) {
 
-      this.stdinOnce = stdinOnce;
+    this.stdinOnce = stdinOnce;
     return this;
   }
 
-    /**
+  /**
    * Whether STDIN is only left open once. Presently not supported by Podman, unused.
    * @return stdinOnce
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Whether STDIN is only left open once. Presently not supported by Podman, unused.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether STDIN is only left open once. Presently not supported by Podman, unused.")
 
   public Boolean getStdinOnce() {
     return stdinOnce;
@@ -865,16 +850,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig stopSignal(String stopSignal) {
 
-      this.stopSignal = stopSignal;
+    this.stopSignal = stopSignal;
     return this;
   }
 
-    /**
+  /**
    * Container stop signal
    * @return stopSignal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container stop signal")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container stop signal")
 
   public String getStopSignal() {
     return stopSignal;
@@ -888,16 +873,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig stopTimeout(Integer stopTimeout) {
 
-      this.stopTimeout = stopTimeout;
+    this.stopTimeout = stopTimeout;
     return this;
   }
 
-    /**
+  /**
    * StopTimeout is time before container is stopped when calling stop
    * @return stopTimeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "StopTimeout is time before container is stopped when calling stop")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StopTimeout is time before container is stopped when calling stop")
 
   public Integer getStopTimeout() {
     return stopTimeout;
@@ -911,16 +896,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig systemdMode(Boolean systemdMode) {
 
-      this.systemdMode = systemdMode;
+    this.systemdMode = systemdMode;
     return this;
   }
 
-    /**
+  /**
    * SystemdMode is whether the container is running in systemd mode. In systemd mode, the container configuration is customized to optimize running systemd in the container.
    * @return systemdMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SystemdMode is whether the container is running in systemd mode. In systemd mode, the container configuration is customized to optimize running systemd in the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SystemdMode is whether the container is running in systemd mode. In systemd mode, the container configuration is customized to optimize running systemd in the container.")
 
   public Boolean getSystemdMode() {
     return systemdMode;
@@ -934,16 +919,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig timeout(Integer timeout) {
 
-      this.timeout = timeout;
+    this.timeout = timeout;
     return this;
   }
 
-    /**
+  /**
    * Timeout is time before container is killed by conmon
    * @return timeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timeout is time before container is killed by conmon")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timeout is time before container is killed by conmon")
 
   public Integer getTimeout() {
     return timeout;
@@ -957,16 +942,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig timezone(String timezone) {
 
-      this.timezone = timezone;
+    this.timezone = timezone;
     return this;
   }
 
-    /**
+  /**
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine
    * @return timezone
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine")
 
   public String getTimezone() {
     return timezone;
@@ -980,16 +965,16 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig tty(Boolean tty) {
 
-      this.tty = tty;
+    this.tty = tty;
     return this;
   }
 
-    /**
+  /**
    * Whether the container creates a TTY
    * @return tty
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Whether the container creates a TTY")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the container creates a TTY")
 
   public Boolean getTty() {
     return tty;
@@ -1003,53 +988,53 @@ public class InspectContainerConfig implements Serializable {
 
   public InspectContainerConfig umask(String umask) {
 
-      this.umask = umask;
+    this.umask = umask;
     return this;
   }
 
-    /**
+  /**
    * Umask is the umask inside the container.
    * @return umask
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Umask is the umask inside the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Umask is the umask inside the container.")
 
   public String getUmask() {
     return umask;
   }
 
 
-    public void setUmask(String umask) {
+  public void setUmask(String umask) {
     this.umask = umask;
   }
 
 
   public InspectContainerConfig user(String user) {
 
-      this.user = user;
+    this.user = user;
     return this;
   }
 
-    /**
+  /**
    * User the container was launched with
    * @return user
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "User the container was launched with")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User the container was launched with")
 
   public String getUser() {
     return user;
   }
 
 
-    public void setUser(String user) {
+  public void setUser(String user) {
     this.user = user;
   }
 
 
   public InspectContainerConfig volumes(Map<String, Object> volumes) {
 
-      this.volumes = volumes;
+    this.volumes = volumes;
     return this;
   }
 
@@ -1061,88 +1046,88 @@ public class InspectContainerConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Unused, at present. I&#39;ve never seen this field populated.
    * @return volumes
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Unused, at present. I've never seen this field populated.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unused, at present. I've never seen this field populated.")
 
   public Map<String, Object> getVolumes() {
     return volumes;
   }
 
 
-    public void setVolumes(Map<String, Object> volumes) {
+  public void setVolumes(Map<String, Object> volumes) {
     this.volumes = volumes;
   }
 
 
   public InspectContainerConfig workingDir(String workingDir) {
 
-      this.workingDir = workingDir;
+    this.workingDir = workingDir;
     return this;
   }
 
-    /**
+  /**
    * Container working directory
    * @return workingDir
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container working directory")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container working directory")
 
   public String getWorkingDir() {
     return workingDir;
   }
 
 
-    public void setWorkingDir(String workingDir) {
+  public void setWorkingDir(String workingDir) {
     this.workingDir = workingDir;
   }
 
 
   public InspectContainerConfig sdNotifyMode(String sdNotifyMode) {
 
-      this.sdNotifyMode = sdNotifyMode;
+    this.sdNotifyMode = sdNotifyMode;
     return this;
   }
 
-    /**
+  /**
    * SdNotifyMode is the sd-notify mode of the container.
    * @return sdNotifyMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SdNotifyMode is the sd-notify mode of the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SdNotifyMode is the sd-notify mode of the container.")
 
   public String getSdNotifyMode() {
     return sdNotifyMode;
   }
 
 
-    public void setSdNotifyMode(String sdNotifyMode) {
+  public void setSdNotifyMode(String sdNotifyMode) {
     this.sdNotifyMode = sdNotifyMode;
   }
 
 
   public InspectContainerConfig sdNotifySocket(String sdNotifySocket) {
 
-      this.sdNotifySocket = sdNotifySocket;
+    this.sdNotifySocket = sdNotifySocket;
     return this;
   }
 
-    /**
+  /**
    * SdNotifySocket is the NOTIFY_SOCKET in use by/configured for the container.
    * @return sdNotifySocket
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SdNotifySocket is the NOTIFY_SOCKET in use by/configured for the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SdNotifySocket is the NOTIFY_SOCKET in use by/configured for the container.")
 
   public String getSdNotifySocket() {
     return sdNotifySocket;
   }
 
 
-    public void setSdNotifySocket(String sdNotifySocket) {
+  public void setSdNotifySocket(String sdNotifySocket) {
     this.sdNotifySocket = sdNotifySocket;
   }
 
@@ -1306,49 +1291,49 @@ public class InspectContainerConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to InspectContainerConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (InspectContainerConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerConfig is not found in the empty JSON string", InspectContainerConfig.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to InspectContainerConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (InspectContainerConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerConfig is not found in the empty JSON string", InspectContainerConfig.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!InspectContainerConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("ChrootDirs") != null && !jsonObj.get("ChrootDirs").isJsonNull()) && !jsonObj.get("ChrootDirs").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("ChrootDirs") != null && !jsonObj.get("ChrootDirs").isJsonNull()) && !jsonObj.get("ChrootDirs").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `ChrootDirs` to be an array in the JSON string but got `%s`", jsonObj.get("ChrootDirs").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull()) && !jsonObj.get("Cmd").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull()) && !jsonObj.get("Cmd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("CreateCommand") != null && !jsonObj.get("CreateCommand").isJsonNull()) && !jsonObj.get("CreateCommand").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("CreateCommand") != null && !jsonObj.get("CreateCommand").isJsonNull()) && !jsonObj.get("CreateCommand").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `CreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("CreateCommand").toString()));
       }
       if ((jsonObj.get("Domainname") != null && !jsonObj.get("Domainname").isJsonNull()) && !jsonObj.get("Domainname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Domainname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Domainname").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull()) && !jsonObj.get("Entrypoint").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull()) && !jsonObj.get("Entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull()) && !jsonObj.get("Env").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull()) && !jsonObj.get("Env").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
       }
       if ((jsonObj.get("HealthLogDestination") != null && !jsonObj.get("HealthLogDestination").isJsonNull()) && !jsonObj.get("HealthLogDestination").isJsonPrimitive()) {
@@ -1356,7 +1341,7 @@ public class InspectContainerConfig implements Serializable {
       }
       // validate the optional field `Healthcheck`
       if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
-          Schema2HealthConfig.validateJsonObject(jsonObj.getAsJsonObject("Healthcheck"));
+        Schema2HealthConfig.validateJsonObject(jsonObj.getAsJsonObject("Healthcheck"));
       }
       if ((jsonObj.get("HealthcheckOnFailureAction") != null && !jsonObj.get("HealthcheckOnFailureAction").isJsonNull()) && !jsonObj.get("HealthcheckOnFailureAction").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `HealthcheckOnFailureAction` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HealthcheckOnFailureAction").toString()));
@@ -1380,13 +1365,13 @@ public class InspectContainerConfig implements Serializable {
 
           // validate the optional field `Secrets` (array)
           for (int i = 0; i < jsonArraysecrets.size(); i++) {
-              InspectSecret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
+            InspectSecret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `StartupHealthCheck`
       if (jsonObj.get("StartupHealthCheck") != null && !jsonObj.get("StartupHealthCheck").isJsonNull()) {
-          StartupHealthCheck.validateJsonObject(jsonObj.getAsJsonObject("StartupHealthCheck"));
+        StartupHealthCheck.validateJsonObject(jsonObj.getAsJsonObject("StartupHealthCheck"));
       }
       if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `StopSignal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StopSignal").toString()));
@@ -1431,30 +1416,30 @@ public class InspectContainerConfig implements Serializable {
 
            @Override
            public InspectContainerConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of InspectContainerConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of InspectContainerConfig
-     * @throws IOException if the JSON string is invalid with respect to InspectContainerConfig
+  /**
+   * Create an instance of InspectContainerConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InspectContainerConfig
+   * @throws IOException if the JSON string is invalid with respect to InspectContainerConfig
   */
   public static InspectContainerConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerConfig.class);
   }
 
-    /**
-     * Convert an instance of InspectContainerConfig to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of InspectContainerConfig to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

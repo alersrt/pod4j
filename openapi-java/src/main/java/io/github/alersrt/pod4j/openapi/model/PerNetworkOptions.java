@@ -68,7 +68,7 @@ public class PerNetworkOptions implements Serializable {
 
   public PerNetworkOptions aliases(List<String> aliases) {
 
-      this.aliases = aliases;
+    this.aliases = aliases;
     return this;
   }
 
@@ -80,10 +80,10 @@ public class PerNetworkOptions implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Aliases contains a list of names which the dns server should resolve to this container. Should only be set when DNSEnabled is true on the Network. If aliases are set but there is no dns support for this network the network interface implementation should ignore this and NOT error. Optional.
    * @return aliases
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Aliases contains a list of names which the dns server should resolve to this container. Should only be set when DNSEnabled is true on the Network. If aliases are set but there is no dns support for this network the network interface implementation should ignore this and NOT error. Optional.")
 
@@ -99,14 +99,14 @@ public class PerNetworkOptions implements Serializable {
 
   public PerNetworkOptions interfaceName(String interfaceName) {
 
-      this.interfaceName = interfaceName;
+    this.interfaceName = interfaceName;
     return this;
   }
 
-    /**
+  /**
    * InterfaceName for this container. Required in the backend. Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.
    * @return interfaceName
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "InterfaceName for this container. Required in the backend. Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.")
 
@@ -122,7 +122,7 @@ public class PerNetworkOptions implements Serializable {
 
   public PerNetworkOptions options(Map<String, String> options) {
 
-      this.options = options;
+    this.options = options;
     return this;
   }
 
@@ -134,10 +134,10 @@ public class PerNetworkOptions implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Driver-specific options for this container.
    * @return options
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Driver-specific options for this container.")
 
@@ -153,7 +153,7 @@ public class PerNetworkOptions implements Serializable {
 
   public PerNetworkOptions staticIps(List<String> staticIps) {
 
-      this.staticIps = staticIps;
+    this.staticIps = staticIps;
     return this;
   }
 
@@ -165,10 +165,10 @@ public class PerNetworkOptions implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * StaticIPs for this container. Optional.
    * @return staticIps
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "StaticIPs for this container. Optional.")
 
@@ -184,14 +184,14 @@ public class PerNetworkOptions implements Serializable {
 
   public PerNetworkOptions staticMac(String staticMac) {
 
-      this.staticMac = staticMac;
+    this.staticMac = staticMac;
     return this;
   }
 
-    /**
+  /**
    * StaticMac for this container. Optional.
    * @return staticMac
-     **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "StaticMac for this container. Optional.")
 
@@ -268,19 +268,19 @@ public class PerNetworkOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to PerNetworkOptions
-     */
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to PerNetworkOptions
+   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-          if (PerNetworkOptions.openapiRequiredFields.isEmpty()) {
-              return;
-          } else { // has required fields
+        if (PerNetworkOptions.openapiRequiredFields.isEmpty()) {
+          return;
+        } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in PerNetworkOptions is not found in the empty JSON string", PerNetworkOptions.openapiRequiredFields.toString()));
-          }
+        }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
@@ -335,21 +335,21 @@ public class PerNetworkOptions implements Serializable {
     }
   }
 
-    /**
-     * Create an instance of PerNetworkOptions given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PerNetworkOptions
-     * @throws IOException if the JSON string is invalid with respect to PerNetworkOptions
+  /**
+   * Create an instance of PerNetworkOptions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PerNetworkOptions
+   * @throws IOException if the JSON string is invalid with respect to PerNetworkOptions
   */
   public static PerNetworkOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PerNetworkOptions.class);
   }
 
-    /**
-     * Convert an instance of PerNetworkOptions to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of PerNetworkOptions to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

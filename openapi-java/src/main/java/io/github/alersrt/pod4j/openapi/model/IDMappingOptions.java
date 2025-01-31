@@ -13,43 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.AutoUserNsOptions;
-import io.github.alersrt.pod4j.openapi.model.IDMap;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import javax.validation.Valid;
 
 /**
  * IDMappingOptions are used for specifying how ID mapping should be set up for a layer or container.
@@ -88,16 +74,16 @@ public class IDMappingOptions implements Serializable {
 
   public IDMappingOptions autoUserNs(Boolean autoUserNs) {
 
-      this.autoUserNs = autoUserNs;
+    this.autoUserNs = autoUserNs;
     return this;
   }
 
-    /**
+  /**
    * Get autoUserNs
    * @return autoUserNs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getAutoUserNs() {
     return autoUserNs;
@@ -111,17 +97,17 @@ public class IDMappingOptions implements Serializable {
 
   public IDMappingOptions autoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
 
-      this.autoUserNsOpts = autoUserNsOpts;
+    this.autoUserNsOpts = autoUserNsOpts;
     return this;
   }
 
-    /**
+  /**
    * Get autoUserNsOpts
    * @return autoUserNsOpts
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public AutoUserNsOptions getAutoUserNsOpts() {
     return autoUserNsOpts;
@@ -133,7 +119,7 @@ public class IDMappingOptions implements Serializable {
   }
 
 
-    public IDMappingOptions giDMap(List<IDMap> giDMap) {
+  public IDMappingOptions giDMap(List<IDMap> giDMap) {
     
     this.giDMap = giDMap;
     return this;
@@ -147,36 +133,36 @@ public class IDMappingOptions implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get giDMap
    * @return giDMap
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<IDMap> getGiDMap() {
+  public List<IDMap> getGiDMap() {
     return giDMap;
   }
 
 
-    public void setGiDMap(List<IDMap> giDMap) {
+  public void setGiDMap(List<IDMap> giDMap) {
     this.giDMap = giDMap;
   }
 
 
   public IDMappingOptions hostGIDMapping(Boolean hostGIDMapping) {
 
-      this.hostGIDMapping = hostGIDMapping;
+    this.hostGIDMapping = hostGIDMapping;
     return this;
   }
 
-    /**
+  /**
    * Get hostGIDMapping
    * @return hostGIDMapping
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getHostGIDMapping() {
     return hostGIDMapping;
@@ -190,16 +176,16 @@ public class IDMappingOptions implements Serializable {
 
   public IDMappingOptions hostUIDMapping(Boolean hostUIDMapping) {
 
-      this.hostUIDMapping = hostUIDMapping;
+    this.hostUIDMapping = hostUIDMapping;
     return this;
   }
 
-    /**
+  /**
    * UIDMap and GIDMap are used for setting up a layer&#39;s root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer&#39;s mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.
    * @return hostUIDMapping
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UIDMap and GIDMap are used for setting up a layer's root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer's mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UIDMap and GIDMap are used for setting up a layer's root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer's mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.")
 
   public Boolean getHostUIDMapping() {
     return hostUIDMapping;
@@ -211,7 +197,7 @@ public class IDMappingOptions implements Serializable {
   }
 
 
-    public IDMappingOptions uiDMap(List<IDMap> uiDMap) {
+  public IDMappingOptions uiDMap(List<IDMap> uiDMap) {
     
     this.uiDMap = uiDMap;
     return this;
@@ -225,20 +211,20 @@ public class IDMappingOptions implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get uiDMap
    * @return uiDMap
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<IDMap> getUiDMap() {
+  public List<IDMap> getUiDMap() {
     return uiDMap;
   }
 
 
-    public void setUiDMap(List<IDMap> uiDMap) {
+  public void setUiDMap(List<IDMap> uiDMap) {
     this.uiDMap = uiDMap;
   }
 
@@ -309,31 +295,31 @@ public class IDMappingOptions implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to IDMappingOptions
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (IDMappingOptions.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to IDMappingOptions
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (IDMappingOptions.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in IDMappingOptions is not found in the empty JSON string", IDMappingOptions.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!IDMappingOptions.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappingOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappingOptions` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       // validate the optional field `AutoUserNsOpts`
       if (jsonObj.get("AutoUserNsOpts") != null && !jsonObj.get("AutoUserNsOpts").isJsonNull()) {
-          AutoUserNsOptions.validateJsonObject(jsonObj.getAsJsonObject("AutoUserNsOpts"));
+        AutoUserNsOptions.validateJsonObject(jsonObj.getAsJsonObject("AutoUserNsOpts"));
       }
       if (jsonObj.get("GIDMap") != null && !jsonObj.get("GIDMap").isJsonNull()) {
         JsonArray jsonArraygiDMap = jsonObj.getAsJsonArray("GIDMap");
@@ -345,7 +331,7 @@ public class IDMappingOptions implements Serializable {
 
           // validate the optional field `GIDMap` (array)
           for (int i = 0; i < jsonArraygiDMap.size(); i++) {
-              IDMap.validateJsonObject(jsonArraygiDMap.get(i).getAsJsonObject());
+            IDMap.validateJsonObject(jsonArraygiDMap.get(i).getAsJsonObject());
           };
         }
       }
@@ -359,7 +345,7 @@ public class IDMappingOptions implements Serializable {
 
           // validate the optional field `UIDMap` (array)
           for (int i = 0; i < jsonArrayuiDMap.size(); i++) {
-              IDMap.validateJsonObject(jsonArrayuiDMap.get(i).getAsJsonObject());
+            IDMap.validateJsonObject(jsonArrayuiDMap.get(i).getAsJsonObject());
           };
         }
       }
@@ -385,30 +371,30 @@ public class IDMappingOptions implements Serializable {
 
            @Override
            public IDMappingOptions read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of IDMappingOptions given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of IDMappingOptions
-     * @throws IOException if the JSON string is invalid with respect to IDMappingOptions
+  /**
+   * Create an instance of IDMappingOptions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IDMappingOptions
+   * @throws IOException if the JSON string is invalid with respect to IDMappingOptions
   */
   public static IDMappingOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IDMappingOptions.class);
   }
 
-    /**
-     * Convert an instance of IDMappingOptions to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of IDMappingOptions to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

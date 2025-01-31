@@ -13,45 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ListPodContainer;
-import io.swagger.annotations.ApiModel;
+import io.github.alersrt.pod4j.openapi.JSON;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * ListPodsReport
@@ -105,16 +91,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport cgroup(String cgroup) {
 
-      this.cgroup = cgroup;
+    this.cgroup = cgroup;
     return this;
   }
 
-    /**
+  /**
    * Get cgroup
    * @return cgroup
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCgroup() {
     return cgroup;
@@ -126,7 +112,7 @@ public class ListPodsReport implements Serializable {
   }
 
 
-    public ListPodsReport containers(List<ListPodContainer> containers) {
+  public ListPodsReport containers(List<ListPodContainer> containers) {
     
     this.containers = containers;
     return this;
@@ -140,37 +126,37 @@ public class ListPodsReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get containers
    * @return containers
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
-    public List<ListPodContainer> getContainers() {
+  public List<ListPodContainer> getContainers() {
     return containers;
   }
 
 
-    public void setContainers(List<ListPodContainer> containers) {
+  public void setContainers(List<ListPodContainer> containers) {
     this.containers = containers;
   }
 
 
   public ListPodsReport created(OffsetDateTime created) {
 
-      this.created = created;
+    this.created = created;
     return this;
   }
 
-    /**
+  /**
    * Get created
    * @return created
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -184,16 +170,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport id(String id) {
 
-      this.id = id;
+    this.id = id;
     return this;
   }
 
-    /**
+  /**
    * Get id
    * @return id
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getId() {
     return id;
@@ -207,16 +193,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport infraId(String infraId) {
 
-      this.infraId = infraId;
+    this.infraId = infraId;
     return this;
   }
 
-    /**
+  /**
    * Get infraId
    * @return infraId
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getInfraId() {
     return infraId;
@@ -230,7 +216,7 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -242,12 +228,12 @@ public class ListPodsReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Get labels
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -261,16 +247,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Get name
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getName() {
     return name;
@@ -284,16 +270,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport namespace(String namespace) {
 
-      this.namespace = namespace;
+    this.namespace = namespace;
     return this;
   }
 
-    /**
+  /**
    * Get namespace
    * @return namespace
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getNamespace() {
     return namespace;
@@ -307,7 +293,7 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport networks(List<String> networks) {
 
-      this.networks = networks;
+    this.networks = networks;
     return this;
   }
 
@@ -319,12 +305,12 @@ public class ListPodsReport implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Network names connected to infra container
    * @return networks
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Network names connected to infra container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Network names connected to infra container")
 
   public List<String> getNetworks() {
     return networks;
@@ -338,16 +324,16 @@ public class ListPodsReport implements Serializable {
 
   public ListPodsReport status(String status) {
 
-      this.status = status;
+    this.status = status;
     return this;
   }
 
-    /**
+  /**
    * Get status
    * @return status
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getStatus() {
     return status;
@@ -437,26 +423,26 @@ public class ListPodsReport implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ListPodsReport
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ListPodsReport.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ListPodsReport is not found in the empty JSON string", ListPodsReport.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ListPodsReport
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ListPodsReport.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in ListPodsReport is not found in the empty JSON string", ListPodsReport.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ListPodsReport.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodsReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodsReport` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
@@ -472,7 +458,7 @@ public class ListPodsReport implements Serializable {
 
           // validate the optional field `Containers` (array)
           for (int i = 0; i < jsonArraycontainers.size(); i++) {
-              ListPodContainer.validateJsonObject(jsonArraycontainers.get(i).getAsJsonObject());
+            ListPodContainer.validateJsonObject(jsonArraycontainers.get(i).getAsJsonObject());
           };
         }
       }
@@ -488,8 +474,8 @@ public class ListPodsReport implements Serializable {
       if ((jsonObj.get("Namespace") != null && !jsonObj.get("Namespace").isJsonNull()) && !jsonObj.get("Namespace").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Namespace").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull()) && !jsonObj.get("Networks").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull()) && !jsonObj.get("Networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Networks` to be an array in the JSON string but got `%s`", jsonObj.get("Networks").toString()));
       }
       if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
@@ -517,30 +503,30 @@ public class ListPodsReport implements Serializable {
 
            @Override
            public ListPodsReport read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of ListPodsReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ListPodsReport
-     * @throws IOException if the JSON string is invalid with respect to ListPodsReport
+  /**
+   * Create an instance of ListPodsReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ListPodsReport
+   * @throws IOException if the JSON string is invalid with respect to ListPodsReport
   */
   public static ListPodsReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListPodsReport.class);
   }
 
-    /**
-     * Convert an instance of ListPodsReport to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of ListPodsReport to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

@@ -13,39 +13,24 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * DeviceMapping
@@ -71,16 +56,16 @@ public class DeviceMapping implements Serializable {
 
   public DeviceMapping cgroupPermissions(String cgroupPermissions) {
 
-      this.cgroupPermissions = cgroupPermissions;
+    this.cgroupPermissions = cgroupPermissions;
     return this;
   }
 
-    /**
+  /**
    * Get cgroupPermissions
    * @return cgroupPermissions
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getCgroupPermissions() {
     return cgroupPermissions;
@@ -94,16 +79,16 @@ public class DeviceMapping implements Serializable {
 
   public DeviceMapping pathInContainer(String pathInContainer) {
 
-      this.pathInContainer = pathInContainer;
+    this.pathInContainer = pathInContainer;
     return this;
   }
 
-    /**
+  /**
    * Get pathInContainer
    * @return pathInContainer
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getPathInContainer() {
     return pathInContainer;
@@ -117,16 +102,16 @@ public class DeviceMapping implements Serializable {
 
   public DeviceMapping pathOnHost(String pathOnHost) {
 
-      this.pathOnHost = pathOnHost;
+    this.pathOnHost = pathOnHost;
     return this;
   }
 
-    /**
+  /**
    * Get pathOnHost
    * @return pathOnHost
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getPathOnHost() {
     return pathOnHost;
@@ -195,26 +180,26 @@ public class DeviceMapping implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to DeviceMapping
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (DeviceMapping.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to DeviceMapping
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (DeviceMapping.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in DeviceMapping is not found in the empty JSON string", DeviceMapping.openapiRequiredFields.toString()));
-            }
-        }
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!DeviceMapping.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceMapping` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceMapping` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("CgroupPermissions") != null && !jsonObj.get("CgroupPermissions").isJsonNull()) && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
@@ -248,30 +233,30 @@ public class DeviceMapping implements Serializable {
 
            @Override
            public DeviceMapping read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of DeviceMapping given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of DeviceMapping
-     * @throws IOException if the JSON string is invalid with respect to DeviceMapping
+  /**
+   * Create an instance of DeviceMapping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DeviceMapping
+   * @throws IOException if the JSON string is invalid with respect to DeviceMapping
   */
   public static DeviceMapping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DeviceMapping.class);
   }
 
-    /**
-     * Convert an instance of DeviceMapping to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of DeviceMapping to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

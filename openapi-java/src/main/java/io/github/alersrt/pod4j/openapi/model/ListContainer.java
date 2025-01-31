@@ -13,47 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ContainerSize;
-import io.github.alersrt.pod4j.openapi.model.ListContainerNamespaces;
-import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import io.github.alersrt.pod4j.openapi.JSON;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * ListContainer describes a container suitable for listing
@@ -176,16 +161,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer autoRemove(Boolean autoRemove) {
 
-      this.autoRemove = autoRemove;
+    this.autoRemove = autoRemove;
     return this;
   }
 
-    /**
+  /**
    * AutoRemove
    * @return autoRemove
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "AutoRemove")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "AutoRemove")
 
   public Boolean getAutoRemove() {
     return autoRemove;
@@ -199,16 +184,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer ciDFile(String ciDFile) {
 
-      this.ciDFile = ciDFile;
+    this.ciDFile = ciDFile;
     return this;
   }
 
-    /**
+  /**
    * CIDFile specified at creation time.
    * @return ciDFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CIDFile specified at creation time.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CIDFile specified at creation time.")
 
   public String getCiDFile() {
     return ciDFile;
@@ -222,7 +207,7 @@ public class ListContainer implements Serializable {
 
   public ListContainer command(List<String> command) {
 
-      this.command = command;
+    this.command = command;
     return this;
   }
 
@@ -234,12 +219,12 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Container command
    * @return command
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container command")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container command")
 
   public List<String> getCommand() {
     return command;
@@ -253,17 +238,17 @@ public class ListContainer implements Serializable {
 
   public ListContainer created(OffsetDateTime created) {
 
-      this.created = created;
+    this.created = created;
     return this;
   }
 
-    /**
+  /**
    * Container creation time
    * @return created
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Container creation time")
+  @ApiModelProperty(value = "Container creation time")
 
   public OffsetDateTime getCreated() {
     return created;
@@ -277,16 +262,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer createdAt(String createdAt) {
 
-      this.createdAt = createdAt;
+    this.createdAt = createdAt;
     return this;
   }
 
-    /**
+  /**
    * Human-readable container creation time.
    * @return createdAt
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Human-readable container creation time.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Human-readable container creation time.")
 
   public String getCreatedAt() {
     return createdAt;
@@ -300,16 +285,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer exitCode(Integer exitCode) {
 
-      this.exitCode = exitCode;
+    this.exitCode = exitCode;
     return this;
   }
 
-    /**
+  /**
    * If container has exited, the return code from the command
    * @return exitCode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "If container has exited, the return code from the command")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If container has exited, the return code from the command")
 
   public Integer getExitCode() {
     return exitCode;
@@ -323,16 +308,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer exited(Boolean exited) {
 
-      this.exited = exited;
+    this.exited = exited;
     return this;
   }
 
-    /**
+  /**
    * If container has exited/stopped
    * @return exited
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "If container has exited/stopped")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If container has exited/stopped")
 
   public Boolean getExited() {
     return exited;
@@ -346,16 +331,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer exitedAt(Long exitedAt) {
 
-      this.exitedAt = exitedAt;
+    this.exitedAt = exitedAt;
     return this;
   }
 
-    /**
+  /**
    * Time container exited
    * @return exitedAt
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Time container exited")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Time container exited")
 
   public Long getExitedAt() {
     return exitedAt;
@@ -369,16 +354,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer exposedPorts(Object exposedPorts) {
 
-      this.exposedPorts = exposedPorts;
+    this.exposedPorts = exposedPorts;
     return this;
   }
 
-    /**
+  /**
    * ExposedPorts contains the ports that are exposed but not forwarded, see Ports for forwarded ports. The key is the port number and the string slice contains the protocols, i.e. \&quot;tcp\&quot;, \&quot;udp\&quot; and \&quot;sctp\&quot;.
    * @return exposedPorts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ExposedPorts contains the ports that are exposed but not forwarded, see Ports for forwarded ports. The key is the port number and the string slice contains the protocols, i.e. \"tcp\", \"udp\" and \"sctp\".")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ExposedPorts contains the ports that are exposed but not forwarded, see Ports for forwarded ports. The key is the port number and the string slice contains the protocols, i.e. \"tcp\", \"udp\" and \"sctp\".")
 
   public Object getExposedPorts() {
     return exposedPorts;
@@ -392,16 +377,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer id(String id) {
 
-      this.id = id;
+    this.id = id;
     return this;
   }
 
-    /**
+  /**
    * The unique identifier for the container
    * @return id
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The unique identifier for the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The unique identifier for the container")
 
   public String getId() {
     return id;
@@ -415,16 +400,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer image(String image) {
 
-      this.image = image;
+    this.image = image;
     return this;
   }
 
-    /**
+  /**
    * Container image
    * @return image
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container image")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container image")
 
   public String getImage() {
     return image;
@@ -438,16 +423,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer imageID(String imageID) {
 
-      this.imageID = imageID;
+    this.imageID = imageID;
     return this;
   }
 
-    /**
+  /**
    * Container image ID
    * @return imageID
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Container image ID")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Container image ID")
 
   public String getImageID() {
     return imageID;
@@ -461,16 +446,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer isInfra(Boolean isInfra) {
 
-      this.isInfra = isInfra;
+    this.isInfra = isInfra;
     return this;
   }
 
-    /**
+  /**
    * If this container is a Pod infra container
    * @return isInfra
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "If this container is a Pod infra container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If this container is a Pod infra container")
 
   public Boolean getIsInfra() {
     return isInfra;
@@ -484,7 +469,7 @@ public class ListContainer implements Serializable {
 
   public ListContainer labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -496,12 +481,12 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Labels for container
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Labels for container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels for container")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -515,7 +500,7 @@ public class ListContainer implements Serializable {
 
   public ListContainer mounts(List<String> mounts) {
 
-      this.mounts = mounts;
+    this.mounts = mounts;
     return this;
   }
 
@@ -527,12 +512,12 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * User volume mounts
    * @return mounts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "User volume mounts")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User volume mounts")
 
   public List<String> getMounts() {
     return mounts;
@@ -546,7 +531,7 @@ public class ListContainer implements Serializable {
 
   public ListContainer names(List<String> names) {
 
-      this.names = names;
+    this.names = names;
     return this;
   }
 
@@ -558,12 +543,12 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * The names assigned to the container
    * @return names
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The names assigned to the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The names assigned to the container")
 
   public List<String> getNames() {
     return names;
@@ -577,17 +562,17 @@ public class ListContainer implements Serializable {
 
   public ListContainer namespaces(ListContainerNamespaces namespaces) {
 
-      this.namespaces = namespaces;
+    this.namespaces = namespaces;
     return this;
   }
 
-    /**
+  /**
    * Get namespaces
    * @return namespaces
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public ListContainerNamespaces getNamespaces() {
     return namespaces;
@@ -601,7 +586,7 @@ public class ListContainer implements Serializable {
 
   public ListContainer networks(List<String> networks) {
 
-      this.networks = networks;
+    this.networks = networks;
     return this;
   }
 
@@ -613,12 +598,12 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * The network names assigned to the container
    * @return networks
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The network names assigned to the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The network names assigned to the container")
 
   public List<String> getNetworks() {
     return networks;
@@ -632,16 +617,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer pid(Long pid) {
 
-      this.pid = pid;
+    this.pid = pid;
     return this;
   }
 
-    /**
+  /**
    * The process id of the container
    * @return pid
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "The process id of the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The process id of the container")
 
   public Long getPid() {
     return pid;
@@ -655,16 +640,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer pod(String pod) {
 
-      this.pod = pod;
+    this.pod = pod;
     return this;
   }
 
-    /**
+  /**
    * If the container is part of Pod, the Pod ID. Requires the pod boolean to be set
    * @return pod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "If the container is part of Pod, the Pod ID. Requires the pod boolean to be set")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If the container is part of Pod, the Pod ID. Requires the pod boolean to be set")
 
   public String getPod() {
     return pod;
@@ -678,16 +663,16 @@ public class ListContainer implements Serializable {
 
   public ListContainer podName(String podName) {
 
-      this.podName = podName;
+    this.podName = podName;
     return this;
   }
 
-    /**
+  /**
    * If the container is part of Pod, the Pod name. Requires the pod boolean to be set
    * @return podName
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "If the container is part of Pod, the Pod name. Requires the pod boolean to be set")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If the container is part of Pod, the Pod name. Requires the pod boolean to be set")
 
   public String getPodName() {
     return podName;
@@ -699,7 +684,7 @@ public class ListContainer implements Serializable {
   }
 
 
-    public ListContainer ports(List<PortMapping> ports) {
+  public ListContainer ports(List<PortMapping> ports) {
     
     this.ports = ports;
     return this;
@@ -713,36 +698,36 @@ public class ListContainer implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Port mappings
    * @return ports
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Port mappings")
+  @ApiModelProperty(value = "Port mappings")
 
-    public List<PortMapping> getPorts() {
+  public List<PortMapping> getPorts() {
     return ports;
   }
 
 
-    public void setPorts(List<PortMapping> ports) {
+  public void setPorts(List<PortMapping> ports) {
     this.ports = ports;
   }
 
 
   public ListContainer restarts(Integer restarts) {
 
-      this.restarts = restarts;
+    this.restarts = restarts;
     return this;
   }
 
-    /**
+  /**
    * Restarts is how many times the container was restarted by its restart policy. This is NOT incremented by normal container restarts (only by restart policy).
    * @return restarts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Restarts is how many times the container was restarted by its restart policy. This is NOT incremented by normal container restarts (only by restart policy).")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Restarts is how many times the container was restarted by its restart policy. This is NOT incremented by normal container restarts (only by restart policy).")
 
   public Integer getRestarts() {
     return restarts;
@@ -756,17 +741,17 @@ public class ListContainer implements Serializable {
 
   public ListContainer size(ContainerSize size) {
 
-      this.size = size;
+    this.size = size;
     return this;
   }
 
-    /**
+  /**
    * Get size
    * @return size
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public ContainerSize getSize() {
     return size;
@@ -780,69 +765,69 @@ public class ListContainer implements Serializable {
 
   public ListContainer startedAt(Long startedAt) {
 
-      this.startedAt = startedAt;
+    this.startedAt = startedAt;
     return this;
   }
 
-    /**
+  /**
    * Time when container started
    * @return startedAt
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Time when container started")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Time when container started")
 
   public Long getStartedAt() {
     return startedAt;
   }
 
 
-    public void setStartedAt(Long startedAt) {
+  public void setStartedAt(Long startedAt) {
     this.startedAt = startedAt;
   }
 
 
   public ListContainer state(String state) {
 
-      this.state = state;
+    this.state = state;
     return this;
   }
 
-    /**
+  /**
    * State of container
    * @return state
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "State of container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "State of container")
 
   public String getState() {
     return state;
   }
 
 
-    public void setState(String state) {
+  public void setState(String state) {
     this.state = state;
   }
 
 
   public ListContainer status(String status) {
 
-      this.status = status;
+    this.status = status;
     return this;
   }
 
-    /**
+  /**
    * Status is a human-readable approximation of a duration for json output
    * @return status
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Status is a human-readable approximation of a duration for json output")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Status is a human-readable approximation of a duration for json output")
 
   public String getStatus() {
     return status;
   }
 
 
-    public void setStatus(String status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 
@@ -976,33 +961,33 @@ public class ListContainer implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ListContainer
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ListContainer.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ListContainer is not found in the empty JSON string", ListContainer.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ListContainer
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ListContainer.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in ListContainer is not found in the empty JSON string", ListContainer.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ListContainer.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListContainer` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListContainer` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("CIDFile") != null && !jsonObj.get("CIDFile").isJsonNull()) && !jsonObj.get("CIDFile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `CIDFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CIDFile").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Command") != null && !jsonObj.get("Command").isJsonNull()) && !jsonObj.get("Command").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Command") != null && !jsonObj.get("Command").isJsonNull()) && !jsonObj.get("Command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Command` to be an array in the JSON string but got `%s`", jsonObj.get("Command").toString()));
       }
       if ((jsonObj.get("CreatedAt") != null && !jsonObj.get("CreatedAt").isJsonNull()) && !jsonObj.get("CreatedAt").isJsonPrimitive()) {
@@ -1017,20 +1002,20 @@ public class ListContainer implements Serializable {
       if ((jsonObj.get("ImageID") != null && !jsonObj.get("ImageID").isJsonNull()) && !jsonObj.get("ImageID").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ImageID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageID").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) && !jsonObj.get("Mounts").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) && !jsonObj.get("Mounts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull()) && !jsonObj.get("Names").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull()) && !jsonObj.get("Names").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Names` to be an array in the JSON string but got `%s`", jsonObj.get("Names").toString()));
       }
       // validate the optional field `Namespaces`
       if (jsonObj.get("Namespaces") != null && !jsonObj.get("Namespaces").isJsonNull()) {
-          ListContainerNamespaces.validateJsonObject(jsonObj.getAsJsonObject("Namespaces"));
+        ListContainerNamespaces.validateJsonObject(jsonObj.getAsJsonObject("Namespaces"));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull()) && !jsonObj.get("Networks").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull()) && !jsonObj.get("Networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Networks` to be an array in the JSON string but got `%s`", jsonObj.get("Networks").toString()));
       }
       if ((jsonObj.get("Pod") != null && !jsonObj.get("Pod").isJsonNull()) && !jsonObj.get("Pod").isJsonPrimitive()) {
@@ -1049,13 +1034,13 @@ public class ListContainer implements Serializable {
 
           // validate the optional field `Ports` (array)
           for (int i = 0; i < jsonArrayports.size(); i++) {
-              PortMapping.validateJsonObject(jsonArrayports.get(i).getAsJsonObject());
+            PortMapping.validateJsonObject(jsonArrayports.get(i).getAsJsonObject());
           };
         }
       }
       // validate the optional field `Size`
       if (jsonObj.get("Size") != null && !jsonObj.get("Size").isJsonNull()) {
-          ContainerSize.validateJsonObject(jsonObj.getAsJsonObject("Size"));
+        ContainerSize.validateJsonObject(jsonObj.getAsJsonObject("Size"));
       }
       if ((jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) && !jsonObj.get("State").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `State` to be a primitive type in the JSON string but got `%s`", jsonObj.get("State").toString()));
@@ -1085,30 +1070,30 @@ public class ListContainer implements Serializable {
 
            @Override
            public ListContainer read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of ListContainer given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ListContainer
-     * @throws IOException if the JSON string is invalid with respect to ListContainer
+  /**
+   * Create an instance of ListContainer given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ListContainer
+   * @throws IOException if the JSON string is invalid with respect to ListContainer
   */
   public static ListContainer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListContainer.class);
   }
 
-    /**
-     * Convert an instance of ListContainer to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of ListContainer to an JSON string
+   *
+   * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);
