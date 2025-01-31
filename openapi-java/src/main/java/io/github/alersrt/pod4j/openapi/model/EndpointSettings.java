@@ -13,44 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.EndpointIPAMConfig;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
+import javax.validation.Valid;
 
 /**
  * EndpointSettings stores the network endpoint details
@@ -121,7 +107,7 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings aliases(List<String> aliases) {
 
-    this.aliases = aliases;
+      this.aliases = aliases;
     return this;
   }
 
@@ -133,10 +119,10 @@ public class EndpointSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get aliases
    * @return aliases
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -152,7 +138,7 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings dnSNames(List<String> dnSNames) {
 
-    this.dnSNames = dnSNames;
+      this.dnSNames = dnSNames;
     return this;
   }
 
@@ -164,10 +150,10 @@ public class EndpointSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * DNSNames holds all the (non fully qualified) DNS names associated to this endpoint. First entry is used to generate PTR records.
    * @return dnSNames
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "DNSNames holds all the (non fully qualified) DNS names associated to this endpoint. First entry is used to generate PTR records.")
 
@@ -183,7 +169,7 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings driverOpts(Map<String, String> driverOpts) {
 
-    this.driverOpts = driverOpts;
+      this.driverOpts = driverOpts;
     return this;
   }
 
@@ -195,10 +181,10 @@ public class EndpointSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get driverOpts
    * @return driverOpts
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -214,14 +200,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings endpointID(String endpointID) {
 
-    this.endpointID = endpointID;
+      this.endpointID = endpointID;
     return this;
   }
 
-  /**
+    /**
    * Get endpointID
    * @return endpointID
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -237,14 +223,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings gateway(String gateway) {
 
-    this.gateway = gateway;
+      this.gateway = gateway;
     return this;
   }
 
-  /**
+    /**
    * Get gateway
    * @return gateway
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -260,14 +246,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings globalIPv6Address(String globalIPv6Address) {
 
-    this.globalIPv6Address = globalIPv6Address;
+      this.globalIPv6Address = globalIPv6Address;
     return this;
   }
 
-  /**
+    /**
    * Get globalIPv6Address
    * @return globalIPv6Address
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -283,14 +269,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
 
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+      this.globalIPv6PrefixLen = globalIPv6PrefixLen;
     return this;
   }
 
-  /**
+    /**
    * Get globalIPv6PrefixLen
    * @return globalIPv6PrefixLen
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -306,14 +292,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings ipAMConfig(EndpointIPAMConfig ipAMConfig) {
 
-    this.ipAMConfig = ipAMConfig;
+      this.ipAMConfig = ipAMConfig;
     return this;
   }
 
-  /**
+    /**
    * Get ipAMConfig
    * @return ipAMConfig
-   **/
+     **/
   @javax.annotation.Nullable
   @Valid
   @ApiModelProperty(value = "")
@@ -330,14 +316,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings ipAddress(String ipAddress) {
 
-    this.ipAddress = ipAddress;
+      this.ipAddress = ipAddress;
     return this;
   }
 
-  /**
+    /**
    * Get ipAddress
    * @return ipAddress
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -353,14 +339,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings ipPrefixLen(Long ipPrefixLen) {
 
-    this.ipPrefixLen = ipPrefixLen;
+      this.ipPrefixLen = ipPrefixLen;
     return this;
   }
 
-  /**
+    /**
    * Get ipPrefixLen
    * @return ipPrefixLen
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -376,14 +362,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings ipv6Gateway(String ipv6Gateway) {
 
-    this.ipv6Gateway = ipv6Gateway;
+      this.ipv6Gateway = ipv6Gateway;
     return this;
   }
 
-  /**
+    /**
    * Get ipv6Gateway
    * @return ipv6Gateway
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -399,7 +385,7 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings links(List<String> links) {
 
-    this.links = links;
+      this.links = links;
     return this;
   }
 
@@ -411,10 +397,10 @@ public class EndpointSettings implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Get links
    * @return links
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
@@ -430,14 +416,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings macAddress(String macAddress) {
 
-    this.macAddress = macAddress;
+      this.macAddress = macAddress;
     return this;
   }
 
-  /**
+    /**
    * MacAddress may be used to specify a MAC address when the container is created. Once the container is running, it becomes operational data (it may contain a generated address).
    * @return macAddress
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "MacAddress may be used to specify a MAC address when the container is created. Once the container is running, it becomes operational data (it may contain a generated address).")
 
@@ -453,14 +439,14 @@ public class EndpointSettings implements Serializable {
 
   public EndpointSettings networkID(String networkID) {
 
-    this.networkID = networkID;
+      this.networkID = networkID;
     return this;
   }
 
-  /**
+    /**
    * Operational data
    * @return networkID
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Operational data")
 
@@ -564,34 +550,34 @@ public class EndpointSettings implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Object and throws an exception if issues found
-   *
-   * @param jsonObj JSON Object
-   * @throws IOException if the JSON Object is invalid with respect to EndpointSettings
-   */
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to EndpointSettings
+     */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-    if (jsonObj == null) {
-      if (EndpointSettings.openapiRequiredFields.isEmpty()) {
-        return;
-      } else { // has required fields
-        throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointSettings is not found in the empty JSON string", EndpointSettings.openapiRequiredFields.toString()));
+      if (jsonObj == null) {
+          if (EndpointSettings.openapiRequiredFields.isEmpty()) {
+              return;
+          } else { // has required fields
+              throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointSettings is not found in the empty JSON string", EndpointSettings.openapiRequiredFields.toString()));
+          }
       }
-    }
 
-    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
+      for (Entry<String, JsonElement> entry : entries) {
         if (!EndpointSettings.openapiFields.contains(entry.getKey())) {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EndpointSettings` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-    }
-    // ensure the json data is an array
-    if ((jsonObj.get("Aliases") != null && !jsonObj.get("Aliases").isJsonNull()) && !jsonObj.get("Aliases").isJsonArray()) {
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("Aliases") != null && !jsonObj.get("Aliases").isJsonNull()) && !jsonObj.get("Aliases").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Aliases` to be an array in the JSON string but got `%s`", jsonObj.get("Aliases").toString()));
-    }
-    // ensure the json data is an array
-    if ((jsonObj.get("DNSNames") != null && !jsonObj.get("DNSNames").isJsonNull()) && !jsonObj.get("DNSNames").isJsonArray()) {
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("DNSNames") != null && !jsonObj.get("DNSNames").isJsonNull()) && !jsonObj.get("DNSNames").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `DNSNames` to be an array in the JSON string but got `%s`", jsonObj.get("DNSNames").toString()));
       }
       if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
@@ -613,8 +599,8 @@ public class EndpointSettings implements Serializable {
       if ((jsonObj.get("IPv6Gateway") != null && !jsonObj.get("IPv6Gateway").isJsonNull()) && !jsonObj.get("IPv6Gateway").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `IPv6Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Gateway").toString()));
       }
-    // ensure the json data is an array
-    if ((jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull()) && !jsonObj.get("Links").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull()) && !jsonObj.get("Links").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
       }
       if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
@@ -654,21 +640,21 @@ public class EndpointSettings implements Serializable {
     }
   }
 
-  /**
-   * Create an instance of EndpointSettings given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of EndpointSettings
-   * @throws IOException if the JSON string is invalid with respect to EndpointSettings
+    /**
+     * Create an instance of EndpointSettings given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of EndpointSettings
+     * @throws IOException if the JSON string is invalid with respect to EndpointSettings
   */
   public static EndpointSettings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EndpointSettings.class);
   }
 
-  /**
-   * Convert an instance of EndpointSettings to an JSON string
-   *
-   * @return JSON string
+    /**
+     * Convert an instance of EndpointSettings to an JSON string
+     *
+     * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

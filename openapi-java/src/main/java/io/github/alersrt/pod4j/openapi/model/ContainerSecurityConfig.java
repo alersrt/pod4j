@@ -140,14 +140,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig apparmorProfile(String apparmorProfile) {
 
-    this.apparmorProfile = apparmorProfile;
+      this.apparmorProfile = apparmorProfile;
     return this;
   }
 
-  /**
+    /**
    * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
    * @return apparmorProfile
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "ApparmorProfile is the name of the Apparmor profile the container will use. Optional.")
 
@@ -163,7 +163,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig capAdd(List<String> capAdd) {
 
-    this.capAdd = capAdd;
+      this.capAdd = capAdd;
     return this;
   }
 
@@ -175,10 +175,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
    * @return capAdd
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.")
 
@@ -194,7 +194,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig capDrop(List<String> capDrop) {
 
-    this.capDrop = capDrop;
+      this.capDrop = capDrop;
     return this;
   }
 
@@ -206,10 +206,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
    * @return capDrop
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.")
 
@@ -225,7 +225,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig groups(List<String> groups) {
 
-    this.groups = groups;
+      this.groups = groups;
     return this;
   }
 
@@ -237,10 +237,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
    * @return groups
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Groups are a list of supplemental groups the container's user will be granted access to. Optional.")
 
@@ -256,14 +256,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig idmappings(IDMappingOptions idmappings) {
 
-    this.idmappings = idmappings;
+      this.idmappings = idmappings;
     return this;
   }
 
-  /**
+    /**
    * Get idmappings
    * @return idmappings
-   **/
+     **/
   @javax.annotation.Nullable
   @Valid
   @ApiModelProperty(value = "")
@@ -280,14 +280,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig labelNested(Boolean labelNested) {
 
-    this.labelNested = labelNested;
+      this.labelNested = labelNested;
     return this;
   }
 
-  /**
+    /**
    * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
    * @return labelNested
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.")
 
@@ -303,7 +303,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig mask(List<String> mask) {
 
-    this.mask = mask;
+      this.mask = mask;
     return this;
   }
 
@@ -315,10 +315,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
    * @return mask
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional")
 
@@ -334,14 +334,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig noNewPrivileges(Boolean noNewPrivileges) {
 
-    this.noNewPrivileges = noNewPrivileges;
+      this.noNewPrivileges = noNewPrivileges;
     return this;
   }
 
-  /**
+    /**
    * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
    * @return noNewPrivileges
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.")
 
@@ -357,14 +357,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig privileged(Boolean privileged) {
 
-    this.privileged = privileged;
+      this.privileged = privileged;
     return this;
   }
 
-  /**
+    /**
    * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
    * @return privileged
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.")
 
@@ -380,7 +380,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig procfsOpts(List<String> procfsOpts) {
 
-    this.procfsOpts = procfsOpts;
+      this.procfsOpts = procfsOpts;
     return this;
   }
 
@@ -392,10 +392,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * ProcOpts are the options used for the proc mount.
    * @return procfsOpts
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "ProcOpts are the options used for the proc mount.")
 
@@ -411,14 +411,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig readOnlyFilesystem(Boolean readOnlyFilesystem) {
 
-    this.readOnlyFilesystem = readOnlyFilesystem;
+      this.readOnlyFilesystem = readOnlyFilesystem;
     return this;
   }
 
-  /**
+    /**
    * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
    * @return readOnlyFilesystem
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.")
 
@@ -434,14 +434,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig readWriteTmpfs(Boolean readWriteTmpfs) {
 
-    this.readWriteTmpfs = readWriteTmpfs;
+      this.readWriteTmpfs = readWriteTmpfs;
     return this;
   }
 
-  /**
+    /**
    * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
    * @return readWriteTmpfs
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.")
 
@@ -457,14 +457,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig seccompPolicy(String seccompPolicy) {
 
-    this.seccompPolicy = seccompPolicy;
+      this.seccompPolicy = seccompPolicy;
     return this;
   }
 
-  /**
+    /**
    * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
    * @return seccompPolicy
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image")
 
@@ -480,14 +480,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig seccompProfilePath(String seccompProfilePath) {
 
-    this.seccompProfilePath = seccompProfilePath;
+      this.seccompProfilePath = seccompProfilePath;
     return this;
   }
 
-  /**
+    /**
    * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
    * @return seccompProfilePath
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "SeccompProfilePath is the path to a JSON file containing the container's Seccomp profile. If not specified, no Seccomp profile will be used. Optional.")
 
@@ -503,7 +503,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig selinuxOpts(List<String> selinuxOpts) {
 
-    this.selinuxOpts = selinuxOpts;
+      this.selinuxOpts = selinuxOpts;
     return this;
   }
 
@@ -515,10 +515,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
    * @return selinuxOpts
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.")
 
@@ -534,14 +534,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig umask(String umask) {
 
-    this.umask = umask;
+      this.umask = umask;
     return this;
   }
 
-  /**
+    /**
    * Umask is the umask the init process of the container will be run with.
    * @return umask
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Umask is the umask the init process of the container will be run with.")
 
@@ -557,7 +557,7 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig unmask(List<String> unmask) {
 
-    this.unmask = unmask;
+      this.unmask = unmask;
     return this;
   }
 
@@ -569,10 +569,10 @@ public class ContainerSecurityConfig implements Serializable {
     return this;
   }
 
-  /**
+    /**
    * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
    * @return unmask
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.")
 
@@ -588,14 +588,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig user(String user) {
 
-    this.user = user;
+      this.user = user;
     return this;
   }
 
-  /**
+    /**
    * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
    * @return user
-   **/
+     **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container's /etc/passwd. If unset, the container will be run as root. Optional.")
 
@@ -611,14 +611,14 @@ public class ContainerSecurityConfig implements Serializable {
 
   public ContainerSecurityConfig userns(Namespace userns) {
 
-    this.userns = userns;
+      this.userns = userns;
     return this;
   }
 
-  /**
+    /**
    * Get userns
    * @return userns
-   **/
+     **/
   @javax.annotation.Nullable
   @Valid
   @ApiModelProperty(value = "")
@@ -738,24 +738,24 @@ public class ContainerSecurityConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Validates the JSON Object and throws an exception if issues found
-   *
-   * @param jsonObj JSON Object
-   * @throws IOException if the JSON Object is invalid with respect to ContainerSecurityConfig
-   */
+    /**
+     * Validates the JSON Object and throws an exception if issues found
+     *
+     * @param jsonObj JSON Object
+     * @throws IOException if the JSON Object is invalid with respect to ContainerSecurityConfig
+     */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-    if (jsonObj == null) {
-      if (ContainerSecurityConfig.openapiRequiredFields.isEmpty()) {
-        return;
-      } else { // has required fields
-        throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerSecurityConfig is not found in the empty JSON string", ContainerSecurityConfig.openapiRequiredFields.toString()));
+      if (jsonObj == null) {
+          if (ContainerSecurityConfig.openapiRequiredFields.isEmpty()) {
+              return;
+          } else { // has required fields
+              throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerSecurityConfig is not found in the empty JSON string", ContainerSecurityConfig.openapiRequiredFields.toString()));
+          }
       }
-    }
 
-    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
+      for (Entry<String, JsonElement> entry : entries) {
         if (!ContainerSecurityConfig.openapiFields.contains(entry.getKey())) {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerSecurityConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
@@ -763,28 +763,28 @@ public class ContainerSecurityConfig implements Serializable {
       if ((jsonObj.get("apparmor_profile") != null && !jsonObj.get("apparmor_profile").isJsonNull()) && !jsonObj.get("apparmor_profile").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `apparmor_profile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apparmor_profile").toString()));
       }
-    // ensure the json data is an array
-    if ((jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull()) && !jsonObj.get("cap_add").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull()) && !jsonObj.get("cap_add").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_add` to be an array in the JSON string but got `%s`", jsonObj.get("cap_add").toString()));
-    }
-    // ensure the json data is an array
-    if ((jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull()) && !jsonObj.get("cap_drop").isJsonArray()) {
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull()) && !jsonObj.get("cap_drop").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_drop` to be an array in the JSON string but got `%s`", jsonObj.get("cap_drop").toString()));
-    }
-    // ensure the json data is an array
-    if ((jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) && !jsonObj.get("groups").isJsonArray()) {
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) && !jsonObj.get("groups").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
       }
       // validate the optional field `idmappings`
       if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
         IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
       }
-    // ensure the json data is an array
-    if ((jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull()) && !jsonObj.get("mask").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull()) && !jsonObj.get("mask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mask` to be an array in the JSON string but got `%s`", jsonObj.get("mask").toString()));
-    }
-    // ensure the json data is an array
-    if ((jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull()) && !jsonObj.get("procfs_opts").isJsonArray()) {
+      }
+      // ensure the json data is an array
+      if ((jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull()) && !jsonObj.get("procfs_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `procfs_opts` to be an array in the JSON string but got `%s`", jsonObj.get("procfs_opts").toString()));
       }
       if ((jsonObj.get("seccomp_policy") != null && !jsonObj.get("seccomp_policy").isJsonNull()) && !jsonObj.get("seccomp_policy").isJsonPrimitive()) {
@@ -793,15 +793,15 @@ public class ContainerSecurityConfig implements Serializable {
       if ((jsonObj.get("seccomp_profile_path") != null && !jsonObj.get("seccomp_profile_path").isJsonNull()) && !jsonObj.get("seccomp_profile_path").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `seccomp_profile_path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccomp_profile_path").toString()));
       }
-    // ensure the json data is an array
-    if ((jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull()) && !jsonObj.get("selinux_opts").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull()) && !jsonObj.get("selinux_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `selinux_opts` to be an array in the JSON string but got `%s`", jsonObj.get("selinux_opts").toString()));
       }
       if ((jsonObj.get("umask") != null && !jsonObj.get("umask").isJsonNull()) && !jsonObj.get("umask").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("umask").toString()));
       }
-    // ensure the json data is an array
-    if ((jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull()) && !jsonObj.get("unmask").isJsonArray()) {
+      // ensure the json data is an array
+      if ((jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull()) && !jsonObj.get("unmask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unmask` to be an array in the JSON string but got `%s`", jsonObj.get("unmask").toString()));
       }
       if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
@@ -842,21 +842,21 @@ public class ContainerSecurityConfig implements Serializable {
     }
   }
 
-  /**
-   * Create an instance of ContainerSecurityConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerSecurityConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerSecurityConfig
+    /**
+     * Create an instance of ContainerSecurityConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerSecurityConfig
+     * @throws IOException if the JSON string is invalid with respect to ContainerSecurityConfig
   */
   public static ContainerSecurityConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerSecurityConfig.class);
   }
 
-  /**
-   * Convert an instance of ContainerSecurityConfig to an JSON string
-   *
-   * @return JSON string
+    /**
+     * Convert an instance of ContainerSecurityConfig to an JSON string
+     *
+     * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

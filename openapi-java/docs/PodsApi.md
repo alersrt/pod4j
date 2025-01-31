@@ -292,7 +292,8 @@ No authorization required
 
 <a name="playKubeDownLibpod"></a>
 # **playKubeDownLibpod**
-> PlayKubeReport playKubeDownLibpod().force(force).execute();
+
+> PlayKubeReport playKubeDownLibpod().force(force).request(request).execute();
 
 Remove resources created from kube play
 
@@ -314,9 +315,11 @@ public class Example {
 
     PodsApi apiInstance = new PodsApi(defaultClient);
     Boolean force = false; // Boolean | Remove volumes.
+      String request = "request_example"; // String | Kubernetes YAML file.
     try {
       PlayKubeReport result = apiInstance.playKubeDownLibpod()
             .force(force)
+              .request(request)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -332,9 +335,10 @@ public class Example {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **force** | **Boolean**| Remove volumes. | [optional] [default to false] |
+| Name        | Type        | Description           | Notes                         |
+|-------------|-------------|-----------------------|-------------------------------|
+| **force**   | **Boolean** | Remove volumes.       | [optional] [default to false] |
+| **request** | **String**  | Kubernetes YAML file. | [optional]                    |
 
 ### Return type
 
@@ -346,7 +350,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-tar
  - **Accept**: application/json
 
 ### HTTP response details

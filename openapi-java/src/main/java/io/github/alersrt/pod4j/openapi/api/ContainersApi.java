@@ -105,7 +105,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/attach"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -362,7 +362,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/changes"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -554,7 +554,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/checkpoint"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1041,7 +1041,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1297,7 +1297,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/exists"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1459,7 +1459,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/export"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1621,7 +1621,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/healthcheck"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1792,7 +1792,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/init"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1959,7 +1959,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/json"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2140,7 +2140,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/kill"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2584,7 +2584,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/logs"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2851,7 +2851,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/mount"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3017,7 +3017,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/pause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3346,7 +3346,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/rename"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3525,7 +3525,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/resize"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3726,7 +3726,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/restart"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3903,7 +3903,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/restore"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4382,7 +4382,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/start"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4564,7 +4564,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/stats"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4746,7 +4746,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/stop"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4943,7 +4943,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/top"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5154,7 +5154,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/unmount"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5316,7 +5316,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/unpause"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5478,7 +5478,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/update"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5690,7 +5690,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/wait"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -6327,7 +6327,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/generate/{name}/systemd"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -7218,7 +7218,8 @@ public class ContainersApi {
     public APIkubeApplyLibpodRequest kubeApplyLibpod() {
         return new APIkubeApplyLibpodRequest();
     }
-    private okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback) throws ApiException {
+
+    private okhttp3.Call playKubeDownLibpodCall(Boolean force, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -7232,7 +7233,7 @@ public class ContainersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = null;
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/libpod/play/kube";
@@ -7256,7 +7257,7 @@ public class ContainersApi {
         }
 
         final String[] localVarContentTypes = {
-
+                "application/json", "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -7268,24 +7269,24 @@ public class ContainersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, String request, final ApiCallback _callback) throws ApiException {
 
 
-        okhttp3.Call localVarCall = playKubeDownLibpodCall(force, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodCall(force, request, _callback);
         return localVarCall;
 
     }
 
 
-    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force) throws ApiException {
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, null);
+    private ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force, String request) throws ApiException {
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, request, null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call playKubeDownLibpodAsync(Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodAsync(Boolean force, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, _callback);
+        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, request, _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -7293,6 +7294,7 @@ public class ContainersApi {
 
     public class APIplayKubeDownLibpodRequest {
         private Boolean force;
+        private String request;
 
         private APIplayKubeDownLibpodRequest() {
         }
@@ -7304,6 +7306,17 @@ public class ContainersApi {
          */
         public APIplayKubeDownLibpodRequest force(Boolean force) {
             this.force = force;
+            return this;
+        }
+
+        /**
+         * Set request
+         *
+         * @param request Kubernetes YAML file. (optional)
+         * @return APIplayKubeDownLibpodRequest
+         */
+        public APIplayKubeDownLibpodRequest request(String request) {
+            this.request = request;
             return this;
         }
 
@@ -7320,7 +7333,7 @@ public class ContainersApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return playKubeDownLibpodCall(force, _callback);
+            return playKubeDownLibpodCall(force, request, _callback);
         }
 
         /**
@@ -7335,7 +7348,7 @@ public class ContainersApi {
          </table>
          */
         public PlayKubeReport execute() throws ApiException {
-            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force);
+            ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force, request);
             return localVarResp.getData();
         }
 
@@ -7351,7 +7364,7 @@ public class ContainersApi {
          </table>
          */
         public ApiResponse<PlayKubeReport> executeWithHttpInfo() throws ApiException {
-            return playKubeDownLibpodWithHttpInfo(force);
+            return playKubeDownLibpodWithHttpInfo(force, request);
         }
 
         /**
@@ -7367,7 +7380,7 @@ public class ContainersApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-            return playKubeDownLibpodAsync(force, _callback);
+            return playKubeDownLibpodAsync(force, request, _callback);
         }
     }
 
@@ -7504,7 +7517,7 @@ public class ContainersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call playKubeLibpodValidateBeforeCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
-
+        
 
         okhttp3.Call localVarCall = playKubeLibpodCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
         return localVarCall;
@@ -7836,7 +7849,7 @@ public class ContainersApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/archive"
-                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name.toString()));
+                .replaceAll("\\{" + "name" + "\\}", localVarApiClient.escapeString(name));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -7874,17 +7887,17 @@ public class ContainersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call putContainerArchiveLibpodValidateBeforeCall(String name, String path, Boolean pause, String request, final ApiCallback _callback) throws ApiException {
-
+        
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException("Missing the required parameter 'name' when calling putContainerArchiveLibpod(Async)");
         }
-
+        
         // verify the required parameter 'path' is set
         if (path == null) {
             throw new ApiException("Missing the required parameter 'path' when calling putContainerArchiveLibpod(Async)");
         }
-
+        
 
         okhttp3.Call localVarCall = putContainerArchiveLibpodCall(name, path, pause, request, _callback);
         return localVarCall;

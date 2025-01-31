@@ -13,48 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.DriverData;
-import io.github.alersrt.pod4j.openapi.model.InspectContainerConfig;
-import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
-import io.github.alersrt.pod4j.openapi.model.InspectContainerState;
-import io.github.alersrt.pod4j.openapi.model.InspectMount;
-import io.github.alersrt.pod4j.openapi.model.InspectNetworkSettings;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import javax.validation.Valid;
 
 /**
  * InspectContainerData provides a detailed record of a container&#39;s configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with &#x60;docker inspect&#x60; JSON, but additional fields have been added as required to share information not in the original output.
@@ -1238,8 +1220,8 @@ public class InspectContainerData implements Serializable {
     public InspectContainerData lockNumber(Integer lockNumber) {
     
     this.lockNumber = lockNumber;
-    return this;
-  }
+        return this;
+    }
 
     /**
      * Get lockNumber
@@ -1423,7 +1405,7 @@ public class InspectContainerData implements Serializable {
     openapiFields.add("Rootfs");
     openapiFields.add("SizeRootFs");
     openapiFields.add("SizeRw");
-    openapiFields.add("State");
+      openapiFields.add("State");
       openapiFields.add("StaticDir");
       openapiFields.add("UseImageHostname");
     openapiFields.add("UseImageHosts");
@@ -1442,7 +1424,7 @@ public class InspectContainerData implements Serializable {
     public static void validateJsonObject(JsonObject jsonObj) throws IOException {
         if (jsonObj == null) {
             if (InspectContainerData.openapiRequiredFields.isEmpty()) {
-                return;
+          return;
         } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerData is not found in the empty JSON string", InspectContainerData.openapiRequiredFields.toString()));
             }
@@ -1528,7 +1510,7 @@ public class InspectContainerData implements Serializable {
             throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
           }
 
-          // validate the optional field `Mounts` (array)
+            // validate the optional field `Mounts` (array)
             for (int i = 0; i < jsonArraymounts.size(); i++) {
                 InspectMount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
@@ -1598,7 +1580,7 @@ public class InspectContainerData implements Serializable {
            @Override
            public InspectContainerData read(JsonReader in) throws IOException {
                JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
+             validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
            }
 
