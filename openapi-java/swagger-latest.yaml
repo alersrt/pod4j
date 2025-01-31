@@ -16659,6 +16659,13 @@ paths:
             description: Tears down pods, secrets, and volumes defined in a YAML file
             operationId: PlayKubeDownLibpod
             parameters:
+                - default: plain/text
+                  enum:
+                      - plain/text
+                      - application/x-tar
+                  in: header
+                  name: Content-Type
+                  type: string
                 - default: false
                   description: Remove volumes.
                   in: query
