@@ -25,4 +25,5 @@
 **
 !README.md
 !src/
+src/main/AndroidManifest.xml
 !docs/
