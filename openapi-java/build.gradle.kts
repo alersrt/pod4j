@@ -25,7 +25,9 @@ dependencies {
     implementation("javax.ws.rs:javax.ws.rs-api:2.1.1")
     implementation("org.apache.commons:commons-lang3:3.15.0")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
-    implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
+    implementation("io.swagger:swagger-annotations:1.6.15")
+    implementation("javax.validation:validation-api:2.0.1.Final")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
     testImplementation("org.mockito:mockito-core:5.11.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
@@ -33,8 +35,8 @@ dependencies {
 
 tasks.withType<Javadoc> {
     (options as StandardJavadocDocletOptions)
-        .tags("http.response.details:a:Http Response Details")
-        .addStringOption("Xdoclint:none", "-quiet")
+            .tags("http.response.details:a:Http Response Details")
+            .addStringOption("Xdoclint:none", "-quiet")
 }
 
 java {
