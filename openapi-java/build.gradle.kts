@@ -12,7 +12,7 @@ repositories {
 }
 
 group = "io.github.alersrt"
-version = "5.3.1"
+version = "5.4.0"
 
 dependencies {
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
@@ -92,7 +92,7 @@ publishing {
 
 jreleaser {
     project {
-        inceptionYear = "2024"
+        inceptionYear = "2025"
         author("Aleksandr")
         description = "Podman API"
         license = "MIT"

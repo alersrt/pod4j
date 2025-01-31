@@ -1012,6 +1012,13 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: PublishExposedPorts
+            use_image_hostname:
+                description: |-
+                    UseImageHostname indicates that /etc/hostname should not be managed by
+                    Podman, and instead sourced from the image.
+                    Optional.
+                type: boolean
+                x-go-name: UseImageHostname
             use_image_hosts:
                 description: |-
                     UseImageHosts indicates that /etc/hosts should not be managed by
@@ -3712,6 +3719,10 @@ definitions:
                 $ref: '#/definitions/InspectContainerState'
             StaticDir:
                 type: string
+            UseImageHostname:
+                type: boolean
+            UseImageHosts:
+                type: boolean
             lockNumber:
                 format: uint32
                 type: integer
@@ -4839,6 +4850,11 @@ definitions:
                 items:
                     type: string
                 type: array
+            NoManageHostname:
+                description: |-
+                    NoManageHostname indicates that the pod will not manage /etc/hostname
+                    and instead each container will handle their own.
+                type: boolean
             NoManageHosts:
                 description: |-
                     NoManageHosts indicates that the pod will not manage /etc/hosts and
@@ -5851,6 +5867,11 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/specgen
     MacAddress:
         $ref: '#/definitions/HardwareAddr'
+        description: |-
+            HardwareAddr is the same as net.HardwareAddr except
+            that it adds the json marshal/unmarshal methods.
+            This allows us to read the mac from a json string
+            and a byte array.
     ManifestAddArtifactOptions:
         description: |-
             ManifestAddArtifactOptions provides the model for creating artifact manifests
@@ -6525,6 +6546,9 @@ definitions:
                     $ref: '#/definitions/PerNetworkOptions'
                 type: object
                 x-go-name: Networks
+            no_manage_hostname:
+                type: boolean
+                x-go-name: NoHostname
             no_manage_hosts:
                 type: boolean
                 x-go-name: NoHosts
@@ -7872,6 +7896,13 @@ definitions:
                     Optional.
                 type: object
                 x-go-name: NetworkOptions
+            no_manage_hostname:
+                description: |-
+                    NoManageHostname indicates that /etc/hostname should not be managed
+                    by the pod. Instead, each container will create a separate
+                    etc/hostname as they would if not in a pod.
+                type: boolean
+                x-go-name: NoManageHostname
             no_manage_hosts:
                 description: |-
                     NoManageHosts indicates that /etc/hosts should not be managed by the
@@ -8187,6 +8218,13 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: NoInfra
+            no_manage_hostname:
+                description: |-
+                    NoManageHostname indicates that /etc/hostname should not be managed
+                    by the pod. Instead, each container will create a separate
+                    etc/hostname as they would if not in a pod.
+                type: boolean
+                x-go-name: NoManageHostname
             no_manage_hosts:
                 description: |-
                     NoManageHosts indicates that /etc/hosts should not be managed by the
@@ -9981,6 +10019,13 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: UnsetEnvAll
+            use_image_hostname:
+                description: |-
+                    UseImageHostname indicates that /etc/hostname should not be managed by
+                    Podman, and instead sourced from the image.
+                    Optional.
+                type: boolean
+                x-go-name: UseImageHostname
             use_image_hosts:
                 description: |-
                     UseImageHosts indicates that /etc/hosts should not be managed by
@@ -10517,7 +10562,7 @@ definitions:
                 format: uint64
                 type: integer
         type: object
-        x-go-package: github.com/docker/docker/api/types/blkiodev
+        x-go-package: github.com/containers/podman/v5/libpod/define
     TmpfsOptions:
         properties:
             Mode:
@@ -11207,23 +11252,9 @@ definitions:
         x-go-package: github.com/docker/docker/api/types/container
     Version:
         properties:
-            APIVersion:
-                type: string
-            Version:
-                type: string
-            GoVersion:
-                type: string
-            GitCommit:
-                type: string
-            BuiltTime:
-                type: string
-            Built:
+            Index:
                 format: uint64
                 type: integer
-            OsArch:
-                type: string
-            Os:
-                type: string
         title: Version represents the internal object version.
         type: object
         x-go-package: github.com/docker/docker/api/types/swarm
@@ -11584,10 +11615,13 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers/swagger
     networkConnectRequest:
         $ref: '#/definitions/ConnectOptions'
+        description: Network connect
     networkConnectRequestLibpod:
         $ref: '#/definitions/NetworkConnectOptions'
+        description: Network connect
     networkCreate:
         $ref: '#/definitions/CreateRequest'
+        description: Network create
     networkCreateLibpod:
         description: Network create
         properties:
@@ -11675,8 +11709,10 @@ definitions:
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers/swagger
     networkDisconnectRequest:
         $ref: '#/definitions/DisconnectOptions'
+        description: Network disconnect
     networkUpdateRequestLibpod:
         $ref: '#/definitions/NetworkUpdateOptions'
+        description: Network update
     volumeCreate:
         description: Details for creating a volume
         properties:
@@ -16092,6 +16128,10 @@ paths:
                   name: name
                   required: true
                   type: string
+                - description: Ignore if a specified manifest does not exist and do not throw an error.
+                  in: query
+                  name: ignore
+                  type: boolean
             produces:
                 - application/json
             responses:
