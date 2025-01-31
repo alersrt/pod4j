@@ -16664,6 +16664,11 @@ paths:
                   in: query
                   name: force
                   type: boolean
+                - description: Kubernetes YAML file.
+                  in: body
+                  name: request
+                  schema:
+                      type: string
             produces:
                 - application/json
             responses:
