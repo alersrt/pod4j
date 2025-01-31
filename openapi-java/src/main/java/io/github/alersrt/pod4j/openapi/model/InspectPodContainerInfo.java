@@ -263,7 +263,7 @@ public class InspectPodContainerInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectPodContainerInfo
      * @throws IOException if the JSON string is invalid with respect to InspectPodContainerInfo
-     */
+  */
   public static InspectPodContainerInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectPodContainerInfo.class);
   }
@@ -272,7 +272,7 @@ public class InspectPodContainerInfo implements Serializable {
      * Convert an instance of InspectPodContainerInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

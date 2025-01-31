@@ -367,7 +367,7 @@ public class PlayKubePod implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PlayKubePod
      * @throws IOException if the JSON string is invalid with respect to PlayKubePod
-     */
+  */
   public static PlayKubePod fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PlayKubePod.class);
   }
@@ -376,7 +376,7 @@ public class PlayKubePod implements Serializable {
      * Convert an instance of PlayKubePod to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

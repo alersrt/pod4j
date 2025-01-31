@@ -256,7 +256,7 @@ public class PodTopOKBody implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodTopOKBody
      * @throws IOException if the JSON string is invalid with respect to PodTopOKBody
-     */
+  */
   public static PodTopOKBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodTopOKBody.class);
   }
@@ -265,7 +265,7 @@ public class PodTopOKBody implements Serializable {
      * Convert an instance of PodTopOKBody to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

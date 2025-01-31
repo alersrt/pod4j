@@ -255,7 +255,7 @@ public class LinuxIDMapping implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxIDMapping
      * @throws IOException if the JSON string is invalid with respect to LinuxIDMapping
-     */
+  */
   public static LinuxIDMapping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxIDMapping.class);
   }
@@ -264,7 +264,7 @@ public class LinuxIDMapping implements Serializable {
      * Convert an instance of LinuxIDMapping to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

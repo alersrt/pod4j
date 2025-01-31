@@ -332,7 +332,7 @@ public class NetworkInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkInfo
      * @throws IOException if the JSON string is invalid with respect to NetworkInfo
-     */
+  */
   public static NetworkInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkInfo.class);
   }
@@ -341,7 +341,7 @@ public class NetworkInfo implements Serializable {
      * Convert an instance of NetworkInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -320,7 +320,7 @@ public class PluginDevice implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginDevice
      * @throws IOException if the JSON string is invalid with respect to PluginDevice
-     */
+  */
   public static PluginDevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginDevice.class);
   }
@@ -329,7 +329,7 @@ public class PluginDevice implements Serializable {
      * Convert an instance of PluginDevice to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

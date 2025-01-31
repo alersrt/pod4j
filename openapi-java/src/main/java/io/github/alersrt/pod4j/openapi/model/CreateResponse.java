@@ -250,7 +250,7 @@ public class CreateResponse implements Serializable {
      * @param jsonString JSON string
      * @return An instance of CreateResponse
      * @throws IOException if the JSON string is invalid with respect to CreateResponse
-     */
+  */
   public static CreateResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateResponse.class);
   }
@@ -259,7 +259,7 @@ public class CreateResponse implements Serializable {
      * Convert an instance of CreateResponse to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

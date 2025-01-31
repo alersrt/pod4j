@@ -284,7 +284,7 @@ public class ExecStartLibpodRequest implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ExecStartLibpodRequest
      * @throws IOException if the JSON string is invalid with respect to ExecStartLibpodRequest
-     */
+  */
   public static ExecStartLibpodRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ExecStartLibpodRequest.class);
   }
@@ -293,7 +293,7 @@ public class ExecStartLibpodRequest implements Serializable {
      * Convert an instance of ExecStartLibpodRequest to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

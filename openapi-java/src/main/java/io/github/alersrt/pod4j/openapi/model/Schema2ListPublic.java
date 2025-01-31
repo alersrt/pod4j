@@ -284,7 +284,7 @@ public class Schema2ListPublic implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Schema2ListPublic
      * @throws IOException if the JSON string is invalid with respect to Schema2ListPublic
-     */
+  */
   public static Schema2ListPublic fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Schema2ListPublic.class);
   }
@@ -293,7 +293,7 @@ public class Schema2ListPublic implements Serializable {
      * Convert an instance of Schema2ListPublic to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

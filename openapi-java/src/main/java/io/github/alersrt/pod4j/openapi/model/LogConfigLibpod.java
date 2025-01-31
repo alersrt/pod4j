@@ -301,7 +301,7 @@ public class LogConfigLibpod implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LogConfigLibpod
      * @throws IOException if the JSON string is invalid with respect to LogConfigLibpod
-     */
+  */
   public static LogConfigLibpod fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LogConfigLibpod.class);
   }
@@ -310,7 +310,7 @@ public class LogConfigLibpod implements Serializable {
      * Convert an instance of LogConfigLibpod to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

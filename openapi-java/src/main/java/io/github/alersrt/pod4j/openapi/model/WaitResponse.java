@@ -240,7 +240,7 @@ public class WaitResponse implements Serializable {
      * @param jsonString JSON string
      * @return An instance of WaitResponse
      * @throws IOException if the JSON string is invalid with respect to WaitResponse
-     */
+  */
   public static WaitResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, WaitResponse.class);
   }
@@ -249,7 +249,7 @@ public class WaitResponse implements Serializable {
      * Convert an instance of WaitResponse to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

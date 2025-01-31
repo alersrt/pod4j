@@ -270,7 +270,7 @@ public class ComponentVersion implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ComponentVersion
      * @throws IOException if the JSON string is invalid with respect to ComponentVersion
-     */
+  */
   public static ComponentVersion fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ComponentVersion.class);
   }
@@ -279,7 +279,7 @@ public class ComponentVersion implements Serializable {
      * Convert an instance of ComponentVersion to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

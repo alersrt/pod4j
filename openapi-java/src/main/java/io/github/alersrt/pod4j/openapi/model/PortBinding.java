@@ -231,7 +231,7 @@ public class PortBinding implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PortBinding
      * @throws IOException if the JSON string is invalid with respect to PortBinding
-     */
+  */
   public static PortBinding fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PortBinding.class);
   }
@@ -240,7 +240,7 @@ public class PortBinding implements Serializable {
      * Convert an instance of PortBinding to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -874,7 +874,7 @@ public class PodBasicConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodBasicConfig
      * @throws IOException if the JSON string is invalid with respect to PodBasicConfig
-     */
+  */
   public static PodBasicConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodBasicConfig.class);
   }
@@ -883,7 +883,7 @@ public class PodBasicConfig implements Serializable {
      * Convert an instance of PodBasicConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

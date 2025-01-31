@@ -326,7 +326,7 @@ public class ServiceInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ServiceInfo
      * @throws IOException if the JSON string is invalid with respect to ServiceInfo
-     */
+  */
   public static ServiceInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ServiceInfo.class);
   }
@@ -335,7 +335,7 @@ public class ServiceInfo implements Serializable {
      * Convert an instance of ServiceInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -349,7 +349,7 @@ public class LibpodInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LibpodInfo
      * @throws IOException if the JSON string is invalid with respect to LibpodInfo
-     */
+  */
   public static LibpodInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodInfo.class);
   }
@@ -358,7 +358,7 @@ public class LibpodInfo implements Serializable {
      * Convert an instance of LibpodInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

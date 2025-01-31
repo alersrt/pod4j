@@ -206,7 +206,7 @@ public class ContainerWait200ResponseError implements Serializable {
      * Convert an instance of ContainerWait200ResponseError to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

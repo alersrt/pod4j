@@ -321,7 +321,7 @@ public class InspectSecret implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectSecret
      * @throws IOException if the JSON string is invalid with respect to InspectSecret
-     */
+  */
   public static InspectSecret fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectSecret.class);
   }
@@ -330,7 +330,7 @@ public class InspectSecret implements Serializable {
      * Convert an instance of InspectSecret to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

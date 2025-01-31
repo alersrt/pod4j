@@ -263,7 +263,7 @@ public class ErrorModel implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ErrorModel
      * @throws IOException if the JSON string is invalid with respect to ErrorModel
-     */
+  */
   public static ErrorModel fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ErrorModel.class);
   }
@@ -272,7 +272,7 @@ public class ErrorModel implements Serializable {
      * Convert an instance of ErrorModel to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

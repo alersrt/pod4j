@@ -337,7 +337,7 @@ public class InspectLogConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectLogConfig
      * @throws IOException if the JSON string is invalid with respect to InspectLogConfig
-     */
+  */
   public static InspectLogConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectLogConfig.class);
   }
@@ -346,7 +346,7 @@ public class InspectLogConfig implements Serializable {
      * Convert an instance of InspectLogConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

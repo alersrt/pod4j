@@ -239,7 +239,7 @@ public class NetworkContainerInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkContainerInfo
      * @throws IOException if the JSON string is invalid with respect to NetworkContainerInfo
-     */
+  */
   public static NetworkContainerInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkContainerInfo.class);
   }
@@ -248,7 +248,7 @@ public class NetworkContainerInfo implements Serializable {
      * Convert an instance of NetworkContainerInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

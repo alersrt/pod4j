@@ -302,7 +302,7 @@ public class Port implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Port
      * @throws IOException if the JSON string is invalid with respect to Port
-     */
+  */
   public static Port fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Port.class);
   }
@@ -311,7 +311,7 @@ public class Port implements Serializable {
      * Convert an instance of Port to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

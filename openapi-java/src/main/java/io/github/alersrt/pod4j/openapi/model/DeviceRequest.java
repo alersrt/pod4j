@@ -355,7 +355,7 @@ public class DeviceRequest implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DeviceRequest
      * @throws IOException if the JSON string is invalid with respect to DeviceRequest
-     */
+  */
   public static DeviceRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DeviceRequest.class);
   }
@@ -364,7 +364,7 @@ public class DeviceRequest implements Serializable {
      * Convert an instance of DeviceRequest to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

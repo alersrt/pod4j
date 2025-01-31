@@ -578,7 +578,7 @@ public class ManifestAnnotateOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ManifestAnnotateOptions
      * @throws IOException if the JSON string is invalid with respect to ManifestAnnotateOptions
-     */
+  */
   public static ManifestAnnotateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestAnnotateOptions.class);
   }
@@ -587,7 +587,7 @@ public class ManifestAnnotateOptions implements Serializable {
      * Convert an instance of ManifestAnnotateOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -215,7 +215,7 @@ public class ErrorResponse implements Serializable {
      * Convert an instance of ErrorResponse to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

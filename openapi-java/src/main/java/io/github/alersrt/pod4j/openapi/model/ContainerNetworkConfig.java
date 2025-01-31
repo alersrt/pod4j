@@ -490,7 +490,7 @@ public class ContainerNetworkConfig implements Serializable {
 
     public void setUseImageHostname(Boolean useImageHostname) {
         this.useImageHostname = useImageHostname;
-    }
+  }
 
 
   public ContainerNetworkConfig useImageHosts(Boolean useImageHosts) {
@@ -739,8 +739,8 @@ public class ContainerNetworkConfig implements Serializable {
 
     /**
      * Convert an instance of ContainerNetworkConfig to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

@@ -394,7 +394,7 @@ public class ClusterVolumeSpec implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ClusterVolumeSpec
      * @throws IOException if the JSON string is invalid with respect to ClusterVolumeSpec
-     */
+  */
   public static ClusterVolumeSpec fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ClusterVolumeSpec.class);
   }
@@ -403,7 +403,7 @@ public class ClusterVolumeSpec implements Serializable {
      * Convert an instance of ClusterVolumeSpec to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -302,7 +302,7 @@ public class PodResourceConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodResourceConfig
      * @throws IOException if the JSON string is invalid with respect to PodResourceConfig
-     */
+  */
   public static PodResourceConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodResourceConfig.class);
   }
@@ -311,7 +311,7 @@ public class PodResourceConfig implements Serializable {
      * Convert an instance of PodResourceConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

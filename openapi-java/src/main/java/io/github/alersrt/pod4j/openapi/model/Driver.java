@@ -237,7 +237,7 @@ public class Driver implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Driver
      * @throws IOException if the JSON string is invalid with respect to Driver
-     */
+  */
   public static Driver fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Driver.class);
   }
@@ -246,7 +246,7 @@ public class Driver implements Serializable {
      * Convert an instance of Driver to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

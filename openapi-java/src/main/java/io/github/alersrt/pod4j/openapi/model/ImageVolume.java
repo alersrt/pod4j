@@ -294,7 +294,7 @@ public class ImageVolume implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageVolume
      * @throws IOException if the JSON string is invalid with respect to ImageVolume
-     */
+  */
   public static ImageVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageVolume.class);
   }
@@ -303,7 +303,7 @@ public class ImageVolume implements Serializable {
      * Convert an instance of ImageVolume to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

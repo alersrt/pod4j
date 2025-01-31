@@ -262,7 +262,7 @@ public class NetInterface implements Serializable {
      * Convert an instance of NetInterface to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

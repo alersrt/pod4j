@@ -13,19 +13,7 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
-import io.github.alersrt.pod4j.openapi.auth.Authentication;
-import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.tls.OkHostnameVerifier;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,6 +22,7 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +31,6 @@ import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
@@ -51,29 +39,21 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+
+import io.github.alersrt.pod4j.openapi.auth.Authentication;
+import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
+import io.github.alersrt.pod4j.openapi.auth.HttpBearerAuth;
+import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
 
 /**
  * <p>ApiClient class.</p>
@@ -82,8 +62,8 @@ public class ApiClient {
 
     private String basePath = "http://podman.io";
     private boolean debugging = false;
-    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
+    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -130,7 +110,7 @@ public class ApiClient {
     }
 
     private void initHttpClient() {
-        initHttpClient(Collections.emptyList());
+        initHttpClient(Collections.<Interceptor>emptyList());
     }
 
     private void initHttpClient(List<Interceptor> interceptors) {
@@ -298,7 +278,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setDateFormat(DateFormat dateFormat) {
-        JSON.setDateFormat(dateFormat);
+        this.json.setDateFormat(dateFormat);
         return this;
     }
 
@@ -309,7 +289,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setSqlDateFormat(DateFormat dateFormat) {
-        JSON.setSqlDateFormat(dateFormat);
+        this.json.setSqlDateFormat(dateFormat);
         return this;
     }
 
@@ -320,7 +300,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
-        JSON.setOffsetDateTimeFormat(dateFormat);
+        this.json.setOffsetDateTimeFormat(dateFormat);
         return this;
     }
 
@@ -331,7 +311,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
-        JSON.setLocalDateFormat(dateFormat);
+        this.json.setLocalDateFormat(dateFormat);
         return this;
     }
 
@@ -342,7 +322,7 @@ public class ApiClient {
      * @return a {@link io.github.alersrt.pod4j.openapi.ApiClient} object
      */
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
-        JSON.setLenientOnJson(lenientOnJson);
+        this.json.setLenientOnJson(lenientOnJson);
         return this;
     }
 
@@ -603,7 +583,7 @@ public class ApiClient {
             return "";
         } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
-            String jsonStr = JSON.serialize(param);
+            String jsonStr = json.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
         } else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
@@ -611,7 +591,7 @@ public class ApiClient {
                 if (b.length() > 0) {
                     b.append(",");
                 }
-                b.append(o);
+                b.append(String.valueOf(o));
             }
             return b.toString();
         } else {
@@ -806,7 +786,11 @@ public class ApiClient {
      * @return Escaped string
      */
     public String escapeString(String str) {
-        return URLEncoder.encode(str, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+        try {
+            return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            return str;
+        }
     }
 
     /**
@@ -858,7 +842,7 @@ public class ApiClient {
             contentType = "application/json";
         }
         if (isJsonMime(contentType)) {
-            return JSON.deserialize(respBody, returnType);
+            return json.deserialize(respBody, returnType);
         } else if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
             return (T) respBody;
@@ -892,7 +876,7 @@ public class ApiClient {
         } else if (isJsonMime(contentType)) {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = json.serialize(obj);
             } else {
                 content = null;
             }
@@ -1031,7 +1015,7 @@ public class ApiClient {
             public void onResponse(Call call, Response response) throws IOException {
                 T result;
                 try {
-                    result = handleResponse(response, returnType);
+                    result = (T) handleResponse(response, returnType);
                 } catch (ApiException e) {
                     callback.onFailure(e, response.code(), response.headers().toMultimap());
                     return;
@@ -1310,9 +1294,11 @@ public class ApiClient {
     public RequestBody buildRequestBodyMultipart(Map<String, Object> formParams) {
         MultipartBody.Builder mpBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (Entry<String, Object> param : formParams.entrySet()) {
-            if (param.getValue() instanceof File file) {
+            if (param.getValue() instanceof File) {
+                File file = (File) param.getValue();
                 addPartToMultiPartBuilder(mpBuilder, param.getKey(), file);
-            } else if (param.getValue() instanceof List list) {
+            } else if (param.getValue() instanceof List) {
+                List list = (List) param.getValue();
                 for (Object item: list) {
                     if (item instanceof File) {
                         addPartToMultiPartBuilder(mpBuilder, param.getKey(), (File) item);
@@ -1345,10 +1331,10 @@ public class ApiClient {
     /**
      * Add a Content-Disposition Header for the given key and file to the MultipartBody Builder.
      *
-     * @param mpBuilder MultipartBody.Builder
+     * @param mpBuilder MultipartBody.Builder 
      * @param key The key of the Header element
      * @param file The file to add to the Header
-     */
+     */ 
     private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, File file) {
         Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"; filename=\"" + file.getName() + "\"");
         MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
@@ -1369,7 +1355,7 @@ public class ApiClient {
         } else {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = json.serialize(obj);
             } else {
                 content = null;
             }
@@ -1390,7 +1376,8 @@ public class ApiClient {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 final Request request = chain.request();
                 final Response originalResponse = chain.proceed(request);
-                if (request.tag() instanceof ApiCallback callback) {
+                if (request.tag() instanceof ApiCallback) {
+                    final ApiCallback callback = (ApiCallback) request.tag();
                     return originalResponse.newBuilder()
                         .body(new ProgressResponseBody(originalResponse.body(), callback))
                         .build();
@@ -1446,7 +1433,7 @@ public class ApiClient {
                     KeyStore caKeyStore = newEmptyKeyStore(password);
                     int index = 0;
                     for (Certificate certificate : certificates) {
-                        String certificateAlias = "ca" + index++;
+                        String certificateAlias = "ca" + Integer.toString(index++);
                         caKeyStore.setCertificateEntry(certificateAlias, certificate);
                     }
                     trustManagerFactory.init(caKeyStore);

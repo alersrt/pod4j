@@ -206,7 +206,7 @@ public class ContainerUpdateLibpod201Response implements Serializable {
      * Convert an instance of ContainerUpdateLibpod201Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -531,7 +531,7 @@ public class Volume implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Volume
      * @throws IOException if the JSON string is invalid with respect to Volume
-     */
+  */
   public static Volume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Volume.class);
   }
@@ -540,7 +540,7 @@ public class Volume implements Serializable {
      * Convert an instance of Volume to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

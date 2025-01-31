@@ -769,7 +769,7 @@ public class InspectAdditionalNetwork implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectAdditionalNetwork
      * @throws IOException if the JSON string is invalid with respect to InspectAdditionalNetwork
-     */
+  */
   public static InspectAdditionalNetwork fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectAdditionalNetwork.class);
   }
@@ -778,7 +778,7 @@ public class InspectAdditionalNetwork implements Serializable {
      * Convert an instance of InspectAdditionalNetwork to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -456,7 +456,7 @@ public class Descriptor implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Descriptor
      * @throws IOException if the JSON string is invalid with respect to Descriptor
-     */
+  */
   public static Descriptor fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Descriptor.class);
   }
@@ -465,7 +465,7 @@ public class Descriptor implements Serializable {
      * Convert an instance of Descriptor to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

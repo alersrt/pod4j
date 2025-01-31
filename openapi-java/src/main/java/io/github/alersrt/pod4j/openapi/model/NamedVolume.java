@@ -338,7 +338,7 @@ public class NamedVolume implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NamedVolume
      * @throws IOException if the JSON string is invalid with respect to NamedVolume
-     */
+  */
   public static NamedVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NamedVolume.class);
   }
@@ -347,7 +347,7 @@ public class NamedVolume implements Serializable {
      * Convert an instance of NamedVolume to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

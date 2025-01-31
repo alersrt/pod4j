@@ -509,7 +509,7 @@ public class InspectExecSession implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectExecSession
      * @throws IOException if the JSON string is invalid with respect to InspectExecSession
-     */
+  */
   public static InspectExecSession fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectExecSession.class);
   }
@@ -518,7 +518,7 @@ public class InspectExecSession implements Serializable {
      * Convert an instance of InspectExecSession to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

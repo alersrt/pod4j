@@ -848,7 +848,7 @@ public class InspectNetworkSettings implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectNetworkSettings
      * @throws IOException if the JSON string is invalid with respect to InspectNetworkSettings
-     */
+  */
   public static InspectNetworkSettings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectNetworkSettings.class);
   }
@@ -857,7 +857,7 @@ public class InspectNetworkSettings implements Serializable {
      * Convert an instance of InspectNetworkSettings to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

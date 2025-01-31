@@ -576,7 +576,7 @@ public class Summary implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Summary
      * @throws IOException if the JSON string is invalid with respect to Summary
-     */
+  */
   public static Summary fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Summary.class);
   }
@@ -585,7 +585,7 @@ public class Summary implements Serializable {
      * Convert an instance of Summary to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

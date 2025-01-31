@@ -307,7 +307,7 @@ public class LibpodImagesPullReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LibpodImagesPullReport
      * @throws IOException if the JSON string is invalid with respect to LibpodImagesPullReport
-     */
+  */
   public static LibpodImagesPullReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodImagesPullReport.class);
   }
@@ -316,7 +316,7 @@ public class LibpodImagesPullReport implements Serializable {
      * Convert an instance of LibpodImagesPullReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

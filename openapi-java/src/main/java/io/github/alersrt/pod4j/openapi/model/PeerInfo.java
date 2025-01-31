@@ -231,7 +231,7 @@ public class PeerInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PeerInfo
      * @throws IOException if the JSON string is invalid with respect to PeerInfo
-     */
+  */
   public static PeerInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PeerInfo.class);
   }
@@ -240,7 +240,7 @@ public class PeerInfo implements Serializable {
      * Convert an instance of PeerInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -297,7 +297,7 @@ public class OCIRuntimeInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of OCIRuntimeInfo
      * @throws IOException if the JSON string is invalid with respect to OCIRuntimeInfo
-     */
+  */
   public static OCIRuntimeInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, OCIRuntimeInfo.class);
   }
@@ -306,7 +306,7 @@ public class OCIRuntimeInfo implements Serializable {
      * Convert an instance of OCIRuntimeInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -242,7 +242,7 @@ public class PluginConfigRootfs implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginConfigRootfs
      * @throws IOException if the JSON string is invalid with respect to PluginConfigRootfs
-     */
+  */
   public static PluginConfigRootfs fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginConfigRootfs.class);
   }
@@ -251,7 +251,7 @@ public class PluginConfigRootfs implements Serializable {
      * Convert an instance of PluginConfigRootfs to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

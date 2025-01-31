@@ -764,7 +764,7 @@ public class Inspect implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Inspect
      * @throws IOException if the JSON string is invalid with respect to Inspect
-     */
+  */
   public static Inspect fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Inspect.class);
   }
@@ -773,7 +773,7 @@ public class Inspect implements Serializable {
      * Convert an instance of Inspect to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

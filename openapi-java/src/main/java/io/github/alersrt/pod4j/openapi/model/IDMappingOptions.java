@@ -400,7 +400,7 @@ public class IDMappingOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of IDMappingOptions
      * @throws IOException if the JSON string is invalid with respect to IDMappingOptions
-     */
+  */
   public static IDMappingOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IDMappingOptions.class);
   }
@@ -409,7 +409,7 @@ public class IDMappingOptions implements Serializable {
      * Convert an instance of IDMappingOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

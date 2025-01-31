@@ -297,7 +297,7 @@ public class DistributionInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DistributionInfo
      * @throws IOException if the JSON string is invalid with respect to DistributionInfo
-     */
+  */
   public static DistributionInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DistributionInfo.class);
   }
@@ -306,7 +306,7 @@ public class DistributionInfo implements Serializable {
      * Convert an instance of DistributionInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

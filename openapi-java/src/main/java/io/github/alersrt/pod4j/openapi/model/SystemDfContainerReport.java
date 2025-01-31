@@ -463,7 +463,7 @@ public class SystemDfContainerReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SystemDfContainerReport
      * @throws IOException if the JSON string is invalid with respect to SystemDfContainerReport
-     */
+  */
   public static SystemDfContainerReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemDfContainerReport.class);
   }
@@ -472,7 +472,7 @@ public class SystemDfContainerReport implements Serializable {
      * Convert an instance of SystemDfContainerReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

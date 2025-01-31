@@ -204,7 +204,7 @@ public class LinuxPids implements Serializable {
      * Convert an instance of LinuxPids to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

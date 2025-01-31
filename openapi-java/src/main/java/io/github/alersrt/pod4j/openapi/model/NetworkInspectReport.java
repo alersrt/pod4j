@@ -726,7 +726,7 @@ public class NetworkInspectReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkInspectReport
      * @throws IOException if the JSON string is invalid with respect to NetworkInspectReport
-     */
+  */
   public static NetworkInspectReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkInspectReport.class);
   }
@@ -735,7 +735,7 @@ public class NetworkInspectReport implements Serializable {
      * Convert an instance of NetworkInspectReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

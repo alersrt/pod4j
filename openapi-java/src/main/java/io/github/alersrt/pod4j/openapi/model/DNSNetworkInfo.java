@@ -263,7 +263,7 @@ public class DNSNetworkInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DNSNetworkInfo
      * @throws IOException if the JSON string is invalid with respect to DNSNetworkInfo
-     */
+  */
   public static DNSNetworkInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DNSNetworkInfo.class);
   }
@@ -272,7 +272,7 @@ public class DNSNetworkInfo implements Serializable {
      * Convert an instance of DNSNetworkInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

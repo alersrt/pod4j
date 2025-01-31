@@ -275,7 +275,7 @@ public class OverlayVolume implements Serializable {
      * @param jsonString JSON string
      * @return An instance of OverlayVolume
      * @throws IOException if the JSON string is invalid with respect to OverlayVolume
-     */
+  */
   public static OverlayVolume fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, OverlayVolume.class);
   }
@@ -284,7 +284,7 @@ public class OverlayVolume implements Serializable {
      * Convert an instance of OverlayVolume to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

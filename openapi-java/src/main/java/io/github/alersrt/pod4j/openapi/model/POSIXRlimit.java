@@ -258,7 +258,7 @@ public class POSIXRlimit implements Serializable {
      * @param jsonString JSON string
      * @return An instance of POSIXRlimit
      * @throws IOException if the JSON string is invalid with respect to POSIXRlimit
-     */
+  */
   public static POSIXRlimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, POSIXRlimit.class);
   }
@@ -267,7 +267,7 @@ public class POSIXRlimit implements Serializable {
      * Convert an instance of POSIXRlimit to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

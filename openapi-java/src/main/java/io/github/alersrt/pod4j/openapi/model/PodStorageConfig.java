@@ -484,7 +484,7 @@ public class PodStorageConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodStorageConfig
      * @throws IOException if the JSON string is invalid with respect to PodStorageConfig
-     */
+  */
   public static PodStorageConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodStorageConfig.class);
   }
@@ -493,7 +493,7 @@ public class PodStorageConfig implements Serializable {
      * Convert an instance of PodStorageConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -231,7 +231,7 @@ public class DeleteResponse implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DeleteResponse
      * @throws IOException if the JSON string is invalid with respect to DeleteResponse
-     */
+  */
   public static DeleteResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DeleteResponse.class);
   }
@@ -240,7 +240,7 @@ public class DeleteResponse implements Serializable {
      * Convert an instance of DeleteResponse to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

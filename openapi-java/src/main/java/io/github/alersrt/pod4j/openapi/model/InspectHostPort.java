@@ -231,7 +231,7 @@ public class InspectHostPort implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectHostPort
      * @throws IOException if the JSON string is invalid with respect to InspectHostPort
-     */
+  */
   public static InspectHostPort fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectHostPort.class);
   }
@@ -240,7 +240,7 @@ public class InspectHostPort implements Serializable {
      * Convert an instance of InspectHostPort to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

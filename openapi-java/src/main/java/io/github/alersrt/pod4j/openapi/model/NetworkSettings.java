@@ -806,7 +806,7 @@ public class NetworkSettings implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkSettings
      * @throws IOException if the JSON string is invalid with respect to NetworkSettings
-     */
+  */
   public static NetworkSettings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkSettings.class);
   }
@@ -815,7 +815,7 @@ public class NetworkSettings implements Serializable {
      * Convert an instance of NetworkSettings to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -217,7 +217,7 @@ public class ImageLoadReport implements Serializable {
      * Convert an instance of ImageLoadReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

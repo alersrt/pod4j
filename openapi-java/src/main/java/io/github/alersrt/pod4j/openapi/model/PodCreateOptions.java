@@ -1098,7 +1098,7 @@ public class PodCreateOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodCreateOptions
      * @throws IOException if the JSON string is invalid with respect to PodCreateOptions
-     */
+  */
   public static PodCreateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodCreateOptions.class);
   }
@@ -1107,7 +1107,7 @@ public class PodCreateOptions implements Serializable {
      * Convert an instance of PodCreateOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

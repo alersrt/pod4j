@@ -324,7 +324,7 @@ public class LinuxIntelRdt implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxIntelRdt
      * @throws IOException if the JSON string is invalid with respect to LinuxIntelRdt
-     */
+  */
   public static LinuxIntelRdt fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxIntelRdt.class);
   }
@@ -333,7 +333,7 @@ public class LinuxIntelRdt implements Serializable {
      * Convert an instance of LinuxIntelRdt to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -359,7 +359,7 @@ public class Schema2HealthConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Schema2HealthConfig
      * @throws IOException if the JSON string is invalid with respect to Schema2HealthConfig
-     */
+  */
   public static Schema2HealthConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Schema2HealthConfig.class);
   }
@@ -368,7 +368,7 @@ public class Schema2HealthConfig implements Serializable {
      * Convert an instance of Schema2HealthConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

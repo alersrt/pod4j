@@ -215,7 +215,7 @@ public class ImageBuildLibpod200Response implements Serializable {
      * Convert an instance of ImageBuildLibpod200Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -513,7 +513,7 @@ public class SystemCheckReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SystemCheckReport
      * @throws IOException if the JSON string is invalid with respect to SystemCheckReport
-     */
+  */
   public static SystemCheckReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemCheckReport.class);
   }
@@ -522,7 +522,7 @@ public class SystemCheckReport implements Serializable {
      * Convert an instance of SystemCheckReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

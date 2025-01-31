@@ -294,7 +294,7 @@ public class IPAM implements Serializable {
      * @param jsonString JSON string
      * @return An instance of IPAM
      * @throws IOException if the JSON string is invalid with respect to IPAM
-     */
+  */
   public static IPAM fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IPAM.class);
   }
@@ -303,7 +303,7 @@ public class IPAM implements Serializable {
      * Convert an instance of IPAM to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

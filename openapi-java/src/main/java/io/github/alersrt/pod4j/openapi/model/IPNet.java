@@ -241,7 +241,7 @@ public class IPNet implements Serializable {
      * @param jsonString JSON string
      * @return An instance of IPNet
      * @throws IOException if the JSON string is invalid with respect to IPNet
-     */
+  */
   public static IPNet fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IPNet.class);
   }
@@ -250,7 +250,7 @@ public class IPNet implements Serializable {
      * Convert an instance of IPNet to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

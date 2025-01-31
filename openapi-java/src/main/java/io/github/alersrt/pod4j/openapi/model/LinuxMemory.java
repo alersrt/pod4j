@@ -435,7 +435,7 @@ public class LinuxMemory implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxMemory
      * @throws IOException if the JSON string is invalid with respect to LinuxMemory
-     */
+  */
   public static LinuxMemory fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxMemory.class);
   }
@@ -444,7 +444,7 @@ public class LinuxMemory implements Serializable {
      * Convert an instance of LinuxMemory to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

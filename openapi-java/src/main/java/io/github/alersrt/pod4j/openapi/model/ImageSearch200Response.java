@@ -392,7 +392,7 @@ public class ImageSearch200Response implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageSearch200Response
      * @throws IOException if the JSON string is invalid with respect to ImageSearch200Response
-     */
+  */
   public static ImageSearch200Response fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageSearch200Response.class);
   }
@@ -401,7 +401,7 @@ public class ImageSearch200Response implements Serializable {
      * Convert an instance of ImageSearch200Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

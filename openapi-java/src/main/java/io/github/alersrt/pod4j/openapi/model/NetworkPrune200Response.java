@@ -217,7 +217,7 @@ public class NetworkPrune200Response implements Serializable {
      * Convert an instance of NetworkPrune200Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

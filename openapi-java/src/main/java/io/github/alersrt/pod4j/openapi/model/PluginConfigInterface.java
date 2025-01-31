@@ -252,9 +252,8 @@ public class PluginConfigInterface implements Serializable {
                 // validate the optional field `Types` (array)
                 for (int i = 0; i < jsonArraytypes.size(); i++) {
                     PluginInterfaceType.validateJsonObject(jsonArraytypes.get(i).getAsJsonObject());
-                }
-                ;
-            }
+                };
+        }
       }
       if ((jsonObj.get("ProtocolScheme") != null && !jsonObj.get("ProtocolScheme").isJsonNull()) && !jsonObj.get("ProtocolScheme").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ProtocolScheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ProtocolScheme").toString()));
@@ -296,7 +295,7 @@ public class PluginConfigInterface implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginConfigInterface
      * @throws IOException if the JSON string is invalid with respect to PluginConfigInterface
-     */
+  */
   public static PluginConfigInterface fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginConfigInterface.class);
   }
@@ -305,7 +304,7 @@ public class PluginConfigInterface implements Serializable {
      * Convert an instance of PluginConfigInterface to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

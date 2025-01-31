@@ -241,7 +241,7 @@ public class ImageDelete200ResponseInner implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageDelete200ResponseInner
      * @throws IOException if the JSON string is invalid with respect to ImageDelete200ResponseInner
-     */
+  */
   public static ImageDelete200ResponseInner fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageDelete200ResponseInner.class);
   }
@@ -250,7 +250,7 @@ public class ImageDelete200ResponseInner implements Serializable {
      * Convert an instance of ImageDelete200ResponseInner to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -325,7 +325,7 @@ public class History implements Serializable {
      * @param jsonString JSON string
      * @return An instance of History
      * @throws IOException if the JSON string is invalid with respect to History
-     */
+  */
   public static History fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, History.class);
   }
@@ -334,7 +334,7 @@ public class History implements Serializable {
      * Convert an instance of History to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

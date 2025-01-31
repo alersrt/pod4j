@@ -260,7 +260,7 @@ public class Route implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Route
      * @throws IOException if the JSON string is invalid with respect to Route
-     */
+  */
   public static Route fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Route.class);
   }
@@ -269,7 +269,7 @@ public class Route implements Serializable {
      * Convert an instance of Route to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

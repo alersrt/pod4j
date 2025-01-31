@@ -206,7 +206,7 @@ public class SecretCreateReport implements Serializable {
      * Convert an instance of SecretCreateReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

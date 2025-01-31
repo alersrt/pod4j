@@ -1307,7 +1307,7 @@ public class Resources implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Resources
      * @throws IOException if the JSON string is invalid with respect to Resources
-     */
+  */
   public static Resources fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Resources.class);
   }
@@ -1316,7 +1316,7 @@ public class Resources implements Serializable {
      * Convert an instance of Resources to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

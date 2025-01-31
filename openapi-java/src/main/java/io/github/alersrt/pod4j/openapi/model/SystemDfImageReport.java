@@ -416,7 +416,7 @@ public class SystemDfImageReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SystemDfImageReport
      * @throws IOException if the JSON string is invalid with respect to SystemDfImageReport
-     */
+  */
   public static SystemDfImageReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemDfImageReport.class);
   }
@@ -425,7 +425,7 @@ public class SystemDfImageReport implements Serializable {
      * Convert an instance of SystemDfImageReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

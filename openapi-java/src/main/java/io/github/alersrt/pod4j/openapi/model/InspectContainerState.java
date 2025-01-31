@@ -887,7 +887,7 @@ public class InspectContainerState implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectContainerState
      * @throws IOException if the JSON string is invalid with respect to InspectContainerState
-     */
+  */
   public static InspectContainerState fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerState.class);
   }
@@ -896,7 +896,7 @@ public class InspectContainerState implements Serializable {
      * Convert an instance of InspectContainerState to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

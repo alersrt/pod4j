@@ -955,7 +955,7 @@ public class PodSpecGenerator implements Serializable {
 
     public void setNoManageHostname(Boolean noManageHostname) {
         this.noManageHostname = noManageHostname;
-    }
+  }
 
 
   public PodSpecGenerator noManageHosts(Boolean noManageHosts) {
@@ -1984,8 +1984,8 @@ public class PodSpecGenerator implements Serializable {
 
     /**
      * Convert an instance of PodSpecGenerator to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

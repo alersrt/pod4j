@@ -228,7 +228,7 @@ public class LinuxHugepageLimit implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxHugepageLimit
      * @throws IOException if the JSON string is invalid with respect to LinuxHugepageLimit
-     */
+  */
   public static LinuxHugepageLimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxHugepageLimit.class);
   }
@@ -237,7 +237,7 @@ public class LinuxHugepageLimit implements Serializable {
      * Convert an instance of LinuxHugepageLimit to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

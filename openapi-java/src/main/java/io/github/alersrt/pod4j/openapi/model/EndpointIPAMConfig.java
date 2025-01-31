@@ -275,7 +275,7 @@ public class EndpointIPAMConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of EndpointIPAMConfig
      * @throws IOException if the JSON string is invalid with respect to EndpointIPAMConfig
-     */
+  */
   public static EndpointIPAMConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EndpointIPAMConfig.class);
   }
@@ -284,7 +284,7 @@ public class EndpointIPAMConfig implements Serializable {
      * Convert an instance of EndpointIPAMConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

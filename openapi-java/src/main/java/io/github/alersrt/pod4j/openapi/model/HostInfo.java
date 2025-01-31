@@ -1314,7 +1314,7 @@ public class HostInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of HostInfo
      * @throws IOException if the JSON string is invalid with respect to HostInfo
-     */
+  */
   public static HostInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HostInfo.class);
   }
@@ -1323,7 +1323,7 @@ public class HostInfo implements Serializable {
      * Convert an instance of HostInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

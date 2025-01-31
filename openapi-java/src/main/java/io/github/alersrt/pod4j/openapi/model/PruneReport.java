@@ -261,7 +261,7 @@ public class PruneReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PruneReport
      * @throws IOException if the JSON string is invalid with respect to PruneReport
-     */
+  */
   public static PruneReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PruneReport.class);
   }
@@ -270,7 +270,7 @@ public class PruneReport implements Serializable {
      * Convert an instance of PruneReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

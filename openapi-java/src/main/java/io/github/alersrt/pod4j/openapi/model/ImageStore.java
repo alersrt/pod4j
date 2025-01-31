@@ -204,7 +204,7 @@ public class ImageStore implements Serializable {
      * Convert an instance of ImageStore to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

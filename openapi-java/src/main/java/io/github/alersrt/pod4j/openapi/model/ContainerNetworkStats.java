@@ -405,7 +405,7 @@ public class ContainerNetworkStats implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerNetworkStats
      * @throws IOException if the JSON string is invalid with respect to ContainerNetworkStats
-     */
+  */
   public static ContainerNetworkStats fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerNetworkStats.class);
   }
@@ -414,7 +414,7 @@ public class ContainerNetworkStats implements Serializable {
      * Convert an instance of ContainerNetworkStats to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

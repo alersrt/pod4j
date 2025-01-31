@@ -375,7 +375,7 @@ public class ManifestSummary implements Serializable {
         // validate the optional field `Size`
         if (jsonObj.get("Size") != null && !jsonObj.get("Size").isJsonNull()) {
             ManifestSummarySize.validateJsonObject(jsonObj.getAsJsonObject("Size"));
-        }
+      }
       // validate the optional field `AttestationData`
       if (jsonObj.get("AttestationData") != null && !jsonObj.get("AttestationData").isJsonNull()) {
           AttestationProperties.validateJsonObject(jsonObj.getAsJsonObject("AttestationData"));
@@ -421,7 +421,7 @@ public class ManifestSummary implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ManifestSummary
      * @throws IOException if the JSON string is invalid with respect to ManifestSummary
-     */
+  */
   public static ManifestSummary fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestSummary.class);
   }
@@ -430,7 +430,7 @@ public class ManifestSummary implements Serializable {
      * Convert an instance of ManifestSummary to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

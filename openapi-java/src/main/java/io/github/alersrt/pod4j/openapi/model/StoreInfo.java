@@ -603,7 +603,7 @@ public class StoreInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of StoreInfo
      * @throws IOException if the JSON string is invalid with respect to StoreInfo
-     */
+  */
   public static StoreInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, StoreInfo.class);
   }
@@ -612,7 +612,7 @@ public class StoreInfo implements Serializable {
      * Convert an instance of StoreInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

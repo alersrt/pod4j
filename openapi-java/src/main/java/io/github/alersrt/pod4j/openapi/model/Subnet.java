@@ -266,7 +266,7 @@ public class Subnet implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Subnet
      * @throws IOException if the JSON string is invalid with respect to Subnet
-     */
+  */
   public static Subnet fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Subnet.class);
   }
@@ -275,7 +275,7 @@ public class Subnet implements Serializable {
      * Convert an instance of Subnet to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

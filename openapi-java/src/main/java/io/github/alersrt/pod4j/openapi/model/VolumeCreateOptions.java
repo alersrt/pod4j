@@ -376,7 +376,7 @@ public class VolumeCreateOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of VolumeCreateOptions
      * @throws IOException if the JSON string is invalid with respect to VolumeCreateOptions
-     */
+  */
   public static VolumeCreateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VolumeCreateOptions.class);
   }
@@ -385,7 +385,7 @@ public class VolumeCreateOptions implements Serializable {
      * Convert an instance of VolumeCreateOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

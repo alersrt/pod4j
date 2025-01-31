@@ -717,7 +717,7 @@ public class VolumeConfigResponse implements Serializable {
      * @param jsonString JSON string
      * @return An instance of VolumeConfigResponse
      * @throws IOException if the JSON string is invalid with respect to VolumeConfigResponse
-     */
+  */
   public static VolumeConfigResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VolumeConfigResponse.class);
   }
@@ -726,7 +726,7 @@ public class VolumeConfigResponse implements Serializable {
      * Convert an instance of VolumeConfigResponse to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

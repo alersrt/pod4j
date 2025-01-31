@@ -686,7 +686,7 @@ public class Network implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Network
      * @throws IOException if the JSON string is invalid with respect to Network
-     */
+  */
   public static Network fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Network.class);
   }
@@ -695,7 +695,7 @@ public class Network implements Serializable {
      * Convert an instance of Network to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

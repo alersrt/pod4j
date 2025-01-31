@@ -230,7 +230,7 @@ public class LeaseRange implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LeaseRange
      * @throws IOException if the JSON string is invalid with respect to LeaseRange
-     */
+  */
   public static LeaseRange fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LeaseRange.class);
   }
@@ -239,7 +239,7 @@ public class LeaseRange implements Serializable {
      * Convert an instance of LeaseRange to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

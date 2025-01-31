@@ -341,7 +341,7 @@ public class Schema2ManifestDescriptor implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Schema2ManifestDescriptor
      * @throws IOException if the JSON string is invalid with respect to Schema2ManifestDescriptor
-     */
+  */
   public static Schema2ManifestDescriptor fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Schema2ManifestDescriptor.class);
   }
@@ -350,7 +350,7 @@ public class Schema2ManifestDescriptor implements Serializable {
      * Convert an instance of Schema2ManifestDescriptor to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

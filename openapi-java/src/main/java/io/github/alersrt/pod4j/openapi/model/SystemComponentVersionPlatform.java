@@ -206,7 +206,7 @@ public class SystemComponentVersionPlatform implements Serializable {
      * Convert an instance of SystemComponentVersionPlatform to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

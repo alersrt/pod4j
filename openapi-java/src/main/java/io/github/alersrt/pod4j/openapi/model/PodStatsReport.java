@@ -494,7 +494,7 @@ public class PodStatsReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodStatsReport
      * @throws IOException if the JSON string is invalid with respect to PodStatsReport
-     */
+  */
   public static PodStatsReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodStatsReport.class);
   }
@@ -503,7 +503,7 @@ public class PodStatsReport implements Serializable {
      * Convert an instance of PodStatsReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

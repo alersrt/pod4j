@@ -535,7 +535,7 @@ public class LinuxResources implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxResources
      * @throws IOException if the JSON string is invalid with respect to LinuxResources
-     */
+  */
   public static LinuxResources fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxResources.class);
   }
@@ -544,7 +544,7 @@ public class LinuxResources implements Serializable {
      * Convert an instance of LinuxResources to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

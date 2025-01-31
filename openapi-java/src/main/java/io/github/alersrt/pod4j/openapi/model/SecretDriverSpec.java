@@ -237,7 +237,7 @@ public class SecretDriverSpec implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretDriverSpec
      * @throws IOException if the JSON string is invalid with respect to SecretDriverSpec
-     */
+  */
   public static SecretDriverSpec fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretDriverSpec.class);
   }
@@ -246,7 +246,7 @@ public class SecretDriverSpec implements Serializable {
      * Convert an instance of SecretDriverSpec to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

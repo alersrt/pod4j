@@ -246,7 +246,7 @@ public class GraphDriverData implements Serializable {
      * @param jsonString JSON string
      * @return An instance of GraphDriverData
      * @throws IOException if the JSON string is invalid with respect to GraphDriverData
-     */
+  */
   public static GraphDriverData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GraphDriverData.class);
   }
@@ -255,7 +255,7 @@ public class GraphDriverData implements Serializable {
      * Convert an instance of GraphDriverData to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

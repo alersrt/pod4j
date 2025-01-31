@@ -383,7 +383,7 @@ public class Schema2PlatformSpec implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Schema2PlatformSpec
      * @throws IOException if the JSON string is invalid with respect to Schema2PlatformSpec
-     */
+  */
   public static Schema2PlatformSpec fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Schema2PlatformSpec.class);
   }
@@ -392,7 +392,7 @@ public class Schema2PlatformSpec implements Serializable {
      * Convert an instance of Schema2PlatformSpec to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -323,7 +323,7 @@ public class LibpodImagesRemoveReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LibpodImagesRemoveReport
      * @throws IOException if the JSON string is invalid with respect to LibpodImagesRemoveReport
-     */
+  */
   public static LibpodImagesRemoveReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodImagesRemoveReport.class);
   }
@@ -332,7 +332,7 @@ public class LibpodImagesRemoveReport implements Serializable {
      * Convert an instance of LibpodImagesRemoveReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -264,7 +264,7 @@ public class PastaInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PastaInfo
      * @throws IOException if the JSON string is invalid with respect to PastaInfo
-     */
+  */
   public static PastaInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PastaInfo.class);
   }
@@ -273,7 +273,7 @@ public class PastaInfo implements Serializable {
      * Convert an instance of PastaInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

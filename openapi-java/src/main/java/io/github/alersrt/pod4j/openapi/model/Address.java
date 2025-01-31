@@ -227,7 +227,7 @@ public class Address implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Address
      * @throws IOException if the JSON string is invalid with respect to Address
-     */
+  */
   public static Address fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Address.class);
   }
@@ -236,7 +236,7 @@ public class Address implements Serializable {
      * Convert an instance of Address to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

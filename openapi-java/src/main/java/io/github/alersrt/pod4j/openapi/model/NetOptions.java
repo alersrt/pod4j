@@ -404,7 +404,7 @@ public class NetOptions implements Serializable {
 
     public void setNoManageHostname(Boolean noManageHostname) {
         this.noManageHostname = noManageHostname;
-    }
+  }
 
 
   public NetOptions noManageHosts(Boolean noManageHosts) {
@@ -679,8 +679,8 @@ public class NetOptions implements Serializable {
 
     /**
      * Convert an instance of NetOptions to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

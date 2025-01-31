@@ -285,7 +285,7 @@ public class ContainerStore implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerStore
      * @throws IOException if the JSON string is invalid with respect to ContainerStore
-     */
+  */
   public static ContainerStore fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerStore.class);
   }
@@ -294,7 +294,7 @@ public class ContainerStore implements Serializable {
      * Convert an instance of ContainerStore to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

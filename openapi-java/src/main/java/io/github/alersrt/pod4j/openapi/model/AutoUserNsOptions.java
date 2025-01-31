@@ -399,7 +399,7 @@ public class AutoUserNsOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of AutoUserNsOptions
      * @throws IOException if the JSON string is invalid with respect to AutoUserNsOptions
-     */
+  */
   public static AutoUserNsOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AutoUserNsOptions.class);
   }
@@ -408,7 +408,7 @@ public class AutoUserNsOptions implements Serializable {
      * Convert an instance of AutoUserNsOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

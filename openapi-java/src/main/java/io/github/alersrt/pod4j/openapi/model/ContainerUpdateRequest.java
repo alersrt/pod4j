@@ -1343,7 +1343,7 @@ public class ContainerUpdateRequest implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerUpdateRequest
      * @throws IOException if the JSON string is invalid with respect to ContainerUpdateRequest
-     */
+  */
   public static ContainerUpdateRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerUpdateRequest.class);
   }
@@ -1352,7 +1352,7 @@ public class ContainerUpdateRequest implements Serializable {
      * Convert an instance of ContainerUpdateRequest to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

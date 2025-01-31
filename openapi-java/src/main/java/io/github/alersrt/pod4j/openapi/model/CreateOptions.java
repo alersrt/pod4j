@@ -530,7 +530,7 @@ public class CreateOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of CreateOptions
      * @throws IOException if the JSON string is invalid with respect to CreateOptions
-     */
+  */
   public static CreateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateOptions.class);
   }
@@ -539,7 +539,7 @@ public class CreateOptions implements Serializable {
      * Convert an instance of CreateOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

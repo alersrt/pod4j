@@ -486,7 +486,6 @@ public class ManifestsApi {
     public APImanifestCreateLibpodRequest manifestCreateLibpod(String name, String images) {
         return new APImanifestCreateLibpodRequest(name, images);
     }
-
     private okhttp3.Call manifestDeleteLibpodCall(String name, Boolean ignore, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -576,7 +575,6 @@ public class ManifestsApi {
 
         /**
          * Set ignore
-         *
          * @param ignore Ignore if a specified manifest does not exist and do not throw an error. (optional)
          * @return APImanifestDeleteLibpodRequest
          */

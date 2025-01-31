@@ -335,7 +335,7 @@ public class InspectExecProcess implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectExecProcess
      * @throws IOException if the JSON string is invalid with respect to InspectExecProcess
-     */
+  */
   public static InspectExecProcess fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectExecProcess.class);
   }
@@ -344,7 +344,7 @@ public class InspectExecProcess implements Serializable {
      * Convert an instance of InspectExecProcess to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -225,7 +225,7 @@ public class ContainerSize implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerSize
      * @throws IOException if the JSON string is invalid with respect to ContainerSize
-     */
+  */
   public static ContainerSize fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerSize.class);
   }
@@ -234,7 +234,7 @@ public class ContainerSize implements Serializable {
      * Convert an instance of ContainerSize to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -241,7 +241,7 @@ public class PodRestartReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodRestartReport
      * @throws IOException if the JSON string is invalid with respect to PodRestartReport
-     */
+  */
   public static PodRestartReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodRestartReport.class);
   }
@@ -250,7 +250,7 @@ public class PodRestartReport implements Serializable {
      * Convert an instance of PodRestartReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

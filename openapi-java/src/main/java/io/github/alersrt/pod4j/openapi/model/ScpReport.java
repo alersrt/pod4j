@@ -206,7 +206,7 @@ public class ScpReport implements Serializable {
      * Convert an instance of ScpReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

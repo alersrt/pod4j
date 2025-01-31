@@ -227,7 +227,7 @@ public class InspectRestartPolicy implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectRestartPolicy
      * @throws IOException if the JSON string is invalid with respect to InspectRestartPolicy
-     */
+  */
   public static InspectRestartPolicy fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectRestartPolicy.class);
   }
@@ -236,7 +236,7 @@ public class InspectRestartPolicy implements Serializable {
      * Convert an instance of InspectRestartPolicy to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

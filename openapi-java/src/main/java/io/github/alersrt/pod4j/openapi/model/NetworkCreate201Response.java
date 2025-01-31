@@ -230,7 +230,7 @@ public class NetworkCreate201Response implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkCreate201Response
      * @throws IOException if the JSON string is invalid with respect to NetworkCreate201Response
-     */
+  */
   public static NetworkCreate201Response fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkCreate201Response.class);
   }
@@ -239,7 +239,7 @@ public class NetworkCreate201Response implements Serializable {
      * Convert an instance of NetworkCreate201Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

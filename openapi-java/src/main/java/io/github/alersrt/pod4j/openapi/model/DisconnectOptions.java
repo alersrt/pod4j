@@ -228,7 +228,7 @@ public class DisconnectOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DisconnectOptions
      * @throws IOException if the JSON string is invalid with respect to DisconnectOptions
-     */
+  */
   public static DisconnectOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DisconnectOptions.class);
   }
@@ -237,7 +237,7 @@ public class DisconnectOptions implements Serializable {
      * Convert an instance of DisconnectOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

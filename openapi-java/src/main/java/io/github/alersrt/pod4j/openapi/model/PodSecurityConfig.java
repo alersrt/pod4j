@@ -244,7 +244,7 @@ public class PodSecurityConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodSecurityConfig
      * @throws IOException if the JSON string is invalid with respect to PodSecurityConfig
-     */
+  */
   public static PodSecurityConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodSecurityConfig.class);
   }
@@ -253,7 +253,7 @@ public class PodSecurityConfig implements Serializable {
      * Convert an instance of PodSecurityConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

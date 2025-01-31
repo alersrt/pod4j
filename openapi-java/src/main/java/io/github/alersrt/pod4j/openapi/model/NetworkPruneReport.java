@@ -231,7 +231,7 @@ public class NetworkPruneReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkPruneReport
      * @throws IOException if the JSON string is invalid with respect to NetworkPruneReport
-     */
+  */
   public static NetworkPruneReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkPruneReport.class);
   }
@@ -240,7 +240,7 @@ public class NetworkPruneReport implements Serializable {
      * Convert an instance of NetworkPruneReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

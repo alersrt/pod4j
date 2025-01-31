@@ -441,7 +441,7 @@ public class LinuxCPU implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxCPU
      * @throws IOException if the JSON string is invalid with respect to LinuxCPU
-     */
+  */
   public static LinuxCPU fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxCPU.class);
   }
@@ -450,7 +450,7 @@ public class LinuxCPU implements Serializable {
      * Convert an instance of LinuxCPU to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

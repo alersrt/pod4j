@@ -257,7 +257,7 @@ public class InspectUlimit implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectUlimit
      * @throws IOException if the JSON string is invalid with respect to InspectUlimit
-     */
+  */
   public static InspectUlimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectUlimit.class);
   }
@@ -266,7 +266,7 @@ public class InspectUlimit implements Serializable {
      * Convert an instance of InspectUlimit to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

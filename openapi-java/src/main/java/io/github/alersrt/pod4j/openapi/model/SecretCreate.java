@@ -306,7 +306,7 @@ public class SecretCreate implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretCreate
      * @throws IOException if the JSON string is invalid with respect to SecretCreate
-     */
+  */
   public static SecretCreate fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretCreate.class);
   }
@@ -315,7 +315,7 @@ public class SecretCreate implements Serializable {
      * Convert an instance of SecretCreate to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

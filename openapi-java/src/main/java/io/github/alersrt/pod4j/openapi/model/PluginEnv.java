@@ -320,7 +320,7 @@ public class PluginEnv implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginEnv
      * @throws IOException if the JSON string is invalid with respect to PluginEnv
-     */
+  */
   public static PluginEnv fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginEnv.class);
   }
@@ -329,7 +329,7 @@ public class PluginEnv implements Serializable {
      * Convert an instance of PluginEnv to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -242,7 +242,7 @@ public class AuthenticateOKBody implements Serializable {
      * @param jsonString JSON string
      * @return An instance of AuthenticateOKBody
      * @throws IOException if the JSON string is invalid with respect to AuthenticateOKBody
-     */
+  */
   public static AuthenticateOKBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthenticateOKBody.class);
   }
@@ -251,7 +251,7 @@ public class AuthenticateOKBody implements Serializable {
      * Convert an instance of AuthenticateOKBody to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

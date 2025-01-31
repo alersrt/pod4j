@@ -241,7 +241,7 @@ public class PodUnpauseReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodUnpauseReport
      * @throws IOException if the JSON string is invalid with respect to PodUnpauseReport
-     */
+  */
   public static PodUnpauseReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodUnpauseReport.class);
   }
@@ -250,7 +250,7 @@ public class PodUnpauseReport implements Serializable {
      * Convert an instance of PodUnpauseReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

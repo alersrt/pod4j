@@ -234,7 +234,7 @@ public class ConnectOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ConnectOptions
      * @throws IOException if the JSON string is invalid with respect to ConnectOptions
-     */
+  */
   public static ConnectOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ConnectOptions.class);
   }
@@ -243,7 +243,7 @@ public class ConnectOptions implements Serializable {
      * Convert an instance of ConnectOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

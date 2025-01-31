@@ -324,7 +324,7 @@ public class Info implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Info
      * @throws IOException if the JSON string is invalid with respect to Info
-     */
+  */
   public static Info fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Info.class);
   }
@@ -333,7 +333,7 @@ public class Info implements Serializable {
      * Convert an instance of Info to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

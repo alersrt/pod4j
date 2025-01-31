@@ -285,7 +285,7 @@ public class LinuxWeightDevice implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxWeightDevice
      * @throws IOException if the JSON string is invalid with respect to LinuxWeightDevice
-     */
+  */
   public static LinuxWeightDevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxWeightDevice.class);
   }
@@ -294,7 +294,7 @@ public class LinuxWeightDevice implements Serializable {
      * Convert an instance of LinuxWeightDevice to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -607,7 +607,7 @@ public class PlayKubeReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PlayKubeReport
      * @throws IOException if the JSON string is invalid with respect to PlayKubeReport
-     */
+  */
   public static PlayKubeReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PlayKubeReport.class);
   }
@@ -616,7 +616,7 @@ public class PlayKubeReport implements Serializable {
      * Convert an instance of PlayKubeReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

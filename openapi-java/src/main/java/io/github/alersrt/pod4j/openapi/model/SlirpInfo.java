@@ -264,7 +264,7 @@ public class SlirpInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SlirpInfo
      * @throws IOException if the JSON string is invalid with respect to SlirpInfo
-     */
+  */
   public static SlirpInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SlirpInfo.class);
   }
@@ -273,7 +273,7 @@ public class SlirpInfo implements Serializable {
      * Convert an instance of SlirpInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

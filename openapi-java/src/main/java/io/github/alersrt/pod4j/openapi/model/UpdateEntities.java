@@ -1279,7 +1279,7 @@ public class UpdateEntities implements Serializable {
      * @param jsonString JSON string
      * @return An instance of UpdateEntities
      * @throws IOException if the JSON string is invalid with respect to UpdateEntities
-     */
+  */
   public static UpdateEntities fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateEntities.class);
   }
@@ -1288,7 +1288,7 @@ public class UpdateEntities implements Serializable {
      * Convert an instance of UpdateEntities to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

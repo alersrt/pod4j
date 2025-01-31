@@ -231,7 +231,7 @@ public class AuthReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of AuthReport
      * @throws IOException if the JSON string is invalid with respect to AuthReport
-     */
+  */
   public static AuthReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AuthReport.class);
   }
@@ -240,7 +240,7 @@ public class AuthReport implements Serializable {
      * Convert an instance of AuthReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

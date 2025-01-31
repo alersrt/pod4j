@@ -1446,7 +1446,7 @@ public class InspectContainerConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectContainerConfig
      * @throws IOException if the JSON string is invalid with respect to InspectContainerConfig
-     */
+  */
   public static InspectContainerConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectContainerConfig.class);
   }
@@ -1455,7 +1455,7 @@ public class InspectContainerConfig implements Serializable {
      * Convert an instance of InspectContainerConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

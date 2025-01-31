@@ -494,7 +494,7 @@ public class LinuxBlockIO implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxBlockIO
      * @throws IOException if the JSON string is invalid with respect to LinuxBlockIO
-     */
+  */
   public static LinuxBlockIO fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxBlockIO.class);
   }
@@ -503,7 +503,7 @@ public class LinuxBlockIO implements Serializable {
      * Convert an instance of LinuxBlockIO to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

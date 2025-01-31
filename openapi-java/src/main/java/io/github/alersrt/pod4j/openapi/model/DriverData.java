@@ -238,7 +238,7 @@ public class DriverData implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DriverData
      * @throws IOException if the JSON string is invalid with respect to DriverData
-     */
+  */
   public static DriverData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DriverData.class);
   }
@@ -247,7 +247,7 @@ public class DriverData implements Serializable {
      * Convert an instance of DriverData to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

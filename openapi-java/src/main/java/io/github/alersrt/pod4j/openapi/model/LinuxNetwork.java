@@ -260,7 +260,7 @@ public class LinuxNetwork implements Serializable {
      * Convert an instance of LinuxNetwork to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

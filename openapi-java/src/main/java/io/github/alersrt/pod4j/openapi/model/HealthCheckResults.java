@@ -284,7 +284,7 @@ public class HealthCheckResults implements Serializable {
      * @param jsonString JSON string
      * @return An instance of HealthCheckResults
      * @throws IOException if the JSON string is invalid with respect to HealthCheckResults
-     */
+  */
   public static HealthCheckResults fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HealthCheckResults.class);
   }
@@ -293,7 +293,7 @@ public class HealthCheckResults implements Serializable {
      * Convert an instance of HealthCheckResults to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

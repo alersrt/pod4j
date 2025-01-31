@@ -238,7 +238,7 @@ public class FilesystemChange implements Serializable {
      * @param jsonString JSON string
      * @return An instance of FilesystemChange
      * @throws IOException if the JSON string is invalid with respect to FilesystemChange
-     */
+  */
   public static FilesystemChange fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, FilesystemChange.class);
   }
@@ -247,7 +247,7 @@ public class FilesystemChange implements Serializable {
      * Convert an instance of FilesystemChange to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

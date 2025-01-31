@@ -1249,7 +1249,7 @@ public class CreateContainerConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of CreateContainerConfig
      * @throws IOException if the JSON string is invalid with respect to CreateContainerConfig
-     */
+  */
   public static CreateContainerConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateContainerConfig.class);
   }
@@ -1258,7 +1258,7 @@ public class CreateContainerConfig implements Serializable {
      * Convert an instance of CreateContainerConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

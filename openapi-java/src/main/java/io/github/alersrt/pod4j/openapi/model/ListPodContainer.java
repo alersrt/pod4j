@@ -293,7 +293,7 @@ public class ListPodContainer implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ListPodContainer
      * @throws IOException if the JSON string is invalid with respect to ListPodContainer
-     */
+  */
   public static ListPodContainer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ListPodContainer.class);
   }
@@ -302,7 +302,7 @@ public class ListPodContainer implements Serializable {
      * Convert an instance of ListPodContainer to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -303,7 +303,7 @@ public class VolumeOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of VolumeOptions
      * @throws IOException if the JSON string is invalid with respect to VolumeOptions
-     */
+  */
   public static VolumeOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, VolumeOptions.class);
   }
@@ -312,7 +312,7 @@ public class VolumeOptions implements Serializable {
      * Convert an instance of VolumeOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

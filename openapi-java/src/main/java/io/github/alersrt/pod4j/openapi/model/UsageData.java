@@ -236,7 +236,7 @@ public class UsageData implements Serializable {
      * @param jsonString JSON string
      * @return An instance of UsageData
      * @throws IOException if the JSON string is invalid with respect to UsageData
-     */
+  */
   public static UsageData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UsageData.class);
   }
@@ -245,7 +245,7 @@ public class UsageData implements Serializable {
      * Convert an instance of UsageData to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

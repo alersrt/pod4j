@@ -241,7 +241,7 @@ public class PodKillReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodKillReport
      * @throws IOException if the JSON string is invalid with respect to PodKillReport
-     */
+  */
   public static PodKillReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodKillReport.class);
   }
@@ -250,7 +250,7 @@ public class PodKillReport implements Serializable {
      * Convert an instance of PodKillReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

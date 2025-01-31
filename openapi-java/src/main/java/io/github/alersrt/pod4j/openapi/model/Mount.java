@@ -464,7 +464,7 @@ public class Mount implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Mount
      * @throws IOException if the JSON string is invalid with respect to Mount
-     */
+  */
   public static Mount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Mount.class);
   }
@@ -473,7 +473,7 @@ public class Mount implements Serializable {
      * Convert an instance of Mount to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

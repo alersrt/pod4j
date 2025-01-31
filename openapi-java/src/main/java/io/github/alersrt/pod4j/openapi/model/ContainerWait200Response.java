@@ -230,7 +230,7 @@ public class ContainerWait200Response implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerWait200Response
      * @throws IOException if the JSON string is invalid with respect to ContainerWait200Response
-     */
+  */
   public static ContainerWait200Response fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerWait200Response.class);
   }
@@ -239,7 +239,7 @@ public class ContainerWait200Response implements Serializable {
      * Convert an instance of ContainerWait200Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

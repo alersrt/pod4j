@@ -251,7 +251,7 @@ public class NetworkUpdateOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkUpdateOptions
      * @throws IOException if the JSON string is invalid with respect to NetworkUpdateOptions
-     */
+  */
   public static NetworkUpdateOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkUpdateOptions.class);
   }
@@ -260,7 +260,7 @@ public class NetworkUpdateOptions implements Serializable {
      * Convert an instance of NetworkUpdateOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

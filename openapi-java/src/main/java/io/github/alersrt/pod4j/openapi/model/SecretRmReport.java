@@ -230,7 +230,7 @@ public class SecretRmReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretRmReport
      * @throws IOException if the JSON string is invalid with respect to SecretRmReport
-     */
+  */
   public static SecretRmReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretRmReport.class);
   }
@@ -239,7 +239,7 @@ public class SecretRmReport implements Serializable {
      * Convert an instance of SecretRmReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

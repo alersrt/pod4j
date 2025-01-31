@@ -559,7 +559,7 @@ public class ContainerResourceConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerResourceConfig
      * @throws IOException if the JSON string is invalid with respect to ContainerResourceConfig
-     */
+  */
   public static ContainerResourceConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerResourceConfig.class);
   }
@@ -568,7 +568,7 @@ public class ContainerResourceConfig implements Serializable {
      * Convert an instance of ContainerResourceConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

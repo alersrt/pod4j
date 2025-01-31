@@ -337,7 +337,7 @@ public class Plugin implements Serializable {
         // validate the optional field `Settings`
         if (jsonObj.get("Settings") != null && !jsonObj.get("Settings").isJsonNull()) {
             PluginSettings.validateJsonObject(jsonObj.getAsJsonObject("Settings"));
-        }
+      }
       if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
       }
@@ -381,7 +381,7 @@ public class Plugin implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Plugin
      * @throws IOException if the JSON string is invalid with respect to Plugin
-     */
+  */
   public static Plugin fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Plugin.class);
   }
@@ -390,7 +390,7 @@ public class Plugin implements Serializable {
      * Convert an instance of Plugin to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

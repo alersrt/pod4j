@@ -262,7 +262,7 @@ public class SecretDeleteLibpod404Response implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretDeleteLibpod404Response
      * @throws IOException if the JSON string is invalid with respect to SecretDeleteLibpod404Response
-     */
+  */
   public static SecretDeleteLibpod404Response fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretDeleteLibpod404Response.class);
   }
@@ -271,7 +271,7 @@ public class SecretDeleteLibpod404Response implements Serializable {
      * Convert an instance of SecretDeleteLibpod404Response to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

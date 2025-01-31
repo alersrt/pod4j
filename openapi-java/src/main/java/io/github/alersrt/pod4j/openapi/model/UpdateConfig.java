@@ -1343,7 +1343,7 @@ public class UpdateConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of UpdateConfig
      * @throws IOException if the JSON string is invalid with respect to UpdateConfig
-     */
+  */
   public static UpdateConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateConfig.class);
   }
@@ -1352,7 +1352,7 @@ public class UpdateConfig implements Serializable {
      * Convert an instance of UpdateConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

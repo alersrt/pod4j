@@ -267,7 +267,7 @@ public class ContainerCgroupConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerCgroupConfig
      * @throws IOException if the JSON string is invalid with respect to ContainerCgroupConfig
-     */
+  */
   public static ContainerCgroupConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerCgroupConfig.class);
   }
@@ -276,7 +276,7 @@ public class ContainerCgroupConfig implements Serializable {
      * Convert an instance of ContainerCgroupConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

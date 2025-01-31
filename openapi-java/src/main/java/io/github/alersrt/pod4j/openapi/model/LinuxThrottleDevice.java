@@ -255,7 +255,7 @@ public class LinuxThrottleDevice implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxThrottleDevice
      * @throws IOException if the JSON string is invalid with respect to LinuxThrottleDevice
-     */
+  */
   public static LinuxThrottleDevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxThrottleDevice.class);
   }
@@ -264,7 +264,7 @@ public class LinuxThrottleDevice implements Serializable {
      * Convert an instance of LinuxThrottleDevice to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

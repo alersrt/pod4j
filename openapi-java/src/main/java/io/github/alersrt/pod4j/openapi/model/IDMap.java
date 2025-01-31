@@ -255,7 +255,7 @@ public class IDMap implements Serializable {
      * @param jsonString JSON string
      * @return An instance of IDMap
      * @throws IOException if the JSON string is invalid with respect to IDMap
-     */
+  */
   public static IDMap fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IDMap.class);
   }
@@ -264,7 +264,7 @@ public class IDMap implements Serializable {
      * Convert an instance of IDMap to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

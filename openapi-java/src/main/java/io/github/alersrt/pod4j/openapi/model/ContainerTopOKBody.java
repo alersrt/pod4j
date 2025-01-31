@@ -257,7 +257,7 @@ public class ContainerTopOKBody implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerTopOKBody
      * @throws IOException if the JSON string is invalid with respect to ContainerTopOKBody
-     */
+  */
   public static ContainerTopOKBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerTopOKBody.class);
   }
@@ -266,7 +266,7 @@ public class ContainerTopOKBody implements Serializable {
      * Convert an instance of ContainerTopOKBody to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

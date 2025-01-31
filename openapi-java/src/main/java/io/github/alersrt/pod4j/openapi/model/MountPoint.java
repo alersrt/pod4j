@@ -426,7 +426,7 @@ public class MountPoint implements Serializable {
      * @param jsonString JSON string
      * @return An instance of MountPoint
      * @throws IOException if the JSON string is invalid with respect to MountPoint
-     */
+  */
   public static MountPoint fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MountPoint.class);
   }
@@ -435,7 +435,7 @@ public class MountPoint implements Serializable {
      * Convert an instance of MountPoint to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

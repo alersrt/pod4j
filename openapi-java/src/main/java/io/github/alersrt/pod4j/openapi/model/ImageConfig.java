@@ -103,16 +103,16 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig argsEscaped(Boolean argsEscaped) {
 
-      this.argsEscaped = argsEscaped;
+    this.argsEscaped = argsEscaped;
     return this;
   }
 
-    /**
+  /**
    * ArgsEscaped  Deprecated: This field is present only for legacy compatibility with Docker and should not be used by new image builders.  It is used by Docker for Windows images to indicate that the &#x60;Entrypoint&#x60; or &#x60;Cmd&#x60; or both, contains only a single element array, that is a pre-escaped, and combined into a single string &#x60;CommandLine&#x60;. If &#x60;true&#x60; the value in &#x60;Entrypoint&#x60; or &#x60;Cmd&#x60; should be used as-is to avoid double escaping. https://github.com/opencontainers/image-spec/pull/892
    * @return argsEscaped
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ArgsEscaped  Deprecated: This field is present only for legacy compatibility with Docker and should not be used by new image builders.  It is used by Docker for Windows images to indicate that the `Entrypoint` or `Cmd` or both, contains only a single element array, that is a pre-escaped, and combined into a single string `CommandLine`. If `true` the value in `Entrypoint` or `Cmd` should be used as-is to avoid double escaping. https://github.com/opencontainers/image-spec/pull/892")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ArgsEscaped  Deprecated: This field is present only for legacy compatibility with Docker and should not be used by new image builders.  It is used by Docker for Windows images to indicate that the `Entrypoint` or `Cmd` or both, contains only a single element array, that is a pre-escaped, and combined into a single string `CommandLine`. If `true` the value in `Entrypoint` or `Cmd` should be used as-is to avoid double escaping. https://github.com/opencontainers/image-spec/pull/892")
 
   public Boolean getArgsEscaped() {
     return argsEscaped;
@@ -126,7 +126,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig cmd(List<String> cmd) {
 
-      this.cmd = cmd;
+    this.cmd = cmd;
     return this;
   }
 
@@ -138,12 +138,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Cmd defines the default arguments to the entrypoint of the container.
    * @return cmd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Cmd defines the default arguments to the entrypoint of the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Cmd defines the default arguments to the entrypoint of the container.")
 
   public List<String> getCmd() {
     return cmd;
@@ -157,7 +157,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig entrypoint(List<String> entrypoint) {
 
-      this.entrypoint = entrypoint;
+    this.entrypoint = entrypoint;
     return this;
   }
 
@@ -169,12 +169,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Entrypoint defines a list of arguments to use as the command to execute when the container starts.
    * @return entrypoint
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Entrypoint defines a list of arguments to use as the command to execute when the container starts.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Entrypoint defines a list of arguments to use as the command to execute when the container starts.")
 
   public List<String> getEntrypoint() {
     return entrypoint;
@@ -188,7 +188,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig env(List<String> env) {
 
-      this.env = env;
+    this.env = env;
     return this;
   }
 
@@ -200,12 +200,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Env is a list of environment variables to be used in a container.
    * @return env
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Env is a list of environment variables to be used in a container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Env is a list of environment variables to be used in a container.")
 
   public List<String> getEnv() {
     return env;
@@ -219,7 +219,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig exposedPorts(Map<String, Object> exposedPorts) {
 
-      this.exposedPorts = exposedPorts;
+    this.exposedPorts = exposedPorts;
     return this;
   }
 
@@ -231,12 +231,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ExposedPorts a set of ports to expose from a container running this image.
    * @return exposedPorts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ExposedPorts a set of ports to expose from a container running this image.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ExposedPorts a set of ports to expose from a container running this image.")
 
   public Map<String, Object> getExposedPorts() {
     return exposedPorts;
@@ -250,7 +250,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -262,12 +262,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Labels contains arbitrary metadata for the container.
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Labels contains arbitrary metadata for the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels contains arbitrary metadata for the container.")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -281,16 +281,16 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig stopSignal(String stopSignal) {
 
-      this.stopSignal = stopSignal;
+    this.stopSignal = stopSignal;
     return this;
   }
 
-    /**
+  /**
    * StopSignal contains the system call signal that will be sent to the container to exit.
    * @return stopSignal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "StopSignal contains the system call signal that will be sent to the container to exit.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StopSignal contains the system call signal that will be sent to the container to exit.")
 
   public String getStopSignal() {
     return stopSignal;
@@ -304,16 +304,16 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig user(String user) {
 
-      this.user = user;
+    this.user = user;
     return this;
   }
 
-    /**
+  /**
    * User defines the username or UID which the process in the container should run as.
    * @return user
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "User defines the username or UID which the process in the container should run as.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User defines the username or UID which the process in the container should run as.")
 
   public String getUser() {
     return user;
@@ -327,7 +327,7 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig volumes(Map<String, Object> volumes) {
 
-      this.volumes = volumes;
+    this.volumes = volumes;
     return this;
   }
 
@@ -339,12 +339,12 @@ public class ImageConfig implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Volumes is a set of directories describing where the process is likely write data specific to a container instance.
    * @return volumes
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Volumes is a set of directories describing where the process is likely write data specific to a container instance.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Volumes is a set of directories describing where the process is likely write data specific to a container instance.")
 
   public Map<String, Object> getVolumes() {
     return volumes;
@@ -358,16 +358,16 @@ public class ImageConfig implements Serializable {
 
   public ImageConfig workingDir(String workingDir) {
 
-      this.workingDir = workingDir;
+    this.workingDir = workingDir;
     return this;
   }
 
-    /**
+  /**
    * WorkingDir sets the current working directory of the entrypoint process in the container.
    * @return workingDir
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "WorkingDir sets the current working directory of the entrypoint process in the container.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "WorkingDir sets the current working directory of the entrypoint process in the container.")
 
   public String getWorkingDir() {
     return workingDir;
@@ -457,38 +457,38 @@ public class ImageConfig implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ImageConfig
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ImageConfig.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ImageConfig is not found in the empty JSON string", ImageConfig.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to ImageConfig
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (ImageConfig.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in ImageConfig is not found in the empty JSON string", ImageConfig.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!ImageConfig.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageConfig` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull()) && !jsonObj.get("Cmd").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull()) && !jsonObj.get("Cmd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull()) && !jsonObj.get("Entrypoint").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull()) && !jsonObj.get("Entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull()) && !jsonObj.get("Env").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull()) && !jsonObj.get("Env").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
       }
       if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
@@ -522,31 +522,31 @@ public class ImageConfig implements Serializable {
 
            @Override
            public ImageConfig read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of ImageConfig given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ImageConfig
-     * @throws IOException if the JSON string is invalid with respect to ImageConfig
-     */
+  /**
+   * Create an instance of ImageConfig given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ImageConfig
+   * @throws IOException if the JSON string is invalid with respect to ImageConfig
+  */
   public static ImageConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageConfig.class);
   }
 
-    /**
-     * Convert an instance of ImageConfig to an JSON string
-     *
-     * @return JSON string
-     */
+  /**
+   * Convert an instance of ImageConfig to an JSON string
+   *
+   * @return JSON string
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

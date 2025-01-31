@@ -228,7 +228,7 @@ public class LinuxInterfacePriority implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxInterfacePriority
      * @throws IOException if the JSON string is invalid with respect to LinuxInterfacePriority
-     */
+  */
   public static LinuxInterfacePriority fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxInterfacePriority.class);
   }
@@ -237,7 +237,7 @@ public class LinuxInterfacePriority implements Serializable {
      * Convert an instance of LinuxInterfacePriority to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

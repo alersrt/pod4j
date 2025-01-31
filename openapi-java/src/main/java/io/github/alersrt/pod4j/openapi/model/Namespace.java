@@ -231,7 +231,7 @@ public class Namespace implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Namespace
      * @throws IOException if the JSON string is invalid with respect to Namespace
-     */
+  */
   public static Namespace fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Namespace.class);
   }
@@ -240,7 +240,7 @@ public class Namespace implements Serializable {
      * Convert an instance of Namespace to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

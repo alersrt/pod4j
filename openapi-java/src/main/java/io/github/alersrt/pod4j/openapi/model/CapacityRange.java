@@ -225,7 +225,7 @@ public class CapacityRange implements Serializable {
      * @param jsonString JSON string
      * @return An instance of CapacityRange
      * @throws IOException if the JSON string is invalid with respect to CapacityRange
-     */
+  */
   public static CapacityRange fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CapacityRange.class);
   }
@@ -234,7 +234,7 @@ public class CapacityRange implements Serializable {
      * Convert an instance of CapacityRange to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

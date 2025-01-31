@@ -852,7 +852,7 @@ public class ImageInspect implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageInspect
      * @throws IOException if the JSON string is invalid with respect to ImageInspect
-     */
+  */
   public static ImageInspect fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageInspect.class);
   }
@@ -861,7 +861,7 @@ public class ImageInspect implements Serializable {
      * Convert an instance of ImageInspect to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

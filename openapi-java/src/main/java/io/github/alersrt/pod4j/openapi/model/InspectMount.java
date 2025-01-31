@@ -503,7 +503,7 @@ public class InspectMount implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectMount
      * @throws IOException if the JSON string is invalid with respect to InspectMount
-     */
+  */
   public static InspectMount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectMount.class);
   }
@@ -512,7 +512,7 @@ public class InspectMount implements Serializable {
      * Convert an instance of InspectMount to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

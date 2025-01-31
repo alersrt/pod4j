@@ -584,7 +584,7 @@ public class SystemComponentVersion implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SystemComponentVersion
      * @throws IOException if the JSON string is invalid with respect to SystemComponentVersion
-     */
+  */
   public static SystemComponentVersion fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemComponentVersion.class);
   }
@@ -593,7 +593,7 @@ public class SystemComponentVersion implements Serializable {
      * Convert an instance of SystemComponentVersion to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

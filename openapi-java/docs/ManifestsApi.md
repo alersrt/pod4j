@@ -13,6 +13,7 @@ All URIs are relative to *http://podman.io*
 | [**manifestPushLibpod**](ManifestsApi.md#manifestPushLibpod) | **POST** /libpod/manifests/{name}/registry/{destination} | Push manifest list to registry |
 | [**manifestPushV3Libpod**](ManifestsApi.md#manifestPushV3Libpod) | **POST** /libpod/manifests/{name}/push | Push manifest to registry |
 
+
 <a name="manifestAddLibpod"></a>
 # **manifestAddLibpod**
 > IdResponse manifestAddLibpod(name).options(options).execute();
@@ -161,7 +162,6 @@ No authorization required
 
 <a name="manifestDeleteLibpod"></a>
 # **manifestDeleteLibpod**
-
 > LibpodImagesRemoveReport manifestDeleteLibpod(name).ignore(ignore).execute();
 
 Delete manifest list

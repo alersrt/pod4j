@@ -340,7 +340,7 @@ public class Platform implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Platform
      * @throws IOException if the JSON string is invalid with respect to Platform
-     */
+  */
   public static Platform fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Platform.class);
   }
@@ -349,7 +349,7 @@ public class Platform implements Serializable {
      * Convert an instance of Platform to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -225,7 +225,7 @@ public class ManifestSummarySize implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ManifestSummarySize
      * @throws IOException if the JSON string is invalid with respect to ManifestSummarySize
-     */
+  */
   public static ManifestSummarySize fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestSummarySize.class);
   }
@@ -234,7 +234,7 @@ public class ManifestSummarySize implements Serializable {
      * Convert an instance of ManifestSummarySize to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

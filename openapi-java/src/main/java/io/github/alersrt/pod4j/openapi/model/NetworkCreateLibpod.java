@@ -687,7 +687,7 @@ public class NetworkCreateLibpod implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkCreateLibpod
      * @throws IOException if the JSON string is invalid with respect to NetworkCreateLibpod
-     */
+  */
   public static NetworkCreateLibpod fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkCreateLibpod.class);
   }
@@ -696,7 +696,7 @@ public class NetworkCreateLibpod implements Serializable {
      * Convert an instance of NetworkCreateLibpod to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

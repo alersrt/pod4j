@@ -228,7 +228,7 @@ public class InspectBlkioWeightDevice implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectBlkioWeightDevice
      * @throws IOException if the JSON string is invalid with respect to InspectBlkioWeightDevice
-     */
+  */
   public static InspectBlkioWeightDevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectBlkioWeightDevice.class);
   }
@@ -237,7 +237,7 @@ public class InspectBlkioWeightDevice implements Serializable {
      * Convert an instance of InspectBlkioWeightDevice to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

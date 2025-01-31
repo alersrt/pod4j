@@ -326,7 +326,7 @@ public class PluginConfigArgs implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginConfigArgs
      * @throws IOException if the JSON string is invalid with respect to PluginConfigArgs
-     */
+  */
   public static PluginConfigArgs fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginConfigArgs.class);
   }
@@ -335,7 +335,7 @@ public class PluginConfigArgs implements Serializable {
      * Convert an instance of PluginConfigArgs to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

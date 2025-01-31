@@ -61,7 +61,7 @@ public class KubePlayer implements GenericContainer {
             .build();
         this.api = new ApiClient()
             .setHttpClient(httpClient)
-            .setBasePath("http://localhost/v5.3.1");
+                .setBasePath("http://localhost/v5.0.0");
 
         this.yamlPath = yamlPath;
 

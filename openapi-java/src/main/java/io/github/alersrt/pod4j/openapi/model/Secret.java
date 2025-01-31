@@ -231,7 +231,7 @@ public class Secret implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Secret
      * @throws IOException if the JSON string is invalid with respect to Secret
-     */
+  */
   public static Secret fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Secret.class);
   }
@@ -240,7 +240,7 @@ public class Secret implements Serializable {
      * Convert an instance of Secret to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

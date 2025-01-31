@@ -225,7 +225,7 @@ public class LinuxBlockIODevice implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LinuxBlockIODevice
      * @throws IOException if the JSON string is invalid with respect to LinuxBlockIODevice
-     */
+  */
   public static LinuxBlockIODevice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LinuxBlockIODevice.class);
   }
@@ -234,7 +234,7 @@ public class LinuxBlockIODevice implements Serializable {
      * Convert an instance of LinuxBlockIODevice to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

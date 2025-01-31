@@ -304,7 +304,7 @@ public class Task implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Task
      * @throws IOException if the JSON string is invalid with respect to Task
-     */
+  */
   public static Task fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Task.class);
   }
@@ -313,7 +313,7 @@ public class Task implements Serializable {
      * Convert an instance of Task to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

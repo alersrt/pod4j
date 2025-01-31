@@ -277,7 +277,7 @@ public class PluginInterfaceType implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginInterfaceType
      * @throws IOException if the JSON string is invalid with respect to PluginInterfaceType
-     */
+  */
   public static PluginInterfaceType fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginInterfaceType.class);
   }
@@ -286,7 +286,7 @@ public class PluginInterfaceType implements Serializable {
      * Convert an instance of PluginInterfaceType to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -206,7 +206,7 @@ public class PlayKubeVolume implements Serializable {
      * Convert an instance of PlayKubeVolume to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

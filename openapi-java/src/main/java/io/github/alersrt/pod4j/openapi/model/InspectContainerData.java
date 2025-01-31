@@ -1238,15 +1238,16 @@ public class InspectContainerData implements Serializable {
     public InspectContainerData lockNumber(Integer lockNumber) {
     
     this.lockNumber = lockNumber;
-        return this;
+    return this;
   }
 
-   /**
-   * Get lockNumber
-    * @return lockNumber
-    **/
-   @javax.annotation.Nullable
-   @ApiModelProperty(value = "")
+    /**
+     * Get lockNumber
+     *
+     * @return lockNumber
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
 
   public Integer getLockNumber() {
     return lockNumber;
@@ -1312,9 +1313,9 @@ public class InspectContainerData implements Serializable {
         Objects.equals(this.lockNumber, inspectContainerData.lockNumber);
   }
 
-  @Override
-  public int hashCode() {
-      return Objects.hash(appArmorProfile, args, boundingCaps, config, conmonPidFile, created, dependencies, driver, effectiveCaps, execIDs, graphDriver, hostConfig, hostnamePath, hostsPath, id, image, imageDigest, imageName, isInfra, isService, kubeExitCodePropagation, mountLabel, mounts, name, namespace, networkSettings, ocIConfigPath, ocIRuntime, path, pidFile, pod, processLabel, resolvConfPath, restartCount, rootfs, sizeRootFs, sizeRw, state, staticDir, useImageHostname, useImageHosts, lockNumber);
+    @Override
+    public int hashCode() {
+        return Objects.hash(appArmorProfile, args, boundingCaps, config, conmonPidFile, created, dependencies, driver, effectiveCaps, execIDs, graphDriver, hostConfig, hostnamePath, hostsPath, id, image, imageDigest, imageName, isInfra, isService, kubeExitCodePropagation, mountLabel, mounts, name, namespace, networkSettings, ocIConfigPath, ocIRuntime, path, pidFile, pod, processLabel, resolvConfPath, restartCount, rootfs, sizeRootFs, sizeRw, state, staticDir, useImageHostname, useImageHosts, lockNumber);
   }
 
   @Override
@@ -1423,9 +1424,9 @@ public class InspectContainerData implements Serializable {
     openapiFields.add("SizeRootFs");
     openapiFields.add("SizeRw");
     openapiFields.add("State");
-    openapiFields.add("StaticDir");
+      openapiFields.add("StaticDir");
       openapiFields.add("UseImageHostname");
-      openapiFields.add("UseImageHosts");
+    openapiFields.add("UseImageHosts");
     openapiFields.add("lockNumber");
 
     // a set of required properties/fields (JSON key names)
@@ -1442,14 +1443,14 @@ public class InspectContainerData implements Serializable {
         if (jsonObj == null) {
             if (InspectContainerData.openapiRequiredFields.isEmpty()) {
                 return;
-            } else { // has required fields
+        } else { // has required fields
           throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerData is not found in the empty JSON string", InspectContainerData.openapiRequiredFields.toString()));
             }
         }
 
         Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+      for (Entry<String, JsonElement> entry : entries) {
         if (!InspectContainerData.openapiFields.contains(entry.getKey())) {
             throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerData` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
@@ -1528,8 +1529,8 @@ public class InspectContainerData implements Serializable {
           }
 
           // validate the optional field `Mounts` (array)
-          for (int i = 0; i < jsonArraymounts.size(); i++) {
-              InspectMount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
+            for (int i = 0; i < jsonArraymounts.size(); i++) {
+                InspectMount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -1598,7 +1599,7 @@ public class InspectContainerData implements Serializable {
            public InspectContainerData read(JsonReader in) throws IOException {
                JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
                validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
@@ -1618,8 +1619,8 @@ public class InspectContainerData implements Serializable {
 
     /**
      * Convert an instance of InspectContainerData to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

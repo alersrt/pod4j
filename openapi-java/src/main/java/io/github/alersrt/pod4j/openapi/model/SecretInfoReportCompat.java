@@ -365,7 +365,7 @@ public class SecretInfoReportCompat implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretInfoReportCompat
      * @throws IOException if the JSON string is invalid with respect to SecretInfoReportCompat
-     */
+  */
   public static SecretInfoReportCompat fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretInfoReportCompat.class);
   }
@@ -374,7 +374,7 @@ public class SecretInfoReportCompat implements Serializable {
      * Convert an instance of SecretInfoReportCompat to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

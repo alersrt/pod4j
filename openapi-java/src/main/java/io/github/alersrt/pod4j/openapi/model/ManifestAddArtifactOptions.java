@@ -853,7 +853,7 @@ public class ManifestAddArtifactOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ManifestAddArtifactOptions
      * @throws IOException if the JSON string is invalid with respect to ManifestAddArtifactOptions
-     */
+  */
   public static ManifestAddArtifactOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestAddArtifactOptions.class);
   }
@@ -862,7 +862,7 @@ public class ManifestAddArtifactOptions implements Serializable {
      * Convert an instance of ManifestAddArtifactOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

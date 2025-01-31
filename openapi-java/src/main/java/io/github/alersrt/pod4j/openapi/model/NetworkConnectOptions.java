@@ -390,7 +390,7 @@ public class NetworkConnectOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of NetworkConnectOptions
      * @throws IOException if the JSON string is invalid with respect to NetworkConnectOptions
-     */
+  */
   public static NetworkConnectOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, NetworkConnectOptions.class);
   }
@@ -399,7 +399,7 @@ public class NetworkConnectOptions implements Serializable {
      * Convert an instance of NetworkConnectOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

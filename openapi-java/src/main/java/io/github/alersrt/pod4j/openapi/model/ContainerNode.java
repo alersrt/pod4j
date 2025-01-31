@@ -397,7 +397,7 @@ public class ContainerNode implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainerNode
      * @throws IOException if the JSON string is invalid with respect to ContainerNode
-     */
+  */
   public static ContainerNode fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainerNode.class);
   }
@@ -406,7 +406,7 @@ public class ContainerNode implements Serializable {
      * Convert an instance of ContainerNode to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

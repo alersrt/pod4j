@@ -263,7 +263,7 @@ public class DeviceMapping implements Serializable {
      * @param jsonString JSON string
      * @return An instance of DeviceMapping
      * @throws IOException if the JSON string is invalid with respect to DeviceMapping
-     */
+  */
   public static DeviceMapping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DeviceMapping.class);
   }
@@ -272,7 +272,7 @@ public class DeviceMapping implements Serializable {
      * Convert an instance of DeviceMapping to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

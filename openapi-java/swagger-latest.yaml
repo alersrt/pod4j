@@ -11247,6 +11247,23 @@ definitions:
         x-go-package: github.com/docker/docker/api/types/container
     Version:
         properties:
+            APIVersion:
+                type: string
+            Version:
+                type: string
+            GoVersion:
+                type: string
+            GitCommit:
+                type: string
+            BuiltTime:
+                type: string
+            Built:
+                format: uint64
+                type: integer
+            OsArch:
+                type: string
+            Os:
+                type: string
             Index:
                 format: uint64
                 type: integer

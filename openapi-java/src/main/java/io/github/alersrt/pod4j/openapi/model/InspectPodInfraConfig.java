@@ -397,7 +397,7 @@ public class InspectPodInfraConfig implements Serializable {
 
     public void setNoManageHostname(Boolean noManageHostname) {
         this.noManageHostname = noManageHostname;
-    }
+  }
 
 
   public InspectPodInfraConfig noManageHosts(Boolean noManageHosts) {
@@ -449,7 +449,7 @@ public class InspectPodInfraConfig implements Serializable {
     public InspectPodInfraConfig portBindings(Map<String, List<InspectHostPort>> portBindings) {
     
     this.portBindings = portBindings;
-    return this;
+        return this;
     }
 
     public InspectPodInfraConfig putPortBindingsItem(String key, List<InspectHostPort> portBindingsItem) {
@@ -877,8 +877,8 @@ public class InspectPodInfraConfig implements Serializable {
 
     /**
      * Convert an instance of InspectPodInfraConfig to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

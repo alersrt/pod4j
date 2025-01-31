@@ -273,7 +273,7 @@ public class SecretSpec implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecretSpec
      * @throws IOException if the JSON string is invalid with respect to SecretSpec
-     */
+  */
   public static SecretSpec fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecretSpec.class);
   }
@@ -282,7 +282,7 @@ public class SecretSpec implements Serializable {
      * Convert an instance of SecretSpec to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

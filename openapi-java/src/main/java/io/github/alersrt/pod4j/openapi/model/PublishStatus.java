@@ -271,7 +271,7 @@ public class PublishStatus implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PublishStatus
      * @throws IOException if the JSON string is invalid with respect to PublishStatus
-     */
+  */
   public static PublishStatus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PublishStatus.class);
   }
@@ -280,7 +280,7 @@ public class PublishStatus implements Serializable {
      * Convert an instance of PublishStatus to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

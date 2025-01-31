@@ -317,7 +317,7 @@ public class BindOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of BindOptions
      * @throws IOException if the JSON string is invalid with respect to BindOptions
-     */
+  */
   public static BindOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BindOptions.class);
   }
@@ -326,7 +326,7 @@ public class BindOptions implements Serializable {
      * Convert an instance of BindOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

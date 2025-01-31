@@ -269,7 +269,7 @@ public class TmpfsOptions implements Serializable {
      * @param jsonString JSON string
      * @return An instance of TmpfsOptions
      * @throws IOException if the JSON string is invalid with respect to TmpfsOptions
-     */
+  */
   public static TmpfsOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, TmpfsOptions.class);
   }
@@ -278,7 +278,7 @@ public class TmpfsOptions implements Serializable {
      * Convert an instance of TmpfsOptions to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

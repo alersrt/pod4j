@@ -288,7 +288,7 @@ public class ImageProperties implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageProperties
      * @throws IOException if the JSON string is invalid with respect to ImageProperties
-     */
+  */
   public static ImageProperties fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageProperties.class);
   }
@@ -297,7 +297,7 @@ public class ImageProperties implements Serializable {
      * Convert an instance of ImageProperties to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

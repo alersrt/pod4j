@@ -527,9 +527,9 @@ public class SpecGenerator implements Serializable {
   @SerializedName(SERIALIZED_NAME_UNSETENVALL)
   private Boolean unsetenvall;
 
-    public static final String SERIALIZED_NAME_USE_IMAGE_HOSTNAME = "use_image_hostname";
-    @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTNAME)
-    private Boolean useImageHostname;
+  public static final String SERIALIZED_NAME_USE_IMAGE_HOSTNAME = "use_image_hostname";
+  @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTNAME)
+  private Boolean useImageHostname;
 
   public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "use_image_hosts";
   @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
@@ -576,7 +576,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator networks(Map<String, PerNetworkOptions> networks) {
 
-      this.networks = networks;
+    this.networks = networks;
     return this;
   }
 
@@ -588,13 +588,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
    * @return networks
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.")
+  @ApiModelProperty(value = "Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.")
 
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
@@ -608,7 +608,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator annotations(Map<String, String> annotations) {
 
-      this.annotations = annotations;
+    this.annotations = annotations;
     return this;
   }
 
@@ -620,12 +620,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
    * @return annotations
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.")
 
   public Map<String, String> getAnnotations() {
     return annotations;
@@ -639,16 +639,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator apparmorProfile(String apparmorProfile) {
 
-      this.apparmorProfile = apparmorProfile;
+    this.apparmorProfile = apparmorProfile;
     return this;
   }
 
-    /**
+  /**
    * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
    * @return apparmorProfile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ApparmorProfile is the name of the Apparmor profile the container will use. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ApparmorProfile is the name of the Apparmor profile the container will use. Optional.")
 
   public String getApparmorProfile() {
     return apparmorProfile;
@@ -662,16 +662,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator baseHostsFile(String baseHostsFile) {
 
-      this.baseHostsFile = baseHostsFile;
+    this.baseHostsFile = baseHostsFile;
     return this;
   }
 
-    /**
+  /**
    * BaseHostsFile is the base file to create the &#x60;/etc/hosts&#x60; file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags &#x60;image&#x60; or &#x60;none&#x60;. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "BaseHostsFile is the base file to create the `/etc/hosts` file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "BaseHostsFile is the base file to create the `/etc/hosts` file inside the container. This must either be an absolute path to a file on the host system, or one of the special flags `image` or `none`. If it is empty it defaults to the base_hosts_file configuration in containers.conf. Optional.")
 
   public String getBaseHostsFile() {
     return baseHostsFile;
@@ -685,7 +685,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator capAdd(List<String> capAdd) {
 
-      this.capAdd = capAdd;
+    this.capAdd = capAdd;
     return this;
   }
 
@@ -697,12 +697,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
    * @return capAdd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.")
 
   public List<String> getCapAdd() {
     return capAdd;
@@ -716,7 +716,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator capDrop(List<String> capDrop) {
 
-      this.capDrop = capDrop;
+    this.capDrop = capDrop;
     return this;
   }
 
@@ -728,12 +728,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
    * @return capDrop
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.")
 
   public List<String> getCapDrop() {
     return capDrop;
@@ -747,16 +747,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator cgroupParent(String cgroupParent) {
 
-      this.cgroupParent = cgroupParent;
+    this.cgroupParent = cgroupParent;
     return this;
   }
 
-    /**
+  /**
    * CgroupParent is the container&#39;s Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.
    * @return cgroupParent
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CgroupParent is the container's Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupParent is the container's Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.")
 
   public String getCgroupParent() {
     return cgroupParent;
@@ -770,17 +770,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator cgroupns(Namespace cgroupns) {
 
-      this.cgroupns = cgroupns;
+    this.cgroupns = cgroupns;
     return this;
   }
 
-    /**
+  /**
    * Get cgroupns
    * @return cgroupns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getCgroupns() {
     return cgroupns;
@@ -794,16 +794,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator cgroupsMode(String cgroupsMode) {
 
-      this.cgroupsMode = cgroupsMode;
+    this.cgroupsMode = cgroupsMode;
     return this;
   }
 
-    /**
+  /**
    * CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.
    * @return cgroupsMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.")
 
   public String getCgroupsMode() {
     return cgroupsMode;
@@ -817,7 +817,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator chrootDirectories(List<String> chrootDirectories) {
 
-      this.chrootDirectories = chrootDirectories;
+    this.chrootDirectories = chrootDirectories;
     return this;
   }
 
@@ -829,12 +829,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
    * @return chrootDirectories
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.")
 
   public List<String> getChrootDirectories() {
     return chrootDirectories;
@@ -848,7 +848,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator cniNetworks(List<String> cniNetworks) {
 
-      this.cniNetworks = cniNetworks;
+    this.cniNetworks = cniNetworks;
     return this;
   }
 
@@ -860,12 +860,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \"Networks\" instead.")
 
   public List<String> getCniNetworks() {
     return cniNetworks;
@@ -879,7 +879,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator command(List<String> command) {
 
-      this.command = command;
+    this.command = command;
     return this;
   }
 
@@ -891,12 +891,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return command
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Command is the container's command. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Command is the container's command. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getCommand() {
     return command;
@@ -910,16 +910,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator conmonPidFile(String conmonPidFile) {
 
-      this.conmonPidFile = conmonPidFile;
+    this.conmonPidFile = conmonPidFile;
     return this;
   }
 
-    /**
+  /**
    * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
    * @return conmonPidFile
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.")
 
   public String getConmonPidFile() {
     return conmonPidFile;
@@ -933,7 +933,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator containerCreateCommand(List<String> containerCreateCommand) {
 
-      this.containerCreateCommand = containerCreateCommand;
+    this.containerCreateCommand = containerCreateCommand;
     return this;
   }
 
@@ -945,12 +945,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
    * @return containerCreateCommand
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. `podman generate systemd --new`). Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. `podman generate systemd --new`). Optional.")
 
   public List<String> getContainerCreateCommand() {
     return containerCreateCommand;
@@ -964,16 +964,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator createWorkingDir(Boolean createWorkingDir) {
 
-      this.createWorkingDir = createWorkingDir;
+    this.createWorkingDir = createWorkingDir;
     return this;
   }
 
-    /**
+  /**
    * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
    * @return createWorkingDir
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Create the working directory if it doesn't exist. If unset, it doesn't create it. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Create the working directory if it doesn't exist. If unset, it doesn't create it. Optional.")
 
   public Boolean getCreateWorkingDir() {
     return createWorkingDir;
@@ -987,7 +987,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator dependencyContainers(List<String> dependencyContainers) {
 
-      this.dependencyContainers = dependencyContainers;
+    this.dependencyContainers = dependencyContainers;
     return this;
   }
 
@@ -999,12 +999,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
    * @return dependencyContainers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.")
 
   public List<String> getDependencyContainers() {
     return dependencyContainers;
@@ -1016,7 +1016,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator deviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
+  public SpecGenerator deviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
     
     this.deviceCgroupRule = deviceCgroupRule;
     return this;
@@ -1030,25 +1030,25 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
    * @return deviceCgroupRule
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.")
+  @ApiModelProperty(value = "DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.")
 
-    public List<LinuxDeviceCgroup> getDeviceCgroupRule() {
+  public List<LinuxDeviceCgroup> getDeviceCgroupRule() {
     return deviceCgroupRule;
   }
 
 
-    public void setDeviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
+  public void setDeviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
     this.deviceCgroupRule = deviceCgroupRule;
   }
 
 
-    public SpecGenerator devices(List<LinuxDevice> devices) {
+  public SpecGenerator devices(List<LinuxDevice> devices) {
     
     this.devices = devices;
     return this;
@@ -1062,27 +1062,27 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Devices are devices that will be added to the container. Optional.
    * @return devices
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Devices are devices that will be added to the container. Optional.")
+  @ApiModelProperty(value = "Devices are devices that will be added to the container. Optional.")
 
-    public List<LinuxDevice> getDevices() {
+  public List<LinuxDevice> getDevices() {
     return devices;
   }
 
 
-    public void setDevices(List<LinuxDevice> devices) {
+  public void setDevices(List<LinuxDevice> devices) {
     this.devices = devices;
   }
 
 
   public SpecGenerator devicesFrom(List<String> devicesFrom) {
 
-      this.devicesFrom = devicesFrom;
+    this.devicesFrom = devicesFrom;
     return this;
   }
 
@@ -1094,12 +1094,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
    * @return devicesFrom
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.")
 
   public List<String> getDevicesFrom() {
     return devicesFrom;
@@ -1113,7 +1113,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator dnsOption(List<String> dnsOption) {
 
-      this.dnsOption = dnsOption;
+    this.dnsOption = dnsOption;
     return this;
   }
 
@@ -1125,12 +1125,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsOption
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSOptions is a set of DNS options that will be used in the container's resolv.conf, replacing the host's DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSOptions is a set of DNS options that will be used in the container's resolv.conf, replacing the host's DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsOption() {
     return dnsOption;
@@ -1144,7 +1144,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator dnsSearch(List<String> dnsSearch) {
 
-      this.dnsSearch = dnsSearch;
+    this.dnsSearch = dnsSearch;
     return this;
   }
 
@@ -1156,12 +1156,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsSearch
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the container's resolv.conf, replacing the host's DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSSearch is a set of DNS search domains that will be used in the container's resolv.conf, replacing the host's DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsSearch() {
     return dnsSearch;
@@ -1175,7 +1175,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator dnsServer(List<String> dnsServer) {
 
-      this.dnsServer = dnsServer;
+    this.dnsServer = dnsServer;
     return this;
   }
 
@@ -1187,12 +1187,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsServer
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "DNSServers is a set of DNS servers that will be used in the container's resolv.conf, replacing the host's DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "DNSServers is a set of DNS servers that will be used in the container's resolv.conf, replacing the host's DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.")
 
   public List<String> getDnsServer() {
     return dnsServer;
@@ -1206,7 +1206,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator entrypoint(List<String> entrypoint) {
 
-      this.entrypoint = entrypoint;
+    this.entrypoint = entrypoint;
     return this;
   }
 
@@ -1218,12 +1218,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return entrypoint
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Entrypoint is the container's entrypoint. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Entrypoint is the container's entrypoint. If not given and Image is specified, this will be populated by the image's configuration. Optional.")
 
   public List<String> getEntrypoint() {
     return entrypoint;
@@ -1237,7 +1237,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator env(Map<String, String> env) {
 
-      this.env = env;
+    this.env = env;
     return this;
   }
 
@@ -1249,12 +1249,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Env is a set of environment variables that will be set in the container. Optional.
    * @return env
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Env is a set of environment variables that will be set in the container. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Env is a set of environment variables that will be set in the container. Optional.")
 
   public Map<String, String> getEnv() {
     return env;
@@ -1268,16 +1268,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator envHost(Boolean envHost) {
 
-      this.envHost = envHost;
+    this.envHost = envHost;
     return this;
   }
 
-    /**
+  /**
    * EnvHost indicates that the host environment should be added to container Optional.
    * @return envHost
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvHost indicates that the host environment should be added to container Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHost indicates that the host environment should be added to container Optional.")
 
   public Boolean getEnvHost() {
     return envHost;
@@ -1291,7 +1291,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator envmerge(List<String> envmerge) {
 
-      this.envmerge = envmerge;
+    this.envmerge = envmerge;
     return this;
   }
 
@@ -1303,12 +1303,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
    * @return envmerge
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.")
 
   public List<String> getEnvmerge() {
     return envmerge;
@@ -1322,16 +1322,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator expose(Object expose) {
 
-      this.expose = expose;
+    this.expose = expose;
     return this;
   }
 
-    /**
+  /**
    * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
    * @return expose
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \"tcp\", \"udp\", and \"sctp\", or some combination of the three separated by commas. If protocol is set to \"\" we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \"tcp\", \"udp\", and \"sctp\", or some combination of the three separated by commas. If protocol is set to \"\" we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.")
 
   public Object getExpose() {
     return expose;
@@ -1345,16 +1345,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator groupEntry(String groupEntry) {
 
-      this.groupEntry = groupEntry;
+    this.groupEntry = groupEntry;
     return this;
   }
 
-    /**
+  /**
    * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
    * @return groupEntry
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "GroupEntry specifies an arbitrary string to append to the container's /etc/group file. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "GroupEntry specifies an arbitrary string to append to the container's /etc/group file. Optional.")
 
   public String getGroupEntry() {
     return groupEntry;
@@ -1368,7 +1368,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator groups(List<String> groups) {
 
-      this.groups = groups;
+    this.groups = groups;
     return this;
   }
 
@@ -1380,12 +1380,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
    * @return groups
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Groups are a list of supplemental groups the container's user will be granted access to. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Groups are a list of supplemental groups the container's user will be granted access to. Optional.")
 
   public List<String> getGroups() {
     return groups;
@@ -1399,16 +1399,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator healthCheckOnFailureAction(Long healthCheckOnFailureAction) {
 
-      this.healthCheckOnFailureAction = healthCheckOnFailureAction;
+    this.healthCheckOnFailureAction = healthCheckOnFailureAction;
     return this;
   }
 
-    /**
+  /**
    * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
    * @return healthCheckOnFailureAction
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthCheckOnFailureAction defines how Podman reacts when a container's health status turns unhealthy.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthCheckOnFailureAction defines how Podman reacts when a container's health status turns unhealthy.")
 
   public Long getHealthCheckOnFailureAction() {
     return healthCheckOnFailureAction;
@@ -1422,16 +1422,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator healthLogDestination(String healthLogDestination) {
 
-      this.healthLogDestination = healthLogDestination;
+    this.healthLogDestination = healthLogDestination;
     return this;
   }
 
-    /**
+  /**
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthLogDestination defines the destination where the log is stored")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthLogDestination defines the destination where the log is stored")
 
   public String getHealthLogDestination() {
     return healthLogDestination;
@@ -1445,16 +1445,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator healthMaxLogCount(Integer healthMaxLogCount) {
 
-      this.healthMaxLogCount = healthMaxLogCount;
+    this.healthMaxLogCount = healthMaxLogCount;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. ('0' value means an infinite number of attempts in the log file)")
 
   public Integer getHealthMaxLogCount() {
     return healthMaxLogCount;
@@ -1468,16 +1468,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator healthMaxLogSize(Integer healthMaxLogSize) {
 
-      this.healthMaxLogSize = healthMaxLogSize;
+    this.healthMaxLogSize = healthMaxLogSize;
     return this;
   }
 
-    /**
+  /**
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthMaxLogSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\"0\" value means an infinite log length)")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\"0\" value means an infinite log length)")
 
   public Integer getHealthMaxLogSize() {
     return healthMaxLogSize;
@@ -1491,17 +1491,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator healthconfig(Schema2HealthConfig healthconfig) {
 
-      this.healthconfig = healthconfig;
+    this.healthconfig = healthconfig;
     return this;
   }
 
-    /**
+  /**
    * Get healthconfig
    * @return healthconfig
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Schema2HealthConfig getHealthconfig() {
     return healthconfig;
@@ -1513,7 +1513,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator hostDeviceList(List<LinuxDevice> hostDeviceList) {
+  public SpecGenerator hostDeviceList(List<LinuxDevice> hostDeviceList) {
     
     this.hostDeviceList = hostDeviceList;
     return this;
@@ -1527,27 +1527,27 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * HostDeviceList is used to recreate the mounted device on inherited containers
    * @return hostDeviceList
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "HostDeviceList is used to recreate the mounted device on inherited containers")
+  @ApiModelProperty(value = "HostDeviceList is used to recreate the mounted device on inherited containers")
 
-    public List<LinuxDevice> getHostDeviceList() {
+  public List<LinuxDevice> getHostDeviceList() {
     return hostDeviceList;
   }
 
 
-    public void setHostDeviceList(List<LinuxDevice> hostDeviceList) {
+  public void setHostDeviceList(List<LinuxDevice> hostDeviceList) {
     this.hostDeviceList = hostDeviceList;
   }
 
 
   public SpecGenerator hostadd(List<String> hostadd) {
 
-      this.hostadd = hostadd;
+    this.hostadd = hostadd;
     return this;
   }
 
@@ -1559,12 +1559,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
    * @return hostadd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostAdd is a set of hosts which will be added to the container's etc/hosts file. Conflicts with UseImageHosts. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostAdd is a set of hosts which will be added to the container's etc/hosts file. Conflicts with UseImageHosts. Optional.")
 
   public List<String> getHostadd() {
     return hostadd;
@@ -1578,16 +1578,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator hostname(String hostname) {
 
-      this.hostname = hostname;
+    this.hostname = hostname;
     return this;
   }
 
-    /**
+  /**
    * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
    * @return hostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Hostname is the container's hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Hostname is the container's hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.")
 
   public String getHostname() {
     return hostname;
@@ -1601,7 +1601,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator hostusers(List<String> hostusers) {
 
-      this.hostusers = hostusers;
+    this.hostusers = hostusers;
     return this;
   }
 
@@ -1613,12 +1613,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
    * @return hostusers
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file")
 
   public List<String> getHostusers() {
     return hostusers;
@@ -1632,16 +1632,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator httpproxy(Boolean httpproxy) {
 
-      this.httpproxy = httpproxy;
+    this.httpproxy = httpproxy;
     return this;
   }
 
-    /**
+  /**
    * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
    * @return httpproxy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.")
 
   public Boolean getHttpproxy() {
     return httpproxy;
@@ -1655,17 +1655,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator idmappings(IDMappingOptions idmappings) {
 
-      this.idmappings = idmappings;
+    this.idmappings = idmappings;
     return this;
   }
 
-    /**
+  /**
    * Get idmappings
    * @return idmappings
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public IDMappingOptions getIdmappings() {
     return idmappings;
@@ -1679,16 +1679,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator image(String image) {
 
-      this.image = image;
+    this.image = image;
     return this;
   }
 
-    /**
+  /**
    * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
    * @return image
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Image is the image the container will be based on. The image will be used as the container's root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Image is the image the container will be based on. The image will be used as the container's root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.")
 
   public String getImage() {
     return image;
@@ -1702,16 +1702,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator imageArch(String imageArch) {
 
-      this.imageArch = imageArch;
+    this.imageArch = imageArch;
     return this;
   }
 
-    /**
+  /**
    * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
    * @return imageArch
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageArch() {
     return imageArch;
@@ -1725,16 +1725,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator imageOs(String imageOs) {
 
-      this.imageOs = imageOs;
+    this.imageOs = imageOs;
     return this;
   }
 
-    /**
+  /**
    * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
    * @return imageOs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageOs() {
     return imageOs;
@@ -1748,16 +1748,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator imageVariant(String imageVariant) {
 
-      this.imageVariant = imageVariant;
+    this.imageVariant = imageVariant;
     return this;
   }
 
-    /**
+  /**
    * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
    * @return imageVariant
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.")
 
   public String getImageVariant() {
     return imageVariant;
@@ -1771,16 +1771,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator imageVolumeMode(String imageVolumeMode) {
 
-      this.imageVolumeMode = imageVolumeMode;
+    this.imageVolumeMode = imageVolumeMode;
     return this;
   }
 
-    /**
+  /**
    * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
    * @return imageVolumeMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ImageVolumeMode indicates how image volumes will be created. Supported modes are \"ignore\" (do not create), \"tmpfs\" (create as tmpfs), and \"anonymous\" (create as anonymous volumes). The default if unset is anonymous. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ImageVolumeMode indicates how image volumes will be created. Supported modes are \"ignore\" (do not create), \"tmpfs\" (create as tmpfs), and \"anonymous\" (create as anonymous volumes). The default if unset is anonymous. Optional.")
 
   public String getImageVolumeMode() {
     return imageVolumeMode;
@@ -1792,7 +1792,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator imageVolumes(List<ImageVolume> imageVolumes) {
+  public SpecGenerator imageVolumes(List<ImageVolume> imageVolumes) {
     
     this.imageVolumes = imageVolumes;
     return this;
@@ -1806,36 +1806,36 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Image volumes bind-mount a container-image mount into the container. Optional.
    * @return imageVolumes
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the container. Optional.")
+  @ApiModelProperty(value = "Image volumes bind-mount a container-image mount into the container. Optional.")
 
-    public List<ImageVolume> getImageVolumes() {
+  public List<ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
 
-    public void setImageVolumes(List<ImageVolume> imageVolumes) {
+  public void setImageVolumes(List<ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
 
   public SpecGenerator init(Boolean init) {
 
-      this.init = init;
+    this.init = init;
     return this;
   }
 
-    /**
+  /**
    * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
    * @return init
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.")
 
   public Boolean getInit() {
     return init;
@@ -1849,16 +1849,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator initContainerType(String initContainerType) {
 
-      this.initContainerType = initContainerType;
+    this.initContainerType = initContainerType;
     return this;
   }
 
-    /**
+  /**
    * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
    * @return initContainerType
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.")
 
   public String getInitContainerType() {
     return initContainerType;
@@ -1872,16 +1872,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator initPath(String initPath) {
 
-      this.initPath = initPath;
+    this.initPath = initPath;
     return this;
   }
 
-    /**
+  /**
    * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
    * @return initPath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.")
 
   public String getInitPath() {
     return initPath;
@@ -1895,17 +1895,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator intelRdt(LinuxIntelRdt intelRdt) {
 
-      this.intelRdt = intelRdt;
+    this.intelRdt = intelRdt;
     return this;
   }
 
-    /**
+  /**
    * Get intelRdt
    * @return intelRdt
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LinuxIntelRdt getIntelRdt() {
     return intelRdt;
@@ -1919,17 +1919,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator ipcns(Namespace ipcns) {
 
-      this.ipcns = ipcns;
+    this.ipcns = ipcns;
     return this;
   }
 
-    /**
+  /**
    * Get ipcns
    * @return ipcns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getIpcns() {
     return ipcns;
@@ -1943,16 +1943,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator labelNested(Boolean labelNested) {
 
-      this.labelNested = labelNested;
+    this.labelNested = labelNested;
     return this;
   }
 
-    /**
+  /**
    * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
    * @return labelNested
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.")
 
   public Boolean getLabelNested() {
     return labelNested;
@@ -1966,7 +1966,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator labels(Map<String, String> labels) {
 
-      this.labels = labels;
+    this.labels = labels;
     return this;
   }
 
@@ -1978,12 +1978,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Labels are key-value pairs that are used to add metadata to containers. Optional.
    * @return labels
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to containers. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Labels are key-value pairs that are used to add metadata to containers. Optional.")
 
   public Map<String, String> getLabels() {
     return labels;
@@ -1997,17 +1997,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator logConfiguration(LogConfigLibpod logConfiguration) {
 
-      this.logConfiguration = logConfiguration;
+    this.logConfiguration = logConfiguration;
     return this;
   }
 
-    /**
+  /**
    * Get logConfiguration
    * @return logConfiguration
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LogConfigLibpod getLogConfiguration() {
     return logConfiguration;
@@ -2021,16 +2021,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator managePassword(Boolean managePassword) {
 
-      this.managePassword = managePassword;
+    this.managePassword = managePassword;
     return this;
   }
 
-    /**
+  /**
    * Passwd is a container run option that determines if we are validating users/groups before running the container
    * @return managePassword
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Passwd is a container run option that determines if we are validating users/groups before running the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Passwd is a container run option that determines if we are validating users/groups before running the container")
 
   public Boolean getManagePassword() {
     return managePassword;
@@ -2044,7 +2044,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator mask(List<String> mask) {
 
-      this.mask = mask;
+    this.mask = mask;
     return this;
   }
 
@@ -2056,12 +2056,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
    * @return mask
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional")
 
   public List<String> getMask() {
     return mask;
@@ -2073,7 +2073,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator mounts(List<Mount> mounts) {
+  public SpecGenerator mounts(List<Mount> mounts) {
     
     this.mounts = mounts;
     return this;
@@ -2087,36 +2087,36 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
+  @ApiModelProperty(value = "Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.")
 
-    public List<Mount> getMounts() {
+  public List<Mount> getMounts() {
     return mounts;
   }
 
 
-    public void setMounts(List<Mount> mounts) {
+  public void setMounts(List<Mount> mounts) {
     this.mounts = mounts;
   }
 
 
   public SpecGenerator name(String name) {
 
-      this.name = name;
+    this.name = name;
     return this;
   }
 
-    /**
+  /**
    * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
    * @return name
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.")
 
   public String getName() {
     return name;
@@ -2130,17 +2130,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator netns(Namespace netns) {
 
-      this.netns = netns;
+    this.netns = netns;
     return this;
   }
 
-    /**
+  /**
    * Get netns
    * @return netns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getNetns() {
     return netns;
@@ -2154,7 +2154,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator networkOptions(Map<String, List<String>> networkOptions) {
 
-      this.networkOptions = networkOptions;
+    this.networkOptions = networkOptions;
     return this;
   }
 
@@ -2166,13 +2166,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
+  @ApiModelProperty(value = "NetworkOptions are additional options for each network Optional.")
 
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
@@ -2186,16 +2186,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator noNewPrivileges(Boolean noNewPrivileges) {
 
-      this.noNewPrivileges = noNewPrivileges;
+    this.noNewPrivileges = noNewPrivileges;
     return this;
   }
 
-    /**
+  /**
    * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
    * @return noNewPrivileges
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.")
 
   public Boolean getNoNewPrivileges() {
     return noNewPrivileges;
@@ -2209,16 +2209,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator ociRuntime(String ociRuntime) {
 
-      this.ociRuntime = ociRuntime;
+    this.ociRuntime = ociRuntime;
     return this;
   }
 
-    /**
+  /**
    * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
    * @return ociRuntime
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.")
 
   public String getOciRuntime() {
     return ociRuntime;
@@ -2232,16 +2232,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator oomScoreAdj(Long oomScoreAdj) {
 
-      this.oomScoreAdj = oomScoreAdj;
+    this.oomScoreAdj = oomScoreAdj;
     return this;
   }
 
-    /**
+  /**
    * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
    * @return oomScoreAdj
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container's process. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container's process. Optional.")
 
   public Long getOomScoreAdj() {
     return oomScoreAdj;
@@ -2253,7 +2253,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator overlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public SpecGenerator overlayVolumes(List<OverlayVolume> overlayVolumes) {
     
     this.overlayVolumes = overlayVolumes;
     return this;
@@ -2267,36 +2267,36 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Overlay volumes are named volumes that will be added to the container. Optional.
    * @return overlayVolumes
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Overlay volumes are named volumes that will be added to the container. Optional.")
+  @ApiModelProperty(value = "Overlay volumes are named volumes that will be added to the container. Optional.")
 
-    public List<OverlayVolume> getOverlayVolumes() {
+  public List<OverlayVolume> getOverlayVolumes() {
     return overlayVolumes;
   }
 
 
-    public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
 
   public SpecGenerator passwdEntry(String passwdEntry) {
 
-      this.passwdEntry = passwdEntry;
+    this.passwdEntry = passwdEntry;
     return this;
   }
 
-    /**
+  /**
    * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
    * @return passwdEntry
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "PasswdEntry specifies an arbitrary string to append to the container's /etc/passwd file. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PasswdEntry specifies an arbitrary string to append to the container's /etc/passwd file. Optional.")
 
   public String getPasswdEntry() {
     return passwdEntry;
@@ -2310,17 +2310,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator personality(LinuxPersonality personality) {
 
-      this.personality = personality;
+    this.personality = personality;
     return this;
   }
 
-    /**
+  /**
    * Get personality
    * @return personality
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LinuxPersonality getPersonality() {
     return personality;
@@ -2334,17 +2334,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator pidns(Namespace pidns) {
 
-      this.pidns = pidns;
+    this.pidns = pidns;
     return this;
   }
 
-    /**
+  /**
    * Get pidns
    * @return pidns
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public Namespace getPidns() {
     return pidns;
@@ -2358,16 +2358,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator pod(String pod) {
 
-      this.pod = pod;
+    this.pod = pod;
     return this;
   }
 
-    /**
+  /**
    * Pod is the ID of the pod the container will join. Optional.
    * @return pod
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Pod is the ID of the pod the container will join. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Pod is the ID of the pod the container will join. Optional.")
 
   public String getPod() {
     return pod;
@@ -2379,7 +2379,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator portmappings(List<PortMapping> portmappings) {
+  public SpecGenerator portmappings(List<PortMapping> portmappings) {
     
     this.portmappings = portmappings;
     return this;
@@ -2393,36 +2393,36 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
    * @return portmappings
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.")
+  @ApiModelProperty(value = "PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.")
 
-    public List<PortMapping> getPortmappings() {
+  public List<PortMapping> getPortmappings() {
     return portmappings;
   }
 
 
-    public void setPortmappings(List<PortMapping> portmappings) {
+  public void setPortmappings(List<PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
 
   public SpecGenerator privileged(Boolean privileged) {
 
-      this.privileged = privileged;
+    this.privileged = privileged;
     return this;
   }
 
-    /**
+  /**
    * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
    * @return privileged
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.")
 
   public Boolean getPrivileged() {
     return privileged;
@@ -2436,7 +2436,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator procfsOpts(List<String> procfsOpts) {
 
-      this.procfsOpts = procfsOpts;
+    this.procfsOpts = procfsOpts;
     return this;
   }
 
@@ -2448,12 +2448,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * ProcOpts are the options used for the proc mount.
    * @return procfsOpts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ProcOpts are the options used for the proc mount.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ProcOpts are the options used for the proc mount.")
 
   public List<String> getProcfsOpts() {
     return procfsOpts;
@@ -2467,16 +2467,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator publishImagePorts(Boolean publishImagePorts) {
 
-      this.publishImagePorts = publishImagePorts;
+    this.publishImagePorts = publishImagePorts;
     return this;
   }
 
-    /**
+  /**
    * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
    * @return publishImagePorts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.")
 
   public Boolean getPublishImagePorts() {
     return publishImagePorts;
@@ -2488,7 +2488,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator rLimits(List<POSIXRlimit> rLimits) {
+  public SpecGenerator rLimits(List<POSIXRlimit> rLimits) {
     
     this.rLimits = rLimits;
     return this;
@@ -2502,36 +2502,36 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Rlimits are POSIX rlimits to apply to the container. Optional.
    * @return rLimits
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Rlimits are POSIX rlimits to apply to the container. Optional.")
+  @ApiModelProperty(value = "Rlimits are POSIX rlimits to apply to the container. Optional.")
 
-    public List<POSIXRlimit> getrLimits() {
+  public List<POSIXRlimit> getrLimits() {
     return rLimits;
   }
 
 
-    public void setrLimits(List<POSIXRlimit> rLimits) {
+  public void setrLimits(List<POSIXRlimit> rLimits) {
     this.rLimits = rLimits;
   }
 
 
   public SpecGenerator rawImageName(String rawImageName) {
 
-      this.rawImageName = rawImageName;
+    this.rawImageName = rawImageName;
     return this;
   }
 
-    /**
+  /**
    * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
    * @return rawImageName
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.")
 
   public String getRawImageName() {
     return rawImageName;
@@ -2545,16 +2545,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator readOnlyFilesystem(Boolean readOnlyFilesystem) {
 
-      this.readOnlyFilesystem = readOnlyFilesystem;
+    this.readOnlyFilesystem = readOnlyFilesystem;
     return this;
   }
 
-    /**
+  /**
    * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
    * @return readOnlyFilesystem
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.")
 
   public Boolean getReadOnlyFilesystem() {
     return readOnlyFilesystem;
@@ -2568,16 +2568,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator readWriteTmpfs(Boolean readWriteTmpfs) {
 
-      this.readWriteTmpfs = readWriteTmpfs;
+    this.readWriteTmpfs = readWriteTmpfs;
     return this;
   }
 
-    /**
+  /**
    * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
    * @return readWriteTmpfs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.")
 
   public Boolean getReadWriteTmpfs() {
     return readWriteTmpfs;
@@ -2591,16 +2591,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator remove(Boolean remove) {
 
-      this.remove = remove;
+    this.remove = remove;
     return this;
   }
 
-    /**
+  /**
    * Remove indicates if the container should be removed once it has been started and exits. Optional.
    * @return remove
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Remove indicates if the container should be removed once it has been started and exits. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Remove indicates if the container should be removed once it has been started and exits. Optional.")
 
   public Boolean getRemove() {
     return remove;
@@ -2614,16 +2614,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator removeImage(Boolean removeImage) {
 
-      this.removeImage = removeImage;
+    this.removeImage = removeImage;
     return this;
   }
 
-    /**
+  /**
    * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
    * @return removeImage
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.")
 
   public Boolean getRemoveImage() {
     return removeImage;
@@ -2637,17 +2637,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator resourceLimits(LinuxResources resourceLimits) {
 
-      this.resourceLimits = resourceLimits;
+    this.resourceLimits = resourceLimits;
     return this;
   }
 
-    /**
+  /**
    * Get resourceLimits
    * @return resourceLimits
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public LinuxResources getResourceLimits() {
     return resourceLimits;
@@ -2661,16 +2661,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator restartPolicy(String restartPolicy) {
 
-      this.restartPolicy = restartPolicy;
+    this.restartPolicy = restartPolicy;
     return this;
   }
 
-    /**
+  /**
    * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
    * @return restartPolicy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RestartPolicy is the container's restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartPolicy is the container's restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.")
 
   public String getRestartPolicy() {
     return restartPolicy;
@@ -2684,16 +2684,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator restartTries(Integer restartTries) {
 
-      this.restartTries = restartTries;
+    this.restartTries = restartTries;
     return this;
   }
 
-    /**
+  /**
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \"on-failure\". Optional.")
 
   public Integer getRestartTries() {
     return restartTries;
@@ -2707,16 +2707,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator rootfs(String rootfs) {
 
-      this.rootfs = rootfs;
+    this.rootfs = rootfs;
     return this;
   }
 
-    /**
+  /**
    * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
    * @return rootfs
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Rootfs is the path to a directory that will be used as the container's root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Rootfs is the path to a directory that will be used as the container's root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.")
 
   public String getRootfs() {
     return rootfs;
@@ -2730,16 +2730,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator rootfsMapping(String rootfsMapping) {
 
-      this.rootfsMapping = rootfsMapping;
+    this.rootfsMapping = rootfsMapping;
     return this;
   }
 
-    /**
+  /**
    * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
    * @return rootfsMapping
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.")
 
   public String getRootfsMapping() {
     return rootfsMapping;
@@ -2753,16 +2753,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator rootfsOverlay(Boolean rootfsOverlay) {
 
-      this.rootfsOverlay = rootfsOverlay;
+    this.rootfsOverlay = rootfsOverlay;
     return this;
   }
 
-    /**
+  /**
    * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
    * @return rootfsOverlay
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.")
 
   public Boolean getRootfsOverlay() {
     return rootfsOverlay;
@@ -2776,16 +2776,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator rootfsPropagation(String rootfsPropagation) {
 
-      this.rootfsPropagation = rootfsPropagation;
+    this.rootfsPropagation = rootfsPropagation;
     return this;
   }
 
-    /**
+  /**
    * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
    * @return rootfsPropagation
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.")
 
   public String getRootfsPropagation() {
     return rootfsPropagation;
@@ -2799,16 +2799,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator sdnotifyMode(String sdnotifyMode) {
 
-      this.sdnotifyMode = sdnotifyMode;
+    this.sdnotifyMode = sdnotifyMode;
     return this;
   }
 
-    /**
+  /**
    * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
    * @return sdnotifyMode
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \"container\" - let the OCI runtime deal with it, advertise conmon's MAINPID \"conmon-only\" - advertise conmon's MAINPID, send READY when started, don't pass to OCI \"ignore\" - unset NOTIFY_SOCKET Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \"container\" - let the OCI runtime deal with it, advertise conmon's MAINPID \"conmon-only\" - advertise conmon's MAINPID, send READY when started, don't pass to OCI \"ignore\" - unset NOTIFY_SOCKET Optional.")
 
   public String getSdnotifyMode() {
     return sdnotifyMode;
@@ -2822,16 +2822,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator seccompPolicy(String seccompPolicy) {
 
-      this.seccompPolicy = seccompPolicy;
+    this.seccompPolicy = seccompPolicy;
     return this;
   }
 
-    /**
+  /**
    * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
    * @return seccompPolicy
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image")
 
   public String getSeccompPolicy() {
     return seccompPolicy;
@@ -2845,16 +2845,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator seccompProfilePath(String seccompProfilePath) {
 
-      this.seccompProfilePath = seccompProfilePath;
+    this.seccompProfilePath = seccompProfilePath;
     return this;
   }
 
-    /**
+  /**
    * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
    * @return seccompProfilePath
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SeccompProfilePath is the path to a JSON file containing the container's Seccomp profile. If not specified, no Seccomp profile will be used. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SeccompProfilePath is the path to a JSON file containing the container's Seccomp profile. If not specified, no Seccomp profile will be used. Optional.")
 
   public String getSeccompProfilePath() {
     return seccompProfilePath;
@@ -2868,7 +2868,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator secretEnv(Map<String, String> secretEnv) {
 
-      this.secretEnv = secretEnv;
+    this.secretEnv = secretEnv;
     return this;
   }
 
@@ -2880,12 +2880,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * EnvSecrets are secrets that will be set as environment variables Optional.
    * @return secretEnv
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "EnvSecrets are secrets that will be set as environment variables Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "EnvSecrets are secrets that will be set as environment variables Optional.")
 
   public Map<String, String> getSecretEnv() {
     return secretEnv;
@@ -2897,7 +2897,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator secrets(List<Secret> secrets) {
+  public SpecGenerator secrets(List<Secret> secrets) {
     
     this.secrets = secrets;
     return this;
@@ -2911,27 +2911,27 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Secrets are the secrets that will be added to the container Optional.
    * @return secrets
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "Secrets are the secrets that will be added to the container Optional.")
+  @ApiModelProperty(value = "Secrets are the secrets that will be added to the container Optional.")
 
-    public List<Secret> getSecrets() {
+  public List<Secret> getSecrets() {
     return secrets;
   }
 
 
-    public void setSecrets(List<Secret> secrets) {
+  public void setSecrets(List<Secret> secrets) {
     this.secrets = secrets;
   }
 
 
   public SpecGenerator selinuxOpts(List<String> selinuxOpts) {
 
-      this.selinuxOpts = selinuxOpts;
+    this.selinuxOpts = selinuxOpts;
     return this;
   }
 
@@ -2943,12 +2943,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
    * @return selinuxOpts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.")
 
   public List<String> getSelinuxOpts() {
     return selinuxOpts;
@@ -2962,16 +2962,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator shmSize(Long shmSize) {
 
-      this.shmSize = shmSize;
+    this.shmSize = shmSize;
     return this;
   }
 
-    /**
+  /**
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.")
 
   public Long getShmSize() {
     return shmSize;
@@ -2985,16 +2985,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator shmSizeSystemd(Long shmSizeSystemd) {
 
-      this.shmSizeSystemd = shmSizeSystemd;
+    this.shmSizeSystemd = shmSizeSystemd;
     return this;
   }
 
-    /**
+  /**
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional")
 
   public Long getShmSizeSystemd() {
     return shmSizeSystemd;
@@ -3008,17 +3008,17 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator startupHealthConfig(StartupHealthCheck startupHealthConfig) {
 
-      this.startupHealthConfig = startupHealthConfig;
+    this.startupHealthConfig = startupHealthConfig;
     return this;
   }
 
-    /**
+  /**
    * Get startupHealthConfig
    * @return startupHealthConfig
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "")
 
   public StartupHealthCheck getStartupHealthConfig() {
     return startupHealthConfig;
@@ -3032,16 +3032,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator stdin(Boolean stdin) {
 
-      this.stdin = stdin;
+    this.stdin = stdin;
     return this;
   }
 
-    /**
+  /**
    * Stdin is whether the container will keep its STDIN open. Optional.
    * @return stdin
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Stdin is whether the container will keep its STDIN open. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Stdin is whether the container will keep its STDIN open. Optional.")
 
   public Boolean getStdin() {
     return stdin;
@@ -3055,16 +3055,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator stopSignal(Long stopSignal) {
 
-      this.stopSignal = stopSignal;
+    this.stopSignal = stopSignal;
     return this;
   }
 
-    /**
+  /**
    * It implements the [os.Signal] interface.
    * @return stopSignal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "It implements the [os.Signal] interface.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "It implements the [os.Signal] interface.")
 
   public Long getStopSignal() {
     return stopSignal;
@@ -3078,16 +3078,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator stopTimeout(Integer stopTimeout) {
 
-      this.stopTimeout = stopTimeout;
+    this.stopTimeout = stopTimeout;
     return this;
   }
 
-    /**
+  /**
    * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
    * @return stopTimeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "StopTimeout is a timeout between the container's stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StopTimeout is a timeout between the container's stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.")
 
   public Integer getStopTimeout() {
     return stopTimeout;
@@ -3101,7 +3101,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator storageOpts(Map<String, String> storageOpts) {
 
-      this.storageOpts = storageOpts;
+    this.storageOpts = storageOpts;
     return this;
   }
 
@@ -3113,12 +3113,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * StorageOpts is the container&#39;s storage options Optional.
    * @return storageOpts
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "StorageOpts is the container's storage options Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "StorageOpts is the container's storage options Optional.")
 
   public Map<String, String> getStorageOpts() {
     return storageOpts;
@@ -3132,7 +3132,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator sysctl(Map<String, String> sysctl) {
 
-      this.sysctl = sysctl;
+    this.sysctl = sysctl;
     return this;
   }
 
@@ -3144,12 +3144,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Sysctl sets kernel parameters for the container
    * @return sysctl
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Sysctl sets kernel parameters for the container")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Sysctl sets kernel parameters for the container")
 
   public Map<String, String> getSysctl() {
     return sysctl;
@@ -3163,16 +3163,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator systemd(String systemd) {
 
-      this.systemd = systemd;
+    this.systemd = systemd;
     return this;
   }
 
-    /**
+  /**
    * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
    * @return systemd
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Systemd is whether the container will be started in systemd mode. Valid options are \"true\", \"false\", and \"always\". \"true\" enables this mode only if the binary run in the container is sbin/init or systemd. \"always\" unconditionally enables systemd mode. \"false\" unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \"always\" or set to \"true\" and conditionally triggered, conflicts with StopSignal. If not specified, \"false\" will be assumed. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Systemd is whether the container will be started in systemd mode. Valid options are \"true\", \"false\", and \"always\". \"true\" enables this mode only if the binary run in the container is sbin/init or systemd. \"always\" unconditionally enables systemd mode. \"false\" unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \"always\" or set to \"true\" and conditionally triggered, conflicts with StopSignal. If not specified, \"false\" will be assumed. Optional.")
 
   public String getSystemd() {
     return systemd;
@@ -3186,16 +3186,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator terminal(Boolean terminal) {
 
-      this.terminal = terminal;
+    this.terminal = terminal;
     return this;
   }
 
-    /**
+  /**
    * Terminal is whether the container will create a PTY. Optional.
    * @return terminal
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Terminal is whether the container will create a PTY. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Terminal is whether the container will create a PTY. Optional.")
 
   public Boolean getTerminal() {
     return terminal;
@@ -3209,7 +3209,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
 
-      this.throttleReadBpsDevice = throttleReadBpsDevice;
+    this.throttleReadBpsDevice = throttleReadBpsDevice;
     return this;
   }
 
@@ -3221,13 +3221,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * IO read rate limit per cgroup per device, bytes per second
    * @return throttleReadBpsDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "IO read rate limit per cgroup per device, bytes per second")
+  @ApiModelProperty(value = "IO read rate limit per cgroup per device, bytes per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
     return throttleReadBpsDevice;
@@ -3241,7 +3241,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
 
-      this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
     return this;
   }
 
@@ -3253,13 +3253,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * IO read rate limit per cgroup per device, IO per second
    * @return throttleReadIOPSDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "IO read rate limit per cgroup per device, IO per second")
+  @ApiModelProperty(value = "IO read rate limit per cgroup per device, IO per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
     return throttleReadIOPSDevice;
@@ -3273,7 +3273,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
 
-      this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
     return this;
   }
 
@@ -3285,13 +3285,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * IO write rate limit per cgroup per device, bytes per second
    * @return throttleWriteBpsDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "IO write rate limit per cgroup per device, bytes per second")
+  @ApiModelProperty(value = "IO write rate limit per cgroup per device, bytes per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
     return throttleWriteBpsDevice;
@@ -3305,7 +3305,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
 
-      this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
     return this;
   }
 
@@ -3317,13 +3317,13 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * IO write rate limit per cgroup per device, IO per second
    * @return throttleWriteIOPSDevice
-     **/
-    @javax.annotation.Nullable
+   **/
+  @javax.annotation.Nullable
   @Valid
-    @ApiModelProperty(value = "IO write rate limit per cgroup per device, IO per second")
+  @ApiModelProperty(value = "IO write rate limit per cgroup per device, IO per second")
 
   public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
     return throttleWriteIOPSDevice;
@@ -3337,16 +3337,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator timeout(Integer timeout) {
 
-      this.timeout = timeout;
+    this.timeout = timeout;
     return this;
   }
 
-    /**
+  /**
    * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
    * @return timeout
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.")
 
   public Integer getTimeout() {
     return timeout;
@@ -3360,16 +3360,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator timezone(String timezone) {
 
-      this.timezone = timezone;
+    this.timezone = timezone;
     return this;
   }
 
-    /**
+  /**
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
    * @return timezone
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.")
 
   public String getTimezone() {
     return timezone;
@@ -3383,16 +3383,16 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator umask(String umask) {
 
-      this.umask = umask;
+    this.umask = umask;
     return this;
   }
 
-    /**
+  /**
    * Umask is the umask the init process of the container will be run with.
    * @return umask
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Umask is the umask the init process of the container will be run with.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Umask is the umask the init process of the container will be run with.")
 
   public String getUmask() {
     return umask;
@@ -3406,7 +3406,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator unified(Map<String, String> unified) {
 
-      this.unified = unified;
+    this.unified = unified;
     return this;
   }
 
@@ -3418,12 +3418,12 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
    * @return unified
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.")
 
   public Map<String, String> getUnified() {
     return unified;
@@ -3437,7 +3437,7 @@ public class SpecGenerator implements Serializable {
 
   public SpecGenerator unmask(List<String> unmask) {
 
-      this.unmask = unmask;
+    this.unmask = unmask;
     return this;
   }
 
@@ -3449,26 +3449,26 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
    * @return unmask
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.")
 
   public List<String> getUnmask() {
     return unmask;
   }
 
 
-    public void setUnmask(List<String> unmask) {
+  public void setUnmask(List<String> unmask) {
     this.unmask = unmask;
   }
 
 
   public SpecGenerator unsetenv(List<String> unsetenv) {
 
-      this.unsetenv = unsetenv;
+    this.unsetenv = unsetenv;
     return this;
   }
 
@@ -3480,75 +3480,75 @@ public class SpecGenerator implements Serializable {
     return this;
   }
 
-    /**
+  /**
    * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
    * @return unsetenv
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.")
 
   public List<String> getUnsetenv() {
     return unsetenv;
   }
 
 
-    public void setUnsetenv(List<String> unsetenv) {
+  public void setUnsetenv(List<String> unsetenv) {
     this.unsetenv = unsetenv;
   }
 
 
   public SpecGenerator unsetenvall(Boolean unsetenvall) {
 
-      this.unsetenvall = unsetenvall;
+    this.unsetenvall = unsetenvall;
     return this;
   }
 
-    /**
+  /**
    * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
    * @return unsetenvall
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.")
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.")
 
   public Boolean getUnsetenvall() {
     return unsetenvall;
   }
 
 
-    public void setUnsetenvall(Boolean unsetenvall) {
+  public void setUnsetenvall(Boolean unsetenvall) {
     this.unsetenvall = unsetenvall;
   }
 
 
-    public SpecGenerator useImageHostname(Boolean useImageHostname) {
+  public SpecGenerator useImageHostname(Boolean useImageHostname) {
 
-        this.useImageHostname = useImageHostname;
-        return this;
-    }
+    this.useImageHostname = useImageHostname;
+    return this;
+  }
 
-    /**
-     * UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.
-     *
-     * @return useImageHostname
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.")
+  /**
+   * UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.
+   *
+   * @return useImageHostname
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "UseImageHostname indicates that /etc/hostname should not be managed by Podman, and instead sourced from the image. Optional.")
 
-    public Boolean getUseImageHostname() {
-        return useImageHostname;
-    }
-
-
-    public void setUseImageHostname(Boolean useImageHostname) {
-        this.useImageHostname = useImageHostname;
-    }
+  public Boolean getUseImageHostname() {
+    return useImageHostname;
+  }
 
 
-    public SpecGenerator useImageHosts(Boolean useImageHosts) {
+  public void setUseImageHostname(Boolean useImageHostname) {
+    this.useImageHostname = useImageHostname;
+  }
+
+
+  public SpecGenerator useImageHosts(Boolean useImageHosts) {
     
     this.useImageHosts = useImageHosts;
     return this;
-    }
+  }
 
    /**
    * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
@@ -3684,7 +3684,7 @@ public class SpecGenerator implements Serializable {
   }
 
 
-    public SpecGenerator volumes(List<NamedVolume> volumes) {
+  public SpecGenerator volumes(List<NamedVolume> volumes) {
     
     this.volumes = volumes;
     return this;
@@ -3711,7 +3711,7 @@ public class SpecGenerator implements Serializable {
    }
 
 
-    public void setVolumes(List<NamedVolume> volumes) {
+  public void setVolumes(List<NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
@@ -3939,7 +3939,7 @@ public class SpecGenerator implements Serializable {
 
   @Override
   public int hashCode() {
-      return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHostname, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
+    return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHostname, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
   }
 
   @Override
@@ -4058,7 +4058,7 @@ public class SpecGenerator implements Serializable {
     sb.append("    unmask: ").append(toIndentedString(unmask)).append("\n");
     sb.append("    unsetenv: ").append(toIndentedString(unsetenv)).append("\n");
     sb.append("    unsetenvall: ").append(toIndentedString(unsetenvall)).append("\n");
-      sb.append("    useImageHostname: ").append(toIndentedString(useImageHostname)).append("\n");
+    sb.append("    useImageHostname: ").append(toIndentedString(useImageHostname)).append("\n");
     sb.append("    useImageHosts: ").append(toIndentedString(useImageHosts)).append("\n");
     sb.append("    useImageResolveConf: ").append(toIndentedString(useImageResolveConf)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
@@ -4203,7 +4203,7 @@ public class SpecGenerator implements Serializable {
     openapiFields.add("unmask");
     openapiFields.add("unsetenv");
     openapiFields.add("unsetenvall");
-      openapiFields.add("use_image_hostname");
+    openapiFields.add("use_image_hostname");
     openapiFields.add("use_image_hosts");
     openapiFields.add("use_image_resolve_conf");
     openapiFields.add("user");
@@ -4219,26 +4219,26 @@ public class SpecGenerator implements Serializable {
     openapiRequiredFields = new HashSet<String>();
   }
 
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to SpecGenerator
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (SpecGenerator.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in SpecGenerator is not found in the empty JSON string", SpecGenerator.openapiRequiredFields.toString()));
-            }
-        }
+  /**
+   * Validates the JSON Object and throws an exception if issues found
+   *
+   * @param jsonObj JSON Object
+   * @throws IOException if the JSON Object is invalid with respect to SpecGenerator
+   */
+  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
+    if (jsonObj == null) {
+      if (SpecGenerator.openapiRequiredFields.isEmpty()) {
+        return;
+      } else { // has required fields
+        throw new IllegalArgumentException(String.format("The required field(s) %s in SpecGenerator is not found in the empty JSON string", SpecGenerator.openapiRequiredFields.toString()));
+      }
+    }
 
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
+    for (Entry<String, JsonElement> entry : entries) {
         if (!SpecGenerator.openapiFields.contains(entry.getKey())) {
-            throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SpecGenerator` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SpecGenerator` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
       if ((jsonObj.get("apparmor_profile") != null && !jsonObj.get("apparmor_profile").isJsonNull()) && !jsonObj.get("apparmor_profile").isJsonPrimitive()) {
@@ -4247,12 +4247,12 @@ public class SpecGenerator implements Serializable {
       if ((jsonObj.get("base_hosts_file") != null && !jsonObj.get("base_hosts_file").isJsonNull()) && !jsonObj.get("base_hosts_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `base_hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("base_hosts_file").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull()) && !jsonObj.get("cap_add").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull()) && !jsonObj.get("cap_add").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_add` to be an array in the JSON string but got `%s`", jsonObj.get("cap_add").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull()) && !jsonObj.get("cap_drop").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull()) && !jsonObj.get("cap_drop").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cap_drop` to be an array in the JSON string but got `%s`", jsonObj.get("cap_drop").toString()));
       }
       if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
@@ -4260,32 +4260,32 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `cgroupns`
       if (jsonObj.get("cgroupns") != null && !jsonObj.get("cgroupns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("cgroupns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("cgroupns"));
       }
       if ((jsonObj.get("cgroups_mode") != null && !jsonObj.get("cgroups_mode").isJsonNull()) && !jsonObj.get("cgroups_mode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cgroups_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroups_mode").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull()) && !jsonObj.get("chroot_directories").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull()) && !jsonObj.get("chroot_directories").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `chroot_directories` to be an array in the JSON string but got `%s`", jsonObj.get("chroot_directories").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull()) && !jsonObj.get("cni_networks").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull()) && !jsonObj.get("command").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull()) && !jsonObj.get("command").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `command` to be an array in the JSON string but got `%s`", jsonObj.get("command").toString()));
       }
       if ((jsonObj.get("conmon_pid_file") != null && !jsonObj.get("conmon_pid_file").isJsonNull()) && !jsonObj.get("conmon_pid_file").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conmon_pid_file").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull()) && !jsonObj.get("containerCreateCommand").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull()) && !jsonObj.get("containerCreateCommand").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `containerCreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("containerCreateCommand").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull()) && !jsonObj.get("dependencyContainers").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull()) && !jsonObj.get("dependencyContainers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dependencyContainers` to be an array in the JSON string but got `%s`", jsonObj.get("dependencyContainers").toString()));
       }
       if (jsonObj.get("device_cgroup_rule") != null && !jsonObj.get("device_cgroup_rule").isJsonNull()) {
@@ -4298,7 +4298,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `device_cgroup_rule` (array)
           for (int i = 0; i < jsonArraydeviceCgroupRule.size(); i++) {
-              LinuxDeviceCgroup.validateJsonObject(jsonArraydeviceCgroupRule.get(i).getAsJsonObject());
+            LinuxDeviceCgroup.validateJsonObject(jsonArraydeviceCgroupRule.get(i).getAsJsonObject());
           };
         }
       }
@@ -4312,40 +4312,40 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `devices` (array)
           for (int i = 0; i < jsonArraydevices.size(); i++) {
-              LinuxDevice.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
+            LinuxDevice.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull()) && !jsonObj.get("devices_from").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull()) && !jsonObj.get("devices_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `devices_from` to be an array in the JSON string but got `%s`", jsonObj.get("devices_from").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull()) && !jsonObj.get("dns_option").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull()) && !jsonObj.get("dns_search").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull()) && !jsonObj.get("dns_server").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull()) && !jsonObj.get("envmerge").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull()) && !jsonObj.get("envmerge").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `envmerge` to be an array in the JSON string but got `%s`", jsonObj.get("envmerge").toString()));
       }
       if ((jsonObj.get("group_entry") != null && !jsonObj.get("group_entry").isJsonNull()) && !jsonObj.get("group_entry").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `group_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("group_entry").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) && !jsonObj.get("groups").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) && !jsonObj.get("groups").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
       }
       if ((jsonObj.get("healthLogDestination") != null && !jsonObj.get("healthLogDestination").isJsonNull()) && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
@@ -4353,7 +4353,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `healthconfig`
       if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {
-          Schema2HealthConfig.validateJsonObject(jsonObj.getAsJsonObject("healthconfig"));
+        Schema2HealthConfig.validateJsonObject(jsonObj.getAsJsonObject("healthconfig"));
       }
       if (jsonObj.get("host_device_list") != null && !jsonObj.get("host_device_list").isJsonNull()) {
         JsonArray jsonArrayhostDeviceList = jsonObj.getAsJsonArray("host_device_list");
@@ -4365,25 +4365,25 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `host_device_list` (array)
           for (int i = 0; i < jsonArrayhostDeviceList.size(); i++) {
-              LinuxDevice.validateJsonObject(jsonArrayhostDeviceList.get(i).getAsJsonObject());
+            LinuxDevice.validateJsonObject(jsonArrayhostDeviceList.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull()) && !jsonObj.get("hostadd").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
       }
       if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull()) && !jsonObj.get("hostusers").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull()) && !jsonObj.get("hostusers").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `hostusers` to be an array in the JSON string but got `%s`", jsonObj.get("hostusers").toString()));
       }
       // validate the optional field `idmappings`
       if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
-          IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
+        IDMappingOptions.validateJsonObject(jsonObj.getAsJsonObject("idmappings"));
       }
       if ((jsonObj.get("image") != null && !jsonObj.get("image").isJsonNull()) && !jsonObj.get("image").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image").toString()));
@@ -4410,7 +4410,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `image_volumes` (array)
           for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-              ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
+            ImageVolume.validateJsonObject(jsonArrayimageVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -4422,18 +4422,18 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `intelRdt`
       if (jsonObj.get("intelRdt") != null && !jsonObj.get("intelRdt").isJsonNull()) {
-          LinuxIntelRdt.validateJsonObject(jsonObj.getAsJsonObject("intelRdt"));
+        LinuxIntelRdt.validateJsonObject(jsonObj.getAsJsonObject("intelRdt"));
       }
       // validate the optional field `ipcns`
       if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("ipcns"));
       }
       // validate the optional field `log_configuration`
       if (jsonObj.get("log_configuration") != null && !jsonObj.get("log_configuration").isJsonNull()) {
-          LogConfigLibpod.validateJsonObject(jsonObj.getAsJsonObject("log_configuration"));
+        LogConfigLibpod.validateJsonObject(jsonObj.getAsJsonObject("log_configuration"));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull()) && !jsonObj.get("mask").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull()) && !jsonObj.get("mask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `mask` to be an array in the JSON string but got `%s`", jsonObj.get("mask").toString()));
       }
       if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
@@ -4446,7 +4446,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `mounts` (array)
           for (int i = 0; i < jsonArraymounts.size(); i++) {
-              Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
+            Mount.validateJsonObject(jsonArraymounts.get(i).getAsJsonObject());
           };
         }
       }
@@ -4455,7 +4455,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `netns`
       if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("netns"));
       }
       if ((jsonObj.get("oci_runtime") != null && !jsonObj.get("oci_runtime").isJsonNull()) && !jsonObj.get("oci_runtime").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `oci_runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oci_runtime").toString()));
@@ -4470,7 +4470,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `overlay_volumes` (array)
           for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-              OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
+            OverlayVolume.validateJsonObject(jsonArrayoverlayVolumes.get(i).getAsJsonObject());
           };
         }
       }
@@ -4479,11 +4479,11 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `personality`
       if (jsonObj.get("personality") != null && !jsonObj.get("personality").isJsonNull()) {
-          LinuxPersonality.validateJsonObject(jsonObj.getAsJsonObject("personality"));
+        LinuxPersonality.validateJsonObject(jsonObj.getAsJsonObject("personality"));
       }
       // validate the optional field `pidns`
       if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("pidns"));
       }
       if ((jsonObj.get("pod") != null && !jsonObj.get("pod").isJsonNull()) && !jsonObj.get("pod").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pod").toString()));
@@ -4498,13 +4498,13 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `portmappings` (array)
           for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-              PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
+            PortMapping.validateJsonObject(jsonArrayportmappings.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull()) && !jsonObj.get("procfs_opts").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull()) && !jsonObj.get("procfs_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `procfs_opts` to be an array in the JSON string but got `%s`", jsonObj.get("procfs_opts").toString()));
       }
       if (jsonObj.get("r_limits") != null && !jsonObj.get("r_limits").isJsonNull()) {
@@ -4517,7 +4517,7 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `r_limits` (array)
           for (int i = 0; i < jsonArrayrLimits.size(); i++) {
-              POSIXRlimit.validateJsonObject(jsonArrayrLimits.get(i).getAsJsonObject());
+            POSIXRlimit.validateJsonObject(jsonArrayrLimits.get(i).getAsJsonObject());
           };
         }
       }
@@ -4526,7 +4526,7 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `resource_limits`
       if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
-          LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
+        LinuxResources.validateJsonObject(jsonObj.getAsJsonObject("resource_limits"));
       }
       if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
@@ -4559,18 +4559,18 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `secrets` (array)
           for (int i = 0; i < jsonArraysecrets.size(); i++) {
-              Secret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
+            Secret.validateJsonObject(jsonArraysecrets.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull()) && !jsonObj.get("selinux_opts").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull()) && !jsonObj.get("selinux_opts").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `selinux_opts` to be an array in the JSON string but got `%s`", jsonObj.get("selinux_opts").toString()));
       }
       // validate the optional field `startupHealthConfig`
       if (jsonObj.get("startupHealthConfig") != null && !jsonObj.get("startupHealthConfig").isJsonNull()) {
-          StartupHealthCheck.validateJsonObject(jsonObj.getAsJsonObject("startupHealthConfig"));
+        StartupHealthCheck.validateJsonObject(jsonObj.getAsJsonObject("startupHealthConfig"));
       }
       if ((jsonObj.get("systemd") != null && !jsonObj.get("systemd").isJsonNull()) && !jsonObj.get("systemd").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `systemd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("systemd").toString()));
@@ -4581,12 +4581,12 @@ public class SpecGenerator implements Serializable {
       if ((jsonObj.get("umask") != null && !jsonObj.get("umask").isJsonNull()) && !jsonObj.get("umask").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("umask").toString()));
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull()) && !jsonObj.get("unmask").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull()) && !jsonObj.get("unmask").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unmask` to be an array in the JSON string but got `%s`", jsonObj.get("unmask").toString()));
-        }
-        // ensure the json data is an array
-        if ((jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull()) && !jsonObj.get("unsetenv").isJsonArray()) {
+    }
+    // ensure the json data is an array
+    if ((jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull()) && !jsonObj.get("unsetenv").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `unsetenv` to be an array in the JSON string but got `%s`", jsonObj.get("unsetenv").toString()));
       }
       if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
@@ -4594,11 +4594,11 @@ public class SpecGenerator implements Serializable {
       }
       // validate the optional field `userns`
       if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("userns"));
       }
       // validate the optional field `utsns`
       if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-          Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
+        Namespace.validateJsonObject(jsonObj.getAsJsonObject("utsns"));
       }
       if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
         JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
@@ -4610,13 +4610,13 @@ public class SpecGenerator implements Serializable {
 
           // validate the optional field `volumes` (array)
           for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-              NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
+            NamedVolume.validateJsonObject(jsonArrayvolumes.get(i).getAsJsonObject());
           }
-            ;
+          ;
         }
       }
-        // ensure the json data is an array
-        if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
+    // ensure the json data is an array
+    if ((jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull()) && !jsonObj.get("volumes_from").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
       }
       if ((jsonObj.get("work_dir") != null && !jsonObj.get("work_dir").isJsonNull()) && !jsonObj.get("work_dir").isJsonPrimitive()) {
@@ -4644,30 +4644,30 @@ public class SpecGenerator implements Serializable {
 
            @Override
            public SpecGenerator read(JsonReader in) throws IOException {
-               JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-               validateJsonObject(jsonObj);
-               return thisAdapter.fromJsonTree(jsonObj);
+             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+             validateJsonObject(jsonObj);
+             return thisAdapter.fromJsonTree(jsonObj);
            }
 
        }.nullSafe();
     }
   }
 
-    /**
-     * Create an instance of SpecGenerator given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SpecGenerator
-     * @throws IOException if the JSON string is invalid with respect to SpecGenerator
+  /**
+   * Create an instance of SpecGenerator given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SpecGenerator
+   * @throws IOException if the JSON string is invalid with respect to SpecGenerator
   */
   public static SpecGenerator fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SpecGenerator.class);
   }
 
-    /**
-     * Convert an instance of SpecGenerator to an JSON string
-     *
-     * @return JSON string
+  /**
+   * Convert an instance of SpecGenerator to an JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

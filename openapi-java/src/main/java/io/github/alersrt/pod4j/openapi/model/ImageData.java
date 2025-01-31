@@ -990,7 +990,7 @@ public class ImageData implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ImageData
      * @throws IOException if the JSON string is invalid with respect to ImageData
-     */
+  */
   public static ImageData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ImageData.class);
   }
@@ -999,7 +999,7 @@ public class ImageData implements Serializable {
      * Convert an instance of ImageData to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

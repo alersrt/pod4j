@@ -263,7 +263,7 @@ public class ManifestPushReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ManifestPushReport
      * @throws IOException if the JSON string is invalid with respect to ManifestPushReport
-     */
+  */
   public static ManifestPushReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ManifestPushReport.class);
   }
@@ -272,7 +272,7 @@ public class ManifestPushReport implements Serializable {
      * Convert an instance of ManifestPushReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

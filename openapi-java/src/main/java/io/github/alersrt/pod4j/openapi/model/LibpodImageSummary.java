@@ -779,7 +779,7 @@ public class LibpodImageSummary implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LibpodImageSummary
      * @throws IOException if the JSON string is invalid with respect to LibpodImageSummary
-     */
+  */
   public static LibpodImageSummary fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodImageSummary.class);
   }
@@ -788,7 +788,7 @@ public class LibpodImageSummary implements Serializable {
      * Convert an instance of LibpodImageSummary to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

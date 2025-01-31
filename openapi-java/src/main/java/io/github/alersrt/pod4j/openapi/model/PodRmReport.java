@@ -270,7 +270,7 @@ public class PodRmReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PodRmReport
      * @throws IOException if the JSON string is invalid with respect to PodRmReport
-     */
+  */
   public static PodRmReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PodRmReport.class);
   }
@@ -279,7 +279,7 @@ public class PodRmReport implements Serializable {
      * Convert an instance of PodRmReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

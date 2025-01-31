@@ -242,7 +242,7 @@ public class LibpodContainersRmReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of LibpodContainersRmReport
      * @throws IOException if the JSON string is invalid with respect to LibpodContainersRmReport
-     */
+  */
   public static LibpodContainersRmReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LibpodContainersRmReport.class);
   }
@@ -251,7 +251,7 @@ public class LibpodContainersRmReport implements Serializable {
      * Convert an instance of LibpodContainersRmReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -228,7 +228,7 @@ public class RemoteSocket implements Serializable {
      * @param jsonString JSON string
      * @return An instance of RemoteSocket
      * @throws IOException if the JSON string is invalid with respect to RemoteSocket
-     */
+  */
   public static RemoteSocket fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RemoteSocket.class);
   }
@@ -237,7 +237,7 @@ public class RemoteSocket implements Serializable {
      * Convert an instance of RemoteSocket to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

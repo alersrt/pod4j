@@ -288,7 +288,7 @@ public class SystemDfVolumeReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SystemDfVolumeReport
      * @throws IOException if the JSON string is invalid with respect to SystemDfVolumeReport
-     */
+  */
   public static SystemDfVolumeReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SystemDfVolumeReport.class);
   }
@@ -297,7 +297,7 @@ public class SystemDfVolumeReport implements Serializable {
      * Convert an instance of SystemDfVolumeReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

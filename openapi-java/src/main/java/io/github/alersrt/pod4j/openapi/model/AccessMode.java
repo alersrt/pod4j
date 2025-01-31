@@ -296,7 +296,7 @@ public class AccessMode implements Serializable {
      * @param jsonString JSON string
      * @return An instance of AccessMode
      * @throws IOException if the JSON string is invalid with respect to AccessMode
-     */
+  */
   public static AccessMode fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, AccessMode.class);
   }
@@ -305,7 +305,7 @@ public class AccessMode implements Serializable {
      * Convert an instance of AccessMode to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

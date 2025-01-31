@@ -242,7 +242,7 @@ public class TypeMount implements Serializable {
      * @param jsonString JSON string
      * @return An instance of TypeMount
      * @throws IOException if the JSON string is invalid with respect to TypeMount
-     */
+  */
   public static TypeMount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, TypeMount.class);
   }
@@ -251,7 +251,7 @@ public class TypeMount implements Serializable {
      * Convert an instance of TypeMount to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

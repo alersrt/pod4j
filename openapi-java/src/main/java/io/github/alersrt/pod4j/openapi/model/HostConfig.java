@@ -2788,7 +2788,7 @@ public class HostConfig implements Serializable {
      * @param jsonString JSON string
      * @return An instance of HostConfig
      * @throws IOException if the JSON string is invalid with respect to HostConfig
-     */
+  */
   public static HostConfig fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, HostConfig.class);
   }
@@ -2797,7 +2797,7 @@ public class HostConfig implements Serializable {
      * Convert an instance of HostConfig to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

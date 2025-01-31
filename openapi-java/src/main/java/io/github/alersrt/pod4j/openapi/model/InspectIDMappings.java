@@ -250,7 +250,7 @@ public class InspectIDMappings implements Serializable {
      * @param jsonString JSON string
      * @return An instance of InspectIDMappings
      * @throws IOException if the JSON string is invalid with respect to InspectIDMappings
-     */
+  */
   public static InspectIDMappings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InspectIDMappings.class);
   }
@@ -259,7 +259,7 @@ public class InspectIDMappings implements Serializable {
      * Convert an instance of InspectIDMappings to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

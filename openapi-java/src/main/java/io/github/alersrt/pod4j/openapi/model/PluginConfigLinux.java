@@ -260,9 +260,8 @@ public class PluginConfigLinux implements Serializable {
                 // validate the optional field `Devices` (array)
                 for (int i = 0; i < jsonArraydevices.size(); i++) {
                     PluginDevice.validateJsonObject(jsonArraydevices.get(i).getAsJsonObject());
-                }
-                ;
-            }
+                };
+        }
       }
   }
 
@@ -301,7 +300,7 @@ public class PluginConfigLinux implements Serializable {
      * @param jsonString JSON string
      * @return An instance of PluginConfigLinux
      * @throws IOException if the JSON string is invalid with respect to PluginConfigLinux
-     */
+  */
   public static PluginConfigLinux fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PluginConfigLinux.class);
   }
@@ -310,7 +309,7 @@ public class PluginConfigLinux implements Serializable {
      * Convert an instance of PluginConfigLinux to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

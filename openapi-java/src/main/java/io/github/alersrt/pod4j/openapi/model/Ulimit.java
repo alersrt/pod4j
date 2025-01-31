@@ -257,7 +257,7 @@ public class Ulimit implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Ulimit
      * @throws IOException if the JSON string is invalid with respect to Ulimit
-     */
+  */
   public static Ulimit fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Ulimit.class);
   }
@@ -266,7 +266,7 @@ public class Ulimit implements Serializable {
      * Convert an instance of Ulimit to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

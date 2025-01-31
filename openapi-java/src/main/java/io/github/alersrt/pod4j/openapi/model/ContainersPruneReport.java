@@ -238,7 +238,7 @@ public class ContainersPruneReport implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ContainersPruneReport
      * @throws IOException if the JSON string is invalid with respect to ContainersPruneReport
-     */
+  */
   public static ContainersPruneReport fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ContainersPruneReport.class);
   }
@@ -247,7 +247,7 @@ public class ContainersPruneReport implements Serializable {
      * Convert an instance of ContainersPruneReport to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

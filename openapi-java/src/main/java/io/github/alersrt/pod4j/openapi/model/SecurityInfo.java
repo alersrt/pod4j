@@ -351,7 +351,7 @@ public class SecurityInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of SecurityInfo
      * @throws IOException if the JSON string is invalid with respect to SecurityInfo
-     */
+  */
   public static SecurityInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SecurityInfo.class);
   }
@@ -360,7 +360,7 @@ public class SecurityInfo implements Serializable {
      * Convert an instance of SecurityInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

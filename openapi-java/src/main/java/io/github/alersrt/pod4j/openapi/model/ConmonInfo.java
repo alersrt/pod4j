@@ -264,7 +264,7 @@ public class ConmonInfo implements Serializable {
      * @param jsonString JSON string
      * @return An instance of ConmonInfo
      * @throws IOException if the JSON string is invalid with respect to ConmonInfo
-     */
+  */
   public static ConmonInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ConmonInfo.class);
   }
@@ -273,7 +273,7 @@ public class ConmonInfo implements Serializable {
      * Convert an instance of ConmonInfo to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

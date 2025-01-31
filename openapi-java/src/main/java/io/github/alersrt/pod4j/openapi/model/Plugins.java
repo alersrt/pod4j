@@ -334,7 +334,7 @@ public class Plugins implements Serializable {
      * @param jsonString JSON string
      * @return An instance of Plugins
      * @throws IOException if the JSON string is invalid with respect to Plugins
-     */
+  */
   public static Plugins fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Plugins.class);
   }
@@ -343,7 +343,7 @@ public class Plugins implements Serializable {
      * Convert an instance of Plugins to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

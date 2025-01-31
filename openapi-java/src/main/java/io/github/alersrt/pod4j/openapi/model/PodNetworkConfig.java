@@ -403,7 +403,7 @@ public class PodNetworkConfig implements Serializable {
 
     public void setNoManageHostname(Boolean noManageHostname) {
         this.noManageHostname = noManageHostname;
-    }
+  }
 
 
   public PodNetworkConfig noManageHosts(Boolean noManageHosts) {
@@ -678,8 +678,8 @@ public class PodNetworkConfig implements Serializable {
 
     /**
      * Convert an instance of PodNetworkConfig to an JSON string
-     *
-     * @return JSON string
+  *
+  * @return JSON string
   */
   public String toJson() {
     return JSON.getGson().toJson(this);

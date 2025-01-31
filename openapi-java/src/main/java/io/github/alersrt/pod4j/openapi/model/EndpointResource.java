@@ -330,7 +330,7 @@ public class EndpointResource implements Serializable {
      * @param jsonString JSON string
      * @return An instance of EndpointResource
      * @throws IOException if the JSON string is invalid with respect to EndpointResource
-     */
+  */
   public static EndpointResource fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EndpointResource.class);
   }
@@ -339,7 +339,7 @@ public class EndpointResource implements Serializable {
      * Convert an instance of EndpointResource to an JSON string
      *
      * @return JSON string
-     */
+  */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
