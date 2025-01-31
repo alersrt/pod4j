@@ -94,6 +94,7 @@ public class KubePlayer implements GenericContainer {
         return this;
     }
 
+    @Override
     public KubePlayer withCleanup(boolean doCleanup) {
         this.doCleanup = doCleanup;
         return this;
@@ -145,6 +146,7 @@ public class KubePlayer implements GenericContainer {
 
         try {
             pods.playKubeDownLibpod()
+                    .contentType("plain/text")
                     .force(true)
                     .request(yaml)
                     .execute();
